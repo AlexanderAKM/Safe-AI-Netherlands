@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-slate-800 font-sans;
+  }
+
+  ::selection {
+    @apply bg-dutch-orange/20 text-navy-900;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  .heading-xl {
+    @apply font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight;
+  }
+
+  .heading-lg {
+    @apply font-display font-bold text-3xl md:text-4xl tracking-tight;
+  }
+
+  .heading-md {
+    @apply font-display font-semibold text-2xl md:text-3xl tracking-tight;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg
+           bg-dutch-orange text-white font-semibold text-sm
+           hover:bg-dutch-orange-dark transition-all duration-200
+           shadow-lg shadow-dutch-orange/25 hover:shadow-xl hover:shadow-dutch-orange/30
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg
+           bg-white/10 text-white font-semibold text-sm border border-white/20
+           hover:bg-white/20 transition-all duration-200
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg
+           bg-transparent text-navy-900 font-semibold text-sm
+           border-2 border-navy-900/20
+           hover:border-dutch-orange hover:text-dutch-orange
+           transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200/80
+           shadow-sm hover:shadow-md transition-all duration-300
+           hover:-translate-y-1;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r
+           from-dutch-orange to-dutch-orange-light;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
