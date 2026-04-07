@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAIN — Soft Gradient Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo-50: #EEF2FF;
+    --indigo-100: #E0E7FF;
+    --indigo-200: #C7D2FE;
+    --indigo-300: #A5B4FC;
+    --indigo-400: #818CF8;
+    --indigo-500: #6366F1;
+    --indigo-600: #4F46E5;
+    --indigo-700: #4338CA;
+    --indigo-800: #3730A3;
+    --indigo-900: #312E81;
+    --indigo-950: #1E1B4B;
+    --slate-50: #F8FAFC;
+    --slate-100: #F1F5F9;
+    --slate-200: #E2E8F0;
+    --slate-300: #CBD5E1;
+    --slate-400: #94A3B8;
+    --slate-500: #64748B;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1E293B;
+    --slate-900: #0F172A;
+    --rose: #F43F5E;
+    --rose-light: #FB7185;
+    --white: #FFFFFF;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--white); color: var(--slate-600); -webkit-font-smoothing: antialiased; }
+
+  .design-label {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: linear-gradient(135deg, var(--indigo-500), var(--rose));
+    color: white; text-align: center; padding: 10px;
+    font-size: 12px; letter-spacing: 2px; font-weight: 500;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 40px; left: 0; right: 0; z-index: 100;
+    padding: 0 24px;
+  }
+  nav .inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.8); backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(99,102,241,0.08);
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 8px 24px rgba(99,102,241,0.04);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 800; font-size: 14px;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+  }
+  .logo-text { font-weight: 700; font-size: 17px; color: var(--slate-800); letter-spacing: -0.3px; }
+  nav ul { display: flex; list-style: none; gap: 0; align-items: center; }
+  nav a {
+    text-decoration: none; font-size: 13px; font-weight: 500; color: var(--slate-400);
+    padding: 8px 14px; border-radius: 10px; transition: all 0.15s;
+  }
+  nav a:hover { color: var(--slate-700); background: var(--slate-50); }
+  .nav-cta {
+    margin-left: 8px;
+    background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600)) !important;
+    color: white !important;
+    padding: 9px 20px !important; font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.25);
+    border-radius: 10px !important;
+  }
+  .nav-cta:hover { box-shadow: 0 4px 16px rgba(99,102,241,0.35); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 160px 24px 120px; text-align: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, var(--indigo-50) 0%, var(--white) 50%, var(--white) 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 1000px; height: 600px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, rgba(244,63,94,0.04) 40%, transparent 70%);
+    filter: blur(40px);
+  }
+  .hero-content { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 100px;
+    background: var(--white); border: 1px solid var(--indigo-100);
+    font-size: 13px; color: var(--indigo-600); font-weight: 500;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .hero-badge .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo-500), var(--rose));
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  h1 {
+    font-size: clamp(38px, 5vw, 62px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -2px;
+    color: var(--slate-900); margin-bottom: 20px;
+    max-width: 680px; margin-left: auto; margin-right: auto;
+  }
+  h1 .gradient {
+    background: linear-gradient(135deg, var(--indigo-500), var(--rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    font-size: 17px; line-height: 1.7; color: var(--slate-400);
+    max-width: 520px; margin: 0 auto 36px;
+  }
+  .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px; font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; border-radius: 12px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+    color: white; box-shadow: 0 2px 12px rgba(99,102,241,0.3);
+  }
+  .btn-primary:hover { box-shadow: 0 4px 20px rgba(99,102,241,0.4); transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--white); color: var(--slate-700);
+    border: 1px solid var(--slate-200);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .btn-secondary:hover { border-color: var(--indigo-200); background: var(--indigo-50); }
+
+  /* SECTIONS */
+  section { padding: 96px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--indigo-500), var(--rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-title {
+    font-size: clamp(26px, 3vw, 38px); font-weight: 800;
+    color: var(--slate-800); letter-spacing: -1px; margin-bottom: 12px; line-height: 1.15;
+  }
+  .section-desc { font-size: 15px; color: var(--slate-400); max-width: 480px; line-height: 1.7; }
+
+  /* PILLARS */
+  .pillars-section {
+    background: linear-gradient(180deg, var(--white) 0%, var(--slate-50) 100%);
+  }
+  .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+  .pillar {
+    padding: 32px 24px; text-decoration: none; color: inherit; display: block;
+    background: var(--white); border: 1px solid var(--slate-100);
+    border-radius: 16px; transition: all 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .pillar:hover {
+    border-color: var(--indigo-200); background: var(--indigo-50);
+    box-shadow: 0 8px 24px rgba(99,102,241,0.06);
+    transform: translateY(-2px);
+  }
+  .pillar-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--indigo-50), var(--indigo-100));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px; transition: all 0.25s;
+  }
+  .pillar:hover .pillar-icon {
+    background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+    box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+  }
+  .pillar-icon svg { width: 22px; height: 22px; stroke: var(--indigo-500); stroke-width: 1.5; fill: none; transition: stroke 0.25s; }
+  .pillar:hover .pillar-icon svg { stroke: white; }
+  .pillar h3 { font-size: 16px; font-weight: 700; color: var(--slate-800); margin-bottom: 8px; letter-spacing: -0.2px; }
+  .pillar p { font-size: 13px; color: var(--slate-400); line-height: 1.7; }
+
+  /* RESEARCH */
+  .research-section { background: var(--slate-50); }
+  .research-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+  .view-all {
+    font-size: 13px; font-weight: 600; color: var(--indigo-500); text-decoration: none;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .view-all:hover { color: var(--indigo-700); }
+  .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .paper {
+    background: var(--white); border-radius: 16px; padding: 28px;
+    border: 1px solid var(--slate-100); text-decoration: none;
+    display: flex; flex-direction: column; transition: all 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .paper:hover { border-color: var(--indigo-200); box-shadow: 0 8px 24px rgba(99,102,241,0.06); transform: translateY(-2px); }
+  .paper-venue {
+    display: inline-block; padding: 4px 10px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--indigo-50), rgba(244,63,94,0.05));
+    font-size: 11px; font-weight: 600; color: var(--indigo-600);
+    margin-bottom: 14px; align-self: flex-start;
+  }
+  .paper h3 {
+    font-size: 15px; font-weight: 600; color: var(--slate-800);
+    line-height: 1.5; margin-bottom: 14px; flex: 1; letter-spacing: -0.2px;
+  }
+  .paper:hover h3 { color: var(--indigo-600); }
+  .paper-authors { font-size: 12px; color: var(--slate-300); }
+
+  /* CHAPTERS */
+  .chapters-section {
+    background: linear-gradient(180deg, var(--white) 0%, var(--indigo-50) 100%);
+  }
+  .chapters-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+  .chapter {
+    border-radius: 16px; padding: 28px; text-decoration: none; display: block;
+    background: var(--white); border: 1px solid var(--slate-100);
+    transition: all 0.25s; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  .chapter:hover { border-color: var(--indigo-200); box-shadow: 0 8px 24px rgba(99,102,241,0.06); transform: translateY(-2px); }
+  .chapter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .chapter h3 { font-size: 15px; font-weight: 700; color: var(--slate-800); }
+  .chapter:hover h3 { color: var(--indigo-600); }
+  .badge-active {
+    padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600;
+    background: #ECFDF5; color: #059669;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .badge-active::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #059669; }
+  .badge-coming {
+    padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600;
+    background: var(--indigo-50); color: var(--indigo-400);
+  }
+  .chapter p { font-size: 13px; color: var(--slate-400); line-height: 1.6; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--slate-900); text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.12) 0%, rgba(244,63,94,0.06) 40%, transparent 70%);
+    filter: blur(40px);
+  }
+  .cta-section .container { position: relative; z-index: 2; }
+  .cta-section .section-title { color: white; max-width: 580px; margin: 0 auto 16px; }
+  .cta-desc { font-size: 16px; color: var(--slate-400); max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
+  .cta-section .btn-secondary { color: white; border-color: var(--slate-700); background: transparent; }
+  .cta-section .btn-secondary:hover { background: var(--slate-800); border-color: var(--slate-600); }
+
+  /* FOOTER */
+  footer { background: var(--slate-900); color: white; padding: 72px 24px 36px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; }
+  .footer-brand-name { font-weight: 800; font-size: 18px; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .footer-brand-sub { font-size: 10px; color: var(--slate-500); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-brand p { color: var(--slate-400); font-size: 13px; line-height: 1.7; margin-bottom: 20px; max-width: 300px; }
+  .footer-email {
+    font-size: 13px; font-weight: 500; text-decoration: none;
+    background: linear-gradient(135deg, var(--indigo-400), var(--rose-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  footer h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; color: var(--slate-500); }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer li a { color: var(--slate-400); text-decoration: none; font-size: 13px; transition: color 0.15s; }
+  footer li a:hover { color: var(--indigo-300); }
+  .footer-bottom {
+    max-width: 1100px; margin: 56px auto 0; padding-top: 20px;
+    border-top: 1px solid var(--slate-800);
+    display: flex; justify-content: space-between; font-size: 11px; color: var(--slate-600);
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 64px 20px; }
+    .hero { padding: 140px 20px 80px; }
+    nav { padding: 0 12px; }
+    nav .inner { padding: 10px 16px; }
+    nav ul { display: none; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .chapters-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .research-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="design-label">CONCEPT 7 / 7 &mdash; SOFT GRADIENT &mdash; Light, airy, pastel washes, approachable professionalism</div>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SAIN</span>
+    </a>
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Chapters</a></li>
+      <li><a href="#">Team</a></li>
+      <li><a href="#" class="nav-cta">Get Involved</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      The Netherlands' national AI Safety initiative
+    </div>
+    <h1>Building a safer future <span class="gradient">with AI</span></h1>
+    <p class="hero-desc">Safe AI Netherlands (SAIN) unites researchers, students, and professionals across the country to ensure artificial intelligence is developed and deployed responsibly.</p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary">Explore Our Research</a>
+      <a href="#" class="btn btn-secondary">Get Involved</a>
+    </div>
+  </div>
+</section>
+
+<section class="pillars-section">
+  <div class="container" style="text-align:center;">
+    <div class="section-eyebrow">What We Do</div>
+    <div class="section-title">Four pillars of impact</div>
+    <div class="pillars-grid">
+      <a href="#" class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+        <h3>Research</h3>
+        <p>Connecting researchers with PhD+ supervisors for impactful AI Safety projects.</p>
+      </a>
+      <a href="#" class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a23.838 23.838 0 0 0-2.471.261c.128.132.24.272.339.42a23.798 23.798 0 0 1 2.132-.68m15.482 0a23.838 23.838 0 0 1 2.471.261c-.128.132-.24.272-.339.42a23.798 23.798 0 0 0-2.132-.68M6.906 7.917A3.001 3.001 0 0 1 9 5.25h6a3.001 3.001 0 0 1 2.094 2.667m-9.188 0a23.936 23.936 0 0 1 9.188 0"/></svg></div>
+        <h3>Education</h3>
+        <p>Running "AI Safety, Ethics, and Society" courses in Technical and Governance tracks.</p>
+      </a>
+      <a href="#" class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg></div>
+        <h3>Events</h3>
+        <p>Hackathons, AI Safety Chats, and expert seminars bringing the community together.</p>
+      </a>
+      <a href="#" class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582"/></svg></div>
+        <h3>Outreach</h3>
+        <p>Raising awareness about AI Safety through Substack, social media, and partnerships.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="research-section">
+  <div class="container">
+    <div class="research-header">
+      <div>
+        <div class="section-eyebrow">Research</div>
+        <div class="section-title">Selected publications</div>
+      </div>
+      <a href="#" class="view-all">View all &rarr;</a>
+    </div>
+    <div class="research-grid">
+      <a href="#" class="paper">
+        <span class="paper-venue">NeurIPS 2025 Spotlight</span>
+        <h3>The Anatomy of Alignment: Decomposing Preference Optimization by Steering Sparse Features</h3>
+        <span class="paper-authors">Jeremias Ferrao, Matthijs van der Lende, Ilija Lichkovski</span>
+      </a>
+      <a href="#" class="paper">
+        <span class="paper-venue">ICLR 2025</span>
+        <h3>Self-Ablating Transformers: More Interpretability, Less Sparsity</h3>
+        <span class="paper-authors">Jeremias Ferrao</span>
+      </a>
+      <a href="#" class="paper">
+        <span class="paper-venue">NeurIPS 2025</span>
+        <h3>EU-Agent-Bench: Measuring Illegal Behavior of LLM Agents Under EU Law</h3>
+        <span class="paper-authors">Ilija Lichkovski, Alexander M&uuml;ller, Mariam Ibrahim, Tiwai Mhundwa</span>
+      </a>
+      <a href="#" class="paper">
+        <span class="paper-venue">ICLR 2025</span>
+        <h3>Contextual Sparsity as a Tool for Mechanistic Understanding of Retrieval</h3>
+        <span class="paper-authors">Davide Zani, Felix Michalak, Steven Abreu</span>
+      </a>
+      <a href="#" class="paper">
+        <span class="paper-venue">NeurIPS 2024</span>
+        <h3>Steering Large Language Models using Conceptors</h3>
+        <span class="paper-authors">Joris Postmus, Steven Abreu</span>
+      </a>
+      <a href="#" class="paper">
+        <span class="paper-venue">1st Place, Apart Research</span>
+        <h3>AutoSteer: Weight-Preserving RL for Interpretable Model Control</h3>
+        <span class="paper-authors">Jeremias Ferrao</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="chapters-section">
+  <div class="container" style="text-align:center;">
+    <div class="section-eyebrow">Local Presence</div>
+    <div class="section-title">SAIN chapters across the Netherlands</div>
+    <p class="section-desc" style="margin:0 auto;">Each chapter operates locally while benefiting from shared national infrastructure and brand recognition.</p>
+    <div class="chapters-grid">
+      <a href="#" class="chapter"><div class="chapter-header"><h3>SAIN Groningen</h3><span class="badge-active">Active</span></div><p>Our flagship chapter — courses, research, discussion groups, and events since 2023.</p></a>
+      <a href="#" class="chapter"><div class="chapter-header"><h3>SAIN Amsterdam</h3><span class="badge-coming">Coming Soon</span></div><p>Launching soon in the Netherlands' largest city and AI research hub.</p></a>
+      <a href="#" class="chapter"><div class="chapter-header"><h3>SAIN Delft</h3><span class="badge-coming">Coming Soon</span></div><p>Connecting with TU Delft's strong technical community.</p></a>
+      <a href="#" class="chapter"><div class="chapter-header"><h3>SAIN Utrecht</h3><span class="badge-coming">Coming Soon</span></div><p>Building AI Safety awareness in the heart of the Netherlands.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="section-eyebrow" style="-webkit-text-fill-color:unset;color:var(--indigo-300);background:none;">Join Us</div>
+    <div class="section-title">AI Safety is one of the most important challenges of our time</div>
+    <p class="cta-desc">Whether you're a researcher, student, policymaker, or concerned citizen — there's a place for you in SAIN.</p>
+    <div class="btn-group" style="justify-content:center;">
+      <a href="#" class="btn btn-primary">Join SAIN</a>
+      <a href="#" class="btn btn-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-name">SAIN</div>
+      <div class="footer-brand-sub">Safe AI Netherlands</div>
+      <p>The Netherlands' national initiative for AI Safety — uniting research, education, and community to ensure AI benefits everyone.</p>
+      <a href="mailto:info@sain.org" class="footer-email">info@sain.org</a>
+    </div>
+    <div><h4>Organization</h4><ul><li><a href="#">About</a></li><li><a href="#">Research Hub</a></li><li><a href="#">Team</a></li><li><a href="#">Get Involved</a></li></ul></div>
+    <div><h4>Chapters</h4><ul><li><a href="#">SAIN Groningen</a></li><li><a href="#">SAIN Amsterdam</a></li><li><a href="#">SAIN Delft</a></li><li><a href="#">SAIN Utrecht</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="#">Substack</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Safe AI Netherlands (SAIN). All rights reserved.</span>
+    <div style="display:flex;gap:20px;"><a href="#" style="color:var(--slate-600);text-decoration:none;">Privacy</a><a href="#" style="color:var(--slate-600);text-decoration:none;">Terms</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
