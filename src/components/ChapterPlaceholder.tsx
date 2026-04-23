@@ -17,38 +17,38 @@ export default function ChapterPlaceholder({
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
               backgroundSize: "40px 40px",
             }}
           />
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dutch-orange/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
         <div className="section-container relative z-10">
           <FadeIn>
             <div className="flex items-center gap-2 mb-4">
               <Link
                 href="/"
-                className="text-sm text-slate-400 hover:text-slate-300 transition-colors"
+                className="text-sm text-slate-400 hover:text-navy-900 transition-colors"
               >
                 SAIN
               </Link>
-              <span className="text-slate-600">/</span>
+              <span className="text-slate-300">/</span>
               <span className="text-sm text-dutch-orange">{city}</span>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-white max-w-3xl mb-6">
+            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
               SAIN {city}
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-sm text-amber-300">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-sm text-amber-700">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>

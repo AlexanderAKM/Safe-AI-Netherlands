@@ -10,7 +10,6 @@ const footerLinks = {
   Chapters: [
     { name: "SAIN Groningen", href: "/chapters/groningen" },
     { name: "SAIN Amsterdam", href: "/chapters/amsterdam" },
-    { name: "SAIN Delft", href: "/chapters/delft" },
     { name: "SAIN Utrecht", href: "/chapters/utrecht" },
   ],
   Connect: [
@@ -28,24 +27,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                  <rect width="40" height="40" rx="8" className="fill-dutch-orange" />
-                  <text
-                    x="20" y="26" textAnchor="middle" fill="white"
-                    fontFamily="Plus Jakarta Sans, Inter, sans-serif" fontWeight="800" fontSize="18"
-                  >S</text>
-                </svg>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-display font-extrabold text-lg tracking-tight text-white">
-                  SAIN
-                </span>
-                <span className="text-[10px] font-medium tracking-widest uppercase text-slate-400 mt-0.5">
-                  Safe AI Netherlands
-                </span>
-              </div>
+            <div className="flex items-center gap-4 mb-5">
+              <img
+                src="/sain-symbol.svg"
+                alt=""
+                className="w-16 h-16"
+                width={64}
+                height={64}
+              />
+              <img
+                src="/sain-wordmark-light.svg"
+                alt="SAIN"
+                className="h-10"
+                height={40}
+              />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
               The Netherlands&apos; national initiative for AI Safety &mdash; uniting

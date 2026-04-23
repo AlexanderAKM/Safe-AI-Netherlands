@@ -77,17 +77,17 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
               backgroundSize: "40px 40px",
             }}
           />
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dutch-orange/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
         <div className="section-container relative z-10">
           <FadeIn>
@@ -96,12 +96,12 @@ export default function AboutPage() {
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-white max-w-3xl mb-6">
+            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
               The Netherlands&apos; national initiative for AI Safety
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-lg text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
               Safe AI Netherlands (SAIN) was born from the recognition that the
               Netherlands needs a unified, national-level organization dedicated
               to ensuring AI is developed and deployed responsibly.

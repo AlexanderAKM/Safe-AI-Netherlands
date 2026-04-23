@@ -14,7 +14,6 @@ const navigation = [
     children: [
       { name: "SAIN Groningen", href: "/chapters/groningen" },
       { name: "SAIN Amsterdam", href: "/chapters/amsterdam" },
-      { name: "SAIN Delft", href: "/chapters/delft" },
       { name: "SAIN Utrecht", href: "/chapters/utrecht" },
       { divider: true },
       { name: "Start a Chapter", href: "/get-involved#start-chapter" },
@@ -53,7 +52,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="section-container flex items-center justify-between h-16 md:h-20">
+      <nav className="section-container flex items-center justify-between h-24 md:h-28">
         <Logo
           className={scrolled ? "text-navy-900" : "text-navy-900"}
         />

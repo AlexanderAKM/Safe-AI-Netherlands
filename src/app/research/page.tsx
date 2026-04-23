@@ -133,17 +133,17 @@ export default function ResearchPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
               backgroundSize: "40px 40px",
             }}
           />
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dutch-orange/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
         <div className="section-container relative z-10">
           <FadeIn>
@@ -152,31 +152,31 @@ export default function ResearchPage() {
             </p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-white max-w-3xl mb-6">
+            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
               Advancing AI Safety research in the Netherlands
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
+            <p className="text-lg text-slate-500 max-w-2xl leading-relaxed mb-8">
               The SAIN Research Hub connects talented researchers with
               experienced supervisors, providing mentorship, compute, and
               community to produce impactful AI Safety research.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <div className="flex items-center gap-6 text-sm text-slate-400">
+            <div className="flex items-center gap-6 text-sm text-slate-500">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">6+</span>
+                <span className="text-2xl font-bold text-navy-900">6+</span>
                 Active Projects
               </div>
-              <div className="w-px h-8 bg-white/10" />
+              <div className="w-px h-8 bg-slate-200" />
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">20+</span>
+                <span className="text-2xl font-bold text-navy-900">20+</span>
                 Researchers
               </div>
-              <div className="w-px h-8 bg-white/10" />
+              <div className="w-px h-8 bg-slate-200" />
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">12+</span>
+                <span className="text-2xl font-bold text-navy-900">12+</span>
                 Publications
               </div>
             </div>

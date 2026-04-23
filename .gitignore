@@ -34,4 +34,4 @@ yarn-error.log*
 next-env.d.ts
 
 # private context
-/context_info/
+context_info/

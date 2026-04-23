@@ -64,52 +64,52 @@ export default function GroningenPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
               backgroundSize: "40px 40px",
             }}
           />
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dutch-orange/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
         <div className="section-container relative z-10">
           <FadeIn>
             <div className="flex items-center gap-2 mb-4">
               <Link
                 href="/"
-                className="text-sm text-slate-400 hover:text-slate-300 transition-colors"
+                className="text-sm text-slate-400 hover:text-navy-900 transition-colors"
               >
                 SAIN
               </Link>
-              <span className="text-slate-600">/</span>
+              <span className="text-slate-300">/</span>
               <span className="text-sm text-dutch-orange">Groningen</span>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-white max-w-3xl mb-6">
+            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
               SAIN Groningen
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
+            <p className="text-lg text-slate-500 max-w-2xl leading-relaxed mb-8">
               SAIN&apos;s flagship chapter — formerly the AI Safety Initiative
               Groningen (AISIG). Running courses, research, discussion groups,
               and events since 2023.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <div className="flex items-center gap-6 text-sm text-slate-400">
+            <div className="flex items-center gap-6 text-sm text-slate-500">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 Active Chapter
               </div>
-              <div className="w-px h-4 bg-white/10" />
+              <div className="w-px h-4 bg-slate-200" />
               <div>80+ course graduates</div>
-              <div className="w-px h-4 bg-white/10" />
+              <div className="w-px h-4 bg-slate-200" />
               <div>Founded 2023</div>
             </div>
           </FadeIn>
