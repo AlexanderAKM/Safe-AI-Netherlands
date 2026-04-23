@@ -104,7 +104,7 @@ export default function AboutPage() {
             <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
               Safe AI Netherlands (SAIN) was born from the recognition that the
               Netherlands needs a unified, national-level organization dedicated
-              to ensuring AI is developed and deployed responsibly.
+              to ensuring AI is developed and deployed safely.
             </p>
           </FadeIn>
         </div>

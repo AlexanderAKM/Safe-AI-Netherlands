@@ -133,7 +133,7 @@ export default function Home() {
                 <p className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed">
                   Safe AI Netherlands (SAIN) unites researchers, students, and
                   professionals across the country to ensure artificial
-                  intelligence is developed and deployed responsibly.
+                  intelligence is developed and deployed safely.
                 </p>
               </FadeIn>
             </div>
