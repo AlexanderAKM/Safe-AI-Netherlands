@@ -3,54 +3,70 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
-const ways = [
+const activities = [
   {
-    title: "Join a Chapter",
+    title: "Courses",
+    subtitle: "AI Safety, Ethics, and Society",
     description:
-      "Connect with your local SAIN community. Participate in courses, discussion groups, events, and research — all while building your AI Safety network.",
-    cta: "Find your chapter",
-    href: "#chapters-list",
+      "We facilitate the Center for AI Safety course in two tracks — Technical and Governance. The course runs in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
+    details: [
+      "Technical and Governance tracks",
+      "6 weeks per block, 3-4 cohorts per year",
+      "2h readings + 2h discussion per week",
+      "Certificate upon completion",
+    ],
+    cities: [
+      { name: "Groningen", href: "/chapters/groningen", active: true },
+      { name: "Amsterdam", href: "/chapters/amsterdam", active: true },
+      { name: "Utrecht", href: "/chapters/utrecht", active: true },
+    ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a23.838 23.838 0 0 0-2.471.261c.128.132.24.272.339.42a23.798 23.798 0 0 1 2.132-.68m15.482 0a23.838 23.838 0 0 1 2.471.261c-.128.132-.24.272-.339.42a23.798 23.798 0 0 0-2.132-.68M6.906 7.917A3.001 3.001 0 0 1 9 5.25h6a3.001 3.001 0 0 1 2.094 2.667m-9.188 0a23.936 23.936 0 0 1 9.188 0" />
       </svg>
     ),
   },
   {
-    title: "Research with Us",
+    title: "Discussion Groups",
+    subtitle: "Weekly deep-dives into AI Safety topics",
     description:
-      "Join the SAIN Research Hub as a researcher or supervisor. Work on meaningful AI Safety projects with structured mentorship and access to compute resources.",
-    cta: "Explore the Research Hub",
-    href: "/research",
+      "Focused groups meeting weekly to discuss, learn, and collaborate on specific AI Safety topics. Each group has at least one experienced mentor guiding the conversation. Topics range from mechanistic interpretability to AI governance and neuroscience-inspired alignment.",
+    details: [
+      "~2 hours per week",
+      "Mentored by experienced researchers",
+      "Topics: Interpretability, Governance, Neuralignment, and more",
+      "Open to all levels of experience",
+    ],
+    cities: [
+      { name: "Groningen", href: "/chapters/groningen", active: true },
+      { name: "Amsterdam", href: "/chapters/amsterdam", active: true },
+      { name: "Utrecht", href: "/chapters/utrecht", active: true },
+    ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
       </svg>
     ),
   },
   {
-    title: "Write for Our Substack",
+    title: "Events",
+    subtitle: "Hackathons, talks, and community meetups",
     description:
-      "Share your perspective on AI Safety with a national audience. Whether a one-time guest post or ongoing contributions, we welcome diverse voices.",
-    cta: "Visit our Substack",
-    href: "https://aisig.substack.com/",
-    external: true,
+      "From research hackathons with Apart Research to expert talks, pub quizzes, and AI Safety Chats — our chapters host regular events that bring the community together and create real impact.",
+    details: [
+      "Research hackathons (with global placement track record)",
+      "Expert speaker events and seminars",
+      "Social events: pub quizzes, AI Safety Chats",
+      "TEDx presentations and conference talks",
+    ],
+    cities: [
+      { name: "Groningen", href: "/chapters/groningen", active: true },
+      { name: "Amsterdam", href: "/chapters/amsterdam", active: true },
+      { name: "Utrecht", href: "/chapters/utrecht", active: true },
+    ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-      </svg>
-    ),
-  },
-  {
-    title: "Donate",
-    description:
-      "Your financial support enables us to run courses, host events, provide research compute, and build the infrastructure that powers AI Safety work across the Netherlands.",
-    cta: "Support SAIN",
-    href: "#donate",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
       </svg>
     ),
   },
@@ -93,56 +109,101 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Ways to Get Involved */}
+      {/* Activities */}
       <section className="section-padding bg-white">
         <div className="section-container">
           <FadeIn>
             <div className="text-center mb-16">
               <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Contribute
+                What We Do
               </p>
               <h2 className="heading-lg text-navy-900">
-                Ways to get involved
+                Activities across our chapters
               </h2>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {ways.map((way, i) => (
-              <FadeIn key={way.title} delay={i * 0.1}>
-                <div className="card p-8 h-full flex flex-col">
-                  <div className="w-14 h-14 rounded-2xl bg-dutch-orange/10 text-dutch-orange flex items-center justify-center mb-5">
-                    {way.icon}
+          <div className="space-y-12">
+            {activities.map((activity, i) => (
+              <FadeIn key={activity.title} delay={i * 0.1}>
+                <div className="card p-8 md:p-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-2">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="w-14 h-14 rounded-2xl bg-dutch-orange/10 text-dutch-orange flex items-center justify-center flex-shrink-0">
+                          {activity.icon}
+                        </div>
+                        <div>
+                          <h3 className="font-display font-semibold text-xl text-navy-900">
+                            {activity.title}
+                          </h3>
+                          <p className="text-sm text-slate-400">
+                            {activity.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-slate-600 leading-relaxed mb-6">
+                        {activity.description}
+                      </p>
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {activity.details.map((detail) => (
+                          <li
+                            key={detail}
+                            className="flex items-start gap-2 text-sm text-slate-500"
+                          >
+                            <svg
+                              className="w-4 h-4 text-dutch-orange flex-shrink-0 mt-0.5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4.5 12.75l6 6 9-13.5"
+                              />
+                            </svg>
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="lg:border-l lg:border-slate-100 lg:pl-8">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+                        Available in
+                      </h4>
+                      <div className="space-y-3">
+                        {activity.cities.map((city) => (
+                          <Link
+                            key={city.name}
+                            href={city.href}
+                            className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-dutch-orange/5 transition-colors group"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className={`w-2 h-2 rounded-full ${city.active ? "bg-emerald-500" : "bg-amber-500"}`} />
+                              <span className="text-sm font-medium text-navy-900 group-hover:text-dutch-orange transition-colors">
+                                SAIN {city.name}
+                              </span>
+                            </div>
+                            <svg
+                              className="w-4 h-4 text-slate-300 group-hover:text-dutch-orange transition-colors"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                              />
+                            </svg>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-display font-semibold text-xl text-navy-900 mb-3">
-                    {way.title}
-                  </h3>
-                  <p className="text-slate-500 leading-relaxed flex-1 mb-5">
-                    {way.description}
-                  </p>
-                  {"external" in way ? (
-                    <a
-                      href={way.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold text-dutch-orange hover:text-dutch-orange-dark transition-colors flex items-center gap-1"
-                    >
-                      {way.cta}
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                      </svg>
-                    </a>
-                  ) : (
-                    <Link
-                      href={way.href}
-                      className="text-sm font-semibold text-dutch-orange hover:text-dutch-orange-dark transition-colors flex items-center gap-1"
-                    >
-                      {way.cta}
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                      </svg>
-                    </Link>
-                  )}
                 </div>
               </FadeIn>
             ))}
@@ -150,42 +211,33 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Chapters List */}
-      <section id="chapters-list" className="section-padding bg-slate-50">
+      {/* Research Hub Pointer */}
+      <section className="section-padding bg-slate-50">
         <div className="section-container">
           <FadeIn>
-            <div className="text-center mb-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="w-14 h-14 rounded-2xl bg-dutch-orange/10 text-dutch-orange flex items-center justify-center mx-auto mb-6">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                </svg>
+              </div>
               <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Find Your Chapter
+                Research
               </p>
-              <h2 className="heading-lg text-navy-900">
-                SAIN chapters in the Netherlands
+              <h2 className="heading-lg text-navy-900 mb-4">
+                SAIN Research Hub
               </h2>
+              <p className="text-slate-500 max-w-xl mx-auto mb-8">
+                Join the SAIN Research Hub — get matched with PhD+ supervisors
+                for impactful AI Safety projects across interpretability,
+                evaluation, governance, and more. Open to members from all
+                chapters.
+              </p>
+              <Link href="/research" className="btn-primary">
+                Explore the Research Hub
+              </Link>
             </div>
           </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {[
-              { city: "Groningen", active: true, href: "/chapters/groningen" },
-              { city: "Amsterdam", active: false, href: "/chapters/amsterdam" },
-              { city: "Utrecht", active: false, href: "/chapters/utrecht" },
-            ].map((ch, i) => (
-              <FadeIn key={ch.city} delay={i * 0.1}>
-                <Link href={ch.href} className="card p-6 text-center group">
-                  <h3 className="font-display font-semibold text-lg text-navy-900 group-hover:text-dutch-orange transition-colors">
-                    {ch.city}
-                  </h3>
-                  <p
-                    className={`text-xs font-medium mt-1 ${
-                      ch.active ? "text-emerald-600" : "text-amber-600"
-                    }`}
-                  >
-                    {ch.active ? "Active" : "Coming Soon"}
-                  </p>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -225,9 +277,22 @@ export default function GetInvolvedPage() {
                     "No need for separate legal entity registration",
                     "Connection to the national network",
                   ].map((item) => (
-                    <div key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <svg className="w-4 h-4 text-dutch-orange flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    <div
+                      key={item}
+                      className="flex items-start gap-2.5 text-sm text-slate-600"
+                    >
+                      <svg
+                        className="w-4 h-4 text-dutch-orange flex-shrink-0 mt-0.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M4.5 12.75l6 6 9-13.5"
+                        />
                       </svg>
                       {item}
                     </div>
@@ -247,7 +312,10 @@ export default function GetInvolvedPage() {
                     "Run your first meetup or event",
                     "Consider running the AI Safety, Ethics, and Society course",
                   ].map((step, i) => (
-                    <li key={step} className="flex items-start gap-3 text-sm text-slate-600">
+                    <li
+                      key={step}
+                      className="flex items-start gap-3 text-sm text-slate-600"
+                    >
                       <span className="w-6 h-6 rounded-full bg-dutch-orange/10 text-dutch-orange text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                         {i + 1}
                       </span>
@@ -285,8 +353,7 @@ export default function GetInvolvedPage() {
             <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
               Your donation directly funds courses, research compute, events,
               and the infrastructure that powers AI Safety work across the
-              Netherlands. A lot of money can be effectively used in a national
-              initiative.
+              Netherlands.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>

@@ -50,33 +50,6 @@ const pathways = [
   },
 ];
 
-const featuredResearch = [
-  {
-    title: "The Anatomy of Alignment: Decomposing Preference Optimization by Steering Sparse Features",
-    venue: "NeurIPS 2025 Spotlight",
-    authors: "Jeremias Ferrao, Matthijs van der Lende, Ilija Lichkovski",
-    link: "https://arxiv.org/abs/2509.12934",
-  },
-  {
-    title: "Self-Ablating Transformers: More Interpretability, Less Sparsity",
-    venue: "ICLR 2025",
-    authors: "Jeremias Ferrao",
-    link: "https://openreview.net/pdf?id=QcmEb490bK",
-  },
-  {
-    title: "EU-Agent-Bench: Measuring Illegal Behavior of LLM Agents Under EU Law",
-    venue: "NeurIPS 2025",
-    authors: "Ilija Lichkovski, Alexander Müller, Mariam Ibrahim, Tiwai Mhundwa",
-    link: "https://arxiv.org/abs/2510.21524",
-  },
-  {
-    title: "Contextual Sparsity as a Tool for Mechanistic Understanding of Retrieval in Hybrid Foundation Models",
-    venue: "ICLR 2025",
-    authors: "Davide Zani, Felix Michalak, Steven Abreu",
-    link: "https://openreview.net/pdf?id=TGWzg86kYv",
-  },
-];
-
 const chapters = [
   {
     city: "Groningen",
@@ -123,7 +96,7 @@ export default function Home() {
           <div className="section-container relative z-10 py-32 md:py-40">
             <div className="max-w-4xl">
               <FadeIn delay={0.2}>
-                <h1 className="heading-xl text-navy-900 mb-6 text-balance">
+                <h1 className="heading-xl text-navy-900 mb-6 whitespace-nowrap">
                   Building a safer future{" "}
                   <span className="gradient-text">with AI</span>
                 </h1>
@@ -178,56 +151,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      {/* ── Featured Research ── */}
-      <section className="section-padding bg-slate-50">
-        <div className="section-container">
-          <FadeIn>
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                  Research
-                </p>
-                <h2 className="heading-lg text-navy-900">
-                  Selected publications
-                </h2>
-              </div>
-              <Link
-                href="/research"
-                className="text-sm font-semibold text-dutch-orange hover:text-dutch-orange-dark transition-colors flex items-center gap-1"
-              >
-                View all research
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredResearch.map((paper, i) => (
-              <FadeIn key={paper.title} delay={i * 0.08}>
-                <a
-                  href={paper.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card p-6 h-full flex flex-col group"
-                >
-                  <div className="inline-flex items-center px-2.5 py-1 rounded-md bg-navy-900/5 text-xs font-medium text-navy-700 mb-3 self-start">
-                    {paper.venue}
-                  </div>
-                  <h3 className="font-display font-semibold text-navy-900 mb-3 leading-snug group-hover:text-dutch-orange transition-colors">
-                    {paper.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 mt-auto">
-                    {paper.authors}
-                  </p>
-                </a>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Chapters ── */}
       <section className="section-padding bg-white">
@@ -292,15 +215,15 @@ export default function Home() {
 
       {/* ── CTA ── */}
       <section className="relative py-24 md:py-32 bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-              backgroundSize: "32px 32px",
-            }}
-          />
-        </div>
+        <div
+          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[650px] md:h-[650px] opacity-[0.05]"
+          style={{
+            backgroundImage: `url(/sain-symbol.svg)`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-dutch-orange/30 to-transparent" />
 
         <div className="section-container relative z-10 text-center">

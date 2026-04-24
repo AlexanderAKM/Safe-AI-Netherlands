@@ -2,10 +2,10 @@ import Link from "next/link";
 
 const footerLinks = {
   Organization: [
-    { name: "About", href: "/about" },
-    { name: "Research Hub", href: "/research" },
-    { name: "Team", href: "/team" },
+    { name: "About Us", href: "/about" },
     { name: "Get Involved", href: "/get-involved" },
+    { name: "Research Hub", href: "/research" },
+    { name: "Contact", href: "/contact" },
   ],
   Chapters: [
     { name: "SAIN Groningen", href: "/chapters/groningen" },
@@ -29,17 +29,17 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-4 mb-5">
               <img
-                src="/sain-symbol.svg"
+                src="/sain-symbol-light.svg"
                 alt=""
-                className="w-16 h-16"
-                width={64}
-                height={64}
+                className="w-20 h-20"
+                width={80}
+                height={80}
               />
               <img
                 src="/sain-wordmark-light.svg"
                 alt="SAIN"
-                className="h-10"
-                height={40}
+                className="h-12"
+                height={48}
               />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">

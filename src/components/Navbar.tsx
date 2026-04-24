@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 const navigation = [
-  { name: "About", href: "/about" },
-  { name: "Research", href: "/research" },
+  { name: "Get Involved", href: "/get-involved" },
+  { name: "About Us", href: "/about" },
   {
     name: "Chapters",
     href: "#",
@@ -19,7 +19,7 @@ const navigation = [
       { name: "Start a Chapter", href: "/get-involved#start-chapter" },
     ],
   },
-  { name: "Team", href: "/team" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -52,7 +52,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="section-container flex items-center justify-between h-24 md:h-28">
+      <nav className="section-container flex items-center justify-between h-28 md:h-32">
         <Logo
           className={scrolled ? "text-navy-900" : "text-navy-900"}
         />
@@ -65,7 +65,7 @@ export default function Navbar() {
                 <button
                   onClick={() => setChaptersOpen(!chaptersOpen)}
                   onBlur={() => setTimeout(() => setChaptersOpen(false), 150)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1 ${
+                  className={`px-4 py-2 text-base font-medium rounded-lg transition-colors flex items-center gap-1 ${
                     isActive(item.href)
                       ? "text-dutch-orange"
                       : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
@@ -104,7 +104,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                className={`px-4 py-2 text-base font-medium rounded-lg transition-colors ${
                   isActive(item.href)
                     ? "text-dutch-orange"
                     : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
@@ -114,8 +114,8 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <Link href="/get-involved" className="btn-primary ml-4 text-sm px-5 py-2.5">
-            Get Involved
+          <Link href="/get-involved" className="btn-primary ml-4 text-base px-6 py-3">
+            Join SAIN
           </Link>
         </div>
 
@@ -172,7 +172,7 @@ export default function Navbar() {
             )}
             <div className="pt-2">
               <Link href="/get-involved" className="btn-primary w-full text-center">
-                Get Involved
+                Join SAIN
               </Link>
             </div>
           </div>

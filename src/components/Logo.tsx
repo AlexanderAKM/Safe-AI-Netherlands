@@ -8,15 +8,15 @@ export default function Logo({ className = "" }: { className?: string }) {
       <img
         src="/sain-symbol.svg"
         alt=""
-        className="w-16 h-16"
-        width={64}
-        height={64}
+        className="w-20 h-20"
+        width={80}
+        height={80}
       />
       <img
         src="/sain-wordmark.svg"
         alt="SAIN"
-        className="h-10"
-        height={40}
+        className="h-12"
+        height={48}
       />
     </Link>
   );

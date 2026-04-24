@@ -3,6 +3,18 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
+const eventPhotos = [
+  { src: "/photos/events/course-graduation.jpeg", alt: "AI Safety course graduation ceremony" },
+  { src: "/photos/events/control-hackathon.png", alt: "AI Control Hackathon" },
+  { src: "/photos/events/tedx-broerstraat.webp", alt: "TEDxBroerstraat presentation" },
+  { src: "/photos/events/tekla-emborg-talk.jpeg", alt: "AI Safety talk with Tekla Emborg" },
+  { src: "/photos/events/defence-hackathon.png", alt: "Defence Acceleration Hackathon" },
+  { src: "/photos/events/pub-quiz.jpg", alt: "SAIN Groningen pub quiz" },
+  { src: "/photos/events/forecasting-hackathon.png", alt: "AI Forecasting Hackathon" },
+  { src: "/photos/events/graduation-ceremony.jpeg", alt: "Graduation ceremony" },
+  { src: "/photos/events/fatih-turkmen-talk.png", alt: "Talk with Fatih Turkmen" },
+];
+
 const events = [
   { date: "Mar 2025", title: "AI Control Hackathon" },
   { date: "Mar 2025", title: "AI Safety, Ethics and Society Graduation Ceremony" },
@@ -64,52 +76,47 @@ export default function GroningenPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url(/photos/cities/groningen-hero.jpg)` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950/50" />
 
         <div className="section-container relative z-10">
           <FadeIn>
             <div className="flex items-center gap-2 mb-4">
               <Link
                 href="/"
-                className="text-sm text-slate-400 hover:text-navy-900 transition-colors"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
               >
                 SAIN
               </Link>
-              <span className="text-slate-300">/</span>
+              <span className="text-slate-500">/</span>
               <span className="text-sm text-dutch-orange">Groningen</span>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
+            <h1 className="heading-xl text-white max-w-3xl mb-6">
               SAIN Groningen
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-lg text-slate-500 max-w-2xl leading-relaxed mb-8">
+            <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
               SAIN&apos;s flagship chapter — formerly the AI Safety Initiative
               Groningen (AISIG). Running courses, research, discussion groups,
               and events since 2023.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <div className="flex items-center gap-6 text-sm text-slate-500">
+            <div className="flex items-center gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 Active Chapter
               </div>
-              <div className="w-px h-4 bg-slate-200" />
+              <div className="w-px h-4 bg-slate-600" />
               <div>80+ course graduates</div>
-              <div className="w-px h-4 bg-slate-200" />
+              <div className="w-px h-4 bg-slate-600" />
               <div>Founded 2023</div>
             </div>
           </FadeIn>
@@ -366,6 +373,41 @@ export default function GroningenPage() {
                   <h3 className="font-display font-medium text-navy-900">
                     {event.title}
                   </h3>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Photos */}
+      <section className="section-padding bg-white">
+        <div className="section-container">
+          <FadeIn>
+            <div className="mb-12">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Gallery
+              </p>
+              <h2 className="heading-lg text-navy-900">
+                Moments from our community
+              </h2>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {eventPhotos.map((photo, i) => (
+              <FadeIn key={photo.src} delay={Math.min(i * 0.06, 0.3)}>
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <p className="absolute bottom-3 left-3 right-3 text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {photo.alt}
+                  </p>
                 </div>
               </FadeIn>
             ))}
