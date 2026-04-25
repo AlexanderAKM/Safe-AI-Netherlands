@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { aisigTeam } from "@/data/aisigTeam";
 
 const events = [
   { date: "Mar 2025", title: "AI Control Hackathon" },
@@ -16,21 +17,19 @@ const events = [
   { date: "Sep 2024", title: "AI Safety Chat" },
 ];
 
+const EDU_GRO_EMAIL = "edugro@safeainetherlands.org";
+const EVENTS_GRO_EMAIL = "eventsgro@safeainetherlands.org";
+
 const discussionGroups = [
   {
-    name: "(Mechanistic) Interpretability",
+    name: "Technical AI Alignment",
     description:
-      "Reverse-engineering ML systems to understand their inner workings and components. Designing systems whose components and decisions are more easily understood, by uncovering circuits, motifs, and algorithms that neural networks use.",
+      "Explores how to align capable ML systems with human intent: scalable oversight, evaluation and red-teaming, preference learning, robustness, and deployment risks — with weekly readings and discussion grounded in current research.",
   },
   {
     name: "AI Governance & Privacy",
     description:
       "Shaping policies for AI's ethical and responsible use. Discussing guidelines, regulations, and accountability mechanisms to ensure AI systems are transparent, secure, fair, and free of bias.",
-  },
-  {
-    name: "Neuralignment",
-    description:
-      "Exploring the intersection of neuroscience and AI to improve how AI systems align with human values. Studying how knowledge of the brain can help solve the alignment problem.",
   },
 ];
 
@@ -220,6 +219,17 @@ export default function GroningenPage() {
               </FadeIn>
             ))}
           </div>
+          <FadeIn delay={0.2}>
+            <p className="mt-8 text-sm text-slate-600">
+              Events:{" "}
+              <a
+                href={`mailto:${EVENTS_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen — Events")}`}
+                className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+              >
+                {EVENTS_GRO_EMAIL}
+              </a>
+            </p>
+          </FadeIn>
         </div>
       </section>
 
@@ -327,17 +337,28 @@ export default function GroningenPage() {
               </div>
             </FadeIn>
           </div>
+          <FadeIn delay={0.2}>
+            <p className="mt-10 text-center text-sm text-slate-600 max-w-2xl mx-auto">
+              Questions about the course?{" "}
+              <a
+                href={`mailto:${EDU_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen — Education / course")}`}
+                className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+              >
+                {EDU_GRO_EMAIL}
+              </a>
+            </p>
+          </FadeIn>
           </div>
 
-          {/* Discussion Groups */}
+          {/* Discussion groups */}
           <div className="mt-16 pt-16 border-t border-slate-100">
           <FadeIn>
             <div className="mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Discussion Groups
+              <p className="text-sm font-semibold tracking-wide text-dutch-orange mb-3 normal-case">
+                The discussion groups
               </p>
               <h2 className="heading-lg text-navy-900 mb-4">
-                Weekly research &amp; discussion groups
+                Weekly research &amp; discussion
               </h2>
               <p className="text-slate-500 max-w-2xl">
                 Focused groups meeting weekly (~2 hours) to discuss, learn, and
@@ -347,7 +368,7 @@ export default function GroningenPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {discussionGroups.map((group, i) => (
               <FadeIn key={group.name} delay={i * 0.1}>
                 <div className="card p-6 h-full">
@@ -361,6 +382,17 @@ export default function GroningenPage() {
               </FadeIn>
             ))}
           </div>
+          <FadeIn delay={0.2}>
+            <p className="mt-8 text-center text-sm text-slate-600 max-w-2xl mx-auto">
+              Questions about discussion groups?{" "}
+              <a
+                href={`mailto:${EDU_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen — Discussion groups")}`}
+                className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+              >
+                {EDU_GRO_EMAIL}
+              </a>
+            </p>
+          </FadeIn>
 
           </div>
 
@@ -416,35 +448,59 @@ export default function GroningenPage() {
 
       {/* About */}
       <section id="about" className="section-padding bg-slate-50">
-        <div className="section-container max-w-3xl">
-          <FadeIn>
-            <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-              About
-            </p>
-            <h2 className="heading-lg text-navy-900 mb-6">
-              From AISIG to SAIN Groningen
-            </h2>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
-              <p>
-                SAIN Groningen is the local chapter of Safe AI Netherlands in
-                Groningen, and the direct successor of the AI Safety Initiative
-                Groningen (AISIG). Since 2023 it has grown into one of the most
-                active AI Safety communities in Europe.
+        <div className="section-container">
+          <div className="max-w-3xl">
+            <FadeIn>
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                About
               </p>
-              <p>
-                Originally student-led, the chapter now includes many
-                professionals and has produced research published at venues
-                including NeurIPS and ICLR. We run education programs,
-                discussion groups, events, and connect to SAIN&apos;s national
-                Research Hub.
-              </p>
-              <p>
-                We organise work across four teams — Education, Research,
-                Events, and PR — a structure other SAIN chapters are adopting as
-                they spin up.
-              </p>
+              <h2 className="heading-lg text-navy-900 mb-6">
+                From AISIG to SAIN Groningen
+              </h2>
+              <div className="space-y-4 text-slate-600 leading-relaxed">
+                <p>
+                  SAIN Groningen is the local chapter of Safe AI Netherlands in
+                  Groningen, and the direct successor of the AI Safety Initiative
+                  Groningen (AISIG). Since 2023 it has grown into one of the most
+                  active AI Safety communities in Europe.
+                </p>
+                <p>
+                  Originally student-led, the chapter now includes many
+                  professionals and has produced research published at venues
+                  including NeurIPS and ICLR. We run education programs,
+                  discussion groups, events, and connect to SAIN&apos;s national
+                  Research Hub.
+                </p>
+                <p>
+                  We organise work across four teams — Education, Research,
+                  Events, and PR — a structure other SAIN chapters are adopting as
+                  they spin up.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="mt-16 pt-16 border-t border-slate-200">
+            <FadeIn>
+              <div className="mb-10 text-center max-w-2xl mx-auto">
+                <h2 className="heading-lg text-navy-900 mb-3">SAIN Groningen Team</h2>
+              </div>
+            </FadeIn>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {aisigTeam.map((person, i) => (
+                <FadeIn key={person.name} delay={Math.min(i * 0.03, 0.35)}>
+                  <div className="card p-4 h-full">
+                    <h3 className="font-display font-semibold text-base text-navy-900">
+                      {person.name}
+                    </h3>
+                    <p className="text-sm font-medium text-dutch-orange mt-1.5 leading-snug">
+                      {person.title}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
