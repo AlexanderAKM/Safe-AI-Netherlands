@@ -39,7 +39,7 @@ const contacts = [
     people: [
       {
         name: "Thomas Brcic",
-        role: "Director SAIN Groningen",
+        role: "Co-Director SAIN Groningen",
         email: "groningen@sain.org",
         linkedin: "https://www.linkedin.com/in/thomas-brcic-1b2737212/",
       },

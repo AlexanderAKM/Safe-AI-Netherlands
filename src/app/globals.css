@@ -15,6 +15,16 @@
     @apply bg-white text-slate-800 font-sans;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+    letter-spacing: 0.01em;
+  }
+
   ::selection {
     @apply bg-dutch-orange/20 text-navy-900;
   }
@@ -30,15 +40,18 @@
   }
 
   .heading-xl {
-    @apply font-display font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight;
+    @apply font-display font-extrabold text-5xl md:text-6xl lg:text-7xl;
+    letter-spacing: 0.01em;
   }
 
   .heading-lg {
-    @apply font-display font-bold text-3xl md:text-4xl tracking-tight;
+    @apply font-display font-bold text-4xl md:text-5xl;
+    letter-spacing: 0.01em;
   }
 
   .heading-md {
-    @apply font-display font-semibold text-2xl md:text-3xl tracking-tight;
+    @apply font-display font-semibold text-3xl md:text-4xl;
+    letter-spacing: 0.01em;
   }
 
   .btn-primary {

@@ -7,7 +7,11 @@ const pathways = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a23.838 23.838 0 0 0-2.471.261c.128.132.24.272.339.42a23.798 23.798 0 0 1 2.132-.68m15.482 0a23.838 23.838 0 0 1 2.471.261c-.128.132-.24.272-.339.42a23.798 23.798 0 0 0-2.132-.68M6.906 7.917A3.001 3.001 0 0 1 9 5.25h6a3.001 3.001 0 0 1 2.094 2.667m-9.188 0a23.936 23.936 0 0 1 9.188 0" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4.5 6.75A2.25 2.25 0 0 1 6.75 4.5h3.5c.69 0 1.25.56 1.25 1.25v13.75H6.75A2.25 2.25 0 0 0 4.5 21V6.75Zm7 12.75V5.75c0-.69.56-1.25 1.25-1.25h3.5A2.25 2.25 0 0 1 18.5 6.75V21a2.25 2.25 0 0 0-2.25-1.5H11.5ZM7.5 8.5h2.5m-2.5 3h2.5m5-3h2.5m-2.5 3h2.5"
+        />
       </svg>
     ),
     title: "Take our AI Safety course",
@@ -18,7 +22,12 @@ const pathways = [
   {
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+        <circle cx="6.5" cy="7" r="1.5" />
+        <circle cx="17.5" cy="7" r="1.5" />
+        <circle cx="12" cy="12" r="1.5" />
+        <circle cx="6.5" cy="17" r="1.5" />
+        <circle cx="17.5" cy="17" r="1.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8m-8 10h8M7.7 8.2l3 2.9m5.6-2.9-3 2.9m-5.6 5.6 3-2.9m5.6 2.9-3-2.9" />
       </svg>
     ),
     title: "Research with us",
@@ -95,19 +104,34 @@ export default function Home() {
         <section className="relative min-h-[90vh] flex items-center overflow-hidden">
           <div className="section-container relative z-10 py-32 md:py-40">
             <div className="max-w-4xl">
+              <FadeIn delay={0.1}>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-dutch-orange mb-5">
+                  STAY SAIN
+                </p>
+              </FadeIn>
               <FadeIn delay={0.2}>
-                <h1 className="heading-xl text-navy-900 mb-6 whitespace-nowrap">
+                <h1 className="heading-xl text-navy-900 mb-6">
                   Building a safer future{" "}
-                  <span className="gradient-text">with AI</span>
+                  <span className="gradient-text block">with AI</span>
                 </h1>
               </FadeIn>
 
               <FadeIn delay={0.35}>
                 <p className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed">
-                  Safe AI Netherlands (SAIN) unites researchers, students, and
+                  Safe AI Netherlands (SAIN) is a Dutch non-profit that unites researchers, students, and
                   professionals across the country to ensure artificial
                   intelligence is developed and deployed safely.
                 </p>
+              </FadeIn>
+              <FadeIn delay={0.55}>
+                <div className="flex flex-wrap gap-3 mt-8">
+                  <Link href="/about" className="btn-primary">
+                    Our Mission
+                  </Link>
+                  <Link href="/get-involved" className="btn-outline">
+                    Get Involved
+                  </Link>
+                </div>
               </FadeIn>
             </div>
           </div>
@@ -118,9 +142,6 @@ export default function Home() {
           <div className="section-container">
             <FadeIn>
               <div className="text-center mb-16">
-                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                  Get Started
-                </p>
                 <h2 className="heading-lg text-navy-900">
                   What can you do at SAIN?
                 </h2>
@@ -243,12 +264,17 @@ export default function Home() {
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/get-involved" className="btn-primary text-base px-8 py-3.5">
-                Join SAIN
+                Get Involved
               </Link>
               <Link href="/about" className="btn-secondary text-base px-8 py-3.5">
                 Learn More
               </Link>
             </div>
+          </FadeIn>
+          <FadeIn delay={0.42}>
+            <p className="mt-10 text-sm md:text-base uppercase tracking-[0.2em] text-dutch-orange font-semibold">
+              STAY SAIN
+            </p>
           </FadeIn>
         </div>
       </section>

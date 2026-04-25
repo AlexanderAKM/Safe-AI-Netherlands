@@ -114,9 +114,6 @@ export default function Navbar() {
               </Link>
             )
           )}
-          <Link href="/get-involved" className="btn-primary ml-4 text-base px-6 py-3">
-            Join SAIN
-          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -170,11 +167,6 @@ export default function Navbar() {
                 </Link>
               )
             )}
-            <div className="pt-2">
-              <Link href="/get-involved" className="btn-primary w-full text-center">
-                Join SAIN
-              </Link>
-            </div>
           </div>
         </div>
       )}

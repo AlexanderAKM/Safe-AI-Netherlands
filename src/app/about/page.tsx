@@ -1,57 +1,39 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 
 const leadership = [
   {
     name: "Alexander Müller",
     role: "Director SAIN & Co-Director SAIN Groningen",
-    description:
-      "Founded AISIG in 2023 and led its growth into the Netherlands' most active AI Safety initiative. Now leading the national expansion as SAIN. MSc AI at the University of Groningen.",
     linkedin: "https://alexanderakm.github.io/",
+    image: "/photos/team/Alexander.jpg",
   },
   {
     name: "Thomas Brcic",
-    role: "Director SAIN Groningen",
-    description:
-      "Co-directing AISIG since July 2025. Leads day-to-day operations in Groningen. LLM (Master of Laws) in Energy and Climate Law, with expertise in AI in energy systems and compute.",
+    role: "Co-Director SAIN Groningen",
     linkedin: "https://www.linkedin.com/in/thomas-brcic-1b2737212/",
+    image: "/photos/team/Thomas.png",
   },
   {
     name: "Ana Paula Castillo Rodriguez",
     role: "Co-Director SAIN Amsterdam",
-    description:
-      "Leading SAIN's Amsterdam chapter, the largest by city population and university density. Building university partnerships at UvA and VU Amsterdam.",
     linkedin: "https://www.linkedin.com/in/ana-paula-casrod/",
+    image: "/photos/team/Ana_resized.jpeg",
   },
   {
     name: "Andreea Chivu",
     role: "Co-Director SAIN Amsterdam",
-    description:
-      "Co-leading SAIN Amsterdam alongside Ana Paula. Responsible for building the Amsterdam chapter's education, events, and community programming.",
     linkedin: "https://www.linkedin.com/in/andreea-chivu-0924911a6/",
+    image: "/photos/team/Andreea_resized.jpeg",
   },
   {
     name: "Riccardo Campanella",
     role: "Director SAIN Utrecht",
-    description:
-      "Leading SAIN's Utrecht chapter. Building university partnerships at Utrecht University and growing the local AI Safety community.",
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
-  },
-  {
-    name: "Ilija Lichkovski",
-    role: "Head of Research",
-    description:
-      "ML engineer at Researchable and research resident at Prime Intellect. Coordinates SAIN's national AI Safety Research Hub, including supervisor matching and cross-chapter research collaboration.",
-    linkedin: "https://ilijalichkovski.github.io/",
-  },
-  {
-    name: "Vin Sixsmith",
-    role: "Head of PR",
-    description:
-      "Won the Future of Life Institute's Keep The Future Human contest. Frame Fellowship alumnus. Leads SAIN's national communications with 8M+ views on AI safety content.",
-    linkedin: "https://www.linkedin.com/in/sixsmithvin/",
+    image: "/photos/team/Riccardo_resized.jpeg",
   },
 ];
 
@@ -61,23 +43,25 @@ const advisors = [
     members: [
       {
         name: "Teun van der Weij",
-        affiliation: "Apollo Research / ENAIS",
-        description:
-          "Co-founder and board member of the European Network for AI Safety. Research Scientist at Apollo Research.",
+        affiliation: "Research Scientist, Apollo Research; Co-founder, ENAIS",
         link: "https://teunvanderweij.com/",
+        image: "/photos/advisory_board/Teun.jpg",
       },
       {
         name: "Jesse Hoogland",
-        affiliation: "Timaeus",
-        description:
-          "AI safety researcher and co-founder of the Singular Learning Theory research agenda. Co-founded and directs Timaeus, a nonprofit research organization.",
+        affiliation: "Co-founder & Director, Timaeus",
         link: "https://www.jessehoogland.com/",
+        image: "/photos/advisory_board/Jesse.jpg",
       },
       {
         name: "Tim Bakker",
-        affiliation: "",
-        description: "",
+        affiliation: "AI Safety Advisor",
         link: "https://tbbakker.nl/",
+      },
+      {
+        name: "Nandi Schoots",
+        affiliation: "AI Safety Advisor",
+        link: "#",
       },
     ],
   },
@@ -87,20 +71,17 @@ const advisors = [
       {
         name: "Jelle Donders",
         affiliation: "Government of the Netherlands",
-        description:
-          "Conducting a feasibility study on the establishment of a Dutch AI Safety Institute on behalf of the Government of the Netherlands. Expertise in AI governance and philosophy of advanced AI.",
         link: "https://www.linkedin.com/in/jelle-donders/",
+        image: "/photos/advisory_board/Jelle.jpeg",
       },
       {
         name: "Lisa Gotoh",
-        affiliation: "",
-        description: "",
+        affiliation: "AI Governance Advisor",
         link: "https://www.linkedin.com/in/lisa-gotoh/",
       },
       {
         name: "Robert Praas",
-        affiliation: "",
-        description: "",
+        affiliation: "AI Governance Advisor",
         link: "https://www.linkedin.com/in/robertpraas/",
       },
     ],
@@ -138,7 +119,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-center bg-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]">
           <div
             className="absolute inset-0"
@@ -150,22 +131,14 @@ export default function AboutPage() {
         </div>
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
-        <div className="section-container relative z-10">
-          <FadeIn>
-            <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-4">
-              About SAIN
-            </p>
-          </FadeIn>
+        <div className="section-container relative z-10 w-full">
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
-              The people building AI Safety in the Netherlands
-            </h1>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
-              Safe AI Netherlands (SAIN) is led by a dedicated team of AI Safety
-              advocates, supported by an advisory board of leading figures in
-              the Dutch AI Safety landscape.
+            <p className="max-w-4xl mx-auto text-center text-xl md:text-2xl text-slate-700 leading-relaxed">
+              <span className="font-semibold text-navy-900">Our mission</span>{" "}
+              is to raise awareness of the full spectrum of existing and
+              potential harms from AI, inform mitigation priorities through
+              ongoing discourse, and support the realization of effective
+              solutions.
             </p>
           </FadeIn>
         </div>
@@ -175,42 +148,35 @@ export default function AboutPage() {
       <section id="team" className="section-padding bg-white">
         <div className="section-container">
           <FadeIn>
-            <div className="mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Leadership
-              </p>
-              <h2 className="heading-lg text-navy-900">
-                Our team
-              </h2>
+            <div className="mb-12 text-center">
+              <h2 className="heading-lg text-navy-900">Leadership</h2>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {leadership.map((person, i) => (
               <FadeIn key={person.name} delay={i * 0.08}>
                 <a
                   href={person.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card p-6 h-full flex flex-col group"
+                  className="card p-4 h-full flex flex-col group"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-dutch-orange to-dutch-orange-light flex items-center justify-center text-white text-xl font-bold mb-4">
-                    {person.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                  <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-slate-100">
+                    <Image
+                      src={person.image}
+                      alt={person.name}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 20vw"
+                      className="object-cover"
+                    />
                   </div>
-                  <h3 className="font-display font-semibold text-lg text-navy-900 group-hover:text-dutch-orange transition-colors">
+                  <h3 className="font-display font-semibold text-base text-navy-900 group-hover:text-dutch-orange transition-colors">
                     {person.name}
                   </h3>
-                  <p className="text-sm font-medium text-dutch-orange mb-2">
+                  <p className="text-sm font-medium text-dutch-orange">
                     {person.role}
                   </p>
-                  {person.description && (
-                    <p className="text-sm text-slate-500 leading-relaxed flex-1">
-                      {person.description}
-                    </p>
-                  )}
                 </a>
               </FadeIn>
             ))}
@@ -223,59 +189,51 @@ export default function AboutPage() {
         <div className="section-container">
           <FadeIn>
             <div className="text-center mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Advisory Board
-              </p>
-              <h2 className="heading-lg text-navy-900 mb-4">
-                Guided by experts
-              </h2>
-              <p className="text-slate-500 max-w-2xl mx-auto">
-                Our advisory board brings together researchers, policy experts,
-                and practitioners to provide strategic guidance to SAIN.
-              </p>
+              <h2 className="heading-lg text-navy-900">Advisory Board</h2>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="space-y-10 max-w-6xl mx-auto">
             {advisors.map((group, gi) => (
               <FadeIn key={group.category} delay={gi * 0.15}>
                 <div>
-                  <h3 className="font-display font-semibold text-navy-900 mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-dutch-orange" />
+                  <h3 className="font-display font-semibold text-2xl text-navy-900 mb-5 text-center">
                     {group.category}
                   </h3>
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {group.members.map((advisor) => (
                       <a
                         key={advisor.name}
                         href={advisor.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block bg-white rounded-xl border border-slate-200 p-5 hover:border-dutch-orange/30 hover:shadow-sm transition-all group/card"
+                        className="card p-5 text-center"
                       >
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-navy-800 to-navy-900 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                            {advisor.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")}
-                          </div>
-                          <div>
-                            <h4 className="font-display font-semibold text-navy-900 group-hover/card:text-dutch-orange transition-colors">
-                              {advisor.name}
-                            </h4>
-                            {advisor.affiliation && (
-                              <p className="text-xs font-medium text-slate-400 mb-1">
-                                {advisor.affiliation}
-                              </p>
-                            )}
-                            {advisor.description && (
-                              <p className="text-sm text-slate-500 leading-relaxed">
-                                {advisor.description}
-                              </p>
-                            )}
-                          </div>
+                        <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-slate-100">
+                          {advisor.image ? (
+                            <Image
+                              src={advisor.image}
+                              alt={advisor.name}
+                              fill
+                              sizes="(max-width: 1024px) 50vw, 25vw"
+                              className="object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-white bg-gradient-to-br from-navy-800 to-navy-900 text-2xl font-display font-semibold">
+                              {advisor.name
+                                .split(" ")
+                                .map((n) => n[0])
+                                .join("")
+                                .slice(0, 2)}
+                            </div>
+                          )}
                         </div>
+                        <h4 className="font-display font-semibold text-navy-900">
+                          {advisor.name}
+                        </h4>
+                        <p className="text-sm font-medium text-dutch-orange mt-1">
+                          {advisor.affiliation}
+                        </p>
                       </a>
                     ))}
                   </div>
