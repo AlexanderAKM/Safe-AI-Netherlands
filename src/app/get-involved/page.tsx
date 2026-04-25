@@ -306,7 +306,7 @@ export default function GetInvolvedPage() {
                   {[
                     "Reach out to us expressing your interest in starting a chapter",
                     "Get paired with a mentor to guide you through the founding process",
-                    "Set up your local communication channels (WhatsApp/Signal/Slack)",
+                    "Set up your local communication channels (Signal, Slack, etc.)",
                     "Launch your chapter page on the SAIN website",
                     "Do initial outreach in your city",
                     "Run your first meetup or event",

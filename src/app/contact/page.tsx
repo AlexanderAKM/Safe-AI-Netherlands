@@ -69,11 +69,6 @@ const socials = [
     href: "https://www.linkedin.com/company/safe-ai-netherlands/",
     description: "Follow us for updates",
   },
-  {
-    name: "WhatsApp — Groningen",
-    href: "https://chat.whatsapp.com/IugZtosMu0NES3erIFnFNE",
-    description: "Join the Groningen community",
-  },
 ];
 
 export default function ContactPage() {
@@ -186,7 +181,7 @@ export default function ContactPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {socials.map((social, i) => (
               <FadeIn key={social.name} delay={i * 0.1}>
                 <a

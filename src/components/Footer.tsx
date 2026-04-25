@@ -16,7 +16,6 @@ const footerLinks = {
     { name: "Substack", href: "https://aisig.substack.com/", external: true },
     { name: "LinkedIn", href: "https://linkedin.com/company/safe-ai-netherlands", external: true },
     { name: "Instagram", href: "https://instagram.com/sain_nl", external: true },
-    { name: "WhatsApp Community", href: "https://chat.whatsapp.com/IugZtosMu0NES3erIFnFNE", external: true },
   ],
 };
 

@@ -26,7 +26,7 @@ const highlights = [
   "Partnerships with UvA, VU Amsterdam, and the broader EA Netherlands network",
   "Presented at AI020 Conference as the only AI Safety organisation present",
   "TEDx talk at Universiteit van Amsterdam",
-  "Active WhatsApp community of 300+ members",
+  "Active local community of 300+ members",
   "15 team members across 4 teams (Research, Education, Events, PR)",
 ];
 

@@ -4,18 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
-const eventPhotos = [
-  { src: "/photos/events/course-graduation.jpeg", alt: "AI Safety course graduation ceremony" },
-  { src: "/photos/events/control-hackathon.png", alt: "AI Control Hackathon" },
-  { src: "/photos/events/tedx-broerstraat.webp", alt: "TEDxBroerstraat presentation" },
-  { src: "/photos/events/tekla-emborg-talk.jpeg", alt: "AI Safety talk with Tekla Emborg" },
-  { src: "/photos/events/defence-hackathon.png", alt: "Defence Acceleration Hackathon" },
-  { src: "/photos/events/pub-quiz.jpg", alt: "SAIN Groningen pub quiz" },
-  { src: "/photos/events/forecasting-hackathon.png", alt: "AI Forecasting Hackathon" },
-  { src: "/photos/events/graduation-ceremony.jpeg", alt: "Graduation ceremony" },
-  { src: "/photos/events/fatih-turkmen-talk.png", alt: "Talk with Fatih Turkmen" },
-];
-
 const events = [
   { date: "Mar 2025", title: "AI Control Hackathon" },
   { date: "Mar 2025", title: "AI Safety, Ethics and Society Graduation Ceremony" },
@@ -49,6 +37,16 @@ const discussionGroups = [
 const ONBOARDING_FORM_URL =
   "https://forms.gle/TTP2bFzi9Ej87vLi6";
 const NATIONAL_SUBSTACK_URL = "https://aisig.substack.com/";
+
+const groningenContactByRole = [
+  { label: "Formal collaboration", email: "infogro@safeainetherlands.org" },
+  { label: "Community Manager", email: "cmgro@safeainetherlands.org" },
+  { label: "Education", email: "edugro@safeainetherlands.org" },
+  { label: "Research", email: "research@safeainetherlands.org" },
+  { label: "Events", email: "eventsgro@safeainetherlands.org" },
+  { label: "Substack", email: "substack@safeainetherlands.org" },
+  { label: "Public Outreach", email: "prgro@safeainetherlands.org" },
+];
 
 const researchHighlights = [
   {
@@ -161,32 +159,32 @@ export default function GroningenPage() {
 
       {/* In-page overview */}
       <section className="border-b border-slate-200 bg-white">
-        <div className="section-container py-4">
+        <div className="section-container py-5 md:py-6">
           <nav
-            className="flex flex-wrap justify-center gap-2 md:gap-3 text-sm font-medium text-navy-900"
+            className="flex flex-wrap justify-center gap-3 md:gap-4 text-base md:text-lg font-semibold text-navy-900"
             aria-label="SAIN Groningen page sections"
           >
             <a
               href="#events"
-              className="rounded-full border border-slate-200 px-4 py-2 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
             >
               Events
             </a>
             <a
               href="#programs"
-              className="rounded-full border border-slate-200 px-4 py-2 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
             >
               Programs
             </a>
             <a
               href="#about"
-              className="rounded-full border border-slate-200 px-4 py-2 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
             >
               About
             </a>
             <a
               href="#join"
-              className="rounded-full border border-slate-200 px-4 py-2 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
             >
               Join &amp; contact
             </a>
@@ -364,18 +362,6 @@ export default function GroningenPage() {
             ))}
           </div>
 
-          <FadeIn delay={0.3}>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="https://chat.whatsapp.com/IugZtosMu0NES3erIFnFNE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Join via WhatsApp
-              </a>
-            </div>
-          </FadeIn>
           </div>
 
           {/* Research Highlights */}
@@ -462,41 +448,6 @@ export default function GroningenPage() {
         </div>
       </section>
 
-      {/* Photos */}
-      <section className="section-padding bg-white">
-        <div className="section-container">
-          <FadeIn>
-            <div className="mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Gallery
-              </p>
-              <h2 className="heading-lg text-navy-900">
-                Moments from our community
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {eventPhotos.map((photo, i) => (
-              <FadeIn key={photo.src} delay={Math.min(i * 0.06, 0.3)}>
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <p className="absolute bottom-3 left-3 right-3 text-xs text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {photo.alt}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Join & contact */}
       <section id="join" className="section-padding bg-navy-950">
         <div className="section-container text-center">
@@ -507,13 +458,13 @@ export default function GroningenPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Start with the onboarding form (we&apos;ll follow up and can add
-              you to WhatsApp; have a super low bar for filling this in!). Subscribe to the national Substack for articles
-              and updates across SAIN.
+              Start with the onboarding form (we&apos;ll follow up by email).
+              Subscribe to the national Substack for articles and updates across
+              SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
                 href={ONBOARDING_FORM_URL}
                 target="_blank"
@@ -530,17 +481,31 @@ export default function GroningenPage() {
               >
                 National newsletter
               </a>
-              <a
-                href="https://chat.whatsapp.com/IugZtosMu0NES3erIFnFNE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline border-white/30 text-white hover:bg-white/10 hover:border-white/50"
-              >
-                WhatsApp (existing members)
-              </a>
-              <Link href="/contact" className="btn-outline border-white/30 text-white hover:bg-white/10 hover:border-white/50">
-                Contact SAIN
-              </Link>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.28}>
+            <p className="text-sm font-medium text-slate-400 mb-4 max-w-2xl mx-auto">
+              Email the right team to contact SAIN Groningen
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+              {groningenContactByRole.map((row) => (
+                <a
+                  key={row.email}
+                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Groningen — ${row.label}`)}`}
+                  className="inline-flex flex-col items-start rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm text-white hover:bg-white/10 hover:border-white/35 transition-colors min-w-[10.5rem]"
+                  aria-label={`Email ${row.label} to contact SAIN Groningen`}
+                >
+                  <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400">
+                    Email
+                  </span>
+                  <span className="font-display font-semibold text-white">
+                    {row.label}
+                  </span>
+                  <span className="text-xs text-slate-400 mt-0.5 break-all">
+                    {row.email}
+                  </span>
+                </a>
+              ))}
             </div>
           </FadeIn>
         </div>

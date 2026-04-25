@@ -18,7 +18,7 @@ const highlights = [
   "20+ enrolled participants in the 2026 cohort",
   "Funded by BERI with mentorship from Pathfinder",
   "Guest speaker events including researchers from Anthropic (60+ attendees)",
-  "Active WhatsApp community of 223 members",
+  "Active local community of 223 members",
   "LinkedIn engagement rate of ~9% (well above 2% benchmark)",
   "Growing team with focus on doubling to 15 members across 4 teams",
 ];
