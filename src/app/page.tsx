@@ -119,7 +119,7 @@ export default function Home() {
               <FadeIn delay={0.35}>
                 <p className="text-lg md:text-xl text-slate-500 max-w-2xl leading-relaxed">
                   Safe AI Netherlands (SAIN) is a Dutch non-profit that unites researchers, students, and
-                  professionals across the country to ensure artificial
+                  professionals to ensure artificial
                   intelligence is developed and deployed safely.
                 </p>
               </FadeIn>

@@ -27,6 +27,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [chaptersOpen, setChaptersOpen] = useState(false);
   const pathname = usePathname();
+  const onGroningenHero = pathname === "/chapters/groningen" && !scrolled;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -54,7 +55,8 @@ export default function Navbar() {
     >
       <nav className="section-container flex items-center justify-between h-28 md:h-32">
         <Logo
-          className={scrolled ? "text-navy-900" : "text-navy-900"}
+          inverted={onGroningenHero}
+          className={scrolled ? "text-navy-900" : onGroningenHero ? "text-white" : "text-navy-900"}
         />
 
         {/* Desktop navigation */}
@@ -68,7 +70,9 @@ export default function Navbar() {
                   className={`px-4 py-2 text-base font-medium rounded-lg transition-colors flex items-center gap-1 ${
                     isActive(item.href)
                       ? "text-dutch-orange"
-                      : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
+                      : onGroningenHero
+                        ? "text-white/85 hover:text-white hover:bg-white/10"
+                        : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
                   }`}
                 >
                   {item.name}
@@ -107,7 +111,9 @@ export default function Navbar() {
                 className={`px-4 py-2 text-base font-medium rounded-lg transition-colors ${
                   isActive(item.href)
                     ? "text-dutch-orange"
-                    : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
+                    : onGroningenHero
+                      ? "text-white/85 hover:text-white hover:bg-white/10"
+                      : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
                 }`}
               >
                 {item.name}
@@ -119,7 +125,11 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 rounded-lg text-slate-600 hover:text-navy-900 hover:bg-slate-50"
+          className={`md:hidden p-2 rounded-lg ${
+            onGroningenHero
+              ? "text-white/85 hover:text-white hover:bg-white/10"
+              : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
+          }`}
         >
           {mobileOpen ? (
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
