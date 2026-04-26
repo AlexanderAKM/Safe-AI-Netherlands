@@ -4,11 +4,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://safeainetherlands.org"),
   title: {
-    default: "SAIN — Safe AI Netherlands",
+    default: "Safe AI Netherlands",
     template: "%s | SAIN",
   },
-  
   description:
     "The Netherlands' national initiative for AI Safety — uniting research, education, and community to ensure AI benefits everyone.",
   keywords: [
