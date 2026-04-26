@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     default: "SAIN — Safe AI Netherlands",
     template: "%s | SAIN",
   },
+  
   description:
     "The Netherlands' national initiative for AI Safety — uniting research, education, and community to ensure AI benefits everyone.",
   keywords: [
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
     "AI alignment",
     "AI ethics",
   ],
+  verification: {
+    google: "k0Z89-ZBoJwJsgttXh8i0RILGDy72FQR9N2ynoyFgYg",
+  },
 };
 
 export default function RootLayout({
