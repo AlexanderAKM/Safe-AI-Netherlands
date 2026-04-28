@@ -27,8 +27,9 @@
 
   /* Readable on both light pages and dark (navy) sections */
   ::selection {
-    background-color: #ffffff;
-    color: #021c4d;
+    background-color: #f97316;
+      /* dutch-orange-ish */
+      color: #ffffff;
   }
 }
 
