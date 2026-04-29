@@ -1,106 +1,480 @@
-"use client";
-
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { sainAmsTeam } from "@/data/sainAmsTeam";
 
-const leadership = [
-  {
-    name: "Ana Paula Castillo Rodriguez",
-    role: "Co-Director",
-    description:
-      "Leading SAIN Amsterdam alongside Andreea. Building university partnerships at UvA and VU Amsterdam.",
-    linkedin: "https://www.linkedin.com/in/ana-paula-casrod/",
-  },
-  {
-    name: "Andreea Chivu",
-    role: "Co-Director",
-    description:
-      "Co-leading SAIN Amsterdam. Responsible for building the chapter's education, events, and community programming.",
-    linkedin: "https://www.linkedin.com/in/andreea-chivu-0924911a6/",
-  },
-];
+// Revalidate the page (re-fetch Luma) once an hour.
+export const revalidate = 3600;
 
 const highlights = [
-  "70+ participants in current course cohort across Technical and Governance tracks",
+  "70+ participants in current course cohort across Technical and Governance courses",
   "Supported by ELLIS and connected with AISO Amsterdam",
   "Partnerships with UvA, VU Amsterdam, and the broader EA Netherlands network",
   "Presented at AI020 Conference as the only AI Safety organisation present",
   "TEDx talk at Universiteit van Amsterdam",
   "Active local community of 300+ members",
-  "15 team members across 4 teams (Research, Education, Events, PR)",
 ];
 
-const discussionGroups = [
-  {
-    name: "Technical AI Safety",
-    description:
-      "Exploring technical approaches to AI alignment, interpretability, and safety evaluation. Reading and discussing cutting-edge research.",
-  },
-  {
-    name: "AI Governance",
-    description:
-      "Discussing policy frameworks, regulatory approaches, and governance mechanisms for AI systems. Connecting with policymakers and practitioners.",
-  },
+const COMMUNITY_WHATSAPP_URL =
+  "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
+const NATIONAL_SUBSTACK_URL = "https://aisig.substack.com/";
+const LUMA_CALENDAR_ID = "cal-fabX01E6rMTOg70";
+const LUMA_USER_URL = "https://luma.com/user/AI_Safety_Ams";
+
+const EDU_AMS_EMAIL = "eduams@safeainetherlands.org";
+const EVENTS_AMS_EMAIL = "eventsams@safeainetherlands.org";
+
+const amsterdamContactByRole = [
+  { label: "Formal collaboration", email: "infoams@safeainetherlands.org" },
+  { label: "Community Manager", email: "cmams@safeainetherlands.org" },
+  { label: "Education", email: "eduams@safeainetherlands.org" },
+  { label: "Research", email: "research@safeainetherlands.org" },
+  { label: "Events", email: "eventsams@safeainetherlands.org" },
+  { label: "Substack", email: "substack@safeainetherlands.org" },
+  { label: "Public Outreach", email: "prams@safeainetherlands.org" },
 ];
 
-export default function AmsterdamPage() {
+const discussionGroup = {
+  name: "Technical AI Safety",
+  description:
+    "Exploring technical approaches to AI alignment, interpretability, and safety evaluation. Reading and discussing cutting-edge research.",
+};
+
+type LumaPastEvent = {
+  name: string;
+  url: string;
+  startAt: Date;
+  coverUrl?: string;
+};
+
+// Cutoff for "this academic year" — Sep 1 of the most recent academic-year start.
+function academicYearStart(now: Date): Date {
+  const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
+  return new Date(year, 8, 1); // Sep 1
+}
+
+async function fetchLumaPastEvents(): Promise<LumaPastEvent[]> {
+  try {
+    const res = await fetch(
+      `https://api.lu.ma/calendar/get-items?calendar_api_id=${LUMA_CALENDAR_ID}&period=past&pagination_limit=50`,
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return [];
+    const data = (await res.json()) as { entries?: Array<{ event: any }> };
+    const entries = data.entries ?? [];
+
+    const cutoff = academicYearStart(new Date());
+
+    return entries
+      .map(({ event }) => ({
+        name: event.name as string,
+        url: `https://lu.ma/${event.url}`,
+        startAt: new Date(event.start_at),
+        coverUrl: event.cover_url as string | undefined,
+      }))
+      .filter((ev) => ev.startAt >= cutoff)
+      .sort((a, b) => b.startAt.getTime() - a.startAt.getTime());
+  } catch (err) {
+    console.warn("[amsterdam] Failed to fetch Luma past events:", err);
+    return [];
+  }
+}
+
+function formatEventDate(d: Date): string {
+  return d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+}
+
+export default async function AmsterdamPage() {
+  const pastEvents = await fetchLumaPastEvents();
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-navy-950 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url(/photos/cities/amsterdam-hero.jpg)` }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950/50" />
 
         <div className="section-container relative z-10">
           <FadeIn>
             <div className="flex items-center gap-2 mb-4">
               <Link
                 href="/"
-                className="text-sm text-slate-400 hover:text-navy-900 transition-colors"
+                className="text-sm text-slate-400 hover:text-white transition-colors"
               >
                 SAIN
               </Link>
-              <span className="text-slate-300">/</span>
+              <span className="text-slate-500">/</span>
               <span className="text-sm text-dutch-orange">Amsterdam</span>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="heading-xl text-navy-900 max-w-3xl mb-6">
+            <h1 className="heading-xl text-white max-w-3xl mb-6">
               SAIN Amsterdam
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-lg text-slate-500 max-w-2xl leading-relaxed mb-8">
+            <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
               AI Safety in the Netherlands&apos; largest city and AI research
               hub. Building a diverse community across UvA, VU Amsterdam, and
               the broader Amsterdam tech ecosystem.
             </p>
           </FadeIn>
+          <FadeIn delay={0.28}>
+            <div className="flex flex-wrap gap-3 mb-8">
+              <a
+                href={COMMUNITY_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Join our community
+              </a>
+            </div>
+          </FadeIn>
           <FadeIn delay={0.3}>
-            <div className="flex items-center gap-6 text-sm text-slate-500">
+            <div className="flex items-center gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 Active Chapter
               </div>
-              <div className="w-px h-4 bg-slate-200" />
+              <div className="w-px h-4 bg-slate-700" />
               <div>70+ course participants</div>
-              <div className="w-px h-4 bg-slate-200" />
+              <div className="w-px h-4 bg-slate-700" />
               <div>300+ community members</div>
             </div>
           </FadeIn>
         </div>
       </section>
 
+      {/* In-page overview */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="section-container py-5 md:py-6">
+          <nav
+            className="flex flex-wrap justify-center gap-3 md:gap-4 text-base md:text-lg font-semibold text-navy-900"
+            aria-label="SAIN Amsterdam page sections"
+          >
+            <a
+              href="#events"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+            >
+              Events
+            </a>
+            <a
+              href="#programs"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+            >
+              Programs
+            </a>
+            <a
+              href="#about"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="#join"
+              className="rounded-full border-2 border-slate-200 px-6 py-3 md:px-8 md:py-3.5 hover:border-dutch-orange hover:text-dutch-orange transition-colors"
+            >
+              Join &amp; contact
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      {/* Events */}
+      <section id="events" className="section-padding bg-slate-50">
+        <div className="section-container">
+          <FadeIn>
+            <div className="mb-12">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Events
+              </p>
+              <h2 className="heading-lg text-navy-900">
+                Past &amp; upcoming events
+              </h2>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+              {/* Luma embed */}
+              <div>
+                <p className="text-sm text-slate-600 mb-3">
+                  Upcoming events — see all on{" "}
+                  <a
+                    href={LUMA_USER_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                  >
+                    lu.ma/AI_Safety_Ams
+                  </a>
+                  .
+                </p>
+                <div className="rounded-xl overflow-hidden border border-slate-200 bg-white">
+                  <iframe
+                    src={`https://luma.com/embed/calendar/${LUMA_CALENDAR_ID}/events?lt=light`}
+                    width="100%"
+                    height="450"
+                    frameBorder="0"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    aria-hidden="false"
+                    tabIndex={0}
+                    title="SAIN Amsterdam Luma calendar"
+                  />
+                </div>
+              </div>
+
+              {/* Past events (this academic year) */}
+              <div>
+                <p className="text-sm text-slate-600 mb-3">
+                  Past events this academic year
+                </p>
+                {pastEvents.length > 0 ? (
+                  <div className="rounded-xl border border-slate-200 bg-white h-[450px] overflow-y-auto">
+                    <ul className="divide-y divide-slate-100">
+                      {pastEvents.map((event, i) => (
+                        <li key={`${event.url}-${i}`}>
+                          <a
+                            href={event.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-4 px-5 py-4 hover:bg-slate-50 transition-colors group"
+                          >
+                            <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 w-20 flex-shrink-0">
+                              {formatEventDate(event.startAt)}
+                            </span>
+                            <span className="font-display font-medium text-navy-900 group-hover:text-dutch-orange transition-colors text-sm md:text-base flex-1">
+                              {event.name}
+                            </span>
+                            <svg
+                              className="w-4 h-4 text-slate-300 group-hover:text-dutch-orange transition-colors flex-shrink-0"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="rounded-xl border border-slate-200 bg-white h-[450px] flex items-center justify-center p-6">
+                    <p className="text-sm text-slate-400 text-center">
+                      Past events from this academic year will appear here.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <p className="mt-8 text-sm text-slate-600">
+              Events:{" "}
+              <a
+                href={`mailto:${EVENTS_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Events")}`}
+                className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+              >
+                {EVENTS_AMS_EMAIL}
+              </a>
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Programs */}
+      <section id="programs" className="section-padding bg-white">
+        <div className="section-container">
+          <FadeIn>
+            <div className="mb-12 text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Programs
+              </p>
+              <h2 className="heading-lg text-navy-900">
+                What we run in Amsterdam
+              </h2>
+            </div>
+          </FadeIn>
+
+          {/* Courses */}
+          <div className="mt-16 pt-16 border-t border-slate-100 first:mt-0 first:border-t-0 first:pt-0">
+            <FadeIn>
+              <div className="mb-12">
+                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                  Courses
+                </p>
+                <h2 className="heading-lg text-navy-900">
+                  Technical AI Safety &amp; Frontier AI Governance
+                </h2>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <FadeIn className="lg:col-span-2">
+                <div className="card p-8">
+                  <p className="text-slate-600 leading-relaxed mb-6">
+                    We facilitate 2 BlueDot courses:{" "}
+                    <strong>&quot;Technical AI Safety&quot;</strong> and{" "}
+                    <strong>&quot;Frontier AI Governance&quot;</strong>. We host
+                    both courses on-site in Amsterdam. We engaged 70+
+                    individuals from varying backgrounds, such as students,
+                    PhDs, engineers, policymakers, and consultants.
+                    Facilitators include multiple PhDs, risk-management
+                    consultants, and an ELLIS assistant professor.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-slate-50 rounded-xl p-5">
+                      <h4 className="font-display font-semibold text-navy-900 mb-2">
+                        Technical Course
+                      </h4>
+                      <p className="text-sm text-slate-500 leading-relaxed">
+                        Focuses on the technical aspects of AI Safety, with
+                        extra sessions on mechanistic interpretability,
+                        adversarial attacks, complex systems, and more.
+                      </p>
+                    </div>
+                    <div className="bg-slate-50 rounded-xl p-5">
+                      <h4 className="font-display font-semibold text-navy-900 mb-2">
+                        Governance Course
+                      </h4>
+                      <p className="text-sm text-slate-500 leading-relaxed">
+                        Prioritizes governance and policy aspects, dedicating
+                        time to case studies and real-world examples of
+                        regulatory, legal, and societal challenges.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={0.15}>
+                <div className="card p-6">
+                  <h3 className="font-display font-semibold text-navy-900 mb-4">
+                    Course Details
+                  </h3>
+                  <dl className="space-y-4">
+                    {[
+                      { label: "Duration", value: "6 weeks" },
+                      { label: "Workload", value: "2h readings + 2h discussion / week" },
+                      { label: "Format", value: "On-site in Amsterdam" },
+                      { label: "Certification", value: "Certificate upon completion" },
+                      { label: "Selection", value: "Application-based" },
+                    ].map((item) => (
+                      <div key={item.label}>
+                        <dt className="text-xs font-medium uppercase tracking-wider text-slate-400 mb-0.5">
+                          {item.label}
+                        </dt>
+                        <dd className="text-sm font-medium text-navy-900">
+                          {item.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div className="mt-6 pt-4 border-t border-slate-100">
+                    <p className="text-xs text-slate-400 italic">
+                      These courses are independently led by SAIN Amsterdam
+                      and are not affiliated with UvA/VU.
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn delay={0.2}>
+              <p className="mt-10 text-center text-sm text-slate-600 max-w-2xl mx-auto">
+                Questions about the course?{" "}
+                <a
+                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Education / course")}`}
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                >
+                  {EDU_AMS_EMAIL}
+                </a>
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Discussion group */}
+          <div className="mt-16 pt-16 border-t border-slate-100">
+            <FadeIn>
+              <div className="mb-12">
+                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                  Discussion group
+                </p>
+                <h2 className="heading-lg text-navy-900 mb-4">
+                  Weekly discussion group
+                </h2>
+                <p className="text-slate-500 max-w-2xl">
+                  A focused group meeting weekly (~2 hours) to discuss, learn,
+                  and collaborate on AI Safety topics, guided by experienced
+                  mentors.
+                </p>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+              <FadeIn>
+                <div className="card p-6 h-full">
+                  <h3 className="font-display font-semibold text-navy-900 mb-3">
+                    {discussionGroup.name}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {discussionGroup.description}
+                  </p>
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn delay={0.2}>
+              <p className="mt-8 text-sm text-slate-600 max-w-2xl">
+                Questions about the discussion group?{" "}
+                <a
+                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Discussion group")}`}
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                >
+                  {EDU_AMS_EMAIL}
+                </a>
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Research */}
+          <div className="mt-16 pt-16 border-t border-slate-100">
+            <FadeIn>
+              <div className="mb-12">
+                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                  Research
+                </p>
+                <h2 className="heading-lg text-navy-900">
+                  Current research project
+                </h2>
+              </div>
+            </FadeIn>
+
+            {/* TODO: replace placeholder with info about the current ongoing project (title, description, link, contributors). */}
+            <FadeIn delay={0.1}>
+              <div className="card p-6 max-w-2xl">
+                <p className="text-sm text-slate-500 leading-relaxed italic">
+                  Details about our current ongoing research project are
+                  coming soon.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* About */}
-      <section className="section-padding bg-white">
+      <section id="about" className="section-padding bg-slate-50">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <FadeIn>
@@ -168,84 +542,25 @@ export default function AmsterdamPage() {
         </div>
       </section>
 
-      {/* Courses */}
-      <section className="section-padding bg-slate-50">
-        <div className="section-container">
-          <FadeIn>
-            <div className="mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Education
-              </p>
-              <h2 className="heading-lg text-navy-900">
-                AI Safety, Ethics, and Society
-              </h2>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <div className="card p-8 max-w-3xl">
-              <p className="text-slate-600 leading-relaxed mb-6">
-                SAIN Amsterdam runs the Technical AI Safety and AI Governance
-                courses, currently engaging 70+ individuals from varying
-                backgrounds — students, PhDs, engineers, policymakers, and
-                consultants. Facilitators include multiple PhDs,
-                risk-management consultants, and an ELLIS assistant professor.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-slate-50 rounded-xl p-5">
-                  <h4 className="font-display font-semibold text-navy-900 mb-2">
-                    Technical Track
-                  </h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    Deep dives into technical AI safety: mechanistic
-                    interpretability, adversarial attacks, evaluation, and
-                    alignment research.
-                  </p>
-                </div>
-                <div className="bg-slate-50 rounded-xl p-5">
-                  <h4 className="font-display font-semibold text-navy-900 mb-2">
-                    Governance Track
-                  </h4>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    Policy frameworks, regulatory approaches, and governance
-                    mechanisms — with case studies from the EU AI Act and
-                    real-world examples.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Discussion Groups */}
+      {/* Team */}
       <section className="section-padding bg-white">
         <div className="section-container">
           <FadeIn>
-            <div className="mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Discussion Groups
-              </p>
-              <h2 className="heading-lg text-navy-900 mb-4">
-                Weekly research &amp; discussion groups
+            <div className="mb-10 text-center max-w-2xl mx-auto">
+              <h2 className="heading-lg text-navy-900 mb-3">
+                SAIN Amsterdam Team
               </h2>
-              <p className="text-slate-500 max-w-2xl">
-                Focused groups meeting weekly to discuss and learn about
-                specific AI Safety topics, guided by experienced mentors and
-                researchers.
-              </p>
             </div>
           </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
-            {discussionGroups.map((group, i) => (
-              <FadeIn key={group.name} delay={i * 0.1}>
-                <div className="card p-6 h-full">
-                  <h3 className="font-display font-semibold text-navy-900 mb-3">
-                    {group.name}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {sainAmsTeam.map((person, i) => (
+              <FadeIn key={person.name} delay={Math.min(i * 0.03, 0.35)}>
+                <div className="card p-4 h-full">
+                  <h3 className="font-display font-semibold text-base text-navy-900">
+                    {person.name}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    {group.description}
+                  <p className="text-sm font-medium text-dutch-orange mt-1.5 leading-snug">
+                    {person.title}
                   </p>
                 </div>
               </FadeIn>
@@ -254,77 +569,63 @@ export default function AmsterdamPage() {
         </div>
       </section>
 
-      {/* Leadership */}
-      <section className="section-padding bg-slate-50">
-        <div className="section-container">
-          <FadeIn>
-            <div className="mb-12">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Leadership
-              </p>
-              <h2 className="heading-lg text-navy-900">
-                Chapter team
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-            {leadership.map((person, i) => (
-              <FadeIn key={person.name} delay={i * 0.1}>
-                <a
-                  href={person.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card p-6 group"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-dutch-orange to-dutch-orange-light flex items-center justify-center text-white text-lg font-bold mb-4">
-                    {person.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <h3 className="font-display font-semibold text-navy-900 group-hover:text-dutch-orange transition-colors">
-                    {person.name}
-                  </h3>
-                  <p className="text-sm font-medium text-dutch-orange mb-2">
-                    {person.role}
-                  </p>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    {person.description}
-                  </p>
-                </a>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-padding bg-navy-950">
+      {/* Join & contact */}
+      <section id="join" className="section-padding bg-navy-950">
         <div className="section-container text-center">
           <FadeIn>
             <h2 className="heading-lg text-white mb-4">
-              Join SAIN Amsterdam
+              Join &amp; contact
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Whether you want to take a course, join a discussion group,
-              attend events, or contribute to research — Amsterdam&apos;s AI
-              Safety community is waiting for you.
+              Join our WhatsApp community to get involved. Subscribe to the
+              national Substack for articles and updates across SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href="mailto:amsterdam@sain.org"
+                href={COMMUNITY_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Get in Touch
+                Join community
               </a>
-              <Link href="/get-involved" className="btn-secondary">
-                More Ways to Get Involved
-              </Link>
+              <a
+                href={NATIONAL_SUBSTACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                National newsletter
+              </a>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.28}>
+            <p className="text-sm font-medium text-slate-400 mb-4 max-w-2xl mx-auto">
+              Email the right team to contact SAIN Amsterdam
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+              {amsterdamContactByRole.map((row) => (
+                <a
+                  key={row.email}
+                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Amsterdam — ${row.label}`)}`}
+                  className="inline-flex flex-col items-start rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm text-white hover:bg-white/10 hover:border-white/35 transition-colors min-w-[10.5rem]"
+                  aria-label={`Email ${row.label} to contact SAIN Amsterdam`}
+                >
+                  <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400">
+                    Email
+                  </span>
+                  <span className="font-display font-semibold text-white">
+                    {row.label}
+                  </span>
+                  <span className="text-xs text-slate-400 mt-0.5 break-all">
+                    {row.email}
+                  </span>
+                </a>
+              ))}
             </div>
           </FadeIn>
         </div>
