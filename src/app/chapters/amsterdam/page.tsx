@@ -1,9 +1,7 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
-
-// Revalidate the page (re-fetch Luma) once an hour.
-export const revalidate = 3600;
+import lumaPastEventsRaw from "@/data/lumaPastEvents.json";
 
 const highlights = [
   "70+ participants in current course cohort across Technical and Governance courses",
@@ -39,52 +37,22 @@ const discussionGroup = {
     "Exploring technical approaches to AI alignment, interpretability, and safety evaluation. Reading and discussing cutting-edge research.",
 };
 
-type LumaPastEvent = {
-  name: string;
-  url: string;
-  startAt: Date;
-  coverUrl?: string;
-};
-
 // Cutoff for "this academic year" — Sep 1 of the most recent academic-year start.
 function academicYearStart(now: Date): Date {
   const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
   return new Date(year, 8, 1); // Sep 1
 }
 
-async function fetchLumaPastEvents(): Promise<LumaPastEvent[]> {
-  try {
-    const res = await fetch(
-      `https://api.lu.ma/calendar/get-items?calendar_api_id=${LUMA_CALENDAR_ID}&period=past&pagination_limit=50`,
-      { next: { revalidate: 3600 } },
-    );
-    if (!res.ok) return [];
-    const data = (await res.json()) as { entries?: Array<{ event: any }> };
-    const entries = data.entries ?? [];
-
-    const cutoff = academicYearStart(new Date());
-
-    return entries
-      .map(({ event }) => ({
-        name: event.name as string,
-        url: `https://lu.ma/${event.url}`,
-        startAt: new Date(event.start_at),
-        coverUrl: event.cover_url as string | undefined,
-      }))
-      .filter((ev) => ev.startAt >= cutoff)
-      .sort((a, b) => b.startAt.getTime() - a.startAt.getTime());
-  } catch (err) {
-    console.warn("[amsterdam] Failed to fetch Luma past events:", err);
-    return [];
-  }
-}
-
 function formatEventDate(d: Date): string {
   return d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
 }
 
-export default async function AmsterdamPage() {
-  const pastEvents = await fetchLumaPastEvents();
+const pastEvents = (lumaPastEventsRaw as Array<{ name: string; url: string; startAt: string }>)
+  .map((ev) => ({ ...ev, startAt: new Date(ev.startAt) }))
+  .filter((ev) => ev.startAt >= academicYearStart(new Date()))
+  .sort((a, b) => b.startAt.getTime() - a.startAt.getTime());
+
+export default function AmsterdamPage() {
   return (
     <>
       {/* Hero */}
@@ -450,23 +418,38 @@ export default async function AmsterdamPage() {
           {/* Research */}
           <div className="mt-16 pt-16 border-t border-slate-100">
             <FadeIn>
-              <div className="mb-12">
+              <div className="mb-8">
                 <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
                   Research
                 </p>
-                <h2 className="heading-lg text-navy-900">
-                  Current research project
+                <h2 className="heading-lg text-navy-900 mb-4">
+                  Current research projects
                 </h2>
+                <p className="text-slate-500 max-w-2xl leading-relaxed">
+                  A snapshot of current work. Research at SAIN Amsterdam
+                  isn&apos;t limited to the topics below — we&apos;re open to
+                  projects across mechanistic interpretability, alignment,
+                  evaluations, and AI governance. If you&apos;d like to
+                  propose or join a project, see the{" "}
+                  <Link
+                    href="/research"
+                    className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                  >
+                    Research Hub
+                  </Link>
+                  .
+                </p>
               </div>
             </FadeIn>
 
-            {/* TODO: replace placeholder with info about the current ongoing project (title, description, link, contributors). */}
             <FadeIn delay={0.1}>
-              <div className="card p-6 max-w-2xl">
-                <p className="text-sm text-slate-500 leading-relaxed italic">
-                  Details about our current ongoing research project are
-                  coming soon.
-                </p>
+              <div className="card p-5 max-w-2xl flex flex-col">
+                <span className="text-xs font-medium text-amber-700 bg-amber-100/70 px-2.5 py-0.5 rounded-md self-start mb-3">
+                  Ongoing
+                </span>
+                <h3 className="font-display font-semibold text-navy-900">
+                  Investigating failure modes of Multi-Agent Debate
+                </h3>
               </div>
             </FadeIn>
           </div>
