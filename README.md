@@ -1,4 +1,4 @@
-# SAIN — Safe AI Netherlands
+# SAIN: Safe AI Netherlands
 
 Website for Safe AI Netherlands (SAIN), the national AI Safety initiative with chapters in Groningen, Amsterdam, and Utrecht.
 

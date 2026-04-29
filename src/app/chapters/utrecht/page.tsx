@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
 
 const leadership = [
@@ -723,6 +724,7 @@ export default function UtrechtPage() {
             </FadeIn>
           </div>
         </div>
+        <ScrollCue href="#about" />
       </section>
 
       {/* About */}

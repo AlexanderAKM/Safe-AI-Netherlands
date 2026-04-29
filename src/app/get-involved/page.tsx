@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 
 const activities = [
   {
+    id: "courses",
     title: "Courses",
     subtitle: "AI Safety, Ethics, and Society",
     description:
-      "We facilitate the Center for AI Safety course in two tracks — Technical and Governance. The course runs in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
+      "We facilitate a curriculum based on the Center for AI Safety course in two tracks: Technical and Governance. The course runs in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
     details: [
       "Technical and Governance tracks",
       "6 weeks per block, 3-4 cohorts per year",
@@ -27,6 +29,7 @@ const activities = [
     ),
   },
   {
+    id: "discussion-groups",
     title: "Discussion Groups",
     subtitle: "Weekly deep-dives into AI Safety topics",
     description:
@@ -49,10 +52,11 @@ const activities = [
     ),
   },
   {
+    id: "events",
     title: "Events",
     subtitle: "Hackathons, talks, and community meetups",
     description:
-      "From research hackathons with Apart Research to expert talks, pub quizzes, and AI Safety Chats — our chapters host regular events that bring the community together and create real impact.",
+      "From research hackathons with Apart Research to expert talks, pub quizzes, and AI Safety Chats, our chapters host regular events that bring the community together and create real impact.",
     details: [
       "Research hackathons (with global placement track record)",
       "Expert speaker events and seminars",
@@ -102,15 +106,16 @@ export default function GetInvolvedPage() {
           <FadeIn delay={0.2}>
             <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
               Whether you&apos;re a researcher, student, policymaker, or
-              concerned citizen — AI Safety needs diverse perspectives. Join us
+              concerned citizen, AI Safety needs diverse perspectives. Join us
               in building a safer future with AI.
             </p>
           </FadeIn>
         </div>
+        <ScrollCue href="#activities" />
       </section>
 
       {/* Activities */}
-      <section className="section-padding bg-white">
+      <section id="activities" className="section-padding bg-white">
         <div className="section-container">
           <FadeIn>
             <div className="text-center mb-16">
@@ -126,7 +131,7 @@ export default function GetInvolvedPage() {
           <div className="space-y-12">
             {activities.map((activity, i) => (
               <FadeIn key={activity.title} delay={i * 0.1}>
-                <div className="card p-8 md:p-10">
+                <div id={activity.id} className="card p-8 md:p-10 scroll-mt-32">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">
                       <div className="flex items-start gap-4 mb-4">
@@ -228,7 +233,7 @@ export default function GetInvolvedPage() {
                 SAIN Research Hub
               </h2>
               <p className="text-slate-500 max-w-xl mx-auto mb-8">
-                Join the SAIN Research Hub — get matched with PhD+ supervisors
+                Join the SAIN Research Hub and get matched with PhD+ supervisors
                 for impactful AI Safety projects across interpretability,
                 evaluation, governance, and more. Open to members from all
                 chapters.
@@ -254,8 +259,7 @@ export default function GetInvolvedPage() {
                   Bring SAIN to your city
                 </h2>
                 <p className="text-slate-500 max-w-xl mx-auto">
-                  Starting a local SAIN chapter is one of the best ways to
-                  multiply your impact. We provide everything you need to get
+                  Starting a local SAIN chapter is one of the best ways multiply your impact when it comes to AI safety. We provide everything you need to get
                   started.
                 </p>
               </div>
@@ -305,8 +309,8 @@ export default function GetInvolvedPage() {
                 <ol className="space-y-3 mb-8">
                   {[
                     "Reach out to us expressing your interest in starting a chapter",
-                    "Get paired with a mentor to guide you through the founding process",
-                    "Set up your local communication channels (Signal, Slack, etc.)",
+                    "SAIN's board guides you through the founding process",
+                    "Set up your local communication channels (WhatsApp, Slack, etc.)",
                     "Launch your chapter page on the SAIN website",
                     "Do initial outreach in your city",
                     "Run your first meetup or event",
@@ -326,7 +330,7 @@ export default function GetInvolvedPage() {
 
                 <div className="text-center">
                   <a
-                    href="mailto:info@sain.org?subject=Starting a SAIN chapter"
+                    href="mailto:info@safeainetherlands.org?subject=Starting a SAIN chapter"
                     className="btn-primary"
                   >
                     Express Interest
@@ -338,7 +342,8 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Donate */}
+      {/* Donate disabled until SAIN has a donation flow ready. */}
+      {false && (
       <section id="donate" className="section-padding bg-navy-950">
         <div className="section-container text-center">
           <FadeIn>
@@ -359,13 +364,13 @@ export default function GetInvolvedPage() {
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="mailto:donate@sain.org?subject=Donation to SAIN"
+                href="mailto:donate@safeainetherlands.org?subject=Donation to SAIN"
                 className="btn-primary text-base px-8 py-3.5"
               >
                 Donate Now
               </a>
               <a
-                href="mailto:info@sain.org?subject=Funding SAIN"
+                href="mailto:info@safeainetherlands.org?subject=Funding SAIN"
                 className="btn-secondary text-base px-8 py-3.5"
               >
                 Discuss Funding
@@ -374,6 +379,7 @@ export default function GetInvolvedPage() {
           </FadeIn>
         </div>
       </section>
+      )}
 
       {/* Newsletter */}
       <section className="section-padding bg-white">

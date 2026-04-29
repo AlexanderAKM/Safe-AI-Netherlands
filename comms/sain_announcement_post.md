@@ -76,6 +76,6 @@ If you're in a Dutch city and want to start a chapter, we'd love to hear from yo
   * Amsterdam: [LinkedIn](https://linkedin.com/company/safeainetherlands) and [Instagram](https://www.instagram.com/sainamsterdam/)  
   * Utrecht: [LinkedIn](https://linkedin.com/company/safeainetherlands) and [Instagram](https://www.instagram.com/sainutrecht/)  
 * Read our [Substack](https://safeainetherlands.substack.com)  
-* Email us at [info@safeainetherlands.org](mailto:info@safeainetherlands.org) (formal) or [community.mangager@safeainetherlands.org](mailto:community.mangager@safeainetherlands.org) 
+* Email us at [info@safeainetherlands.org](mailto:info@safeainetherlands.org) (formal) or [community.manager@safeainetherlands.org](mailto:community.manager@safeainetherlands.org) 
 
 The Netherlands should have a thriving, authoritative, and impactful AI safety movement. We're building it. Join it.

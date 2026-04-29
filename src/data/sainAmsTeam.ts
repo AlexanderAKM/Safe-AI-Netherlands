@@ -5,7 +5,7 @@
  */
 export const sainAmsTeam = [
   { name: "Andreea Ioana Chivu", title: "Co-Director" },
-  { name: "Ana Paula Castillo", title: "Co-Director" },
+  { name: "Ana Paula Castillo Rodriguez", title: "Co-Director" },
   { name: "Luan Fletcher", title: "Discussion Group Lead & AI Technical Facilitator" },
   { name: "Patrik Barták", title: "Discussion Group Lead & AI Technical Facilitator" },
   { name: "Ana Lucic", title: "AI Technical Facilitator" },

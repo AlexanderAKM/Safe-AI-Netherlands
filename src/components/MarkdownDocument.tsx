@@ -85,7 +85,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
     }
 
     const [, label, href] = match;
-    const isExternal = href.startsWith("http");
+    const isExternal = href.startsWith("http") || href.startsWith("mailto:");
     const className =
       "font-semibold text-dutch-orange hover:text-dutch-orange-dark underline decoration-dutch-orange/30 underline-offset-4 transition-colors";
 

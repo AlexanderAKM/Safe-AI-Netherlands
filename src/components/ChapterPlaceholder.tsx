@@ -121,11 +121,11 @@ export default function ChapterPlaceholder({
             <FadeIn delay={0.35}>
               <p className="text-slate-600 mb-6">
                 Interested in leading SAIN {city}? We provide everything you
-                need — brand, infrastructure, curriculum, mentorship, and more.
+                need: brand, infrastructure, curriculum, mentorship, and more.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
-                  href={`mailto:info@sain.org?subject=Starting SAIN ${city}`}
+                  href={`mailto:info@safeainetherlands.org?subject=Starting SAIN ${city}`}
                   className="btn-primary"
                 >
                   Get Involved in {city}
