@@ -485,8 +485,8 @@ export default function AmsterdamPage() {
                   </p>
                   <p>
                     The chapter is co-directed by Ana Paula Castillo Rodriguez
-                    and Andreea Chivu, with a structured team of 15 people
-                    covering Research, Education, Events, and PR.
+                    and Andreea Chivu, with a structured team covering
+                    Research, Education, Events, and PR.
                   </p>
                 </div>
               </div>
