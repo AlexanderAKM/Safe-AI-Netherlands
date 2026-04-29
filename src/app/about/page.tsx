@@ -308,6 +308,27 @@ export default function AboutPage() {
                 </FadeIn>
               ))}
             </div>
+
+            <div className="mt-16 pt-16 border-t border-slate-200">
+              <FadeIn>
+                <div className="mx-auto max-w-xl text-center">
+                  <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                    Contact
+                  </p>
+                  <h3 className="heading-md text-navy-900 mb-4">
+                    Emails and chapter contacts
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-8">
+                    National role addresses, chapter teams, and leadership inboxes
+                    live on one page so we keep details accurate and avoid repeating
+                    long lists here.
+                  </p>
+                  <Link href="/contact" className="btn-primary inline-flex">
+                    Contact &amp; emails
+                  </Link>
+                </div>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>

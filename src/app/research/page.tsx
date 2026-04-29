@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import ScrollCue from "@/components/ScrollCue";
 
@@ -10,86 +11,109 @@ const publications = [
     venue: "NeurIPS 2025 Spotlight",
     authors: "Jeremias Ferrao, Matthijs van der Lende, Ilija Lichkovski",
     link: "https://arxiv.org/abs/2509.12934",
-    tags: ["Alignment", "Interpretability"],
   },
   {
     title: "Self-Ablating Transformers: More Interpretability, Less Sparsity",
     venue: "ICLR 2025",
     authors: "Jeremias Ferrao",
     link: "https://openreview.net/pdf?id=QcmEb490bK",
-    tags: ["Interpretability"],
   },
   {
     title: "EU-Agent-Bench: Measuring Illegal Behavior of LLM Agents Under EU Law",
     venue: "NeurIPS 2025",
     authors: "Ilija Lichkovski, Alexander Müller, Mariam Ibrahim, Tiwai Mhundwa",
     link: "https://arxiv.org/abs/2510.21524",
-    tags: ["Governance", "Evaluation"],
   },
   {
     title: "Contextual Sparsity as a Tool for Mechanistic Understanding of Retrieval in Hybrid Foundation Models",
     venue: "ICLR 2025",
     authors: "Davide Zani, Felix Michalak, Steven Abreu",
     link: "https://openreview.net/pdf?id=TGWzg86kYv",
-    tags: ["Interpretability"],
   },
   {
     title: "Steering Large Language Models using Conceptors",
     venue: "NeurIPS 2024",
     authors: "Joris Postmus, Steven Abreu",
     link: "https://jorispos.github.io/conceptor_steering/",
-    tags: ["Alignment", "Interpretability"],
   },
   {
     title: "AutoSteer: Weight-Preserving Reinforcement Learning for Interpretable Model Control",
     venue: "1st Place, Apart Research Hackathon",
     authors: "Jeremias Ferrao",
     link: "https://www.apartresearch.com/project/autosteer-weight-preserving-reinforcement-learning-for-interpretable-model-control",
-    tags: ["Alignment", "Interpretability"],
   },
   {
     title: "Local Learning Coefficients Predict Developmental Milestones During GRPO",
     venue: "3rd Place, Apart Research Hackathon",
     authors: "Jeremias Ferrao, Ilija Lichkovski",
     link: "https://apartresearch.com/project/local-learning-coefficients-predict-developmental-milestones-during-group-relative-policy-optimization-2te2",
-    tags: ["Alignment"],
   },
   {
     title: "Collective Deliberation for Safer CBRN Decisions: A Multi-Agent LLM Debate Pipeline",
     venue: "4th Place, Apart Research Hackathon",
     authors: "Alexander Müller, Arsenijs Golicins, Galina Lesnic",
     link: "https://apartresearch.com/project/collective-deliberation-for-safer-cbrn-decisions-a-multi-agent-llm-debate-pipeline-3w8q",
-    tags: ["Safety", "Multi-Agent"],
   },
   {
     title: "Sandbagging LLMs using Activation Steering",
     venue: "Apart Research",
     authors: "Jeremias Ferrao, Davide Zani",
     link: "https://www.apartresearch.com/project/sandbagging-llms-using-activation-steering",
-    tags: ["Alignment", "Evaluation"],
   },
   {
     title: "Cybersecurity Persistence Benchmark",
     venue: "Apart Research",
     authors: "Davide Zani, Felix Michalak, Jeremias Ferrao",
     link: "https://www.apartresearch.com/project/cybersecurity-persistence-benchmark",
-    tags: ["Safety", "Evaluation"],
   },
   {
     title: "Playing with Perception: Fooling Traffic Sign Classifiers via Copy-Paste Manipulation",
     venue: "Research Project",
     authors: "Davide Zani, Alexandru Dimofte",
     link: "https://drive.google.com/file/d/1JvhstWaLIHB9QPI-cg5S-1ASexhmqLSN/view",
-    tags: ["Robustness"],
   },
   {
     title: "AI Misinformation and Threats to Democratic Rights",
     venue: "Apart Research",
     authors: "Davide Zani, Mariam Ibrahim, Tiwai Mhundwa, Felix Michalak, Andrei Avram",
     link: "https://www.apartresearch.com/project/ai-misinformation-and-threats-to-democratic-rights",
-    tags: ["Governance", "Safety"],
   },
 ];
+
+const supervisors = [
+  {
+    name: "Steven Abreu",
+    position: "Research Scientist, MakerMaker",
+    image: "/photos/supervisors/steven.webp",
+    agenda:
+      "https://docs.google.com/document/d/1UIGpTGYUk9nGvH1H5l5oHclRfNT4pCJ7ArQoIIdDNT4/edit?usp=sharing",
+  },
+  {
+    name: "Fatih Turkmen",
+    position: "Associate Professor of Computer Science, University of Groningen",
+    image: "/photos/supervisors/Fatih_3.png",
+    agenda:
+      "https://docs.google.com/document/d/15UNTtMQYEfO0WQjNKC3QyXHdYW1S2TtITbU94ZltZOc/edit?usp=sharing",
+  },
+  {
+    name: "Jobst Heitzig",
+    position:
+      "Working Group Leader, Senior Scientist, Potsdam Institute for Climate Impact Research",
+    image: "/photos/supervisors/Jobst.png",
+    agenda:
+      "https://docs.google.com/document/d/1jGBETx0wVUSAZhk4RK6Rett4FVRwTgdUna7Wi2aMg_k/edit?usp=sharing",
+  },
+  {
+    name: "Guillaume Pourcel",
+    position: "PhD AI Candidate, University of Groningen",
+    image: "/photos/supervisors/Guillame.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1kr-lo1Qr_k7Yq3C1eoPg9gwFKlJ9PflTWqGrexA8Nxc/edit?usp=sharing",
+  },
+];
+
+const RESEARCH_EMAIL = "research@safeainetherlands.org";
+const RESEARCH_INTEREST_FORM_URL = "https://forms.gle/na3wbBR4V1YVHAnFA";
 
 const hubFeatures = [
   {
@@ -164,6 +188,16 @@ export default function ResearchPage() {
               community to produce impactful AI Safety research.
             </p>
           </FadeIn>
+          <FadeIn delay={0.25}>
+            <div className="flex flex-wrap gap-3 mb-8">
+              <Link href="/research/handbook" className="btn-primary">
+                Read Research Hub Handbook
+              </Link>
+              <Link href="#supervisors" className="btn-outline">
+                View supervisors
+              </Link>
+            </div>
+          </FadeIn>
           <FadeIn delay={0.3}>
             <div className="flex items-center gap-6 text-sm text-slate-500">
               <div className="flex items-center gap-2">
@@ -225,8 +259,122 @@ export default function ResearchPage() {
         </div>
       </section>
 
+      {/* Supervisors */}
+      <section id="supervisors" className="section-padding bg-slate-50">
+        <div className="section-container">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Supervisors
+              </p>
+              <h2 className="heading-lg text-navy-900 mb-4">
+                Research guidance from experienced mentors
+              </h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">
+                Research Hub participants can work with supervisors across
+                technical AI safety, governance, complex systems, and related
+                fields.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {supervisors.map((supervisor, i) => (
+              <FadeIn key={supervisor.name} delay={i * 0.1}>
+                <div className="card p-5 h-full flex flex-col">
+                  <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-slate-100">
+                    <Image
+                      src={supervisor.image}
+                      alt={supervisor.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <h3 className="font-display font-semibold text-navy-900">
+                    {supervisor.name}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed mt-1 mb-5">
+                    {supervisor.position}
+                  </p>
+                  <a
+                    href={supervisor.agenda}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto text-sm font-semibold text-dutch-orange hover:text-dutch-orange-dark transition-colors flex items-center gap-1"
+                  >
+                    Research Agenda
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.25}>
+            <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="font-display font-semibold text-2xl text-navy-900 mb-3">
+                  Join as a researcher
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-5">
+                  If you want to be supervised or join an open collaboration
+                  project, fill in the expression of interest form. If you are
+                  unsure where you fit, email us and we&apos;ll help route you.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={RESEARCH_INTEREST_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                  >
+                    Fill in the research form
+                  </a>
+                  <a
+                    href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: joining as a researcher")}`}
+                    className="btn-outline"
+                  >
+                    Email research team
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="font-display font-semibold text-2xl text-navy-900 mb-3">
+                  Become a supervisor
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-5">
+                  If you are interested in supervising AI Safety research
+                  projects through SAIN, email the Research Hub and we&apos;ll
+                  follow up with next steps.
+                </p>
+                <a
+                  href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: becoming a supervisor")}`}
+                  className="btn-primary"
+                >
+                  Become a supervisor
+                </a>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Publications */}
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding bg-white">
         <div className="section-container">
           <FadeIn>
             <div className="text-center mb-16">
@@ -252,18 +400,10 @@ export default function ResearchPage() {
                   rel="noopener noreferrer"
                   className="card p-5 h-full flex flex-col group"
                 >
-                  <div className="flex items-center gap-2 mb-3 flex-wrap">
+                  <div className="mb-3">
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-navy-900/5 text-xs font-medium text-navy-700">
                       {paper.venue}
                     </span>
-                    {paper.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center px-2 py-0.5 rounded-md bg-dutch-orange/5 text-xs font-medium text-dutch-orange"
-                      >
-                        {tag}
-                      </span>
-                    ))}
                   </div>
                   <h3 className="font-display font-semibold text-navy-900 mb-2 leading-snug group-hover:text-dutch-orange transition-colors">
                     {paper.title}
@@ -288,21 +428,56 @@ export default function ResearchPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Whether as a researcher, supervisor, or funder, there are many
-              ways to support and participate in the SAIN Research Hub.
+              Whether you want to join a supervised project, contribute to an
+              open collaboration, or supervise AI Safety research, here are the
+              clearest next steps.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/get-involved" className="btn-primary">
-                Join as Researcher
-              </Link>
-              <a
-                href="mailto:research@safeainetherlands.org"
-                className="btn-secondary"
-              >
-                Become a Supervisor
-              </a>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto text-left">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="font-display font-semibold text-2xl text-white mb-3">
+                  Join as a researcher
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                  If you want to be supervised or join an open collaboration
+                  project, fill in the expression of interest form. If you are
+                  unsure where you fit, email us and we&apos;ll help route you.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={RESEARCH_INTEREST_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                  >
+                    Fill in the research form
+                  </a>
+                  <a
+                    href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: joining as a researcher")}`}
+                    className="btn-secondary"
+                  >
+                    Email research team
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="font-display font-semibold text-2xl text-white mb-3">
+                  Become a supervisor
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                  If you are interested in supervising AI Safety research
+                  projects through SAIN, email the Research Hub and we&apos;ll
+                  follow up with next steps.
+                </p>
+                <a
+                  href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: becoming a supervisor")}`}
+                  className="btn-primary"
+                >
+                  Become a supervisor
+                </a>
+              </div>
             </div>
           </FadeIn>
         </div>

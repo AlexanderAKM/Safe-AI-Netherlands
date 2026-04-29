@@ -6,10 +6,11 @@ import ScrollCue from "@/components/ScrollCue";
 
 const activities = [
   {
+    id: "courses",
     title: "Courses",
     subtitle: "AI Safety, Ethics, and Society",
     description:
-      "We facilitate the Center for AI Safety course in two tracks: Technical and Governance. The course runs in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
+      "We facilitate a curriculum based on the Center for AI Safety course in two tracks: Technical and Governance. The course runs in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
     details: [
       "Technical and Governance tracks",
       "6 weeks per block, 3-4 cohorts per year",
@@ -28,6 +29,7 @@ const activities = [
     ),
   },
   {
+    id: "discussion-groups",
     title: "Discussion Groups",
     subtitle: "Weekly deep-dives into AI Safety topics",
     description:
@@ -50,6 +52,7 @@ const activities = [
     ),
   },
   {
+    id: "events",
     title: "Events",
     subtitle: "Hackathons, talks, and community meetups",
     description:
@@ -128,7 +131,7 @@ export default function GetInvolvedPage() {
           <div className="space-y-12">
             {activities.map((activity, i) => (
               <FadeIn key={activity.title} delay={i * 0.1}>
-                <div className="card p-8 md:p-10">
+                <div id={activity.id} className="card p-8 md:p-10 scroll-mt-32">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">
                       <div className="flex items-start gap-4 mb-4">
@@ -256,8 +259,7 @@ export default function GetInvolvedPage() {
                   Bring SAIN to your city
                 </h2>
                 <p className="text-slate-500 max-w-xl mx-auto">
-                  Starting a local SAIN chapter is one of the best ways to
-                  multiply your impact. We provide everything you need to get
+                  Starting a local SAIN chapter is one of the best ways multiply your impact when it comes to AI safety. We provide everything you need to get
                   started.
                 </p>
               </div>
@@ -307,8 +309,8 @@ export default function GetInvolvedPage() {
                 <ol className="space-y-3 mb-8">
                   {[
                     "Reach out to us expressing your interest in starting a chapter",
-                    "Get paired with a mentor to guide you through the founding process",
-                    "Set up your local communication channels (Signal, Slack, etc.)",
+                    "SAIN's board guides you through the founding process",
+                    "Set up your local communication channels (WhatsApp, Slack, etc.)",
                     "Launch your chapter page on the SAIN website",
                     "Do initial outreach in your city",
                     "Run your first meetup or event",
@@ -340,7 +342,8 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Donate */}
+      {/* Donate disabled until SAIN has a donation flow ready. */}
+      {false && (
       <section id="donate" className="section-padding bg-navy-950">
         <div className="section-container text-center">
           <FadeIn>
@@ -376,6 +379,7 @@ export default function GetInvolvedPage() {
           </FadeIn>
         </div>
       </section>
+      )}
 
       {/* Newsletter */}
       <section className="section-padding bg-white">

@@ -18,7 +18,7 @@ const pathways = [
     title: "Take our AI Safety course",
     description:
       "Join the \"AI Safety, Ethics, and Society\" course, available in Technical and Governance tracks across our local chapters.",
-    href: "/chapters/groningen",
+    href: "/get-involved#courses",
   },
   {
     icon: (
@@ -33,7 +33,7 @@ const pathways = [
     ),
     title: "Research with us",
     description:
-      "Join the SAIN Research Hub and get matched with PhD+ supervisors for impactful AI Safety projects, from interpretability to governance.",
+      "Join the SAIN Research Hub and get matched with PhD+ supervisors for impactful AI Safety projects, from mechanistic interpretability to governance.",
     href: "/research",
   },
   {
@@ -258,7 +258,7 @@ export default function Home() {
                 Get Involved
               </Link>
               <Link href="/about" className="btn-secondary text-base px-8 py-3.5">
-                Learn More
+                About Us
               </Link>
             </div>
           </FadeIn>

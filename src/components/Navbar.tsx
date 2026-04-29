@@ -28,7 +28,7 @@ export default function Navbar() {
   const [chaptersOpen, setChaptersOpen] = useState(false);
   const pathname = usePathname();
   const onDarkChapterHero =
-    (pathname === "/chapters/groningen" || pathname === "/chapters/amsterdam") &&
+    (pathname.startsWith("/chapters/groningen") || pathname === "/chapters/amsterdam") &&
     !scrolled;
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Navbar() {
                   onClick={() => setChaptersOpen(!chaptersOpen)}
                   onBlur={() => setTimeout(() => setChaptersOpen(false), 150)}
                   className={`px-4 py-2 text-base font-medium rounded-lg transition-colors flex items-center gap-1 ${
-                    isActive(item.href)
+                    isActive(item.href) && !onDarkChapterHero
                       ? "text-dutch-orange"
                       : onDarkChapterHero
                         ? "text-white/85 hover:text-white hover:bg-white/10"
@@ -111,7 +111,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`px-4 py-2 text-base font-medium rounded-lg transition-colors ${
-                  isActive(item.href)
+                  isActive(item.href) && !onDarkChapterHero
                     ? "text-dutch-orange"
                     : onDarkChapterHero
                       ? "text-white/85 hover:text-white hover:bg-white/10"

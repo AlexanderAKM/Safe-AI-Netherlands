@@ -1,6 +1,5 @@
 /**
  * AISIG organiser roster (name + role) as listed on the former AISIG site.
- * @see https://www.aisig.org/aboutus
  */
 export const aisigTeam = [
   { name: "Alexander Müller", title: "Co-Director" },
