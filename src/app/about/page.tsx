@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import { leadership } from "@/data/leadership";
+import { sainDocuments } from "@/data/sainDocuments";
 
 const advisors = [
   {
@@ -252,6 +253,56 @@ export default function AboutPage() {
                 </div>
               </FadeIn>
             ))}
+          </div>
+
+          <div className="mt-20 pt-16 border-t border-slate-200">
+            <FadeIn>
+              <div className="text-center mb-10">
+                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                  Foundational Documents
+                </p>
+                <h3 className="heading-md text-navy-900">
+                  The shared framework behind SAIN
+                </h3>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {sainDocuments.map((document, i) => (
+                <FadeIn key={document.slug} delay={i * 0.1}>
+                  <Link
+                    href={`/about/${document.slug}`}
+                    className="card p-6 h-full flex flex-col group"
+                  >
+                    <span className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-3">
+                      {document.eyebrow}
+                    </span>
+                    <h4 className="font-display font-semibold text-2xl text-navy-900 group-hover:text-dutch-orange transition-colors mb-3">
+                      {document.title}
+                    </h4>
+                    <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                      {document.description}
+                    </p>
+                    <span className="mt-auto text-sm font-semibold text-dutch-orange flex items-center gap-1">
+                      Read document
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </span>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
