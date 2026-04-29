@@ -1,6 +1,7 @@
 "use client";
 
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 
 const contacts = [
   {
@@ -9,17 +10,17 @@ const contacts = [
       {
         name: "General Inquiries",
         role: "SAIN National",
-        email: "info@sain.org",
+        email: "info@safeainetherlands.org",
       },
       {
         name: "Donations & Funding",
         role: "SAIN National",
-        email: "donate@sain.org",
+        email: "donate@safeainetherlands.org",
       },
       {
         name: "Research Hub",
         role: "SAIN National",
-        email: "research@sain.org",
+        email: "research@safeainetherlands.org",
       },
     ],
   },
@@ -29,7 +30,7 @@ const contacts = [
       {
         name: "Alexander Müller",
         role: "Director SAIN",
-        email: "alexander@sain.org",
+        email: "alexander@safeainetherlands.org",
         linkedin: "https://alexanderakm.github.io/",
       },
     ],
@@ -40,18 +41,18 @@ const contacts = [
       {
         name: "Thomas Brcic",
         role: "Co-Director SAIN Groningen",
-        email: "groningen@sain.org",
+        email: "infogro@safeainetherlands.org",
         linkedin: "https://www.linkedin.com/in/thomas-brcic-1b2737212/",
       },
       {
         name: "Ana Paula Castillo Rodriguez & Andreea Chivu",
         role: "Co-Directors SAIN Amsterdam",
-        email: "amsterdam@sain.org",
+        email: "infoams@safeainetherlands.org",
       },
       {
         name: "Riccardo Campanella",
         role: "Director SAIN Utrecht",
-        email: "utrecht@sain.org",
+        email: "infoutr@safeainetherlands.org",
         linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
       },
     ],
@@ -101,15 +102,16 @@ export default function ContactPage() {
           <FadeIn delay={0.2}>
             <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
               Whether you want to join a chapter, start one in your city,
-              collaborate on research, or support our work — we&apos;d love to
+              collaborate on research, or support our work, we&apos;d love to
               hear from you.
             </p>
           </FadeIn>
         </div>
+        <ScrollCue href="#contact-cards" />
       </section>
 
       {/* Contact Cards */}
-      <section className="section-padding bg-white">
+      <section id="contact-cards" className="section-padding bg-white">
         <div className="section-container">
           <div className="max-w-4xl mx-auto space-y-12">
             {contacts.map((group, gi) => (
@@ -154,7 +156,7 @@ export default function ContactPage() {
                             rel="noopener noreferrer"
                             className="mt-2 text-xs text-slate-400 hover:text-navy-900 transition-colors block"
                           >
-                            View profile &rarr;
+                            View profile
                           </a>
                         )}
                       </div>

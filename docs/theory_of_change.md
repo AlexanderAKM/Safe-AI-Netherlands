@@ -1,10 +1,10 @@
 # Theory of Change
 
-*Safe AI Netherlands — April 2026*
+*Safe AI Netherlands, April 2026*
 
 ---
 
-This document describes the causal logic behind SAIN's work — how and why our activities produce the change we seek. It complements the [Vision](vision.md) (which describes *what* SAIN is and where it is going) and the [Code of Conduct](code_of_conduct.md) (which defines expectations for members and chapters).
+This document describes the causal logic behind SAIN's work: how and why our activities produce the change we seek. It complements the [Vision](vision.md) (which describes *what* SAIN is and where it is going) and the [Code of Conduct](code_of_conduct.md) (which defines expectations for members and chapters).
 
 ---
 
@@ -12,17 +12,17 @@ This document describes the causal logic behind SAIN's work — how and why our 
 
 Three gaps define the Dutch AI safety landscape:
 
-1. **A talent gap.** Too few people have the knowledge and motivation to work on AI safety — in research, policy, industry, or public discourse. The pipeline from "interested student" to "impactful professional" is underdeveloped and fragmented.
+1. **A talent gap.** Too few people have the knowledge and motivation to work on AI safety in research, policy, industry, or public discourse. The pipeline from "interested student" to "impactful professional" is underdeveloped and fragmented.
 2. **A coordination gap.** Local AI safety initiatives across Dutch cities operate independently, duplicating effort, lacking legal and financial infrastructure, and struggling to build the authority needed to influence institutions.
-3. **An awareness gap.** The Dutch public, and many professionals in adjacent fields, have limited understanding of the full range of risks AI poses — from near-term societal harms to existential concerns.
+3. **An awareness gap.** The Dutch public, and many professionals in adjacent fields, have limited understanding of the full range of risks AI poses, from near-term societal harms to existential concerns.
 
 ---
 
 ## 2. Our Theory
 
-SAIN believes that lasting change in AI safety comes from building **human capital** — people who understand the risks, have the skills to address them, and occupy positions where they can act. The most effective way to build this human capital at national scale is through a **unified organizational infrastructure** that systematically moves individuals from initial awareness to meaningful contribution, while producing direct research and policy outputs along the way.
+SAIN believes that lasting change in AI safety comes from building **human capital**: people who understand the risks, have the skills to address them, and occupy positions where they can act. The most effective way to build this human capital at national scale is through a **unified organizational infrastructure** that systematically moves individuals from initial awareness to meaningful contribution, while producing direct research and policy outputs along the way.
 
-In short: **if we build the right ecosystem — education, research, community, and visibility — and make it easy to enter and hard to leave, we will produce the people and the knowledge that make AI safer.**
+In short: **if we build the right ecosystem of education, research, community, and visibility, and make it easy to enter and hard to leave, we will produce the people and the knowledge that make AI safer.**
 
 ---
 
@@ -44,11 +44,11 @@ In short: **if we build the right ecosystem — education, research, community, 
 
 Organized by pillar (see [Vision](vision.md) for full descriptions):
 
-- **Education** — Deliver the AI Safety, Ethics, and Society course (Technical + Governance tracks) across chapters; run discussion groups; maintain a standardized national curriculum
-- **Research** — Operate the national Research Hub (student-supervisor matching, compute, open collaborations); at scale, run a fellowship program modeled on MATS
-- **Events** — Host national conferences, hackathons, and seminars; organize local AI Safety Chats, socials, and speaker series
-- **Public Relations** — Produce content across LinkedIn, Instagram, Substack; manage SAIN's public narrative; develop multimedia at scale
-- **Ecosystem Growth** — Mentor and onboard new chapters; provide centralized infrastructure and fiscal sponsorship
+- **Education**: Deliver the AI Safety, Ethics, and Society course (Technical + Governance tracks) across chapters; run discussion groups; maintain a standardized national curriculum
+- **Research**: Operate the national Research Hub (student-supervisor matching, compute, open collaborations); at scale, run a fellowship program modeled on MATS
+- **Events**: Host national conferences, hackathons, and seminars; organize local AI Safety Chats, socials, and speaker series
+- **Public Relations**: Produce content across LinkedIn, Instagram, Substack; manage SAIN's public narrative; develop multimedia at scale
+- **Ecosystem Growth**: Mentor and onboard new chapters; provide centralized infrastructure and fiscal sponsorship
 
 ### Outputs
 
@@ -63,16 +63,16 @@ Organized by pillar (see [Vision](vision.md) for full descriptions):
 
 ### Outcomes
 
-1. **A functioning talent pipeline.** The SAIN Funnel (see [Vision](vision.md)) becomes a proven mechanism that reliably moves individuals from first contact to positions of influence — in EU institutions, frontier AI labs, government, and academia.
+1. **A functioning talent pipeline.** The SAIN Funnel (see [Vision](vision.md)) becomes a proven mechanism that reliably moves individuals from first contact to positions of influence in EU institutions, frontier AI labs, government, and academia.
 2. **A credible research contribution.** The Research Hub produces a steady stream of publications at top-tier venues. The Netherlands becomes a recognized contributor to AI safety research.
 3. **Increased public awareness.** AI safety enters mainstream Dutch discourse. Decision-makers recognize SAIN as a trusted source of expertise.
-4. **Policy influence.** SAIN alumni and researchers contribute directly to policy processes — at the EU level, in Dutch government advisory bodies, and in institutional AI governance frameworks.
+4. **Policy influence.** SAIN alumni and researchers contribute directly to policy processes at the EU level, in Dutch government advisory bodies, and in institutional AI governance frameworks.
 5. **A self-sustaining national community.** Chapters are active and self-reinforcing. New chapters emerge organically as the brand and model gain recognition.
 6. **Institutional partnerships.** Universities, municipalities, and industry actors engage with SAIN for consulting, joint research, and institutional AI safety frameworks.
 
 ### Impact
 
-**The development and integration of AI in the Netherlands — and, through the people and knowledge SAIN produces, internationally — is purposeful, just, and safe for all of humanity.**
+**The development and integration of AI in the Netherlands and, through the people and knowledge SAIN produces, internationally, is purposeful, just, and safe for all of humanity.**
 
 ---
 
@@ -119,6 +119,6 @@ The chapter model produces a **virtuous cycle** that is central to the theory:
 
 This cycle works because AI safety engagement is inherently local (courses, events, and community happen in person) but national coordination creates capabilities no local group can achieve alone (brand authority, legal infrastructure, grant management, a research hub with supervisor matching, professional media). The chapter model bridges both needs.
 
-For new chapters, SAIN dramatically lowers the barrier to impact. Without SAIN, starting a serious AI safety group means registering a foundation (€500-1,000+), developing curricula from scratch, building a brand from zero, and figuring out operations through trial and error. With SAIN, a motivated group can adopt the brand, receive fiscal sponsorship, use ready-made curricula, follow documented playbooks, and get direct mentorship — turning months of setup into weeks of community building.
+For new chapters, SAIN dramatically lowers the barrier to impact. Without SAIN, starting a serious AI safety group means registering a foundation (€500-1,000+), developing curricula from scratch, building a brand from zero, and figuring out operations through trial and error. With SAIN, a motivated group can adopt the brand, receive fiscal sponsorship, use ready-made curricula, follow documented playbooks, and get direct mentorship, turning months of setup into weeks of community building.
 
 SAIN's role is to catalyze and sustain this cycle: maintaining central infrastructure quality, supporting chapters through growing pains, and keeping the mission front and center as the organization scales.

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 
 const leadership = [
   {
@@ -34,6 +35,19 @@ const discussionGroups = [
     description:
       "Exploring regulatory frameworks, risk management approaches, and governance structures for AI systems. Connecting academic insights with real-world policy challenges.",
   },
+];
+
+const NATIONAL_SUBSTACK_URL = "https://aisig.substack.com/";
+const UTRECHT_GENERAL_EMAIL = "infoutr@safeainetherlands.org";
+
+const utrechtContactByRole = [
+  { label: "Formal collaboration", email: "infoutr@safeainetherlands.org" },
+  { label: "Community Manager", email: "cmutr@safeainetherlands.org" },
+  { label: "Education", email: "eduutr@safeainetherlands.org" },
+  { label: "Research", email: "research@safeainetherlands.org" },
+  { label: "Events", email: "eventsutr@safeainetherlands.org" },
+  { label: "Substack", email: "substack@safeainetherlands.org" },
+  { label: "Public Outreach", email: "prutr@safeainetherlands.org" },
 ];
 
 export default function UtrechtPage() {
@@ -90,10 +104,11 @@ export default function UtrechtPage() {
             </div>
           </FadeIn>
         </div>
+        <ScrollCue href="#about" />
       </section>
 
       {/* About */}
-      <section className="section-padding bg-white">
+      <section id="about" className="section-padding bg-white">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <FadeIn>
@@ -293,32 +308,62 @@ export default function UtrechtPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding bg-navy-950">
+      {/* Join & contact */}
+      <section id="join" className="section-padding bg-navy-950">
         <div className="section-container text-center">
           <FadeIn>
             <h2 className="heading-lg text-white mb-4">
-              Join SAIN Utrecht
+              Join &amp; contact
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
               Whether you want to take a course, join a discussion group,
-              attend events, or contribute to research — Utrecht&apos;s AI
+              attend events, or contribute to research, Utrecht&apos;s AI
               Safety community welcomes you.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href="mailto:utrecht@sain.org"
+                href={`mailto:${UTRECHT_GENERAL_EMAIL}?subject=${encodeURIComponent("SAIN Utrecht: Get involved")}`}
                 className="btn-primary"
               >
                 Get in Touch
               </a>
-              <Link href="/get-involved" className="btn-secondary">
-                More Ways to Get Involved
-              </Link>
+              <a
+                href={NATIONAL_SUBSTACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                National newsletter
+              </a>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.28}>
+            <p className="text-sm font-medium text-slate-400 mb-4 max-w-2xl mx-auto">
+              Email the right team to contact SAIN Utrecht
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+              {utrechtContactByRole.map((row) => (
+                <a
+                  key={row.email}
+                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Utrecht: ${row.label}`)}`}
+                  className="inline-flex flex-col items-start rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm text-white hover:bg-white/10 hover:border-white/35 transition-colors min-w-[10.5rem]"
+                  aria-label={`Email ${row.label} to contact SAIN Utrecht`}
+                >
+                  <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400">
+                    Email
+                  </span>
+                  <span className="font-display font-semibold text-white">
+                    {row.label}
+                  </span>
+                  <span className="text-xs text-slate-400 mt-0.5 break-all">
+                    {row.email}
+                  </span>
+                </a>
+              ))}
             </div>
           </FadeIn>
         </div>

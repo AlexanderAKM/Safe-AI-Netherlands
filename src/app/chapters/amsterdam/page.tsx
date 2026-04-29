@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import lumaPastEventsRaw from "@/data/lumaPastEvents.json";
 
@@ -28,7 +29,7 @@ const discussionGroup = {
     "Exploring technical approaches to AI alignment, interpretability, and safety evaluation. Reading and discussing cutting-edge research.",
 };
 
-// Cutoff for "this academic year" — Sep 1 of the most recent academic-year start.
+// Cutoff for "this academic year": Sep 1 of the most recent academic-year start.
 function academicYearStart(now: Date): Date {
   const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
   return new Date(year, 8, 1); // Sep 1
@@ -92,6 +93,7 @@ export default function AmsterdamPage() {
             </div>
           </FadeIn>
         </div>
+        <ScrollCue href="#events" variant="dark" />
       </section>
 
       {/* In-page overview */}
@@ -148,7 +150,7 @@ export default function AmsterdamPage() {
               {/* Luma embed */}
               <div>
                 <p className="text-sm text-slate-600 mb-3">
-                  Upcoming events — see all on{" "}
+                  Upcoming events: see all on{" "}
                   <a
                     href={LUMA_USER_URL}
                     target="_blank"
@@ -229,7 +231,7 @@ export default function AmsterdamPage() {
             <p className="mt-8 text-sm text-slate-600">
               Events:{" "}
               <a
-                href={`mailto:${EVENTS_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Events")}`}
+                href={`mailto:${EVENTS_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam: Events")}`}
                 className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
               >
                 {EVENTS_AMS_EMAIL}
@@ -341,7 +343,7 @@ export default function AmsterdamPage() {
               <p className="mt-10 text-center text-sm text-slate-600 max-w-2xl mx-auto">
                 Questions about the course?{" "}
                 <a
-                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Education / course")}`}
+                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam: Education / course")}`}
                   className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
                 >
                   {EDU_AMS_EMAIL}
@@ -384,7 +386,7 @@ export default function AmsterdamPage() {
               <p className="mt-8 text-sm text-slate-600 max-w-2xl">
                 Questions about the discussion group?{" "}
                 <a
-                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Discussion group")}`}
+                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam: Discussion group")}`}
                   className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
                 >
                   {EDU_AMS_EMAIL}
@@ -405,7 +407,7 @@ export default function AmsterdamPage() {
                 </h2>
                 <p className="text-slate-500 max-w-2xl leading-relaxed">
                   A snapshot of current work. Research at SAIN Amsterdam
-                  isn&apos;t limited to the topics below — we&apos;re open to
+                  isn&apos;t limited to the topics below. We&apos;re open to
                   projects across mechanistic interpretability, alignment,
                   evaluations, and AI governance. If you&apos;d like to
                   propose or join a project, see the{" "}
@@ -542,7 +544,7 @@ export default function AmsterdamPage() {
               {amsterdamContactByRole.map((row) => (
                 <a
                   key={row.email}
-                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Amsterdam — ${row.label}`)}`}
+                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Amsterdam: ${row.label}`)}`}
                   className="inline-flex flex-col items-start rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm text-white hover:bg-white/10 hover:border-white/35 transition-colors min-w-[10.5rem]"
                   aria-label={`Email ${row.label} to contact SAIN Amsterdam`}
                 >

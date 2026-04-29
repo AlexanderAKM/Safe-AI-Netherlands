@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 import { leadership } from "@/data/leadership";
 import { sainDocuments } from "@/data/sainDocuments";
 
@@ -23,11 +24,6 @@ const advisors = [
         image: "/photos/advisory_board/Jesse.jpg",
       },
       {
-        name: "Tim Bakker",
-        affiliation: "AI Safety Advisor",
-        link: "https://tbbakker.nl/",
-      },
-      {
         name: "Nandi Schoots",
         affiliation: "AI Safety Advisor",
         link: "#",
@@ -39,19 +35,27 @@ const advisors = [
     members: [
       {
         name: "Jelle Donders",
-        affiliation: "Government of the Netherlands",
+        affiliation: "Strategic Advisor AI, Dutch Government",
         link: "https://www.linkedin.com/in/jelle-donders/",
         image: "/photos/advisory_board/Jelle.jpeg",
       },
       {
         name: "Lisa Gotoh",
-        affiliation: "AI Governance Advisor",
+        affiliation: "AI Global Governance Lead, Dutch Ministry of Foreign Affairs",
         link: "https://www.linkedin.com/in/lisa-gotoh/",
+        image: "/photos/advisory_board/lisa_gotoh_revised.jpeg",
       },
       {
         name: "Robert Praas",
-        affiliation: "AI Governance Advisor",
-        link: "https://www.linkedin.com/in/robertpraas/",
+        affiliation: "Data Scientist, CEPS",
+        link: "https://www.ceps.eu/ceps-staff/robert-praas/",
+        image: "/photos/advisory_board/Robert_Praasjpeg.jpeg",
+      },
+      {
+        name: "Charbel-Raphaël Segerie",
+        affiliation: "Executive Director, CeSIA",
+        link: "https://crsegerie.com/",
+        image: "/photos/advisory_board/charbel.png",
       },
     ],
   },
@@ -68,19 +72,19 @@ const timeline = [
     year: "2024",
     title: "Rapid Growth",
     description:
-      "AISIG expanded beyond students to include professionals, launched the Research Hub, ran multiple course cohorts, and hosted hackathons with Apart Research.",
+      "AISIG expanded beyond students to include professionals, ran multiple course cohorts, and hosted hackathons with Apart Research.",
   },
   {
     year: "2025",
     title: "National Recognition",
     description:
-      "With publications at NeurIPS, ICLR, and other top venues, AISIG became a frontrunner among student-led AI Safety groups in Europe.",
+      "With publications at NeurIPS, ICLR, and other top venues, AISIG became a frontrunner among student-led AI Safety groups in Europe. The breadth expanded to focusing on both students and professionals. Launched the Research Hub.",
   },
   {
     year: "2026",
     title: "SAIN Launched",
     description:
-      "AISIG rebrands to Safe AI Netherlands (SAIN), establishing a national initiative with chapters in multiple Dutch cities and a unified infrastructure.",
+      "From the successes of AISIG, AI Netherlands (SAIN) gets founded, establishing a national initiative with chapters in multiple Dutch cities and a unified infrastructure.",
   },
 ];
 
@@ -111,6 +115,7 @@ export default function AboutPage() {
             </p>
           </FadeIn>
         </div>
+        <ScrollCue href="#team" />
       </section>
 
       {/* Leadership Team */}
@@ -169,14 +174,14 @@ export default function AboutPage() {
                   <h3 className="font-display font-semibold text-2xl text-navy-900 mb-5 text-center">
                     {group.category}
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="flex flex-wrap justify-center gap-4">
                     {group.members.map((advisor) => (
                       <a
                         key={advisor.name}
                         href={advisor.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="card p-5 text-center"
+                        className="card p-5 text-center w-full sm:w-[calc(50%-0.5rem)] lg:w-64"
                       >
                         <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-slate-100">
                           {advisor.image ? (
@@ -393,9 +398,12 @@ export default function AboutPage() {
           </div>
 
           <FadeIn delay={0.3}>
-            <div className="text-center mt-12">
+            <div className="flex flex-wrap justify-center gap-4 mt-12">
               <Link href="/get-involved" className="btn-primary">
                 Get Involved
+              </Link>
+              <Link href="/get-involved#start-chapter" className="btn-secondary">
+                Start a Chapter
               </Link>
             </div>
           </FadeIn>

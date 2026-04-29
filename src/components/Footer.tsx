@@ -42,14 +42,14 @@ export default function Footer() {
               />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-              The Netherlands&apos; national initiative for AI Safety &mdash; uniting
+              The Netherlands&apos; national initiative for AI Safety, uniting
               research, education, and community to ensure AI benefits everyone.
             </p>
             <a
-              href="mailto:info@sain.org"
+              href="mailto:info@safeainetherlands.org"
               className="text-sm text-dutch-orange hover:text-dutch-orange-light transition-colors"
             >
-              info@sain.org
+              info@safeainetherlands.org
             </a>
           </div>
 

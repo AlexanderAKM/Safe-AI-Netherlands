@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 
 const pathways = [
   {
@@ -16,7 +17,7 @@ const pathways = [
     ),
     title: "Take our AI Safety course",
     description:
-      "Join the \"AI Safety, Ethics, and Society\" course — available in Technical and Governance tracks across our local chapters.",
+      "Join the \"AI Safety, Ethics, and Society\" course, available in Technical and Governance tracks across our local chapters.",
     href: "/chapters/groningen",
   },
   {
@@ -32,7 +33,7 @@ const pathways = [
     ),
     title: "Research with us",
     description:
-      "Join the SAIN Research Hub — get matched with PhD+ supervisors for impactful AI Safety projects, from interpretability to governance.",
+      "Join the SAIN Research Hub and get matched with PhD+ supervisors for impactful AI Safety projects, from interpretability to governance.",
     href: "/research",
   },
   {
@@ -54,7 +55,7 @@ const pathways = [
     ),
     title: "Shape the conversation",
     description:
-      "Write for our Substack, speak at events, or contribute to AI Safety outreach — help raise awareness across the Netherlands.",
+      "Write for our Substack, speak at events, or contribute to AI Safety outreach to help raise awareness across the Netherlands.",
     href: "https://aisig.substack.com/",
   },
 ];
@@ -62,20 +63,19 @@ const pathways = [
 const chapters = [
   {
     city: "Groningen",
-    status: "active" as const,
-    description: "Our flagship chapter — running courses, research, discussion groups, and events since 2023.",
+    description: "Groningen's hub for AI Safety education, research, and community.",
     href: "/chapters/groningen",
   },
   {
     city: "Amsterdam",
-    status: "coming" as const,
-    description: "Launching soon in the Netherlands' largest city and AI research hub.",
+    description:
+      "AI Safety in the Netherlands' largest city. Building a diverse community across UvA, VU Amsterdam, and the broader Amsterdam tech ecosystem.",
     href: "/chapters/amsterdam",
   },
   {
     city: "Utrecht",
-    status: "coming" as const,
-    description: "Building AI Safety awareness in the heart of the Netherlands.",
+    description:
+      "AI Safety in the heart of the Netherlands. Building a multidisciplinary community at Utrecht University and beyond, with international backing and a growing research focus.",
     href: "/chapters/utrecht",
   },
 ];
@@ -85,7 +85,7 @@ const chapters = [
 export default function Home() {
   return (
     <>
-      {/* Flowing gradient wrapper — covers hero, metrics, and pathways */}
+      {/* Flowing gradient wrapper covers hero, metrics, and pathways */}
       <div className="relative">
         {/* Orange gradient that flows across the top sections */}
         <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-dutch-orange/15 via-dutch-orange/5 to-transparent pointer-events-none" />
@@ -100,7 +100,7 @@ export default function Home() {
           />
         </div>
 
-        {/* ── Hero ── */}
+        {/* Hero */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden">
           <div className="section-container relative z-10 py-32 md:py-40">
             <div className="max-w-4xl">
@@ -135,10 +135,11 @@ export default function Home() {
               </FadeIn>
             </div>
           </div>
+          <ScrollCue href="#pathways" />
         </section>
 
-        {/* ── Pathways (What can you do here?) ── */}
-        <section className="relative z-10 section-padding pt-12 md:pt-16">
+        {/* Pathways */}
+        <section id="pathways" className="relative z-10 section-padding pt-12 md:pt-16">
           <div className="section-container">
             <FadeIn>
               <div className="text-center mb-16">
@@ -173,7 +174,7 @@ export default function Home() {
         </section>
       </div>
 
-      {/* ── Chapters ── */}
+      {/* Chapters */}
       <section className="section-padding bg-white">
         <div className="section-container">
           <FadeIn>
@@ -186,7 +187,7 @@ export default function Home() {
               </h2>
               <p className="text-slate-500 max-w-2xl mx-auto">
                 Each SAIN chapter operates locally while benefiting from shared
-                national infrastructure, resources, and brand recognition.
+                national infrastructure and resources.
               </p>
             </div>
           </FadeIn>
@@ -195,20 +196,10 @@ export default function Home() {
             {chapters.map((chapter, i) => (
               <FadeIn key={chapter.city} delay={i * 0.1}>
                 <Link href={chapter.href} className="card p-6 h-full flex flex-col group">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="mb-3">
                     <h3 className="font-display font-semibold text-lg text-navy-900 group-hover:text-dutch-orange transition-colors">
                       SAIN {chapter.city}
                     </h3>
-                    {chapter.status === "active" ? (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                        Active
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 text-xs font-medium">
-                        Coming Soon
-                      </span>
-                    )}
                   </div>
                   <p className="text-sm text-slate-500 leading-relaxed flex-1">
                     {chapter.description}
@@ -234,7 +225,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section className="relative py-24 md:py-32 bg-navy-950 overflow-hidden">
         <div
           className="absolute -right-20 top-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[650px] md:h-[650px] opacity-[0.05]"
@@ -256,8 +247,8 @@ export default function Home() {
           <FadeIn delay={0.15}>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-10">
               Whether you&apos;re a researcher, student, policymaker, or
-              concerned citizen — there&apos;s a place for you in SAIN.
-              Join us in shaping the responsible development of AI in the
+              concerned citizen, there&apos;s a place for you in SAIN.
+              Join us in shaping the safe development and integration of AI in the
               Netherlands.
             </p>
           </FadeIn>
