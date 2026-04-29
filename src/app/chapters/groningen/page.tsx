@@ -472,7 +472,7 @@ export default function GroningenPage() {
                   Research Hub.
                 </p>
                 <p>
-                  We organise work across four teams — Education, Research,
+                  SAIN Groningen is co-directed by Alexander Müller and Thomas Brcic. We organise work across four teams — Education, Research,
                   Events, and PR — a structure other SAIN chapters are adopting as
                   they spin up.
                 </p>

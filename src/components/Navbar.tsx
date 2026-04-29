@@ -27,7 +27,9 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [chaptersOpen, setChaptersOpen] = useState(false);
   const pathname = usePathname();
-  const onGroningenHero = pathname === "/chapters/groningen" && !scrolled;
+  const onDarkChapterHero =
+    (pathname === "/chapters/groningen" || pathname === "/chapters/amsterdam") &&
+    !scrolled;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -55,8 +57,8 @@ export default function Navbar() {
     >
       <nav className="section-container flex items-center justify-between h-28 md:h-32">
         <Logo
-          inverted={onGroningenHero}
-          className={scrolled ? "text-navy-900" : onGroningenHero ? "text-white" : "text-navy-900"}
+          inverted={onDarkChapterHero}
+          className={scrolled ? "text-navy-900" : onDarkChapterHero ? "text-white" : "text-navy-900"}
         />
 
         {/* Desktop navigation */}
@@ -70,7 +72,7 @@ export default function Navbar() {
                   className={`px-4 py-2 text-base font-medium rounded-lg transition-colors flex items-center gap-1 ${
                     isActive(item.href)
                       ? "text-dutch-orange"
-                      : onGroningenHero
+                      : onDarkChapterHero
                         ? "text-white/85 hover:text-white hover:bg-white/10"
                         : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
                   }`}
@@ -111,7 +113,7 @@ export default function Navbar() {
                 className={`px-4 py-2 text-base font-medium rounded-lg transition-colors ${
                   isActive(item.href)
                     ? "text-dutch-orange"
-                    : onGroningenHero
+                    : onDarkChapterHero
                       ? "text-white/85 hover:text-white hover:bg-white/10"
                       : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
                 }`}
@@ -126,7 +128,7 @@ export default function Navbar() {
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className={`md:hidden p-2 rounded-lg ${
-            onGroningenHero
+            onDarkChapterHero
               ? "text-white/85 hover:text-white hover:bg-white/10"
               : "text-slate-600 hover:text-navy-900 hover:bg-slate-50"
           }`}
