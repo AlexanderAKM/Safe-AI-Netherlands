@@ -6,7 +6,7 @@ Source for `/chapters/amsterdam`.
 
 The "Past events this academic year" panel is populated from a static JSON
 snapshot at `src/data/lumaPastEvents.json`, **not** from a live Luma fetch.
-This keeps deploys independent of Luma's API — if Luma is down or changes
+This keeps deploys independent of Luma's API. If Luma is down or changes
 shape, the build still works.
 
 ### Refresh the list
@@ -29,7 +29,7 @@ git push
 
 The page filters to events on or after September 1 of the current academic
 year and sorts most-recent first, so the JSON can safely contain older
-events — they just won't render.
+events. They just won't render.
 
 ### Where things live
 
@@ -43,4 +43,4 @@ events — they just won't render.
 ### Upcoming events
 
 Upcoming events are rendered via a Luma `<iframe>` embed in `page.tsx` and
-need no maintenance — Luma serves them live.
+need no maintenance because Luma serves them live.

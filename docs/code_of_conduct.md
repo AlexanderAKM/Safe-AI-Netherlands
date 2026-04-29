@@ -1,6 +1,6 @@
 # Code of Conduct
 
-*Safe AI Netherlands — April 2026*
+*Safe AI Netherlands, April 2026*
 
 ---
 
@@ -14,9 +14,9 @@ This Code of Conduct has two parts. **Part I** sets behavioral standards for eve
 
 - **Respect.** We treat every person with dignity, regardless of background, expertise, or viewpoint. We engage with ideas on their merits.
 - **Intellectual honesty.** We represent evidence fairly, acknowledge uncertainty, distinguish personal views from established consensus, and correct ourselves when wrong.
-- **Inclusivity.** We actively welcome people of all backgrounds, disciplines, and experience levels. AI safety benefits from diverse perspectives — technical and non-technical, academic and professional, junior and senior.
+- **Inclusivity.** We actively welcome people of all backgrounds, disciplines, and experience levels. AI safety benefits from diverse perspectives: technical and non-technical, academic and professional, junior and senior.
 - **Collaboration.** We default to cooperation. We share knowledge, credit contributions, and support each other's growth.
-- **Safety.** We are committed to both AI safety and interpersonal safety. Every SAIN space — physical or digital — must be one where people feel secure enough to learn, question, and contribute.
+- **Safety.** We are committed to both AI safety and interpersonal safety. Every SAIN space, physical or digital, must be one where people feel secure enough to learn, question, and contribute.
 
 ## 2. Scope
 
@@ -27,7 +27,7 @@ This Code applies to all SAIN-organized events (national and local, in-person an
 - **Engage constructively.** Disagree with ideas, not with people. Offer feedback that aims to improve, not diminish.
 - **Act in good faith.** Assume positive intent. Give people the benefit of the doubt, especially when perspectives differ.
 - **Welcome newcomers.** Everyone starts somewhere. Make space for people beginning their AI safety journey.
-- **Respect diverse perspectives on AI safety.** SAIN spans the full spectrum — from near-term algorithmic harms to existential risks, from technical alignment to governance and policy. Engage respectfully across this spectrum, even when you personally prioritize one area.
+- **Respect diverse perspectives on AI safety.** SAIN spans the full spectrum, from near-term algorithmic harms to existential risks, from technical alignment to governance and policy. Engage respectfully across this spectrum, even when you personally prioritize one area.
 - **Give proper credit.** Acknowledge contributions in research, content, and organizational work.
 - **Protect confidentiality.** Do not share personal information, private communications, or unpublished research without consent.
 - **Use SAIN's name responsibly.** Do not make public statements on behalf of SAIN without authorization. When expressing personal views, make clear they are your own.
@@ -36,23 +36,23 @@ This Code applies to all SAIN-organized events (national and local, in-person an
 
 The following are not tolerated in any SAIN space or activity:
 
-- **Harassment** — unwelcome sexual attention, stalking, intimidation, deliberate misgendering, sustained disruption of discussions.
-- **Discrimination** — treating someone unfavorably based on race, ethnicity, nationality, gender, gender identity, sexual orientation, disability, age, religion, or any other protected characteristic.
-- **Bullying** — personal attacks, public shaming, threats, and patterns of behavior designed to make someone feel unwelcome or unsafe.
-- **Misrepresentation** — claiming to speak for SAIN without authorization, or using the SAIN brand to endorse personal or external agendas.
-- **Academic dishonesty** — plagiarism, data fabrication, failure to disclose conflicts of interest, or deliberate misrepresentation of evidence.
-- **Retaliation** — any adverse action against someone for reporting a concern or participating in a conduct process.
+- **Harassment**: unwelcome sexual attention, stalking, intimidation, deliberate misgendering, sustained disruption of discussions.
+- **Discrimination**: treating someone unfavorably based on race, ethnicity, nationality, gender, gender identity, sexual orientation, disability, age, religion, or any other protected characteristic.
+- **Bullying**: personal attacks, public shaming, threats, and patterns of behavior designed to make someone feel unwelcome or unsafe.
+- **Misrepresentation**: claiming to speak for SAIN without authorization, or using the SAIN brand to endorse personal or external agendas.
+- **Academic dishonesty**: plagiarism, data fabrication, failure to disclose conflicts of interest, or deliberate misrepresentation of evidence.
+- **Retaliation**: any adverse action against someone for reporting a concern or participating in a conduct process.
 
 ## 5. Reporting and Enforcement
 
 Anyone who experiences or witnesses a violation is encouraged to report it:
 
-- **Local chapter leadership** — for issues within a specific chapter. Contact your chapter's conduct officer or chapter lead.
-- **SAIN national** — for issues involving chapter leadership, cross-chapter matters, or situations where local reporting feels inappropriate. Contact: conduct@safeainetherlands.org.
+- **Local chapter leadership**: for issues within a specific chapter. Contact your chapter's conduct officer or chapter lead.
+- **SAIN national**: for issues involving chapter leadership, cross-chapter matters, or situations where local reporting feels inappropriate. Contact: conduct@safeainetherlands.org.
 
 Reports can be made in writing or in person. Anonymous reports are accepted, though they may limit investigative capacity.
 
-**Process:** (1) Acknowledgment within 48 hours. (2) Assessment of severity; local matters are handled by the chapter with SAIN national guidance if needed, serious or cross-chapter matters by SAIN national. (3) Investigation where warranted — all parties heard, confidentiality maintained. (4) Resolution, which may range from a private conversation to a formal warning, temporary suspension, or permanent removal from SAIN activities.
+**Process:** (1) Acknowledgment within 48 hours. (2) Assessment of severity; local matters are handled by the chapter with SAIN national guidance if needed, serious or cross-chapter matters by SAIN national. (3) Investigation where warranted, with all parties heard and confidentiality maintained. (4) Resolution, which may range from a private conversation to a formal warning, temporary suspension, or permanent removal from SAIN activities.
 
 **Principles:** Consequences are proportional to severity and any pattern of past conduct. All parties are treated with respect. The accused has the opportunity to respond. Details are shared only with those who need to know. SAIN actively protects anyone who reports in good faith.
 
@@ -72,7 +72,7 @@ SAIN as an organization occupies a specific position on the AI safety spectrum: 
 
 - SAIN may share opportunities, events, and resources from organizations across the AI safety landscape (e.g., linking to a PauseAI event, an Anthropic talk, or an AI governance workshop) without this constituting an endorsement of that organization's specific positions.
 - SAIN does not enter into explicit advocacy partnerships with organizations that hold a specific position within the AI safety debate. We platform the discussion; we do not pick sides.
-- **Individuals within SAIN are free to hold and express specific opinions** on AI safety matters — including publicly. What they may not do is present those opinions as official SAIN positions (see Section 3: "Use SAIN's name responsibly").
+- **Individuals within SAIN are free to hold and express specific opinions** on AI safety matters, including publicly. What they may not do is present those opinions as official SAIN positions (see Section 3: "Use SAIN's name responsibly").
 
 This distinction must be especially clear to chapter PR teams and anyone communicating on SAIN's behalf. When in doubt, frame it as: "SAIN member X believes..." rather than "SAIN believes..."
 
@@ -123,12 +123,12 @@ To maintain recognition, chapters must meet these baselines (minimums, not ceili
 
 Newly founded chapters receive a **grace period of one academic semester** to ramp up, with additional mentorship from SAIN national.
 
-**If a chapter falls below standards**, the process is always support before sanctions: (1) SAIN national reaches out to understand the situation and offer help, (2) a remediation plan is agreed upon with a reasonable timeline, (3) if recovery isn't possible, an orderly wind-down or pause is arranged (see Section 7). The same escalation applies if SAIN national has concerns about a chapter's quality or alignment — conversation and support first, formal action only as a last resort.
+**If a chapter falls below standards**, the process is always support before sanctions: (1) SAIN national reaches out to understand the situation and offer help, (2) a remediation plan is agreed upon with a reasonable timeline, (3) if recovery isn't possible, an orderly wind-down or pause is arranged (see Section 7). The same escalation applies if SAIN national has concerns about a chapter's quality or alignment: conversation and support first, formal action only as a last resort.
 
 ## 4. Governance Requirements
 
 Each chapter must have:
-- A **chapter lead** (or co-leads) who serves as primary contact with SAIN national and represents the chapter on the **Chapter Council** — an advisory body that meets regularly to discuss strategy, share best practices, and coordinate across the network (no formal legal governance power, but real influence)
+- A **chapter lead** (or co-leads) who serves as primary contact with SAIN national and represents the chapter on the **Chapter Council**, an advisory body that meets regularly to discuss strategy, share best practices, and coordinate across the network (no formal legal governance power, but real influence)
 - Clear internal roles, ideally following the 4-team model adapted to local capacity
 - A transparent process for leadership transitions, communicated to SAIN national in advance
 
@@ -148,7 +148,7 @@ Each chapter must have:
 
 The guiding principle is **local freedom, national coherence.**
 
-Chapters have full autonomy over event formats, scheduling, additional activities (book clubs, policy workshops, local consulting — anything consistent with the mission), team structure, recruitment, local partnerships, and pacing of growth.
+Chapters have full autonomy over event formats, scheduling, additional activities (book clubs, policy workshops, local consulting, and anything consistent with the mission), team structure, recruitment, local partnerships, and pacing of growth.
 
 What must remain consistent: the SAIN mission and values, brand and visual identity, minimum activity standards, participation in national coordination, financial transparency, and adherence to Part I of this Code.
 

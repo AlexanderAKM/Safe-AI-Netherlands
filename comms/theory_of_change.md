@@ -11,7 +11,7 @@ This document describes the causal logic behind SAIN's work: how and why our act
 We identify four gaps that currently limit the Dutch AI safety landscape:
 
 1. **A coordination gap.** Local AI safety initiatives across Dutch cities are scarce, and if they exist, operate independently, duplicate effort, lack legal and financial infrastructure, and struggle to build the authority needed to influence institutions.  
-2. **A skill gap.** Too few people have the knowledge to work on AI safety—in research, policy, industry, or public discourse. The pipeline from "interested individual" to "impactful professional" is underdeveloped and fragmented.  
+2. **A skill gap.** Too few people have the knowledge to work on AI safety in research, policy, industry, or public discourse. The pipeline from "interested individual" to "impactful professional" is underdeveloped and fragmented.  
 3. **An awareness gap.** The Dutch public, and many professionals in adjacent fields, have limited understanding of the full range of risks AI poses, from near-term societal harms to existential concerns. This poses problems for making societal changes.  
 4. **An institutional gap.** Universities, government ministries, and industry actors largely lack the frameworks, expertise, or external pressure to take AI safety seriously as an organizational priority. Even where individual champions exist, there is no trusted civil-society counterpart for them to engage with.
 
@@ -21,7 +21,7 @@ We identify four gaps that currently limit the Dutch AI safety landscape:
 
 SAIN believes that lasting change in AI safety comes from building **human capital**: people who understand the risks, have the skills to address them, and occupy positions where they can act. The most effective way to build this human capital at national scale is through a **unified organizational infrastructure** that informs the public and systematically moves unaware individuals to meaningful contribution, while producing direct research and policy outputs along the way.
 
-In short: **if we build the right ecosystem—education, research, community, and visibility—and make it easy to enter, we will produce the people and the knowledge that make AI safer.**
+In short: **if we build the right ecosystem of education, research, community, and visibility, and make it easy to enter, we will produce the people and the knowledge that make AI safer.**
 
 ---
 
@@ -70,7 +70,7 @@ Organized by pillar (see [Vision](/about/vision) for full descriptions):
 
 ### **Impact**
 
-**The development and integration of AI in the Netherlands—and, through the people and knowledge SAIN produces, internationally—is purposeful, just, and safe for all of humanity.**
+**The development and integration of AI in the Netherlands and, through the people and knowledge SAIN produces, internationally, is purposeful, just, and safe for all of humanity.**
 
 ---
 

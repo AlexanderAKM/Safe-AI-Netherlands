@@ -6,7 +6,7 @@
 
 [Safe AI Netherlands (SAIN)](https://safeainetherlands.org/) exists to **raise awareness of the full spectrum of existing and potential harms from AI, contribute to shaping mitigation priorities through ongoing discourse, and support the realization of effective solutions** across the entire Netherlands.
 
-We engage with the full range of AI safety concerns: from near-term harms like deepfakes, misinformation, and algorithmic manipulation of mental health, to long-term risks such as the loss of meaningful human control over increasingly capable AI systems—and everything in between.
+We engage with the full range of AI safety concerns: from near-term harms like deepfakes, misinformation, and algorithmic manipulation of mental health, to long-term risks such as the loss of meaningful human control over increasingly capable AI systems, and everything in between.
 
 ---
 
@@ -22,7 +22,7 @@ SAIN was created to close that gap.
 
 ## **Who We Are**
 
-Safe AI Netherlands is the leading civil-society organization for AI safety in the Netherlands. We are a national foundation (*stichting*) that operates through a network of local chapters—SAIN Groningen, SAIN Amsterdam, SAIN Utrecht, and more to come—united under a single brand, a shared mission, and centralized infrastructure.
+Safe AI Netherlands is the leading civil-society organization for AI safety in the Netherlands. We are a national foundation (*stichting*) that operates through a network of local chapters, SAIN Groningen, SAIN Amsterdam, SAIN Utrecht, and more to come, united under a single brand, a shared mission, and centralized infrastructure.
 
 SAIN grew out of the AI Safety Initiative Groningen (AISIG), which in under a year transformed from an informal student group into a professionalized organization with a Research Hub and published research at top-tier conferences (NeurIPS, ICLR), over 100 course graduates across 9+ cohorts, and operational playbooks that other Dutch AI safety groups began adopting. When it became clear that this model could, and should, serve the entire country, we rebranded and expanded.
 
@@ -32,7 +32,7 @@ SAIN is governed by a small board of directors responsible for legal and strateg
 
 ## **Our Vision**
 
-We envision a Netherlands where AI safety is not a niche concern but a recognized priority—in universities, in boardrooms, in government ministries, and in public conversation.
+We envision a Netherlands where AI safety is not a niche concern but a recognized priority in universities, in boardrooms, in government ministries, and in public conversation.
 
 In concrete terms, we see:
 
@@ -72,7 +72,7 @@ SAIN provides a structured pathway from first contact to career-level contributi
 | **2** | Foundational learning | Completes a SAIN course, joins a discussion group |
 | **3** | Active contribution | Joins a Research Hub project, participates in a campaign, joins a chapter team |
 | **4** | Structured development | Undertakes a full-time, paid fellowship or internship in AI safety |
-| **5** | Professional impact | Works full-time in AI safety — policy, research, industry, or civil society; leads a SAIN research project |
+| **5** | Professional impact | Works full-time in AI safety: policy, research, industry, or civil society; leads a SAIN research project |
 
 SAIN mainly focuses on levels 0 to 3 (while providing minor support for levels 4 and 5, e.g., through writing referral letters or connecting people). Our funnel has two critical transitions where people are most likely to disengage:
 
@@ -83,11 +83,11 @@ SAIN's four pillars directly address both: PR and Events lower the barrier to en
 
 ### **A Journey Through the Funnel**
 
-*Consider Maayke—a 22-year-old law student in Groningen. She scrolls past a LinkedIn post about SAIN's upcoming AI Safety, Ethics, and Society course. Having recently read Yuval Noah Harari's Nexus, she is curious and signs up.*
+*Consider Maayke, a 22-year-old law student in Groningen. She scrolls past a LinkedIn post about SAIN's upcoming AI Safety, Ethics, and Society course. Having recently read Yuval Noah Harari's Nexus, she is curious and signs up.*
 
 *She completes the course, attends a few social events, and earns her certificate. For a while, she is busy with an internship and not very active. But a semester later, a class assignment gives her the option to focus on AI. She chooses it, feeling more confident after the SAIN course. She notices a new project on SAIN's Research Hub, joins a team of three, and they publish their work a few months later.*
 
-*That experience sparks a deeper ambition. She explores opportunities in EU AI policy and sets her sights on DG CNECT—the European Commission department responsible for digital policy. Because of her proven experience at SAIN and a referral letter, she is part of the team working on the next iteration of the EU AI Act a short time later.*
+*That experience sparks a deeper ambition. She explores opportunities in EU AI policy and sets her sights on DG CNECT, the European Commission department responsible for digital policy. Because of her proven experience at SAIN and a referral letter, she is part of the team working on the next iteration of the EU AI Act a short time later.*
 
 Every pillar, every team member, and every chapter plays a role in broadening, strengthening, and advancing people along this path. Importantly, however, the above is an example of an individual moving through SAIN’s funnel from level 0 to level 5\. While this is an integral part of SAIN’s mission, there are two important points to be made. First, SAIN’s focus is primarily on levels 0 to 3\. We will, as of now, be able to provide less support moving individuals from levels 3 to 5, and believe it is important to be as transparent as possible about this to prevent confusion about this. Second, we highly believe that individuals ending at an earlier level of SAIN’s funnel are valuable. One of the most important aspects of the development and integration of AI going well is having individuals in broader society being adequately AI (safety) literate. This is itself a meaningful outcome, and that deserves to be mentioned explicitly.
 
@@ -99,7 +99,7 @@ SAIN's chapter model is the vehicle through which our vision scales. A strong ce
 
 A new chapter does not need to register a foundation, set up accounting, or develop a curriculum from nothing. They adopt the SAIN brand and hit the ground running. (For the full details of chapter requirements and standards, see SAIN’s [Code of Conduct](/about/code-of-conduct).)
 
-This balance—**local freedom within a shared national framework**—is what allows SAIN to scale without losing the grassroots energy that makes local communities thrive. Each new chapter extends SAIN's reach, strengthens the national brand, and demonstrates the model's scalability.
+This balance, **local freedom within a shared national framework**, is what allows SAIN to scale without losing the grassroots energy that makes local communities thrive. Each new chapter extends SAIN's reach, strengthens the national brand, and demonstrates the model's scalability.
 
 ---
 

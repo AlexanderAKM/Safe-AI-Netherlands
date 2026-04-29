@@ -17,6 +17,11 @@ const footerLinks = {
     { name: "LinkedIn", href: "https://linkedin.com/company/safe-ai-netherlands", external: true },
     { name: "Instagram", href: "https://instagram.com/sain_nl", external: true },
   ],
+  Documents: [
+    { name: "Vision", href: "/about/vision" },
+    { name: "Theory of Change", href: "/about/theory-of-change" },
+    { name: "Code of Conduct", href: "/about/code-of-conduct" },
+  ],
 };
 
 export default function Footer() {
@@ -42,14 +47,14 @@ export default function Footer() {
               />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-              The Netherlands&apos; national initiative for AI Safety &mdash; uniting
+              The Netherlands&apos; national initiative for AI Safety, uniting
               research, education, and community to ensure AI benefits everyone.
             </p>
             <a
-              href="mailto:info@sain.org"
+              href="mailto:info@safeainetherlands.org"
               className="text-sm text-dutch-orange hover:text-dutch-orange-light transition-colors"
             >
-              info@sain.org
+              info@safeainetherlands.org
             </a>
           </div>
 
@@ -91,12 +96,15 @@ export default function Footer() {
           <p className="text-xs text-slate-500">
             &copy; {new Date().getFullYear()} Safe AI Netherlands (SAIN). All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/about" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
-              Privacy Policy
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+            <Link href="/about/vision" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+              Vision
             </Link>
-            <Link href="/about" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
-              Terms
+            <Link href="/about/theory-of-change" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+              Theory of Change
+            </Link>
+            <Link href="/about/code-of-conduct" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
+              Code of Conduct
             </Link>
           </div>
         </div>

@@ -1,16 +1,8 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import lumaPastEventsRaw from "@/data/lumaPastEvents.json";
-
-const highlights = [
-  "70+ participants in current course cohort across Technical and Governance courses",
-  "Supported by ELLIS and connected with AISO Amsterdam",
-  "Partnerships with UvA, VU Amsterdam, and the broader EA Netherlands network",
-  "Presented at AI020 Conference as the only AI Safety organisation present",
-  "TEDx talk at Universiteit van Amsterdam",
-  "Active local community of 300+ members",
-];
 
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
@@ -37,7 +29,7 @@ const discussionGroup = {
     "Exploring technical approaches to AI alignment, interpretability, and safety evaluation. Reading and discussing cutting-edge research.",
 };
 
-// Cutoff for "this academic year" — Sep 1 of the most recent academic-year start.
+// Cutoff for "this academic year": Sep 1 of the most recent academic-year start.
 function academicYearStart(now: Date): Date {
   const year = now.getMonth() >= 8 ? now.getFullYear() : now.getFullYear() - 1;
   return new Date(year, 8, 1); // Sep 1
@@ -84,8 +76,7 @@ export default function AmsterdamPage() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8">
-              AI Safety in the Netherlands&apos; largest city and AI research
-              hub. Building a diverse community across UvA, VU Amsterdam, and
+              AI Safety in the Netherlands&apos; largest city. Building a diverse community across UvA, VU Amsterdam, and
               the broader Amsterdam tech ecosystem.
             </p>
           </FadeIn>
@@ -101,19 +92,8 @@ export default function AmsterdamPage() {
               </a>
             </div>
           </FadeIn>
-          <FadeIn delay={0.3}>
-            <div className="flex items-center gap-6 text-sm text-slate-400">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                Active Chapter
-              </div>
-              <div className="w-px h-4 bg-slate-700" />
-              <div>70+ course participants</div>
-              <div className="w-px h-4 bg-slate-700" />
-              <div>300+ community members</div>
-            </div>
-          </FadeIn>
         </div>
+        <ScrollCue href="#events" variant="dark" />
       </section>
 
       {/* In-page overview */}
@@ -170,7 +150,7 @@ export default function AmsterdamPage() {
               {/* Luma embed */}
               <div>
                 <p className="text-sm text-slate-600 mb-3">
-                  Upcoming events — see all on{" "}
+                  Upcoming events: see all on{" "}
                   <a
                     href={LUMA_USER_URL}
                     target="_blank"
@@ -251,7 +231,7 @@ export default function AmsterdamPage() {
             <p className="mt-8 text-sm text-slate-600">
               Events:{" "}
               <a
-                href={`mailto:${EVENTS_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Events")}`}
+                href={`mailto:${EVENTS_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam: Events")}`}
                 className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
               >
                 {EVENTS_AMS_EMAIL}
@@ -295,10 +275,10 @@ export default function AmsterdamPage() {
                     We facilitate 2 BlueDot courses:{" "}
                     <strong>&quot;Technical AI Safety&quot;</strong> and{" "}
                     <strong>&quot;Frontier AI Governance&quot;</strong>. We host
-                    both courses on-site in Amsterdam. We engaged 70+
+                    both courses on-site in Amsterdam. In the previous iteration, we engaged 70+
                     individuals from varying backgrounds, such as students,
                     PhDs, engineers, policymakers, and consultants.
-                    Facilitators include multiple PhDs, risk-management
+                    Facilitators range from PhDs, risk-management
                     consultants, and an ELLIS assistant professor.
                   </p>
 
@@ -363,7 +343,7 @@ export default function AmsterdamPage() {
               <p className="mt-10 text-center text-sm text-slate-600 max-w-2xl mx-auto">
                 Questions about the course?{" "}
                 <a
-                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Education / course")}`}
+                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam: Education / course")}`}
                   className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
                 >
                   {EDU_AMS_EMAIL}
@@ -406,7 +386,7 @@ export default function AmsterdamPage() {
               <p className="mt-8 text-sm text-slate-600 max-w-2xl">
                 Questions about the discussion group?{" "}
                 <a
-                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam — Discussion group")}`}
+                  href={`mailto:${EDU_AMS_EMAIL}?subject=${encodeURIComponent("SAIN Amsterdam: Discussion group")}`}
                   className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
                 >
                   {EDU_AMS_EMAIL}
@@ -427,7 +407,7 @@ export default function AmsterdamPage() {
                 </h2>
                 <p className="text-slate-500 max-w-2xl leading-relaxed">
                   A snapshot of current work. Research at SAIN Amsterdam
-                  isn&apos;t limited to the topics below — we&apos;re open to
+                  isn&apos;t limited to the topics below. We&apos;re open to
                   projects across mechanistic interpretability, alignment,
                   evaluations, and AI governance. If you&apos;d like to
                   propose or join a project, see the{" "}
@@ -459,7 +439,7 @@ export default function AmsterdamPage() {
       {/* About */}
       <section id="about" className="section-padding bg-slate-50">
         <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="max-w-3xl">
             <FadeIn>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
@@ -470,9 +450,9 @@ export default function AmsterdamPage() {
                 </h2>
                 <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p>
-                    SAIN Amsterdam operates in the Netherlands&apos; largest city
-                    and most dense AI research hub. The chapter engages a
-                    uniquely diverse community — from BSc students to
+                    SAIN Amsterdam operates in the Netherlands&apos; largest city. 
+                    The chapter engages a
+                    uniquely diverse community: from BSc students to
                     professionals at companies like Deloitte and Shell, and from
                     independent researchers to ELLIS assistant professors.
                   </p>
@@ -489,36 +469,6 @@ export default function AmsterdamPage() {
                     Research, Education, Events, and PR.
                   </p>
                 </div>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <div>
-                <h3 className="font-display font-semibold text-navy-900 mb-4">
-                  Chapter highlights
-                </h3>
-                <ul className="space-y-3">
-                  {highlights.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-2.5 text-sm text-slate-600"
-                    >
-                      <svg
-                        className="w-4 h-4 text-dutch-orange flex-shrink-0 mt-0.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4.5 12.75l6 6 9-13.5"
-                        />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </FadeIn>
           </div>
@@ -594,7 +544,7 @@ export default function AmsterdamPage() {
               {amsterdamContactByRole.map((row) => (
                 <a
                   key={row.email}
-                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Amsterdam — ${row.label}`)}`}
+                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Amsterdam: ${row.label}`)}`}
                   className="inline-flex flex-col items-start rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm text-white hover:bg-white/10 hover:border-white/35 transition-colors min-w-[10.5rem]"
                   aria-label={`Email ${row.label} to contact SAIN Amsterdam`}
                 >

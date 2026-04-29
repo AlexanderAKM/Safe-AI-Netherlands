@@ -12,7 +12,7 @@ This Code of Conduct has two parts. **Part I** sets behavioral standards for eve
 
 * **Respect.** We treat every person with dignity, regardless of background, expertise, or viewpoint. We engage with ideas on their merits.  
 * **Intellectual honesty.** We represent evidence fairly, acknowledge uncertainty, distinguish personal views from established consensus, and correct ourselves when wrong.  
-* **Inclusivity.** We actively welcome people of all backgrounds, disciplines, and experience levels. AI safety benefits from diverse perspectives — technical and non-technical, academic and professional, junior and senior, different cultures, genders, etc.  
+* **Inclusivity.** We actively welcome people of all backgrounds, disciplines, and experience levels. AI safety benefits from diverse perspectives: technical and non-technical, academic and professional, junior and senior, different cultures, genders, etc.  
 * **Collaboration.** We default to cooperation. We share knowledge, credit contributions, and support each other's growth.  
 * **Safety.** We are committed to both AI safety and interpersonal safety. Every SAIN space must be one where people feel secure enough to learn, question, and contribute.
 
@@ -25,7 +25,7 @@ This Code applies to all SAIN-organized events (national and local, in-person an
 * **Engage constructively.** Disagree with ideas, not with people. Offer feedback that aims to improve, not diminish.  
 * **Act in good faith.** Assume positive intent. Give people the benefit of the doubt, especially when perspectives differ.  
 * **Welcome newcomers.** Everyone starts somewhere. Make space for people beginning their AI safety journey.  
-* **Respect diverse perspectives on AI safety.** SAIN spans the full spectrum—from near-term algorithmic harms to existential risks, from technical alignment to governance and policy. Engage respectfully across this spectrum, even when you personally prioritize one area.  
+* **Respect diverse perspectives on AI safety.** SAIN spans the full spectrum, from near-term algorithmic harms to existential risks, from technical alignment to governance and policy. Engage respectfully across this spectrum, even when you personally prioritize one area.  
 * **Give proper credit.** Acknowledge contributions in research, content, and organizational work.  
 * **Protect confidentiality.** Do not share personal information, private communications, or unpublished research without consent.  
 * **Use SAIN's name responsibly.** Do not make public statements on behalf of SAIN without authorization. When expressing personal views, make clear they are your own.
@@ -71,7 +71,7 @@ SAIN as an organization occupies a specific position on the AI safety spectrum: 
 
 * SAIN may share opportunities, events, and resources from organizations across the AI safety landscape (e.g., linking to a PauseAI event, an Anthropic talk, or an AI governance workshop) without this constituting an endorsement of that organization's specific positions.  
 * SAIN does not enter into explicit advocacy partnerships with organizations that hold a specific position within the AI safety debate. We platform the discussion; we do not pick sides.  
-* **Individuals within SAIN are free to hold and express specific opinions** on AI safety matters—including publicly. What they may not do is present those opinions as official SAIN positions (see Section 3: "Use SAIN's name responsibly").
+* **Individuals within SAIN are free to hold and express specific opinions** on AI safety matters, including publicly. What they may not do is present those opinions as official SAIN positions (see Section 3: "Use SAIN's name responsibly").
 
 This distinction must be especially clear to chapter PR teams and anyone communicating on SAIN's behalf. When in doubt, frame it as: "SAIN member X believes..." rather than "SAIN believes..."
 
@@ -150,7 +150,7 @@ Each chapter must have:
 
 The guiding principle is **local freedom, national coherence.**
 
-Chapters have full autonomy over event formats, scheduling, additional activities (book clubs, policy workshops, local consulting—anything consistent with the mission), team structure, recruitment, local partnerships, and pacing of growth.
+Chapters have full autonomy over event formats, scheduling, additional activities (book clubs, policy workshops, local consulting, and anything consistent with the mission), team structure, recruitment, local partnerships, and pacing of growth.
 
 What must remain consistent: the SAIN mission and values, brand and visual identity, minimum activity standards, participation in national coordination, financial transparency, and adherence to Part I of this Code.
 

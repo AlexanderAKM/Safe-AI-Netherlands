@@ -3,19 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import ScrollCue from "@/components/ScrollCue";
 import { aisigTeam } from "@/data/aisigTeam";
+import { groningenEventsArchive } from "@/data/groningenEventsArchive";
 
-const events = [
-  { date: "Mar 2025", title: "AI Control Hackathon" },
-  { date: "Mar 2025", title: "AI Safety, Ethics and Society Graduation Ceremony" },
-  { date: "Feb 2025", title: "TEDxBroerstraat" },
-  { date: "Feb 2025", title: "AI Safety Talk with Tekla Emborg" },
-  { date: "Nov 2024", title: "Defence Acceleration Hackathon" },
-  { date: "Nov 2024", title: "AI Safety, Ethics and Society Course Graduation" },
-  { date: "Oct 2024", title: "AI Forecasting & Timeline Models Hackathon" },
-  { date: "Oct 2024", title: "SAIN Groningen Pub Quiz" },
-  { date: "Sep 2024", title: "AI Safety Chat" },
-];
+const events = groningenEventsArchive.slice(0, 6);
 
 const EDU_GRO_EMAIL = "edugro@safeainetherlands.org";
 const EVENTS_GRO_EMAIL = "eventsgro@safeainetherlands.org";
@@ -24,7 +16,7 @@ const discussionGroups = [
   {
     name: "Technical AI Alignment",
     description:
-      "Explores how to align capable ML systems with human intent: scalable oversight, evaluation and red-teaming, preference learning, robustness, and deployment risks — with weekly readings and discussion grounded in current research.",
+      "Explores how to align capable ML systems with human intent: scalable oversight, evaluation and red-teaming, preference learning, robustness, and deployment risks, with weekly readings and discussion grounded in current research.",
   },
   {
     name: "AI Governance & Privacy",
@@ -154,6 +146,7 @@ export default function GroningenPage() {
             
           </FadeIn>
         </div>
+        <ScrollCue href="#events" variant="dark" />
       </section>
 
       {/* In-page overview */}
@@ -220,15 +213,20 @@ export default function GroningenPage() {
             ))}
           </div>
           <FadeIn delay={0.2}>
-            <p className="mt-8 text-sm text-slate-600">
-              Events:{" "}
-              <a
-                href={`mailto:${EVENTS_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen — Events")}`}
-                className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
-              >
-                {EVENTS_GRO_EMAIL}
-              </a>
-            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link href="/chapters/groningen/events" className="btn-primary">
+                View full archive
+              </Link>
+              <p className="text-sm text-slate-600">
+                Events:{" "}
+                <a
+                  href={`mailto:${EVENTS_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen: Events")}`}
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                >
+                  {EVENTS_GRO_EMAIL}
+                </a>
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>
@@ -341,7 +339,7 @@ export default function GroningenPage() {
             <p className="mt-10 text-center text-sm text-slate-600 max-w-2xl mx-auto">
               Questions about the course?{" "}
               <a
-                href={`mailto:${EDU_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen — Education / course")}`}
+                href={`mailto:${EDU_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen: Education / course")}`}
                 className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
               >
                 {EDU_GRO_EMAIL}
@@ -386,7 +384,7 @@ export default function GroningenPage() {
             <p className="mt-8 text-center text-sm text-slate-600 max-w-2xl mx-auto">
               Questions about discussion groups?{" "}
               <a
-                href={`mailto:${EDU_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen — Discussion groups")}`}
+                href={`mailto:${EDU_GRO_EMAIL}?subject=${encodeURIComponent("SAIN Groningen: Discussion groups")}`}
                 className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
               >
                 {EDU_GRO_EMAIL}
@@ -472,8 +470,8 @@ export default function GroningenPage() {
                   Research Hub.
                 </p>
                 <p>
-                  We organise work across four teams — Education, Research,
-                  Events, and PR — a structure other SAIN chapters are adopting as
+                  SAIN Groningen is co-directed by Alexander Müller and Thomas Brcic. We organise work across four teams: Education, Research,
+                  Events, and PR. This is a structure other SAIN chapters are adopting as
                   they spin up.
                 </p>
               </div>
@@ -515,6 +513,7 @@ export default function GroningenPage() {
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
               Start with the onboarding form (we&apos;ll follow up by email).
+              Please have an extremely low bar for filling this in!
               Subscribe to the national Substack for articles and updates across
               SAIN.
             </p>
@@ -547,7 +546,7 @@ export default function GroningenPage() {
               {groningenContactByRole.map((row) => (
                 <a
                   key={row.email}
-                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Groningen — ${row.label}`)}`}
+                  href={`mailto:${row.email}?subject=${encodeURIComponent(`SAIN Groningen: ${row.label}`)}`}
                   className="inline-flex flex-col items-start rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-left text-sm text-white hover:bg-white/10 hover:border-white/35 transition-colors min-w-[10.5rem]"
                   aria-label={`Email ${row.label} to contact SAIN Groningen`}
                 >
