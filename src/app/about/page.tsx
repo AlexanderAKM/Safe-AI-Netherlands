@@ -25,8 +25,9 @@ const advisors = [
       },
       {
         name: "Nandi Schoots",
-        affiliation: "AI Safety Advisor",
-        link: "#",
+        affiliation: "FLI Postdoctoral Fellow, University of Oxford",
+        link: "https://nandischoots.com/",
+        image: "/photos/advisory_board/nandi.jpg"
       },
     ],
   },
