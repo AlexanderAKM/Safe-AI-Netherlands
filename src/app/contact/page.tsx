@@ -13,7 +13,7 @@ import {
 const socials = [
   {
     name: "Substack",
-    href: "https://aisig.substack.com/",
+    href: "https://safeainetherlands.substack.com/",
     description: "Weekly articles on AI Safety",
   },
   {
