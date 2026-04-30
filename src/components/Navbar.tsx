@@ -28,7 +28,9 @@ export default function Navbar() {
   const [chaptersOpen, setChaptersOpen] = useState(false);
   const pathname = usePathname();
   const onDarkChapterHero =
-    (pathname.startsWith("/chapters/groningen") || pathname === "/chapters/amsterdam") &&
+    (pathname.startsWith("/chapters/groningen") ||
+      pathname === "/chapters/amsterdam" ||
+      pathname.startsWith("/chapters/utrecht")) &&
     !scrolled;
 
   useEffect(() => {
