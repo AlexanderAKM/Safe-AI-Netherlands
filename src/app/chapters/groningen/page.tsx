@@ -27,7 +27,7 @@ const discussionGroups = [
 
 const ONBOARDING_FORM_URL =
   "https://forms.gle/TTP2bFzi9Ej87vLi6";
-const NATIONAL_SUBSTACK_URL = "https://aisig.substack.com/";
+const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 
 const groningenContactByRole = [
   { label: "Formal collaboration", email: "infogro@safeainetherlands.org" },

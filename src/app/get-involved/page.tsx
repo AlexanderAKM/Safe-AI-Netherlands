@@ -397,7 +397,7 @@ export default function GetInvolvedPage() {
                 Research updates, event announcements, and more.
               </p>
               <a
-                href="https://aisig.substack.com/"
+                href="https://safeainetherlands.substack.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"

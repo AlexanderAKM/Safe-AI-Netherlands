@@ -38,12 +38,12 @@ const discussionGroups = [
   },
 ];
 
-const NATIONAL_SUBSTACK_URL = "https://aisig.substack.com/";
+const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 
 /** Placeholder until a chapter WhatsApp or Discord is published */
 const COMMUNITY_UTRECHT_URL = "/get-involved";
 
-const EDU_UTR_EMAIL = "edoutr@safeainetherlands.org";
+const EDU_UTR_EMAIL = "eduutr@safeainetherlands.org";
 const EVENTS_UTR_EMAIL = "eventsutr@safeainetherlands.org";
 const INFO_UTR_EMAIL = "infoutr@safeainetherlands.org";
 
@@ -125,18 +125,6 @@ export default function UtrechtPage() {
               <Link href={COMMUNITY_UTRECHT_URL} className="btn-primary">
                 Get involved
               </Link>
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.3}>
-            <div className="flex items-center gap-6 text-sm text-slate-400">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                Active Chapter
-              </div>
-              <div className="w-px h-4 bg-slate-700" />
-              <div>100+ participants over 3 editions</div>
-              <div className="w-px h-4 bg-slate-700" />
-              <div>240+ community members</div>
             </div>
           </FadeIn>
         </div>

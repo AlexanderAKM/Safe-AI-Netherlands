@@ -13,9 +13,9 @@ const footerLinks = {
     { name: "SAIN Utrecht", href: "/chapters/utrecht" },
   ],
   Connect: [
-    { name: "Substack", href: "https://aisig.substack.com/", external: true },
-    { name: "LinkedIn", href: "https://linkedin.com/company/safe-ai-netherlands", external: true },
-    { name: "Instagram", href: "https://instagram.com/sain_nl", external: true },
+    { name: "Substack", href: "https://safeainetherlands.substack.com/", external: true },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/safe-ai-netherlands/", external: true },
+    { name: "Instagram", href: "https://www.instagram.com/sainetherlands/", external: true },
   ],
   Documents: [
     { name: "Vision", href: "/about/vision" },
