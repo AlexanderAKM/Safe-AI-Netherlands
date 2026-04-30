@@ -56,7 +56,7 @@ const pathways = [
     title: "Shape the conversation",
     description:
       "Write for our Substack, speak at events, or contribute to AI Safety outreach to help raise awareness across the Netherlands.",
-    href: "https://aisig.substack.com/",
+    href: "https://safeainetherlands.substack.com/",
   },
 ];
 

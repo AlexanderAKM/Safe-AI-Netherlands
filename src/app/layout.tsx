@@ -58,8 +58,8 @@ const organizationJsonLd = {
   logo: "https://safeainetherlands.org/sain-symbol.svg",
   sameAs: [
     "https://www.linkedin.com/company/safe-ai-netherlands/",
-    "https://instagram.com/sain_nl",
-    "https://aisig.substack.com/",
+    "https://www.instagram.com/sainetherlands/",
+    "https://safeainetherlands.substack.com/",
   ],
 };
 

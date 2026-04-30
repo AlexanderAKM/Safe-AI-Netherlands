@@ -38,7 +38,7 @@ const discussionGroups = [
   },
 ];
 
-const NATIONAL_SUBSTACK_URL = "https://aisig.substack.com/";
+const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 
 /** Placeholder until a chapter WhatsApp or Discord is published */
 const COMMUNITY_UTRECHT_URL = "/get-involved";
