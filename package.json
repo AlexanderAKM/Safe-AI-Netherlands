@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fetch-luma-events": "node scripts/fetch-luma-events.mjs"
+    "fetch-luma-events": "node scripts/fetch-luma-events.mjs",
+    "fetch-luma-events-utrecht": "node scripts/fetch-luma-events-utrecht.mjs"
   },
   "dependencies": {
     "next": "^14.2.15",
