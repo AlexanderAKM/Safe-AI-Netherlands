@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
 import { aisigTeam } from "@/data/aisigTeam";
 import { groningenEventsArchive } from "@/data/groningenEventsArchive";
 
@@ -146,7 +145,6 @@ export default function GroningenPage() {
             
           </FadeIn>
         </div>
-        <ScrollCue href="#events" variant="dark" />
       </section>
 
       {/* In-page overview */}

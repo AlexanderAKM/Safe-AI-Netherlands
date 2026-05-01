@@ -1,6 +1,5 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import lumaPastEventsRaw from "@/data/lumaPastEvents.json";
 
@@ -93,7 +92,6 @@ export default function AmsterdamPage() {
             </div>
           </FadeIn>
         </div>
-        <ScrollCue href="#events" variant="dark" />
       </section>
 
       {/* In-page overview */}

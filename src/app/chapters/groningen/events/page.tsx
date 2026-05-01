@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
 import {
   groningenEventYears,
   groningenEventsArchive,
@@ -54,7 +53,6 @@ export default function GroningenEventsArchivePage() {
             </p>
           </FadeIn>
         </div>
-        <ScrollCue href="#archive-events" variant="dark" />
       </section>
 
       <section id="archive-events" className="section-padding bg-slate-50 scroll-mt-28">
