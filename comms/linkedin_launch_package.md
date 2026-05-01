@@ -132,41 +132,25 @@ Old AISIG links and email addresses will redirect where possible. If anything br
 
 ### Main Post
 
-Over the last year, a lot of my life has gone into building AISIG.
+I'm thrilled to be announcing that I'm founding and directing @Safe AI Netherlands.
 
-I don't mean that in the vague "I helped with a student association" sense. I mean that a large part of my thinking, my calendar, my energy, and honestly my identity for a while has been tied up with one question:
+For some time now, a large part of my life has gone into working on AI safety. The reason is straightforward: getting this right really matters. By "right" I mean something quite demanding: honestly facing the risks AI brings, and doing the work to make sure its upside is broadly shared rather than narrowly captured (or not at all). That's the bar I think the field as a whole needs to clear.
 
-How do you build a serious AI safety community from almost nothing?
+Right now, we're a long way from that. So what do we do?
 
-AISIG was my answer to that question in Groningen.
+My approach is to focus on the full spectrum of risks, ranging from pressing current issues like deepfakes and misinformation, to loss of meaningful human control over increasingly capable systems. At AI Safety Initiative Groningen, that is exactly what we have been working on. The progress has been, if I may say so myself, genuinely encouraging, from launching our Research Hub to hosting events with leading AI safety experts.
 
-We ran courses. We built a Research Hub. We organized hackathons, talks, discussion groups, socials, and public outreach. We created a team structure, onboarding systems, facilitator guides, curricula, and all the boring operational machinery that makes the visible work possible.
+But more is needed, and the Dutch AI safety ecosystem has real room to grow into something serious.
 
-And somewhere along the way, AISIG stopped being "just" a local student group.
+That is what SAIN is for. It is our attempt to build the organization the Dutch AI safety ecosystem needs: serious, coordinated, locally rooted, and capable of scaling to many cities.
 
-That is the part I am most proud of.
+SAIN starts with Groningen, Amsterdam, and Utrecht, but it won't stop there. To everyone who helped build AISIG: thank you (especially @joris, @davide, and @mariam, for building what you built, and for giving me the opportunity to continue it). The name changes to SAIN Groningen, but the mission stays the same.
 
-Not the branding. Not the website. Not any one event.
+I'm excited to be working on this with @Thomas, @ana, @andreea, @riccardo and the rest of SAIN's team. It's energizing to see the care people bring to getting this right.
 
-The thing that matters is that people came in curious, and many of them found a real path: into learning, into research, into governance, into organizing, into taking this problem seriously.
+Together with our advisory board—@teun, @jesse, @nandi, @jelle, @lisa, @robert, @charbel—I'm hopeful we are at the start of something meaningful.
 
-That matters because AI safety cannot stay a niche conversation between a few people who already know all the acronyms. If the problem is as important as I think it is, then we need institutions, communities, and pathways that let many more capable people contribute.
-
-So today, AISIG becomes SAIN Groningen: the Groningen chapter of Safe AI Netherlands.
-
-There is something bittersweet about changing the name of something you helped build. AISIG meant a lot to me. It was the place where I learned, very concretely, that building an organization is not about having takes. It is about making decisions under uncertainty, bringing people along, creating structure, dealing with annoying operational details, and doing enough of the unglamorous work that other people can do meaningful work.
-
-But the reason for the transition is simple: the model worked.
-
-Groningen showed that this can be done. Now the obvious next step is to make the infrastructure national.
-
-Safe AI Netherlands is our attempt to build the organization the Dutch AI safety ecosystem needs: serious, coordinated, locally rooted, and capable of scaling beyond one city.
-
-SAIN starts with Groningen, Amsterdam, and Utrecht. I hope it does not stop there.
-
-To everyone who helped build AISIG: thank you. The name changes, but the mission does not.
-
-This is the right next step.
+Stay SAIN.
 
 ### Comment
 
