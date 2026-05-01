@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
 
 const publications = [
   {
@@ -217,7 +216,6 @@ export default function ResearchPage() {
             </div>
           </FadeIn>
         </div>
-        <ScrollCue href="#how-it-works" />
       </section>
 
       {/* How It Works */}

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
 import {
   chapterContactLinks,
   chapterRoleEmails,
@@ -57,7 +56,6 @@ export default function ContactPage() {
             </p>
           </FadeIn>
         </div>
-        <ScrollCue href="#national-emails" />
       </section>
 
       {/* National functional emails */}

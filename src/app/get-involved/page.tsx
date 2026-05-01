@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
 
 const activities = [
   {
@@ -111,7 +110,6 @@ export default function GetInvolvedPage() {
             </p>
           </FadeIn>
         </div>
-        <ScrollCue href="#activities" />
       </section>
 
       {/* Activities */}
@@ -217,7 +215,7 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Research Hub Pointer */}
-      <section className="section-padding bg-slate-50">
+      <section id="research-hub" className="section-padding scroll-mt-32 bg-slate-50">
         <div className="section-container">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">

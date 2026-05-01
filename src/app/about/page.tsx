@@ -93,7 +93,10 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[100svh] flex items-center bg-white overflow-hidden">
+      <section
+        id="mission"
+        className="relative flex min-h-[100svh] items-center overflow-hidden bg-white scroll-mt-28"
+      >
         <div className="absolute inset-0 opacity-[0.04]">
           <div
             className="absolute inset-0"
@@ -107,12 +110,10 @@ export default function AboutPage() {
 
         <div className="section-container relative z-10 w-full">
           <FadeIn delay={0.1}>
-            <p className="max-w-4xl mx-auto text-center text-xl md:text-2xl text-slate-700 leading-relaxed">
-              <span className="font-semibold text-navy-900">Our mission</span>{" "}
-              is to raise awareness of the full spectrum of existing and
-              potential harms from AI, inform mitigation priorities through
-              ongoing discourse, and support the realization of effective
-              solutions.
+            <p className="mx-auto max-w-4xl text-center text-xl font-bold leading-relaxed text-navy-900 md:text-2xl">
+              Our mission is to raise awareness of the full spectrum of existing and potential harms from
+              AI, inform mitigation priorities through ongoing discourse, and support the realization of
+              effective solutions.
             </p>
           </FadeIn>
         </div>
@@ -120,24 +121,23 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership Team */}
-      <section id="team" className="section-padding bg-white">
+      <section id="team" className="section-padding scroll-mt-32 bg-white">
         <div className="section-container">
-          <FadeIn>
+          <FadeIn direction="none">
             <div className="mb-12 text-center">
               <h2 className="heading-lg text-navy-900">Leadership</h2>
             </div>
-          </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {leadership.map((person, i) => (
-              <FadeIn key={person.name} delay={i * 0.08}>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+              {leadership.map((person) => (
                 <a
+                  key={person.name}
                   href={person.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card p-4 h-full flex flex-col group"
+                  className="card flex h-full flex-col p-4 group"
                 >
-                  <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-slate-100">
+                  <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
                     <Image
                       src={person.image}
                       alt={person.name}
@@ -146,33 +146,29 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="font-display font-semibold text-base text-navy-900 group-hover:text-dutch-orange transition-colors">
+                  <h3 className="font-display text-base font-semibold text-navy-900 transition-colors group-hover:text-dutch-orange">
                     {person.name}
                   </h3>
-                  <p className="text-sm font-medium text-dutch-orange">
-                    {person.role}
-                  </p>
+                  <p className="text-sm font-medium text-dutch-orange">{person.role}</p>
                 </a>
-              </FadeIn>
-            ))}
-          </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Advisory Board */}
-      <section className="section-padding bg-slate-50">
+      <section id="advisory-board" className="section-padding scroll-mt-32 bg-slate-50">
         <div className="section-container">
-          <FadeIn>
-            <div className="text-center mb-12">
+          <FadeIn direction="none">
+            <div className="mx-auto mb-12 max-w-6xl text-center">
               <h2 className="heading-lg text-navy-900">Advisory Board</h2>
             </div>
-          </FadeIn>
 
-          <div className="space-y-10 max-w-6xl mx-auto">
-            {advisors.map((group, gi) => (
-              <FadeIn key={group.category} delay={gi * 0.15}>
-                <div>
-                  <h3 className="font-display font-semibold text-2xl text-navy-900 mb-5 text-center">
+            <div className="mx-auto max-w-6xl space-y-10">
+              {advisors.map((group) => (
+                <div key={group.category}>
+                  <h3 className="mb-5 text-center font-display text-2xl font-semibold text-navy-900">
                     {group.category}
                   </h3>
                   <div className="flex flex-wrap justify-center gap-4">
@@ -182,9 +178,9 @@ export default function AboutPage() {
                         href={advisor.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="card p-5 text-center w-full sm:w-[calc(50%-0.5rem)] lg:w-64"
+                        className="card w-full p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-64"
                       >
-                        <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-4 bg-slate-100">
+                        <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
                           {advisor.image ? (
                             <Image
                               src={advisor.image}
@@ -194,7 +190,7 @@ export default function AboutPage() {
                               className="object-cover"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-white bg-gradient-to-br from-navy-800 to-navy-900 text-2xl font-display font-semibold">
+                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy-800 to-navy-900 font-display text-2xl font-semibold text-white">
                               {advisor.name
                                 .split(" ")
                                 .map((n) => n[0])
@@ -203,65 +199,55 @@ export default function AboutPage() {
                             </div>
                           )}
                         </div>
-                        <h4 className="font-display font-semibold text-navy-900">
-                          {advisor.name}
-                        </h4>
-                        <p className="text-sm font-medium text-dutch-orange mt-1">
-                          {advisor.affiliation}
-                        </p>
+                        <h4 className="font-display font-semibold text-navy-900">{advisor.name}</h4>
+                        <p className="mt-1 text-sm font-medium text-dutch-orange">{advisor.affiliation}</p>
                       </a>
                     ))}
                   </div>
                 </div>
-              </FadeIn>
-            ))}
-          </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Timeline */}
       <section className="section-padding bg-white">
         <div className="section-container">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                Our Journey
-              </p>
-              <h2 className="heading-lg text-navy-900">
-                From AISIG to SAIN
-              </h2>
-            </div>
-          </FadeIn>
+          <div id="our-journey" className="scroll-mt-32">
+            <FadeIn>
+              <div className="mb-16 text-center">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
+                  Our Journey
+                </p>
+                <h2 className="heading-lg text-navy-900">From AISIG to SAIN</h2>
+              </div>
+            </FadeIn>
 
-          <div className="max-w-3xl mx-auto">
-            {timeline.map((item, i) => (
-              <FadeIn key={item.year} delay={i * 0.1}>
-                <div className="relative flex gap-6 pb-12 last:pb-0">
-                  {i < timeline.length - 1 && (
-                    <div className="absolute left-[23px] top-12 w-px h-[calc(100%-24px)] bg-slate-200" />
-                  )}
-                  <div className="w-12 h-12 rounded-full bg-dutch-orange/10 border-2 border-dutch-orange text-dutch-orange flex items-center justify-center flex-shrink-0 text-sm font-bold">
-                    {item.year.slice(-2)}
-                  </div>
-                  <div className="pt-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="text-xs font-medium text-slate-400">
-                        {item.year}
-                      </span>
+            <div className="mx-auto max-w-3xl">
+              {timeline.map((item, i) => (
+                <FadeIn key={item.year} delay={i * 0.1}>
+                  <div className="relative flex gap-6 pb-12 last:pb-0">
+                    {i < timeline.length - 1 && (
+                      <div
+                        className="absolute left-6 top-[3rem] z-0 h-[calc(100%-3rem)] w-px -translate-x-1/2 bg-slate-200"
+                        aria-hidden
+                      />
+                    )}
+                    <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold tabular-nums text-dutch-orange ring-2 ring-dutch-orange ring-offset-2 ring-offset-white">
+                      {item.year}
                     </div>
-                    <h3 className="font-display font-semibold text-navy-900 mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-slate-500 leading-relaxed">
-                      {item.description}
-                    </p>
+                    <div className="min-w-0 pt-1">
+                      <h3 className="font-display mb-1 font-semibold text-navy-900">{item.title}</h3>
+                      <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
+                    </div>
                   </div>
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-20 pt-16 border-t border-slate-200">
+          <div id="foundational-documents" className="mt-20 scroll-mt-32 border-t border-slate-200 pt-16">
             <FadeIn>
               <div className="text-center mb-10">
                 <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
