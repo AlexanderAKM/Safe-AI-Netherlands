@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
+import { League_Spartan, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  variable: "--font-league-spartan",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://safeainetherlands.org"),
@@ -69,8 +84,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col">
+    <html lang="en" className={`scroll-smooth ${poppins.variable} ${leagueSpartan.variable}`}>
+      <head>
+        <link rel="prefetch" href="/about" />
+        <link rel="prefetch" href="/get-involved" />
+      </head>
+      <body className="flex min-h-screen flex-col font-sans antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
