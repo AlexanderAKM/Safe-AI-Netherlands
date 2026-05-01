@@ -27,15 +27,15 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "Poppins",
+          "var(--font-poppins)",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
           "sans-serif",
         ],
         display: [
-          "League Spartan",
-          "Poppins",
+          "var(--font-league-spartan)",
+          "var(--font-poppins)",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",

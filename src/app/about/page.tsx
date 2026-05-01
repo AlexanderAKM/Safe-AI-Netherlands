@@ -109,13 +109,11 @@ export default function AboutPage() {
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
         <div className="section-container relative z-10 w-full">
-          <FadeIn delay={0.1}>
-            <p className="mx-auto max-w-4xl text-center text-xl font-bold leading-relaxed text-navy-900 md:text-2xl">
-              Our mission is to raise awareness of the full spectrum of existing and potential harms from
-              AI, inform mitigation priorities through ongoing discourse, and support the realization of
-              effective solutions.
-            </p>
-          </FadeIn>
+          <p className="mx-auto max-w-4xl text-center text-xl font-bold leading-relaxed text-navy-900 md:text-2xl">
+            Our mission is to raise awareness of the full spectrum of existing and potential harms from AI,
+            inform mitigation priorities through ongoing discourse, and support the realization of effective
+            solutions.
+          </p>
         </div>
         <ScrollCue href="#team" />
       </section>
@@ -123,91 +121,89 @@ export default function AboutPage() {
       {/* Leadership Team */}
       <section id="team" className="section-padding scroll-mt-32 bg-white">
         <div className="section-container">
-          <FadeIn direction="none">
-            <div className="mb-12 text-center">
-              <h2 className="heading-lg text-navy-900">Leadership</h2>
-            </div>
+          <div className="mb-12 text-center">
+            <h2 className="heading-lg text-navy-900">Leadership</h2>
+          </div>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
-              {leadership.map((person) => (
-                <a
-                  key={person.name}
-                  href={person.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card flex h-full flex-col p-4 group"
-                >
-                  <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
-                    <Image
-                      src={person.image}
-                      alt={person.name}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 20vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="font-display text-base font-semibold text-navy-900 transition-colors group-hover:text-dutch-orange">
-                    {person.name}
-                  </h3>
-                  <p className="text-sm font-medium text-dutch-orange">{person.role}</p>
-                </a>
-              ))}
-            </div>
-          </FadeIn>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {leadership.map((person) => (
+              <a
+                key={person.name}
+                href={person.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group flex h-full flex-col p-4"
+              >
+                <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 50vw, 20vw"
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="font-display text-base font-semibold text-navy-900 transition-colors group-hover:text-dutch-orange">
+                  {person.name}
+                </h3>
+                <p className="text-sm font-medium text-dutch-orange">{person.role}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Advisory Board */}
       <section id="advisory-board" className="section-padding scroll-mt-32 bg-slate-50">
         <div className="section-container">
-          <FadeIn direction="none">
-            <div className="mx-auto mb-12 max-w-6xl text-center">
-              <h2 className="heading-lg text-navy-900">Advisory Board</h2>
-            </div>
+          <div className="mx-auto mb-12 max-w-6xl text-center">
+            <h2 className="heading-lg text-navy-900">Advisory Board</h2>
+          </div>
 
-            <div className="mx-auto max-w-6xl space-y-10">
-              {advisors.map((group) => (
-                <div key={group.category}>
-                  <h3 className="mb-5 text-center font-display text-2xl font-semibold text-navy-900">
-                    {group.category}
-                  </h3>
-                  <div className="flex flex-wrap justify-center gap-4">
-                    {group.members.map((advisor) => (
-                      <a
-                        key={advisor.name}
-                        href={advisor.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="card w-full p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-64"
-                      >
-                        <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
-                          {advisor.image ? (
-                            <Image
-                              src={advisor.image}
-                              alt={advisor.name}
-                              fill
-                              sizes="(max-width: 1024px) 50vw, 25vw"
-                              className="object-cover"
-                            />
-                          ) : (
-                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy-800 to-navy-900 font-display text-2xl font-semibold text-white">
-                              {advisor.name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")
-                                .slice(0, 2)}
-                            </div>
-                          )}
-                        </div>
-                        <h4 className="font-display font-semibold text-navy-900">{advisor.name}</h4>
-                        <p className="mt-1 text-sm font-medium text-dutch-orange">{advisor.affiliation}</p>
-                      </a>
-                    ))}
-                  </div>
+          <div className="mx-auto max-w-6xl space-y-10">
+            {advisors.map((group) => (
+              <div key={group.category}>
+                <h3 className="mb-5 text-center font-display text-2xl font-semibold text-navy-900">
+                  {group.category}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {group.members.map((advisor) => (
+                    <a
+                      key={advisor.name}
+                      href={advisor.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="card w-full p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-64"
+                    >
+                      <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
+                        {advisor.image ? (
+                          <Image
+                            src={advisor.image}
+                            alt={advisor.name}
+                            fill
+                            priority
+                            sizes="(max-width: 1024px) 50vw, 25vw"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy-800 to-navy-900 font-display text-2xl font-semibold text-white">
+                            {advisor.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")
+                              .slice(0, 2)}
+                          </div>
+                        )}
+                      </div>
+                      <h4 className="font-display font-semibold text-navy-900">{advisor.name}</h4>
+                      <p className="mt-1 text-sm font-medium text-dutch-orange">{advisor.affiliation}</p>
+                    </a>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </FadeIn>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
