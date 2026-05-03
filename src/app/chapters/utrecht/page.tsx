@@ -3,15 +3,51 @@ import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
 
 const leadership = [
-  { name: "Riccardo Campanella", title: "Director" },
-  { name: "Betül Selvi", title: "Education Lead" },
-  { name: "Luca 'Dug' Dughera", title: "Event Lead" },
-  { name: "Dimitra Tsolka", title: "Public Relations Lead" },
-  { name: "Cem Kay", title: "Research Operations" },
-  { name: "Elena Clacova", title: "Social Media Specialist" },
-  { name: "Maria Mouratidi", title: "Researcher" },
-  { name: "Max Schaffelder", title: "Advisor" },
-  { name: "Thijmen van der Meijden", title: "Facilitator" },
+  {
+    name: "Riccardo Campanella",
+    title: "Director",
+    linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
+  },
+  {
+    name: "Betül Selvi",
+    title: "Education Lead",
+    linkedin: "https://www.linkedin.com/in/bet%C3%BCl-selvi/",
+  },
+  {
+    name: "Luca 'Dug' Dughera",
+    title: "Event Lead",
+    linkedin: "https://www.linkedin.com/in/luca-dughera/",
+  },
+  {
+    name: "Dimitra Tsolka",
+    title: "Public Relations Lead",
+    linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
+  },
+  {
+    name: "Cem Kay",
+    title: "Research Operations",
+    linkedin: "https://www.linkedin.com/in/cem-kaya-om8/",
+  },
+  {
+    name: "Elena Clacova",
+    title: "Social Media Specialist",
+    linkedin: "https://www.linkedin.com/in/elenaclacova/",
+  },
+  {
+    name: "Maria Mouratidi",
+    title: "Researcher",
+    linkedin: "https://www.linkedin.com/in/maria-mouratidi/",
+  },
+  {
+    name: "Max Schaffelder",
+    title: "Advisor",
+    linkedin: "https://www.linkedin.com/in/maxschaffelder/",
+  },
+  {
+    name: "Thijmen van der Meijden",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/thijmen-van-der-meijden/",
+  },
 ] as const;
 
 const highlights = [
@@ -39,17 +75,17 @@ const discussionGroups = [
 
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 
-/** Placeholder until a chapter WhatsApp or Discord is published */
-const COMMUNITY_UTRECHT_URL = "/get-involved";
+const COMMUNITY_WHATSAPP_URL =
+  "https://chat.whatsapp.com/GCEf5Af8FRK6FuQN2pJfAP";
 
 const EDU_UTR_EMAIL = "eduutr@safeainetherlands.org";
 const EVENTS_UTR_EMAIL = "eventsutr@safeainetherlands.org";
 const INFO_UTR_EMAIL = "infoutr@safeainetherlands.org";
 
 /** SAIN Utrecht Luma calendar — from embed / page HTML (`cal-…`). */
-const LUMA_CALENDAR_ID = "cal-SEgERCbTEKinGaJ";
+const LUMA_CALENDAR_ID = "cal-2gYun0D26BriJ5z";
 /** Public link for the featured calendar / intro session (short lu.ma URL). */
-const LUMA_PUBLIC_URL = "https://lu.ma/bsv03bzb";
+const LUMA_PUBLIC_URL = "https://lu.ma/sain-utrecht_events";
 
 /** Distinct labels; several routes currently share the chapter inbox */
 const utrechtContactByRole = [
@@ -121,9 +157,14 @@ export default function UtrechtPage() {
           </FadeIn>
           <FadeIn delay={0.28}>
             <div className="flex flex-wrap gap-3 mb-8">
-              <Link href={COMMUNITY_UTRECHT_URL} className="btn-primary">
-                Get involved
-              </Link>
+              <a
+                href={COMMUNITY_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Join Community
+              </a>
             </div>
           </FadeIn>
         </div>
@@ -793,14 +834,20 @@ export default function UtrechtPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {leadership.map((person, i) => (
               <FadeIn key={person.name} delay={Math.min(i * 0.03, 0.35)}>
-                <div className="card p-4 h-full">
-                  <h3 className="font-display font-semibold text-base text-navy-900">
+                <a
+                  href={person.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card p-4 h-full block hover:border-dutch-orange transition-colors group"
+                  aria-label={`Open ${person.name}'s LinkedIn profile in a new tab`}
+                >
+                  <h3 className="font-display font-semibold text-base text-navy-900 group-hover:text-dutch-orange transition-colors">
                     {person.name}
                   </h3>
                   <p className="text-sm font-medium text-dutch-orange mt-1.5 leading-snug">
                     {person.title}
                   </p>
-                </div>
+                </a>
               </FadeIn>
             ))}
           </div>
@@ -826,6 +873,14 @@ export default function UtrechtPage() {
                 className="btn-primary"
               >
                 Email the chapter
+              </a>
+              <a
+                href={COMMUNITY_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                Join WhatsApp group
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
