@@ -85,7 +85,7 @@ const INFO_UTR_EMAIL = "infoutr@safeainetherlands.org";
 /** SAIN Utrecht Luma calendar — from embed / page HTML (`cal-…`). */
 const LUMA_CALENDAR_ID = "cal-2gYun0D26BriJ5z";
 /** Public link for the featured calendar / intro session (short lu.ma URL). */
-const LUMA_PUBLIC_URL = "https://lu.ma/sain-utrecht_events";
+const LUMA_PUBLIC_URL = "https://lu.ma/sain-utrecht-events";
 
 /** Distinct labels; several routes currently share the chapter inbox */
 const utrechtContactByRole = [
