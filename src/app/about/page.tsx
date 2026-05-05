@@ -42,7 +42,7 @@ const advisors = [
       },
       {
         name: "Lisa Gotoh",
-        affiliation: "AI Global Governance Lead, Dutch Ministry of Foreign Affairs",
+        affiliation: "Senior Policy Officer AI, Dutch Ministry of Foreign Affairs",
         link: "https://www.linkedin.com/in/lisa-gotoh/",
         image: "/photos/advisory_board/lisa_gotoh_revised.jpeg",
       },
