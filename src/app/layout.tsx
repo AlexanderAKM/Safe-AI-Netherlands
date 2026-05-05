@@ -20,6 +20,9 @@ const leagueSpartan = League_Spartan({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://safeainetherlands.org"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Safe AI Netherlands",
     template: "%s | SAIN",
@@ -38,13 +41,25 @@ export const metadata: Metadata = {
   verification: {
     google: "k0Z89-ZBoJwJsgttXh8i0RILGDy72FQR9N2ynoyFgYg",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [
+      { url: "/icon", sizes: "32x32", type: "image/png" },
       { url: "/sain-symbol.svg", type: "image/svg+xml" },
       { url: "/sain-symbol.svg", sizes: "any" },
     ],
-    shortcut: "/sain-symbol.svg",
-    apple: "/sain-symbol.svg",
+    shortcut: ["/icon"],
+    apple: [{ url: "/icon", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: "Safe AI Netherlands",
