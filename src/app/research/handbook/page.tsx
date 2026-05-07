@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function ResearchHubHandbookPage() {
   const markdown = await readFile(
-    path.join(process.cwd(), "comms", "research_hub_handbook.md"),
+    path.join(process.cwd(), "docs", "research_hub_handbook.md"),
     "utf8",
   );
 

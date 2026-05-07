@@ -13,7 +13,7 @@ type DocumentPageProps = {
 };
 
 async function readDocumentMarkdown(fileName: string) {
-  return readFile(path.join(process.cwd(), "comms", fileName), "utf8");
+  return readFile(path.join(process.cwd(), "docs", fileName), "utf8");
 }
 
 export function generateStaticParams() {
