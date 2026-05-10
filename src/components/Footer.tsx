@@ -16,6 +16,11 @@ const footerLinks = {
     { name: "Substack", href: "https://safeainetherlands.substack.com/", external: true },
     { name: "LinkedIn", href: "https://www.linkedin.com/company/safe-ai-netherlands/", external: true },
     { name: "Instagram", href: "https://www.instagram.com/sainetherlands/", external: true },
+    {
+      name: "SAIN Groningen (all links)",
+      href: "https://linktr.ee/saingroningen",
+      external: true,
+    },
   ],
   Documents: [
     { name: "Vision", href: "/about/vision" },
