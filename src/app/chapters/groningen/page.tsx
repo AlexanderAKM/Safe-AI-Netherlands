@@ -27,6 +27,7 @@ const discussionGroups = [
 const ONBOARDING_FORM_URL =
   "https://forms.gle/TTP2bFzi9Ej87vLi6";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
+const GRONINGEN_LINKTREE_URL = "https://linktr.ee/saingroningen";
 
 const groningenContactByRole = [
   { label: "Formal collaboration", email: "infogro@safeainetherlands.org" },
@@ -140,6 +141,14 @@ export default function GroningenPage() {
                 className="btn-secondary"
               >
                 National newsletter (Substack)
+              </a>
+              <a
+                href={GRONINGEN_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Groningen links (Linktree)
               </a>
             </div>
             
@@ -533,6 +542,14 @@ export default function GroningenPage() {
                 className="btn-secondary"
               >
                 National newsletter
+              </a>
+              <a
+                href={GRONINGEN_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Groningen links (Linktree)
               </a>
             </div>
           </FadeIn>
