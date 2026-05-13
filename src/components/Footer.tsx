@@ -21,6 +21,11 @@ const footerLinks = {
       href: "https://linktr.ee/saingroningen",
       external: true,
     },
+    {
+      name: "SAIN Utrecht (all links)",
+      href: "https://linktr.ee/sainutrecht",
+      external: true,
+    },
   ],
   Documents: [
     { name: "Vision", href: "/about/vision" },

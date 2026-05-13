@@ -74,6 +74,7 @@ const discussionGroups = [
 ];
 
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
+const UTRECHT_LINKTREE_URL = "https://linktr.ee/sainutrecht";
 
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/GCEf5Af8FRK6FuQN2pJfAP";
@@ -889,6 +890,14 @@ export default function UtrechtPage() {
                 className="btn-secondary"
               >
                 National newsletter
+              </a>
+              <a
+                href={UTRECHT_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Utrecht links (Linktree)
               </a>
               <Link href="/get-involved" className="btn-secondary">
                 More ways to get involved
