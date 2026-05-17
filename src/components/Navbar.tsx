@@ -23,6 +23,8 @@ const navigation: NavItem[] = [
     name: "Get Involved",
     parentHref: "/get-involved",
     children: [
+      { name: "Open positions", href: "/open-positions" },
+      { divider: true },
       { name: "Courses", href: "/get-involved#courses" },
       { name: "Discussion groups", href: "/get-involved#discussion-groups" },
       { name: "Events", href: "/get-involved#events" },
@@ -58,7 +60,7 @@ const navigation: NavItem[] = [
 
 function menuIsActive(item: Extract<NavItem, { type: "menu" }>, pathname: string) {
   if (item.parentHref === "/get-involved") {
-    return pathname === "/get-involved";
+    return pathname === "/get-involved" || pathname.startsWith("/open-positions");
   }
   if (item.parentHref === "/about") {
     return pathname === "/about" || pathname.startsWith("/about/");
@@ -263,7 +265,8 @@ export default function Navbar() {
 
               const menuActive =
                 item.parentHref === "/get-involved"
-                  ? pathname === "/get-involved"
+                  ? pathname === "/get-involved" ||
+                    pathname.startsWith("/open-positions")
                   : item.parentHref === "/about"
                     ? pathname === "/about" || pathname.startsWith("/about/")
                     : pathname.startsWith("/chapters");
