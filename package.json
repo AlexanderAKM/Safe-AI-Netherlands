@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
+    "preview": "next build && npx --yes serve out -l 3000",
     "lint": "next lint",
     "fetch-luma-events": "node scripts/fetch-luma-events.mjs",
     "fetch-luma-events-utrecht": "node scripts/fetch-luma-events-utrecht.mjs"

@@ -109,6 +109,47 @@ export default function GetInvolvedPage() {
               in building a safer future with AI.
             </p>
           </FadeIn>
+          <FadeIn delay={0.3}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/open-positions" className="btn-primary">
+                See open positions
+              </Link>
+              <a href="#activities" className="btn-outline">
+                Browse our activities
+              </a>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Open positions pointer */}
+      <section id="open-positions" className="bg-slate-50 section-padding scroll-mt-32">
+        <div className="section-container">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:items-center">
+            <FadeIn>
+              <div className="lg:col-span-2">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
+                  Join the team
+                </p>
+                <h2 className="heading-lg mb-4 text-navy-900">
+                  Open positions across SAIN
+                </h2>
+                <p className="text-slate-600 leading-relaxed max-w-2xl">
+                  SAIN Amsterdam is building its founding team and SAIN Utrecht is
+                  hiring across most of its teams. Volunteer roles, three to ten
+                  hours per week. One short application form: name, CV, and a
+                  motivation letter.
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <div className="lg:justify-self-end">
+                <Link href="/open-positions" className="btn-primary">
+                  See all open positions
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
