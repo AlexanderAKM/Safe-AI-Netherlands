@@ -136,7 +136,7 @@ export const ROLES: Record<string, Role> = {
     mission:
       "Run iterations of the AI Safety, Ethics and Society course in the chapter. Run discussion groups. Recruit, train, and support course facilitators and discussion leads. Maintain quality across cohorts and groups.",
     responsibilities: [
-      "Plan and run course iterations (3-4 per year per chapter, see the Education Handbook).",
+      "Plan and run course iterations (3-4 per year per chapter).",
       "Plan and run the relevant discussion groups.",
       "Recruit and onboard course facilitators and discussion leads while communicating closely with the facilitator mentor.",
       "Manage course logistics: cohort design, room booking, curriculum updates, project phase, graduation.",
@@ -230,7 +230,7 @@ export const ROLES: Record<string, Role> = {
     mission:
       "Plan and execute the chapter's events. Maintain the chapter's event presence, attract speakers, organise community life. Identify opportunities for SAIN exposure to reach new audiences, strengthen the community, and inspire people into AI safety careers.",
     responsibilities: [
-      "Plan a balanced calendar of professional events, community socials, and hackathons (see the Events Handbook). Communicate key dates to Communications Lead.",
+      "Plan a balanced calendar of professional events, community socials, and hackathons. Communicate key dates to Communications Lead.",
       "Identify exposure opportunities for SAIN board and community members.",
       "Recruit and brief external speakers.",
       "Manage event logistics: venue, catering, marketing handover to Communications.",
@@ -291,7 +291,7 @@ export const ROLES: Record<string, Role> = {
       "Propose designs for offline materials, e.g. roll-ups, mugs, T-shirts.",
       "Research and share best practices with Communications Team members.",
       "Delegate tasks with clear expectations and deadlines according to the content calendar.",
-      "Coordinate with the Events Lead on event marketing timelines (see the Communications Handbook). Drive event anticipation, registration, and post-event recaps.",
+      "Coordinate with the Events Lead on event marketing timelines. Drive event anticipation, registration, and post-event recaps.",
       "Coordinate with the Education and Research Leads quarterly on whether any projects benefit from promotion.",
       "Maintain and optimise the chapter portion of the website.",
       "Sync at least quarterly with the other chapters' Communications Leads.",
@@ -564,6 +564,7 @@ export const chapterPositions: ChapterPosting[] = [
       // { roleId: "graphic-designer" },
       { roleId: "community-manager" },
       // { roleId: "on-campus-ambassador" },
+      { roleId: "research-operations" },
     ],
   },
   {
@@ -600,8 +601,18 @@ export const chapterPositions: ChapterPosting[] = [
 ];
 
 // -----------------------------------------------------------------------------
-// Timeline
+// Deadline + Timeline
 // -----------------------------------------------------------------------------
+
+/**
+ * Hard application deadline for the current hiring round.
+ * Update the ISO string and the display strings together when the cycle changes.
+ */
+export const APPLICATION_DEADLINE = {
+  iso: "2026-06-01T23:59:00+02:00",
+  display: "1 June 2026, midnight (CET)",
+  short: "1 June 2026",
+};
 
 export type TimelineStep = {
   label: string;
@@ -615,7 +626,11 @@ export type TimelineStep = {
 export const APPLICATION_TIMELINE: TimelineStep[] = [
   {
     label: "Applications open",
-    detail: "Now. We review on a rolling basis.",
+    detail: "Submit your application any time before the deadline.",
+  },
+  {
+    label: "Application deadline",
+    detail: `${APPLICATION_DEADLINE.display}. All applications must be submitted by this date.`,
   },
   {
     label: "First-round response",
