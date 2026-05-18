@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import {
+  APPLICATION_DEADLINE,
   APPLICATION_TIMELINE,
   ROLES,
   TEAM_LABELS,
@@ -42,23 +43,12 @@ function groupByTeam(
   }));
 }
 
-function PositionCount({ count }: { count?: number }) {
-  if (!count || count <= 1) return null;
-  return (
-    <span className="ml-2 inline-flex items-center rounded-full bg-dutch-orange/10 px-2.5 py-0.5 text-xs font-semibold text-dutch-orange">
-      {count} positions
-    </span>
-  );
-}
-
 function RoleCard({
   role,
-  positions,
   note,
   chapterSlug,
 }: {
   role: Role;
-  positions?: number;
   note?: string;
   chapterSlug: string;
 }) {
@@ -74,7 +64,6 @@ function RoleCard({
             <h4 className="font-display text-lg font-semibold text-navy-900">
               {role.title}
             </h4>
-            <PositionCount count={positions} />
             {role.specialisationOf ? (
               <span className="ml-1 inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
                 Specialisation of {role.specialisationOf}
@@ -216,12 +205,40 @@ export default function OpenPositionsPage() {
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-500">
+            <p className="mb-6 max-w-2xl text-lg leading-relaxed text-slate-500">
               SAIN is a volunteer organisation. Our chapters in Amsterdam,
               Utrecht, and Groningen are powered by people who care about the
               development and integration of AI going well in the Netherlands and abroad.
               These are the roles we are currently hiring for.
             </p>
+          </FadeIn>
+          <FadeIn delay={0.25}>
+            <div className="mb-8 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-dutch-orange/30 bg-dutch-orange/5 px-5 py-3">
+              <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-dutch-orange/15 text-dutch-orange">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0V11.25h18v7.5"
+                  />
+                </svg>
+              </span>
+              <div className="text-sm leading-snug">
+                <p className="font-semibold uppercase tracking-wider text-dutch-orange">
+                  Application deadline
+                </p>
+                <p className="text-navy-900">
+                  {APPLICATION_DEADLINE.display}.
+                </p>
+              </div>
+            </div>
           </FadeIn>
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap gap-3">
@@ -316,9 +333,11 @@ export default function OpenPositionsPage() {
                 </p>
                 <h3 className="heading-md mb-2 text-navy-900">What happens next</h3>
                 <p className="mb-6 text-sm text-slate-500">
-                  We review applications on a rolling basis. The standard
-                  cycle below describes a typical case; for strong candidates,
-                  onboarding can start sooner.
+                  Applications close on{" "}
+                  <span className="font-semibold text-navy-900">
+                    {APPLICATION_DEADLINE.display}
+                  </span>
+                  . For strong candidates, onboarding can start sooner.
                 </p>
                 <ol className="space-y-5">
                   {APPLICATION_TIMELINE.map((step, i) => (
@@ -346,7 +365,6 @@ export default function OpenPositionsPage() {
       {/* Chapter sections */}
       {chapterPositions.map((chapter) => {
         const grouped = chapter.postings ? groupByTeam(chapter.postings) : [];
-        const totalRoles = chapter.postings?.length ?? 0;
         return (
           <section
             id={`chapter-${chapter.chapterSlug.toLowerCase()}`}
@@ -359,7 +377,7 @@ export default function OpenPositionsPage() {
                   <div className="max-w-2xl">
                     <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
                       {chapter.status === "open"
-                        ? `${totalRoles} roles open`
+                        ? "Now recruiting"
                         : "Currently at capacity"}
                     </p>
                     <h2 className="heading-lg mb-4 text-navy-900">
@@ -411,26 +429,12 @@ export default function OpenPositionsPage() {
                             {TEAM_LABELS[group.team]}
                           </h3>
                           <span className="h-px flex-1 bg-slate-200" />
-                          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                            {group.roles.reduce(
-                              (n, r) => n + (r.positions ?? 1),
-                              0,
-                            )}{" "}
-                            position
-                            {group.roles.reduce(
-                              (n, r) => n + (r.positions ?? 1),
-                              0,
-                            ) === 1
-                              ? ""
-                              : "s"}
-                          </span>
                         </div>
                         <div className="space-y-3">
-                          {group.roles.map(({ role, positions, note }) => (
+                          {group.roles.map(({ role, note }) => (
                             <RoleCard
                               key={role.id}
                               role={role}
-                              positions={positions}
                               note={note}
                               chapterSlug={chapter.chapterSlug}
                             />
@@ -462,9 +466,12 @@ export default function OpenPositionsPage() {
             <h2 className="heading-lg mb-4 text-white">
               One form. Any chapter. Any role.
             </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-300">
+            <p className="mx-auto mb-3 max-w-2xl text-lg text-slate-300">
               Send us your CV and a short motivation letter. We will get back to
               you within two to three weeks.
+            </p>
+            <p className="mx-auto mb-8 max-w-2xl text-sm font-semibold uppercase tracking-widest text-dutch-orange">
+              Deadline: {APPLICATION_DEADLINE.display}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
