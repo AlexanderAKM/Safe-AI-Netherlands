@@ -4,12 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { aisigTeam } from "@/data/aisigTeam";
-import { groningenEventsArchive } from "@/data/groningenEventsArchive";
-
-const events = groningenEventsArchive.slice(0, 6);
 
 const EDU_GRO_EMAIL = "edugro@safeainetherlands.org";
 const EVENTS_GRO_EMAIL = "eventsgro@safeainetherlands.org";
+
+/** SAIN Groningen Luma calendar — from embed / page HTML (`cal-…`). */
+const LUMA_CALENDAR_ID = "cal-jjqTmBdWcqoyEUF";
+/** Public Luma profile for SAIN Groningen. */
+const LUMA_PUBLIC_URL = "https://luma.com/user/SAINGroningen";
 
 const discussionGroups = [
   {
@@ -205,20 +207,35 @@ export default function GroningenPage() {
             </div>
           </FadeIn>
 
-          <div className="max-w-2xl">
-            {events.map((event, i) => (
-              <FadeIn key={`${event.title}-${i}`} delay={Math.min(i * 0.05, 0.3)}>
-                <div className="flex items-center gap-4 py-4 border-b border-slate-200 last:border-0">
-                  <span className="text-sm font-medium text-slate-400 w-24 flex-shrink-0">
-                    {event.date}
-                  </span>
-                  <h3 className="font-display font-medium text-navy-900">
-                    {event.title}
-                  </h3>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+          <FadeIn delay={0.05}>
+            <div className="max-w-2xl">
+              <p className="text-sm text-slate-600 mb-3">
+                Upcoming events — see details on{" "}
+                <a
+                  href={LUMA_PUBLIC_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                >
+                  luma.com/user/SAINGroningen
+                </a>
+                .
+              </p>
+              <div className="rounded-xl overflow-hidden border border-slate-200 bg-white">
+                <iframe
+                  src={`https://luma.com/embed/calendar/${LUMA_CALENDAR_ID}/events?lt=light`}
+                  width="100%"
+                  height="450"
+                  frameBorder="0"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  aria-hidden="false"
+                  tabIndex={0}
+                  title="SAIN Groningen Luma calendar"
+                />
+              </div>
+            </div>
+          </FadeIn>
           <FadeIn delay={0.2}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link href="/chapters/groningen/events" className="btn-primary">
