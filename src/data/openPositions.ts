@@ -592,11 +592,17 @@ export const chapterPositions: ChapterPosting[] = [
     chapterSlug: "Groningen",
     chapterName: "SAIN Groningen",
     blurb:
-      "SAIN Groningen's core team is currently at capacity. Get in touch if you want to be considered for future openings. We are always looking for ambitious, passionate people.",
+      "A few targeted openings in Groningen for people who want to plug into an established, ambitious chapter. We are selectively hiring to strengthen Communications and to support the national Research Hub.",
     inboxEmail: "infogro@safeainetherlands.org",
-    status: "closed",
-    closedNote:
-      "No formal open positions right now. Strong candidates are still welcome to introduce themselves; we keep a list for the next hiring round.",
+    status: "open",
+    postings: [
+      { roleId: "communications-lead" },
+      { roleId: "communications-team-member" },
+      { roleId: "web-designer" },
+      { roleId: "content-creator" },
+      { roleId: "graphic-designer" },
+      { roleId: "research-operations" },
+    ],
   },
 ];
 
