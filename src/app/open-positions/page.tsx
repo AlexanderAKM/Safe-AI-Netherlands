@@ -443,6 +443,48 @@ export default function OpenPositionsPage() {
                       </div>
                     </FadeIn>
                   ))}
+
+                  <FadeIn>
+                    <div>
+                      <div className="mb-5 flex items-center gap-3">
+                        <h3 className="font-display text-xl font-semibold text-navy-900">
+                          Other
+                        </h3>
+                        <span className="h-px flex-1 bg-slate-200" />
+                      </div>
+                      <div className="rounded-2xl border border-dutch-orange/30 bg-gradient-to-br from-dutch-orange/[0.05] to-transparent p-5 md:p-6">
+                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                          <div className="max-w-2xl">
+                            <h4 className="font-display text-lg font-semibold text-navy-900">
+                              Open application
+                            </h4>
+                            <p className="mt-1 text-sm text-slate-500">
+                              Don&apos;t see a role that fits? Apply anyway.
+                            </p>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                              Interested in AI safety and excited about joining
+                              SAIN {chapter.chapterSlug}, but none of the roles
+                              above quite suit you? We highly recommend
+                              applying regardless. Tell us about yourself and
+                              what draws you to SAIN in your motivation letter,
+                              and we&apos;ll figure out together what works
+                              well for you.
+                            </p>
+                          </div>
+                          <a
+                            href={buildApplicationUrl({
+                              chapter: chapter.chapterSlug,
+                            })}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary flex-shrink-0"
+                          >
+                            Apply
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </FadeIn>
                 </div>
               ) : (
                 <FadeIn delay={0.1}>
