@@ -61,7 +61,7 @@ export function buildApplicationUrl(opts?: {
  * they are specialisations of the Communications Team Member role.
  */
 export const COMMS_TEAM_FORM_VALUE =
-  "Communications Team member (general or Web Designer, Content Creator, Graphic Designer)";
+  "Communications Team member (general or Web Designer, Content Creator, Graphic Designer, Photographer)";
 
 // -----------------------------------------------------------------------------
 // Role catalogue
@@ -431,6 +431,39 @@ export const ROLES: Record<string, Role> = {
     specialisationOf: "Communications Team Member",
   },
 
+  "photographer": {
+    id: "photographer",
+    title: "Photographer",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Communications Lead",
+    timeCommitment: "3 to 5 hours per week",
+    mission:
+      "Capture, edit, and deliver high-quality visual imagery that documents SAIN's activities, humanises the organisation's mission, and enhances storytelling across all digital and print platforms.",
+    responsibilities: [
+      "Photograph live events, workshops, panels, and social gatherings hosted by the chapter.",
+      "Conduct planned photo shoots for team portraits, marketing campaigns, and promotional materials.",
+      "Edit and touch up raw imagery to maintain a professional, polished aesthetic aligned with SAIN's brand tone.",
+      "Organise and maintain a shared digital media library (e.g. Google Drive) with properly tagged, high-resolution assets for the Communications team.",
+      "Incorporate feedback from the Communications Lead regarding visual style and selection.",
+      "Attend the weekly Communications team meeting.",
+    ],
+    preferredBackground: {
+      field:
+        "Open. Photography, media production, or visual arts are helpful.",
+      level:
+        "Not relevant; portfolio and technical skill carry more weight than credentials.",
+      experience:
+        "Prior photography and editing experience required. Experience with Adobe Lightroom, Photoshop, or equivalent editing software. Access to professional or semi-professional camera equipment is helpful. A portfolio or gallery of past work is strongly preferred.",
+      softSkills:
+        "Keen eye for framing and lighting, ability to capture candid moments, reliability in meeting post-production deadlines, and a comfortable demeanour when interacting with event attendees.",
+    },
+    collaborations:
+      "Communications Lead, Content Creator, Events Lead (for event materials).",
+    formRoleValue: COMMS_TEAM_FORM_VALUE,
+    specialisationOf: "Communications Team Member",
+  },
+
   "community-manager": {
     id: "community-manager",
     title: "Community Manager",
@@ -562,6 +595,7 @@ export const chapterPositions: ChapterPosting[] = [
       { roleId: "web-designer" },
       { roleId: "content-creator" },
       { roleId: "graphic-designer" },
+      { roleId: "photographer" },
       { roleId: "community-manager" },
       // { roleId: "on-campus-ambassador" },
       { roleId: "research-operations" },
