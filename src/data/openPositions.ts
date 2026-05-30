@@ -649,9 +649,9 @@ export const chapterPositions: ChapterPosting[] = [
  * Update the ISO string and the display strings together when the cycle changes.
  */
 export const APPLICATION_DEADLINE = {
-  iso: "2026-06-01T23:59:00+02:00",
-  display: "1 June 2026, midnight (CET)",
-  short: "1 June 2026",
+  iso: "2026-06-15T23:59:00+02:00",
+  display: "15 June 2026, midnight (CET)",
+  short: "15 June 2026",
 };
 
 export type TimelineStep = {
