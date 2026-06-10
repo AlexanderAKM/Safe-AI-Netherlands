@@ -60,6 +60,17 @@ const advisors = [
       },
     ],
   },
+  {
+    category: "Strategy & Operations",
+    members: [
+      {
+        name: "Richard Rushby",
+        affiliation: "Head of Innokite",
+        link: "https://www.linkedin.com/in/richardrushby/",
+        image: "/photos/advisory_board/Richard.png",
+      },
+    ],
+  },
 ];
 
 const timeline = [
