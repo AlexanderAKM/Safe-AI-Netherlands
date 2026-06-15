@@ -1,10 +1,14 @@
-name: Refresh past events
+name: Refresh Amsterdam past events
 
-# Automatically refreshes the committed "past events" data from Luma so the
-# events pages stay current without anyone running the fetch scripts by hand.
-# It does exactly what a maintainer does manually: run the fetch scripts,
-# then commit the changed JSON. Vercel redeploys on the resulting push, the
-# same way it does for any other commit. It NEVER deploys the site itself.
+# Automatically refreshes the committed Amsterdam "past events" data from Luma
+# so the Amsterdam events page stays current without anyone running the fetch
+# script by hand. It does exactly what a maintainer does manually: run the
+# fetch script, then commit the changed JSON. Vercel redeploys on the
+# resulting push, the same way it does for any other commit. It NEVER deploys
+# the site itself.
+#
+# Scope: Amsterdam only. Utrecht and Groningen are maintained separately; their
+# maintainers can add their own equivalent workflow if they want the same.
 
 on:
   schedule:
@@ -30,18 +34,16 @@ jobs:
         with:
           node-version: 20
 
-      # The fetch scripts use only Node built-ins, so no `npm install` needed.
-      - name: Fetch latest past events from Luma
-        run: |
-          node scripts/fetch-luma-events.mjs
-          node scripts/fetch-luma-events-utrecht.mjs
+      # The fetch script uses only Node built-ins, so no `npm install` needed.
+      - name: Fetch latest Amsterdam past events from Luma
+        run: node scripts/fetch-luma-events-amsterdam.mjs
 
       - name: Commit refreshed data (guarded)
         run: |
           set -euo pipefail
 
-          # The ONLY files this workflow is ever allowed to change.
-          ALLOWED="src/data/lumaPastEvents.json src/data/lumaPastEventsUtrecht.json"
+          # The ONLY file this workflow is ever allowed to change.
+          ALLOWED="src/data/lumaPastEventsAmsterdam.json"
 
           CHANGED="$(git diff --name-only)"
           if [ -z "$CHANGED" ]; then
@@ -50,7 +52,7 @@ jobs:
           fi
 
           # GUARD A — explicit allow-list. If the fetch ever touched anything
-          # other than the two data files, abort without committing.
+          # other than the Amsterdam data file, abort without committing.
           for f in $CHANGED; do
             case " $ALLOWED " in
               *" $f "*) : ;;
