@@ -80,7 +80,12 @@ jobs:
           git checkout -B "$BRANCH"
           git add "$ALLOWED"
           git commit -m "chore: refresh Amsterdam past events"
-          git push --force-with-lease origin "$BRANCH"
+          # Plain --force (not --force-with-lease): the runner does a fresh,
+          # single-branch checkout of main and has no remote-tracking ref for
+          # this branch, so --force-with-lease would be rejected on the 2nd+
+          # run. The branch is owned solely by this workflow, so there is no
+          # other writer to protect against.
+          git push --force origin "$BRANCH"
 
           # Open a PR only if one isn't already open for this branch (so daily
           # runs refresh the existing PR instead of piling up duplicates).
