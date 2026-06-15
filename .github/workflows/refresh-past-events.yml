@@ -1,0 +1,76 @@
+name: Refresh past events
+
+# Automatically refreshes the committed "past events" data from Luma so the
+# events pages stay current without anyone running the fetch scripts by hand.
+# It does exactly what a maintainer does manually: run the fetch scripts,
+# then commit the changed JSON. Vercel redeploys on the resulting push, the
+# same way it does for any other commit. It NEVER deploys the site itself.
+
+on:
+  schedule:
+    - cron: "0 4 * * *" # daily at 04:00 UTC
+  workflow_dispatch: {} # lets you run it by hand from the Actions tab
+
+# The only permission this job is granted: commit to this repo. Nothing else.
+permissions:
+  contents: write
+
+# Never let two refresh runs overlap.
+concurrency:
+  group: refresh-past-events
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The fetch scripts use only Node built-ins, so no `npm install` needed.
+      - name: Fetch latest past events from Luma
+        run: |
+          node scripts/fetch-luma-events.mjs
+          node scripts/fetch-luma-events-utrecht.mjs
+
+      - name: Commit refreshed data (guarded)
+        run: |
+          set -euo pipefail
+
+          # The ONLY files this workflow is ever allowed to change.
+          ALLOWED="src/data/lumaPastEvents.json src/data/lumaPastEventsUtrecht.json"
+
+          CHANGED="$(git diff --name-only)"
+          if [ -z "$CHANGED" ]; then
+            echo "No change in past events — nothing to commit."
+            exit 0
+          fi
+
+          # GUARD A — explicit allow-list. If the fetch ever touched anything
+          # other than the two data files, abort without committing.
+          for f in $CHANGED; do
+            case " $ALLOWED " in
+              *" $f "*) : ;;
+              *) echo "::error::Unexpected change in '$f' — aborting, nothing committed."; exit 1 ;;
+            esac
+          done
+
+          # GUARD B — anti-deletion. Refuse to commit if a Luma hiccup would
+          # wipe a past-events file to an empty list.
+          for f in $ALLOWED; do
+            COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$f','utf8')).length)")
+            if [ "$COUNT" -eq 0 ]; then
+              echo "::error::'$f' would become empty (0 events) — refusing to overwrite."
+              exit 1
+            fi
+          done
+
+          git config user.name  "sain-events-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add $ALLOWED
+          git commit -m "chore: refresh past events [skip ci]"
+          git push
+          echo "Committed refreshed past events."
