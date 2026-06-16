@@ -69,6 +69,12 @@ const advisors = [
         link: "https://www.linkedin.com/in/richardrushby/",
         image: "/photos/advisory_board/Richard.png",
       },
+      {
+        name: "Jesselit Jimenez",
+        affiliation: "Global Director Strategy & Transformation",
+        link: "https://www.linkedin.com/in/jesselit-jimenez-65b0b891/",
+        image: "/photos/advisory_board/Video_Jesselit_039_close-up.jpg",
+      },
     ],
   },
 ];
