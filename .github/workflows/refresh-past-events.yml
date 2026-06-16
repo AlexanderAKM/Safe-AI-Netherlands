@@ -1,0 +1,100 @@
+name: Refresh Amsterdam past events
+
+# Keeps the Amsterdam "past events" data fresh without anyone running the fetch
+# script by hand. Once a day it fetches the latest past events from Luma and,
+# IF they changed, opens a pull request with the updated JSON for a maintainer
+# to review and merge. It NEVER pushes to main and NEVER deploys the site —
+# merging the PR triggers the normal Vercel deploy, exactly like a hand-made PR.
+#
+# Scope: Amsterdam only. Utrecht and Groningen are maintained separately; their
+# maintainers can add their own equivalent workflow if they want the same.
+
+on:
+  schedule:
+    - cron: "0 4 * * *" # daily at 04:00 UTC
+  workflow_dispatch: {} # lets you run it by hand from the Actions tab
+
+# The only permissions this job needs: push its own bot branch and open a PR.
+# It does NOT push to main and does NOT deploy the site.
+permissions:
+  contents: write
+  pull-requests: write
+
+# Never let two refresh runs overlap.
+concurrency:
+  group: refresh-past-events
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The fetch script uses only Node built-ins, so no `npm install` needed.
+      - name: Fetch latest Amsterdam past events from Luma
+        run: node scripts/fetch-luma-events-amsterdam.mjs
+
+      - name: Open a PR if the past events changed (guarded)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          # The ONLY file this workflow is ever allowed to change.
+          ALLOWED="src/data/lumaPastEventsAmsterdam.json"
+          BRANCH="bot/refresh-amsterdam-past-events"
+
+          # Nothing changed vs. what's committed on main? Then no PR is needed.
+          if git diff --quiet -- "$ALLOWED"; then
+            echo "No change in past events — no PR needed."
+            exit 0
+          fi
+
+          # GUARD A — explicit allow-list. If the fetch ever touched anything
+          # other than the Amsterdam data file, abort without opening a PR.
+          for f in $(git diff --name-only); do
+            case " $ALLOWED " in
+              *" $f "*) : ;;
+              *) echo "::error::Unexpected change in '$f' — aborting, no PR opened."; exit 1 ;;
+            esac
+          done
+
+          # GUARD B — anti-deletion. Refuse if a Luma hiccup would wipe the
+          # past-events file to an empty list.
+          COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$ALLOWED','utf8')).length)")
+          if [ "$COUNT" -eq 0 ]; then
+            echo "::error::'$ALLOWED' would become empty (0 events) — refusing."
+            exit 1
+          fi
+
+          # Put the change on a dedicated bot branch, rebuilt from the current
+          # base each run so the PR always shows just this one data change vs.
+          # the latest main. The bot never pushes to main itself.
+          git config user.name  "sain-events-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add "$ALLOWED"
+          git commit -m "chore: refresh Amsterdam past events"
+          # Plain --force (not --force-with-lease): the runner does a fresh,
+          # single-branch checkout of main and has no remote-tracking ref for
+          # this branch, so --force-with-lease would be rejected on the 2nd+
+          # run. The branch is owned solely by this workflow, so there is no
+          # other writer to protect against.
+          git push --force origin "$BRANCH"
+
+          # Open a PR only if one isn't already open for this branch (so daily
+          # runs refresh the existing PR instead of piling up duplicates).
+          EXISTING="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')"
+          if [ -z "$EXISTING" ]; then
+            gh pr create --base main --head "$BRANCH" \
+              --title "Refresh Amsterdam past events" \
+              --body "Automated refresh of \`src/data/lumaPastEventsAmsterdam.json\` from the SAIN Amsterdam Luma calendar. Review the diff and merge to publish — merging triggers the normal Vercel production deploy. The bot never pushes to main."
+            echo "Opened a new PR."
+          else
+            echo "PR #$EXISTING already open for $BRANCH — refreshed it with the latest data."
+          fi
