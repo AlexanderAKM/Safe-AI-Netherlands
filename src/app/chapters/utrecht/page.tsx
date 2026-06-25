@@ -116,6 +116,9 @@ const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const UTRECHT_LINKTREE_URL = "https://linktr.ee/sainutrecht";
 const UTRECHT_LINKEDIN_POSTS_URL =
   "https://www.linkedin.com/company/sain-utrecht/posts/";
+const WIN4AISAFETY_LUMA_URL = "https://luma.com/sain-j4kd";
+const WIN4AISAFETY_PROMO_IMAGE =
+  "/photos/events/utrecht/win4aisafety-summer-challenge.jpeg";
 
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/GCEf5Af8FRK6FuQN2pJfAP";
@@ -207,6 +210,22 @@ export default function UtrechtPage() {
               >
                 Join Community
               </a>
+              <a
+                href={NATIONAL_SUBSTACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                National newsletter (Substack)
+              </a>
+              <a
+                href={UTRECHT_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Utrecht links (Linktree)
+              </a>
             </div>
           </FadeIn>
         </div>
@@ -244,6 +263,53 @@ export default function UtrechtPage() {
               Join &amp; contact
             </a>
           </nav>
+        </div>
+      </section>
+
+      {/* Win4AISafety promo */}
+      <section className="section-padding bg-white border-b border-slate-200">
+        <div className="section-container">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto">
+              <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl text-center mb-4">
+                <a
+                  href={WIN4AISAFETY_LUMA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-dutch-orange transition-colors"
+                >
+                  Win4AISafety — Open Research Summer Challenge
+                </a>
+              </h3>
+              <a
+                href={WIN4AISAFETY_LUMA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-dutch-orange focus-visible:ring-offset-2"
+                aria-label="Win4AISafety — Open Research Summer Challenge on Luma"
+              >
+                <Image
+                  src={WIN4AISAFETY_PROMO_IMAGE}
+                  alt="Win4AISafety — Open Research Summer Challenge by SAIN Utrecht. Kicks-off event 6 July."
+                  width={1566}
+                  height={1197}
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="w-full h-auto"
+                />
+              </a>
+              <p className="text-sm text-slate-600 text-center mt-3">
+                Register on{" "}
+                <a
+                  href={WIN4AISAFETY_LUMA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                >
+                  luma.com/sain-j4kd
+                </a>
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -789,6 +855,52 @@ export default function UtrechtPage() {
                   </Link>{" "}
                   for collaboration across SAIN.
                 </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.08}>
+              <div className="grid gap-4 max-w-3xl mb-8">
+                <div className="card p-6 flex flex-col">
+                  <span className="text-xs font-medium text-sky-800 bg-sky-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
+                    Upcoming
+                  </span>
+                  <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
+                    Research Hub launch
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    October 2026
+                  </p>
+                </div>
+                <div className="card p-6 flex flex-col">
+                  <span className="text-xs font-medium text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
+                    Open challenge
+                  </span>
+                  <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
+                    <a
+                      href="https://luma.com/sain-j4kd"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-dutch-orange transition-colors"
+                    >
+                      Win4AISafety — Open Research Summer Challenge
+                    </a>
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Call for new research directions for the SAIN Research Hub — a
+                    six-week multidisciplinary summer challenge to define scope,
+                    conduct research, and publish findings as a Substack post.
+                  </p>
+                  <p className="text-xs text-slate-400 mt-3">
+                    <a
+                      href="https://luma.com/sain-j4kd"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                    >
+                      luma.com/sain-j4kd
+                    </a>
+                  </p>
+                </div>
               </div>
             </FadeIn>
 
