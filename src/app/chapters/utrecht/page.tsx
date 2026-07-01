@@ -117,6 +117,8 @@ const UTRECHT_LINKTREE_URL = "https://linktr.ee/sainutrecht";
 const UTRECHT_LINKEDIN_POSTS_URL =
   "https://www.linkedin.com/company/sain-utrecht/posts/";
 const WIN4AISAFETY_LUMA_URL = "https://luma.com/sain-j4kd";
+const WIN4AISAFETY_DEVPOST_URL =
+  "https://win4aisafety-sain-utrecht.devpost.com/?ref_feature=challenge&ref_medium=your-open-hackathons&ref_content=Upcoming";
 const WIN4AISAFETY_PROMO_IMAGE =
   "/photos/events/utrecht/win4aisafety-summer-challenge.jpeg";
 
@@ -273,7 +275,7 @@ export default function UtrechtPage() {
             <div className="max-w-3xl mx-auto">
               <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl text-center mb-4">
                 <a
-                  href={WIN4AISAFETY_LUMA_URL}
+                  href={WIN4AISAFETY_DEVPOST_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-dutch-orange transition-colors"
@@ -281,13 +283,7 @@ export default function UtrechtPage() {
                   Win4AISafety — Open Research Summer Challenge
                 </a>
               </h3>
-              <a
-                href={WIN4AISAFETY_LUMA_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-dutch-orange focus-visible:ring-offset-2"
-                aria-label="Win4AISafety — Open Research Summer Challenge on Luma"
-              >
+              <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
                 <Image
                   src={WIN4AISAFETY_PROMO_IMAGE}
                   alt="Win4AISafety — Open Research Summer Challenge by SAIN Utrecht. Kicks-off event 6 July."
@@ -296,17 +292,28 @@ export default function UtrechtPage() {
                   sizes="(max-width: 768px) 100vw, 768px"
                   className="w-full h-auto"
                 />
-              </a>
-              <p className="text-sm text-slate-600 text-center mt-3">
-                Register on{" "}
+              </div>
+              <div className="flex flex-wrap justify-center gap-3 mt-5">
+                <a
+                  href={WIN4AISAFETY_DEVPOST_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Register to participate
+                </a>
                 <a
                   href={WIN4AISAFETY_LUMA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                  className="btn-outline"
                 >
-                  luma.com/sain-j4kd
+                  Timeline &amp; Attend on-site
                 </a>
+              </div>
+              <p className="text-xs text-slate-500 text-center mt-3 max-w-md mx-auto leading-relaxed">
+                Register on Devpost to join the challenge. Use Luma for the
+                kick-off and on-site events.
               </p>
             </div>
           </FadeIn>
@@ -877,7 +884,7 @@ export default function UtrechtPage() {
                   </span>
                   <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
                     <a
-                      href="https://luma.com/sain-j4kd"
+                      href={WIN4AISAFETY_DEVPOST_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-dutch-orange transition-colors"
@@ -890,16 +897,24 @@ export default function UtrechtPage() {
                     six-week multidisciplinary summer challenge to define scope,
                     conduct research, and publish findings as a Substack post.
                   </p>
-                  <p className="text-xs text-slate-400 mt-3">
+                  <div className="flex flex-wrap gap-3 mt-4">
                     <a
-                      href="https://luma.com/sain-j4kd"
+                      href={WIN4AISAFETY_DEVPOST_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                      className="btn-primary"
                     >
-                      luma.com/sain-j4kd
+                      Register to participate
                     </a>
-                  </p>
+                    <a
+                      href={WIN4AISAFETY_LUMA_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-outline"
+                    >
+                      Timeline &amp; Attend on-site
+                    </a>
+                  </div>
                 </div>
               </div>
             </FadeIn>
