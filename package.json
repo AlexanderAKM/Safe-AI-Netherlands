@@ -9,7 +9,7 @@
     "start": "node --use-system-ca node_modules/next/dist/bin/next start",
     "preview": "node --use-system-ca node_modules/next/dist/bin/next build && npx --yes serve out -l 3000",
     "lint": "node --use-system-ca node_modules/next/dist/bin/next lint",
-    "fetch-luma-events": "node --use-system-ca scripts/fetch-luma-events.mjs",
+    "fetch-luma-events-amsterdam": "node --use-system-ca scripts/fetch-luma-events-amsterdam.mjs",
     "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs"
   },
   "dependencies": {

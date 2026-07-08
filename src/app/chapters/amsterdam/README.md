@@ -5,7 +5,7 @@ Source for `/chapters/amsterdam`.
 ## Past events list
 
 The "Past events this academic year" panel is populated from a static JSON
-snapshot at `src/data/lumaPastEvents.json`, **not** from a live Luma fetch.
+snapshot at `src/data/lumaPastEventsAmsterdam.json`, **not** from a live Luma fetch.
 This keeps deploys independent of Luma's API. If Luma is down or changes
 shape, the build still works.
 
@@ -14,18 +14,22 @@ shape, the build still works.
 Run from the repo root:
 
 ```bash
-npm run fetch-luma-events
+npm run fetch-luma-events-amsterdam
 ```
 
 This calls Luma's API for past events on calendar `cal-fabX01E6rMTOg70`
-(SAIN Amsterdam) and overwrites `src/data/lumaPastEvents.json`. Then:
+(SAIN Amsterdam) and overwrites `src/data/lumaPastEventsAmsterdam.json`. Then:
 
 ```bash
-git diff src/data/lumaPastEvents.json   # eyeball the changes
-git add src/data/lumaPastEvents.json
+git diff src/data/lumaPastEventsAmsterdam.json   # eyeball the changes
+git add src/data/lumaPastEventsAmsterdam.json
 git commit -m "chore(amsterdam): refresh Luma past events"
 git push
 ```
+
+This refresh is also run automatically once a day by the
+`.github/workflows/refresh-past-events.yml` GitHub Action, so manual runs are
+only needed if you want to update immediately.
 
 The page filters to events on or after September 1 of the current academic
 year and sorts most-recent first, so the JSON can safely contain older
@@ -37,8 +41,8 @@ events. They just won't render.
 | --- | --- |
 | `page.tsx` | The chapter page (this folder). |
 | `src/data/sainAmsTeam.ts` | Team roster (name + role tiles). |
-| `src/data/lumaPastEvents.json` | Snapshot of past Luma events. |
-| `scripts/fetch-luma-events.mjs` | Refresh script for the snapshot above. |
+| `src/data/lumaPastEventsAmsterdam.json` | Snapshot of past Luma events. |
+| `scripts/fetch-luma-events-amsterdam.mjs` | Refresh script for the snapshot above. |
 
 ### Upcoming events
 

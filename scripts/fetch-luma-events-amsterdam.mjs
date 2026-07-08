@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * Fetch past Luma events for the SAIN Amsterdam calendar and write them to
- * src/data/lumaPastEvents.json. Run manually every few weeks, then commit
- * the JSON change. Builds never hit Luma at runtime.
+ * src/data/lumaPastEventsAmsterdam.json. Run manually every few weeks, then
+ * commit the JSON change. Builds never hit Luma at runtime.
  *
- * Usage: npm run fetch-luma-events
+ * Usage: npm run fetch-luma-events-amsterdam
  */
 import { writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -16,7 +16,7 @@ const OUT_PATH = join(
   "..",
   "src",
   "data",
-  "lumaPastEvents.json",
+  "lumaPastEventsAmsterdam.json",
 );
 
 const url = `https://api.lu.ma/calendar/get-items?calendar_api_id=${LUMA_CALENDAR_ID}&period=past&pagination_limit=50`;

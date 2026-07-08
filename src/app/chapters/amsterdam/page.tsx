@@ -1,7 +1,7 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
-import lumaPastEventsRaw from "@/data/lumaPastEvents.json";
+import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
 
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
@@ -38,7 +38,7 @@ function formatEventDate(d: Date): string {
   return d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
 }
 
-const pastEvents = (lumaPastEventsRaw as Array<{ name: string; url: string; startAt: string }>)
+const pastEvents = (lumaPastEventsAmsterdamRaw as Array<{ name: string; url: string; startAt: string }>)
   .map((ev) => ({ ...ev, startAt: new Date(ev.startAt) }))
   .filter((ev) => ev.startAt >= academicYearStart(new Date()))
   .sort((a, b) => b.startAt.getTime() - a.startAt.getTime());

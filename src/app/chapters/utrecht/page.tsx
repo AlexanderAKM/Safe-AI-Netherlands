@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
@@ -44,6 +45,11 @@ const leadership = [
     linkedin: "https://www.linkedin.com/in/maxschaffelder/",
   },
   {
+    name: "Leslie Spedner",
+    title: "Advisor",
+    linkedin: "https://www.linkedin.com/in/lesley-s-22602619b/",
+  },
+  {
     name: "Thijmen van der Meijden",
     title: "Facilitator",
     linkedin: "https://www.linkedin.com/in/thijmen-van-der-meijden/",
@@ -60,6 +66,34 @@ const highlights = [
   "Growing team with focus on doubling to 15 members across 4 teams",
 ];
 
+const technicalCoursePhotos = [
+  {
+    week: 1,
+    label: "Transformers & mechanistic interpretability",
+    image: "/photos/events/utrecht/technical-week-1.jpeg",
+  },
+  {
+    week: 2,
+    label: "Probing & representations",
+    image: "/photos/events/utrecht/technical-week-2.jpeg",
+  },
+  {
+    week: 3,
+    label: "PPO & RLHF",
+    image: "/photos/events/utrecht/technical-week-3.jpeg",
+  },
+  {
+    week: 4,
+    label: "RLHF, GRPO & reward hacking",
+    image: "/photos/events/utrecht/technical-week-4.jpeg",
+  },
+] as const;
+
+const fundamentalsGraduationPhoto = {
+  label: "Program graduation",
+  image: "/photos/events/utrecht/aisfundamentals-graduation-ceremony.jpeg",
+} as const;
+
 const discussionGroups = [
   {
     name: "Technical AI Safety",
@@ -73,8 +107,20 @@ const discussionGroups = [
   },
 ];
 
+const discussionGroupPhoto = {
+  label: "Europe 2031 scenario discussion",
+  image: "/photos/events/utrecht/discussion-eu2031.jpeg",
+} as const;
+
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const UTRECHT_LINKTREE_URL = "https://linktr.ee/sainutrecht";
+const UTRECHT_LINKEDIN_POSTS_URL =
+  "https://www.linkedin.com/company/sain-utrecht/posts/";
+const WIN4AISAFETY_LUMA_URL = "https://luma.com/sain-j4kd";
+const WIN4AISAFETY_DEVPOST_URL =
+  "https://win4aisafety-sain-utrecht.devpost.com/?ref_feature=challenge&ref_medium=your-open-hackathons&ref_content=Upcoming";
+const WIN4AISAFETY_PROMO_IMAGE =
+  "/photos/events/utrecht/win4aisafety-summer-challenge.jpeg";
 
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/GCEf5Af8FRK6FuQN2pJfAP";
@@ -166,6 +212,22 @@ export default function UtrechtPage() {
               >
                 Join Community
               </a>
+              <a
+                href={NATIONAL_SUBSTACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                National newsletter (Substack)
+              </a>
+              <a
+                href={UTRECHT_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Utrecht links (Linktree)
+              </a>
             </div>
           </FadeIn>
         </div>
@@ -203,6 +265,58 @@ export default function UtrechtPage() {
               Join &amp; contact
             </a>
           </nav>
+        </div>
+      </section>
+
+      {/* Win4AISafety promo */}
+      <section className="section-padding bg-white border-b border-slate-200">
+        <div className="section-container">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto">
+              <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl text-center mb-4">
+                <a
+                  href={WIN4AISAFETY_DEVPOST_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-dutch-orange transition-colors"
+                >
+                  Win4AISafety — Open Research Summer Challenge
+                </a>
+              </h3>
+              <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                <Image
+                  src={WIN4AISAFETY_PROMO_IMAGE}
+                  alt="Win4AISafety — Open Research Summer Challenge by SAIN Utrecht. Kicks-off event 6 July."
+                  width={1566}
+                  height={1197}
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="flex flex-wrap justify-center gap-3 mt-5">
+                <a
+                  href={WIN4AISAFETY_DEVPOST_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Register to participate
+                </a>
+                <a
+                  href={WIN4AISAFETY_LUMA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline"
+                >
+                  Timeline &amp; Attend on-site
+                </a>
+              </div>
+              <p className="text-xs text-slate-500 text-center mt-3 max-w-md mx-auto leading-relaxed">
+                Register on Devpost to join the challenge. Use Luma for the
+                kick-off and on-site events.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -252,7 +366,16 @@ export default function UtrechtPage() {
 
               <div>
                 <p className="text-sm text-slate-600 mb-3">
-                  Past events this academic year
+                  Past events this academic year — recaps on{" "}
+                  <a
+                    href={UTRECHT_LINKEDIN_POSTS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                  >
+                    linkedin.com/company/sain-utrecht
+                  </a>
+                  .
                 </p>
                 {pastEvents.length > 0 ? (
                   <div className="rounded-xl border border-slate-200 bg-white h-[450px] overflow-y-auto">
@@ -448,6 +571,28 @@ export default function UtrechtPage() {
               </FadeIn>
             </div>
 
+            <FadeIn delay={0.2}>
+              <figure className="mt-8 overflow-hidden rounded-xl border border-slate-200 bg-white max-w-2xl">
+                <div className="relative aspect-[4/3] bg-slate-100">
+                  <Image
+                    src={fundamentalsGraduationPhoto.image}
+                    alt={`AI Safety Fundamentals — ${fundamentalsGraduationPhoto.label}`}
+                    fill
+                    sizes="(max-width: 672px) 100vw, 672px"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="px-4 py-3 border-t border-slate-100">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-0.5">
+                    Cohort highlight
+                  </p>
+                  <p className="text-sm font-medium text-navy-900 leading-snug">
+                    {fundamentalsGraduationPhoto.label}
+                  </p>
+                </figcaption>
+              </figure>
+            </FadeIn>
+
             {/* Technical AI Safety (ARENA) */}
             <div className="mt-16 pt-16 border-t border-slate-100">
               <FadeIn>
@@ -478,106 +623,51 @@ export default function UtrechtPage() {
                       >
                         ARENA
                       </a>{" "}
-                      materials — bringing that curriculum to our community so
-                      participants get a hands-on, research-aligned technical
-                      track alongside our broader programming.
+                      materials — a four-week technical track from transformer
+                      foundations through mechanistic interpretability and
+                      alignment, with weekly lectures, notebook exercises, and
+                      in-person discussion at Utrecht University.
                     </p>
 
-                    <h3 className="font-display font-semibold text-navy-900 mb-3 pt-6 border-t border-slate-100">
-                      1. Reinforcement learning &amp; LLMs
+                    <h3 className="font-display font-semibold text-navy-900 text-sm uppercase tracking-wider mb-3 pt-6 border-t border-slate-100">
+                      Course outline (weekly themes)
                     </h3>
-                    <div className="space-y-5 text-sm text-slate-600 leading-relaxed">
-                      <div>
-                        <p className="font-semibold text-navy-900 mb-1.5">
-                          Proximal Policy Optimisation (PPO)
-                        </p>
-                        <p>
-                          PPO improves sample efficiency, stability, and
-                          robustness for deep RL — balancing exploration and
-                          exploitation across environments from robotics to
-                          games. You&apos;ll implement an agent on{" "}
-                          <strong className="text-navy-900">CartPole</strong>,
-                          train toward strong performance quickly, and experiment
-                          with reward shaping and extensions (e.g. Atari,{" "}
-                          <abbr title="MuJoCo physics simulator">MuJoCo</abbr>
-                          ).
-                        </p>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy-900 mb-1.5">
-                          RL from Human Feedback (RLHF)
-                        </p>
-                        <p>
-                          RLHF trains models from rewards and human preferences,
-                          typically using{" "}
-                          <strong className="text-navy-900">PPO</strong> as the
-                          optimisation backbone. The track walks through a full
-                          RLHF implementation building on the PPO work — moving
-                          from classic RL setups to{" "}
-                          <strong className="text-navy-900">
-                            autoregressive language models
-                          </strong>{" "}
-                          with{" "}
-                          <strong className="text-navy-900">
-                            TransformerLens
-                          </strong>
-                          , covering objectives, rollout and learning phases, and
-                          an end-to-end{" "}
-                          <strong className="text-navy-900">
-                            RLHFTrainer
-                          </strong>{" "}
-                          style workflow.
-                        </p>
-                      </div>
-                    </div>
-
-                    <h3 className="font-display font-semibold text-navy-900 mb-3 pt-8 mt-2 border-t border-slate-100">
-                      2. Mechanistic interpretability
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                      Grounding in transformers and mech interp, then branches
-                      through probing, circuits, and toy models — mirroring
-                      ARENA&apos;s syllabus (exercises mix notebooks,{" "}
-                      <strong className="text-navy-900">TransformerLens</strong>
-                      ,{" "}
-                      <strong className="text-navy-900">nnsight</strong>,{" "}
-                      <strong className="text-navy-900">SAELens</strong>,{" "}
-                      <strong className="text-navy-900">Neuronpedia</strong>,
-                      and more).
-                    </p>
-                    <p className="font-semibold text-navy-900 text-sm mb-2">
-                      Syllabus map (high level)
-                    </p>
-                    <ul className="list-disc pl-4 space-y-1.5 text-sm text-slate-600 leading-relaxed">
-                      <li>
-                        Foundations: transformers from scratch, intro to mech
-                        interp
+                    <ul className="space-y-2.5 text-sm text-slate-600 leading-snug">
+                      <li className="flex gap-2">
+                        <span className="text-dutch-orange font-semibold shrink-0">1.</span>
+                        <span>
+                          <strong className="text-navy-900">Transformers &amp; mechanistic interpretability</strong> — From RNNs to modern transformers: tokenization, embeddings, attention, and how models project back to vocabulary. Introduction to reverse-engineering neural networks via weights, activations, and internal circuits.
+                        </span>
                       </li>
-                      <li>
-                        <strong className="text-navy-900">
-                          Probing &amp; representations
-                        </strong>{" "}
-                        — linear probes; function vectors &amp; model steering;
-                        interpretability with SAEs (scale &amp; prerequisites on
-                        superposition); activation oracles
+                      <li className="flex gap-2">
+                        <span className="text-dutch-orange font-semibold shrink-0">2.</span>
+                        <span>
+                          <strong className="text-navy-900">Probing &amp; representations</strong> — Linear probes as detectors in activation space (truth, deception); SAE-based feature decomposition; activation oracles for open-ended questions about model internals. Risk-triage exercises for high-stakes monitoring scenarios.
+                        </span>
                       </li>
-                      <li>
-                        <strong className="text-navy-900">
-                          Circuits in LLMs
-                        </strong>{" "}
-                        — indirect object identification; SAE-based circuits &amp;
-                        transcoders
+                      <li className="flex gap-2">
+                        <span className="text-dutch-orange font-semibold shrink-0">3.</span>
+                        <span>
+                          <strong className="text-navy-900">PPO &amp; RLHF</strong> — Why naive policy gradients fail and how PPO stabilises training. The full alignment pipeline: supervised fine-tuning, reward-model training, and PPO optimisation — with the KL penalty as a guard against reward hacking.
+                        </span>
                       </li>
-                      <li>
-                        <strong className="text-navy-900">Toy models</strong>{" "}
-                        — balanced brackets; grokking &amp; modular arithmetic;
-                        OthelloGPT; superposition &amp; SAEs
+                      <li className="flex gap-2">
+                        <span className="text-dutch-orange font-semibold shrink-0">4.</span>
+                        <span>
+                          <strong className="text-navy-900">RLHF, GRPO &amp; reward hacking</strong> — The transformer as an RL agent (tokens as actions, preference as reward). Value heads and actor–critic setups; GRPO with LoRA fine-tuning. Observing reward hacking in practice — mode collapse, prefix exploitation, and mitigation strategies.
+                        </span>
                       </li>
                     </ul>
-                    <p className="text-sm text-slate-500 mt-4 pt-4 border-t border-slate-100">
-                      ARENA&apos;s interpretability modules are deep; cohorts pick
-                      subsets and pathways rather than every exercise in every
-                      branch.
+                    <p className="text-sm text-slate-500 mt-6 pt-4 border-t border-slate-100">
+                      Each week pairs a lecture with ARENA-inspired notebook
+                      assignments using tools such as{" "}
+                      <strong className="text-navy-900">TransformerLens</strong>
+                      ,{" "}
+                      <strong className="text-navy-900">SAELens</strong>, and{" "}
+                      <strong className="text-navy-900">Neuronpedia</strong>.
+                      Completing the notebooks and attending in person is required
+                      for the certificate of completion; lectures are also streamed
+                      online for remote participants.
                     </p>
                   </div>
                 </FadeIn>
@@ -589,18 +679,22 @@ export default function UtrechtPage() {
                     </h3>
                     <dl className="space-y-4">
                       {[
-                        { label: "Duration", value: "Multi-week modules" },
+                        { label: "Duration", value: "4 weeks" },
                         {
                           label: "Sessions",
-                          value: "~60 minutes each",
+                          value: "Weekly lectures (~90 min) + notebooks",
                         },
                         {
                           label: "Format",
-                          value: "Hands-on exercises & guided discussion",
+                          value: "In-person lectures, streamed online; hands-on exercises & discussion",
                         },
                         {
                           label: "Venue",
                           value: "Utrecht University",
+                        },
+                        {
+                          label: "Certificate",
+                          value: "Complete notebooks & attend in person",
                         },
                         {
                           label: "Prerequisites",
@@ -630,6 +724,35 @@ export default function UtrechtPage() {
                   </div>
                 </FadeIn>
               </div>
+
+              <FadeIn delay={0.2}>
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {technicalCoursePhotos.map((photo) => (
+                    <figure
+                      key={photo.week}
+                      className="overflow-hidden rounded-xl border border-slate-200 bg-white"
+                    >
+                      <div className="relative aspect-[4/3] bg-slate-100">
+                        <Image
+                          src={photo.image}
+                          alt={`Technical AI Safety — Week ${photo.week}: ${photo.label}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <figcaption className="px-4 py-3 border-t border-slate-100">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-0.5">
+                          Week {photo.week}
+                        </p>
+                        <p className="text-sm font-medium text-navy-900 leading-snug">
+                          {photo.label}
+                        </p>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </FadeIn>
             </div>
 
             <FadeIn delay={0.2}>
@@ -681,6 +804,27 @@ export default function UtrechtPage() {
                 </FadeIn>
               ))}
             </div>
+            <FadeIn delay={0.15}>
+              <figure className="mt-8 overflow-hidden rounded-xl border border-slate-200 bg-white max-w-2xl">
+                <div className="relative aspect-[4/3] bg-slate-100">
+                  <Image
+                    src={discussionGroupPhoto.image}
+                    alt={`Discussion group — ${discussionGroupPhoto.label}`}
+                    fill
+                    sizes="(max-width: 672px) 100vw, 672px"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="px-4 py-3 border-t border-slate-100">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-0.5">
+                    In session
+                  </p>
+                  <p className="text-sm font-medium text-navy-900 leading-snug">
+                    {discussionGroupPhoto.label}
+                  </p>
+                </figcaption>
+              </figure>
+            </FadeIn>
             <FadeIn delay={0.2}>
               <p className="mt-8 text-sm text-slate-600 max-w-2xl">
                 Questions about discussion groups?{" "}
@@ -718,6 +862,60 @@ export default function UtrechtPage() {
                   </Link>{" "}
                   for collaboration across SAIN.
                 </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.08}>
+              <div className="grid gap-4 max-w-3xl mb-8">
+                <div className="card p-6 flex flex-col">
+                  <span className="text-xs font-medium text-sky-800 bg-sky-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
+                    Upcoming
+                  </span>
+                  <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
+                    Research Hub launch
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    October 2026
+                  </p>
+                </div>
+                <div className="card p-6 flex flex-col">
+                  <span className="text-xs font-medium text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
+                    Open challenge
+                  </span>
+                  <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
+                    <a
+                      href={WIN4AISAFETY_DEVPOST_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-dutch-orange transition-colors"
+                    >
+                      Win4AISafety — Open Research Summer Challenge
+                    </a>
+                  </h3>
+                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                    Call for new research directions for the SAIN Research Hub — a
+                    six-week multidisciplinary summer challenge to define scope,
+                    conduct research, and publish findings as a Substack post.
+                  </p>
+                  <div className="flex flex-wrap gap-3 mt-4">
+                    <a
+                      href={WIN4AISAFETY_DEVPOST_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                    >
+                      Register to participate
+                    </a>
+                    <a
+                      href={WIN4AISAFETY_LUMA_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-outline"
+                    >
+                      Timeline &amp; Attend on-site
+                    </a>
+                  </div>
+                </div>
               </div>
             </FadeIn>
 
