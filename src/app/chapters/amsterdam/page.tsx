@@ -2,17 +2,6 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
-import {
-  APPLICATION_DEADLINE,
-  chapterPositions,
-} from "@/data/openPositions";
-
-const amsterdamPositions = chapterPositions.find(
-  (c) => c.chapterSlug === "Amsterdam",
-);
-const amsterdamIsRecruiting =
-  amsterdamPositions?.status === "open" &&
-  (amsterdamPositions.postings?.length ?? 0) > 0;
 
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
@@ -104,59 +93,6 @@ export default function AmsterdamPage() {
           </FadeIn>
         </div>
       </section>
-
-      {/* Recruiting banner */}
-      {amsterdamIsRecruiting ? (
-        <section className="bg-white">
-          <div className="section-container pt-8 md:pt-10">
-            <FadeIn>
-              <div className="flex flex-col gap-5 rounded-2xl border border-dutch-orange/30 bg-dutch-orange/5 p-6 shadow-sm md:flex-row md:items-center md:justify-between md:p-7">
-                <div className="flex items-start gap-4">
-                  <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-dutch-orange/15 text-dutch-orange">
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.8}
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
-                      />
-                    </svg>
-                  </span>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-dutch-orange">
-                      We are recruiting
-                    </p>
-                    <h2 className="font-display text-xl font-semibold text-navy-900 md:text-2xl">
-                      Open roles at SAIN Amsterdam
-                    </h2>
-                    <p className="mt-1 text-sm text-slate-600">
-                      Help us build the chapter. Apply by{" "}
-                      <span className="font-medium text-navy-900">
-                        {APPLICATION_DEADLINE.display}
-                      </span>
-                      .
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-shrink-0 flex-wrap gap-3 md:justify-end">
-                  <Link
-                    href="/open-positions#chapter-amsterdam"
-                    className="btn-primary"
-                  >
-                    See open positions
-                  </Link>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
-      ) : null}
 
       {/* In-page overview */}
       <section className="border-b border-slate-200 bg-white">
