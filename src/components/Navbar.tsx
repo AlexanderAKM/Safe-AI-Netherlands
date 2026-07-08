@@ -23,7 +23,7 @@ const navigation: NavItem[] = [
     name: "Get Involved",
     parentHref: "/get-involved",
     children: [
-      { name: "Open positions", href: "/open-positions" },
+      { name: "Join the team", href: "/open-positions" },
       { divider: true },
       { name: "Courses", href: "/get-involved#courses" },
       { name: "Discussion groups", href: "/get-involved#discussion-groups" },
