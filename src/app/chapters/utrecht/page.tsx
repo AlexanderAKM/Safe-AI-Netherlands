@@ -10,11 +10,6 @@ const leadership = [
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
   },
   {
-    name: "Betül Selvi",
-    title: "Education Lead",
-    linkedin: "https://www.linkedin.com/in/bet%C3%BCl-selvi/",
-  },
-  {
     name: "Luca 'Dug' Dughera",
     title: "Event Lead",
     linkedin: "https://www.linkedin.com/in/luca-dughera/",
@@ -25,7 +20,7 @@ const leadership = [
     linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
   },
   {
-    name: "Cem Kay",
+    name: "Cem Kaya",
     title: "Research Operations",
     linkedin: "https://www.linkedin.com/in/cem-kaya-om8/",
   },
