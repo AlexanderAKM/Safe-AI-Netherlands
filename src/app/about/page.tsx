@@ -65,7 +65,7 @@ const advisors = [
     members: [
       {
         name: "Richard Rushby",
-        affiliation: "Head of Innokite",
+        affiliation: "Director, The Entrepreneurial Ecosystem",
         link: "https://www.linkedin.com/in/richardrushby/",
         image: "/photos/advisory_board/Richard.png",
       },
