@@ -6,7 +6,7 @@ import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
-const LUMA_CALENDAR_ID = "cal-fabX01E6rMTOg70";
+const LUMA_CALENDAR_ID = "cal-WD5xl5IYLpY7xNm";
 const LUMA_USER_URL = "https://luma.com/user/SAIN_Amsterdam";
 
 const EDU_AMS_EMAIL = "eduams@safeainetherlands.org";
