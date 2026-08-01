@@ -10,7 +10,7 @@ import { writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const LUMA_CALENDAR_ID = "cal-fabX01E6rMTOg70";
+const LUMA_CALENDAR_ID = "cal-WD5xl5IYLpY7xNm";
 const OUT_PATH = join(
   dirname(fileURLToPath(import.meta.url)),
   "..",

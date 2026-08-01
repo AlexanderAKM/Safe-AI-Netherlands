@@ -6,8 +6,8 @@ import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
-const LUMA_CALENDAR_ID = "cal-fabX01E6rMTOg70";
-const LUMA_USER_URL = "https://luma.com/user/AI_Safety_Ams";
+const LUMA_CALENDAR_ID = "cal-WD5xl5IYLpY7xNm";
+const LUMA_USER_URL = "https://luma.com/user/SAIN_Amsterdam";
 
 const EDU_AMS_EMAIL = "eduams@safeainetherlands.org";
 const EVENTS_AMS_EMAIL = "eventsams@safeainetherlands.org";
@@ -155,7 +155,7 @@ export default function AmsterdamPage() {
                     rel="noopener noreferrer"
                     className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
                   >
-                    lu.ma/AI_Safety_Ams
+                    luma.com/user/SAIN_Amsterdam
                   </a>
                   .
                 </p>
