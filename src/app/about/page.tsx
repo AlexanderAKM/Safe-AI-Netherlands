@@ -19,7 +19,7 @@ const advisors = [
       },
       {
         name: "Jesse Hoogland",
-        affiliation: "Co-founder & Director, Timaeus",
+        affiliation: "Co-founder & Director, Resolution",
         link: "https://www.jessehoogland.com/",
         image: "/photos/advisory_board/Jesse.jpg",
       },
