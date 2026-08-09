@@ -1,15 +1,15 @@
 export const leadership = [
   {
     name: "Alexander Müller",
-    role: "Director SAIN & Co-Director SAIN Groningen",
+    role: "Director SAIN",
     linkedin: "https://alexanderakm.github.io/",
     image: "/photos/team/Alexander.jpg",
   },
   {
-    name: "Thomas Brcic",
-    role: "Co-Director SAIN Groningen",
-    linkedin: "https://www.linkedin.com/in/thomas-brcic-1b2737212/",
-    image: "/photos/team/Thomas.png",
+    name: "Tarteel Mohamed",
+    role: "Director SAIN Groningen",
+    linkedin: "https://www.linkedin.com/in/tarteel-mohamed-8918aa2a7/",
+    image: "/photos/team/Tarteel_Mohamed.png",
   },
   {
     name: "Ana Paula Castillo Rodriguez",

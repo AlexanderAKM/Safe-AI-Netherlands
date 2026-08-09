@@ -2,8 +2,7 @@
  * AISIG organiser roster (name + role) as listed on the former AISIG site.
  */
 export const aisigTeam = [
-  { name: "Alexander Müller", title: "Co-Director" },
-  { name: "Thomas Brcic", title: "Co-Director" },
+  { name: "Tarteel Mohamed", title: "Director" },
   { name: "Ilija Lichkovski", title: "Research Lead" },
   { name: "Imaan Kanji Lalji", title: "Public Relations Lead" },
   { name: "Tiwai Mhundwa", title: "Education Lead" },
