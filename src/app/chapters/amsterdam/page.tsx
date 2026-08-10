@@ -8,6 +8,13 @@ const COMMUNITY_WHATSAPP_URL =
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const LUMA_CALENDAR_ID = "cal-WD5xl5IYLpY7xNm";
 const LUMA_USER_URL = "https://luma.com/user/SAIN_Amsterdam";
+const COURSE_SIGNUP_URL =
+  "https://airtable.com/appniQ36V5jGH7C7Y/pagJh3wXI8a1VAewQ/form";
+
+// Course registration is seasonal. Flip this to `false` when registration
+// closes to hide every sign-up CTA on this page (hero button + the one under
+// the Courses header); flip it back to `true` when the next round opens.
+const COURSE_REGISTRATION_OPEN = true;
 
 const EDU_AMS_EMAIL = "eduams@safeainetherlands.org";
 const EVENTS_AMS_EMAIL = "eventsams@safeainetherlands.org";
@@ -89,6 +96,16 @@ export default function AmsterdamPage() {
               >
                 Join our community
               </a>
+              {COURSE_REGISTRATION_OPEN && (
+                <a
+                  href={COURSE_SIGNUP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  Register for courses
+                </a>
+              )}
             </div>
           </FadeIn>
         </div>
@@ -263,6 +280,24 @@ export default function AmsterdamPage() {
                 <h2 className="heading-lg text-navy-900">
                   Technical AI Safety &amp; Frontier AI Governance
                 </h2>
+                {COURSE_REGISTRATION_OPEN && (
+                  <>
+                    <p className="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
+                      Sign up to participate in the upcoming courses or to become a
+                      facilitator!
+                      <br />
+                      Application Deadline: 2 September.
+                    </p>
+                    <a
+                      href={COURSE_SIGNUP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                    >
+                      Sign up here
+                    </a>
+                  </>
+                )}
               </div>
             </FadeIn>
 
