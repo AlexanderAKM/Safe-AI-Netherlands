@@ -112,7 +112,7 @@ const supervisors = [
   {
     name: "Ana Lucic",
     position: "Assistant professor, University of Amsterdam",
-    image: "/photos/supervisors/Ana_Lucic.jpg",
+    image: "/photos/supervisors/Ana_Lucic.png",
     agenda:
       "https://docs.google.com/document/d/1IhPnQWQEN6ykshxW9B6xWehtfPwSl0B4T5HzrKyMnn8/edit?usp=sharing",
   },

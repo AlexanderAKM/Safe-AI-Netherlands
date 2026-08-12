@@ -9,7 +9,7 @@ export const leadership = [
     name: "Tarteel Mohamed",
     role: "Director SAIN Groningen",
     linkedin: "https://www.linkedin.com/in/tarteel-mohamed-8918aa2a7/",
-    image: "/photos/team/Tarteel_Mohamed.png",
+    image: "/photos/team/Tarteel_Mohamed.jpg",
   },
   {
     name: "Ana Paula Castillo Rodriguez",
