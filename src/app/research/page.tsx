@@ -109,6 +109,13 @@ const supervisors = [
     agenda:
       "https://docs.google.com/document/d/1kr-lo1Qr_k7Yq3C1eoPg9gwFKlJ9PflTWqGrexA8Nxc/edit?usp=sharing",
   },
+  {
+    name: "Ana Lucic",
+    position: "Assistant professor, University of Amsterdam",
+    image: "/photos/supervisors/Ana_Lucic.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1IhPnQWQEN6ykshxW9B6xWehtfPwSl0B4T5HzrKyMnn8/edit?usp=sharing",
+  },
 ];
 
 const RESEARCH_EMAIL = "research@safeainetherlands.org";
