@@ -79,7 +79,7 @@ const advisors = [
       
         name: "Stephen Corlett",
         affiliation: "Brand Marketing Leader and Consultant",
-        link: "https://stephencorlett.me/",
+        link: "https://www.linkedin.com/in/stephen-corlett-8b361731/",
         image: "/photos/advisory_board/Stephen_Corlett.jpg",
       },
     ],

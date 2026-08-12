@@ -4,8 +4,8 @@
 *Date: 29/04/2026*  
 *Contact information: [research@safeainetherlands.org](mailto:research@safeainetherlands.org)*  
 *Authored by*  
-Alexander Müller (Co-Director)  
-Thomas Brcic (Co-Director)  
+Alexander Müller (Director)  
+Thomas Brcic (Former SAIN Groningen Co-Director)  
 Ilija Lichkovski (Research Lead)
 
 ## Purpose, Principles, and Scope
