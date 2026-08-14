@@ -1,0 +1,23 @@
+name: Deploy to Vercel
+
+# Vercel's Hobby-plan git integration only deploys commits authored by the
+# connected account. This hook makes every push to main trigger a production
+# deploy regardless of who merged. Requires the VERCEL_DEPLOY_HOOK repo secret
+# (Vercel: Project Settings -> Git -> Deploy Hooks).
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK secret not set; skipping."
+            exit 0
+          fi
+          curl --fail -s -X POST "$DEPLOY_HOOK"
