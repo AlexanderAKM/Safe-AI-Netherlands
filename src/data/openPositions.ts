@@ -585,20 +585,8 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoams@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "education-lead" },
-      // { roleId: "education-course-facilitator" },
-      { roleId: "education-discussion-lead" },
       { roleId: "events-lead" },
-      { roleId: "events-team-member" },
-      { roleId: "communications-lead" },
-      { roleId: "communications-team-member" },
-      { roleId: "web-designer" },
-      { roleId: "content-creator" },
-      { roleId: "graphic-designer" },
-      { roleId: "photographer" },
       { roleId: "community-manager" },
-      // { roleId: "on-campus-ambassador" },
-      { roleId: "research-operations" },
     ],
   },
   {
@@ -609,17 +597,9 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoutr@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "communications-lead" },
-      { roleId: "education-discussion-lead" },
-      // { roleId: "education-course-facilitator" },
-      { roleId: "community-manager" },
-      { roleId: "events-team-member"},
-      { roleId: "communications-team-member"},
-      { roleId: "on-campus-ambassador"},
-      { roleId: "web-designer" },
-      { roleId: "content-creator" },
-      { roleId: "graphic-designer" },
-      { roleId: "research-operations" },
+      { roleId: "education-lead" },
+      { roleId: "education-course-facilitator" },
+
     ],
   },
   {
@@ -628,15 +608,8 @@ export const chapterPositions: ChapterPosting[] = [
     blurb:
       "A few targeted openings in Groningen for people who want to plug into an established, ambitious chapter. We are selectively hiring to strengthen Communications and to support the national Research Hub.",
     inboxEmail: "infogro@safeainetherlands.org",
-    status: "open",
-    postings: [
-      { roleId: "communications-lead" },
-      { roleId: "communications-team-member" },
-      { roleId: "web-designer" },
-      { roleId: "content-creator" },
-      { roleId: "graphic-designer" },
-      { roleId: "research-operations" },
-    ],
+    status: "closed",
+    postings: [],
   },
 ];
 

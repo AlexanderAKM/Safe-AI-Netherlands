@@ -580,13 +580,14 @@ export default function OpenPositionsPage() {
                     </div>
                   </FadeIn>
                 </div>
-              ) : (
+              ) : chapter.closedNote ? (
                 <FadeIn delay={0.1}>
                   <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8">
                     <p className="text-slate-600">{chapter.closedNote}</p>
                   </div>
                 </FadeIn>
-              )}
+              ) : 
+              null}
             </div>
           </section>
         );
