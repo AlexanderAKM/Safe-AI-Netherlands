@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import CoursePopup from "@/components/CoursePopup";
 import FadeIn from "@/components/FadeIn";
 import ScrollCue from "@/components/ScrollCue";
 
@@ -85,6 +86,8 @@ const chapters = [
 export default function Home() {
   return (
     <>
+      <CoursePopup />
+
       {/* Flowing gradient wrapper covers hero, metrics, and pathways */}
       <div className="relative">
         {/* Orange gradient that flows across the top sections */}
