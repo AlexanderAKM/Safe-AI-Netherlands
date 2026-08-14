@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { hasOpenPositions } from "@/data/openPositions";
+
+const INFO_EMAIL = "info@safeainetherlands.org";
 
 const activities = [
   {
@@ -111,12 +114,18 @@ export default function GetInvolvedPage() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="mailto:info@safeainetherlands.org?subject=Joining SAIN"
-                className="btn-primary"
-              >
-                Join the team
-              </a>
+              {hasOpenPositions ? (
+                <Link href="/open-positions" className="btn-primary">
+                  See open positions
+                </Link>
+              ) : (
+                <a
+                  href={`mailto:${INFO_EMAIL}?subject=Joining SAIN`}
+                  className="btn-primary"
+                >
+                  Join the team
+                </a>
+              )}
               <a href="#activities" className="btn-outline">
                 Browse our activities
               </a>
@@ -125,8 +134,11 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Join the team */}
-      <section id="join-team" className="bg-slate-50 section-padding scroll-mt-32">
+      {/* Open positions pointer */}
+      <section
+        id={hasOpenPositions ? "open-positions" : "join-team"}
+        className="bg-slate-50 section-padding scroll-mt-32"
+      >
         <div className="section-container">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:items-center">
             <FadeIn>
@@ -134,25 +146,47 @@ export default function GetInvolvedPage() {
                 <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
                   Join the team
                 </p>
-                <h2 className="heading-lg mb-4 text-navy-900">
-                  There is always an open application
-                </h2>
-                <p className="text-slate-600 leading-relaxed max-w-2xl">
-                  SAIN is run by volunteers across Amsterdam, Utrecht, and
-                  Groningen. We do not always list specific roles, but if you are
-                  genuinely interested in contributing, send us your CV and a
-                  short motivation letter.
-                </p>
+                {hasOpenPositions ? (
+                  <>
+                    <h2 className="heading-lg mb-4 text-navy-900">
+                      Open positions across SAIN
+                    </h2>
+                    <p className="text-slate-600 leading-relaxed max-w-2xl">
+                      SAIN Amsterdam is building its founding team and SAIN
+                      Utrecht is hiring across most of its teams. Volunteer
+                      roles, three to ten hours per week. One short application
+                      form: name, CV, and a motivation letter.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="heading-lg mb-4 text-navy-900">
+                      There is always an open application
+                    </h2>
+                    <p className="text-slate-600 leading-relaxed max-w-2xl">
+                      SAIN is run by volunteers across Amsterdam, Utrecht, and
+                      Groningen. We do not always list specific roles, but if you
+                      are genuinely interested in contributing, send us your CV
+                      and a short motivation letter.
+                    </p>
+                  </>
+                )}
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="lg:justify-self-end">
-                <a
-                  href="mailto:info@safeainetherlands.org?subject=Joining SAIN"
-                  className="btn-primary"
-                >
-                  Email info@safeainetherlands.org
-                </a>
+                {hasOpenPositions ? (
+                  <Link href="/open-positions" className="btn-primary">
+                    See all open positions
+                  </Link>
+                ) : (
+                  <a
+                    href={`mailto:${INFO_EMAIL}?subject=Joining SAIN`}
+                    className="btn-primary"
+                  >
+                    Email {INFO_EMAIL}
+                  </a>
+                )}
               </div>
             </FadeIn>
           </div>

@@ -4,6 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { aisigTeam } from "@/data/aisigTeam";
+import { APPLICATION_DEADLINE, isChapterRecruiting } from "@/data/openPositions";
+
+const groningenIsRecruiting = isChapterRecruiting("Groningen");
 
 const EDU_GRO_EMAIL = "edugro@safeainetherlands.org";
 const EVENTS_GRO_EMAIL = "eventsgro@safeainetherlands.org";
@@ -192,6 +195,38 @@ export default function GroningenPage() {
           </nav>
         </div>
       </section>
+
+      {/* Hiring callout */}
+      {groningenIsRecruiting ? (
+        <section className="bg-dutch-orange/5 border-b border-slate-200">
+          <div className="section-container py-6 md:py-8">
+            <FadeIn>
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+                <div className="flex-1">
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-dutch-orange">
+                    We&apos;re hiring
+                  </p>
+                  <p className="text-base md:text-lg text-navy-900">
+                    SAIN Groningen is selectively hiring to strengthen
+                    Communications and support the national Research Hub.
+                    Applications close{" "}
+                    <span className="font-semibold">
+                      {APPLICATION_DEADLINE.short}
+                    </span>
+                    .
+                  </p>
+                </div>
+                <Link
+                  href="/open-positions#chapter-groningen"
+                  className="btn-primary flex-shrink-0"
+                >
+                  See open roles
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      ) : null}
 
       {/* Events */}
       <section id="events" className="section-padding bg-slate-50">
