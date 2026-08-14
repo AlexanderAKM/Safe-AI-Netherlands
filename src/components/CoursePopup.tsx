@@ -4,6 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+/* Master switch: set to false to hide the popup site-wide once applications
+   close, without removing it from the home page. */
+const SHOW_COURSE_POPUP = true;
+
 const COURSE_APPLICATION_URL =
   "https://airtable.com/appniQ36V5jGH7C7Y/pagJh3wXI8a1VAewQ/form";
 
@@ -18,6 +22,8 @@ export default function CoursePopup() {
   const previouslyFocused = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    if (!SHOW_COURSE_POPUP) return;
+
     let dismissed = false;
     try {
       dismissed = window.localStorage.getItem(DISMISS_KEY) === "true";
@@ -80,7 +86,7 @@ export default function CoursePopup() {
   }, [isOpen, close]);
 
   /* Portalled to <body> so no ancestor stacking or overflow context can bury it. */
-  if (typeof document === "undefined") return null;
+  if (!SHOW_COURSE_POPUP || typeof document === "undefined") return null;
 
   return createPortal(
     <AnimatePresence>
