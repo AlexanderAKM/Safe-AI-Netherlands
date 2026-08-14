@@ -134,7 +134,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community (Form)
+                Join our community (Form)
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -550,7 +550,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community (form)
+                Join our community (Form)
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -558,7 +558,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                National newsletter
+                National newsletter (Substack)
               </a>
               <a
                 href={GRONINGEN_LINKTREE_URL}

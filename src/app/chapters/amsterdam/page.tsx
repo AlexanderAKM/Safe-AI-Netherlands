@@ -6,6 +6,8 @@ import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
 const COMMUNITY_WHATSAPP_URL =
   "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
+const AMSTERDAM_LINKTREE_URL = "https://linktr.ee/sainamsterdam";
+
 const LUMA_CALENDAR_ID = "cal-WD5xl5IYLpY7xNm";
 const LUMA_USER_URL = "https://luma.com/user/SAIN_Amsterdam";
 const COURSE_SIGNUP_URL =
@@ -106,6 +108,22 @@ export default function AmsterdamPage() {
                   Register for courses
                 </a>
               )}
+              <a
+                href={NATIONAL_SUBSTACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                National newsletter (Substack)
+              </a>
+              <a
+                href={AMSTERDAM_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Amsterdam links (Linktree)
+              </a>
             </div>
           </FadeIn>
         </div>
@@ -557,7 +575,7 @@ export default function AmsterdamPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -565,7 +583,15 @@ export default function AmsterdamPage() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                National newsletter
+                National newsletter (Substack)
+              </a>
+               <a
+                href={AMSTERDAM_LINKTREE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                All Amsterdam links (Linktree)
               </a>
             </div>
           </FadeIn>

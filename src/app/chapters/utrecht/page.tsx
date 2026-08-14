@@ -205,7 +205,7 @@ export default function UtrechtPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join Community
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
