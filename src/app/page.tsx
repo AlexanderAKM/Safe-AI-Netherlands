@@ -4,7 +4,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import ScrollCue from "@/components/ScrollCue";
 import {
-  APPLICATION_DEADLINE,
+  APPLICATION_REVIEW,
   hasOpenPositions,
   recruitingChapters,
 } from "@/data/openPositions";
@@ -178,11 +178,7 @@ export default function Home() {
                       Open roles across SAIN {recruitingChapterNames}
                     </h2>
                     <p className="mt-1 text-sm text-slate-500">
-                      Help us grow our chapters. Apply by{" "}
-                      <span className="font-medium text-navy-900">
-                        {APPLICATION_DEADLINE.display}
-                      </span>
-                      .
+                      Help us grow our chapters. Applications are reviewed {APPLICATION_REVIEW.phrase}.
                     </p>
                   </div>
                 </div>

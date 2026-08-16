@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import {
-  APPLICATION_DEADLINE,
+  APPLICATION_REVIEW,
   APPLICATION_TIMELINE,
   ROLES,
   TEAM_LABELS,
@@ -189,8 +189,8 @@ function RoleCard({
 }
 
 /**
- * Shown when no chapter is recruiting: the role listings, the deadline, and the
- * timeline are all hidden, and the route keeps working as a standing
+ * Shown when no chapter is recruiting: the role listings and the timeline are
+ * both hidden, and the route keeps working as a standing
  * open-application page instead of 404ing on existing links.
  */
 function StandingApplication() {
@@ -317,23 +317,21 @@ export default function OpenPositionsPage() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0V11.25h18v7.5"
+                    d="M9 3.75H6.912a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859M12 3v8.25m0 0-3-3m3 3 3-3"
                   />
                 </svg>
               </span>
               <div className="text-sm leading-snug">
                 <p className="font-semibold uppercase tracking-wider text-dutch-orange">
-                  Application deadline
+                  {APPLICATION_REVIEW.label}
                 </p>
-                <p className="text-navy-900">
-                  {APPLICATION_DEADLINE.display}.
-                </p>
+                <p className="text-navy-900">{APPLICATION_REVIEW.sentence}</p>
               </div>
             </div>
           </FadeIn>
@@ -428,11 +426,7 @@ export default function OpenPositionsPage() {
                 </p>
                 <h3 className="heading-md mb-2 text-navy-900">What happens next</h3>
                 <p className="mb-6 text-sm text-slate-500">
-                  Applications close on{" "}
-                  <span className="font-semibold text-navy-900">
-                    {APPLICATION_DEADLINE.display}
-                  </span>
-                  . For strong candidates, onboarding can start sooner.
+                  Applications are reviewed {APPLICATION_REVIEW.phrase}.
                 </p>
                 <ol className="space-y-5">
                   {APPLICATION_TIMELINE.map((step, i) => (
@@ -608,7 +602,7 @@ export default function OpenPositionsPage() {
               you within two to three weeks.
             </p>
             <p className="mx-auto mb-8 max-w-2xl text-sm font-semibold uppercase tracking-widest text-dutch-orange">
-              Deadline: {APPLICATION_DEADLINE.display}
+              Applications reviewed {APPLICATION_REVIEW.phrase}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a

@@ -642,17 +642,19 @@ export const recruitingChapters: ChapterPosting[] = chapterPositions.filter(
 export const hasOpenPositions = recruitingChapters.length > 0;
 
 // -----------------------------------------------------------------------------
-// Deadline + Timeline
+// Review policy + Timeline
 // -----------------------------------------------------------------------------
 
 /**
- * Hard application deadline for the current hiring round.
- * Update the ISO string and the display strings together when the cycle changes.
+ * There is no hard application deadline: applications are reviewed on a rolling
+ * basis as they come in. Update these strings if the cycle ever moves back to a
+ * fixed closing date.
  */
-export const APPLICATION_DEADLINE = {
-  iso: "2026-06-15T23:59:00+02:00",
-  display: "15 June 2026, midnight (CET)",
-  short: "15 June 2026",
+export const APPLICATION_REVIEW = {
+  label: "Rolling applications",
+  phrase: "on a rolling basis",
+  sentence:
+    "Applications are reviewed on a rolling basis, so apply whenever you are ready.",
 };
 
 export type TimelineStep = {
@@ -667,11 +669,13 @@ export type TimelineStep = {
 export const APPLICATION_TIMELINE: TimelineStep[] = [
   {
     label: "Applications open",
-    detail: "Submit your application any time before the deadline.",
+    detail:
+      "Submit your application whenever you are ready. There is no closing date.",
   },
   {
-    label: "Application deadline",
-    detail: `${APPLICATION_DEADLINE.display}. All applications must be submitted by this date.`,
+    label: "Rolling review",
+    detail:
+      "We read applications as they arrive rather than all at once, so applying earlier means hearing back earlier.",
   },
   {
     label: "First-round response",

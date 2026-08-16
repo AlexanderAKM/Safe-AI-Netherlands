@@ -2,7 +2,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
-import { APPLICATION_DEADLINE, isChapterRecruiting } from "@/data/openPositions";
+import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
 
 const amsterdamIsRecruiting = isChapterRecruiting("Amsterdam");
 
@@ -145,11 +145,7 @@ export default function AmsterdamPage() {
                       Open roles at SAIN Amsterdam
                     </h2>
                     <p className="mt-1 text-sm text-slate-600">
-                      Help us build the chapter. Apply by{" "}
-                      <span className="font-medium text-navy-900">
-                        {APPLICATION_DEADLINE.display}
-                      </span>
-                      .
+                      Help us build the chapter. Applications are reviewed {APPLICATION_REVIEW.phrase}.
                     </p>
                   </div>
                 </div>

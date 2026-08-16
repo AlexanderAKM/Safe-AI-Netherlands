@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { aisigTeam } from "@/data/aisigTeam";
-import { APPLICATION_DEADLINE, isChapterRecruiting } from "@/data/openPositions";
+import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
 
 const groningenIsRecruiting = isChapterRecruiting("Groningen");
 
@@ -207,13 +207,7 @@ export default function GroningenPage() {
                     We&apos;re hiring
                   </p>
                   <p className="text-base md:text-lg text-navy-900">
-                    SAIN Groningen is selectively hiring to strengthen
-                    Communications and support the national Research Hub.
-                    Applications close{" "}
-                    <span className="font-semibold">
-                      {APPLICATION_DEADLINE.short}
-                    </span>
-                    .
+                   Help us build the chapter. Applications are reviewed {APPLICATION_REVIEW.phrase}.
                   </p>
                 </div>
                 <Link

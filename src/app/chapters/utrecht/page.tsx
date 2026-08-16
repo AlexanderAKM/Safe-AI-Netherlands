@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
-import { APPLICATION_DEADLINE, isChapterRecruiting } from "@/data/openPositions";
+import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
 
 const utrechtIsRecruiting = isChapterRecruiting("Utrecht");
 
@@ -262,11 +262,7 @@ export default function UtrechtPage() {
                       Open roles at SAIN Utrecht
                     </h2>
                     <p className="mt-1 text-sm text-slate-600">
-                      Help us grow the chapter. Apply by{" "}
-                      <span className="font-medium text-navy-900">
-                        {APPLICATION_DEADLINE.display}
-                      </span>
-                      .
+                      Help us grow the chapter. Applications are reviewed {APPLICATION_REVIEW.phrase}.
                     </p>
                   </div>
                 </div>
