@@ -134,7 +134,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community (Form)
+                Join our community (Form)
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -494,7 +494,7 @@ export default function GroningenPage() {
                   Research Hub.
                 </p>
                 <p>
-                  SAIN Groningen is co-directed by Alexander Müller and Thomas Brcic. We organise work across four teams: Education, Research,
+                  SAIN Groningen is directed by Tarteel Mohamed. We organise work across four teams: Education, Research,
                   Events, and PR. This is a structure other SAIN chapters are adopting as
                   they spin up.
                 </p>
@@ -550,7 +550,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community (form)
+                Join our community (Form)
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -558,7 +558,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                National newsletter
+                National newsletter (Substack)
               </a>
               <a
                 href={GRONINGEN_LINKTREE_URL}

@@ -49,22 +49,21 @@ export type LeadershipContact = {
 export const leadershipContacts: LeadershipContact[] = [
   {
     names: "Alexander Müller",
-    role: "Director SAIN & Co-Director SAIN Groningen",
+    role: "Director SAIN",
     emails: [
       { label: "National formal", email: "info@safeainetherlands.org" },
-      { label: "Groningen chapter", email: "infogro@safeainetherlands.org" },
       { label: "Personal", email: "alexander@safeainetherlands.org" },
     ],
     linkedin: "https://alexanderakm.github.io/",
   },
   {
-    names: "Thomas Brcic",
-    role: "Co-Director SAIN Groningen",
+    names: "Tarteel Mohamed",
+    role: "Director SAIN Groningen",
     emails: [
-      { label: "Personal", email: "thomas@safeainetherlands.org" },
+      { label: "Personal", email: "tarteel@safeainetherlands.org" },
       { label: "Groningen chapter", email: "infogro@safeainetherlands.org" },
     ],
-    linkedin: "https://www.linkedin.com/in/thomas-brcic-1b2737212/",
+    linkedin: "https://www.linkedin.com/in/tarteel-mohamed-8918aa2a7/",
   },
   {
     names: "Ana Paula Castillo Rodriguez",

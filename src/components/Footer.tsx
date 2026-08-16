@@ -22,6 +22,11 @@ const footerLinks = {
       external: true,
     },
     {
+      name: "SAIN Amsterdam (all links)",
+      href: "https://linktr.ee/sainamsterdam",
+      external: true,
+    },
+    {
       name: "SAIN Utrecht (all links)",
       href: "https://linktr.ee/sainutrecht",
       external: true,

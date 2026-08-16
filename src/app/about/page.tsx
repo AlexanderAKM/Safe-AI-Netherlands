@@ -19,7 +19,7 @@ const advisors = [
       },
       {
         name: "Jesse Hoogland",
-        affiliation: "Co-founder & Director, Timaeus",
+        affiliation: "Co-founder & Director, Resolution",
         link: "https://www.jessehoogland.com/",
         image: "/photos/advisory_board/Jesse.jpg",
       },
@@ -74,6 +74,13 @@ const advisors = [
         affiliation: "Global Director Strategy & Transformation",
         link: "https://www.linkedin.com/in/jesselit-jimenez-65b0b891/",
         image: "/photos/advisory_board/Video_Jesselit_039_close-up.jpg",
+      },
+      {
+      
+        name: "Stephen Corlett",
+        affiliation: "Brand Marketing Leader and Consultant",
+        link: "https://www.linkedin.com/in/stephen-corlett-8b361731/",
+        image: "/photos/advisory_board/Stephen_Corlett.jpg",
       },
     ],
   },
