@@ -3,6 +3,15 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import ScrollCue from "@/components/ScrollCue";
+import {
+  APPLICATION_REVIEW,
+  hasOpenPositions,
+  recruitingChapters,
+} from "@/data/openPositions";
+
+const recruitingChapterNames = recruitingChapters
+  .map((c) => c.chapterSlug)
+  .join(" and ");
 
 const pathways = [
   {
@@ -137,6 +146,52 @@ export default function Home() {
           </div>
           <ScrollCue href="#pathways" />
         </section>
+
+        {/* Recruiting banner */}
+        {hasOpenPositions ? (
+        <section className="relative z-10 pb-6 md:pb-8">
+          <div className="section-container">
+            <FadeIn>
+              <div className="flex flex-col gap-5 rounded-2xl border border-dutch-orange/30 bg-white/80 p-6 shadow-sm backdrop-blur-sm md:flex-row md:items-center md:justify-between md:p-7">
+                <div className="flex items-start gap-4">
+                  <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-dutch-orange/15 text-dutch-orange">
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-dutch-orange">
+                      We are recruiting
+                    </p>
+                    <h2 className="font-display text-xl font-semibold text-navy-900 md:text-2xl">
+                      Open roles across SAIN {recruitingChapterNames}
+                    </h2>
+                    <p className="mt-1 text-sm text-slate-500">
+                      Help us grow our chapters. Applications are reviewed {APPLICATION_REVIEW.phrase}.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-shrink-0 flex-wrap gap-3 md:justify-end">
+                  <Link href="/open-positions" className="btn-primary">
+                    See open positions
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+        ) : null}
 
         {/* Pathways */}
         <section id="pathways" className="relative z-10 section-padding pt-12 md:pt-16">

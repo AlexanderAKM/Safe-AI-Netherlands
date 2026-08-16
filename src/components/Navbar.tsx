@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { hasOpenPositions } from "@/data/openPositions";
 
 type NavChild = { name: string; href: string } | { divider: true };
 
@@ -23,7 +24,10 @@ const navigation: NavItem[] = [
     name: "Get Involved",
     parentHref: "/get-involved",
     children: [
-      { name: "Join the team", href: "/open-positions" },
+      {
+        name: hasOpenPositions ? "Open positions" : "Join the team",
+        href: "/open-positions",
+      },
       { divider: true },
       { name: "Courses", href: "/get-involved#courses" },
       { name: "Discussion groups", href: "/get-involved#discussion-groups" },
