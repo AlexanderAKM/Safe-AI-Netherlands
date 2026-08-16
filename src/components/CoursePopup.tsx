@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -108,7 +109,7 @@ export default function CoursePopup() {
             aria-labelledby="course-popup-title"
             aria-describedby="course-popup-description"
             tabIndex={-1}
-            className="relative max-h-[calc(100dvh-3rem)] w-full max-w-xl overflow-y-auto rounded-2xl bg-white shadow-2xl outline-none"
+            className="relative max-h-[calc(100dvh-3rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl outline-none"
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -131,38 +132,38 @@ export default function CoursePopup() {
               </svg>
             </button>
 
-            <div className="p-7 pr-14 sm:p-9 sm:pr-16">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-dutch-orange">
+            <div className="p-7 sm:p-9">
+              <p className="mb-3 pr-8 text-xs font-semibold uppercase tracking-[0.2em] text-dutch-orange">
                 Applications open
               </p>
               <h2
                 id="course-popup-title"
-                className="font-display text-2xl font-bold text-navy-900 sm:text-3xl"
+                className="pr-8 font-display text-2xl font-bold text-navy-900 sm:text-3xl"
               >
-                AI Safety, Ethics, and Society courses
+                Join free, in-person AI Safety courses this September!
               </h2>
               <p
                 id="course-popup-description"
                 className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base"
               >
-                Join one of our free courses in <b>Technical AI Safety</b>{" "}
-                or <b>AI Governance</b>. <br />
-                Each course runs for 6 weeks with weekly readings and on-site discussion sessions 
-                at our Amsterdam chapter. No prior AI Safety experience needed.
-                <br /> <br />
-                Applications close on September 2.
+                Apply today to SAIN’s 6-week courses in Amsterdam or Groningen, starting the week 
+                of September 7th. Learn fundamental concepts in AI safety and governance through 
+                discussion-based sessions with others interested in the field. <br/>
+                Interested? Choose your local city to learn more & apply!
               </p>
-
-              <div className="mt-7 flex flex-wrap items-center gap-6">
-                <a
-                  href={COURSE_APPLICATION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={close}
-                  className="btn-primary"
-                >
-                  Apply now
-                </a>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-4 min-[480px]:justify-start">
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Link
+                    href="/chapters/amsterdam#programs" className="btn-primary"
+                  >
+                    Amsterdam
+                  </Link>
+                  <Link
+                    href="/chapters/groningen#programs" className="btn-primary"
+                  >
+                    Groningen
+                  </Link>
+                </div>
                 <button
                   type="button"
                   onClick={close}
