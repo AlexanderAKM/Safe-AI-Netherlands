@@ -6,6 +6,8 @@
  * the full template (mission, responsibilities, preferred background, collaborations).
  *
  * To open or close a position for a chapter, edit `chapterPositions` below.
+ * For roles that belong to SAIN Netherlands as a whole rather than to a single
+ * chapter, edit `nationalPosting`.
  */
 
 // -----------------------------------------------------------------------------
@@ -28,6 +30,18 @@
  */
 export const APPLICATION_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfp_XJWTbIUzf7szLlq4pe_RXUYxeK8B1SzKt5TUwkREmINtA/viewform";
+
+/**
+ * Application form for the Research Operations Lead role only.
+ *
+ * National roles do not go through the chapter Google Form: each one has its
+ * own form, because the questions are role-specific rather than
+ * chapter-and-role shaped. This Airtable form is for the Research Operations
+ * Lead and nothing else — give any future national role its own URL rather
+ * than reusing this one.
+ */
+export const RESEARCH_OPERATIONS_LEAD_APPLICATION_FORM_URL =
+  "https://airtable.com/appMwcwhDIpVSvLrz/pagfucm2gVY91sjPg/form";
 
 /**
  * Pre-fill entry IDs for the Google Form. Replace with the real IDs once the
@@ -105,13 +119,41 @@ export type Role = {
   timeCommitment: string;
   mission: string;
   responsibilities: string[];
-  preferredBackground: {
+  /**
+   * Structured background for volunteer roles. Paid staff roles use the
+   * bullet-style `goodFitIf` / `alsoStrong` instead, matching how the job
+   * posting itself is written.
+   */
+  preferredBackground?: {
     field?: string;
     level?: string;
     experience?: string;
     softSkills?: string;
   };
+  /** "You may be a good fit if you..." — rendered instead of `preferredBackground`. */
+  goodFitIf?: string[];
+  /** "Strong candidates may also have..." — non-essential strengths. */
+  alsoStrong?: string[];
   collaborations: string;
+  /**
+   * Set only for paid staff positions. SAIN is otherwise a volunteer
+   * organisation, so the presence of this field is what marks a listing as a
+   * salaried job and switches the card over to showing terms and benefits.
+   */
+  employment?: {
+    /** Short badge shown next to the role title, e.g. "Paid - Full-time". */
+    badge: string;
+    location: string;
+    salary: string;
+    contract: string;
+    startDate: string;
+    benefits: string[];
+  };
+  /**
+   * Role-specific hiring stages. Overrides the site-wide
+   * `APPLICATION_TIMELINE` on this role's card when set.
+   */
+  applicationProcess?: string[];
   /**
    * Optional override for the value used when pre-filling the form's role
    * field. Useful when several distinct website roles share a single form
@@ -217,7 +259,7 @@ export const ROLES: Record<string, Role> = {
         "Facilitation (drawing out quieter voices, gently containing dominators), genuine curiosity, comfort moderating without dominating, reliability week to week.",
     },
     collaborations:
-      "Education Lead, fellow Discussion Leads, Communications Lead, National Research Lead and Research Operations.",
+      "Education Lead, fellow Discussion Leads, Communications Lead, National Research Operations Lead and chapter Research Operations.",
   },
 
   "events-lead": {
@@ -522,12 +564,68 @@ export const ROLES: Record<string, Role> = {
       "Events Lead, Communications Lead, Community Manager.",
   },
 
+  "research-operations-lead": {
+    id: "research-operations-lead",
+    title: "Research Operations Lead",
+    team: "research",
+    scope: "national",
+    reportsTo: "Director",
+    timeCommitment:
+      "Full-time (1.0 FTE), 40 hours per week, 5 day week",
+    mission:
+      "The SAIN Research Hub already exists: supervisors, projects, and a first cohort of researchers. Your job is to make it flourish end to end and build it into the place where Dutch AI safety research talent gets matched, mentored, and published, with output credible enough that researchers and policymakers cite it. You lead the volunteer Research Operations teams in each chapter city and are responsible for the Hub's results. You report directly to the Director and have a budget for the Hub's operations. We are just starting up, so you will be part of the small national team working at SAIN. This role is heavy on project management rather than research insight.",
+    responsibilities: [
+      "Set and hold the strategic direction of the Research Hub together with leadership and the Advisory Board.",
+      // "Run the supervised research programme: recruit experienced supervisors (typically PhD and beyond), source projects, select and match applicants, and keep projects on track through to a finished, publishable output (anywhere from conference-level to a blog post).",
+      // "Run the open collaboration programme: review proposals from researchers who arrive with their own project idea, decide what runs under SAIN's name, connect the right people with each other, and support those projects to completion.",
+      "Proactively recruit supervisors and source projects.",
+      "Run the application process; match researchers to supervisors and projects.",
+      "Monitor active projects, unblock problems as they arise, and intervene when something stalls.",
+      "Recruit, onboard, and manage the volunteer Research Operations teams in each chapter city; maintain continuity across academic-year turnover.",
+      "Work with Communications to publish and promote the Hub's output; maintain the Research Hub Handbook; track and report Hub metrics.",
+    ],
+    goodFitIf: [
+      "Have demonstrated experience managing a team, volunteers, or junior researchers.",
+      "Are familiar with the field of AI safety, both the technical and the governance/policy side.",
+      "Are comfortable working with senior people in academia, industry, and government.",
+      "Enjoy working in a start-up setting.",
+    ],
+    alsoStrong: [
+      "Published AI safety research.",
+      "Familiarity with the Dutch academic and policy landscape.",
+      "Professional working proficiency in Dutch.",
+    ],
+    collaborations:
+      "Director, Advisory Board, technical advisors, chapter Research Operations volunteers, supervisors, researchers, Communications.",
+    employment: {
+      badge: "Paid - Full-time",
+      location:
+        "Amsterdam, hybrid with a minimum of 3 days in office, plus regular travel to SAIN chapter cities within the Netherlands",
+      salary: "€50k-€60k gross per year",
+      contract: "1-year contract, 40h, 5-day week",
+      startDate: "As soon as possible",
+      benefits: [
+        "8% holiday allowance",
+        "Unlimited holidays",
+        "Travel allowance and opportunities to attend national and international conferences",
+        "Hybrid working setup (minimum 3 days in office)",
+        "A budget for the Research Hub's operations",
+      ],
+    },
+    applicationProcess: [
+      "Initial screener: a 30-minute conversation with a member of our leadership team.",
+      "Work test: a roughly 2-hour take-home assignment mirroring the real job. If you advance past this stage, we will ask your permission to contact references.",
+      "Final conversation: 45 to 60 minutes with the Director and one of our technical advisors, including discussion of your work test.",
+      "Work trial: a paid 2-day work trial in Amsterdam or remote, doing exactly what the job requires.",
+    ],
+  },
+
   "research-operations": {
     id: "research-operations",
     title: "Research Operations",
     team: "research",
     scope: "national",
-    reportsTo: "National Research Lead",
+    reportsTo: "Research Operations Lead",
     timeCommitment:
       "2 hours per week in quiet times to 8 hours per week when many supervisors and researchers are onboarded",
     mission:
@@ -549,7 +647,7 @@ export const ROLES: Record<string, Role> = {
         "Reliability, attention to detail, comfort with admin work.",
     },
     collaborations:
-      "National Research Lead, supervisors, researchers.",
+      "Research Operations Lead, supervisors, researchers.",
   },
 };
 
@@ -614,6 +712,66 @@ export const chapterPositions: ChapterPosting[] = [
 ];
 
 // -----------------------------------------------------------------------------
+// National (SAIN Netherlands-wide) open positions
+// -----------------------------------------------------------------------------
+
+export type NationalPosting = {
+  /** Anchor slug used for the section on /open-positions. */
+  slug: string;
+  name: string;
+  blurb: string;
+  inboxEmail: string;
+  status: "open" | "closed";
+  closedNote?: string;
+  postings?: Array<{
+    roleId: keyof typeof ROLES;
+    positions?: number;
+    note?: string;
+    /**
+     * Each national role has its own application form — there is no shared
+     * national form to fall back on, so this is required per role.
+     */
+    applyUrl: string;
+  }>;
+};
+
+/**
+ * Roles that sit with SAIN Netherlands as a whole rather than with a chapter.
+ * Rendered above the chapter sections on /open-positions. Set `status` to
+ * "closed" (or empty `postings`) to hide the national section and the Research
+ * Hub banner that points at it.
+ */
+export const nationalPosting: NationalPosting = {
+  slug: "national",
+  name: "SAIN Netherlands",
+  blurb:
+    "Some roles belong to SAIN as a whole rather than to a single chapter. Unlike our volunteer positions, these are paid staff roles on the small national team: they work across Amsterdam, Utrecht, and Groningen and report into the national leadership. Each has its own application form and hiring process.",
+  inboxEmail: "info@safeainetherlands.org",
+  status: "open",
+  postings: [
+    {
+      roleId: "research-operations-lead",
+      applyUrl: RESEARCH_OPERATIONS_LEAD_APPLICATION_FORM_URL,
+    },
+  ],
+};
+
+/** National roles currently open, in the order declared above. */
+export const openNationalPostings = nationalPosting.status === "open"
+  ? (nationalPosting.postings ?? [])
+  : [];
+
+export const isNationalRecruiting = openNationalPostings.length > 0;
+
+/**
+ * Whether a specific national role is currently advertised. Used by
+ * /research to decide whether to show its Research Hub hiring banner.
+ */
+export function isNationalRoleOpen(roleId: keyof typeof ROLES): boolean {
+  return openNationalPostings.some((p) => p.roleId === roleId);
+}
+
+// -----------------------------------------------------------------------------
 // Recruiting state (single source of truth for what the site shows)
 // -----------------------------------------------------------------------------
 
@@ -637,9 +795,11 @@ export const recruitingChapters: ChapterPosting[] = chapterPositions.filter(
  * When this is false the whole open-positions surface disappears: the navbar
  * entry, the home and chapter recruiting banners, the get-involved link, and
  * the role listings on /open-positions (which falls back to the standing
- * open-application page). Close every chapter to switch the site over.
+ * open-application page). Close every chapter *and* the national posting to
+ * switch the site over.
  */
-export const hasOpenPositions = recruitingChapters.length > 0;
+export const hasOpenPositions =
+  recruitingChapters.length > 0 || isNationalRecruiting;
 
 // -----------------------------------------------------------------------------
 // Review policy + Timeline

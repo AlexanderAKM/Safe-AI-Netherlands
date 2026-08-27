@@ -7,12 +7,25 @@ import ScrollCue from "@/components/ScrollCue";
 import {
   APPLICATION_REVIEW,
   hasOpenPositions,
+  isNationalRecruiting,
   recruitingChapters,
 } from "@/data/openPositions";
 
-const recruitingChapterNames = recruitingChapters
-  .map((c) => c.chapterSlug)
-  .join(" and ");
+/** "A", "A and B", "A, B and C". */
+function joinWithAnd(items: string[]): string {
+  if (items.length < 3) return items.join(" and ");
+  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+}
+
+/**
+ * Reads as "SAIN Netherlands, Amsterdam and Utrecht". The national posting
+ * comes first so an open national role still names something when every
+ * chapter is at capacity.
+ */
+const recruitingNames = joinWithAnd([
+  ...(isNationalRecruiting ? ["Netherlands"] : []),
+  ...recruitingChapters.map((c) => c.chapterSlug),
+]);
 
 const pathways = [
   {
@@ -178,10 +191,10 @@ export default function Home() {
                       We are recruiting
                     </p>
                     <h2 className="font-display text-xl font-semibold text-navy-900 md:text-2xl">
-                      Open roles across SAIN {recruitingChapterNames}
+                      Open roles across SAIN {recruitingNames}
                     </h2>
                     <p className="mt-1 text-sm text-slate-500">
-                      Help us grow our chapters. Applications are reviewed {APPLICATION_REVIEW.phrase}.
+                      Help us grow SAIN. Applications are reviewed {APPLICATION_REVIEW.phrase}.
                     </p>
                   </div>
                 </div>

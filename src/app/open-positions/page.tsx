@@ -13,6 +13,9 @@ import {
   chapterPositions,
   hasOpenPositions,
   isChapterRecruiting,
+  isNationalRecruiting,
+  nationalPosting,
+  openNationalPostings,
   recruitingChapters,
 } from "@/data/openPositions";
 
@@ -58,16 +61,21 @@ function RoleCard({
   role,
   note,
   chapterSlug,
+  applyUrl: applyUrlOverride,
 }: {
   role: Role;
   note?: string;
-  chapterSlug: string;
+  chapterSlug?: string;
+  applyUrl?: string;
 }) {
-  const applyUrl = buildApplicationUrl({
-    chapter: chapterSlug,
-    role: role.formRoleValue ?? role.title,
-  });
-  return (
+  const applyUrl =
+    applyUrlOverride ??
+    buildApplicationUrl({
+      chapter: chapterSlug,
+      role: role.formRoleValue ?? role.title,
+    });
+  
+    return (
     <details className="group rounded-2xl border border-slate-200 bg-white open:border-dutch-orange/40 open:shadow-md">
       <summary className="flex cursor-pointer list-none items-start justify-between gap-4 p-5 md:p-6">
         <div className="min-w-0 flex-1">
@@ -75,6 +83,11 @@ function RoleCard({
             <h4 className="font-display text-lg font-semibold text-navy-900">
               {role.title}
             </h4>
+            {role.employment ? (
+              <span className="ml-1 inline-flex items-center rounded-full bg-dutch-orange/10 px-2.5 py-0.5 text-xs font-semibold text-dutch-orange">
+                {role.employment.badge}
+              </span>
+            ) : null}
             {role.specialisationOf ? (
               <span className="ml-1 inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
                 Specialisation of {role.specialisationOf}
@@ -84,6 +97,11 @@ function RoleCard({
           <p className="mt-1 text-sm text-slate-500">
             {role.timeCommitment}. Reports to {role.reportsTo}.
           </p>
+          {role.employment ? (
+            <p className="mt-1 text-sm text-slate-500">
+              {role.employment.location}.
+            </p>
+          ) : null}
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
             {role.mission}
           </p>
@@ -109,54 +127,139 @@ function RoleCard({
 
       <div className="border-t border-slate-100 px-5 pb-6 pt-5 md:px-6">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="md:col-span-2">
-            <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-              Key responsibilities
-            </h5>
-            <ul className="mt-3 space-y-2">
-              {role.responsibilities.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 text-sm leading-relaxed text-slate-600"
-                >
-                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-dutch-orange" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="space-y-5">
+          <div className="space-y-5 md:col-span-2">
             <div>
               <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Preferred background
+                Key responsibilities
               </h5>
-              <dl className="mt-3 space-y-2 text-sm text-slate-600">
-                {role.preferredBackground.field ? (
-                  <div>
-                    <dt className="font-semibold text-navy-900">Field</dt>
-                    <dd>{role.preferredBackground.field}</dd>
-                  </div>
-                ) : null}
-                {role.preferredBackground.level ? (
-                  <div>
-                    <dt className="font-semibold text-navy-900">Level</dt>
-                    <dd>{role.preferredBackground.level}</dd>
-                  </div>
-                ) : null}
-                {role.preferredBackground.experience ? (
-                  <div>
-                    <dt className="font-semibold text-navy-900">Experience</dt>
-                    <dd>{role.preferredBackground.experience}</dd>
-                  </div>
-                ) : null}
-                {role.preferredBackground.softSkills ? (
-                  <div>
-                    <dt className="font-semibold text-navy-900">Soft skills</dt>
-                    <dd>{role.preferredBackground.softSkills}</dd>
-                  </div>
-                ) : null}
-              </dl>
+              <ul className="mt-3 space-y-2">
+                {role.responsibilities.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-sm leading-relaxed text-slate-600"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-dutch-orange" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
+            {role.goodFitIf?.length ? (
+              <div>
+                <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  You may be a good fit if you
+                </h5>
+                <ul className="mt-3 space-y-2">
+                  {role.goodFitIf.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-slate-600"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-dutch-orange" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {role.alsoStrong?.length ? (
+              <div>
+                <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  Strong candidates may also have
+                </h5>
+                <ul className="mt-3 space-y-2">
+                  {role.alsoStrong.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-slate-600"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-300" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+          <div className="space-y-5">
+            {role.preferredBackground ? (
+              <div>
+                <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  Preferred background
+                </h5>
+                <dl className="mt-3 space-y-2 text-sm text-slate-600">
+                  {role.preferredBackground.field ? (
+                    <div>
+                      <dt className="font-semibold text-navy-900">Field</dt>
+                      <dd>{role.preferredBackground.field}</dd>
+                    </div>
+                  ) : null}
+                  {role.preferredBackground.level ? (
+                    <div>
+                      <dt className="font-semibold text-navy-900">Level</dt>
+                      <dd>{role.preferredBackground.level}</dd>
+                    </div>
+                  ) : null}
+                  {role.preferredBackground.experience ? (
+                    <div>
+                      <dt className="font-semibold text-navy-900">Experience</dt>
+                      <dd>{role.preferredBackground.experience}</dd>
+                    </div>
+                  ) : null}
+                  {role.preferredBackground.softSkills ? (
+                    <div>
+                      <dt className="font-semibold text-navy-900">Soft skills</dt>
+                      <dd>{role.preferredBackground.softSkills}</dd>
+                    </div>
+                  ) : null}
+                </dl>
+              </div>
+            ) : null}
+            {role.employment ? (
+              <div>
+                <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  What we offer
+                </h5>
+                <dl className="mt-3 space-y-2 text-sm text-slate-600">
+                  <div>
+                    <dt className="font-semibold text-navy-900">Salary</dt>
+                    <dd>{role.employment.salary}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-navy-900">Contract</dt>
+                    <dd>{role.employment.contract}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-navy-900">Start date</dt>
+                    <dd>{role.employment.startDate}</dd>
+                  </div>
+                </dl>
+                <ul className="mt-3 space-y-2">
+                  {role.employment.benefits.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-slate-600"
+                    >
+                      <svg
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 text-dutch-orange"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M4.5 12.75l6 6 9-13.5"
+                        />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
             <div>
               <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                 Key collaborations
@@ -168,6 +271,26 @@ function RoleCard({
           </div>
         </div>
 
+        {role.applicationProcess?.length ? (
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              Application process
+            </h5>
+            <ol className="mt-3 space-y-3">
+              {role.applicationProcess.map((step, i) => (
+                <li key={step} className="flex gap-3">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-dutch-orange/10 text-xs font-bold text-dutch-orange">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm leading-relaxed text-slate-600">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
+
         <div className="mt-6 flex flex-wrap gap-3">
           <a
             href={applyUrl}
@@ -178,9 +301,11 @@ function RoleCard({
             Apply for this role
           </a>
           <span className="self-center text-xs text-slate-400">
-            {role.specialisationOf
-              ? `Pre-fills the form's "${role.specialisationOf}" option. Mention "${role.title}" in your motivation letter.`
-              : "Opens the application form, pre-filled with this role."}
+            {applyUrlOverride
+              ? ""
+              : role.specialisationOf
+                ? `Pre-fills the form's "${role.specialisationOf}" option. Mention "${role.title}" in your motivation letter.`
+                : "Opens the application form, pre-filled with this role."}
           </span>
         </div>
       </div>
@@ -337,6 +462,14 @@ export default function OpenPositionsPage() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap gap-3">
+              {isNationalRecruiting ? (
+                <a
+                  href={`#${nationalPosting.slug}`}
+                  className="rounded-full border border-dutch-orange/40 bg-dutch-orange/5 px-4 py-2 text-sm font-semibold text-dutch-orange transition-colors hover:bg-dutch-orange/10"
+                >
+                  {nationalPosting.name}
+                </a>
+              ) : null}
               {recruitingChapters.map((c) => (
                 <a
                   key={c.chapterSlug}
@@ -369,13 +502,25 @@ export default function OpenPositionsPage() {
                 <h2 className="heading-md mb-4 text-navy-900">
                   One application, any chapter, any role
                 </h2>
-                <p className="mb-6 text-slate-600 leading-relaxed">
-                  All applications go through the same short form. You will
-                  pick the chapter and the role, attach your CV, and write a
-                  short motivation letter (one page is plenty). Your
+                <p className="mb-4 text-slate-600 leading-relaxed">
+                  All chapter applications go through the same short form. You
+                  will pick the chapter and the role, attach your CV, and write
+                  a short motivation letter (one page is plenty). Your
                   application is sent to the SAIN national inbox and the
                   chapter you applied to.
                 </p>
+                {isNationalRecruiting ? (
+                  <p className="mb-6 text-slate-600 leading-relaxed">
+                    <a
+                      href={`#${nationalPosting.slug}`}
+                      className="font-semibold text-dutch-orange hover:underline"
+                    >
+                      {nationalPosting.name}
+                    </a>{" "}
+                    roles are not tied to a chapter and have their own form and
+                    application process.
+                  </p>
+                ) : null}
                 <ul className="mb-8 space-y-3 text-sm text-slate-600">
                   {[
                     "Name and email",
@@ -450,6 +595,57 @@ export default function OpenPositionsPage() {
           </div>
         </div>
       </section>
+
+      {/* National (SAIN-wide) positions — above the chapter sections */}
+      {isNationalRecruiting ? (
+        <section
+          id={nationalPosting.slug}
+          className="section-padding scroll-mt-32 bg-white"
+        >
+          <div className="section-container">
+            <FadeIn>
+              <div className="rounded-3xl border border-dutch-orange/30 bg-gradient-to-br from-dutch-orange/[0.06] to-transparent p-6 md:p-10">
+                <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                  <div className="max-w-2xl">
+                    <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
+                      Organisation-wide
+                    </p>
+                    <h2 className="heading-lg mb-4 text-navy-900">
+                      {nationalPosting.name}
+                    </h2>
+                    <p className="text-slate-600 leading-relaxed">
+                      {nationalPosting.blurb}
+                    </p>
+                  </div>
+                  <div className="flex flex-shrink-0 flex-wrap gap-3">
+                    <a
+                      href={`mailto:${nationalPosting.inboxEmail}?subject=National open positions at SAIN`}
+                      className="btn-outline"
+                    >
+                      {nationalPosting.inboxEmail}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {openNationalPostings.map(({ roleId, note, applyUrl }) => {
+                    const role = ROLES[roleId];
+                    if (!role) return null;
+                    return (
+                      <RoleCard
+                        key={role.id}
+                        role={role}
+                        note={note}
+                        applyUrl={applyUrl}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      ) : null}
 
       {/* Chapter sections */}
       {chapterPositions.map((chapter) => {
