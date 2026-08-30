@@ -5,6 +5,7 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import ScrollCue from "@/components/ScrollCue";
 import { leadership } from "@/data/leadership";
+import { nationalTeam } from "@/data/nationalTeam";
 import { sainDocuments } from "@/data/sainDocuments";
 
 const advisors = [
@@ -178,8 +179,72 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* National Team */}
+      <section
+        id="national-team"
+        className="section-padding scroll-mt-32 bg-slate-50"
+      >
+        <div className="section-container">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <h2 className="heading-lg text-navy-900">National Team</h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-500">
+              Cross-chapter roles supporting SAIN nationally.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            {nationalTeam.map((person) => {
+              const card = (
+                <>
+                  <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
+                    {person.image ? (
+                      <Image
+                        src={person.image}
+                        alt={person.name}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy-800 to-navy-900 font-display text-2xl font-semibold text-white">
+                        {person.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")
+                          .slice(0, 2)}
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="font-display font-semibold text-navy-900">{person.name}</h3>
+                  <p className="mt-1 text-sm font-medium text-dutch-orange">{person.role}</p>
+                </>
+              );
+
+              return person.link ? (
+                <a
+                  key={person.name}
+                  href={person.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card w-full p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-64"
+                >
+                  {card}
+                </a>
+              ) : (
+                <div
+                  key={person.name}
+                  className="card w-full p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-64"
+                >
+                  {card}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Advisory Board */}
-      <section id="advisory-board" className="section-padding scroll-mt-32 bg-slate-50">
+      <section id="advisory-board" className="section-padding scroll-mt-32 bg-white">
         <div className="section-container">
           <div className="mx-auto mb-12 max-w-6xl text-center">
             <h2 className="heading-lg text-navy-900">Advisory Board</h2>
@@ -232,7 +297,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-slate-50">
         <div className="section-container">
           <div id="our-journey" className="scroll-mt-32">
             <FadeIn>
