@@ -296,112 +296,119 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-slate-50">
+      {/* Our Journey */}
+      <section id="our-journey" className="section-padding scroll-mt-32 bg-slate-50">
         <div className="section-container">
-          <div id="our-journey" className="scroll-mt-32">
-            <FadeIn>
-              <div className="mb-16 text-center">
-                <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
-                  Our Journey
-                </p>
-                <h2 className="heading-lg text-navy-900">From AISIG to SAIN</h2>
-              </div>
-            </FadeIn>
+          <FadeIn>
+            <div className="mb-12 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
+                Our Journey
+              </p>
+              <h2 className="heading-lg text-navy-900">From AISIG to SAIN</h2>
+            </div>
+          </FadeIn>
 
-            <div className="mx-auto max-w-3xl">
-              {timeline.map((item, i) => (
-                <FadeIn key={item.year} delay={i * 0.1}>
-                  <div className="relative flex gap-6 pb-12 last:pb-0">
-                    {i < timeline.length - 1 && (
-                      <div
-                        className="absolute left-6 top-[3rem] z-0 h-[calc(100%-3rem)] w-px -translate-x-1/2 bg-slate-200"
-                        aria-hidden
-                      />
-                    )}
-                    <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold tabular-nums text-dutch-orange ring-2 ring-dutch-orange ring-offset-2 ring-offset-white">
-                      {item.year}
-                    </div>
-                    <div className="min-w-0 pt-1">
-                      <h3 className="font-display mb-1 font-semibold text-navy-900">{item.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
-                    </div>
+          <div className="mx-auto max-w-3xl">
+            {timeline.map((item, i) => (
+              <FadeIn key={item.year} delay={i * 0.1}>
+                <div className="relative flex gap-6 pb-12 last:pb-0">
+                  {i < timeline.length - 1 && (
+                    <div
+                      className="absolute left-6 top-[3rem] z-0 h-[calc(100%-3rem)] w-px -translate-x-1/2 bg-slate-200"
+                      aria-hidden
+                    />
+                  )}
+                  <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold tabular-nums text-dutch-orange ring-2 ring-dutch-orange ring-offset-2 ring-offset-white">
+                    {item.year}
                   </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-
-          <div id="foundational-documents" className="mt-20 scroll-mt-32 border-t border-slate-200 pt-16">
-            <FadeIn>
-              <div className="text-center mb-10">
-                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                  Foundational Documents
-                </p>
-                <h3 className="heading-md text-navy-900">
-                  The shared framework behind SAIN
-                </h3>
-              </div>
-            </FadeIn>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {sainDocuments.map((document, i) => (
-                <FadeIn key={document.slug} delay={i * 0.1}>
-                  <Link
-                    href={`/about/${document.slug}`}
-                    className="card p-6 h-full flex flex-col group"
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-3">
-                      {document.eyebrow}
-                    </span>
-                    <h4 className="font-display font-semibold text-2xl text-navy-900 group-hover:text-dutch-orange transition-colors mb-3">
-                      {document.title}
-                    </h4>
-                    <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                      {document.description}
-                    </p>
-                    <span className="mt-auto text-sm font-semibold text-dutch-orange flex items-center gap-1">
-                      Read document
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </FadeIn>
-              ))}
-            </div>
-
-            <div className="mt-16 pt-16 border-t border-slate-200">
-              <FadeIn>
-                <div className="mx-auto max-w-xl text-center">
-                  <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                    Contact
-                  </p>
-                  <h3 className="heading-md text-navy-900 mb-4">
-                    Emails and chapter contacts
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-8">
-                    National role addresses, chapter teams, and leadership inboxes
-                    live on one page so we keep details accurate and avoid repeating
-                    long lists here.
-                  </p>
-                  <Link href="/contact" className="btn-primary inline-flex">
-                    Contact &amp; emails
-                  </Link>
+                  <div className="min-w-0 pt-1">
+                    <h3 className="font-display mb-1 font-semibold text-navy-900">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
+                  </div>
                 </div>
               </FadeIn>
-            </div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Foundational Documents */}
+      <section
+        id="foundational-documents"
+        className="section-padding scroll-mt-32 bg-white"
+      >
+        <div className="section-container">
+          <FadeIn>
+            <div className="text-center mb-12">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Foundational Documents
+              </p>
+              <h2 className="heading-lg text-navy-900">
+                The shared framework behind SAIN
+              </h2>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {sainDocuments.map((document, i) => (
+              <FadeIn key={document.slug} delay={i * 0.1}>
+                <Link
+                  href={`/about/${document.slug}`}
+                  className="card p-6 h-full flex flex-col group"
+                >
+                  <span className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-3">
+                    {document.eyebrow}
+                  </span>
+                  <h4 className="font-display font-semibold text-2xl text-navy-900 group-hover:text-dutch-orange transition-colors mb-3">
+                    {document.title}
+                  </h4>
+                  <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                    {document.description}
+                  </p>
+                  <span className="mt-auto text-sm font-semibold text-dutch-orange flex items-center gap-1">
+                    Read document
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                      />
+                    </svg>
+                  </span>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="section-padding scroll-mt-32 bg-slate-50">
+        <div className="section-container">
+          <FadeIn>
+            <div className="mx-auto max-w-xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Contact
+              </p>
+              <h2 className="heading-md text-navy-900 mb-4">
+                Emails and chapter contacts
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed mb-8">
+                National role addresses, chapter teams, and leadership inboxes
+                live on one page so we keep details accurate and avoid repeating
+                long lists here.
+              </p>
+              <Link href="/contact" className="btn-primary inline-flex">
+                Contact &amp; emails
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -409,7 +416,7 @@ export default function AboutPage() {
       <section className="section-padding bg-navy-950">
         <div className="section-container">
           <FadeIn>
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
                 How We Work
               </p>

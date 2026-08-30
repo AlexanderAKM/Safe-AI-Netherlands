@@ -42,6 +42,7 @@ const navigation: NavItem[] = [
     children: [
       { name: "Mission", href: "/about#mission" },
       { name: "Leadership", href: "/about#team" },
+      { name: "National Team", href: "/about#national-team" },
       { name: "Advisory Board", href: "/about#advisory-board" },
       { name: "Our Journey", href: "/about#our-journey" },
       { name: "Foundational documents", href: "/about#foundational-documents" },
