@@ -1,3 +1,9 @@
+/**
+ * Onboarding form every chapter links to from its "Join our community" CTAs.
+ * Shared here so the form can be swapped in one place.
+ */
+export const COMMUNITY_JOIN_URL = "https://sainonboard.fillout.com/new";
+
 export type NationalContact = {
   label: string;
   detail: string;

@@ -5,6 +5,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { aisigTeam } from "@/data/aisigTeam";
 import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
 const groningenIsRecruiting = isChapterRecruiting("Groningen");
 
@@ -29,8 +30,6 @@ const discussionGroups = [
   },
 ];
 
-const ONBOARDING_FORM_URL =
-  "https://forms.gle/TTP2bFzi9Ej87vLi6";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const GRONINGEN_LINKTREE_URL = "https://linktr.ee/saingroningen";
 
@@ -132,12 +131,12 @@ export default function GroningenPage() {
           <FadeIn delay={0.28}>
             <div className="flex flex-wrap gap-3">
               <a
-                href={ONBOARDING_FORM_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join our community (Form)
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -565,21 +564,19 @@ export default function GroningenPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Start with the onboarding form (we&apos;ll follow up by email).
-              Please have an extremely low bar for filling this in!
-              Subscribe to the national Substack for articles and updates across
-              SAIN.
+              Fill in our onboarding form to get involved. Subscribe to the
+              national Substack for articles and updates across SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href={ONBOARDING_FORM_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join our community (Form)
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}

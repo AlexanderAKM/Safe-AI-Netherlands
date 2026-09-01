@@ -3,6 +3,7 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { hasOpenPositions } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
 const INFO_EMAIL = "info@safeainetherlands.org";
 
@@ -141,8 +142,8 @@ export default function GetInvolvedPage() {
       >
         <div className="section-container">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:items-center">
-            <FadeIn>
-              <div className="lg:col-span-2">
+            <FadeIn className="lg:col-span-2">
+              <div>
                 <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
                   Join the team
                 </p>
@@ -173,8 +174,8 @@ export default function GetInvolvedPage() {
                 )}
               </div>
             </FadeIn>
-            <FadeIn delay={0.1}>
-              <div className="lg:justify-self-end">
+            <FadeIn delay={0.1} className="lg:justify-self-end">
+              <div>
                 {hasOpenPositions ? (
                   <Link href="/open-positions" className="btn-primary">
                     See all open positions
@@ -292,6 +293,23 @@ export default function GetInvolvedPage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.3}>
+            <div className="mt-12 text-center">
+              <a
+                href={COMMUNITY_JOIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Join the community
+              </a>
+              <p className="mt-3 text-sm text-slate-400">
+                Choose the chapter and the
+                activities you want to take part in
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
