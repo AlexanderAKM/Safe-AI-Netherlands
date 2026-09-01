@@ -3,11 +3,10 @@ import FadeIn from "@/components/FadeIn";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import lumaPastEventsAmsterdamRaw from "@/data/lumaPastEventsAmsterdam.json";
 import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
 const amsterdamIsRecruiting = isChapterRecruiting("Amsterdam");
 
-const COMMUNITY_WHATSAPP_URL =
-  "https://chat.whatsapp.com/H6yoVLat0KY5nSTKNjHgZV";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const AMSTERDAM_LINKTREE_URL = "https://linktr.ee/sainamsterdam";
 
@@ -94,7 +93,7 @@ export default function AmsterdamPage() {
           <FadeIn delay={0.28}>
             <div className="flex flex-wrap gap-3 mb-8">
               <a
-                href={COMMUNITY_WHATSAPP_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -615,14 +614,14 @@ export default function AmsterdamPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Join our WhatsApp community to get involved. Subscribe to the
+              Fill in our onboarding form to get involved. Subscribe to the
               national Substack for articles and updates across SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href={COMMUNITY_WHATSAPP_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"

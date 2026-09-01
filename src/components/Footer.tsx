@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
 const footerLinks = {
   Organization: [
@@ -13,6 +14,7 @@ const footerLinks = {
     { name: "SAIN Utrecht", href: "/chapters/utrecht" },
   ],
   Connect: [
+    { name: "Onboarding form", href: COMMUNITY_JOIN_URL, external: true },
     { name: "Substack", href: "https://safeainetherlands.substack.com/", external: true },
     { name: "LinkedIn", href: "https://www.linkedin.com/company/safe-ai-netherlands/", external: true },
     { name: "Instagram", href: "https://www.instagram.com/sainetherlands/", external: true },
