@@ -3,6 +3,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
 import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
 const utrechtIsRecruiting = isChapterRecruiting("Utrecht");
 
@@ -120,9 +121,6 @@ const WIN4AISAFETY_DEVPOST_URL =
 const WIN4AISAFETY_PROMO_IMAGE =
   "/photos/events/utrecht/win4aisafety-summer-challenge.jpeg";
 
-const COMMUNITY_WHATSAPP_URL =
-  "https://chat.whatsapp.com/GCEf5Af8FRK6FuQN2pJfAP";
-
 const EDU_UTR_EMAIL = "eduutr@safeainetherlands.org";
 const EVENTS_UTR_EMAIL = "eventsutr@safeainetherlands.org";
 const INFO_UTR_EMAIL = "infoutr@safeainetherlands.org";
@@ -203,7 +201,7 @@ export default function UtrechtPage() {
           <FadeIn delay={0.28}>
             <div className="flex flex-wrap gap-3 mb-8">
               <a
-                href={COMMUNITY_WHATSAPP_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
@@ -1108,25 +1106,19 @@ export default function UtrechtPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Reach out to the chapter, subscribe to the national Substack for
-              updates across SAIN, or explore other ways to get involved.
+              Fill in our onboarding form to get involved. Subscribe to the
+              national Substack for articles and updates across SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href={`mailto:${INFO_UTR_EMAIL}?subject=${encodeURIComponent("SAIN Utrecht — Hello")}`}
-                className="btn-primary"
-              >
-                Email the chapter
-              </a>
-              <a
-                href={COMMUNITY_WHATSAPP_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary"
+                className="btn-primary"
               >
-                Join WhatsApp group
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -1134,7 +1126,7 @@ export default function UtrechtPage() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                National newsletter
+                National newsletter (Substack)
               </a>
               <a
                 href={UTRECHT_LINKTREE_URL}
@@ -1144,9 +1136,6 @@ export default function UtrechtPage() {
               >
                 All Utrecht links (Linktree)
               </a>
-              <Link href="/get-involved" className="btn-secondary">
-                More ways to get involved
-              </Link>
             </div>
           </FadeIn>
           <FadeIn delay={0.28}>
