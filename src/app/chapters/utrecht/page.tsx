@@ -4,51 +4,42 @@ import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
 
 const leadership = [
-  {
+    {
     name: "Riccardo Campanella",
     title: "Director",
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
-  },
-  {
+    },
+    {
     name: "Luca 'Dug' Dughera",
     title: "Event Lead",
     linkedin: "https://www.linkedin.com/in/luca-dughera/",
-  },
-  {
-    name: "Dimitra Tsolka",
-    title: "Public Relations Lead",
-    linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
-  },
-  {
+    },
+    {
+    name: "Carolien Tran",
+    title: "Discussion Group Lead",
+    linkedin: "https://www.linkedin.com/in/carolientran/",
+    },
+    {
+    name: "Elena Clacova",
+    title: "Communication lead",
+    linkedin: "https://www.linkedin.com/in/elenaclacova/",
+    },
+    {
     name: "Cem Kaya",
     title: "Research Operations",
     linkedin: "https://www.linkedin.com/in/cem-kaya-om8/",
-  },
-  {
-    name: "Elena Clacova",
-    title: "Social Media Specialist",
-    linkedin: "https://www.linkedin.com/in/elenaclacova/",
-  },
-  {
-    name: "Maria Mouratidi",
-    title: "Researcher",
-    linkedin: "https://www.linkedin.com/in/maria-mouratidi/",
-  },
-  {
+    },
+    {
+    name: "Dimitra Tsolka",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
+    },
+    {
     name: "Max Schaffelder",
     title: "Advisor",
     linkedin: "https://www.linkedin.com/in/maxschaffelder/",
-  },
-  {
-    name: "Leslie Spedner",
-    title: "Advisor",
-    linkedin: "https://www.linkedin.com/in/lesley-s-22602619b/",
-  },
-  {
-    name: "Thijmen van der Meijden",
-    title: "Facilitator",
-    linkedin: "https://www.linkedin.com/in/thijmen-van-der-meijden/",
-  },
+    },
+
 ] as const;
 
 const highlights = [
