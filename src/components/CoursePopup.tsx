@@ -4,16 +4,22 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import {
+  COURSE_POPUP_VERSION,
+  formatCityList,
+  openCourseApplications,
+} from "@/data/courseApplications";
 
 /* Master switch: set to false to hide the popup site-wide once applications
    close, without removing it from the home page. */
-const SHOW_COURSE_POPUP = true;
+const SHOW_COURSE_POPUP = openCourseApplications.length > 0;
 
-const COURSE_APPLICATION_URL =
-  "https://airtable.com/appniQ36V5jGH7C7Y/pagJh3wXI8a1VAewQ/form";
+/* Dismissals are stored per popup version, so bumping COURSE_POPUP_VERSION in
+   src/data/courseApplications.ts re-shows the popup to everyone who dismissed
+   the previous one. */
+const DISMISS_KEY = `sain:course-popup-dismissed:${COURSE_POPUP_VERSION}`;
 
-/* Bump the suffix whenever a new cohort opens so returning visitors see it again. */
-const DISMISS_KEY = "sain:course-popup-dismissed:2026-cohort";
+const cityList = formatCityList(openCourseApplications);
 
 const OPEN_DELAY_MS = 1500;
 
@@ -146,23 +152,33 @@ export default function CoursePopup() {
                 id="course-popup-description"
                 className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base"
               >
-                Apply today to SAIN’s 6-week courses in Amsterdam or Groningen, starting the week 
-                of September 7th. Learn fundamental concepts in AI safety and governance through 
+                Apply today to SAIN’s 6-week courses in {cityList}. Learn
+                fundamental concepts in AI safety and governance through
                 discussion-based sessions with others interested in the field. <br/>
                 Interested? Choose your local city to learn more & apply!
               </p>
+              <ul className="mt-5 space-y-1.5 text-sm text-slate-600">
+                {openCourseApplications.map((course) => (
+                  <li key={course.chapter}>
+                    <strong className="font-semibold text-navy-900">
+                      {course.chapter}
+                    </strong>{" "}
+                    — apply by {course.deadlines.participants} (
+                    {course.deadlines.facilitators} to facilitate)
+                  </li>
+                ))}
+              </ul>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-4 min-[480px]:justify-start">
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Link
-                    href="/chapters/amsterdam#programs" className="btn-primary"
-                  >
-                    Amsterdam
-                  </Link>
-                  <Link
-                    href="/chapters/groningen#programs" className="btn-primary"
-                  >
-                    Groningen
-                  </Link>
+                  {openCourseApplications.map((course) => (
+                    <Link
+                      key={course.chapter}
+                      href={course.href}
+                      className="btn-primary"
+                    >
+                      {course.chapter}
+                    </Link>
+                  ))}
                 </div>
                 <button
                   type="button"
