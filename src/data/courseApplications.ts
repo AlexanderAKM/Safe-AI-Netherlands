@@ -46,7 +46,7 @@ export const courseApplications: CourseApplication[] = [
     href: "/chapters/amsterdam#programs",
     open: false,
     closedNote:
-      "Applications for the next cohort will open mid-October.",
+      "Sign ups for the next cohort will open in October.",
   },
   {
     chapter: "Groningen",

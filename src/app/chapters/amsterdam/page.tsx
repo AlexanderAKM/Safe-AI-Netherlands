@@ -369,14 +369,9 @@ export default function AmsterdamPage() {
                     </a>
                   </>
                 ) : (
-                  <div className="mt-4 max-w-2xl rounded-xl border border-slate-200 bg-slate-50 p-5">
-                    <p className="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-                      Applications closed
-                    </p>
-                    <p className="text-slate-600 leading-relaxed">
-                      {courseApplication.closedNote}
-                    </p>
-                  </div>
+                  <p className="text-slate-600 leading-relaxed mt-4 max-w-2xl">
+                    Applications are closed. {courseApplication.closedNote}
+                  </p>
                 )}
               </div>
             </FadeIn>
