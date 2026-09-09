@@ -365,7 +365,7 @@ export default function AmsterdamPage() {
                       rel="noopener noreferrer"
                       className="btn-primary"
                     >
-                      Sign up here
+                      Sign up
                     </a>
                   </>
                 ) : (

@@ -531,7 +531,7 @@ export default function UtrechtPage() {
                       rel="noopener noreferrer"
                       className="btn-primary"
                     >
-                      Sign up here
+                      Sign up
                     </a>
                   </>
                 ) : (

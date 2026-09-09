@@ -330,7 +330,7 @@ export default function GroningenPage() {
                     rel="noopener noreferrer"
                     className="btn-primary"
                   >
-                    Sign up here
+                    Sign up
                   </a>
                 </>
               ) : (
