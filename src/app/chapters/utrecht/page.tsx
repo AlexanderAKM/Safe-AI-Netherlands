@@ -8,51 +8,42 @@ import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 const utrechtIsRecruiting = isChapterRecruiting("Utrecht");
 
 const leadership = [
-  {
+    {
     name: "Riccardo Campanella",
     title: "Director",
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
-  },
-  {
+    },
+    {
     name: "Luca 'Dug' Dughera",
     title: "Event Lead",
     linkedin: "https://www.linkedin.com/in/luca-dughera/",
-  },
-  {
-    name: "Dimitra Tsolka",
-    title: "Public Relations Lead",
-    linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
-  },
-  {
+    },
+    {
+    name: "Carolien Tran",
+    title: "Discussion Group Lead",
+    linkedin: "https://www.linkedin.com/in/carolientran/",
+    },
+    {
+    name: "Elena Clacova",
+    title: "Communication lead",
+    linkedin: "https://www.linkedin.com/in/elenaclacova/",
+    },
+    {
     name: "Cem Kaya",
     title: "Research Operations",
     linkedin: "https://www.linkedin.com/in/cem-kaya-om8/",
-  },
-  {
-    name: "Elena Clacova",
-    title: "Social Media Specialist",
-    linkedin: "https://www.linkedin.com/in/elenaclacova/",
-  },
-  {
-    name: "Maria Mouratidi",
-    title: "Researcher",
-    linkedin: "https://www.linkedin.com/in/maria-mouratidi/",
-  },
-  {
+    },
+    {
+    name: "Dimitra Tsolka",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
+    },
+    {
     name: "Max Schaffelder",
     title: "Advisor",
     linkedin: "https://www.linkedin.com/in/maxschaffelder/",
-  },
-  {
-    name: "Leslie Spedner",
-    title: "Advisor",
-    linkedin: "https://www.linkedin.com/in/lesley-s-22602619b/",
-  },
-  {
-    name: "Thijmen van der Meijden",
-    title: "Facilitator",
-    linkedin: "https://www.linkedin.com/in/thijmen-van-der-meijden/",
-  },
+    },
+
 ] as const;
 
 const highlights = [
@@ -115,11 +106,10 @@ const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const UTRECHT_LINKTREE_URL = "https://linktr.ee/sainutrecht";
 const UTRECHT_LINKEDIN_POSTS_URL =
   "https://www.linkedin.com/company/sain-utrecht/posts/";
-const WIN4AISAFETY_LUMA_URL = "https://luma.com/sain-j4kd";
 const WIN4AISAFETY_DEVPOST_URL =
-  "https://win4aisafety-sain-utrecht.devpost.com/?ref_feature=challenge&ref_medium=your-open-hackathons&ref_content=Upcoming";
-const WIN4AISAFETY_PROMO_IMAGE =
-  "/photos/events/utrecht/win4aisafety-summer-challenge.jpeg";
+  "https://win4aisafety-sain-utrecht.devpost.com/project-gallery";
+const WIN4AISAFETY_PROMO_WINNER =
+  "/photos/events/utrecht/win4AISafety_congrats_the_winners.jpg";
 
 const EDU_UTR_EMAIL = "eduutr@safeainetherlands.org";
 const EVENTS_UTR_EMAIL = "eventsutr@safeainetherlands.org";
@@ -314,56 +304,47 @@ export default function UtrechtPage() {
       </section>
 
       {/* Win4AISafety promo */}
-      <section className="section-padding bg-white border-b border-slate-200">
-        <div className="section-container">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto">
-              <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl text-center mb-4">
-                <a
-                  href={WIN4AISAFETY_DEVPOST_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-dutch-orange transition-colors"
-                >
-                  Win4AISafety — Open Research Summer Challenge
-                </a>
-              </h3>
-              <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-                <Image
-                  src={WIN4AISAFETY_PROMO_IMAGE}
-                  alt="Win4AISafety — Open Research Summer Challenge by SAIN Utrecht. Kicks-off event 6 July."
-                  width={1566}
-                  height={1197}
-                  sizes="(max-width: 768px) 100vw, 768px"
-                  className="w-full h-auto"
-                />
+        <section className="section-padding bg-white border-b border-slate-200">
+          <div className="section-container">
+            <FadeIn>
+              <div className="max-w-3xl mx-auto">
+                <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl text-center mb-4">
+                  <a
+                    href={WIN4AISAFETY_DEVPOST_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-dutch-orange transition-colors"
+                  >
+                    Win4AISafety — Open Research Summer Challenge
+                  </a>
+                </h3>
+                <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                  <Image
+                    src={WIN4AISAFETY_PROMO_WINNER}
+                    alt="Win4AISafety — Open Research Summer Challenge by SAIN Utrecht. Congratulations to the winners."
+                    width={1566}
+                    height={1197}
+                    sizes="(max-width: 768px) 100vw, 768px"
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="flex flex-wrap justify-center gap-3 mt-5">
+                  <a
+                    href={WIN4AISAFETY_DEVPOST_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                  >
+                    See the project gallery
+                  </a>
+                </div>
+                <p className="text-xs text-slate-500 text-center mt-3 max-w-md mx-auto leading-relaxed">
+                  Browse the submissions and results on Devpost.
+                </p>
               </div>
-              <div className="flex flex-wrap justify-center gap-3 mt-5">
-                <a
-                  href={WIN4AISAFETY_DEVPOST_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Register to participate
-                </a>
-                <a
-                  href={WIN4AISAFETY_LUMA_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline"
-                >
-                  Timeline &amp; Attend on-site
-                </a>
-              </div>
-              <p className="text-xs text-slate-500 text-center mt-3 max-w-md mx-auto leading-relaxed">
-                Register on Devpost to join the challenge. Use Luma for the
-                kick-off and on-site events.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+            </FadeIn>
+          </div>
+        </section>
 
       {/* Events */}
       <section id="events" className="section-padding bg-slate-50">
@@ -885,115 +866,77 @@ export default function UtrechtPage() {
 
           {/* Research */}
           <div className="mt-16 pt-16 border-t border-slate-100">
-            <FadeIn>
-              <div className="mb-8">
-                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                  Research
-                </p>
-                <h2 className="heading-lg text-navy-900 mb-4">
-                  Current research directions
-                </h2>
-                <p className="text-slate-500 max-w-2xl leading-relaxed">
-                  SAIN Utrecht is expanding from education toward a
-                  research-enabled hub — including early-stage work on red-teaming
-                  LLMs, safety evaluation, interpretability, and agent behavior.
-                  Chapter research isn&apos;t limited to these themes; connect via
-                  the{" "}
-                  <Link
-                    href="/research"
-                    className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
-                  >
-                    Research Hub
-                  </Link>{" "}
-                  for collaboration across SAIN.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.08}>
-              <div className="grid gap-4 max-w-3xl mb-8">
-                <div className="card p-6 flex flex-col">
-                  <span className="text-xs font-medium text-sky-800 bg-sky-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
-                    Upcoming
-                  </span>
-                  <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
-                    Research Hub launch
-                  </h3>
-                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                    October 2026
-                  </p>
-                </div>
-                <div className="card p-6 flex flex-col">
-                  <span className="text-xs font-medium text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
-                    Open challenge
-                  </span>
-                  <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
-                    <a
-                      href={WIN4AISAFETY_DEVPOST_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-dutch-orange transition-colors"
-                    >
-                      Win4AISafety — Open Research Summer Challenge
-                    </a>
-                  </h3>
-                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                    Call for new research directions for the SAIN Research Hub — a
-                    six-week multidisciplinary summer challenge to define scope,
-                    conduct research, and publish findings as a Substack post.
-                  </p>
-                  <div className="flex flex-wrap gap-3 mt-4">
-                    <a
-                      href={WIN4AISAFETY_DEVPOST_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary"
-                    >
-                      Register to participate
-                    </a>
-                    <a
-                      href={WIN4AISAFETY_LUMA_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-outline"
-                    >
-                      Timeline &amp; Attend on-site
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <p className="text-slate-600 mb-6 max-w-2xl leading-relaxed">
-                Members of SAIN Utrecht contributed to this research.
+          <FadeIn>
+            <div className="mb-8">
+              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
+                Research
               </p>
-              <div className="card p-6 max-w-3xl flex flex-col">
-                <span className="text-xs font-medium text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
-                  Publication
+              <h2 className="heading-lg text-navy-900 mb-4">
+                Current research directions
+              </h2>
+              <p className="text-slate-500 max-w-2xl leading-relaxed">
+                SAIN Utrecht is expanding from education toward a
+                research-enabled hub — including early-stage work on red-teaming
+                LLMs, safety evaluation, interpretability, and agent behavior.
+                Chapter research isn&apos;t limited to these themes; connect via
+                the{" "}
+                <Link
+                  href="/research"
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                >
+                  Research Hub
+                </Link>{" "}
+                for collaboration across SAIN.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.08}>
+            <div className="grid gap-4 max-w-3xl mb-8">
+              <div className="card p-6 flex flex-col">
+                <span className="text-xs font-medium text-sky-800 bg-sky-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
+                  Upcoming
                 </span>
-                <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl leading-snug">
-                  <a
-                    href="https://arxiv.org/abs/2507.17951"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-dutch-orange transition-colors"
-                  >
-                    Are LLM Belief Updates Consistent with Bayes&apos; Theorem?
-                  </a>
+                <h3 className="font-display font-semibold text-navy-900 text-lg leading-snug">
+                  Research Hub launch
                 </h3>
-                <p className="text-xs text-slate-400 mt-2">
-                  <a
-                    href="https://arxiv.org/abs/2507.17951"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-dutch-orange hover:text-dutch-orange-dark"
-                  >
-                    arXiv:2507.17951
-                  </a>
+                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                  October 2026
                 </p>
               </div>
-            </FadeIn>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <p className="text-slate-600 mb-6 max-w-2xl leading-relaxed">
+              Members of SAIN Utrecht contributed to this research.
+            </p>
+            <div className="card p-6 max-w-3xl flex flex-col">
+              <span className="text-xs font-medium text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-md self-start mb-3">
+                Publication
+              </span>
+              <h3 className="font-display font-semibold text-navy-900 text-lg md:text-xl leading-snug">
+                <a
+                  href="https://arxiv.org/abs/2507.17951"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-dutch-orange transition-colors"
+                >
+                  Are LLM Belief Updates Consistent with Bayes&apos; Theorem?
+                </a>
+              </h3>
+              <p className="text-xs text-slate-400 mt-2">
+                <a
+                  href="https://arxiv.org/abs/2507.17951"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-dutch-orange hover:text-dutch-orange-dark"
+                >
+                  arXiv:2507.17951
+                </a>
+              </p>
+            </div>
+          </FadeIn>
           </div>
         </div>
       </section>
