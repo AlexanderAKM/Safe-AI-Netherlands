@@ -52,14 +52,17 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  /* Served straight from public/ rather than rasterised on the fly. The old
+     /icon route used next/og, whose bundled font it cannot resolve on Windows,
+     so both `next dev` and `next build` failed there. A static SVG needs no
+     runtime and satisfies `output: export`. Still missing: a 180x180 PNG
+     apple-touch-icon, since iOS does not render SVG icons. */
   icons: {
     icon: [
-      { url: "/icon", sizes: "32x32", type: "image/png" },
       { url: "/sain-symbol.svg", type: "image/svg+xml" },
       { url: "/sain-symbol.svg", sizes: "any" },
     ],
-    shortcut: ["/icon"],
-    apple: [{ url: "/icon", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/sain-symbol.svg"],
   },
   openGraph: {
     title: "Safe AI Netherlands",
