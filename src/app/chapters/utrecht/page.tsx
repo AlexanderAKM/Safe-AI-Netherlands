@@ -4,8 +4,16 @@ import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
 import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import {
+  COURSE_APPLICATION_URL,
+  courseApplicationFor,
+} from "@/data/courseApplications";
 
 const utrechtIsRecruiting = isChapterRecruiting("Utrecht");
+
+// Course registration is seasonal; open and close it in
+// src/data/courseApplications.ts rather than editing the CTA below.
+const courseApplication = courseApplicationFor("Utrecht");
 
 const leadership = [
     {
@@ -489,6 +497,29 @@ export default function UtrechtPage() {
                 <h2 className="heading-lg text-navy-900">
                   AI Safety Fundamentals
                 </h2>
+                {courseApplication.open ? (
+                  <>
+                    <p className="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
+                      Sign up to participate in the upcoming courses or to become a
+                      facilitator!
+                      <br />
+                      Participant deadline: {courseApplication.deadlines.participants}.
+                      Facilitator deadline: {courseApplication.deadlines.facilitators}.
+                    </p>
+                    <a
+                      href={COURSE_APPLICATION_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                    >
+                      Sign up
+                    </a>
+                  </>
+                ) : (
+                  <p className="text-slate-600 leading-relaxed mt-4 max-w-2xl">
+                    Applications are closed. {courseApplication.closedNote}
+                  </p>
+                )}
               </div>
             </FadeIn>
 
