@@ -302,7 +302,7 @@ export default function GetInvolvedPage() {
                               Sign up
                             </a>
                           ) : (
-                            <p className="text-md text-slate-500">
+                            <p className="text-slate-500">
                               Applications are currently closed but sign ups for
                               the next cohort will re-open soon.
                             </p>
