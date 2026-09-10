@@ -598,7 +598,7 @@ export default function UtrechtPage() {
                       },
                       {
                         label: "Format",
-                        value: "Join any week",
+                        value: "On-site in Utrecht",
                       },
                       {
                         label: "Venue",
