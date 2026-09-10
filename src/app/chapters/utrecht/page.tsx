@@ -450,8 +450,7 @@ export default function UtrechtPage() {
                   <div className="rounded-xl border border-slate-200 bg-white h-[450px] flex items-center justify-center p-6">
                     <p className="text-sm text-slate-400 text-center max-w-md">
                       No past events in this list yet for the current academic
-                      year. Add entries in the chapter JSON snapshot or run the
-                      Utrecht Luma fetch script to sync from Luma.
+                      year.
                     </p>
                   </div>
                 )}
@@ -532,7 +531,19 @@ export default function UtrechtPage() {
                     students, researchers, engineers, and public-sector
                     participants — more than 100 across three editions. Each
                     week spotlights a different theme so newcomers can drop in
-                    and keep coming back for the next session.
+                    and keep coming back for the next session. During the 4th week, participants can choose to follow a technical or governance path.
+                    It is possible to participate in both paths, but the technical path is more demanding as it will introduce more advanced concepts.
+                    Each week pairs a lecture with a discussion group, and participants can also join the local community to continue the conversation.
+                    The discussion group schedule is available on{" "}
+                    <a
+                      href={LUMA_PUBLIC_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                    >
+                      our Luma page
+                    </a>
+                    .
                   </p>
 
                   <h3 className="font-display font-semibold text-navy-900 text-sm uppercase tracking-wider mb-3 pt-6 border-t border-slate-100">
@@ -542,38 +553,46 @@ export default function UtrechtPage() {
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">1.</span>
                       <span>
-                        <strong className="text-navy-900">Introduction</strong> — High-level overview of AI safety, why it matters now, capabilities &amp; diffusion, types of risks and solution families (technical &amp; governance).
+                        <strong className="text-navy-900">Introduction</strong> — High-level overview of AI safety, why it matters now, capabilities &amp; diffusion, types of risks and solution strategies (technical &amp; governance).
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">2.</span>
                       <span>
-                        <strong className="text-navy-900">Risks &amp; incidents</strong> — Social harms, frontier risks, misuse, loss of control; real-world cases and how research lags deployment.
+                        <strong className="text-navy-900">Types of risks &amp; incidents</strong> — Social harms, frontier risks, misuse, loss of control; real-world cases and how research lags deployment.
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">3.</span>
                       <span>
-                        <strong className="text-navy-900">Technical AI safety</strong> — Robustness &amp; jailbreaking, scalable oversight, alignment, evaluations, mechanistic interpretability.
+                        <strong className="text-navy-900">Why AI Safety is difficult</strong> — Industry incentives, funding gaps, expert disagreement, slow regulation vs. fast labs, geopolitical race dynamics.
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">4.</span>
-                      <span>
-                        <strong className="text-navy-900">Regulation &amp; governance</strong> — EU AI Act, accountability, lifecycle governance, evidence &amp; audits (e.g. NIST GOVERN–MAP–MEASURE–MANAGE), generative AI / GPAI obligations.
-                      </span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="text-dutch-orange font-semibold shrink-0">5.</span>
-                      <span>
-                        <strong className="text-navy-900">Why safety is hard</strong> — Industry incentives, funding gaps, expert disagreement, slow regulation vs. fast labs, geopolitical race dynamics.
-                      </span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="text-dutch-orange font-semibold shrink-0">6.</span>
-                      <span>
-                        <strong className="text-navy-900">Safety in practice</strong> — Red-teaming, checklists, tooling, pathways (fellowships, thesis topics, community) and bridge to hackathons &amp; deeper study.
-                      </span>
+                      <div>
+                        <span>
+                          <strong className="text-navy-900">Path specialization</strong> — You choose one or both of the following paths:
+                        </span>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                          <div className="bg-slate-50 rounded-xl p-5">
+                            <h4 className="font-display font-semibold text-navy-900 mb-2">
+                              Technical Path
+                            </h4>
+                            <p className="text-sm text-slate-500 leading-relaxed">
+                              Robustness &amp; jailbreaking, scalable oversight, alignment, evaluations, cybersecurity and agents.
+                            </p>
+                          </div>
+                          <div className="bg-slate-50 rounded-xl p-5">
+                            <h4 className="font-display font-semibold text-navy-900 mb-2">
+                              Governance Path
+                            </h4>
+                            <p className="text-sm text-slate-500 leading-relaxed">
+                              Regulations, the EU AI act, accountability, and international actors.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -586,26 +605,26 @@ export default function UtrechtPage() {
                   </h3>
                   <dl className="space-y-4">
                     {[
-                      { label: "Duration", value: "6 weeks" },
+                      { label: "Duration", value: "4 weeks" },
                       {
-                        label: "Sessions",
-                        value: "~60 minutes each",
-                      },
-                      {
-                        label: "Modular",
-                        value: "Join any week",
+                        label: "Workload",
+                        value: "1h readings + 1h lecture / week",
                       },
                       {
                         label: "Format",
-                        value: "Interactive: short input and Q&A",
+                        value: "On-site in Utrecht",
                       },
                       {
                         label: "Venue",
-                        value: "Utrecht University",
+                        value: "Utrecht University, Utrecht city center",
+                      },
+                      {
+                        label: "Certification",
+                        value: "Certificate upon attending all sessions. Discussion groups are optional. Participating in one of the two paths in week 4 is enough to get the certificate.",
                       },
                       {
                         label: "Audience",
-                        value: "Students, researchers, professionals",
+                        value: "Students, researchers, professionals. No previous background requested",
                       },
                     ].map((item) => (
                       <div key={item.label}>
