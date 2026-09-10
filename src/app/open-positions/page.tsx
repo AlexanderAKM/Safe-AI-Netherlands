@@ -88,6 +88,11 @@ function RoleCard({
                 {role.employment.badge}
               </span>
             ) : null}
+            {role.commitmentBadge ? (
+              <span className="ml-1 inline-flex items-center rounded-full bg-dutch-orange/10 px-2.5 py-0.5 text-xs font-semibold text-dutch-orange">
+                {role.commitmentBadge}
+              </span>
+            ) : null}
             {role.specialisationOf ? (
               <span className="ml-1 inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
                 Specialisation of {role.specialisationOf}

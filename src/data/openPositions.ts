@@ -117,6 +117,13 @@ export type Role = {
   scope: "chapter" | "national";
   reportsTo: string;
   timeCommitment: string;
+  /**
+   * Short pill shown next to the role title to flag the shape of the
+   * commitment, e.g. "Part-time". Shares the accent pill style with
+   * `employment.badge` but is independent of it: setting this does not mark
+   * the role as salaried or add the terms and benefits block.
+   */
+  commitmentBadge?: string;
   mission: string;
   responsibilities: string[];
   /**
@@ -268,7 +275,8 @@ export const ROLES: Record<string, Role> = {
     team: "events",
     scope: "chapter",
     reportsTo: "Chapter (Co-)Director",
-    timeCommitment: "6 to 10 hours per week, peaks around events",
+    timeCommitment: "6 to 10 hours per week",
+    commitmentBadge: "Part-time",
     mission:
       "Plan and execute the chapter's events. Maintain the chapter's event presence, attract speakers, organise community life. Identify opportunities for SAIN exposure to reach new audiences, strengthen the community, and inspire people into AI safety careers.",
     responsibilities: [
@@ -684,6 +692,7 @@ export const chapterPositions: ChapterPosting[] = [
     status: "open",
     postings: [
       { roleId: "events-lead" },
+      { roleId: "photographer" },
       { roleId: "community-manager" },
     ],
   },
