@@ -4,6 +4,18 @@ import { useState } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import { aisigTeam } from "@/data/aisigTeam";
+import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import {
+  COURSE_APPLICATION_URL,
+  courseApplicationFor,
+} from "@/data/courseApplications";
+
+const groningenIsRecruiting = isChapterRecruiting("Groningen");
+
+// Course registration is seasonal; open and close it in
+// src/data/courseApplications.ts rather than editing the CTA below.
+const courseApplication = courseApplicationFor("Groningen");
 
 const EDU_GRO_EMAIL = "edugro@safeainetherlands.org";
 const EVENTS_GRO_EMAIL = "eventsgro@safeainetherlands.org";
@@ -26,8 +38,6 @@ const discussionGroups = [
   },
 ];
 
-const ONBOARDING_FORM_URL =
-  "https://forms.gle/TTP2bFzi9Ej87vLi6";
 const NATIONAL_SUBSTACK_URL = "https://safeainetherlands.substack.com/";
 const GRONINGEN_LINKTREE_URL = "https://linktr.ee/saingroningen";
 
@@ -129,12 +139,12 @@ export default function GroningenPage() {
           <FadeIn delay={0.28}>
             <div className="flex flex-wrap gap-3">
               <a
-                href={ONBOARDING_FORM_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community (Form)
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -192,6 +202,32 @@ export default function GroningenPage() {
           </nav>
         </div>
       </section>
+
+      {/* Hiring callout */}
+      {groningenIsRecruiting ? (
+        <section className="bg-dutch-orange/5 border-b border-slate-200">
+          <div className="section-container py-6 md:py-8">
+            <FadeIn>
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+                <div className="flex-1">
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-dutch-orange">
+                    We&apos;re hiring
+                  </p>
+                  <p className="text-base md:text-lg text-navy-900">
+                   Help us build the chapter. Applications are reviewed {APPLICATION_REVIEW.phrase}.
+                  </p>
+                </div>
+                <Link
+                  href="/open-positions#chapter-groningen"
+                  className="btn-primary flex-shrink-0"
+                >
+                  See open roles
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      ) : null}
 
       {/* Events */}
       <section id="events" className="section-padding bg-slate-50">
@@ -279,6 +315,29 @@ export default function GroningenPage() {
               <h2 className="heading-lg text-navy-900">
                 AI Safety, Ethics, and Society
               </h2>
+              {courseApplication.open ? (
+                <>
+                  <p className="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
+                    Sign up to participate in the upcoming courses or to become a
+                    facilitator!
+                    <br />
+                    Participant deadline: {courseApplication.deadlines.participants}.
+                    Facilitator deadline: {courseApplication.deadlines.facilitators}.
+                  </p>
+                  <a
+                    href={COURSE_APPLICATION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                  >
+                    Sign up
+                  </a>
+                </>
+              ) : (
+                <p className="text-slate-600 leading-relaxed mt-4 max-w-2xl">
+                  Applications are closed. {courseApplication.closedNote}
+                </p>
+              )}
             </div>
           </FadeIn>
 
@@ -494,7 +553,7 @@ export default function GroningenPage() {
                   Research Hub.
                 </p>
                 <p>
-                  SAIN Groningen is co-directed by Alexander Müller and Thomas Brcic. We organise work across four teams: Education, Research,
+                  SAIN Groningen is directed by Tarteel Mohamed. We organise work across four teams: Education, Research,
                   Events, and PR. This is a structure other SAIN chapters are adopting as
                   they spin up.
                 </p>
@@ -536,21 +595,19 @@ export default function GroningenPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Start with the onboarding form (we&apos;ll follow up by email).
-              Please have an extremely low bar for filling this in!
-              Subscribe to the national Substack for articles and updates across
-              SAIN.
+              Fill in our onboarding form to get involved. Subscribe to the
+              national Substack for articles and updates across SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href={ONBOARDING_FORM_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join community (form)
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -558,7 +615,7 @@ export default function GroningenPage() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                National newsletter
+                National newsletter (Substack)
               </a>
               <a
                 href={GRONINGEN_LINKTREE_URL}

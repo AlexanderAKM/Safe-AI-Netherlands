@@ -3,6 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import {
+  ROLES,
+  isNationalRoleOpen,
+  nationalPosting,
+} from "@/data/openPositions";
+
+/** Shows the hiring banner only while the Research Operations Lead role is open. */
+const researchLeadIsOpen = isNationalRoleOpen("research-operations-lead");
 
 const publications = [
   {
@@ -108,6 +116,13 @@ const supervisors = [
     image: "/photos/supervisors/Guillame.jpg",
     agenda:
       "https://docs.google.com/document/d/1kr-lo1Qr_k7Yq3C1eoPg9gwFKlJ9PflTWqGrexA8Nxc/edit?usp=sharing",
+  },
+  {
+    name: "Ana Lucic",
+    position: "Assistant professor, University of Amsterdam",
+    image: "/photos/supervisors/Ana_Lucic.png",
+    agenda:
+      "https://docs.google.com/document/d/1IhPnQWQEN6ykshxW9B6xWehtfPwSl0B4T5HzrKyMnn8/edit?usp=sharing",
   },
 ];
 
@@ -217,6 +232,57 @@ export default function ResearchPage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* We're hiring — national Research Lead */}
+      {researchLeadIsOpen ? (
+        <section className="bg-white pt-10">
+          <div className="section-container">
+            <FadeIn>
+              <div className="flex flex-col gap-5 rounded-2xl border border-dutch-orange/30 bg-gradient-to-br from-dutch-orange/[0.06] to-transparent p-6 md:flex-row md:items-center md:justify-between md:p-7">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-dutch-orange/15 text-dutch-orange">
+                    <svg
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-dutch-orange">
+                      We&apos;re hiring
+                    </p>
+                    <h2 className="font-display text-xl font-semibold text-navy-900 md:text-2xl">
+                      {ROLES["research-operations-lead"].title}
+                    </h2>
+                    <p className="mt-1 max-w-xl text-sm leading-relaxed text-slate-600">
+                      A paid, full-time role leading the Research Hub across
+                      every SAIN chapter. Make it flourish end to end and build it into the place where Dutch AI
+                      safety research talent gets matched, mentored, and published.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-shrink-0 flex-wrap gap-3 md:justify-end">
+                  <Link
+                    href={`/open-positions#${nationalPosting.slug}`}
+                    className="btn-primary"
+                  >
+                    See position
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      ) : null}
 
       {/* How It Works */}
       <section id="how-it-works" className="section-padding bg-white">

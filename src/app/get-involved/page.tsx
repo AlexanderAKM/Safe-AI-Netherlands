@@ -1,15 +1,39 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { hasOpenPositions } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import {
+  COURSE_APPLICATION_URL,
+  courseApplications,
+  openCourseApplications,
+} from "@/data/courseApplications";
 
-const activities = [
+const INFO_EMAIL = "info@safeainetherlands.org";
+
+type Activity = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  details: string[];
+  cities: { name: string; href: string }[];
+  icon: ReactNode;
+  /* Set for activities that run in application cycles. Drives both the status
+     dots and the sign-up CTA, which share one intake form across chapters.
+     Which chapters are open lives in src/data/courseApplications.ts. */
+  tracksApplications?: boolean;
+};
+
+const activities: Activity[] = [
   {
     id: "courses",
     title: "Courses",
     subtitle: "AI Safety, Ethics, and Society",
     description:
-      "We facilitate a curriculum based on the Center for AI Safety course in two tracks: Technical and Governance. The course runs in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
+      "We facilitate a curriculum based on the Center for AI Safety course in two tracks: Technical and Governance. The courses are free and run in 6-week blocks with weekly readings and on-site discussion sessions, covering everything from mechanistic interpretability to AI policy.",
     details: [
       "Technical and Governance tracks",
       "6 weeks per block, 3-4 cohorts per year",
@@ -17,10 +41,11 @@ const activities = [
       "Certificate upon completion",
     ],
     cities: [
-      { name: "Groningen", href: "/chapters/groningen", active: true },
-      { name: "Amsterdam", href: "/chapters/amsterdam", active: true },
-      { name: "Utrecht", href: "/chapters/utrecht", active: true },
+      { name: "Groningen", href: "/chapters/groningen" },
+      { name: "Amsterdam", href: "/chapters/amsterdam" },
+      { name: "Utrecht", href: "/chapters/utrecht" },
     ],
+    tracksApplications: true,
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a23.838 23.838 0 0 0-2.471.261c.128.132.24.272.339.42a23.798 23.798 0 0 1 2.132-.68m15.482 0a23.838 23.838 0 0 1 2.471.261c-.128.132-.24.272-.339.42a23.798 23.798 0 0 0-2.132-.68M6.906 7.917A3.001 3.001 0 0 1 9 5.25h6a3.001 3.001 0 0 1 2.094 2.667m-9.188 0a23.936 23.936 0 0 1 9.188 0" />
@@ -40,9 +65,9 @@ const activities = [
       "Open to all levels of experience",
     ],
     cities: [
-      { name: "Groningen", href: "/chapters/groningen", active: true },
-      { name: "Amsterdam", href: "/chapters/amsterdam", active: true },
-      { name: "Utrecht", href: "/chapters/utrecht", active: true },
+      { name: "Groningen", href: "/chapters/groningen" },
+      { name: "Amsterdam", href: "/chapters/amsterdam" },
+      { name: "Utrecht", href: "/chapters/utrecht" },
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -63,9 +88,9 @@ const activities = [
       "TEDx presentations and conference talks",
     ],
     cities: [
-      { name: "Groningen", href: "/chapters/groningen", active: true },
-      { name: "Amsterdam", href: "/chapters/amsterdam", active: true },
-      { name: "Utrecht", href: "/chapters/utrecht", active: true },
+      { name: "Groningen", href: "/chapters/groningen" },
+      { name: "Amsterdam", href: "/chapters/amsterdam" },
+      { name: "Utrecht", href: "/chapters/utrecht" },
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -74,6 +99,22 @@ const activities = [
     ),
   },
 ];
+
+/* Dot beside a chapter in an activity's "Available in" list. An activity that
+   runs in application cycles is strictly open or closed; everything else just
+   runs, with no cycle to be outside of. A chapter missing from
+   courseApplications falls back to "Running" rather than claiming to be open. */
+function cityStatus(activity: Activity, cityName: string) {
+  const application = activity.tracksApplications
+    ? courseApplications.find((c) => c.chapter === cityName)
+    : undefined;
+
+  if (!application) return { dotClass: "bg-emerald-500", label: "Running" };
+
+  return application.open
+    ? { dotClass: "bg-emerald-500", label: "Applications open" }
+    : { dotClass: "bg-red-500", label: "Applications closed" };
+}
 
 export default function GetInvolvedPage() {
   return (
@@ -111,12 +152,18 @@ export default function GetInvolvedPage() {
           </FadeIn>
           <FadeIn delay={0.3}>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="mailto:info@safeainetherlands.org?subject=Joining SAIN"
-                className="btn-primary"
-              >
-                Join the team
-              </a>
+              {hasOpenPositions ? (
+                <Link href="/open-positions" className="btn-primary">
+                  See open positions
+                </Link>
+              ) : (
+                <a
+                  href={`mailto:${INFO_EMAIL}?subject=Joining SAIN`}
+                  className="btn-primary"
+                >
+                  Join the team
+                </a>
+              )}
               <a href="#activities" className="btn-outline">
                 Browse our activities
               </a>
@@ -125,34 +172,59 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      {/* Join the team */}
-      <section id="join-team" className="bg-slate-50 section-padding scroll-mt-32">
+      {/* Open positions pointer */}
+      <section
+        id={hasOpenPositions ? "open-positions" : "join-team"}
+        className="bg-slate-50 section-padding scroll-mt-32"
+      >
         <div className="section-container">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:items-center">
-            <FadeIn>
-              <div className="lg:col-span-2">
+            <FadeIn className="lg:col-span-2">
+              <div>
                 <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
                   Join the team
                 </p>
-                <h2 className="heading-lg mb-4 text-navy-900">
-                  There is always an open application
-                </h2>
-                <p className="text-slate-600 leading-relaxed max-w-2xl">
-                  SAIN is run by volunteers across Amsterdam, Utrecht, and
-                  Groningen. We do not always list specific roles, but if you are
-                  genuinely interested in contributing, send us your CV and a
-                  short motivation letter.
-                </p>
+                {hasOpenPositions ? (
+                  <>
+                    <h2 className="heading-lg mb-4 text-navy-900">
+                      Open positions across SAIN
+                    </h2>
+                    <p className="text-slate-600 leading-relaxed max-w-2xl">
+                      SAIN Amsterdam is building its founding team and SAIN
+                      Utrecht is hiring across most of its teams. Volunteer
+                      roles, three to ten hours per week. One short application
+                      form: name, CV, and a motivation letter.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="heading-lg mb-4 text-navy-900">
+                      There is always an open application
+                    </h2>
+                    <p className="text-slate-600 leading-relaxed max-w-2xl">
+                      SAIN is run by volunteers across Amsterdam, Utrecht, and
+                      Groningen. We do not always list specific roles, but if you
+                      are genuinely interested in contributing, send us your CV
+                      and a short motivation letter.
+                    </p>
+                  </>
+                )}
               </div>
             </FadeIn>
-            <FadeIn delay={0.1}>
-              <div className="lg:justify-self-end">
-                <a
-                  href="mailto:info@safeainetherlands.org?subject=Joining SAIN"
-                  className="btn-primary"
-                >
-                  Email info@safeainetherlands.org
-                </a>
+            <FadeIn delay={0.1} className="lg:justify-self-end">
+              <div>
+                {hasOpenPositions ? (
+                  <Link href="/open-positions" className="btn-primary">
+                    See all open positions
+                  </Link>
+                ) : (
+                  <a
+                    href={`mailto:${INFO_EMAIL}?subject=Joining SAIN`}
+                    className="btn-primary"
+                  >
+                    Email {INFO_EMAIL}
+                  </a>
+                )}
               </div>
             </FadeIn>
           </div>
@@ -218,39 +290,64 @@ export default function GetInvolvedPage() {
                           </li>
                         ))}
                       </ul>
+                      {activity.tracksApplications && (
+                        <div className="mt-6">
+                          {openCourseApplications.length > 0 ? (
+                            <a
+                              href={COURSE_APPLICATION_URL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-primary"
+                            >
+                              Sign up
+                            </a>
+                          ) : (
+                            <p className="text-slate-500">
+                              Applications are currently closed but sign ups for
+                              the next cohort will re-open soon.
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </div>
                     <div className="lg:border-l lg:border-slate-100 lg:pl-8">
                       <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
                         Available in
                       </h4>
                       <div className="space-y-3">
-                        {activity.cities.map((city) => (
-                          <Link
-                            key={city.name}
-                            href={city.href}
-                            className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-dutch-orange/5 transition-colors group"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className={`w-2 h-2 rounded-full ${city.active ? "bg-emerald-500" : "bg-amber-500"}`} />
-                              <span className="text-sm font-medium text-navy-900 group-hover:text-dutch-orange transition-colors">
-                                SAIN {city.name}
-                              </span>
-                            </div>
-                            <svg
-                              className="w-4 h-4 text-slate-300 group-hover:text-dutch-orange transition-colors"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth={2}
+                        {activity.cities.map((city) => {
+                          const status = cityStatus(activity, city.name);
+                          return (
+                            <Link
+                              key={city.name}
+                              href={city.href}
+                              className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-dutch-orange/5 transition-colors group"
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                              />
-                            </svg>
-                          </Link>
-                        ))}
+                              <div className="flex items-center gap-2">
+                                <span
+                                  className={`w-2 h-2 rounded-full ${status.dotClass}`}
+                                  title={status.label}
+                                />
+                                <span className="text-sm font-medium text-navy-900 group-hover:text-dutch-orange transition-colors">
+                                  SAIN {city.name}
+                                </span>
+                              </div>
+                              <svg
+                                className="w-4 h-4 text-slate-300 group-hover:text-dutch-orange transition-colors"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                />
+                              </svg>
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -258,6 +355,23 @@ export default function GetInvolvedPage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.3}>
+            <div className="mt-12 text-center">
+              <a
+                href={COMMUNITY_JOIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Join the community
+              </a>
+              <p className="mt-3 text-sm text-slate-400">
+                Choose the chapter and the
+                activities you want to take part in
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

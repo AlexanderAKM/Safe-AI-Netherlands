@@ -2,6 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import lumaPastEventsUtrechtRaw from "@/data/lumaPastEventsUtrecht.json";
+import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
+import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import {
+  COURSE_APPLICATION_URL,
+  courseApplicationFor,
+} from "@/data/courseApplications";
+
+const utrechtIsRecruiting = isChapterRecruiting("Utrecht");
+
+// Course registration is seasonal; open and close it in
+// src/data/courseApplications.ts rather than editing the CTA below.
+const courseApplication = courseApplicationFor("Utrecht");
 
 const leadership = [
     {
@@ -107,9 +119,6 @@ const WIN4AISAFETY_DEVPOST_URL =
 const WIN4AISAFETY_PROMO_WINNER =
   "/photos/events/utrecht/win4AISafety_congrats_the_winners.jpg";
 
-const COMMUNITY_WHATSAPP_URL =
-  "https://chat.whatsapp.com/GCEf5Af8FRK6FuQN2pJfAP";
-
 const EDU_UTR_EMAIL = "eduutr@safeainetherlands.org";
 const EVENTS_UTR_EMAIL = "eventsutr@safeainetherlands.org";
 const INFO_UTR_EMAIL = "infoutr@safeainetherlands.org";
@@ -190,12 +199,12 @@ export default function UtrechtPage() {
           <FadeIn delay={0.28}>
             <div className="flex flex-wrap gap-3 mb-8">
               <a
-                href={COMMUNITY_WHATSAPP_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Join Community
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -217,6 +226,55 @@ export default function UtrechtPage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Recruiting banner */}
+      {utrechtIsRecruiting ? (
+        <section className="bg-white">
+          <div className="section-container pt-8 md:pt-10">
+            <FadeIn>
+              <div className="flex flex-col gap-5 rounded-2xl border border-dutch-orange/30 bg-dutch-orange/5 p-6 shadow-sm md:flex-row md:items-center md:justify-between md:p-7">
+                <div className="flex items-start gap-4">
+                  <span className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-dutch-orange/15 text-dutch-orange">
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={1.8}
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-dutch-orange">
+                      We are recruiting
+                    </p>
+                    <h2 className="font-display text-xl font-semibold text-navy-900 md:text-2xl">
+                      Open roles at SAIN Utrecht
+                    </h2>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Help us grow the chapter. Applications are reviewed {APPLICATION_REVIEW.phrase}.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-shrink-0 flex-wrap gap-3 md:justify-end">
+                  <Link
+                    href="/open-positions#chapter-utrecht"
+                    className="btn-primary"
+                  >
+                    See open positions
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      ) : null}
 
       {/* In-page overview */}
       <section className="border-b border-slate-200 bg-white">
@@ -439,6 +497,29 @@ export default function UtrechtPage() {
                 <h2 className="heading-lg text-navy-900">
                   AI Safety Fundamentals
                 </h2>
+                {courseApplication.open ? (
+                  <>
+                    <p className="text-slate-600 leading-relaxed mt-4 mb-5 max-w-2xl">
+                      Sign up to participate in the upcoming courses or to become a
+                      facilitator!
+                      <br />
+                      Participant deadline: {courseApplication.deadlines.participants}.
+                      Facilitator deadline: {courseApplication.deadlines.facilitators}.
+                    </p>
+                    <a
+                      href={COURSE_APPLICATION_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary"
+                    >
+                      Sign up
+                    </a>
+                  </>
+                ) : (
+                  <p className="text-slate-600 leading-relaxed mt-4 max-w-2xl">
+                    Applications are closed. {courseApplication.closedNote}
+                  </p>
+                )}
               </div>
             </FadeIn>
 
@@ -999,25 +1080,19 @@ export default function UtrechtPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-slate-300 max-w-xl mx-auto mb-8">
-              Reach out to the chapter, subscribe to the national Substack for
-              updates across SAIN, or explore other ways to get involved.
+              Fill in our onboarding form to get involved. Subscribe to the
+              national Substack for articles and updates across SAIN.
             </p>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               <a
-                href={`mailto:${INFO_UTR_EMAIL}?subject=${encodeURIComponent("SAIN Utrecht — Hello")}`}
-                className="btn-primary"
-              >
-                Email the chapter
-              </a>
-              <a
-                href={COMMUNITY_WHATSAPP_URL}
+                href={COMMUNITY_JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary"
+                className="btn-primary"
               >
-                Join WhatsApp group
+                Join our community
               </a>
               <a
                 href={NATIONAL_SUBSTACK_URL}
@@ -1025,7 +1100,7 @@ export default function UtrechtPage() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
               >
-                National newsletter
+                National newsletter (Substack)
               </a>
               <a
                 href={UTRECHT_LINKTREE_URL}
@@ -1035,9 +1110,6 @@ export default function UtrechtPage() {
               >
                 All Utrecht links (Linktree)
               </a>
-              <Link href="/get-involved" className="btn-secondary">
-                More ways to get involved
-              </Link>
             </div>
           </FadeIn>
           <FadeIn delay={0.28}>

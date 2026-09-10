@@ -4,8 +4,8 @@
 *Date: 29/04/2026*  
 *Contact information: [research@safeainetherlands.org](mailto:research@safeainetherlands.org)*  
 *Authored by*  
-Alexander Müller (Co-Director)  
-Thomas Brcic (Co-Director)  
+Alexander Müller (Director)  
+Thomas Brcic (Former SAIN Groningen Co-Director)  
 Ilija Lichkovski (Research Lead)
 
 ## Purpose, Principles, and Scope
@@ -105,7 +105,7 @@ Although later sections spell roles and responsibilities out in more detail, we 
 
 ### Onboarding
 
-Every new researcher in the Research Hub should have a rough overview of current projects, groups, and supervisors, and get an explanation of this handbook and where it lives. If relevant, the researcher should get access to compute or other support. They should ideally join our [discord](https://discord.gg/f3KzXata), where they will receive the above relevant information and more.
+Every new researcher in the Research Hub should have a rough overview of current projects, groups, and supervisors, and get an explanation of this handbook and where it lives. If relevant, the researcher should get access to compute or other support. They should ideally join our Discord channel via our [onboarding form](https://sainonboard.fillout.com/new), after which they will receive the above relevant information and more.
 
 ### Research Proposal Stage
 
@@ -132,7 +132,7 @@ Once approved, either as a new project for open collaboration, to join an existi
   * For supervised research matching, a supervisor is formally assigned and a new research project is created in the discord.  
   * For joining an existing open research project, you are officially added to the project and are added to the discord.  
   * For a new research project, we add the project to our website, add you to the discord, and wait and promote to allow people to join.  
-* Expectations around **time commitment** (e.g., 5-10h/week vs. near full-time) and meeting cadence are set. We highly encourage communication through our [Discord channel](https://discord.gg/f3KzXata), although if preferred, other communications channels can be set.  
+* Expectations around **time commitment** (e.g., 5-10h/week vs. near full-time) and meeting cadence are set. We highly encourage communication through our Discord channel, which you can join via our [onboarding form](https://sainonboard.fillout.com/new); if preferred, other channels can be set.  
 * The project is registered internally and updated dynamically as the project progresses.  
 * The SAIN Research Team sets up a GitHub repository (if applicable) under the GitHub organization and gives proper access to the project members. 
 
@@ -148,7 +148,7 @@ During the project, the standard pattern is:
   * A form for researchers and supervisors to note what was tried, progress, next steps, etc.  
   * This ensures accountability and allows us to track how the projects are progressing.  
 * **Contact with Research Team**   
-  * Whenever necessary, anyone operating inside SAIN’s Research Hub can communicate with our Research Team. Main points of contact are [research@safeainetherlands.org](mailto:research@safeainetherlands.org) or the [Discord channel](https://discord.gg/f3KzXata). 
+  * Whenever necessary, anyone operating inside SAIN’s Research Hub can communicate with our Research Team. Main points of contact are [research@safeainetherlands.org](mailto:research@safeainetherlands.org) or our [Discord channel](https://sainonboard.fillout.com/new).
 
 ### Completion Phase
 
@@ -200,7 +200,7 @@ The following procedure applies to the supervisors:
 * Maintaining up-to-date documentation and this handbook.  
 * Onboarding new researchers and supervisors.  
 * Keeping track of Research Hub projects and outputs.  
-* Acting as a contact point via [research@safeainetherlands.org](mailto:research@safeainetherlands.org) or via the [Discord channel](https://discord.gg/f3KzXata).
+* Acting as a contact point via [research@safeainetherlands.org](mailto:research@safeainetherlands.org) or via the [Discord channel](https://sainonboard.fillout.com/new).
 
 ## Deliverables and Milestones
 
@@ -236,7 +236,7 @@ This applies mostly to technical projects.
 
 ## Communication Norms
 
-* Use agreed channels (ideally being the [Discord channel](https://discord.gg/f3KzXata)) for project communication.  
+* Use agreed channels (ideally our [Discord channel](https://sainonboard.fillout.com/new)) for project communication.  
 * Respond within a reasonable timeframe (e.g., 2-3 working days for non-urgent matters).  
 * For meetings (responsibility of the supervised researcher):  
   * Have a simple agenda.  
