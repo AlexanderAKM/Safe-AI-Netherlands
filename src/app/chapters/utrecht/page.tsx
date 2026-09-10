@@ -559,7 +559,7 @@ export default function UtrechtPage() {
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">2.</span>
                       <span>
-                        <strong className="text-navy-900">Types of Risks &amp; incidents</strong> — Social harms, frontier risks, misuse, loss of control; real-world cases and how research lags deployment.
+                        <strong className="text-navy-900">Types of risks &amp; incidents</strong> — Social harms, frontier risks, misuse, loss of control; real-world cases and how research lags deployment.
                       </span>
                     </li>
                     <li className="flex gap-2">
@@ -569,16 +569,30 @@ export default function UtrechtPage() {
                       </span>
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-dutch-orange font-semibold shrink-0">4a.</span>
-                      <span>
-                        <strong className="text-navy-900">Technical Path</strong> — Robustness &amp; jailbreaking, scalable oversight, alignment, evaluations, cybersecurity and agents.
-                      </span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="text-dutch-orange font-semibold shrink-0">4b.</span>
-                      <span>
-                        <strong className="text-navy-900">Governance Path</strong> — Regulations, the EU AI act, accountability, and international actors.
-                      </span>
+                      <span className="text-dutch-orange font-semibold shrink-0">4.</span>
+                      <div>
+                        <span>
+                          <strong className="text-navy-900">Path specialization</strong> — You choose one or both of the following paths:
+                        </span>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                          <div className="bg-slate-50 rounded-xl p-5">
+                            <h4 className="font-display font-semibold text-navy-900 mb-2">
+                              Technical Path
+                            </h4>
+                            <p className="text-sm text-slate-500 leading-relaxed">
+                              Robustness &amp; jailbreaking, scalable oversight, alignment, evaluations, cybersecurity and agents.
+                            </p>
+                          </div>
+                          <div className="bg-slate-50 rounded-xl p-5">
+                            <h4 className="font-display font-semibold text-navy-900 mb-2">
+                              Governance Path
+                            </h4>
+                            <p className="text-sm text-slate-500 leading-relaxed">
+                              Regulations, the EU AI act, accountability, and international actors.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
