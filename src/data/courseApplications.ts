@@ -19,7 +19,7 @@ export const COURSE_APPLICATION_URL =
  * changing this string re-shows the popup to everyone who dismissed the last
  * one. Bump it whenever the popup's cities or deadlines change.
  */
-export const COURSE_POPUP_VERSION = "2026-09-utrecht-groningen";
+export const COURSE_POPUP_VERSION = "2026-09-utrecht";
 
 export type ChapterName = "Amsterdam" | "Groningen" | "Utrecht";
 
@@ -51,8 +51,9 @@ export const courseApplications: CourseApplication[] = [
   {
     chapter: "Groningen",
     href: "/chapters/groningen#programs",
-    open: true,
-    deadlines: { participants: "11 September", facilitators: "10 September" },
+    open: false,
+    closedNote:
+      "Sign ups for the next cohort will open next semester.",
   },
   {
     chapter: "Utrecht",
