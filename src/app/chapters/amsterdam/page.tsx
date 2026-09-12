@@ -24,6 +24,8 @@ const courseApplication = courseApplicationFor("Amsterdam");
 const EDU_AMS_EMAIL = "eduams@safeainetherlands.org";
 const EVENTS_AMS_EMAIL = "eventsams@safeainetherlands.org";
 
+const ELLIS_URL = "https://ivi.fnwi.uva.nl/ellis/";
+
 const amsterdamContactByRole = [
   { label: "Formal collaboration", email: "infoams@safeainetherlands.org" },
   { label: "Community Manager", email: "cmams@safeainetherlands.org" },
@@ -128,6 +130,28 @@ export default function AmsterdamPage() {
                 All Amsterdam links (Linktree)
               </a>
             </div>
+          </FadeIn>
+          <FadeIn delay={0.36}>
+            <a
+              href={ELLIS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-4"
+              aria-label="Supported by ELLIS Unit Amsterdam — visit their website"
+            >
+              <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                Supported by
+              </span>
+              <span className="inline-flex items-center rounded-lg bg-white px-4 py-2.5 group-hover:bg-slate-100 transition-colors">
+                <img
+                  src="/logos/ellis.svg"
+                  alt="ELLIS Unit Amsterdam"
+                  className="h-7 md:h-8 w-auto"
+                  width={280}
+                  height={80}
+                />
+              </span>
+            </a>
           </FadeIn>
         </div>
       </section>
@@ -575,6 +599,45 @@ export default function AmsterdamPage() {
                     The chapter is co-directed by Ana Paula Castillo Rodriguez
                     and Andreea Chivu, with a structured team covering
                     Research, Education, Events, and PR.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.15}>
+              <div className="mt-12 pt-10 border-t border-slate-200">
+                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-5">
+                  Partners &amp; collaborations
+                </p>
+                <div className="card p-6 md:p-8">
+                  <a
+                    href={ELLIS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block group"
+                    aria-label="Visit the ELLIS Amsterdam website"
+                  >
+                    <img
+                      src="/logos/ellis.svg"
+                      alt="ELLIS"
+                      className="h-10 w-auto opacity-85 group-hover:opacity-100 transition-opacity"
+                    />
+                  </a>
+                  <p className="mt-5">
+                    <a
+                      href={ELLIS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-dutch-orange hover:text-dutch-orange-dark transition-colors"
+                    >
+                      ELLIS Unit Amsterdam
+                    </a>
+                    </p>
+                    <p>
+                    Part of the European Laboratory for Learning and
+                    Intelligent Systems, a network of research units across
+                    Europe. ELLIS supports SAIN Amsterdam by sharing our work
+                    through its established network and channels.
                   </p>
                 </div>
               </div>

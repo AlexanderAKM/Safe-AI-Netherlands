@@ -43,6 +43,21 @@ events. They just won't render.
 | `src/data/sainAmsTeam.ts` | Team roster (name + role tiles). |
 | `src/data/lumaPastEventsAmsterdam.json` | Snapshot of past Luma events. |
 | `scripts/fetch-luma-events-amsterdam.mjs` | Refresh script for the snapshot above. |
+| `public/logos/ellis.svg` | ELLIS logo, taken unmodified from their site. |
+
+### ELLIS
+
+ELLIS Unit Amsterdam supports the chapter by promoting our work through its
+network. It appears twice on this page, both linking to
+<https://ivi.fnwi.uva.nl/ellis/>:
+
+- a "Supported by" lockup in the hero, on a white chip because the logo's
+  wordmark is near-black and would vanish on the navy background;
+- a "Partners & collaborations" block at the end of the About section, with a
+  sentence describing the relationship.
+
+The markup is inline rather than a shared component — there is only one
+partner today. If a second one is added, factor it out.
 
 ### Upcoming events
 
