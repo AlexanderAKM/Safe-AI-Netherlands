@@ -124,6 +124,13 @@ const supervisors = [
     agenda:
       "https://docs.google.com/document/d/1IhPnQWQEN6ykshxW9B6xWehtfPwSl0B4T5HzrKyMnn8/edit?usp=sharing",
   },
+  {
+    name: "Leon Eshuijs",
+    position: "PhD student, Vrije Universiteit Amsterdam",
+    image: "/photos/supervisors/Leon_Eshuijs.png",
+    agenda:
+      "https://docs.google.com/document/d/122Bvbp-Om_6-KKq8f_DorvbDnEXYEzcNrsvVPbmpa2o/edit?usp=drivesdk",
+  },
 ];
 
 const RESEARCH_EMAIL = "research@safeainetherlands.org";
