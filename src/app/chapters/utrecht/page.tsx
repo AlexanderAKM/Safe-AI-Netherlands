@@ -552,43 +552,67 @@ export default function UtrechtPage() {
                   <ul className="space-y-2.5 text-sm text-slate-600 leading-snug">
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">1.</span>
-                      <span>
-                        <strong className="text-navy-900">Introduction</strong> — High-level overview of AI safety, why it matters now, capabilities &amp; diffusion, types of risks and solution strategies (technical &amp; governance).
-                      </span>
+                      <div>
+                        <strong className="text-navy-900">Introduction</strong>
+                        <p className="mt-0.5 text-xs text-navy-600">
+                          Wed 23 Sep · 18:00–19:00 · Janskerkhof 2-3, Room 0.19
+                        </p>
+                        <p className="mt-1">
+                          High-level overview of AI safety, why it matters now, capabilities &amp; diffusion, types of risks, and solution strategies (technical &amp; governance).
+                        </p>
+                      </div>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">2.</span>
-                      <span>
-                        <strong className="text-navy-900">Types of risks &amp; incidents</strong> — Social harms, frontier risks, misuse, loss of control; real-world cases and how research lags deployment.
-                      </span>
+                      <div>
+                        <strong className="text-navy-900">Types of risks &amp; incidents</strong>
+                        <p className="mt-0.5 text-xs text-navy-600">
+                          Wed 30 Sep · 18:00–19:00 · Janskerkhof 2-3, Room 0.19
+                        </p>
+                        <p className="mt-1">
+                          Social harms, frontier risks, misuse, loss of control; real-world cases and how research lags behind deployment.
+                        </p>
+                      </div>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">3.</span>
-                      <span>
-                        <strong className="text-navy-900">Why AI Safety is difficult</strong> — Industry incentives, funding gaps, expert disagreement, slow regulation vs. fast labs, geopolitical race dynamics.
-                      </span>
+                      <div>
+                        <strong className="text-navy-900">Why AI safety is difficult</strong>
+                        <p className="mt-0.5 text-xs text-navy-600">
+                          Wed 7 Oct · 18:00–19:00 · Janskerkhof 15A, Room 101
+                        </p>
+                        <p className="mt-1">
+                          Industry incentives, funding gaps, expert disagreement, slow regulation vs. fast labs, geopolitical race dynamics.
+                        </p>
+                      </div>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-dutch-orange font-semibold shrink-0">4.</span>
                       <div>
                         <span>
-                          <strong className="text-navy-900">Path specialization</strong> — You choose one or both of the following paths:
+                          <strong className="text-navy-900">Path specialization</strong> — You can choose one or both of the following paths:
                         </span>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                           <div className="bg-slate-50 rounded-xl p-5">
-                            <h4 className="font-display font-semibold text-navy-900 mb-2">
-                              Technical Path
+                            <h4 className="font-display font-semibold text-navy-900">
+                              Technical AI safety path
                             </h4>
-                            <p className="text-sm text-slate-500 leading-relaxed">
-                              Robustness &amp; jailbreaking, scalable oversight, alignment, evaluations, cybersecurity and agents.
+                            <p className="mt-0.5 text-xs text-navy-600">
+                              Wed 14 Oct · 18:00–19:00 · Janskerkhof 2-3, Room 0.19
+                            </p>
+                            <p className="mt-1 text-sm text-slate-500 leading-relaxed">
+                              Jailbreaking, the scalable oversight problem, RLHF and reward signals.
                             </p>
                           </div>
                           <div className="bg-slate-50 rounded-xl p-5">
-                            <h4 className="font-display font-semibold text-navy-900 mb-2">
-                              Governance Path
+                            <h4 className="font-display font-semibold text-navy-900">
+                              Governance path
                             </h4>
-                            <p className="text-sm text-slate-500 leading-relaxed">
-                              Regulations, the EU AI act, accountability, and international actors.
+                            <p className="mt-0.5 text-xs text-navy-600">
+                              Thu 15 Oct · 18:00–19:00 · Drift 23, Room 103
+                            </p>
+                            <p className="mt-1 text-sm text-slate-500 leading-relaxed">
+                              Overview of the EU AI Act, accountability in AI systems, international actors in AI safety.
                             </p>
                           </div>
                         </div>
