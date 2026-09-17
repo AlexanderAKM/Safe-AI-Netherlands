@@ -23,7 +23,7 @@ const leadership = [
     },
     {
     name: "Luca 'Dug' Dughera",
-    title: "Event Lead",
+    title: "Events Lead",
     linkedin: "https://www.linkedin.com/in/luca-dughera/",
     },
     {

@@ -4,6 +4,7 @@ import FadeIn from "@/components/FadeIn";
 import {
   APPLICATION_REVIEW,
   APPLICATION_TIMELINE,
+  OPEN_POSITION_FORM_VALUE,
   ROLES,
   TEAM_LABELS,
   TEAM_ORDER,
@@ -308,9 +309,11 @@ function RoleCard({
           <span className="self-center text-xs text-slate-400">
             {applyUrlOverride
               ? ""
-              : role.specialisationOf
-                ? `Pre-fills the form's "${role.specialisationOf}" option. Mention "${role.title}" in your motivation letter.`
-                : "Opens the application form, pre-filled with this role."}
+              : role.formRoleValue === OPEN_POSITION_FORM_VALUE
+                ? `Apply under "${OPEN_POSITION_FORM_VALUE}" in the form and mention "${role.title}" in your motivation letter.`
+                : role.specialisationOf
+                  ? `Pre-fills the form's "${role.specialisationOf}" option. Mention "${role.title}" in your motivation letter.`
+                  : "Opens the application form, pre-filled with this role."}
           </span>
         </div>
       </div>
