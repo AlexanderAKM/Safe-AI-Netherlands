@@ -9,7 +9,7 @@ import {
   nationalPosting,
 } from "@/data/openPositions";
 
-/** Shows the hiring banner only while the Research Operations Lead role is open. */
+/** Shows the hiring banner only while the Head of Projects role is open. */
 const researchLeadIsOpen = isNationalRoleOpen("research-operations-lead");
 
 const publications = [
@@ -274,8 +274,9 @@ export default function ResearchPage() {
                     </h2>
                     <p className="mt-1 max-w-xl text-sm leading-relaxed text-slate-600">
                       A paid, full-time role leading the Research Hub across
-                      every SAIN chapter. Make it flourish end to end and build it into the place where Dutch AI
-                      safety research talent gets matched, mentored, and published.
+                      every SAIN chapter. Take it from exists to flourishing, and
+                      be the person accountable for how many projects reach a
+                      finished, valuable state.
                     </p>
                   </div>
                 </div>
