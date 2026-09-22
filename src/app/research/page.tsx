@@ -135,6 +135,8 @@ const supervisors = [
 
 const RESEARCH_EMAIL = "research@safeainetherlands.org";
 const RESEARCH_INTEREST_FORM_URL = "https://forms.gle/na3wbBR4V1YVHAnFA";
+const SUPERVISOR_INTEREST_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScpE5jSBGAihD_8qJn7wRWdEFGieYQdLaPUZ8JiZyUVpn519g/viewform";
 
 const hubFeatures = [
   {
@@ -429,11 +431,13 @@ export default function ResearchPage() {
                 </h3>
                 <p className="text-sm text-slate-500 leading-relaxed mb-5">
                   If you are interested in supervising AI Safety research
-                  projects through SAIN, email the Research Hub and we&apos;ll
-                  follow up with next steps.
+                  projects through SAIN, fill in the supervisor form and
+                  we&apos;ll follow up with next steps.
                 </p>
                 <a
-                  href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: becoming a supervisor")}`}
+                  href={SUPERVISOR_INTEREST_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary"
                 >
                   Become a supervisor
@@ -539,11 +543,13 @@ export default function ResearchPage() {
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed mb-5">
                   If you are interested in supervising AI Safety research
-                  projects through SAIN, email the Research Hub and we&apos;ll
-                  follow up with next steps.
+                  projects through SAIN, fill in the supervisor form and
+                  we&apos;ll follow up with next steps.
                 </p>
                 <a
-                  href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: becoming a supervisor")}`}
+                  href={SUPERVISOR_INTEREST_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary"
                 >
                   Become a supervisor
