@@ -32,12 +32,12 @@ export const APPLICATION_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfp_XJWTbIUzf7szLlq4pe_RXUYxeK8B1SzKt5TUwkREmINtA/viewform";
 
 /**
- * Application form for the Research Operations Lead role only.
+ * Application form for the Head of Projects role only.
  *
  * National roles do not go through the chapter Google Form: each one has its
  * own form, because the questions are role-specific rather than
- * chapter-and-role shaped. This Airtable form is for the Research Operations
- * Lead and nothing else — give any future national role its own URL rather
+ * chapter-and-role shaped. This Airtable form is for the Head of Projects
+ * and nothing else — give any future national role its own URL rather
  * than reusing this one.
  */
 export const RESEARCH_OPERATIONS_LEAD_APPLICATION_FORM_URL =
@@ -277,7 +277,7 @@ export const ROLES: Record<string, Role> = {
         "Facilitation (drawing out quieter voices, gently containing dominators), genuine curiosity, comfort moderating without dominating, reliability week to week.",
     },
     collaborations:
-      "Education Lead, fellow Discussion Leads, Communications Lead, National Research Operations Lead and chapter Research Operations.",
+      "Education Lead, fellow Discussion Leads, Communications Lead, Head of Projects and chapter Research Operations.",
   },
 
   "events-lead": {
@@ -585,49 +585,45 @@ export const ROLES: Record<string, Role> = {
 
   "research-operations-lead": {
     id: "research-operations-lead",
-    title: "Research Operations Lead",
+    title: "Head of Projects",
     team: "research",
     scope: "national",
-    reportsTo: "Director",
+    reportsTo: "Executive Director",
     timeCommitment:
       "Full-time (1.0 FTE), 40 hours per week, 5 day week",
     mission:
-      "The SAIN Research Hub already exists: supervisors, projects, and a first cohort of researchers. Your job is to make it flourish end to end and build it into the place where Dutch AI safety research talent gets matched, mentored, and published, with output credible enough that researchers and policymakers cite it. You lead the volunteer Research Operations teams in each chapter city and are responsible for the Hub's results. You report directly to the Director and have a budget for the Hub's operations. We are just starting up, so you will be part of the small national team working at SAIN. This role is heavy on project management rather than research insight.",
+      "Hundreds of people in the Netherlands finish an AI safety course each year, and almost none go on to do anything with it. The Research Hub exists to close that gap: it is where someone who has done a course or two makes their first real contribution, whether that is a paper, a policy submission, an eval, a tool, or a Dutch-language resource. You run both of its tracks, supervised projects and open collaboration, and you are accountable for how many reach a finished, valuable state. Today the Hub has a few supervisors, a few completed projects, and volunteer teams in three chapter cities. Your job is to make it flourish. As the fourth person on SAIN's national team, you own its strategy, budget, and volunteer teams. The work is project management and relationship-building: you do not need to be the smartest researcher in the room, you need to be the person who makes sure fifty projects actually get finished.",
     responsibilities: [
-      "Set and hold the strategic direction of the Research Hub together with leadership and the Advisory Board.",
-      // "Run the supervised research programme: recruit experienced supervisors (typically PhD and beyond), source projects, select and match applicants, and keep projects on track through to a finished, publishable output (anywhere from conference-level to a blog post).",
-      // "Run the open collaboration programme: review proposals from researchers who arrive with their own project idea, decide what runs under SAIN's name, connect the right people with each other, and support those projects to completion.",
-      "Proactively recruit supervisors and source projects.",
-      "Run the application process; match researchers to supervisors and projects.",
-      "Monitor active projects, unblock problems as they arise, and intervene when something stalls.",
-      "Recruit, onboard, and manage the volunteer Research Operations teams in each chapter city; maintain continuity across academic-year turnover.",
+      "Set and hold the strategic direction of the Research Hub, together with leadership and the Advisory Board.",
+      "Proactively recruit supervisors and source projects, across research, policy and technical work.",
+      "Run the application process; match people to supervisors and projects.",
+      "Monitor active projects and intervene when they stall.",
+      "Recruit, onboard and manage the Research Operations teams in each chapter; maintain continuity across academic-year turnover.",
       "Work with Communications to publish and promote the Hub's output; maintain the Research Hub Handbook; track and report Hub metrics.",
     ],
     goodFitIf: [
       "Have demonstrated experience managing a team, volunteers, or junior researchers.",
-      "Are familiar with the field of AI safety, both the technical and the governance/policy side.",
-      "Are comfortable working with senior people in academia, industry, and government.",
-      "Enjoy working in a start-up setting.",
+      "Have a track record of chasing things to a finished state without being asked. Being proactive is very important.",
+      "Are familiar with the field of AI safety, on both the technical and the governance/policy side.",
+      "Are comfortable working with senior people in academia, industry and government.",
     ],
     alsoStrong: [
-      "Published AI safety research.",
+      "Published AI safety research, or shipped policy or technical work in the field.",
       "Familiarity with the Dutch academic and policy landscape.",
       "Professional working proficiency in Dutch.",
     ],
     collaborations:
-      "Director, Advisory Board, technical advisors, chapter Research Operations volunteers, supervisors, researchers, Communications.",
+      "Executive Director, Advisory Board, technical advisors, chapter Research Operations volunteers, supervisors, researchers and project contributors, Communications.",
     employment: {
       badge: "Paid - Full-time",
       location:
-        "Amsterdam, hybrid with a minimum of 3 days in office, plus regular travel to SAIN chapter cities within the Netherlands",
+        "Amsterdam, with regular travel to SAIN chapter cities within the Netherlands",
       salary: "€50k-€60k gross per year",
-      contract: "1-year contract, 40h, 5-day week",
+      contract: "One-year contract, 40h, 5-day week",
       startDate: "As soon as possible",
       benefits: [
         "8% holiday allowance",
-        "Unlimited holidays",
-        "Travel allowance and opportunities to attend national and international conferences",
-        "Hybrid working setup (minimum 3 days in office)",
+        "Flexible additional leave",
         "A budget for the Research Hub's operations",
       ],
     },
@@ -644,7 +640,7 @@ export const ROLES: Record<string, Role> = {
     title: "Research Operations",
     team: "research",
     scope: "national",
-    reportsTo: "Research Operations Lead",
+    reportsTo: "Head of Projects",
     timeCommitment:
       "2 hours per week in quiet times to 8 hours per week when many supervisors and researchers are onboarded",
     mission:
@@ -666,7 +662,7 @@ export const ROLES: Record<string, Role> = {
         "Reliability, attention to detail, comfort with admin work.",
     },
     collaborations:
-      "Research Operations Lead, supervisors, researchers.",
+      "Head of Projects, supervisors, researchers.",
   },
   "education-lead-technical": {
     id: "education-lead-technical",
