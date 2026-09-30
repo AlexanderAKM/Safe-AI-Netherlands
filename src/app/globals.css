@@ -42,10 +42,12 @@
   --color-dutch-orange-50: #fff5ed;
   --color-dutch-orange-100: #ffe4cc;
 
-  /* IBM Plex Serif for editorial text; Archivo for body copy and interface labels. */
-  --font-serif: var(--font-plex-serif), Georgia, serif;
-  --font-sans: var(--font-archivo), system-ui, sans-serif;
-  --font-display: var(--font-plex-serif), Georgia, serif;
+  /* League Spartan for headings and editorial text; Poppins for body copy and
+     interface labels. The token keeps the name `serif` so every heading call
+     site (`font-serif`) follows it without being renamed. */
+  --font-serif: var(--font-league-spartan), system-ui, sans-serif;
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
+  --font-display: var(--font-league-spartan), system-ui, sans-serif;
 
   /* Published type roles.
 
@@ -95,6 +97,7 @@
   --text-heading: clamp(1.781rem, 0.66vw + 1.625rem, 2.156rem);
   --text-heading--line-height: 1.14;
   --text-heading--letter-spacing: -0.012em;
+  --text-heading--font-weight: 600;
 
   /* 24 -> 28.5. The quieter turns: community, careers, research subsections. */
   --text-heading-sm: clamp(1.5rem, 0.5vw + 1.381rem, 1.781rem);
@@ -110,6 +113,7 @@
   --text-display: clamp(2.25rem, 1.33vw + 1.94rem, 3rem);
   --text-display--line-height: 1.07;
   --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 600;
 
   --container-copy-narrow: 620px;
   --container-copy: 720px;
@@ -294,9 +298,10 @@
   }
 }
 
-/* The Square Kicker Rule: IBM Plex Serif italic, never tracked, never uppercase. */
+/* The Square Kicker Rule: Poppins italic, never tracked, never uppercase.
+   League Spartan has no italic, so the kicker moves to the body family. */
 @utility kicker {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-style: italic;
   font-weight: 400;
 }
@@ -304,7 +309,7 @@
 /* Section turns. 32/38px, one Display per page (the hero h1). */
 @utility sain-heading {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: 32px;
   line-height: 1.15;
   letter-spacing: -0.012em;
@@ -316,7 +321,7 @@
 }
 
 /* -----------------------------------------------------------------------------
-   Buttons. Square. Archivo. No shadow.
+   Buttons. Square. Poppins. No shadow.
 ----------------------------------------------------------------------------- */
 
 /* Orange is the identity of joining. Never invert it to navy on hover.
@@ -508,17 +513,17 @@
 }
 
 @utility heading-xl {
-  @apply font-serif font-normal text-4xl md:text-5xl lg:text-[46px] lg:leading-[52px];
+  @apply font-serif font-semibold text-4xl md:text-5xl lg:text-[46px] lg:leading-[52px];
   letter-spacing: -0.015em;
 }
 
 @utility heading-lg {
-  @apply font-serif font-normal text-[32px] leading-[1.15] md:text-[38px] md:leading-[43px];
+  @apply font-serif font-semibold text-[32px] leading-[1.15] md:text-[38px] md:leading-[43px];
   letter-spacing: -0.012em;
 }
 
 @utility heading-md {
-  @apply font-serif font-normal text-2xl md:text-[28px] md:leading-[34px];
+  @apply font-serif font-medium text-2xl md:text-[28px] md:leading-[34px];
   letter-spacing: -0.01em;
 }
 
@@ -550,8 +555,14 @@
   h5,
   h6 {
     font-family: var(--font-serif);
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.012em;
+  }
+
+  /* League Spartan reads thin at 400, so heading-family text defaults to
+     medium. In the base layer, so an explicit weight utility still wins. */
+  .font-serif {
+    font-weight: 500;
   }
 }
 

@@ -408,7 +408,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
 
         if (block.type === "ordered-list") {
           /* The course outline row from design.md: a top hairline per row, the
-             numeral in Archivo at orange-ink in a 22px column. Ordering is the
+             numeral in Poppins at orange-ink in a 22px column. Ordering is the
              one place a number carries meaning, so it is the one place the
              orange goes. */
           return (

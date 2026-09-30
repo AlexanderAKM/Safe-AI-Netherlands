@@ -121,7 +121,7 @@ const proposalElements = [
    two digits the contents list and the rail carry. It exists because the
    document cross-references itself by number, and a reader who has scrolled
    past a heading needs a visible referent to know they are in section 4. It is
-   not a kicker: Archivo at the index role, never serif, never a sentence. */
+   not a kicker: Poppins at the index role, never serif, never a sentence. */
 function Chapter({
   id,
   index,

@@ -1,7 +1,7 @@
 /* The course outline row from design.md, reused for the things a reader has to
    assemble before they apply: a top hairline per row, the number in a 22px
    column set in orange-ink (the letterform orange, which clears AA on white
-   and on cream), the line itself in Archivo at 14.5/20.
+   and on cream), the line itself in Poppins at 14.5/20.
 
    An index is two digits doing wayfinding. If a number here ever has to carry
    a sentence, this is the wrong component. */

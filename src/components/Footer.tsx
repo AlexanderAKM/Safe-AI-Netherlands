@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
-/* Inverse navy close. IBM Plex Serif italic for the stichting line and the
-   column titles, Archivo for the links. One bottom rule, then the legal line
+/* Inverse navy close. Poppins italic for the stichting line and the
+   column titles, Poppins for the links. One bottom rule, then the legal line
    and the cities. No second logo treatment.
 
    The nav above carries three routes only, so the footer carries the whole

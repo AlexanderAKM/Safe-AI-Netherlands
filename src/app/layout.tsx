@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Serif } from "next/font/google";
+import { League_Spartan, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CoursePopup from "@/components/CoursePopup";
 
-/* IBM Plex Serif gives headings and editorial labels their scholarly voice. */
-const plexSerif = IBM_Plex_Serif({
+/* League Spartan for headings and editorial lines, as on the original site. */
+const leagueSpartan = League_Spartan({
   subsets: ["latin"],
-  variable: "--font-plex-serif",
+  variable: "--font-league-spartan",
+  display: "swap",
+});
+
+/* Poppins for body copy and interface; its italic carries the kickers. */
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
   display: "swap",
   style: ["normal", "italic"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-/* Archivo is the work: everything you read as a sentence of interface. */
-const archivo = Archivo({
-  subsets: ["latin"],
-  variable: "--font-archivo",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -107,7 +107,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${plexSerif.variable} ${archivo.variable}`}
+      className={`scroll-smooth ${leagueSpartan.variable} ${poppins.variable}`}
     >
       <head>
         <link rel="prefetch" href="/about" />
