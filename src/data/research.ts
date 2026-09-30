@@ -234,3 +234,6 @@ export const supervisors: Supervisor[] = [
 
 export const RESEARCH_EMAIL = "research@safeainetherlands.org";
 export const RESEARCH_INTEREST_FORM_URL = "https://forms.gle/na3wbBR4V1YVHAnFA";
+/* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */
+export const SUPERVISOR_INTEREST_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScpE5jSBGAihD_8qJn7wRWdEFGieYQdLaPUZ8JiZyUVpn519g/viewform";

@@ -13,6 +13,7 @@ import {
   supervisors,
   RESEARCH_EMAIL,
   RESEARCH_INTEREST_FORM_URL,
+  SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
 
 export const metadata: Metadata = {
@@ -21,9 +22,6 @@ export const metadata: Metadata = {
     "The SAIN Research Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. Voluntary, remote-friendly, and open for applications at any time.",
 };
 
-const SUPERVISOR_MAILTO = `mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent(
-  "Research Hub: becoming a supervisor",
-)}`;
 const RESEARCHER_MAILTO = `mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent(
   "Research Hub: joining as a researcher",
 )}`;
@@ -426,11 +424,18 @@ export default function ResearchPage() {
                 If you are an experienced researcher, usually at PhD level or above, and the
                 papers above look like work you could have guided, more supervisors means more
                 projects. Supervision is remote-friendly, meetings run at a cadence you agree per
-                project, and the research team handles the coordination around you. Email us and
-                we will follow up with next steps.
+                project, and the research team handles the coordination around you. Fill in the
+                supervisor form and we will follow up with next steps.
               </p>
-              <a href={SUPERVISOR_MAILTO} className="btn-outline-ink mt-1">
+              <a
+                href={SUPERVISOR_INTEREST_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-ink mt-1 gap-2"
+              >
                 Become a supervisor
+                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
           </Reveal>

@@ -17,7 +17,11 @@ import {
   Turn,
 } from "@/components/handbook/prose";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { RESEARCH_EMAIL, RESEARCH_INTEREST_FORM_URL } from "@/data/research";
+import {
+  RESEARCH_EMAIL,
+  RESEARCH_INTEREST_FORM_URL,
+  SUPERVISOR_INTEREST_FORM_URL,
+} from "@/data/research";
 
 export const metadata: Metadata = {
   title: "Research Hub handbook",
@@ -40,10 +44,6 @@ export const metadata: Metadata = {
    journey: every rule, number, form and deadline from v1.0 appears here
    exactly once, which is why the cross-references below are links rather than
    repetitions. */
-
-const SUPERVISOR_MAILTO = `mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent(
-  "Research Hub: becoming a supervisor",
-)}`;
 
 const ONBOARDING_FORM_URL = "https://sainonboard.fillout.com/new";
 /* Responder paths, not editor paths. The source document recorded these two
@@ -894,8 +894,15 @@ export default function ResearchHubHandbookPage() {
                   welcome any discipline.
                 </P>
                 <div>
-                  <a href={SUPERVISOR_MAILTO} className="btn-outline-ink">
+                  <a
+                    href={SUPERVISOR_INTEREST_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline-ink gap-2"
+                  >
                     Become a supervisor
+                    <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                    <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </div>
               </Chapter>
@@ -932,8 +939,15 @@ export default function ResearchHubHandbookPage() {
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
-            <a href={SUPERVISOR_MAILTO} className="btn-ghost-inverse">
+            <a
+              href={SUPERVISOR_INTEREST_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost-inverse gap-2"
+            >
               Become a supervisor
+              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
         </div>

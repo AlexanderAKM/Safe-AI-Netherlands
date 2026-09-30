@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import ResearchPeople from "./ResearchPeople";
 import FeaturedPublications from "./FeaturedPublications";
-import { RESEARCH_EMAIL } from "@/data/research";
+import { SUPERVISOR_INTEREST_FORM_URL } from "@/data/research";
 
 // Copy follows docs/research_hub_handbook.md: scope, programme modes,
 // applications, assignment, deliverables, and project-specific resources.
@@ -54,10 +54,10 @@ export default function ResearchSteps() {
         <div className="mt-6">
           <p className="mb-5 text-label text-white/65">Explore our supervisors’ research agendas</p>
           <ResearchPeople />
-          {/* Same subject line /research and the handbook use, so the three
-              "Become a supervisor" links land in the inbox as one thread. */}
-          <a href={`mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent("Research Hub: becoming a supervisor")}`} className="mt-4 inline-flex items-center gap-3 text-label text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
-            Become a supervisor <ArrowRight size={16} aria-hidden="true" />
+          {/* Same supervisor form /research and the handbook link to. */}
+          <a href={SUPERVISOR_INTEREST_FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-3 text-label text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
+            Become a supervisor <ArrowUpRight size={16} aria-hidden="true" />
+            <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </div>
       </ResearchStep>
