@@ -132,7 +132,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="grid flex-1 gap-8 sm:grid-cols-3">
+          <div className="grid flex-1 gap-8 sm:grid-cols-3 lg:grid-cols-[repeat(3,max-content)] lg:justify-end lg:gap-x-28 xl:gap-x-40">
             {columns.map((column) => (
               <div key={column.title} className="flex flex-col gap-[11px]">
                 <p className="kicker text-kicker-sm text-white/50">{column.title}</p>

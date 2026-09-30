@@ -157,9 +157,9 @@ export default function CommunityPage() {
               Three chapters, each its own room.
             </h2>
             <p className="max-w-[560px] font-sans text-body text-navy/72">
-              Same curriculum, same national support, different characters. Open a
-              city for who runs it, what it has done, its course, and what is on
-              this month.
+              Same curriculum, same national support, different characters.
+              <br/>
+              Choose a city to see who runs it, the courses and what is on this month.
             </p>
           </div>
           <Reveal delay={0.05}>
@@ -234,13 +234,8 @@ export default function CommunityPage() {
                     </span>
                   </li>
                 ))}
-                <li className="-rotate-1 border-[1.5px] border-dashed border-navy/35 p-1.5">
-                  <span className="flex aspect-[4/3] items-center justify-center">
-                    <span className="kicker text-kicker text-navy/55">Your city?</span>
-                  </span>
-                  <span className="block px-1 pt-2 font-serif text-base leading-5" aria-hidden="true">
-                    &nbsp;
-                  </span>
+                <li className="flex -rotate-1 items-center justify-center border-[1.5px] border-dashed border-navy/35 p-1.5">
+                  <span className="kicker text-kicker text-navy/55">Your city?</span>
                 </li>
               </ul>
             </Reveal>
@@ -267,8 +262,7 @@ export default function CommunityPage() {
                   Propose a chapter
                 </a>
                 <p className="max-w-[300px] font-sans text-footnote text-navy/65">
-                  No form yet: a plain email with your city and a few lines about
-                  you is exactly right.
+                  Send us an email with your city and a few things about you.
                 </p>
               </div>
             </div>
