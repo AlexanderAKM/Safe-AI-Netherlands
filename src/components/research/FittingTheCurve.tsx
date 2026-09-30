@@ -122,17 +122,15 @@ export default function FittingTheCurve() {
 
         {/* The chair, drawn in the house stroke so the figure has something to
             sit on: a seat under the hips, a back behind them, legs to the
-            floor. It used to be three faint lines beside the body, which left
-            the figure hovering. */}
-        <path d="M444 396 L488 396 M447 396 L449 350" />
-        <path d="M448 396 L444 452 M484 396 L488 452 M446 426 L486 427" strokeWidth="2" opacity=".55" />
+            floor. One colour and weight throughout, legs included. */}
+        <path d="M444 396 L488 396 M447 396 L449 350 M448 396 L444 452 M484 396 L488 452 M446 426 L486 427" />
         {/* Seated figure: hips on the seat, one thigh forward to a shin that
             reaches the floor, the near arm on the desk. One eye over the smile,
             as on the landing hero. */}
-        <path d="M456 394 L460 356 Q469 347 478 356 L483 394 Z" fill="#FFFFFF" />
+        <path d="M456 396 L460 356 Q469 347 478 356 L483 396 Z" fill="#FFFFFF" />
         <path d="M479 364 Q501 368 512 384" />
         <path d="M459 366 Q448 376 453 389" />
-        <path d="M482 394 L506 398 L508 442 L522 444" />
+        <path d="M483 396 L506 399 L508 452 L522 452" />
         <ellipse cx="469" cy="328" rx="15" ry="17" fill="#FFFFFF" />
         <path d="M454 325 Q452 304 470 304 Q488 305 485 327 L478 316 Q468 324 454 325 Z" fill="#021C4D" />
         <path d="M470 331 L471 332 M465 340 Q470 343 475 339" strokeWidth="2" />
@@ -140,7 +138,7 @@ export default function FittingTheCurve() {
         {/* Standing figure, hand up at the plot. */}
         <path d="M612 394 L615 332 Q624 324 633 332 L638 394 Z" fill="#FFFFFF" />
         <path d="M616 394 L613 452 M635 394 L639 452 M613 452 L601 454 M639 452 L651 454" />
-        <path d="M636 340 Q647 360 642 382" />
+        <path d="M634 340 Q647 360 642 382" />
         <path d="M615 338 Q590 324 564 288" />
         <path d="M564 288 L557 280 M564 288 L556 291" strokeWidth="2.2" />
         <ellipse cx="624" cy="302" rx="15" ry="17" fill="#FFFFFF" />
