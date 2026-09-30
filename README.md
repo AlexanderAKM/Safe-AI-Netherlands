@@ -6,8 +6,8 @@ Website for Safe AI Netherlands (SAIN), the national AI Safety initiative with c
 
 - **Next.js 14** (App Router, static export)
 - **React 18** + **TypeScript**
-- **Tailwind CSS 3.4** with custom brand tokens
-- **Framer Motion** for scroll animations
+- **Tailwind CSS 4** with brand tokens in `src/app/globals.css`
+- **Motion** for scroll animations
 
 ## Getting started
 
@@ -15,6 +15,7 @@ Website for Safe AI Netherlands (SAIN), the national AI Safety initiative with c
 npm install
 npm run dev     # → http://localhost:3000
 npm run build   # static export to /out
+npm run images  # regenerate responsive image variants
 ```
 
 ## Project structure
@@ -23,35 +24,38 @@ npm run build   # static export to /out
 src/
   app/
     page.tsx              # Homepage
-    about/                # About Us / Team
-    research/             # Research & publications
-    get-involved/         # How to join
+    about/                # About, plus the vision / theory of change / code of conduct documents
+    community/            # Community and chapter overview
+    courses/              # Free courses
+    research/             # Research hub and handbook
+    get-involved/         # Volunteering
+    open-positions/       # Careers
+    contact/
     chapters/
-      groningen/          # SAIN Groningen chapter
+      groningen/          # SAIN Groningen chapter (+ events archive)
       amsterdam/          # SAIN Amsterdam chapter
       utrecht/            # SAIN Utrecht chapter
-    team/                 # Team page
-  components/             # Shared components (Navbar, Footer, Logo, etc.)
+    team/
+  components/             # Shared and per-page components
+  data/                   # Site content (people, research, events, positions)
 
 public/
-  sain-symbol.svg         # SAIN network symbol (logo mark)
-  sain-wordmark.svg       # "SAIN" text in brand colours (dark bg)
-  sain-wordmark-light.svg # "SAIN" text for light-on-dark contexts
-  photos/
-    events/               # Event photos (talks, hackathons, graduations)
-    cities/               # City hero images (Groningen, Amsterdam, etc.)
-    team/                 # Team headshots
+  sain-symbol.svg         # SAIN network symbol (favicon, structured data)
+  landing/                # Landing photographs and logo lockups, with responsive variants
+  illustrations/          # Hero and research illustrations
+  photos/                 # Event, city, team, advisory board and supervisor photos
 
-context_info/             # Internal strategy docs (not deployed)
-comms/                    # Draft communications (not deployed)
+docs/                     # SAIN documents rendered on the site
+design/                   # Design system (design.md, sain-brand.css) and page copy briefs
+scripts/                  # Responsive image generation, Luma event fetches
 ```
 
 ## Brand
 
-- **Colours**: Navy `#021c4d`, Orange `#ff6025`, Peach `#ffb966`
-- **Fonts**: League Spartan (display), Poppins (body)
-- **Logo**: Network node symbol + "SAIN" wordmark (S/N navy, A/I orange)
+- **Colours**: Navy `#021c4d`, Orange `#ff6025`
+- **Fonts**: IBM Plex Serif (display), Archivo (body)
+- **Design system**: see `design/design.md`
 
 ## Deployment
 
-Static export via `next build`. Deploy to Vercel with custom domain `safeainetherlands.org`.
+Static export via `next build`. Every push to `main` triggers a Vercel production deploy (`.github/workflows/deploy.yml`) on `safeainetherlands.org`.
