@@ -2,17 +2,21 @@ import Link from "next/link";
 import type { Icon } from "@phosphor-icons/react";
 import { ArrowRight, BookOpenText, Code, Scales } from "@phosphor-icons/react/dist/ssr";
 
-import { courseApplicationFor, type ChapterName } from "@/data/courseApplications";
+import {
+  chapterCourseHref,
+  courseTrackHref,
+  type ChapterName,
+} from "@/data/courseApplications";
 import { TRACKS } from "@/data/courseTracks";
 
 /**
  * The landing's three course tracks, named rather than taught. Each column is a small
- * object: a glyph, the index and title, the tagline, and a fixed three-city
- * grid. The cities sit in the same place under every track, so reading across
+ * object: a glyph, the title, the tagline, and a fixed three-city grid. The cities sit in the same place under every track, so reading across
  * the columns answers "what runs in my city" without a word: a filled mark
  * where a chapter runs the track (and a link to its programmes), a faint empty
- * one where it does not. The whole column opens the tracks on /courses; the
- * city links sit above that stretched link.
+ * one where it does not. The whole column opens its own track's tab on
+ * /courses; each city link opens that track's course tab on the chapter page,
+ * and sits above the stretched link.
  */
 
 const CITIES: ChapterName[] = ["Utrecht", "Groningen", "Amsterdam"];
@@ -36,16 +40,11 @@ export default function CourseTracks() {
               key={track.id}
               className="group relative flex flex-col bg-white px-6 py-8 transition-colors duration-300 hover:bg-cream focus-within:bg-cream md:px-8 md:py-9"
             >
-              <div className="flex items-start justify-between">
-                <Glyph size={32} weight="light" aria-hidden="true" className="text-orange" />
-                <span className="font-sans text-index tracking-normal text-navy/45 transition-colors duration-300 group-hover:text-orange-ink">
-                  {track.index}
-                </span>
-              </div>
+              <Glyph size={32} weight="light" aria-hidden="true" className="text-orange" />
 
               <h3 className="mt-6 font-serif text-title text-navy">
                 <Link
-                  href="/courses#tracks"
+                  href={courseTrackHref(track.id)}
                   className="after:absolute after:inset-0 focus-visible:underline"
                 >
                   {track.title}
@@ -54,15 +53,14 @@ export default function CourseTracks() {
               <p className="mt-2 font-sans text-ui text-navy/72">{track.tagline}</p>
 
               <div className="mt-auto pt-8">
-                <p className="kicker pb-2.5 text-kicker-sm text-navy/60">Where it runs</p>
-                <ul role="list" className="grid grid-cols-3 border-t border-navy/12">
+                <ul role="list" aria-label="Where it runs" className="grid grid-cols-3 border-t border-navy/12">
                   {CITIES.map((city) => {
                     const entry = track.cities.find((c) => c.city === city);
                     return (
                       <li key={city} className="border-l border-navy/12 pl-3 first:border-l-0 first:pl-0">
                         {entry ? (
                           <Link
-                            href={courseApplicationFor(city).href}
+                            href={chapterCourseHref(city, track.id)}
                             title={entry.detail}
                             className="relative z-10 flex flex-col gap-2 py-3"
                           >

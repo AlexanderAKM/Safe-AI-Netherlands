@@ -133,13 +133,6 @@ export default function ChapterAtlas() {
                 i === ATLAS.length - 1 ? "border-b lg:border-b-navy/12" : ""
               }`}
             >
-              <span
-                className={`w-7 shrink-0 self-start pt-2.5 font-sans text-index tracking-normal transition-colors duration-300 ${
-                  on ? "text-orange-ink" : "text-navy/50"
-                }`}
-              >
-                {chapter.index}
-              </span>
               <span className="flex min-w-0 flex-1 flex-col gap-1.5">
                 <span className="relative self-start">
                   <span

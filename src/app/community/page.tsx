@@ -25,67 +25,6 @@ const heroPrints = [
   { tilt: "rotate-[6deg]", lift: "translate-y-7", layer: "z-0" },
 ];
 
-/* The shared rhythm, drawn across one semester of sixteen weeks. Each strip is
-   the shape of that thing in time: the discussion group is every week; a
-   course is one run of weeks (four in Utrecht, six in Amsterdam); a hackathon
-   is one weekend; the socials sit at the ends, an intro at the start and a
-   graduation when a cohort finishes. Schematic on purpose: it shows the
-   cadence, not a calendar, and it says so. */
-const WEEKS = 16;
-const cadence: {
-  when: string;
-  title: string;
-  body: string;
-  weeks: (w: number) => "full" | "span" | "none";
-}[] = [
-  {
-    when: "Every week",
-    title: "A discussion group",
-    body: "About two hours: a reading and a conversation, with at least one experienced mentor at the table. Come once, say little, decide afterwards.",
-    weeks: () => "full",
-  },
-  {
-    when: "Once a cohort",
-    title: "A free course",
-    body: "A few weeks, facilitated, with a certificate at the end. Every chapter takes applications through the same form.",
-    weeks: (w) => (w >= 3 && w <= 8 ? "span" : "none"),
-  },
-  {
-    when: "A weekend at a time",
-    title: "Hackathons and talks",
-    body: "Weekend hackathons, invited researchers, and open challenges like Utrecht's Win4AISafety.",
-    weeks: (w) => (w === 11 ? "full" : "none"),
-  },
-  {
-    when: "At the edges",
-    title: "The evenings after",
-    body: "Intro socials when the year starts, pub quizzes, and a graduation dinner when a cohort finishes.",
-    weeks: (w) => (w === 0 || w === 9 || w === 15 ? "full" : "none"),
-  },
-];
-
-function CadenceStrip({ weeks }: { weeks: (w: number) => "full" | "span" | "none" }) {
-  return (
-    <div className="flex h-7 items-end gap-[3px]" aria-hidden="true">
-      {Array.from({ length: WEEKS }, (_, w) => {
-        const state = weeks(w);
-        return (
-          <span
-            key={w}
-            className={`flex-1 ${
-              state === "full"
-                ? "h-full bg-navy"
-                : state === "span"
-                  ? "h-3.5 bg-navy/70"
-                  : "h-1.5 bg-navy/12"
-            }`}
-          />
-        );
-      })}
-    </div>
-  );
-}
-
 const chapterProvides = [
   "The SAIN brand and national recognition",
   "Operational playbooks and handbooks",
@@ -193,13 +132,8 @@ export default function CommunityPage() {
                         className="hero-print-img absolute inset-0 size-full object-cover"
                       />
                     </span>
-                    <span className="flex items-baseline justify-between gap-2 px-1 pb-0.5 pt-2.5 sm:px-1.5 sm:pt-3">
-                      <span className="font-serif text-sm leading-5 text-navy sm:text-title-sm">
-                        {chapter.city}
-                      </span>
-                      <span className="hidden font-sans text-index tracking-normal text-orange-ink sm:inline">
-                        {chapter.index}
-                      </span>
+                    <span className="block px-1 pb-0.5 pt-2.5 font-serif text-sm leading-5 text-navy sm:px-1.5 sm:pt-3 sm:text-title-sm">
+                      {chapter.city}
                     </span>
                   </a>
                 </li>
@@ -234,45 +168,19 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* The rhythm. What is the same in all three, drawn as the shape it takes
-          across a semester, then the photographs that prove it. */}
+      {/* The photographs. The cadence diagram that stood above them is gone;
+          the prints carry the claim on their own, under a heading that names
+          them. */}
       <section
         id="rhythm"
         aria-labelledby="rhythm-heading"
         className="relative isolate scroll-mt-36 overflow-hidden bg-white"
       >
         <SectionOrbits className="-left-20 top-10 h-[400px] w-[300px] md:-left-12" />
-        <div className="shell band-section flex flex-col gap-12 md:gap-16">
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-20">
-            <h2 id="rhythm-heading" className="font-serif text-heading text-navy">
-              Wherever you walk in, the week looks the same.
-            </h2>
-            <p className="max-w-[560px] font-sans text-body text-navy/72">
-              The chapters differ in character, not in cadence. This is the shape
-              of a semester in any of them.
-            </p>
-          </div>
-
-          <Reveal delay={0.05}>
-            <ol
-              role="list"
-              className="grid gap-x-10 gap-y-10 sm:grid-cols-2 xl:grid-cols-4"
-            >
-              {cadence.map((item) => (
-                <li key={item.title} className="flex flex-col gap-4">
-                  <CadenceStrip weeks={item.weeks} />
-                  <div className="border-t border-navy/14 pt-4">
-                    <p className="kicker text-kicker-sm text-navy/60">{item.when}</p>
-                    <h3 className="mt-1 font-serif text-title text-navy">{item.title}</h3>
-                    <p className="mt-2 font-sans text-caption text-navy/72">{item.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <p className="mt-6 font-sans text-footnote text-navy/55">
-              Each strip is sixteen weeks of a semester, drawn schematically.
-            </p>
-          </Reveal>
+        <div className="shell band-section flex flex-col gap-10 md:gap-12">
+          <h2 id="rhythm-heading" className="font-serif text-heading text-navy">
+            Hackathons, talks, graduations and pub quizzes
+          </h2>
 
           <Reveal>
             <EventPrints />
@@ -291,7 +199,7 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* The fourth chapter. The three that exist as three small prints, and
+      {/* The next chapter. The three that exist as three small prints, and
           beside them an empty dashed mat: the slot is the ask. */}
       <section
         id="start-chapter"
@@ -303,7 +211,7 @@ export default function CommunityPage() {
             <Reveal className="order-last lg:order-none">
               <ul
                 role="list"
-                aria-label="The chapters so far, and a fourth to come"
+                aria-label="The chapters so far, and the next to come"
                 className="grid max-w-[420px] grid-cols-2 gap-4 sm:gap-5"
               >
                 {ATLAS.map((chapter, i) => (
@@ -321,11 +229,8 @@ export default function CommunityPage() {
                         className="absolute inset-0 size-full object-cover"
                       />
                     </span>
-                    <span className="flex items-baseline justify-between px-1 pt-2 font-serif text-base leading-5 text-navy">
+                    <span className="block px-1 pt-2 font-serif text-base leading-5 text-navy">
                       {chapter.city}
-                      <span className="font-sans text-index tracking-normal text-navy/50">
-                        {chapter.index}
-                      </span>
                     </span>
                   </li>
                 ))}
@@ -333,9 +238,8 @@ export default function CommunityPage() {
                   <span className="flex aspect-[4/3] items-center justify-center">
                     <span className="kicker text-kicker text-navy/55">Your city?</span>
                   </span>
-                  <span className="flex items-baseline justify-between px-1 pt-2 font-serif text-base leading-5 text-navy/45">
+                  <span className="block px-1 pt-2 font-serif text-base leading-5" aria-hidden="true">
                     &nbsp;
-                    <span className="font-sans text-index tracking-normal text-orange-ink">04</span>
                   </span>
                 </li>
               </ul>
@@ -346,7 +250,7 @@ export default function CommunityPage() {
                 id="start-chapter-heading"
                 className="font-serif text-heading text-navy"
               >
-                The fourth chapter starts with one meetup.
+                The next chapter starts with one meetup.
               </h2>
               <p className="max-w-[600px] font-sans text-body text-navy/74">
                 No chapter in your city yet? The three that exist all started the

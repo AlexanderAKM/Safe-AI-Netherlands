@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { CaretDown, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 import {
-  courseApplicationFor,
+  chapterCourseHref,
   type ChapterName,
 } from "@/data/courseApplications";
 
@@ -211,6 +211,24 @@ export default function CourseTabs() {
     if (!compact && activeId === null) setActiveId(TRACKS[0].id);
   }, [compact, activeId]);
 
+  /* The landing's track columns link to #track-<id>: open that track, then
+     bring its header into view (the strip from md, where the panels share
+     one cell, the track's own header below it). */
+  useEffect(() => {
+    const fromHash = () => {
+      const id = window.location.hash.replace("#track-", "");
+      if (!TRACKS.some((t) => t.id === id)) return;
+      setActiveId(id);
+      const target = window.matchMedia(COMPACT).matches
+        ? document.getElementById(`tab-${id}`)
+        : document.getElementById("tracks");
+      requestAnimationFrame(() => target?.scrollIntoView({ block: "start" }));
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, []);
+
   const reduce = useReducedMotion();
 
   /* Arrow keys move between headers, and only between headers. Bound to the
@@ -247,7 +265,7 @@ export default function CourseTabs() {
               onKeyDown={onHeaderKeyDown(i)}
               /* The divider belongs to the gap between two tabs, not to either
                  tab's state. Stacked, that rule runs above each header. */
-              className={`relative flex w-full min-h-[88px] items-center gap-4 border-t border-navy/12 px-6 py-5 text-left transition-colors md:flex-col md:items-stretch md:justify-center md:gap-1.5 md:border-t-0 ${
+              className={`relative flex w-full min-h-[88px] scroll-mt-36 items-center gap-4 border-t border-navy/12 px-6 py-5 text-left transition-colors md:flex-col md:items-stretch md:justify-center md:gap-1.5 md:border-t-0 ${
                 i > 0 ? "md:border-l md:border-l-navy/10" : ""
               } ${
                 on
@@ -359,13 +377,14 @@ export default function CourseTabs() {
                   <p className="kicker pb-2 text-kicker-sm text-navy/65">
                     Where you can attend
                   </p>
-                  {/* The row is the route. Destination comes from
-                      courseApplications, so this cannot drift from the
+                  {/* The row is the route, to this track's own course tab
+                      on the chapter page where it has one. Destination comes
+                      from courseApplications, so this cannot drift from the
                       chapter pages. */}
                   {active.cities.map((entry) => (
                     <Link
                       key={entry.city}
-                      href={courseApplicationFor(entry.city).href}
+                      href={chapterCourseHref(entry.city, active.id)}
                       className="group/city flex flex-col gap-1 border-t border-navy/10 py-2.5 transition-colors duration-200 hover:bg-navy/5 focus-visible:bg-navy/5 sm:flex-row sm:items-baseline sm:gap-4"
                     >
                       <span className="flex w-[112px] shrink-0 items-center gap-1.5 font-serif text-base leading-[22px] text-navy">

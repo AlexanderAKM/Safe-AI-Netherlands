@@ -16,7 +16,7 @@ import {
   formatCityList,
   openCourseApplications,
 } from "@/data/courseApplications";
-import { ArrowRight, ArrowUpRight, GraduationCap } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 /* No `title` here on purpose: the landing falls through to the root layout's
    `title.default`, so the tab reads "Safe AI Netherlands" and nothing more.
@@ -153,11 +153,7 @@ export default function Home() {
         <SectionOrbits className="-left-20 top-6 h-[400px] w-[300px] md:-left-12" />
         <div className="shell band-section-top relative isolate pb-14">
           <div className="mb-10 max-w-[680px]">
-            {/* The glyph that marks "trains" in the statement above, so this
-                band reads as the answer to that word. Orange as a large glyph,
-                not lettering. */}
-            <h2 id="courses-heading" className="flex items-center gap-3.5 font-serif text-heading text-navy">
-              <GraduationCap size={38} weight="light" aria-hidden="true" className="shrink-0 text-orange" />
+            <h2 id="courses-heading" className="font-serif text-heading text-navy">
               Start with a free course
             </h2>
             <p className="mt-3 font-sans text-body leading-[26px] text-navy/74">
@@ -196,7 +192,6 @@ export default function Home() {
       <section id="community" aria-labelledby="community-heading" className="relative isolate scroll-mt-36 overflow-hidden bg-cream">
         <div className="shell band-section grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
           <Reveal className="flex flex-col items-start gap-5">
-            <p className="kicker text-kicker text-navy/65">Community</p>
             <h2 id="community-heading" className="font-serif text-heading text-navy">
               Participate in the community
             </h2>
@@ -245,9 +240,8 @@ export default function Home() {
                             className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                           />
                         </span>
-                        <span className="flex items-baseline justify-between gap-3 px-1.5 pb-1 pt-3">
-                          <span className="font-serif text-title text-navy">{chapter.city}</span>
-                          <span className="font-sans text-index tracking-normal text-orange-ink">{chapter.index}</span>
+                        <span className="block px-1.5 pb-1 pt-3 font-serif text-title text-navy">
+                          {chapter.city}
                         </span>
                       </span>
                       <span className="mt-4 flex items-start justify-between gap-3 px-1">

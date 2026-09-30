@@ -14,6 +14,10 @@ import { CaretDown } from "@phosphor-icons/react/dist/ssr";
  * of a phone screen and a panel below the fold means switching course is a
  * scroll up and a scroll back down. There, one may be closed to nothing; on the
  * strip one is always open.
+ *
+ * Closed panels leave the flow at every width. They used to stay in the shared
+ * cell from md up, invisible, so a short course sat above the empty height of
+ * the longest one (Utrecht's ARENA under Fundamentals' session list).
  */
 
 /**
@@ -78,6 +82,22 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
     if (!compact && activeId === null) setActiveId(courses[0].id);
   }, [compact, activeId, courses]);
 
+  /* The landing and /courses link to #course-<id>, the header's own id, so
+     the browser already scrolls to it; this opens it too. */
+  useEffect(() => {
+    const fromHash = () => {
+      const id = window.location.hash.replace("#course-", "");
+      if (!courses.some((c) => c.id === id)) return;
+      setActiveId(id);
+      requestAnimationFrame(() =>
+        document.getElementById(`course-${id}`)?.scrollIntoView({ block: "start" }),
+      );
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, [courses]);
+
   const onHeaderKeyDown = (index: number) => (event: React.KeyboardEvent) => {
     const delta =
       event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
@@ -115,7 +135,7 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
               aria-controls={`course-panel-${course.id}`}
               onClick={() => toggle(course.id)}
               onKeyDown={onHeaderKeyDown(i)}
-              className={`relative flex w-full min-h-[88px] items-center gap-4 border-t border-navy/12 px-6 py-5 text-left transition-colors md:flex-col md:items-stretch md:justify-center md:gap-1.5 md:border-t-0 ${
+              className={`relative flex w-full min-h-[88px] scroll-mt-36 items-center gap-4 border-t border-navy/12 px-6 py-5 text-left transition-colors md:flex-col md:items-stretch md:justify-center md:gap-1.5 md:border-t-0 ${
                 i > 0 ? "md:border-l md:border-l-navy/10" : ""
               } ${
                 on
@@ -172,7 +192,7 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                 duration: reduce || !on ? 0 : 0.2,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`${on ? "flex" : "hidden md:flex"} ${panelSpan} w-full flex-col gap-[18px] px-6 py-8 md:border-t md:border-navy/12 md:px-8 ${
+              className={`${on ? "flex" : "hidden"} ${panelSpan} w-full flex-col gap-[18px] px-6 py-8 md:border-t md:border-navy/12 md:px-8 ${
                 on ? "" : "pointer-events-none"
               }`}
             >

@@ -101,6 +101,29 @@ export function courseApplicationFor(chapter: ChapterName): CourseApplication {
   return entry;
 }
 
+/* The chapter course tab each national track lands on, where the chapter has
+   one. Groningen runs its two tracks as one course without tabs, and Utrecht's
+   governance offering is a discussion group, so those fall back to the
+   chapter's programmes band. Keys are the track ids on the landing and
+   /courses; values are the `id`s of the chapter page's CourseDisclosure. */
+const CHAPTER_COURSE_TAB: Partial<Record<ChapterName, Record<string, string>>> = {
+  Utrecht: { fundamentals: "fundamentals", technical: "technical" },
+  Amsterdam: { technical: "technical", policy: "governance" },
+};
+
+/** A track's page in one chapter: its course tab there, or its programmes. */
+export function chapterCourseHref(chapter: ChapterName, trackId: string): string {
+  const tab = CHAPTER_COURSE_TAB[chapter]?.[trackId];
+  return tab
+    ? `/chapters/${chapter.toLowerCase()}#course-${tab}`
+    : courseApplicationFor(chapter).href;
+}
+
+/** The track's own tab on /courses. CourseTabs there opens it from the hash. */
+export function courseTrackHref(trackId: string): string {
+  return `/courses#track-${trackId}`;
+}
+
 export type OpenCourseApplication = Extract<CourseApplication, { open: true }>;
 
 /** Chapters currently taking applications, for the popup and shared CTAs. */
