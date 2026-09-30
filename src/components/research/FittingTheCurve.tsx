@@ -127,14 +127,15 @@ export default function FittingTheCurve() {
         <path d="M444 396 L488 396 M447 396 L449 350" />
         <path d="M448 396 L444 452 M484 396 L488 452 M446 426 L486 427" strokeWidth="2" opacity=".55" />
         {/* Seated figure: hips on the seat, one thigh forward to a shin that
-            reaches the floor, the near arm on the desk. Two eyes per figure. */}
+            reaches the floor, the near arm on the desk. One eye over the smile,
+            as on the landing hero. */}
         <path d="M456 394 L460 356 Q469 347 478 356 L483 394 Z" fill="#FFFFFF" />
         <path d="M479 364 Q501 368 512 384" />
         <path d="M459 366 Q448 376 453 389" />
         <path d="M482 394 L506 398 L508 442 L522 444" />
         <ellipse cx="469" cy="328" rx="15" ry="17" fill="#FFFFFF" />
         <path d="M454 325 Q452 304 470 304 Q488 305 485 327 L478 316 Q468 324 454 325 Z" fill="#021C4D" />
-        <path d="M463 331 L464 332 M475 331 L476 332 M465 340 Q470 343 475 339" strokeWidth="2" />
+        <path d="M470 331 L471 332 M465 340 Q470 343 475 339" strokeWidth="2" />
 
         {/* Standing figure, hand up at the plot. */}
         <path d="M612 394 L615 332 Q624 324 633 332 L638 394 Z" fill="#FFFFFF" />
@@ -144,7 +145,7 @@ export default function FittingTheCurve() {
         <path d="M564 288 L557 280 M564 288 L556 291" strokeWidth="2.2" />
         <ellipse cx="624" cy="302" rx="15" ry="17" fill="#FFFFFF" />
         <path d="M609 300 Q606 279 625 279 Q643 280 640 301 L632 291 Q622 299 609 300 Z" fill="#021C4D" />
-        <path d="M618 305 L619 306 M630 305 L631 306 M620 314 Q625 317 630 313" strokeWidth="2" />
+        <path d="M625 305 L626 306 M620 314 Q625 317 630 313" strokeWidth="2" />
       </g>
 
       {/* The gesture's target, drawn faintly so the pointing lands somewhere. */}
