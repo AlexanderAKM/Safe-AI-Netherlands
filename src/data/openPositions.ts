@@ -17,13 +17,24 @@
 /**
  * Single Google Form for all chapters and roles.
  *
+ * PRE-SHIP BLOCKER (checked 13 September 2026): fetching the URL below returns
+ * HTTP 401 with an ordinary browser user agent, which means the form is not
+ * publicly readable: it is either restricted to signed-in or in-organisation
+ * Google accounts, or it no longer exists. A public form answers 200. Every
+ * chapter apply button on /open-positions points here, so before this page
+ * ships someone has to open the form in a logged-out browser and confirm an
+ * outside applicant can reach and submit it. If they cannot, point the chapter
+ * apply CTAs at the chapter inboxes until the form is public.
+ *
  * SETUP NOTES:
  * - Form fields: Name, Email, Chapter (Amsterdam / Utrecht), Role(s), CV upload,
  *   Motivation letter upload (or long-text), LinkedIn (optional), availability.
  * - Email routing: configure a Google Apps Script trigger on form submission
  *   that emails info@safeainetherlands.org plus the relevant chapter inbox
  *   (infoams@ or infoutr@) based on the "Chapter" answer. Apps Script template
- *   is left as an action item for whoever sets up the form.
+ *   is left as an action item for whoever sets up the form. Until that trigger
+ *   exists the page must not promise where an application lands, so the
+ *   routing sentence has been taken out of the how-to-apply copy.
  * - Pre-fill: this URL is appended with `&entry.<id>=<value>` to pre-select the
  *   chapter and role for the applicant. Until the form exists, the URL below is
  *   a placeholder that links to the contact page so the page is never broken.
@@ -37,16 +48,19 @@ export const APPLICATION_FORM_URL =
  * National roles do not go through the chapter Google Form: each one has its
  * own form, because the questions are role-specific rather than
  * chapter-and-role shaped. This Airtable form is for the Head of Projects
- * and nothing else — give any future national role its own URL rather
+ * and nothing else. Give any future national role its own URL rather
  * than reusing this one.
  */
 export const RESEARCH_OPERATIONS_LEAD_APPLICATION_FORM_URL =
   "https://airtable.com/appMwcwhDIpVSvLrz/pagfucm2gVY91sjPg/form";
 
 /**
- * Pre-fill entry IDs for the Google Form. Replace with the real IDs once the
- * form is created (right-click each field in the live form -> "Get pre-filled
- * link" to read the IDs out of the URL).
+ * Pre-fill entry IDs for the Google Form. Still unconfirmed: replace with the
+ * real IDs read off a pre-filled link from the live form (open the form, use
+ * "Get pre-filled link", and read the entry ids out of the resulting URL).
+ * Google silently drops unknown entry keys, so a wrong id costs the applicant
+ * nothing except a field they fill in themselves. Nothing on the page promises
+ * the pre-fill until these are verified.
  */
 export const FORM_PREFILL = {
   chapterEntryId: "entry.2132087508",
@@ -84,7 +98,7 @@ export const COMMS_TEAM_FORM_VALUE =
  * with no option of their own point here instead. Their card tells the
  * applicant to pick this option and name the actual role in the motivation
  * letter, which is what `formRoleValue === OPEN_POSITION_FORM_VALUE` switches
- * on in the /open-positions apply hint.
+ * on in the apply hint.
  */
 export const OPEN_POSITION_FORM_VALUE = "Open position";
 
@@ -215,7 +229,7 @@ export const ROLES: Record<string, Role> = {
         "Written communication, organisation, comfort facilitating discussion-based learning.",
     },
     collaborations:
-      "Chapter (Co-)Director, facilitators, Communications Lead, Community Manager.",
+      "The chapter director, facilitators, Communications Lead, Community Manager.",
   },
 
   "education-course-facilitator": {
@@ -224,7 +238,7 @@ export const ROLES: Record<string, Role> = {
     team: "education",
     scope: "chapter",
     reportsTo: "Education Lead",
-    timeCommitment: "~4 hours per week during iterations (one 2-hour session plus prep)",
+    timeCommitment: "About 4 hours per week during iterations (one 2-hour session plus prep)",
     mission:
       "Facilitate one cohort of the course. Lead weekly discussions, support participants, and mark final projects.",
     responsibilities: [
@@ -253,7 +267,7 @@ export const ROLES: Record<string, Role> = {
     scope: "chapter",
     reportsTo: "Education Lead",
     timeCommitment:
-      "~3 hours per week during the running block (1-hour session plus ~2 hours of prep, curation, and chat moderation)",
+      "About 3 hours per week during the running block (1-hour session plus about 2 hours of prep, curation, and chat moderation)",
     mission:
       "Run one Discussion Group on a specific theme (technical safety, AI governance, privacy, and so on). Maintain a high-quality, casual environment where 8 to 10 participants engage seriously with shared material and with each other.",
     responsibilities: [
@@ -287,6 +301,8 @@ export const ROLES: Record<string, Role> = {
     scope: "chapter",
     reportsTo: "Chapter (Co-)Director",
     timeCommitment: "6 to 10 hours per week",
+    /* Paid since September 2026 (upstream #54). The badge is what tells a
+       reader this chapter role is compensated where its neighbours are not. */
     commitmentBadge: "Paid - Part-time",
     mission:
       "Plan and execute the chapter's events. Maintain the chapter's event presence, attract speakers, organise community life. Identify opportunities for SAIN exposure to reach new audiences, strengthen the community, and inspire people into AI safety careers.",
@@ -297,7 +313,7 @@ export const ROLES: Record<string, Role> = {
       "Manage event logistics: venue, catering, marketing handover to Communications.",
       "Run the team meeting.",
       "Triage the chapter events inbox.",
-      "Coordinate budget with the Chapter (Co-)Director.",
+      "Coordinate budget with the chapter director.",
     ],
     preferredBackground: {
       field: "Open. Genuine interest in AI safety required.",
@@ -308,7 +324,7 @@ export const ROLES: Record<string, Role> = {
         "Project management, comfort cold-emailing speakers, calmness under deadline pressure, strong social skills.",
     },
     collaborations:
-      "Chapter (Co-)Director, Communications Lead, Community Manager, external speakers, venue contacts.",
+      "The chapter director, Communications Lead, Community Manager, external speakers, venue contacts.",
   },
 
   "events-team-member": {
@@ -368,7 +384,7 @@ export const ROLES: Record<string, Role> = {
         "Writing, visual sense, attention to brand consistency.",
     },
     collaborations:
-      "Chapter (Co-)Director, Events Lead, Education Lead, Research Lead, Community Manager, other chapters' Communications Leads.",
+      "The chapter director, Events Lead, Education Lead, Research Lead, Community Manager, other chapters' Communications Leads.",
   },
 
   "communications-team-member": {
@@ -551,7 +567,7 @@ export const ROLES: Record<string, Role> = {
         "Warmth, social fluency, reliability, comfort with light data work.",
     },
     collaborations:
-      "Chapter (Co-)Director, all team leads, course graduates, community members.",
+      "The chapter director, all team leads, course graduates, community members.",
   },
 
   "on-campus-ambassador": {
@@ -590,7 +606,7 @@ export const ROLES: Record<string, Role> = {
     scope: "national",
     reportsTo: "Executive Director",
     timeCommitment:
-      "Full-time (1.0 FTE), 40 hours per week, 5 day week",
+      "Full-time (1.0 FTE), 40 hours per week, 5-day week",
     mission:
       "Hundreds of people in the Netherlands finish an AI safety course each year, and almost none go on to do anything with it. The Research Hub exists to close that gap: it is where someone who has done a course or two makes their first real contribution, whether that is a paper, a policy submission, an eval, a tool, or a Dutch-language resource. You run both of its tracks, supervised projects and open collaboration, and you are accountable for how many reach a finished, valuable state. Today the Hub has a few supervisors, a few completed projects, and volunteer teams in three chapter cities. Your job is to make it flourish. As the fourth person on SAIN's national team, you own its strategy, budget, and volunteer teams. The work is project management and relationship-building: you do not need to be the smartest researcher in the room, you need to be the person who makes sure fifty projects actually get finished.",
     responsibilities: [
@@ -664,9 +680,10 @@ export const ROLES: Record<string, Role> = {
     collaborations:
       "Head of Projects, supervisors, researchers.",
   },
+
   "education-lead-technical": {
     id: "education-lead-technical",
-    title: "Education Lead — Technical & Repository Owner",
+    title: "Education Lead, Technical & Repository Owner",
     team: "education",
     scope: "chapter",
     reportsTo: "Chapter Director",
@@ -674,7 +691,7 @@ export const ROLES: Record<string, Role> = {
       "10 to 15 hours per week, with iteration and incubation peaks",
     commitmentBadge: "Paid - Part-time",
     mission:
-      "Own the technical backbone of SAIN Utrecht's education-to-incubation pipeline: run the Technical AI Safety program, own and maintain SAIN Utrecht's demo-of-risks repository, and supervise and assess the technical quality of every incubated project from Forge through the Research Hub handoff. This role exists because SAIN Utrecht is moving from teaching concepts to shipping reproducible, code-based demonstrations and benchmarks, and someone needs to be responsible for what gets merged, what gets published, and whether a student's work is actually ready for incubation, a grant, or a mentor introduction. This is a paid position, not a volunteer role — compensation reflects the technical ownership and evaluation responsibilities below.",
+      "Own the technical backbone of SAIN Utrecht's education-to-incubation pipeline: run the Technical AI Safety program, own and maintain SAIN Utrecht's demo-of-risks repository, and supervise and assess the technical quality of every incubated project from Forge through the Research Hub handoff. This role exists because SAIN Utrecht is moving from teaching concepts to shipping reproducible, code-based demonstrations and benchmarks, and someone needs to be responsible for what gets merged, what gets published, and whether a student's work is actually ready for incubation, a grant, or a mentor introduction. This is a paid position, not a volunteer role: compensation reflects the technical ownership and evaluation responsibilities below.",
     responsibilities: [
       "Plan and run Technical AI Safety course iterations (e.g. ARENA 2-4: LLMs/RL, Evaluation, Eval Science), including the Agents + CyberSec and Biorisk modules.",
       "Own SAIN Utrecht's shared code repository: define contribution standards, review and approve pull requests, maintain CI/testing hygiene, and ensure reproducibility of published benchmarks and demos.",
@@ -702,7 +719,7 @@ export const ROLES: Record<string, Role> = {
 
   "education-facilitator-cybersec": {
     id: "education-facilitator-cybersec",
-    title: "Education Course Facilitator — CyberSec & Agentic AI Track",
+    title: "Education Course Facilitator, CyberSec & Agentic AI Track",
     team: "education",
     scope: "chapter",
     reportsTo: "Education Lead",
@@ -736,7 +753,7 @@ export const ROLES: Record<string, Role> = {
   "education-facilitator-biosecurity": {
     id: "education-facilitator-biosecurity",
     title:
-      "Education Course Facilitator — Biosecurity & AI (CBRN Risk Focus)",
+      "Education Course Facilitator, Biosecurity & AI (CBRN Risk Focus)",
     team: "education",
     scope: "chapter",
     reportsTo: "Education Lead",
@@ -771,7 +788,7 @@ export const ROLES: Record<string, Role> = {
   "education-facilitator-embodied": {
     id: "education-facilitator-embodied",
     title:
-      "Education Course Facilitator — Embodied AI Safety (Physical AI Track)",
+      "Education Course Facilitator, Embodied AI Safety (Physical AI Track)",
     team: "education",
     scope: "chapter",
     reportsTo: "Education Lead",
@@ -847,7 +864,7 @@ export const ROLES: Record<string, Role> = {
 
   "events-team-member-facilitator": {
     id: "events-team-member-facilitator",
-    title: "Events Team Member — Facilitator",
+    title: "Events Team Member, Facilitator",
     team: "events",
     scope: "chapter",
     reportsTo: "Events Lead",
@@ -879,6 +896,7 @@ export const ROLES: Record<string, Role> = {
     formRoleValue: OPEN_POSITION_FORM_VALUE,
     specialisationOf: "Events Team Member",
   },
+
 };
 
 // -----------------------------------------------------------------------------
@@ -889,10 +907,22 @@ export type ChapterPosting = {
   /** Slug used in pre-fill (must match the option text in the Google Form). */
   chapterSlug: string;
   chapterName: string;
-  blurb: string;
+  /**
+   * The section heading on /open-positions. It states what the chapter is
+   * doing ("SAIN Amsterdam is building its core team"), so the reader knows
+   * whose schedule they are reading before any role title.
+   */
+  heading: string;
+  /** Body paragraph under the heading while the chapter is recruiting. */
+  blurb?: string;
   inboxEmail: string;
   status: "open" | "closed";
-  closedNote?: string;
+  /**
+   * Body shown instead of `blurb` when the chapter is closed. Rendered as one
+   * sentence with the chapter inbox as an inline link between the two halves,
+   * so a closed chapter is a fact with a door, not a section.
+   */
+  closedNote?: { beforeEmail: string; afterEmail: string };
   /**
    * Each posting references a role id from ROLES. Optionally specify how many
    * positions are open and an override on title or notes for the chapter.
@@ -908,8 +938,9 @@ export const chapterPositions: ChapterPosting[] = [
   {
     chapterSlug: "Amsterdam",
     chapterName: "SAIN Amsterdam",
+    heading: "SAIN Amsterdam is building its core team",
     blurb:
-      "SAIN Amsterdam is building its core team. Co-Directors Ana and Andreea are looking for team leads and team members across all teams. If you want to help shape a chapter from the ground up, this is the moment.",
+      "Co-Directors Ana and Andreea are looking for team leads and team members across all teams. If you want to help shape a chapter from the ground up, this is the moment.",
     inboxEmail: "infoams@safeainetherlands.org",
     status: "open",
     postings: [
@@ -921,8 +952,9 @@ export const chapterPositions: ChapterPosting[] = [
   {
     chapterSlug: "Utrecht",
     chapterName: "SAIN Utrecht",
+    heading: "SAIN Utrecht is growing its team",
     blurb:
-      "SAIN Utrecht is building its core team. Director Riccardo and the current team leads are looking for hands-on contributors who want to grow the chapter.",
+      "Director Riccardo and the current team leads are looking for hands-on contributors who want to grow the chapter.",
     inboxEmail: "infoutr@safeainetherlands.org",
     status: "open",
     postings: [
@@ -937,8 +969,16 @@ export const chapterPositions: ChapterPosting[] = [
   {
     chapterSlug: "Groningen",
     chapterName: "SAIN Groningen",
-    blurb:
-      "A few targeted openings in Groningen for people who want to plug into an established, ambitious chapter. We are selectively hiring to strengthen Communications and to support the national Research Hub.",
+    heading: "SAIN Groningen is at capacity",
+    /* The blurb that stood here claimed selective hiring for Communications
+       and the Research Hub while `postings` was empty, so a reader was told
+       "we are hiring" and then shown nothing to apply for. If Groningen does
+       open something, add the posting; do not revive the claim. */
+    closedNote: {
+      beforeEmail:
+        "The Groningen team is full right now, and we are not listing roles there. If you want to be considered when something opens, write to",
+      afterEmail: "and tell us what you would like to do.",
+    },
     inboxEmail: "infogro@safeainetherlands.org",
     status: "closed",
     postings: [],
@@ -953,6 +993,8 @@ export type NationalPosting = {
   /** Anchor slug used for the section on /open-positions. */
   slug: string;
   name: string;
+  /** The section heading on /open-positions. */
+  heading: string;
   blurb: string;
   inboxEmail: string;
   status: "open" | "closed";
@@ -977,9 +1019,10 @@ export type NationalPosting = {
  */
 export const nationalPosting: NationalPosting = {
   slug: "national",
-  name: "SAIN Netherlands",
+  name: "National team",
+  heading: "Roles on the national team",
   blurb:
-    "Some roles belong to SAIN as a whole rather than to a single chapter. Unlike our volunteer positions, these are paid staff roles on the small national team: they work across Amsterdam, Utrecht, and Groningen and report into the national leadership. Each has its own application form and hiring process.",
+    "Most of SAIN runs on volunteers in the chapters. National roles are the exception: they work across Amsterdam, Utrecht, and Groningen and report to the Director. Each has its own application form and hiring process, separate from the chapter form above.",
   inboxEmail: "info@safeainetherlands.org",
   status: "open",
   postings: [
@@ -1023,6 +1066,30 @@ export function isChapterRecruiting(chapterSlug: string): boolean {
 /** Chapters currently recruiting, in the order declared above. */
 export const recruitingChapters: ChapterPosting[] = chapterPositions.filter(
   (c) => isChapterRecruiting(c.chapterSlug),
+);
+
+/**
+ * How many volunteer roles are listed across the recruiting chapters. The
+ * careers hero counts the page rather than restating a number in prose, so
+ * closing a posting changes the sentence without anyone editing it.
+ */
+export const openChapterPostingCount = recruitingChapters.reduce(
+  (total, chapter) => total + (chapter.postings?.length ?? 0),
+  0,
+);
+
+/**
+ * How many of those chapter roles are compensated. A role counts as paid when
+ * its badge says so; the careers page reads this so its "most chapter roles
+ * are unpaid" paragraph cannot drift from the badges under it.
+ */
+export const paidChapterPostingCount = recruitingChapters.reduce(
+  (total, chapter) =>
+    total +
+    (chapter.postings ?? []).filter((p) =>
+      ROLES[p.roleId]?.commitmentBadge?.startsWith("Paid"),
+    ).length,
+  0,
 );
 
 /**
@@ -1074,7 +1141,7 @@ export const APPLICATION_TIMELINE: TimelineStep[] = [
   {
     label: "First-round response",
     detail:
-      "Within 2 to 3 weeks of applying. Strong candidates are invited to a short intro call with the chapter lead for that team.",
+      "Within two to three weeks of applying. Strong candidates are invited to a short intro call with the chapter lead for that team.",
   },
   {
     label: "Trial conversation",

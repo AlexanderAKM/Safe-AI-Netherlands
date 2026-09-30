@@ -1,129 +1,167 @@
 import Link from "next/link";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 
-const footerLinks = {
-  Organization: [
-    { name: "About Us", href: "/about" },
-    { name: "Get Involved", href: "/get-involved" },
-    { name: "Research Hub", href: "/research" },
-    { name: "Contact", href: "/contact" },
-  ],
-  Chapters: [
-    { name: "SAIN Groningen", href: "/chapters/groningen" },
-    { name: "SAIN Amsterdam", href: "/chapters/amsterdam" },
-    { name: "SAIN Utrecht", href: "/chapters/utrecht" },
-  ],
-  Connect: [
-    { name: "Onboarding form", href: COMMUNITY_JOIN_URL, external: true },
-    { name: "Substack", href: "https://safeainetherlands.substack.com/", external: true },
-    { name: "LinkedIn", href: "https://www.linkedin.com/company/safe-ai-netherlands/", external: true },
-    { name: "Instagram", href: "https://www.instagram.com/sainetherlands/", external: true },
-    {
-      name: "SAIN Groningen (all links)",
-      href: "https://linktr.ee/saingroningen",
-      external: true,
-    },
-    {
-      name: "SAIN Amsterdam (all links)",
-      href: "https://linktr.ee/sainamsterdam",
-      external: true,
-    },
-    {
-      name: "SAIN Utrecht (all links)",
-      href: "https://linktr.ee/sainutrecht",
-      external: true,
-    },
-  ],
-  Documents: [
-    { name: "Vision", href: "/about/vision" },
-    { name: "Theory of Change", href: "/about/theory-of-change" },
-    { name: "Code of Conduct", href: "/about/code-of-conduct" },
-  ],
-};
+/* Inverse navy close. Poppins italic for the stichting line and the
+   column titles, Poppins for the links. One bottom rule, then the legal line
+   and the cities. No second logo treatment.
+
+   The nav above carries three routes only, so the footer carries the whole
+   map: the community and its city doors, every programme, and the
+   organisation pages the nav no longer names. */
+
+type FooterLink = { name: string; href: string; external?: boolean };
+
+const columns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Community",
+    links: [
+      { name: "Community", href: "/community" },
+      { name: "Utrecht", href: "/chapters/utrecht" },
+      { name: "Groningen", href: "/chapters/groningen" },
+      { name: "Amsterdam", href: "/chapters/amsterdam" },
+      { name: "Join the community", href: COMMUNITY_JOIN_URL, external: true },
+    ],
+  },
+  {
+    title: "Programmes",
+    links: [
+      { name: "Courses", href: "/courses" },
+      { name: "Research hub", href: "/research" },
+      { name: "Research handbook", href: "/research/handbook" },
+      { name: "Volunteer", href: "/get-involved" },
+    ],
+  },
+  {
+    title: "Organisation",
+    links: [
+      { name: "About", href: "/about" },
+      { name: "Team", href: "/team" },
+      { name: "Open positions", href: "/open-positions" },
+      { name: "Contact", href: "/contact" },
+    ],
+  },
+];
+
+/* The same three channels layout.tsx declares in the organisation's JSON-LD. */
+const socials: FooterLink[] = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/safe-ai-netherlands/",
+    external: true,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/sainetherlands/",
+    external: true,
+  },
+  {
+    name: "Newsletter",
+    href: "https://safeainetherlands.substack.com/",
+    external: true,
+  },
+];
+
+const documents: FooterLink[] = [
+  { name: "Vision", href: "/about/vision" },
+  { name: "Theory of Change", href: "/about/theory-of-change" },
+  { name: "Code of Conduct", href: "/about/code-of-conduct" },
+];
+
+function FooterAnchor({
+  link,
+  iconSize = 16,
+}: {
+  link: FooterLink;
+  iconSize?: 14 | 16;
+}) {
+  const className =
+    "font-sans text-sm leading-5 text-white/78 transition-colors hover:text-white focus-visible:text-white";
+
+  if (link.external) {
+    return (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center gap-1.5 ${className}`}
+      >
+        {link.name}
+        <ArrowUpRight size={iconSize} weight="regular" aria-hidden="true" />
+        <span className="sr-only"> (opens in a new tab)</span>
+      </a>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={className}>
+      {link.name}
+    </Link>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-950 text-white">
-      <div className="section-container py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-4 mb-5">
-              <img
-                src="/sain-symbol-light.svg"
-                alt=""
-                className="w-20 h-20"
-                width={80}
-                height={80}
-              />
-              <img
-                src="/sain-wordmark-light.svg"
-                alt="SAIN"
-                className="h-12"
-                height={48}
-              />
-            </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-              The Netherlands&apos; national initiative for AI Safety, uniting
-              research, education, and community to ensure AI benefits everyone.
+    <footer className="border-t border-white/16 bg-navy">
+      <div className="shell pb-10 pt-[52px]">
+        <div className="flex flex-col gap-8 lg:flex-row">
+          <div className="flex w-full max-w-[420px] flex-col gap-3.5 lg:max-w-[300px] lg:shrink-0 xl:max-w-[420px]">
+            <img
+              src="/landing/logo-light-113.png"
+              srcSet="/landing/logo-light-113.png 1x, /landing/logo-light-226.png 2x, /landing/logo-light-339.png 3x"
+              alt="Safe AI Netherlands"
+              className="h-12 w-auto self-start"
+              width={113}
+              height={48}
+            />
+            <p className="kicker text-kicker-sm text-white/50">
+              Stichting Safe AI Netherlands
             </p>
             <a
               href="mailto:info@safeainetherlands.org"
-              className="text-sm text-dutch-orange hover:text-dutch-orange-light transition-colors"
+              className="font-sans text-sm leading-5 text-white/78 transition-colors hover:text-white focus-visible:text-white"
             >
               info@safeainetherlands.org
             </a>
+            <ul role="list" className="flex flex-wrap gap-x-5 gap-y-1">
+              {socials.map((social) => (
+                <li key={social.name}>
+                  <FooterAnchor link={social} iconSize={14} />
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Link columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="font-display font-semibold text-sm text-white mb-4">
-                {title}
-              </h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    {"external" in link ? (
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-slate-400 hover:text-dutch-orange transition-colors"
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="text-sm text-slate-400 hover:text-dutch-orange transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </li>
+          <div className="grid flex-1 gap-8 sm:grid-cols-3 lg:grid-cols-[repeat(3,max-content)] lg:justify-end lg:gap-x-28 xl:gap-x-40">
+            {columns.map((column) => (
+              <div key={column.title} className="flex flex-col gap-[11px]">
+                <p className="kicker text-kicker-sm text-white/50">{column.title}</p>
+                {column.links.map((link) => (
+                  <FooterAnchor key={link.name} link={link} />
                 ))}
-              </ul>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} Safe AI Netherlands (SAIN). All rights reserved.
+        <div className="mt-[26px] flex flex-col justify-between gap-3 border-t border-white/16 pt-[18px] sm:flex-row sm:items-center">
+          <p className="font-sans text-footnote text-white/60">
+            &copy; {new Date().getFullYear()} Safe AI Netherlands
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
-            <Link href="/about/vision" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
-              Vision
-            </Link>
-            <Link href="/about/theory-of-change" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
-              Theory of Change
-            </Link>
-            <Link href="/about/code-of-conduct" className="text-xs text-slate-500 hover:text-slate-300 transition-colors">
-              Code of Conduct
-            </Link>
+          <div className="flex flex-wrap gap-5">
+            {documents.map((document) => (
+              <Link
+                key={document.name}
+                href={document.href}
+                className="font-sans text-footnote text-white/60 transition-colors hover:text-white focus-visible:text-white"
+              >
+                {document.name}
+              </Link>
+            ))}
           </div>
+          <p className="font-sans text-footnote text-white/60">
+            Utrecht &middot; Groningen &middot; Amsterdam
+          </p>
         </div>
       </div>
     </footer>

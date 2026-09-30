@@ -1,15 +1,27 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import FadeIn from "@/components/FadeIn";
-import ScrollCue from "@/components/ScrollCue";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+
+import Portrait from "@/components/about/Portrait";
+import Reveal from "@/components/landing/Reveal";
+import SectionOrbits from "@/components/landing/SectionOrbits";
+import TalentFunnel from "@/components/TalentFunnel";
 import { leadership } from "@/data/leadership";
 import { sainDocuments } from "@/data/sainDocuments";
 
-const advisors = [
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Stichting Safe AI Netherlands raises awareness of the harms from AI, shapes the priorities for mitigating them, and supports the solutions that work. The mission, the talent pipeline, and the people who run it.",
+};
+
+/* The advisory board is not in src/data yet, so it stays here, where the page
+   that prints it can be read alongside it. Affiliations are printed exactly as
+   given: no gloss on what Resolution or CeSIA are, because nothing in the
+   sources says. */
+const advisoryGroups = [
   {
-    category: "Technical AI Safety",
+    label: "Technical AI safety",
     members: [
       {
         name: "Teun van der Weij",
@@ -19,7 +31,7 @@ const advisors = [
       },
       {
         name: "Jesse Hoogland",
-        affiliation: "Co-founder & Director, Resolution",
+        affiliation: "Co-founder and Director, Resolution",
         link: "https://www.jessehoogland.com/",
         image: "/photos/advisory_board/Jesse.jpg",
       },
@@ -27,12 +39,12 @@ const advisors = [
         name: "Nandi Schoots",
         affiliation: "FLI Postdoctoral Fellow, University of Oxford",
         link: "https://nandischoots.com/",
-        image: "/photos/advisory_board/nandi.jpg"
+        image: "/photos/advisory_board/nandi.jpg",
       },
     ],
   },
   {
-    category: "AI Governance & Policy",
+    label: "AI governance and policy",
     members: [
       {
         name: "Jelle Donders",
@@ -61,7 +73,7 @@ const advisors = [
     ],
   },
   {
-    category: "Strategy & Operations",
+    label: "Strategy and operations",
     members: [
       {
         name: "Richard Rushby",
@@ -71,12 +83,11 @@ const advisors = [
       },
       {
         name: "Jesselit Jimenez",
-        affiliation: "Global Director Strategy & Transformation",
+        affiliation: "Global Director Strategy and Transformation",
         link: "https://www.linkedin.com/in/jesselit-jimenez-65b0b891/",
         image: "/photos/advisory_board/Video_Jesselit_039_close-up.jpg",
       },
       {
-      
         name: "Stephen Corlett",
         affiliation: "Brand Marketing Leader and Consultant",
         link: "https://www.linkedin.com/in/stephen-corlett-8b361731/",
@@ -86,355 +97,415 @@ const advisors = [
   },
 ];
 
-const timeline = [
+/* The record, as claims rather than labels. "Rapid growth" and "National
+   recognition" named the shape of a year without saying what happened in it. */
+const record = [
   {
     year: "2023",
-    title: "AISIG Founded",
-    description:
-      "The AI Safety Initiative Groningen (AISIG) was established as a student-led group dedicated to AI Safety education and awareness.",
+    title: "AISIG founded.",
+    line: "The AI Safety Initiative Groningen starts as a student-led group teaching AI safety.",
   },
   {
     year: "2024",
-    title: "Rapid Growth",
-    description:
-      "AISIG expanded beyond students to include professionals, ran multiple course cohorts, and hosted hackathons with Apart Research.",
+    title: "Beyond students.",
+    line: "AISIG opens to professionals, runs multiple course cohorts, and hosts hackathons with Apart Research.",
   },
   {
     year: "2025",
-    title: "National Recognition",
-    description:
-      "With publications at NeurIPS, ICLR, and other top venues, AISIG became a frontrunner among student-led AI Safety groups in Europe. The breadth expanded to focusing on both students and professionals. Launched the Research Hub.",
+    title: "Research at top venues.",
+    line: "Publications at NeurIPS and ICLR; the Research Hub launches, matching emerging researchers with PhD-level supervisors.",
   },
   {
     year: "2026",
-    title: "SAIN Launched",
-    description:
-      "From the successes of AISIG, AI Netherlands (SAIN) gets founded, establishing a national initiative with chapters in multiple Dutch cities and a unified infrastructure.",
+    title: "Safe AI Netherlands.",
+    line: "The model becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure.",
   },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section
-        id="mission"
-        className="relative flex min-h-[100svh] items-center overflow-hidden bg-white scroll-mt-28"
-      >
-        <div className="absolute inset-0 opacity-[0.04]">
+      {/* The mission moment. No photograph, no second heading, no CTA: the
+          three clauses are the design, and the page has to earn the ask before
+          it makes it. Ornament is the hero's orbital linework, the same
+          vocabulary the landing opens with. */}
+      <section aria-labelledby="mission-heading" className="relative isolate overflow-hidden bg-white">
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
           <div
-            className="absolute inset-0"
+            className="absolute -left-8 -top-20 h-[400px] w-[200px] opacity-[0.07] md:-left-4 md:-top-12 md:h-[440px] md:w-[260px] md:opacity-[0.12]"
             style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, #021c4d 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
+              backgroundImage: "url('/illustrations/hero-orbits.svg')",
+              backgroundSize: "260px 440px",
+              backgroundRepeat: "no-repeat",
+              maskImage: "linear-gradient(to right, black 15%, transparent 100%)",
             }}
           />
+          {/* The orbit bleeds off the right edge only. The landing hangs this
+              off the bottom-right corner, where a cream band with a rule takes
+              over and the cut reads as the band's edge; here the next band is
+              white too, so a corner-hung orbit stopped mid-air at the seam.
+              Centred on the right edge, the arcs close on the page. */}
+          <svg
+            className="absolute -right-10 top-1/2 h-[380px] w-[190px] -translate-y-1/2 text-navy opacity-[0.06] md:h-[460px] md:w-[230px] md:opacity-[0.09]"
+            viewBox="0 0 230 460"
+            fill="none"
+          >
+            <g stroke="currentColor" strokeWidth="1">
+              <circle cx="230" cy="230" r="85" />
+              <circle cx="230" cy="230" r="119" />
+              <circle cx="230" cy="230" r="153" />
+            </g>
+            <path d="M63 80 Q64 87 70 88 Q64 89 63 96 Q62 89 56 88 Q62 87 63 80Z" fill="currentColor" />
+          </svg>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
-        <div className="section-container relative z-10 w-full">
-          <p className="mx-auto max-w-4xl text-center text-xl font-bold leading-relaxed text-navy-900 md:text-2xl">
-            Our mission is to raise awareness of the full spectrum of existing and potential harms from AI,
-            inform mitigation priorities through ongoing discourse, and support the realization of effective
-            solutions.
-          </p>
-        </div>
-        <ScrollCue href="#team" />
-      </section>
+        <div className="shell band-hero">
+          <Reveal hero className="flex flex-col">
+            <p className="kicker flex items-center gap-3 text-kicker text-navy/65">
+              <span className="size-[7px] shrink-0 bg-orange" aria-hidden="true" />
+              Safe AI Netherlands
+            </p>
 
-      {/* Leadership Team */}
-      <section id="team" className="section-padding scroll-mt-32 bg-white">
-        <div className="section-container">
-          <div className="mb-12 text-center">
-            <h2 className="heading-lg text-navy-900">Leadership</h2>
-          </div>
+            {/* One clause per line, because the mission is three commitments
+                and not a paragraph. */}
+            <h1 id="mission-heading" className="mt-5 max-w-[900px] font-serif text-display text-navy">
+              <span className="block">Raise awareness of the harms from AI.</span>
+              <span className="block">Shape the priorities for mitigating them.</span>
+              <span className="block">Support the solutions that work.</span>
+            </h1>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {leadership.map((person) => (
-              <a
-                key={person.name}
-                href={person.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card group flex h-full flex-col p-4"
-              >
-                <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
-                  <Image
-                    src={person.image}
-                    alt={person.name}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 50vw, 20vw"
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="font-display text-base font-semibold text-navy-900 transition-colors group-hover:text-dutch-orange">
-                  {person.name}
-                </h3>
-                <p className="text-sm font-medium text-dutch-orange">{person.role}</p>
-              </a>
-            ))}
-          </div>
+            <span className="mt-9 block h-px w-full max-w-[900px] bg-navy/14" aria-hidden="true" />
+
+            <p className="mt-6 max-w-[760px] font-sans text-body text-navy/72">
+              That is the mission of Stichting Safe AI Netherlands. Our focus is the transformative
+              risks of AI: the loss of meaningful human control over increasingly capable systems,
+              and what follows from it. This page shows the means: a free path from a first course
+              to full-time work on AI safety, and the people who run it.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* Advisory Board */}
-      <section id="advisory-board" className="section-padding scroll-mt-32 bg-slate-50">
-        <div className="section-container">
-          <div className="mx-auto mb-12 max-w-6xl text-center">
-            <h2 className="heading-lg text-navy-900">Advisory Board</h2>
-          </div>
-
-          <div className="mx-auto max-w-6xl space-y-10">
-            {advisors.map((group) => (
-              <div key={group.category}>
-                <h3 className="mb-5 text-center font-display text-2xl font-semibold text-navy-900">
-                  {group.category}
-                </h3>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {group.members.map((advisor) => (
-                    <a
-                      key={advisor.name}
-                      href={advisor.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="card w-full p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-64"
-                    >
-                      <div className="relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-slate-100">
-                        {advisor.image ? (
-                          <Image
-                            src={advisor.image}
-                            alt={advisor.name}
-                            fill
-                            priority
-                            sizes="(max-width: 1024px) 50vw, 25vw"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy-800 to-navy-900 font-display text-2xl font-semibold text-white">
-                            {advisor.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")
-                              .slice(0, 2)}
-                          </div>
-                        )}
-                      </div>
-                      <h4 className="font-display font-semibold text-navy-900">{advisor.name}</h4>
-                      <p className="mt-1 text-sm font-medium text-dutch-orange">{advisor.affiliation}</p>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="section-padding bg-white">
-        <div className="section-container">
-          <div id="our-journey" className="scroll-mt-32">
-            <FadeIn>
-              <div className="mb-16 text-center">
-                <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-dutch-orange">
-                  Our Journey
-                </p>
-                <h2 className="heading-lg text-navy-900">From AISIG to SAIN</h2>
-              </div>
-            </FadeIn>
-
-            <div className="mx-auto max-w-3xl">
-              {timeline.map((item, i) => (
-                <FadeIn key={item.year} delay={i * 0.1}>
-                  <div className="relative flex gap-6 pb-12 last:pb-0">
-                    {i < timeline.length - 1 && (
-                      <div
-                        className="absolute left-6 top-[3rem] z-0 h-[calc(100%-3rem)] w-px -translate-x-1/2 bg-slate-200"
-                        aria-hidden
-                      />
-                    )}
-                    <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold tabular-nums text-dutch-orange ring-2 ring-dutch-orange ring-offset-2 ring-offset-white">
-                      {item.year}
-                    </div>
-                    <div className="min-w-0 pt-1">
-                      <h3 className="font-display mb-1 font-semibold text-navy-900">{item.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
+      {/* Why the mission needs an organisation. A reading band: one copy
+          column, the paragraphs are the object. The white sheet that started
+          at the hero ends here, fading into the paper the funnel sits on. */}
+      <section
+        aria-labelledby="path-heading"
+        className="relative isolate overflow-hidden"
+        style={{
+          backgroundImage:
+            "linear-gradient(in oklab 180deg, white 0%, white 93%, #f7f5f2 100%)",
+        }}
+      >
+        <SectionOrbits className="-left-20 top-10 h-[400px] w-[300px] md:-left-12" />
+        <div className="shell band-section">
+          <Reveal className="flex flex-col">
+            <h2 id="path-heading" className="max-w-[620px] font-serif text-heading text-navy">
+              The Netherlands has the talent. It lacked the path.
+            </h2>
+            <div className="mt-6 flex max-w-[720px] flex-col gap-5 font-sans text-body text-navy/72">
+              <p>
+                Some harms from AI are already visible. The ones we focus on grow with the systems
+                themselves. The more capability and autonomy we hand to AI, the harder it becomes to
+                keep meaningful human control, and a system that fails does not check who built it.
+                The harm lands on the people and institutions that deployed it as much as on anyone
+                else.
+              </p>
+              <p>
+                Nobody can say how fast this goes, and we will not pretend to. The honest position
+                is that readiness is not something the Netherlands has by default. It is something
+                people build.
+              </p>
+              <p>
+                This country has world-class universities, a strong tech sector, and institutions
+                like ASML. What it lacked was a unified civil-society voice on AI safety, and a
+                clear route for a talented person to get from curiosity to meaningful contribution.
+                SAIN was created to close that gap. Our answer is not a campaign but human capital:
+                people who understand the risks, have the skills to address them, and sit where they
+                can act.
+              </p>
             </div>
-          </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <div id="foundational-documents" className="mt-20 scroll-mt-32 border-t border-slate-200 pt-16">
-            <FadeIn>
-              <div className="text-center mb-10">
-                <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                  Foundational Documents
-                </p>
-                <h3 className="heading-md text-navy-900">
-                  The shared framework behind SAIN
-                </h3>
-              </div>
-            </FadeIn>
+      {/* The Funnel Diagram. The argument on the left, the diagram that draws
+          it on the right; the prose never recaps the five bands, because the
+          drawing has already said them. */}
+      <section
+        id="pipeline"
+        aria-labelledby="pipeline-heading"
+        className="scroll-mt-36 border-t border-navy/10 bg-cream"
+      >
+        <div className="shell band-section grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,436px)] lg:gap-16">
+          <Reveal className="flex min-w-0 flex-col">
+            <h2 id="pipeline-heading" className="max-w-[620px] font-serif text-heading text-navy">
+              Anyone can start. The path narrows as you grow.
+            </h2>
+            <div className="mt-6 flex max-w-[640px] flex-col gap-5 font-sans text-body text-navy/72">
+              <p>
+                The Funnel Diagram is the whole organisation. The wide end is a free
+                course anyone can join, no technical background required. The narrow end is
+                full-time work on AI safety, in policy, research, industry or civil society. Between
+                them sit the community, the Research Hub, and fellowships. Progress through it is
+                visible, to us and to the person making it, and SAIN&rsquo;s job is to make each
+                next step reachable, so that every step someone takes compounds into a more
+                effective mission.
+              </p>
+              <p>
+                We are open about where our effort goes. SAIN builds the wide end: getting people
+                in, teaching foundations, and scaffolding a first real contribution such as a
+                supervised research project. At the narrow end we mainly connect and refer, with
+                introductions and referral letters.
+              </p>
+              <p>
+                We designed the pipeline with many good endings. Someone who takes one course and
+                returns to law, medicine or public administration carries that knowledge into their
+                profession, and a society fluent in AI risk is an outcome we actively want.
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {sainDocuments.map((document, i) => (
-                <FadeIn key={document.slug} delay={i * 0.1}>
-                  <Link
-                    href={`/about/${document.slug}`}
-                    className="card p-6 h-full flex flex-col group"
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-wider text-dutch-orange mb-3">
-                      {document.eyebrow}
-                    </span>
-                    <h4 className="font-display font-semibold text-2xl text-navy-900 group-hover:text-dutch-orange transition-colors mb-3">
-                      {document.title}
-                    </h4>
-                    <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                      {document.description}
+            {/* The record of the pipeline, on its own rule: it is evidence for
+                the three paragraphs above, not a fourth paragraph of them. */}
+            <p className="mt-7 max-w-[640px] border-t border-navy/14 pt-6 font-sans text-body text-navy/74">
+              So far the pipeline has produced more than 100 course graduates across nine-plus
+              cohorts, currently around 60 a year, and peer-reviewed research at NeurIPS and ICLR.
+              The aim for mid-2027 is 250 or more graduates a year, reached by running the same
+              standardised course in more cities.
+            </p>
+
+            <div className="pt-7">
+              <Link href="/courses" className="btn-accent">
+                Start with a free course
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08} className="mx-auto w-full min-w-0 max-w-[436px]">
+            <TalentFunnel />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The record. A thin index: the year does the wayfinding, the title
+          makes the claim, one sentence says what happened. Four rules, no
+          cards, no icons. */}
+      <section
+        aria-labelledby="record-heading"
+        className="border-t border-navy/10 bg-white"
+      >
+        <div className="shell band-index flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
+          <Reveal className="lg:w-[320px] lg:shrink-0">
+            <h2 id="record-heading" className="max-w-[420px] font-serif text-heading-sm text-navy">
+              From one student group to a national foundation in three years.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.05} className="min-w-0 flex-1">
+            <ol role="list" className="flex flex-col">
+              {record.map((entry) => (
+                <li
+                  key={entry.year}
+                  className="grid grid-cols-[56px_minmax(0,1fr)] gap-x-5 border-t border-navy/12 py-5 sm:grid-cols-[72px_minmax(0,1fr)]"
+                >
+                  <span className="font-serif text-title tabular-nums text-navy/55">
+                    {entry.year}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-serif text-title-sm text-navy">{entry.title}</h3>
+                    <p className="mt-1.5 max-w-[620px] font-sans text-body text-navy/72">
+                      {entry.line}
                     </p>
-                    <span className="mt-auto text-sm font-semibold text-dutch-orange flex items-center gap-1">
-                      Read document
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </FadeIn>
+                  </div>
+                </li>
               ))}
-            </div>
-
-            <div className="mt-16 pt-16 border-t border-slate-200">
-              <FadeIn>
-                <div className="mx-auto max-w-xl text-center">
-                  <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                    Contact
-                  </p>
-                  <h3 className="heading-md text-navy-900 mb-4">
-                    Emails and chapter contacts
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-8">
-                    National role addresses, chapter teams, and leadership inboxes
-                    live on one page so we keep details accurate and avoid repeating
-                    long lists here.
-                  </p>
-                  <Link href="/contact" className="btn-primary inline-flex">
-                    Contact &amp; emails
-                  </Link>
-                </div>
-              </FadeIn>
-            </div>
-          </div>
+            </ol>
+          </Reveal>
         </div>
       </section>
 
-      {/* Structure */}
-      <section className="section-padding bg-navy-950">
-        <div className="section-container">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <p className="text-sm font-semibold uppercase tracking-widest text-dutch-orange mb-3">
-                How We Work
-              </p>
-              <h2 className="heading-lg text-white mb-4">
-                National infrastructure, local impact
-              </h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">
-                SAIN operates as a national umbrella with local chapters. Each
-                chapter operates autonomously while benefiting from shared
-                resources, branding, and legal infrastructure.
-              </p>
-            </div>
-          </FadeIn>
+      {/* The people. /team redirects to this anchor, so the id stays whatever
+          else moves on this page. */}
+      <section
+        id="team"
+        aria-labelledby="team-heading"
+        className="relative isolate scroll-mt-36 overflow-hidden border-t border-navy/10 bg-white"
+      >
+        <SectionOrbits className="-bottom-24 -left-20 h-[500px] w-[375px] rotate-[-20deg] md:-left-12" />
+        <div className="shell band-section">
+          <Reveal className="flex flex-col">
+            <p className="kicker text-kicker text-navy/65">The people behind it</p>
+            <h2 id="team-heading" className="mt-4 max-w-[620px] font-serif text-heading text-navy">
+              A small leadership, close to the work.
+            </h2>
+            <p className="mt-5 max-w-[720px] font-sans text-body text-navy/72">
+              SAIN is led by its leadership: the national director and the chapter directors of
+              Groningen, Amsterdam and Utrecht. The leadership takes the strategic decisions; the
+              chapters run the courses, events and communities.
+            </p>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "National Level",
-                items: [
-                  "Research Hub & fellowship program",
-                  "Substack & national media",
-                  "Shared Google Workspace & infrastructure",
-                  "Legal entity & financial administration",
-                  "Advisory board & partnerships",
-                ],
-              },
-              {
-                title: "Chapter Level",
-                items: [
-                  "Local courses & discussion groups",
-                  "Regional events & hackathons",
-                  "City-specific outreach",
-                  "Local team & leadership",
-                  "Community building",
-                ],
-              },
-              {
-                title: "What Chapters Get",
-                items: [
-                  "SAIN brand & authority",
-                  "Operational playbooks & templates",
-                  "Centralized digital infrastructure",
-                  "Mentorship from experienced organizers",
-                  "No need for separate legal registration",
-                ],
-              },
-            ].map((col, i) => (
-              <FadeIn key={col.title} delay={i * 0.15}>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                  <h3 className="font-display font-semibold text-white mb-4">
-                    {col.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {col.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2.5 text-sm text-slate-300"
-                      >
-                        <svg
-                          className="w-4 h-4 text-dutch-orange flex-shrink-0 mt-0.5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 12.75l6 6 9-13.5"
-                          />
-                        </svg>
-                        {item}
-                      </li>
+          <Reveal delay={0.05}>
+            <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
+              {leadership.map((person) => (
+                <Portrait
+                  key={person.name}
+                  name={person.name}
+                  meta={person.role}
+                  href={person.linkedin}
+                  image={person.image}
+                  width="w-[140px] sm:w-[158px]"
+                  sizes="(min-width: 640px) 158px, 140px"
+                />
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">
+              Advised by people already in the field.
+            </h3>
+            <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
+              An advisory board of experts in the Dutch AI safety landscape provides strategic
+              guidance.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-10">
+              {advisoryGroups.map((group) => (
+                <div key={group.label}>
+                  <h4 className="kicker text-kicker-sm text-navy/60">{group.label}</h4>
+                  <ul role="list" className="mt-5 flex flex-wrap gap-x-6 gap-y-8">
+                    {group.members.map((member) => (
+                      <Portrait
+                        key={member.name}
+                        name={member.name}
+                        meta={member.affiliation}
+                        href={member.link}
+                        image={member.image}
+                        width="w-[132px] sm:w-[146px]"
+                        sizes="(min-width: 640px) 146px, 132px"
+                      />
                     ))}
                   </ul>
                 </div>
-              </FadeIn>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <FadeIn delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-4 mt-12">
-              <Link href="/get-involved" className="btn-primary">
-                Get Involved
-              </Link>
-              <Link href="/get-involved#start-chapter" className="btn-secondary">
-                Start a Chapter
+      {/* How we work, written down. The documents are the proof; the two lines
+          under them are the doors people ask for after reading them. */}
+      <section
+        id="documents"
+        aria-labelledby="documents-heading"
+        className="scroll-mt-36 border-t border-navy/10 bg-white"
+      >
+        <div className="shell band-section">
+          <Reveal className="flex flex-col">
+            {/* No kicker: the heading already says what the band is, which is
+                the case the Kicker Budget gives none. */}
+            <h2
+              id="documents-heading"
+              className="max-w-[620px] font-serif text-heading text-navy"
+            >
+              The rules we hold ourselves to are public.
+            </h2>
+            <p className="mt-5 max-w-[760px] font-sans text-body text-navy/72">
+              SAIN is a Dutch foundation, a stichting, the standard nonprofit legal form. The
+              foundation holds the brand, the legal entity and the finances, so a local chapter
+              never has to build those from scratch; chapters run their own courses, events and
+              communities. Every programme is free. Three documents define how the whole thing
+              works, and anyone can read them.
+            </p>
+          </Reveal>
+
+          {/* Rows, not cards. Three cream boxes on white repeated the geometry
+              of the band above and borrowed the one boxed treatment the system
+              has earned, which is publication cards on inverse. As hairline
+              rows the documents read as one index with the two doors under
+              them, in the same idiom. */}
+          <Reveal delay={0.05}>
+            <ul role="list" className="mt-10 flex flex-col">
+              {sainDocuments.map((document) => (
+                <li key={document.slug}>
+                  <Link
+                    href={`/about/${document.slug}`}
+                    className="group flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10"
+                  >
+                    <span className="block min-w-0">
+                      <span className="kicker block text-kicker-sm text-navy/60">
+                        {document.eyebrow}
+                      </span>
+                      <span className="mt-1.5 block font-serif text-title-sm text-navy underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 group-hover:decoration-navy group-focus-visible:decoration-navy">
+                        {document.title}
+                      </span>
+                      <span className="mt-2 block max-w-[620px] font-sans text-kicker-sm text-navy/74">
+                        {document.description}
+                      </span>
+                    </span>
+                    <span className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 group-hover:decoration-navy group-focus-visible:decoration-navy">
+                      Read document
+                      <ArrowRight size={16} weight="regular" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.05} className="flex flex-col">
+            <div className="flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
+              <p className="max-w-[620px] font-sans text-body text-navy/72">
+                Role addresses and chapter contacts live on one page, so they stay accurate.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              >
+                Contact SAIN
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
-          </FadeIn>
+            <div className="flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
+              <p className="max-w-[620px] font-sans text-body text-navy/72">
+                Want to bring SAIN to your city? Chapters adopt the brand, the legal umbrella and
+                ready-made curricula instead of starting from scratch.
+              </p>
+              <Link
+                href="/community#start-chapter"
+                className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              >
+                Start a chapter
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The close. Claim left, the two ways to act right. Nothing else. */}
+      <section id="involved" aria-labelledby="involved-heading" className="scroll-mt-36 bg-navy">
+        <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
+          <div className="min-w-0">
+            <h2 id="involved-heading" className="max-w-[620px] font-serif text-closing text-white">
+              The work is already happening. Join it, or help run it.
+            </h2>
+            <p className="mt-4 max-w-[560px] font-sans text-body text-white/75">
+              Every programme is free, and all of it runs on people who show up.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:shrink-0">
+            {/* "Join the community" is reserved site-wide for the onboarding
+                form (COMMUNITY_JOIN_URL). This goes to the community page, so
+                it carries the page label, the way the chapter pages say
+                "Visit the Research hub". */}
+            <Link href="/community" className="btn-accent">
+              Visit the community
+            </Link>
+            <Link href="/get-involved" className="btn-ghost-inverse">
+              Volunteer
+            </Link>
+          </div>
         </div>
       </section>
     </>

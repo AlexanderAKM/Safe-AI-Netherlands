@@ -1,315 +1,190 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Logo from "./Logo";
 import { hasOpenPositions } from "@/data/openPositions";
+import { ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 
-type NavChild = { name: string; href: string } | { divider: true };
+/* The authorship shell: a civic broadcast strip, then the header. The strip
+   scrolls away once read; the header pins to the top for the rest of the page.
+   Nav is a flat row of three routes. No filled active pill, no desktop
+   hamburger, no dropdowns: the /community page hands out the city doors, so
+   Community is a plain link like the other two. */
 
-type NavItem =
-  | { type: "link"; name: string; href: string }
-  | {
-      type: "menu";
-      name: string;
-      /** When set, the label is a link to this path; chevron opens submenu. */
-      parentHref: string | null;
-      children: NavChild[];
-    };
-
-const navigation: NavItem[] = [
+const navigation: {
+  name: string;
+  href: string;
+  isActive: (path: string) => boolean;
+}[] = [
   {
-    type: "menu",
-    name: "Get Involved",
-    parentHref: "/get-involved",
-    children: [
-      {
-        name: hasOpenPositions ? "Open positions" : "Join the team",
-        href: "/open-positions",
-      },
-      { divider: true },
-      { name: "Courses", href: "/get-involved#courses" },
-      { name: "Discussion groups", href: "/get-involved#discussion-groups" },
-      { name: "Events", href: "/get-involved#events" },
-      { name: "Research Hub", href: "/get-involved#research-hub" },
-    ],
+    name: "Courses",
+    href: "/courses",
+    isActive: (p) => p === "/courses" || p.startsWith("/courses/"),
   },
   {
-    type: "menu",
-    name: "About Us",
-    parentHref: "/about",
-    children: [
-      { name: "Mission", href: "/about#mission" },
-      { name: "Leadership", href: "/about#team" },
-      { name: "Advisory Board", href: "/about#advisory-board" },
-      { name: "Our Journey", href: "/about#our-journey" },
-      { name: "Foundational documents", href: "/about#foundational-documents" },
-    ],
+    name: "Community",
+    href: "/community",
+    /* The chapter pages live under the Community door, so they light it up. */
+    isActive: (p) =>
+      p === "/community" ||
+      p.startsWith("/community/") ||
+      p.startsWith("/chapters"),
   },
   {
-    type: "menu",
-    name: "Chapters",
-    parentHref: null,
-    children: [
-      { name: "SAIN Groningen", href: "/chapters/groningen" },
-      { name: "SAIN Amsterdam", href: "/chapters/amsterdam" },
-      { name: "SAIN Utrecht", href: "/chapters/utrecht" },
-      { divider: true },
-      { name: "Start a Chapter", href: "/get-involved#start-chapter" },
-    ],
+    name: "Research hub",
+    href: "/research",
+    isActive: (p) => p.startsWith("/research"),
   },
-  { type: "link", name: "Contact", href: "/contact" },
+  {
+    name: "About",
+    href: "/about",
+    isActive: (p) => p === "/about" || p.startsWith("/about/"),
+  },
 ];
 
-function menuIsActive(item: Extract<NavItem, { type: "menu" }>, pathname: string) {
-  if (item.parentHref === "/get-involved") {
-    return pathname === "/get-involved" || pathname.startsWith("/open-positions");
-  }
-  if (item.parentHref === "/about") {
-    return pathname === "/about" || pathname.startsWith("/about/");
-  }
-  if (item.parentHref === null) {
-    return pathname.startsWith("/chapters");
-  }
-  return false;
-}
-
-function Chevron({ open }: { open: boolean }) {
-  return (
-    <svg
-      className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-      aria-hidden
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
-  );
-}
-
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const pathname = usePathname();
-  const onDarkChapterHero =
-    (pathname.startsWith("/chapters/groningen") ||
-      pathname === "/chapters/amsterdam" ||
-      pathname.startsWith("/chapters/utrecht")) &&
-    !scrolled;
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
-    setOpenMenu(null);
   }, [pathname]);
 
-  const isSimpleActive = (href: string) => pathname === href;
-
-  const inactiveDesktop = onDarkChapterHero
-    ? "text-white/85 hover:text-white hover:bg-white/10"
-    : "text-slate-600 hover:text-navy-900 hover:bg-slate-50";
-
-  const activeDesktop = onDarkChapterHero ? "text-white" : "text-dutch-orange";
-
-  const renderDropdownPanel = (children: NavChild[]) => (
-    <div className="absolute left-0 top-full mt-1 w-56 animate-fade-in rounded-xl border border-slate-100 bg-white py-2 shadow-lg">
-      {children.map((child, i) =>
-        "divider" in child ? (
-          <div key={i} className="my-1 border-t border-slate-100" />
-        ) : (
-          <Link
-            key={child.name}
-            href={child.href}
-            className="block px-4 py-2.5 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-dutch-orange"
-          >
-            {child.name}
-          </Link>
-        ),
-      )}
-    </div>
-  );
-
   return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-slate-100 bg-white/95 shadow-sm backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
-      <nav className="section-container flex h-28 items-center justify-between md:h-32">
-        <Logo
-          inverted={onDarkChapterHero}
-          className={scrolled ? "text-navy-900" : onDarkChapterHero ? "text-white" : "text-navy-900"}
-        />
-
-        <div className="hidden items-center gap-1 md:flex">
-          {navigation.map((item) => {
-            if (item.type === "link") {
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`rounded-lg px-4 py-2 text-base font-medium transition-colors ${
-                    isSimpleActive(item.href) && !onDarkChapterHero ? activeDesktop : inactiveDesktop
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              );
-            }
-
-            const menuActive = menuIsActive(item, pathname) && !onDarkChapterHero;
-            const sharedActiveClass = menuActive ? activeDesktop : inactiveDesktop;
-            const open = openMenu === item.name;
-
-            if (item.parentHref) {
-              return (
-                <div
-                  key={item.name}
-                  className="relative flex items-center rounded-lg"
-                  onBlur={(e) => {
-                    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
-                      setTimeout(() => setOpenMenu((m) => (m === item.name ? null : m)), 120);
-                    }
-                  }}
-                >
-                  <Link
-                    href={item.parentHref}
-                    className={`rounded-l-lg py-2 pl-4 pr-2 text-base font-medium transition-colors ${sharedActiveClass}`}
-                  >
-                    {item.name}
-                  </Link>
-                  <button
-                    type="button"
-                    aria-expanded={open}
-                    aria-haspopup="menu"
-                    aria-label={`${item.name} submenu`}
-                    className={`rounded-r-lg py-2 pl-1 pr-3 transition-colors ${sharedActiveClass}`}
-                    onClick={() => setOpenMenu(open ? null : item.name)}
-                  >
-                    <Chevron open={open} />
-                  </button>
-                  {open && renderDropdownPanel(item.children)}
-                </div>
-              );
-            }
-
-            return (
-              <div
-                key={item.name}
-                className="relative"
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
-                    setTimeout(() => setOpenMenu((m) => (m === item.name ? null : m)), 120);
-                  }
-                }}
-              >
-                <button
-                  type="button"
-                  aria-expanded={open}
-                  aria-haspopup="menu"
-                  className={`flex items-center gap-1 rounded-lg px-4 py-2 text-base font-medium transition-colors ${sharedActiveClass}`}
-                  onClick={() => setOpenMenu(open ? null : item.name)}
-                >
-                  {item.name}
-                  <Chevron open={open} />
-                </button>
-                {open && renderDropdownPanel(item.children)}
-              </div>
-            );
-          })}
+    <>
+      {/* The broadcast is read once on arrival, then it scrolls away. Only the
+          header pins, so the nav sits at the very top rather than 42px down
+          behind a strip the reader has already taken in. */}
+      {hasOpenPositions && (
+        <div className="flex items-center justify-center gap-3 bg-orange px-6 py-[11px] md:px-12">
+          <p className="kicker text-kicker-sm text-white/85">
+            We are hiring
+          </p>
+          <span
+            className="hidden h-px w-[22px] bg-white/50 sm:block"
+            aria-hidden="true"
+          />
+          <Link
+            href="/open-positions"
+            className="font-sans text-caption text-white underline decoration-white/45 underline-offset-4 transition-colors hover:decoration-white focus-visible:decoration-white"
+          >
+            See open positions
+          </Link>
         </div>
+      )}
 
-        <button
-          type="button"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className={`rounded-lg p-2 md:hidden ${
-            onDarkChapterHero
-              ? "text-white/85 hover:bg-white/10 hover:text-white"
-              : "text-slate-600 hover:bg-slate-50 hover:text-navy-900"
-          }`}
-        >
-          {mobileOpen ? (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
-      </nav>
+      {/* The mobile panel lives inside the sticky box so it travels with the
+          header instead of being left behind at its original offset. */}
+      <div className="sticky top-0 z-50">
+        <header className="border-b border-navy/10 bg-white/94 backdrop-blur-sm">
+          <div className="shell flex min-h-[70px] items-center justify-between gap-6 py-2.5">
+            <Link
+              href="/"
+              className="shrink-0"
+              aria-label="Safe AI Netherlands home"
+            >
+              <img
+                src="/landing/logo-navy-182.png"
+                srcSet="/landing/logo-navy-182.png 1x, /landing/logo-navy-364.png 2x, /landing/logo-navy-546.png 3x"
+                alt="Safe AI Netherlands"
+                /* 75px, half again the 50px it shipped at (September 2026
+                 feedback). The bar grows with the mark rather than cropping
+                 it; the block padding comes down to keep the header near 95px. */
+                className="h-[75px] w-auto"
+                width={182}
+                height={75}
+              />
+            </Link>
 
-      {mobileOpen && (
-        <div className="animate-fade-in border-t border-slate-100 bg-white shadow-lg md:hidden">
-          <div className="section-container space-y-1 py-4">
-            {navigation.map((item) => {
-              if (item.type === "link") {
+            <nav
+              className="hidden items-center gap-[30px] lg:flex"
+              aria-label="Primary"
+            >
+              {navigation.map((item) => {
+                const active = item.isActive(pathname);
+                const underline = active
+                  ? "border-navy"
+                  : "border-transparent hover:border-navy/40 focus-visible:border-navy/40";
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`block rounded-lg px-4 py-2.5 text-sm font-medium ${
-                      isSimpleActive(item.href) ? "text-dutch-orange" : "text-slate-600"
-                    }`}
+                    aria-current={active ? "page" : undefined}
+                    className={`border-b py-0.5 font-sans text-sm leading-5 text-navy transition-colors ${underline}`}
                   >
                     {item.name}
                   </Link>
                 );
-              }
+              })}
+            </nav>
 
-              const menuActive =
-                item.parentHref === "/get-involved"
-                  ? pathname === "/get-involved" ||
-                    pathname.startsWith("/open-positions")
-                  : item.parentHref === "/about"
-                    ? pathname === "/about" || pathname.startsWith("/about/")
-                    : pathname.startsWith("/chapters");
+            <div className="hidden items-center gap-2.5 sm:flex">
+              <Link href="/get-involved" className="btn-ghost min-h-[44px]">
+                Volunteer
+              </Link>
+              <Link href="/courses" className="btn-ink min-h-[44px]">
+                Join a free course
+              </Link>
+            </div>
 
-              return (
-                <div key={item.name} className="space-y-0.5">
-                  {item.parentHref ? (
-                    <Link
-                      href={item.parentHref}
-                      className={`block rounded-lg px-4 py-2.5 text-sm font-medium ${
-                        menuActive ? "text-dutch-orange" : "text-slate-600"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                      {item.name}
-                    </div>
-                  )}
-                  {item.children.map((child, i) =>
-                    "divider" in child ? (
-                      <div key={i} className="my-1 border-t border-slate-100" />
-                    ) : (
-                      <Link
-                        key={child.name}
-                        href={child.href}
-                        className="block rounded-lg py-2 pl-8 pr-4 text-sm text-slate-600 hover:text-dutch-orange"
-                      >
-                        {child.name}
-                      </Link>
-                    ),
-                  )}
-                </div>
-              );
-            })}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((open) => !open)}
+              className="inline-flex size-11 items-center justify-center border border-navy/20 lg:hidden"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileOpen ? (
+                <XIcon size={18} weight="light" aria-hidden="true" />
+              ) : (
+                <ListIcon size={18} weight="light" aria-hidden="true" />
+              )}
+            </button>
           </div>
-        </div>
-      )}
-    </header>
+        </header>
+
+        {mobileOpen && (
+          <nav
+            id="mobile-nav"
+            className="border-b border-navy/10 bg-white lg:hidden"
+            aria-label="Mobile"
+          >
+            <div className="shell flex flex-col gap-1 py-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={item.isActive(pathname) ? "page" : undefined}
+                  className="flex min-h-[44px] items-center font-sans text-sm leading-5 text-navy"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              {/* The header keeps both calls to action from sm up, so the sheet
+                  only carries them on the narrowest screens -- otherwise the
+                  same two buttons show twice between sm and lg. */}
+              <Link
+                href="/get-involved"
+                onClick={() => setMobileOpen(false)}
+                className="mt-2 flex min-h-[44px] items-center justify-center border border-navy/20 px-4 text-center font-sans text-caption text-navy sm:hidden"
+              >
+                Volunteer
+              </Link>
+              <Link
+                href="/courses"
+                onClick={() => setMobileOpen(false)}
+                className="flex min-h-[44px] items-center justify-center bg-navy px-4 text-center font-sans text-caption text-white sm:hidden"
+              >
+                Join a free course
+              </Link>
+            </div>
+          </nav>
+        )}
+      </div>
+    </>
   );
 }
