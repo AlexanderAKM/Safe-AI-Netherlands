@@ -132,6 +132,19 @@ const TARGETS = [
     widths: [320, 640, 900],
     format: ".webp",
   },
+  {
+    /* The Amsterdam chapter's PrintStrip, drawn at the same widths as the
+       community strip above. discussion-group-2 is held back from the page. */
+    note: "Amsterdam chapter PrintStrip (78vw on a phone, <=320 CSS at xl)",
+    files: [
+      "photos/events/amsterdam/governance-graduation.jpg",
+      "photos/events/amsterdam/governance-course.jpg",
+      "photos/events/amsterdam/discussion-group.jpeg",
+      "photos/events/amsterdam/chapter-meeting.jpg",
+    ],
+    widths: [320, 640, 900],
+    format: ".webp",
+  },
 ];
 
 /* Crops, not rungs. The chapters band draws each city's hero as a wash behind

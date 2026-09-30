@@ -12,6 +12,7 @@ import PastEvents, {
   pastEventsThisYear,
   type RawPastEvent,
 } from "@/components/chapters/PastEvents";
+import PrintStrip, { type Print } from "@/components/chapters/PrintStrip";
 import ShowUpBand from "@/components/chapters/ShowUpBand";
 import TeamBand, { type TeamMember } from "@/components/chapters/TeamBand";
 import lumaPastEventsAmsterdam from "@/data/lumaPastEventsAmsterdam.json";
@@ -67,6 +68,37 @@ const courses: Course[] = [
       "Real-world legal challenges",
       "Real-world societal challenges",
     ],
+  },
+];
+
+const prints: Print[] = [
+  {
+    src: "/photos/events/amsterdam/governance-graduation.jpg",
+    widths: [320, 640, 900],
+    alt: "Frontier AI Governance graduates holding their certificates of completion",
+    caption: "Governance course graduation · SAIN Amsterdam",
+    tilt: "xl:rotate-[-2deg]",
+  },
+  {
+    src: "/photos/events/amsterdam/governance-course.jpg",
+    widths: [320, 640, 900],
+    alt: "Participants mapping AI governance mechanisms on a whiteboard covered in sticky notes",
+    caption: "Frontier AI Governance session",
+    tilt: "xl:rotate-[1.5deg]",
+  },
+  {
+    src: "/photos/events/amsterdam/discussion-group.jpeg",
+    widths: [320, 640, 900],
+    alt: "A discussion group around a café table, some holding SAIN Amsterdam mugs",
+    caption: "Discussion group · SAIN Amsterdam",
+    tilt: "xl:rotate-[-1deg]",
+  },
+  {
+    src: "/photos/events/amsterdam/chapter-meeting.jpg",
+    widths: [320, 640, 900],
+    alt: "Two organisers presenting the chapter's plans to a full room",
+    caption: "Chapter meeting",
+    tilt: "xl:rotate-[2deg]",
   },
 ];
 
@@ -164,13 +196,15 @@ export default function AmsterdamPage() {
         team={team}
       />
 
-      {/* No prints: there are no Amsterdam event photographs in the repo, and
-          a city skyline standing in for a room would be the one thing this
-          band exists to rule out. The rows carry it until photographs arrive. */}
       <EvidenceBand
         heading="This already happened in Amsterdam"
         body="The chapter has delivered courses to more than 70 participants, run a season of weekly discussion groups, and presented at the AI020 Conference and TEDxUniversiteit van Amsterdam."
       >
+        <PrintStrip
+          prints={prints}
+          label="Photographs from SAIN Amsterdam events"
+        />
+
         <PastEvents events={pastEvents} />
       </EvidenceBand>
 
