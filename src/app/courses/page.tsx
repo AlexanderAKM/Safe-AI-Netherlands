@@ -219,14 +219,18 @@ export default function CoursesPage() {
                     <h3 className="font-serif text-title text-white">{entry.chapter}</h3>
                     {entry.open ? (
                       <>
-                        <p className="mt-1 font-sans text-label text-white/78">
-                          Applications open.
-                        </p>
+                        {!entry.rolling && (
+                          <p className="mt-1 font-sans text-label text-white/78">
+                            Applications open.
+                          </p>
+                        )}
                         <p className="font-sans text-label text-white/78">
-                          {`Apply by ${entry.deadlines.participants} (${facilitatorDate(
-                            entry.deadlines.participants,
-                            entry.deadlines.facilitators,
-                          )} to facilitate).`}
+                          {entry.rolling
+                            ? entry.rollingNote
+                            : `Apply by ${entry.deadlines.participants} (${facilitatorDate(
+                                entry.deadlines.participants,
+                                entry.deadlines.facilitators,
+                              )} to facilitate).`}
                         </p>
                       </>
                     ) : (

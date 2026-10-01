@@ -36,9 +36,10 @@ import {
 const OPEN_DELAY_MS = 1500;
 const PREVIEW_PARAM = "preview-popup";
 
-/* One key per cohort: the open chapters and their participant deadlines. */
+/* One key per cohort: the open chapters and their participant deadlines. A
+   rolling chapter has no cohort date, so its part of the key never changes. */
 const DISMISS_KEY = `sain:course-popup-dismissed:${openCourseApplications
-  .map((c) => `${c.chapter}:${c.deadlines.participants}`)
+  .map((c) => `${c.chapter}:${c.rolling ? "rolling" : c.deadlines.participants}`)
   .join("|")}`;
 
 export default function CoursePopup() {
@@ -222,7 +223,11 @@ export default function CoursePopup() {
                         <span className="block font-serif text-title text-navy underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 group-hover:decoration-navy group-focus-visible:decoration-navy">
                           {course.chapter}
                         </span>
-                        {course.open ? (
+                        {course.open && course.rolling ? (
+                          <span className="mt-1 block font-sans text-footnote text-navy/65">
+                            {course.rollingNote}
+                          </span>
+                        ) : course.open ? (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
                             Apply by {course.deadlines.participants}
                             <span aria-hidden="true" className="px-2 text-navy/25">

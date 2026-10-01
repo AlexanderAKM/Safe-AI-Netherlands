@@ -14,6 +14,11 @@
  * therefore go quiet, but it can never print an expired deadline beside a live
  * apply button. The site is a static export, so "now" is the build date: a
  * rebuild is what retires a lapsed cohort.
+ *
+ * A chapter that takes applications all year, placing each applicant in its
+ * next cohort, is open with `rolling: true` and a `rollingNote` instead of
+ * deadlines. It has no date to lapse on, so it stays open until someone closes
+ * it here.
  */
 
 /** Shared intake form for participants and facilitators, all chapters. */
@@ -29,6 +34,7 @@ export type CourseApplication = {
 } & (
   | {
       open: true;
+      rolling?: false;
       /** Written out the way they appear on the page, with the year, e.g.
        *  "18 September 2026". The year is not decoration: a date without one
        *  reads as ambiguous rather than expired once it has passed. */
@@ -37,6 +43,13 @@ export type CourseApplication = {
       closesAfter: string;
       /** Stands in for `closedNote` once the deadlines above have passed. */
       lapsedNote?: string;
+    }
+  | {
+      open: true;
+      /** Applications are always open; each one joins the next cohort. */
+      rolling: true;
+      /** Stands in for the deadlines, e.g. "Apply any time ...". */
+      rollingNote: string;
     }
   | {
       open: false;
@@ -52,7 +65,7 @@ const DEFAULT_LAPSED_NOTE = "Sign ups for the next cohort will open soon.";
  * This is the one place the guard lives, so no page has to remember it.
  */
 function resolve(entry: CourseApplication): CourseApplication {
-  if (!entry.open) return entry;
+  if (!entry.open || entry.rolling) return entry;
   const closes = new Date(`${entry.closesAfter}T23:59:59`);
   if (Number.isNaN(closes.getTime()) || closes.getTime() >= Date.now()) {
     return entry;
@@ -76,12 +89,12 @@ const cohorts: CourseApplication[] = [
   {
     chapter: "Groningen",
     href: "/chapters/groningen#programs",
-    /* The 11 September 2026 cohort has closed. Reopen this entry with the
-       next cohort's real dates rather than leaving a passed deadline reading
-       as open: every page that renders this file promises the reader that
-       open here means open on the chapter's page. */
-    open: false,
-    closedNote: "Sign ups for the next cohort will open next semester.",
+    /* Registration stays open for every future cohort: an applicant is
+       placed in the next one that starts. */
+    open: true,
+    rolling: true,
+    rollingNote:
+      "Applications are always open, and you will join the next cohort that starts.",
   },
   {
     chapter: "Utrecht",
