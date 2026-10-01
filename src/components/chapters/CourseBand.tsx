@@ -59,9 +59,15 @@ export default function CourseBand({
           {application.open ? (
             <>
               <p className="mt-3 font-sans text-body text-navy/74">
-                {openLead} Participants apply by{" "}
-                {application.deadlines.participants}; facilitators by{" "}
-                {application.deadlines.facilitators}.
+                {application.rolling ? (
+                  application.rollingNote
+                ) : (
+                  <>
+                    {openLead} Participants apply by{" "}
+                    {application.deadlines.participants}; facilitators by{" "}
+                    {application.deadlines.facilitators}.
+                  </>
+                )}
               </p>
               <a
                 href={COURSE_APPLICATION_URL}

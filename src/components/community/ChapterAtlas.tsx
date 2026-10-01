@@ -43,8 +43,14 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
       {entry.open ? (
         <>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
-            Participants by {entry.deadlines.participants}. Facilitators by{" "}
-            {entry.deadlines.facilitators}.
+            {entry.rolling ? (
+              entry.rollingNote
+            ) : (
+              <>
+                Participants by {entry.deadlines.participants}. Facilitators by{" "}
+                {entry.deadlines.facilitators}.
+              </>
+            )}
           </p>
           <a
             href={COURSE_APPLICATION_URL}
