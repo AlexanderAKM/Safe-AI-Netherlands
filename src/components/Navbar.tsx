@@ -88,12 +88,13 @@ export default function Navbar() {
                 src="/landing/logo-navy-182.png"
                 srcSet="/landing/logo-navy-182.png 1x, /landing/logo-navy-364.png 2x, /landing/logo-navy-546.png 3x"
                 alt="Safe AI Netherlands"
-                /* 75px, half again the 50px it shipped at (September 2026
-                 feedback). The bar grows with the mark rather than cropping
-                 it; the block padding comes down to keep the header near 95px. */
-                className="h-[75px] w-auto"
+                /* The lockup is cropped tight, with the symbol and the
+                 wordmark at one height and centred on one line (October 2026
+                 feedback), so 44px of image is 44px of mark: between the 26px
+                 wordmark and 53px symbol of the old padded 75px lockup. */
+                className="h-[44px] w-auto"
                 width={182}
-                height={75}
+                height={44}
               />
             </Link>
 

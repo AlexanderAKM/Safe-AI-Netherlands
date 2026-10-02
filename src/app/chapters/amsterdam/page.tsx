@@ -47,7 +47,7 @@ const courses: Course[] = [
     id: "technical",
     title: "Technical AI Safety",
     summary:
-      "Built on BlueDot's Technical AI Safety curriculum, with extra sessions on mechanistic interpretability, adversarial attacks and complex systems. Six weeks, about two hours of reading and two hours of discussion a week, on site in Amsterdam, with a certificate on completion. Selection is application-based; the last iteration reached more than 70 people across both courses, from students and PhDs to engineers, policymakers and consultants.",
+      "Built on BlueDot's Technical AI Safety curriculum, with extra sessions on mechanistic interpretability, adversarial attacks and complex systems. Six weeks, about two hours of reading and two hours of discussion a week, on site in Amsterdam, with a certificate on completion. Selection is application-based; the last iteration drew more than 120 applicants across both courses, from students and PhDs to engineers, policymakers and consultants.",
     outlineTitle: "What the sessions cover",
     outline: [
       "BlueDot's core technical readings and discussion",
@@ -192,13 +192,13 @@ export default function AmsterdamPage() {
 
       <TeamBand
         city="Amsterdam"
-        body="SAIN Amsterdam is co-directed by Ana Paula Castillo Rodriguez and Andreea Chivu, with a team covering research, education, events, and PR. Formerly AI Safety Amsterdam (AISA), the chapter draws people from BSc students to professionals at companies like Deloitte and Shell, and from independent researchers to ELLIS assistant professors."
+        body="SAIN Amsterdam is directed by Ana Paula Castillo Rodriguez, with a team covering research, education, events, and PR. Formerly AI Safety Amsterdam (AISA), the chapter draws people from BSc students to professionals at companies like Deloitte and Shell, and from independent researchers to ELLIS assistant professors."
         team={team}
       />
 
       <EvidenceBand
         heading="This already happened in Amsterdam"
-        body="The chapter has delivered courses to more than 70 participants, run a season of weekly discussion groups, and presented at the AI020 Conference and TEDxUniversiteit van Amsterdam."
+        body="The chapter's courses have drawn more than 120 applicants. It has also run a season of weekly discussion groups and presented at the AI020 Conference and TEDxUniversiteit van Amsterdam."
       >
         <PrintStrip
           prints={prints}

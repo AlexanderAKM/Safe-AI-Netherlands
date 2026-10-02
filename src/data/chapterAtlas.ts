@@ -77,8 +77,8 @@ export const ATLAS: AtlasChapter[] = [
     photo: "/photos/cities/amsterdam-hero",
     photoAlt: "Canal houses leaning over the water in central Amsterdam",
     facts: [
-      { label: "Directed by", value: "Ana Paula Castillo Rodriguez and Andreea Chivu" },
-      { label: "Courses", value: "More than 70 participants so far" },
+      { label: "Directed by", value: "Ana Paula Castillo Rodriguez" },
+      { label: "Courses", value: "More than 120 applicants so far" },
       { label: "On stage", value: "The AI020 Conference and TEDxUniversiteit van Amsterdam" },
     ],
     course: "Technical AI Safety & Frontier AI Governance",

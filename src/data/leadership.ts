@@ -13,20 +13,21 @@ export const leadership = [
   },
   {
     name: "Ana Paula Castillo Rodriguez",
-    role: "Co-Director SAIN Amsterdam",
+    role: "Director SAIN Amsterdam and Head of Growth SAIN",
     linkedin: "https://www.linkedin.com/in/ana-paula-casrod/",
     image: "/photos/team/Ana_resized.jpeg",
-  },
-  {
-    name: "Andreea Chivu",
-    role: "Co-Director SAIN Amsterdam",
-    linkedin: "https://www.linkedin.com/in/andreea-chivu-0924911a6/",
-    image: "/photos/team/Andreea_resized.jpeg",
   },
   {
     name: "Riccardo Campanella",
     role: "Director SAIN Utrecht",
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
     image: "/photos/team/Riccardo_resized.jpeg",
+  },
+  {
+    name: "Marta Polizzi",
+    role: "Head of Operations SAIN",
+    linkedin: "https://www.linkedin.com/in/martapolizzi/",
+    /* No photograph yet; Portrait shows an empty tile until one lands. */
+    image: undefined,
   },
 ] as const;
