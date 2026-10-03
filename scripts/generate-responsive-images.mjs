@@ -59,9 +59,9 @@ const TARGETS = [
     widths: [640, 960, 1280, 1920],
   },
   {
-    note: "Header lockup, drawn at 182x44",
+    note: "Header lockup, drawn at 140x37",
     files: ["landing/logo-navy.png"],
-    widths: [182, 364, 546],
+    widths: [140, 280, 420],
   },
   {
     note: "Footer lockup",
