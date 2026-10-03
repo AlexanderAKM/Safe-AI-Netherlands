@@ -27,7 +27,6 @@ export const leadership = [
     name: "Marta Polizzi",
     role: "Head of Operations SAIN",
     linkedin: "https://www.linkedin.com/in/martapolizzi/",
-    /* No photograph yet; Portrait shows an empty tile until one lands. */
-    image: undefined,
+    image: "/photos/team/Marta.jpg",
   },
 ] as const;

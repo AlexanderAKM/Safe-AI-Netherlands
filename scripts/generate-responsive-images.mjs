@@ -93,6 +93,7 @@ const TARGETS = [
       "photos/team/Ana_resized.jpeg",
       "photos/team/Andreea_resized.jpeg",
       "photos/team/Riccardo_resized.jpeg",
+      "photos/team/Marta.jpg",
       "photos/advisory_board/Teun.jpg",
       "photos/advisory_board/Jesse.jpg",
       "photos/advisory_board/nandi.jpg",
