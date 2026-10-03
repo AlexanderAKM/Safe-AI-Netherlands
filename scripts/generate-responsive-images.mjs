@@ -37,8 +37,16 @@ const TARGETS = [
     widths: [320, 640, 768, 1040],
   },
   {
-    note: "/get-involved hero print: 420 CSS at lg, 60-84vw below",
-    files: ["landing/print-hackathon.jpg"],
+    note: "/get-involved hero print (420 CSS at lg, 60-84vw below) and the landing community gallery (<=300 CSS)",
+    files: [
+      "landing/print-graduation-amsterdam.jpg",
+      "landing/print-closing-groningen.jpg",
+      "landing/print-lecture.jpg",
+      "landing/print-cafe-amsterdam.jpg",
+      "landing/print-hackathon.jpg",
+      "landing/print-circle.jpg",
+      "landing/print-indoor.jpg",
+    ],
     widths: [320, 640, 900],
   },
   {

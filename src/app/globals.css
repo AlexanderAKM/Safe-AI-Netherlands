@@ -589,6 +589,10 @@
 @media (hover: hover) and (pointer: fine) and (max-width: 1279.98px) {
   .strip-arrow { display: grid; }
 }
+/* For a strip that stays a strip at xl too (the landing gallery). */
+@media (hover: hover) and (pointer: fine) {
+  .strip-arrow-always { display: grid; }
+}
 
 /* Motion feedback: keep movement local and preserve the surrounding layout. */
 .community-print img {
