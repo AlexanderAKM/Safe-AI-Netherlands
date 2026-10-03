@@ -35,7 +35,9 @@ export default function Portrait({
   /** Role or affiliation, set in footnote tone under the name. */
   meta: string;
   href: string;
-  image: string;
+  /** Left out while a photograph is still to come: the tile keeps its square
+      frame, empty, so the row does not reflow when the photo lands. */
+  image?: string;
   /** Tailwind width class for the tile column. */
   width?: string;
   /** The CSS width of the tile at each breakpoint, for the srcSet to pick from. */
@@ -52,6 +54,7 @@ export default function Portrait({
         {/* isolate: a scaled child under a clip needs its own stacking
             context or Safari lets the corners through. */}
         <span className="block isolate overflow-hidden border border-navy/15 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-navy/45 group-focus-visible:border-navy/45">
+          {image ? (
           <img
             src={rung(image, 320)}
             srcSet={RUNGS.map((w) => `${rung(image, w)} ${w}w`).join(", ")}
@@ -63,6 +66,9 @@ export default function Portrait({
             decoding="async"
             className="aspect-square w-full object-cover transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]"
           />
+          ) : (
+            <span aria-hidden="true" className="block aspect-square w-full bg-navy/5" />
+          )}
         </span>
 
         <p className="mt-3.5 font-serif text-title-sm leading-6 text-navy">

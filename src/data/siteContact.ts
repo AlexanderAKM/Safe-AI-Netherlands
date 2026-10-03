@@ -49,8 +49,9 @@ export type LeadershipContact = {
   role: string;
   /** The address that belongs to this person and to nobody else. */
   email: string;
-  /** The shared inbox they also answer, already printed in full further up the page. */
-  alsoAnswers: string;
+  /** The shared inbox they also answer, already printed in full further up the page.
+      Left out for a lead who answers none of them. */
+  alsoAnswers?: string;
   linkedin?: string;
 };
 
@@ -73,17 +74,10 @@ export const leadershipContacts: LeadershipContact[] = [
   },
   {
     names: "Ana Paula Castillo Rodriguez",
-    role: "Co-Director SAIN Amsterdam",
+    role: "Director SAIN Amsterdam and Head of Growth SAIN",
     email: "ana@safeainetherlands.org",
     alsoAnswers: "Also answers the SAIN Amsterdam chapter address above.",
     linkedin: "https://www.linkedin.com/in/ana-paula-casrod/",
-  },
-  {
-    names: "Andreea Chivu",
-    role: "Co-Director SAIN Amsterdam",
-    email: "andreea@safeainetherlands.org",
-    alsoAnswers: "Also answers the SAIN Amsterdam chapter address above.",
-    linkedin: "https://www.linkedin.com/in/andreea-chivu-0924911a6/",
   },
   {
     names: "Riccardo Campanella",
@@ -91,6 +85,12 @@ export const leadershipContacts: LeadershipContact[] = [
     email: "riccardo@safeainetherlands.org",
     alsoAnswers: "Also answers the SAIN Utrecht chapter address above.",
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
+  },
+  {
+    names: "Marta Polizzi",
+    role: "Head of Operations SAIN",
+    email: "marta@safeainetherlands.org",
+    linkedin: "https://www.linkedin.com/in/martapolizzi/",
   },
 ];
 

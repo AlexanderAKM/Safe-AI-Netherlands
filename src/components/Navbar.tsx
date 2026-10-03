@@ -85,15 +85,16 @@ export default function Navbar() {
               aria-label="Safe AI Netherlands home"
             >
               <img
-                src="/landing/logo-navy-182.png"
-                srcSet="/landing/logo-navy-182.png 1x, /landing/logo-navy-364.png 2x, /landing/logo-navy-546.png 3x"
+                src="/landing/logo-navy-140.png"
+                srcSet="/landing/logo-navy-140.png 1x, /landing/logo-navy-280.png 2x, /landing/logo-navy-420.png 3x"
                 alt="Safe AI Netherlands"
-                /* 75px, half again the 50px it shipped at (September 2026
-                 feedback). The bar grows with the mark rather than cropping
-                 it; the block padding comes down to keep the header near 95px. */
-                className="h-[75px] w-auto"
-                width={182}
-                height={75}
+                /* The lockup is cropped tight to the symbol, which is the
+                 tallest part; the wordmark stands about 85% of its height
+                 (October 2026), so 37px of image is a 37px symbol beside a
+                 32px wordmark. */
+                className="h-[37px] w-auto"
+                width={140}
+                height={37}
               />
             </Link>
 

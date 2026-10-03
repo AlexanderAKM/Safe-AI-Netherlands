@@ -23,7 +23,7 @@
 
 /** Shared intake form for participants and facilitators, all chapters. */
 export const COURSE_APPLICATION_URL =
-  "https://sainonboard.fillout.com/t/4fQyZTbTCAus";
+  "https://sainonboard.fillout.com/new";
 
 export type ChapterName = "Amsterdam" | "Groningen" | "Utrecht";
 

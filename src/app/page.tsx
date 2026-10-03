@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import CommunityPrints from "@/components/landing/CommunityPrints";
 import CourseTracks from "@/components/landing/CourseTracks";
 import FoldPin from "@/components/landing/FoldPin";
 import MissionStatement from "@/components/landing/MissionStatement";
@@ -190,7 +191,8 @@ export default function Home() {
           thin "Local communities" strip under the hero, whose #chapters anchor
           it took, and a separate strip of uncaptioned event prints.) */}
       <section id="community" aria-labelledby="community-heading" className="relative isolate scroll-mt-36 overflow-hidden bg-cream">
-        <div className="shell band-section grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
+        <div className="shell band-section flex flex-col gap-10 lg:gap-14">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
           <Reveal className="flex flex-col items-start gap-5">
             <h2 id="community-heading" className="font-serif text-heading text-navy">
               Participate in the community
@@ -259,6 +261,13 @@ export default function Home() {
               </ul>
             </nav>
           </Reveal>
+        </div>
+
+        {/* Under the chapters, what happens in them: a strip of event
+            photographs across the full width of the band. */}
+        <Reveal delay={0.1}>
+          <CommunityPrints />
+        </Reveal>
         </div>
       </section>
         </FoldPin>

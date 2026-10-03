@@ -940,7 +940,7 @@ export const chapterPositions: ChapterPosting[] = [
     chapterName: "SAIN Amsterdam",
     heading: "SAIN Amsterdam is building its core team",
     blurb:
-      "Co-Directors Ana and Andreea are looking for team leads and team members across all teams. If you want to help shape a chapter from the ground up, this is the moment.",
+      "Director Ana is looking for team leads and team members across all teams. If you want to help shape a chapter from the ground up, this is the moment.",
     inboxEmail: "infoams@safeainetherlands.org",
     status: "open",
     postings: [

@@ -186,8 +186,8 @@ export default function ContactPage() {
               The people behind those addresses.
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              The national director and the chapter directors, each with the
-              address only they read.
+              The national director, the chapter directors and the head of
+              operations, each with the address only they read.
             </p>
           </div>
 
@@ -212,9 +212,11 @@ export default function ContactPage() {
                   >
                     {person.email}
                   </a>
-                  <p className="font-sans text-footnote text-navy/60">
-                    {person.alsoAnswers}
-                  </p>
+                  {person.alsoAnswers ? (
+                    <p className="font-sans text-footnote text-navy/60">
+                      {person.alsoAnswers}
+                    </p>
+                  ) : null}
                 </div>
                 {person.linkedin ? (
                   <a

@@ -4,8 +4,7 @@
  * Groningen pattern in `aisigTeam.ts`.
  */
 export const sainAmsTeam = [
-  { name: "Andreea Ioana Chivu", title: "Co-Director" },
-  { name: "Ana Paula Castillo Rodriguez", title: "Co-Director" },
+  { name: "Ana Paula Castillo Rodriguez", title: "Director" },
   { name: "Satchit Chatterji", title: "Research Operation Lead" },
   { name: "Michele Vannucci", title: "Research Operation (Vrije University)" },
   { name: "Prabhnoor Kohli", title: "Education Lead" },
