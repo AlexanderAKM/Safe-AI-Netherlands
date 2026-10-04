@@ -488,7 +488,7 @@ export const ROLES: Record<string, Role> = {
     responsibilities: [
       "Design social media visuals, event posters, flyers, and banner graphics in line with SAIN's brand kit.",
       "Produce templates for recurring formats (event announcements, reminder posters, recap cards) for reuse by the Communications team.",
-      "Design offline materials such as roll-ups, merchandise, and printed handouts.",
+      "Design offline materials such as roll-ups, merchandise, and printed handouts as needed.",
       "Ensure all visual outputs are consistent with SAIN's fonts, colours, and tone.",
       "Incorporate feedback from the Communications Lead and iterate quickly.",
       "Attend the weekly Communications team meeting.",
@@ -503,7 +503,7 @@ export const ROLES: Record<string, Role> = {
         "Visual sense, attention to brand consistency, receptiveness to feedback, ability to work to deadlines.",
     },
     collaborations:
-      "Communications Lead, Content Creator, Events Lead, On-Campus Ambassador.",
+      "Communications Lead, Content Creator, Events Lead (for event materials), On-Campus Ambassador (for print materials).",
     formRoleValue: COMMS_TEAM_FORM_VALUE,
     specialisationOf: "Communications Team Member",
   },
@@ -681,40 +681,118 @@ export const ROLES: Record<string, Role> = {
       "Head of Projects, supervisors, researchers.",
   },
 
-  "education-lead-technical": {
-    id: "education-lead-technical",
-    title: "Education Lead, Technical & Repository Owner",
+  "education-lead-utrecht": {
+    id: "education-lead-utrecht",
+    title: "Education Lead",
     team: "education",
     scope: "chapter",
     reportsTo: "Chapter Director",
     timeCommitment:
-      "10 to 15 hours per week, with iteration and incubation peaks",
+      "10 to 15 hours per week, spread across the week, with peaks during course iterations and pre-incubation cycles",
     commitmentBadge: "Paid - Part-time",
     mission:
-      "Own the technical backbone of SAIN Utrecht's education-to-incubation pipeline: run the Technical AI Safety program, own and maintain SAIN Utrecht's demo-of-risks repository, and supervise and assess the technical quality of every incubated project from Forge through the Research Hub handoff. This role exists because SAIN Utrecht is moving from teaching concepts to shipping reproducible, code-based demonstrations and benchmarks, and someone needs to be responsible for what gets merged, what gets published, and whether a student's work is actually ready for incubation, a grant, or a mentor introduction. This is a paid position, not a volunteer role: compensation reflects the technical ownership and evaluation responsibilities below.",
+      "Own the coordination and partnerships side of SAIN Utrecht's education-to-incubation pipeline: make sure the courses run well, the facilitator team is supported, promising participants become concrete pre-incubation projects, and SAIN courses are connected to the wider AI safety field and to institutions. The Education Lead does not own the code repository; that sits with the Research Ops & Repository Steward. This is a paid position, not a volunteer role: compensation reflects the coordination and accountability responsibilities below.",
     responsibilities: [
-      "Plan and run Technical AI Safety course iterations (e.g. ARENA 2-4: LLMs/RL, Evaluation, Eval Science), including the Agents + CyberSec and Biorisk modules.",
-      "Own SAIN Utrecht's shared code repository: define contribution standards, review and approve pull requests, maintain CI/testing hygiene, and ensure reproducibility of published benchmarks and demos.",
-      "Technically supervise and grade Forge project proposals and the 12-week Incubation phase; sign off on which projects are ready to progress to the Research Hub, a Grant (Type 1/2), or an external mentor pipeline (e.g. ARENA, Apart Research).",
-      "Design and maintain hands-on project tracks drawn from the Agentic AI/CyberSec portfolio (agent security benchmarks, sandboxing, MCP/tool-ecosystem security) and the AI×Bio project ladder, calibrated to each cohort's skill level.",
-      "Recruit, train, and support technical facilitators and TAs; run the office hours homework review (TAing) for the Technical cohort.",
-      "Maintain curriculum currency against SAIN Research Hub agenda topics (mech interp, scalable oversight, agent foundations, robustness) and coordinate updates with the Director and Discussion Team.",
-      "Coordinate with the Communications Lead on technical-program marketing and with the Events Lead on hackathon and challenge design (DevPost, Apart Research collaborations).",
+      "Plan and coordinate course iterations (Intro, Technical, Governance), including the Technical AI Safety program (e.g. ARENA 2-4) and the Agents + CyberSec, Biorisk, and Embodied AI Safety modules: schedules, cohort logistics, participant communication, and curriculum currency.",
+      "Coordinate with Incubation Ops (Research Team) to turn strong course participants into projects in the pre-incubation stage: scope Forge proposals, match participants to project tracks and mentors, and hand projects over to Incubation Ops with a clear status summary.",
+      "Work with the Research Ops & Repository Steward to make sure Forge proposals and incubating projects get a technical assessment before they progress to the Research Hub, a Grant (Type 1/2), or an external mentor pipeline.",
+      "Find and maintain partnerships in the AI safety field (e.g. ARENA, Apart Research, SecureBio, Convergent Robotics, BlueDot Impact) that strengthen SAIN's courses, mentor network, and project pipeline.",
+      "Find and maintain partnerships with institutions (UU departments, other universities, research groups, companies) for SAIN courses: guest lecturers, course recognition or credit, shared cohorts, and co-run programs. Hand leads to the Ambassador and Director where relevant.",
+      "Recruit, train, and support facilitators and TAs, and run regular facilitator check-ins. Track cohort progress and flag participants ready for early hand-off.",
+      "Coordinate updates to course content with the Director, the Discussion Team, and SAIN Research Hub agenda topics.",
+      "Coordinate with the Communications Lead on course marketing and with the Events Lead on hackathon and challenge design.",
+      "Keep a steady weekly presence, not only on weekends: check the education inbox and facilitator channels on weekdays, answer participant and partner messages promptly, and keep pre-incubation and partnership threads moving with regular small actions. A few short check-ins during the week are worth more than one long weekend session.",
+    ],
+    preferredBackground: {
+      field:
+        "Open. A technical, governance, or related background with solid AI safety literacy.",
+      experience:
+        "Prior AI safety course completion or facilitation experience strongly preferred. Experience in program coordination, partnership building, or running a student organisation or team.",
+      softSkills:
+        "Strong communication and follow-through, and comfort with cold outreach to organisations and institutions. Comfortable working with technical contributors and relying on their assessments without needing to do the code review personally. Reliable, with a weekly rhythm: able to commit to consistent weekday availability.",
+    },
+    collaborations:
+      "Chapter Director, Research Lead, Research Ops & Repository Steward, Incubation Ops, Events Lead, Communications Lead, facilitators, external partners and institutions.",
+  },
+
+  "research-ops-repository-steward": {
+    id: "research-ops-repository-steward",
+    title: "Research Ops & Repository Steward",
+    team: "research",
+    scope: "chapter",
+    reportsTo: "Research Lead",
+    timeCommitment:
+      "~6 to 8 hours per week, spread across the week, with peaks during incubation cycles and external project deadlines",
+    mission:
+      "Build and look after SAIN Utrecht's technical backbone. Create and maintain the SAIN Repository, hold incubated code to a high engineering standard, and collaborate with external companies on projects. This role makes sure that what SAIN publishes, benchmarks, and demonstrates is reproducible and technically trustworthy.",
+    responsibilities: [
+      "Create and maintain the SAIN Repository: repo structure, contribution standards, PR review and approval, CI/testing hygiene, documentation, and reproducibility of benchmarks and demos.",
+      "Collaborate with the Education Lead and Incubation Ops to provide technical assessment of Forge proposals and incubating projects, and advise on which are ready to progress to the Research Hub, a Grant, or an external mentor pipeline.",
+      "Collaborate with external companies on projects: scope joint work, keep technical deliverables on track, and act as the technical contact.",
+      "Support course facilitators who own module repositories (e.g. Embodied AI Safety) by aligning their repos with SAIN-wide standards.",
+      "Help design hands-on project tracks (agent security benchmarks, sandboxing, MCP/tool-ecosystem security, AI×Bio project ladder, embodied AI red-teaming), calibrated to participants' skill levels.",
+      "Give technical feedback to project teams that participants and mentors will trust.",
+      "Contribute throughout the week rather than in weekend bursts: review PRs in a timely way, keep CI green, and respond to project teams and external partners within a few days.",
     ],
     preferredBackground: {
       field: "AI/ML, Computer Science, or an adjacent technical field.",
-      level: "MSc required. PhD strongly preferred, or in progress.",
+      level: "Master's preferred. PhD or PhD in progress is a plus.",
       experience:
-        "Strong, demonstrable coding ability. Comfortable owning a shared codebase, reviewing others' code, and setting engineering standards, not just writing personal research code. A clear, verifiable history of technical output is required: published repos, research contributions, competition results (e.g. ARENA, MATS, MARS, SPAR, Apart Research sprints), or equivalent industry experience. This is not an entry-level role. Prior AI safety course completion or facilitation experience strongly preferred.",
+        "Proficiency in coding is required, and applicants must provide a GitHub repository or profile showing their work. Solid grounding in machine learning. Comfortable owning a shared codebase (branching, code review, testing, reproducibility), not just personal research code.",
       softSkills:
-        "Comfortable assessing and giving critical feedback on others' technical work at a level participants and mentors will trust.",
+        "Reliability, clear written communication, and comfort giving direct, respectful technical feedback.",
     },
     alsoStrong: [
-      "Hands-on experience in cybersecurity and/or agentic AI systems (red-teaming, agent security, LLM evaluations), directly relevant to the Technical program's current curriculum direction.",
+      "A background in cybersecurity, robotics, reinforcement learning, or interpretability.",
+      "Prior AI safety course completion, or competition or research output (ARENA, MATS, SPAR, Apart Research sprints).",
     ],
     collaborations:
-      "Chapter Director, Research Lead, Events Lead, Technical Facilitators, Communications Lead, external mentor network (ARENA, Apart Research, Research Hub).",
+      "Research Lead, Education Lead, Incubation Ops, facilitators, Events Lead, external companies and mentors.",
     formRoleValue: OPEN_POSITION_FORM_VALUE,
+  },
+
+  "education-facilitator-evals": {
+    id: "education-facilitator-evals",
+    title:
+      "Education Course Facilitator, Science of Evaluation (LLM Evals)",
+    team: "education",
+    scope: "chapter",
+    reportsTo: "Education Lead",
+    timeCommitment:
+      "~4 to 6 hours per week during iterations (one 2-hour session plus prep, homework review, and cross-track coordination), with peaks before events and hackathons",
+    mission:
+      "Build the foundation for upskilling SAIN Utrecht's community to evaluate risks from transformative AI. Facilitate the Science of Evaluation module of the Technical AI Safety program, focused on LLMs, covering benchmarking, field understanding, evaluation trajectories, and model capabilities. Beyond teaching the module, coordinate with the Education Lead and the other technical tracks (CyberSec & Agentic AI, Biosecurity & AI, Embodied AI Safety) to turn evaluation methods into evaluation projects specific to each domain, and develop demos of risks that SAIN can show at events and in courses.",
+    responsibilities: [
+      "Read all assigned materials ahead of each cohort session, especially technical materials from AI safety organisations and companies (e.g. the ARENA evaluation modules, frontier lab and AI safety institute evaluation reports and frameworks).",
+      "Run weekly interactive sessions on the science of evaluation: how benchmarks are designed and where they fail, measuring model capabilities and propensities, the limits of evals (validity, contamination, sandbagging, elicitation gaps), and how the field and eval methods have developed over time.",
+      "Give participants a shared vocabulary and toolkit, from reading a benchmark critically to designing and running a small evaluation, so they can move on to domain-specific work.",
+      "Coordinate with the Education Lead and the facilitators of the other tracks to define evaluation projects for their domains (e.g. agent security benchmarks, non-operational AI×Bio evaluation design, embodied AI red-teaming setups). Advise on methodology and hand promising projects to the pre-incubation pipeline.",
+      "Work with the Research Ops & Repository Steward and build on the SAIN Repository: align eval code, course notebooks, and demos with its contribution standards, and contribute reusable eval templates and reproducible baselines.",
+      "Develop demos of risks for SAIN to show at events and courses (e.g. live model-behaviour demos, eval walkthroughs, \"how do we know if a model is dangerous?\" interactive exhibits). Coordinate with the Events Lead on format and with the Communications Lead on how demos are presented publicly.",
+      "Keep demos responsible: they illustrate risk and evaluation methods without providing operational uplift or hazardous content, and sensitive demos get sign-off from the Education Lead or Director before public use.",
+      "Review homework notebooks and project code, give direct technical feedback, and flag strong participants for the Forge/Incubation pipeline.",
+      "Keep the module current as evaluation methods, benchmarks, and model capabilities change, in coordination with the Education Lead and the SAIN Research Hub agenda.",
+      "Attend regular facilitator check-ins with the Education Lead and report on cohort progress and curriculum needs.",
+      "Contribute throughout the week rather than only on weekends: short weekday check-ins on participant questions, cross-track coordination, and demo development.",
+    ],
+    preferredBackground: {
+      field:
+        "AI/ML, Computer Science, or an adjacent technical field, with hands-on LLM experience.",
+      level:
+        "Master's or PhD preferred. A strong bachelor's with relevant evals or research experience is considered.",
+      experience:
+        "Hands-on work with LLM evaluations or benchmarking (running evals, designing tasks, or analysing model behaviour), or completion of an AI safety technical course such as ARENA (evaluation modules in particular). Some demonstrable technical output: a GitHub repo, research contributions, or competition/sprint results such as Apart Research, MATS, or SPAR. Comfortable working in a shared codebase (branching, PR review, reproducibility) and with the SAIN Repository standards.",
+      softSkills:
+        "Ability to make evaluation concepts accessible to a mixed-skill cohort, comfort giving critical technical feedback, and a collaborative attitude toward the other tracks.",
+    },
+    alsoStrong: [
+      "Familiarity with eval frameworks and tooling, red-teaming experience, or a background in one of the other tracks (cybersecurity, biosecurity, robotics/RL).",
+      "Experience building demos or interactive exhibits for a general audience.",
+    ],
+    collaborations:
+      "Education Lead, Research Ops & Repository Steward, Research Lead, fellow Technical facilitators (CyberSec & Agentic AI, Biosecurity & AI, Embodied AI Safety), Events Lead (demos, hackathons, challenges), Communications Lead, external AI safety organisations.",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+    specialisationOf: "Education Course Facilitator",
   },
 
   "education-facilitator-cybersec": {
@@ -958,12 +1036,16 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoutr@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "education-lead-technical" },
+      { roleId: "education-lead-utrecht" },
+      { roleId: "education-facilitator-evals" },
       { roleId: "education-facilitator-cybersec" },
       { roleId: "education-facilitator-biosecurity" },
       { roleId: "education-facilitator-embodied" },
+      { roleId: "research-ops-repository-steward" },
       { roleId: "sain-ambassador" },
       { roleId: "events-team-member-facilitator" },
+      { roleId: "graphic-designer" },
+      { roleId: "photographer" },
     ],
   },
   {
