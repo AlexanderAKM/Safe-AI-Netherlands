@@ -18,7 +18,10 @@
  * A chapter that takes applications all year, placing each applicant in its
  * next cohort, is open with `rolling: true` and a `rollingNote` instead of
  * deadlines. It has no date to lapse on, so it stays open until someone closes
- * it here.
+ * it here. It may also carry a `chapterNote`, a cohort-specific line (a nominal
+ * deadline, a start date) shown only on its own chapter page, in place of the
+ * rolling note. That note is dated by `chapterNoteUntil` and drops out once the
+ * date passes, leaving the rolling note, so a stale deadline never lingers.
  */
 
 /** Shared intake form for participants and facilitators, all chapters. */
@@ -50,6 +53,10 @@ export type CourseApplication = {
       rolling: true;
       /** Stands in for the deadlines, e.g. "Apply any time ...". */
       rollingNote: string;
+      /** Replaces `rollingNote` on the chapter's own page only. */
+      chapterNote?: string;
+      /** ISO `YYYY-MM-DD`; `chapterNote` is dropped after this date. */
+      chapterNoteUntil?: string;
     }
   | {
       open: false;
@@ -60,16 +67,24 @@ export type CourseApplication = {
 
 const DEFAULT_LAPSED_NOTE = "Sign ups for the next cohort will open soon.";
 
+/** True once the whole of an ISO date has passed; false if missing or malformed. */
+function hasPassed(isoDate: string | undefined): boolean {
+  const end = new Date(`${isoDate}T23:59:59`);
+  return !Number.isNaN(end.getTime()) && end.getTime() < Date.now();
+}
+
 /**
  * An entry whose deadlines have passed reports closed, whatever the file says.
  * This is the one place the guard lives, so no page has to remember it.
  */
 function resolve(entry: CourseApplication): CourseApplication {
-  if (!entry.open || entry.rolling) return entry;
-  const closes = new Date(`${entry.closesAfter}T23:59:59`);
-  if (Number.isNaN(closes.getTime()) || closes.getTime() >= Date.now()) {
-    return entry;
+  if (!entry.open) return entry;
+  if (entry.rolling) {
+    if (!entry.chapterNote || !hasPassed(entry.chapterNoteUntil)) return entry;
+    const { chapterNote: _note, chapterNoteUntil: _until, ...rest } = entry;
+    return rest;
   }
+  if (!hasPassed(entry.closesAfter)) return entry;
   return {
     chapter: entry.chapter,
     href: entry.href,
@@ -82,9 +97,13 @@ const cohorts: CourseApplication[] = [
   {
     chapter: "Amsterdam",
     href: "/chapters/amsterdam#programs",
-    open: false,
-    closedNote:
-      "Sign ups for the next cohort will open in October.",
+    open: true,
+    rolling: true,
+    rollingNote:
+      "Applications are always open, and you will join the next cohort that starts.",
+    chapterNote:
+      "Applications are open. Apply by 23 October 2026; the courses start in the first week of November.",
+    chapterNoteUntil: "2026-10-23",
   },
   {
     chapter: "Groningen",
