@@ -106,6 +106,10 @@ export default function CommunityPage() {
                 <ArrowDown size={16} weight="regular" aria-hidden="true" />
               </a>
             </div>
+            <p className="max-w-[560px] font-sans text-footnote text-navy/65">
+              Our Discord community currently focuses on our SAIN Amsterdam,
+              Utrecht and Groningen chapters. More cities to come.
+            </p>
           </Reveal>
 
           <Reveal hero delay={0.08} className="min-w-0">
