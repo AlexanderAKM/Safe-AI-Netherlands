@@ -210,6 +210,10 @@ export default function Home() {
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
+            <p className="font-sans text-footnote text-navy/65">
+              Our Discord community currently focuses on our SAIN Amsterdam,
+              Utrecht and Groningen chapters. More cities to come.
+            </p>
           </Reveal>
 
           <Reveal delay={0.06} className="min-w-0">

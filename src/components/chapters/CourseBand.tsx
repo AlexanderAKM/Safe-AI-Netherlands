@@ -60,7 +60,7 @@ export default function CourseBand({
             <>
               <p className="mt-3 font-sans text-body text-navy/74">
                 {application.rolling ? (
-                  application.rollingNote
+                  application.chapterNote ?? application.rollingNote
                 ) : (
                   <>
                     {openLead} Participants apply by{" "}
