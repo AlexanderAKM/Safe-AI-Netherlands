@@ -1,8 +1,15 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  Fragment,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { CaretDown } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
 
 /**
  * The landing's disclosure tabs, carrying a chapter's courses instead of the
@@ -38,6 +45,8 @@ export type OutlineItem =
       /** "Wed 23 Sep · 18:00-19:00 · Janskerkhof 2-3, Room 0.19" */
       meta?: string;
       detail?: string;
+      /** Where the session's material lives; the title becomes the link. */
+      href?: string;
       /** A session that splits: the reader picks one of these, or both. */
       paths?: OutlinePath[];
     };
@@ -45,10 +54,13 @@ export type OutlineItem =
 export type Course = {
   id: string;
   title: string;
-  /** One paragraph: what it is, how long, where, what you leave with. */
-  summary: string;
+  /** What it is, how long, where, what you leave with. A string is one
+   *  paragraph; pass <p> elements for several, or for inline links. */
+  summary: ReactNode;
   outlineTitle: string;
   outline: OutlineItem[];
+  /** Small print under the outline, read with this course only. */
+  note?: ReactNode;
 };
 
 /* Written out: Tailwind reads class names as literals, so an interpolated
@@ -196,9 +208,15 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                 on ? "" : "pointer-events-none"
               }`}
             >
-              <p className="max-w-[var(--container-copy-wide)] font-sans text-[15.5px] leading-[25px] text-navy/78">
-                {course.summary}
-              </p>
+              {typeof course.summary === "string" ? (
+                <p className="max-w-[var(--container-copy-wide)] font-sans text-[15.5px] leading-[25px] text-navy/78">
+                  {course.summary}
+                </p>
+              ) : (
+                <div className="flex max-w-[var(--container-copy-wide)] flex-col gap-3 font-sans text-[15.5px] leading-[25px] text-navy/78">
+                  {course.summary}
+                </div>
+              )}
 
               <div className="max-w-[var(--container-copy-wide)]">
                 <p className="kicker pb-2 text-kicker-sm text-navy/65">
@@ -218,7 +236,25 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                           {index + 1}
                         </span>
                         <span className="min-w-0">
-                          {item.title}
+                          {item.href ? (
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-baseline gap-1.5 underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                            >
+                              {item.title}
+                              <ArrowUpRight
+                                size={13}
+                                weight="regular"
+                                aria-hidden="true"
+                                className="shrink-0 self-center text-navy/55"
+                              />
+                              <span className="sr-only"> (opens in a new tab)</span>
+                            </a>
+                          ) : (
+                            item.title
+                          )}
                           {item.meta ? (
                             <span className="mt-0.5 block font-sans text-footnote text-navy/65">
                               {item.meta}
@@ -262,6 +298,12 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                   })}
                 </ol>
               </div>
+
+              {course.note ? (
+                <p className="max-w-[var(--container-copy-wide)] border-t border-navy/10 pt-4 font-sans text-footnote text-navy/65">
+                  {course.note}
+                </p>
+              ) : null}
             </motion.div>
           </Fragment>
         );

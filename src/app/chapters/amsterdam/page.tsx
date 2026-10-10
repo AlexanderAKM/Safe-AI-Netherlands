@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 
 import ChapterClose from "@/components/chapters/ChapterClose";
@@ -36,38 +37,160 @@ const ELLIS_URL = "https://ivi.fnwi.uva.nl/ellis/";
 
 const team: readonly TeamMember[] = sainAmsTeam;
 
+const LINK =
+  "underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy";
+
+function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={LINK}>
+      {children}
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
+
+const BLUEDOT_URL = "https://bluedot.org/";
+
+/* Said under each course rather than once under both, because a tab is read
+   on its own. */
+const courseNote = (
+  <>
+    The courses are independently run by SAIN Amsterdam and are not affiliated
+    with UvA or VU. The certificate of completion is awarded by SAIN Amsterdam,
+    not BlueDot Impact.
+    <br />
+    Questions:{" "}
+    <a href={`mailto:${EDU_EMAIL}`} className={LINK}>
+      {EDU_EMAIL}
+    </a>
+    .
+  </>
+);
+
 /* The two courses behind the same disclosure tabs Utrecht uses, so a reader
    moving between chapter pages meets one device for "this chapter's courses".
-   The shared facts (six weeks, the workload, the certificate, the cohort
-   size) repeat in each summary on purpose: a tab is read on its own. The
-   outlines name what each course spends its sessions on, as the chapter
-   described it; BlueDot's week-by-week syllabus is not reproduced here. */
+   The copy and the week-by-week outline are the chapter's own, each week
+   linking to its unit on BlueDot. */
 const courses: Course[] = [
   {
     id: "technical",
     title: "Technical AI Safety",
-    summary:
-      "Built on BlueDot's Technical AI Safety curriculum, with extra sessions on mechanistic interpretability, adversarial attacks and complex systems. Six weeks, about two hours of reading and two hours of discussion a week, on site in Amsterdam, with a certificate on completion. Selection is application-based; the last iteration drew more than 120 applicants across both courses, from students and PhDs to engineers, policymakers and consultants.",
-    outlineTitle: "What the sessions cover",
+    summary: (
+      <>
+        <p>
+          Curious where your technical skills could make the biggest difference
+          for AI safety?
+        </p>
+        <p>
+          SAIN Amsterdam facilitates the{" "}
+          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
+          <ExternalLink href="https://bluedot.org/courses/technical-ai-safety">
+            Technical AI Safety
+          </ExternalLink>{" "}
+          course for people who want to help close the gap between how fast AI
+          capabilities are advancing and how well we can make them safe. Over
+          six weeks, you&rsquo;ll diagnose why building safe AI is so
+          technically hard, evaluate current safety techniques (what works,
+          what doesn&rsquo;t, and where the gaps are), and map how defences
+          might break by building your own &ldquo;kill chain&rdquo;. You&rsquo;ll
+          leave with a fundable action plan for where your skills can make the
+          biggest difference. SAIN Amsterdam supports ambitious students in
+          finding their next steps in an AI safety career.
+        </p>
+        <p>
+          Technical understanding is ideal, but not a prerequisite. This is a
+          foundational course, covering the foundations of technical AI safety.
+        </p>
+      </>
+    ),
+    outlineTitle: "What you will learn each week",
     outline: [
-      "BlueDot's core technical readings and discussion",
-      "Extra session: mechanistic interpretability",
-      "Extra session: adversarial attacks",
-      "Extra session: complex systems",
+      {
+        title: "The technical challenge with AI",
+        href: "https://bluedot.org/courses/technical-ai-safety/1/1",
+      },
+      {
+        title: "Training safer models",
+        href: "https://bluedot.org/courses/technical-ai-safety/2/1",
+      },
+      {
+        title: "Detecting danger",
+        href: "https://bluedot.org/courses/technical-ai-safety/3/1",
+      },
+      {
+        title: "Understanding AI",
+        href: "https://bluedot.org/courses/technical-ai-safety/4/1",
+      },
+      {
+        title: "Minimising harm",
+        href: "https://bluedot.org/courses/technical-ai-safety/5/1",
+      },
+      {
+        title: "Plan your AI safety career",
+        href: "https://bluedot.org/courses/technical-ai-safety/6/1",
+      },
     ],
+    note: courseNote,
   },
   {
     id: "governance",
     title: "Frontier AI Governance",
-    summary:
-      "Built on BlueDot's Frontier AI Governance curriculum, with time set aside for case studies and real-world examples of regulatory, legal and societal challenges. Six weeks, about two hours of reading and two hours of discussion a week, on site in Amsterdam, with a certificate on completion. Selection is application-based. Facilitators include PhDs, risk-management consultants and an ELLIS assistant professor.",
-    outlineTitle: "What the sessions cover",
+    summary: (
+      <>
+        <p>
+          What would it take to govern technology that is advancing faster than
+          the rules meant to guide it?
+        </p>
+        <p>
+          SAIN Amsterdam facilitates the{" "}
+          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
+          <ExternalLink href="https://bluedot.org/courses/ai-governance#curriculum">
+            Frontier AI Governance
+          </ExternalLink>{" "}
+          course, which helps you build the judgment to shape how frontier AI
+          is governed. Over six weeks, you&rsquo;ll assess the evidence,
+          compare competing strategies, and test your ideas through practical
+          exercises and group discussion, leaving with a concrete plan for how
+          you can contribute. Because the course leans heavily on US and China
+          perspectives, our facilitators are encouraged to also bring in
+          European and Dutch materials. Whatever your background, Safe AI
+          Netherlands is here to help you take your next step toward a career
+          in AI safety.
+        </p>
+        <p>
+          No governance background needed. This is a foundational course that
+          builds up the core ideas of AI governance step by step.
+        </p>
+      </>
+    ),
+    outlineTitle: "What you will learn each week",
     outline: [
-      "BlueDot's core governance readings and discussion",
-      "Case studies: regulation of frontier AI in practice",
-      "Real-world legal challenges",
-      "Real-world societal challenges",
+      {
+        title: "Assess frontier AI evidence",
+        href: "https://bluedot.org/courses/ai-governance/1/1",
+      },
+      {
+        title: "Map institutions and power",
+        href: "https://bluedot.org/courses/ai-governance/2/1",
+      },
+      {
+        title: "Compare governance strategies",
+        href: "https://bluedot.org/courses/ai-governance/3/1",
+      },
+      {
+        title: "Test proposals under pressure",
+        href: "https://bluedot.org/courses/ai-governance/4/1",
+      },
+      {
+        title: "Defend a position",
+        href: "https://bluedot.org/courses/ai-governance/5/1",
+      },
+      {
+        title: "Plan your AI safety career",
+        href: "https://bluedot.org/courses/ai-governance/6/1",
+      },
     ],
+    note: courseNote,
   },
 ];
 
@@ -153,25 +276,25 @@ export default function AmsterdamPage() {
       <CourseBand
         city="Amsterdam"
         heading="Two free courses run in Amsterdam"
-        footnote={
-          <>
-            The courses are independently run by SAIN Amsterdam and are not
-            affiliated with UvA or VU. Questions:{" "}
-            <a
-              href={`mailto:${EDU_EMAIL}`}
-              className="underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-            >
-              {EDU_EMAIL}
-            </a>
-            .
-          </>
-        }
         tail={
           <>
             <p className="font-sans text-body text-navy/74">
               A weekly discussion group on technical AI safety reads and
               discusses current research; about two hours a session, guided by
               experienced mentors.
+            </p>
+            <p className="-mt-2 font-sans text-label text-navy/74">
+              Find the next discussion group on{" "}
+              <a
+                href="https://luma.com/SAIN_Amsterdam"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              >
+                SAIN Amsterdam&rsquo;s Luma page
+                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </p>
             <p className="font-sans text-body text-navy/74">
               Members also run research projects, currently including work on
