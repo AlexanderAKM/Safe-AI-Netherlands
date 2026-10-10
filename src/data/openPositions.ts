@@ -27,7 +27,7 @@
  * apply CTAs at the chapter inboxes until the form is public.
  *
  * SETUP NOTES:
- * - Form fields: Name, Email, Chapter (Amsterdam / Utrecht), Role(s), CV upload,
+ * - Form fields: Name, Email, Chapter (Amsterdam / Utrecht / Groningen), Role(s), CV upload,
  *   Motivation letter upload (or long-text), LinkedIn (optional), availability.
  * - Email routing: configure a Google Apps Script trigger on form submission
  *   that emails info@safeainetherlands.org plus the relevant chapter inbox
@@ -205,7 +205,7 @@ export const ROLES: Record<string, Role> = {
     title: "Education Lead",
     team: "education",
     scope: "chapter",
-    reportsTo: "Chapter (Co-)Director",
+    reportsTo: "Chapter Director",
     timeCommitment: "6 to 10 hours per week, with iteration peaks",
     mission:
       "Run iterations of the AI Safety, Ethics and Society course in the chapter. Run discussion groups. Recruit, train, and support course facilitators and discussion leads. Maintain quality across cohorts and groups.",
@@ -229,7 +229,7 @@ export const ROLES: Record<string, Role> = {
         "Written communication, organisation, comfort facilitating discussion-based learning.",
     },
     collaborations:
-      "The chapter director, facilitators, Communications Lead, Community Manager.",
+      "The Chapter Director, facilitators, Communications Lead, Community Manager.",
   },
 
   "education-course-facilitator": {
@@ -299,7 +299,7 @@ export const ROLES: Record<string, Role> = {
     title: "Events Lead",
     team: "events",
     scope: "chapter",
-    reportsTo: "Chapter (Co-)Director",
+    reportsTo: "Chapter Director",
     timeCommitment: "6 to 10 hours per week",
     /* Paid since September 2026 (upstream #54). The badge is what tells a
        reader this chapter role is compensated where its neighbours are not. */
@@ -313,7 +313,7 @@ export const ROLES: Record<string, Role> = {
       "Manage event logistics: venue, catering, marketing handover to Communications.",
       "Run the team meeting.",
       "Triage the chapter events inbox.",
-      "Coordinate budget with the chapter director.",
+      "Coordinate budget with the Chapter Director.",
     ],
     preferredBackground: {
       field: "Open. Genuine interest in AI safety required.",
@@ -324,7 +324,7 @@ export const ROLES: Record<string, Role> = {
         "Project management, comfort cold-emailing speakers, calmness under deadline pressure, strong social skills.",
     },
     collaborations:
-      "The chapter director, Communications Lead, Community Manager, external speakers, venue contacts.",
+      "The Chapter Director, Communications Lead, Community Manager, external speakers, venue contacts.",
   },
 
   "events-team-member": {
@@ -357,7 +357,7 @@ export const ROLES: Record<string, Role> = {
     title: "Communications Lead",
     team: "communications",
     scope: "chapter",
-    reportsTo: "Chapter (Co-)Director",
+    reportsTo: "Chapter Director",
     timeCommitment: "6 to 10 hours per week",
     mission:
       "Run the chapter's internal and external communication. Maintain the chapter's social media presence, coordinate with the national communications leads on shared communication goals, and uphold a consistent brand and tone. Ensure the chapter's events and outputs are optimised for awareness, action (applying to courses), conversion (career switching), or community strengthening.",
@@ -384,7 +384,7 @@ export const ROLES: Record<string, Role> = {
         "Writing, visual sense, attention to brand consistency.",
     },
     collaborations:
-      "The chapter director, Events Lead, Education Lead, Research Lead, Community Manager, other chapters' Communications Leads.",
+      "The Chapter Director, Events Lead, Education Lead, Research Lead, Community Manager, other chapters' Communications Leads.",
   },
 
   "communications-team-member": {
@@ -546,7 +546,7 @@ export const ROLES: Record<string, Role> = {
     title: "Community Manager",
     team: "community",
     scope: "chapter",
-    reportsTo: "Chapter (Co-)Director",
+    reportsTo: "Chapter Director",
     timeCommitment: "4 to 6 hours per week",
     mission:
       "Welcome people into the chapter community and funnel them into deeper involvement. Be the friendly face and first point of contact.",
@@ -567,7 +567,7 @@ export const ROLES: Record<string, Role> = {
         "Warmth, social fluency, reliability, comfort with light data work.",
     },
     collaborations:
-      "The chapter director, all team leads, course graduates, community members.",
+      "The Chapter Director, all team leads, course graduates, community members.",
   },
 
   "on-campus-ambassador": {
@@ -975,6 +975,85 @@ export const ROLES: Record<string, Role> = {
     specialisationOf: "Events Team Member",
   },
 
+  "communications-lead-groningen": {
+    id: "communications-lead-groningen",
+    title: "Communications Lead",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Chapter Director",
+    timeCommitment: "8 to 10 hours per week",
+    commitmentBadge: "Paid - Part-time",
+    mission:
+      "SAIN Groningen is the Groningen chapter of Safe AI Netherlands, a national foundation developing the talent needed to address the risks of transformative AI in the Netherlands. We run talks, socials, courses and research projects for students and young professionals. The chapter has been running since 2023, first as the AI Safety Initiative Groningen. Since then, we have organised many events and brought around 60 people a year through our free AI safety course, and our members have published research at NeurIPS and ICLR workshops. Very few students and professionals in Groningen know any of this yet, and that is where you come in. As Communications Lead, you shape how the chapter shows up online and around the city. You run our channels, work closely with the events, education and research teams, and build your own small team of communications volunteers.",
+    responsibilities: [
+      "Run our Instagram, LinkedIn and Discord announcements using the SAIN brand kit (fonts, colours and templates).",
+      "Plan a monthly content calendar that fits our wider goals and content themes.",
+      "Promote events with the Events Lead: build anticipation, drive sign-ups and post recaps afterwards.",
+      "Check in with the Education Lead and Research Operations about courses and projects worth promoting.",
+      "Keep the Groningen page of the SAIN website current by sending updates to our website developers. They make the changes, so you never need to edit the site or work in GitHub yourself.",
+      "Design offline materials such as roll-up banners and merchandise.",
+      "Recruit and onboard communications volunteers, and assign them tasks with clear deadlines.",
+      "Stay in touch with the Communications Leads at our Amsterdam and Utrecht chapters.",
+      "Manage the chapter communications inbox.",
+      "Reshare relevant content from our advisors, board members and partner organisations.",
+    ],
+    /* The brief also lists "Interest in AI safety" (required) and
+       "Motivation", which have no row in `preferredBackground`, so they sit
+       here rather than in a new Role field. */
+    goodFitIf: [
+      "Care about the risks of advanced AI and want to understand them better. You need no prior knowledge or background in AI, and we will help you get up to speed. If you already know the field, even better.",
+      "Care about where AI is heading, and want more people to engage with it seriously.",
+    ],
+    preferredBackground: {
+      field:
+        "Studies or experience in communications, marketing, design or journalism.",
+      level: "Bachelor's student, Master's student or graduate.",
+      experience:
+        "Some experience with social media, content creation or journalism. Comfortable with Canva or a similar design tool.",
+      softSkills:
+        "Strong writing, a good eye for visuals and consistency, creative confidence, reliability with deadlines, clear communication with the team, and flexibility when plans change.",
+    },
+    collaborations:
+      "The Chapter Director, the Events Lead, the Education Lead, Research Operations, your communications volunteers, and the Communications Leads in Amsterdam and Utrecht.",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+  },
+
+  "communications-team-member-groningen": {
+    id: "communications-team-member-groningen",
+    title: "Communications Team Member",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Communications Lead",
+    timeCommitment:
+      "2 to 6 hours per week, with a little more around events, for at least 9 months",
+    mission:
+      "We are building the SAIN Groningen communications team, and we are looking for volunteers who already have some design or content experience and want to put it to use. You create the posts, visuals and stories that bring students to our events and courses. You can lean into what you do best, whether that is design, writing, photography or video. In return, you get published work for your portfolio, made for a growing national organisation; creative input and feedback from the Communications Lead; a place in the SAIN community, with our events, socials, courses and discussion groups; a national network of students, researchers and professionals working on AI safety; room to grow into roles with more responsibility in the chapter; and a reference or certificate of involvement on request.",
+    responsibilities: [
+      "Create posts, stories and graphics for Instagram and LinkedIn using the SAIN brand kit.",
+      "Help promote events, and capture them through photos, video and recaps.",
+      "Write short pieces such as captions, announcements and event summaries.",
+      "Contribute ideas to the monthly content calendar.",
+      "Support the design of offline materials such as posters, banners and merchandise.",
+      "Attend the communications team check-ins, and stay reachable on Discord, where all team communication happens.",
+      "Deliver work that follows the SAIN brand kit and is ready to publish after light feedback.",
+      "Deliver what you take on by the agreed deadline, and say so early if something gets in the way.",
+    ],
+    goodFitIf: [
+      "Are curious about AI safety and the impact of AI on the world. No prior AI knowledge needed.",
+    ],
+    preferredBackground: {
+      field: "Open. Design, media, communications or marketing is a plus.",
+      level: "Open. Your portfolio carries more weight than your degree.",
+      experience:
+        "Prior experience in graphic design, content creation, photography or video is required, whether from studies, a student association, freelance work or personal projects. You can work in Canva or a similar design tool without training.",
+      softSkills:
+        "Reliable, independent, open to feedback and happy to work in a team.",
+    },
+    collaborations:
+      "The Communications Lead, the events team, and communications volunteers at our other chapters.",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+  },
+
 };
 
 // -----------------------------------------------------------------------------
@@ -1051,19 +1130,20 @@ export const chapterPositions: ChapterPosting[] = [
   {
     chapterSlug: "Groningen",
     chapterName: "SAIN Groningen",
-    heading: "SAIN Groningen is at capacity",
-    /* The blurb that stood here claimed selective hiring for Communications
-       and the Research Hub while `postings` was empty, so a reader was told
-       "we are hiring" and then shown nothing to apply for. If Groningen does
-       open something, add the posting; do not revive the claim. */
+    heading: "SAIN Groningen is building its communications team",
+    blurb:
+      "Director Tarteel is looking for a Communications Lead and communications volunteers to tell students and professionals in Groningen what the chapter has been doing since 2023.",
     closedNote: {
       beforeEmail:
         "The Groningen team is full right now, and we are not listing roles there. If you want to be considered when something opens, write to",
       afterEmail: "and tell us what you would like to do.",
     },
     inboxEmail: "infogro@safeainetherlands.org",
-    status: "closed",
-    postings: [],
+    status: "open",
+    postings: [
+      { roleId: "communications-lead-groningen" },
+      { roleId: "communications-team-member-groningen" },
+    ],
   },
 ];
 
