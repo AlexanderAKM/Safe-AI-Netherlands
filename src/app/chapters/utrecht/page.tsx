@@ -217,6 +217,19 @@ export default function UtrechtPage() {
               technical AI safety, currently a mechanistic interpretability
               reading group, and one on AI governance and policy.
             </p>
+            <p className="-mt-2 font-sans text-label text-navy/74">
+              Find the next discussion group on{" "}
+              <a
+                href={LUMA_PUBLIC_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              >
+                SAIN Utrecht&rsquo;s Luma page
+                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </p>
             <p className="font-sans text-body text-navy/74">
               The chapter is building a research track: red-teaming language
               models, safety evaluation, interpretability, and agent behaviour.

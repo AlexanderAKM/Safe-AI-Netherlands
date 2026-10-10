@@ -33,7 +33,7 @@ export default function CourseBand({
   heading: string;
   /** First sentence of the open state, where a city names its cohort. */
   openLead?: string;
-  footnote: ReactNode;
+  footnote?: ReactNode;
   children: ReactNode;
   /** What keeps running between cohorts, after the course's own footnote. */
   tail?: ReactNode;
@@ -100,9 +100,11 @@ export default function CourseBand({
 
         <div className="mt-10 flex flex-col gap-8">{children}</div>
 
-        <p className="mt-8 max-w-[var(--container-copy-wide)] border-t border-navy/10 pt-4 font-sans text-footnote text-navy/65">
-          {footnote}
-        </p>
+        {footnote ? (
+          <p className="mt-8 max-w-[var(--container-copy-wide)] border-t border-navy/10 pt-4 font-sans text-footnote text-navy/65">
+            {footnote}
+          </p>
+        ) : null}
 
         {tail && (
           <div className="mt-10 flex max-w-[var(--container-copy)] flex-col gap-5">
