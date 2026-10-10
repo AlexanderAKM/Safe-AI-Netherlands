@@ -37,14 +37,6 @@ const TEAM_ICON: Record<Team, Icon> = {
   research: Flask,
 };
 
-/* The data carries org-chart shorthand ("Chapter (Co-)Director") because that
-   is what the role templates say. A candidate reading a job row wants the
-   sentence, so it is spoken here and kept out of the data. */
-function reportsToPhrase(reportsTo: string): string {
-  if (reportsTo === "Chapter (Co-)Director") return "the chapter director";
-  return `the ${reportsTo}`;
-}
-
 function PanelLabel({ children }: { children: ReactNode }) {
   return (
     <h4 className="kicker mb-3 text-kicker-sm text-navy/65">{children}</h4>
@@ -105,7 +97,7 @@ export default function RoleDisclosure({
             ) : null}
           </div>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
-            {role.timeCommitment}. Reports to {reportsToPhrase(role.reportsTo)}.
+            {role.timeCommitment}. Reports to the {role.reportsTo}.
           </p>
         </div>
         <CaretDown
