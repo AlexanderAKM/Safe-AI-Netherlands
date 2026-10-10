@@ -92,6 +92,12 @@ export const leadershipContacts: LeadershipContact[] = [
     email: "marta@safeainetherlands.org",
     linkedin: "https://www.linkedin.com/in/martapolizzi/",
   },
+  {
+    names: "Tjebbe Boersma",
+    role: "Head of Projects SAIN",
+    email: "tjebbe@safeainetherlands.org",
+    linkedin: "https://www.linkedin.com/in/tjebbe-hylke-boersma/",
+  },
 ];
 
 export type ChapterRoleEmails = {

@@ -1106,13 +1106,8 @@ export const nationalPosting: NationalPosting = {
   blurb:
     "Most of SAIN runs on volunteers in the chapters. National roles are the exception: they work across Amsterdam, Utrecht, and Groningen and report to the Director. Each has its own application form and hiring process, separate from the chapter form above.",
   inboxEmail: "info@safeainetherlands.org",
-  status: "open",
-  postings: [
-    {
-      roleId: "research-operations-lead",
-      applyUrl: RESEARCH_OPERATIONS_LEAD_APPLICATION_FORM_URL,
-    },
-  ],
+  status: "closed",
+  postings: [],
 };
 
 /** National roles currently open, in the order declared above. */

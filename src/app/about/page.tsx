@@ -339,7 +339,7 @@ export default function AboutPage() {
             </h2>
             <p className="mt-5 max-w-[720px] font-sans text-body text-navy/72">
               SAIN is led by its leadership: the national director, the chapter directors of
-              Groningen, Amsterdam and Utrecht, and the heads of growth and operations. The leadership takes the strategic decisions; the
+              Groningen, Amsterdam and Utrecht, and the heads of growth, operations and projects. The leadership takes the strategic decisions; the
               chapters run the courses, events and communities.
             </p>
           </Reveal>

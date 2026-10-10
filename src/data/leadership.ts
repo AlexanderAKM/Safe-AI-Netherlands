@@ -29,4 +29,10 @@ export const leadership = [
     linkedin: "https://www.linkedin.com/in/martapolizzi/",
     image: "/photos/team/Marta.jpg",
   },
+  {
+    name: "Tjebbe Boersma",
+    role: "Head of Projects SAIN",
+    linkedin: "https://www.linkedin.com/in/tjebbe-hylke-boersma/",
+    image: "/photos/team/Tjebbe.jpeg",
+  },
 ] as const;
