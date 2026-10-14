@@ -258,6 +258,17 @@ export default function CommunityPage() {
                 guides founders through the whole process, and new chapters operate
                 under the national stichting, so no separate legal entity is needed.
               </p>
+              <p className="max-w-[600px] font-sans text-body text-navy/74">
+                In Eindhoven, Delft or The Hague? We are looking for paid starting
+                teams there right now.{" "}
+                <Link
+                  href="/new-chapters"
+                  className="inline-flex items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                >
+                  See the starting roles
+                  <ArrowRight size={16} weight="regular" aria-hidden="true" />
+                </Link>
+              </p>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-1">
                 <a
                   href="mailto:info@safeainetherlands.org?subject=Starting a SAIN chapter"

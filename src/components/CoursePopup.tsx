@@ -57,6 +57,10 @@ export default function CoursePopup() {
       return;
     }
     if (openCourseApplications.length === 0) return;
+    /* A recruitment page is where people arrive from a personal message
+       about a role; a course offer over the hero would answer a question
+       they did not ask. */
+    if (window.location.pathname.startsWith("/new-chapters")) return;
 
     let dismissed = false;
     try {

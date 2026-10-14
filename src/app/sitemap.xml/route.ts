@@ -11,6 +11,7 @@ const routes = [
   "/team",
   "/get-involved",
   "/open-positions",
+  "/new-chapters",
   "/contact",
   "/chapters/groningen",
   "/chapters/groningen/events",
