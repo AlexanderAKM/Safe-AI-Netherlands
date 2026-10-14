@@ -68,16 +68,16 @@ export const FOUNDING_CITIES: FoundingCity[] = [
   {
     id: "eindhoven",
     name: "Eindhoven",
-    origin: "TU/e and the Brainport region",
+    origin: "TU/e, the Center for Safe AI and Brainport",
     why: "Home to ASML and one of Europe's densest clusters of engineering talent.",
     profile:
-      "Likely a technical chapter with important governance questions sprinkled in: interpretability, evaluations, engineering, and the governance of the hardware AI runs on.",
+      "Likely a technical chapter with important governance questions sprinkled in: interpretability, evaluations, engineering, compute verification, and the governance of the hardware AI runs on.",
   },
   {
     id: "delft",
     name: "Delft",
     origin: "TU Delft",
-    why: "The largest technical university in the Netherlands, with deep strengths in robotics and embodied AI.",
+    why: "The largest technical university in the Netherlands, with deep strengths in robotics and embodied AI. TU Delft's ELLIS unit coordinates themes including verification and safe and responsible AI, multi-agent systems, robust and adversarial ML, and sequential decision making.",
     profile:
       "Likely a strong technical chapter, with a potentially stronger emphasis on embodied AI safety.",
   },
@@ -85,7 +85,7 @@ export const FOUNDING_CITIES: FoundingCity[] = [
     id: "the-hague",
     name: "The Hague",
     origin: "Ministries, regulators and campuses",
-    why: "Ministries, regulators, international institutions, and the Leiden and Haagse Hogeschool campuses.",
+    why: "Ministries, regulators, international institutions, and the Leiden and Haagse Hogeschool campuses. Notably strong in cybersecurity, with national and international cyber institutions including The Hague Security Delta, Europe's largest security cluster.",
     profile:
       "Likely a strong governance chapter that reaches civil servants and policy professionals as much as students.",
   },
@@ -249,20 +249,20 @@ const HOLIDAY = "8% on top of your gross salary.";
 export const FOUNDING_ROLES: FoundingRole[] = [
   {
     id: "director",
-    title: "Starting Chapter Director",
+    title: "Chapter Director",
     formValue: "Chapter Director",
     team: "directors",
-    hours: "12 to 16 hours a week, December 2026 to June 2027",
+    hours: "12 to 16 hours a week, December 2026 to June 2027, with possibility of extension based on funding and incubation success",
     summary: "Leads the starting team and opens the city's doors.",
     about: [
       "Every SAIN chapter started with one person who decided it should exist and then made it happen. In Groningen, Amsterdam and Utrecht that took years of trial and error. In Eindhoven, Delft and The Hague we want it to take six months, because this time the director does not start from nothing.",
-      "You would be the person leading it! You will develop the team (and will even be included in the final interviews of the other starting team roles in your city) and open the doors to collaboration: at the university or hogeschools, with local organisations, and in The Hague with the ministries and institutions. By June there should be a chapter that runs basically autonomously. You work directly with SAIN's national team, and you are accountable for whether your city reaches its milestones.",
-      "Importantly: this role is about building something from nothing and about people, not about being the most knowledgeable person on AI safety in the room. You need enough grounding to represent the field credibly, which is why we ask for a completed AI safety course. Your real job, though, is to find the people who know more than you and get them involved. You are the one that builds, that keeps the team together, and that multiplies what everyone else does.",
+      "You would be the person leading it! You will develop the team (and will even be included in the final interviews of the other starting team roles in your city if possible) and open the doors to collaboration: at the university or hogeschools, with local organisations, and in The Hague with the ministries and institutions. By June there should be a chapter that runs basically autonomously. You work directly with SAIN's national team, and you are accountable for whether your city reaches its milestones.",
+      "Importantly: this role is about building something from nothing and about people, not about being the most knowledgeable person on AI safety in the room. You need enough grounding to represent the field credibly, which is why we ask, at least, for a completed AI safety course. Your real job, though, is to find the people who know more than you and get them involved. You are the one that builds, that keeps the team together, and that multiplies what everyone else does.",
       "This means we expect high agency from you. For instance, you will not get a week-by-week checklist. Instead, we will set the destination together, you then choose the route, and you pull in support when you need it.",
       "What the chapter looks like depends on the city. In Eindhoven and Delft, a technical profile fits best: you will mostly be talking to engineers, students and researchers. In The Hague, the director is ideally someone who knows how the government works from the inside.",
     ],
     firstMonths: [
-      "Grow the starting team to at least five people with clear roles, starting with the leads selected alongside you.",
+      "Grow the starting team to at least four people with clear roles, starting with the leads selected alongside you.",
       "Secure office space (we will help you) and use your connections within the city for collaborations and useful advisors that can help you navigate the city and develop the chapter.",
       "Get the chapter's communications going and schedule its first course for spring.",
       "Get regular events going.",
@@ -299,10 +299,10 @@ export const FOUNDING_ROLES: FoundingRole[] = [
   },
   {
     id: "education-lead",
-    title: "Starting Education Lead",
+    title: "Education Lead",
     formValue: "Education Lead",
     team: "education",
-    hours: "8 to 12 hours a week, December 2026 to June 2027",
+    hours: "8 to 12 hours a week, December 2026 to June 2027, with possibility of extension based on funding and incubation success",
     summary: "Brings the first AI safety course to the city.",
     about: [
       "Courses are where most people's path into AI safety through SAIN begins. Hundreds of people a year take one at our existing chapters, and many of them go on to (research) projects, jobs and chapter roles of their own. In your city, that first course does not exist yet. You make it exist!",
@@ -345,10 +345,10 @@ export const FOUNDING_ROLES: FoundingRole[] = [
   },
   {
     id: "events-lead",
-    title: "Starting Events Lead",
+    title: "Events Lead",
     formValue: "Events Lead",
     team: "events",
-    hours: "8 to 12 hours a week, December 2026 to June 2027",
+    hours: "8 to 12 hours a week, December 2026 to June 2027, with possibility of extension based on funding and incubation success",
     summary: "Makes the chapter visible, one event at a time.",
     about: [
       "Events are how a chapter becomes visible. A good talk or hackathon is where most people first meet the community. It is also where the people who will later run its courses and projects first show up. In a new city, every event is also proof that there are people here who take AI safety seriously.",
@@ -390,10 +390,10 @@ export const FOUNDING_ROLES: FoundingRole[] = [
   },
   {
     id: "communications-lead",
-    title: "Starting Communications Lead",
+    title: "Communications Lead",
     formValue: "Communications Lead",
     team: "communications",
-    hours: "8 to 12 hours a week, December 2026 to June 2027",
+    hours: "8 to 12 hours a week, December 2026 to June 2027, with possibility of extension based on funding and incubation success",
     summary: "Builds the chapter's audience from zero.",
     about: [
       "Nobody joins something they have never heard of. That is where you come in! You make sure the right people in your city hear about AI safety: students who would make great facilitators, engineers who have been quietly worried about the progress of AI, and civil servants who want to understand what is actually going on.",
@@ -450,7 +450,7 @@ export const FOUNDING_APPLICATION_STEPS: TimelineStep[] = [
   {
     label: "Work sample",
     detail:
-      "If your application stands out, a short task that mirrors the role, taking about two hours. For the director, for example, this is a first-semester plan for the city.",
+      "If your application stands out, a short task that mirrors the role, taking about two hours.",
   },
   {
     label: "Interview",
