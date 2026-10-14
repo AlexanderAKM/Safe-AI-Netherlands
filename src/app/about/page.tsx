@@ -12,7 +12,7 @@ import { sainDocuments } from "@/data/sainDocuments";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Stichting Safe AI Netherlands raises awareness of the harms from AI, shapes the priorities for mitigating them, and supports the solutions that work. The mission, the talent pipeline, and the people who run it.",
+    "Stichting Safe AI Netherlands develops the talent the Netherlands needs to address the risks of transformative AI. The talent pipeline, the foundation documents, and the people who run it.",
 };
 
 /* The advisory board is not in src/data yet, so it stays here, where the page
@@ -118,7 +118,7 @@ const record = [
   {
     year: "2026",
     title: "Safe AI Netherlands.",
-    line: "The model becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure.",
+    line: "With Alexander as founder and Ana, Andreea, Tarteel, and Riccardo as co-founders, Safe AI Netherlands is born and becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure.",
   },
 ];
 
@@ -169,18 +169,20 @@ export default function AboutPage() {
             {/* One clause per line, because the mission is three commitments
                 and not a paragraph. */}
             <h1 id="mission-heading" className="mt-5 max-w-[900px] font-serif text-display text-navy">
-              <span className="block">Raise awareness of the harms from AI.</span>
-              <span className="block">Shape the priorities for mitigating them.</span>
-              <span className="block">Support the solutions that work.</span>
+              <span className="block">Develop the talent the Netherlands needs.</span>
+              <span className="block">Address the risks of transformative AI.</span>
+              <span className="block">Make a first real contribution possible.</span>
             </h1>
 
             <span className="mt-9 block h-px w-full max-w-[900px] bg-navy/14" aria-hidden="true" />
 
             <p className="mt-6 max-w-[760px] font-sans text-body text-navy/72">
-              That is the mission of Stichting Safe AI Netherlands. Our focus is the transformative
-              risks of AI: the loss of meaningful human control over increasingly capable systems,
-              and what follows from it. This page shows the means: a free path from a first course
-              to full-time work on AI safety, and the people who run it.
+              That is the mission of Stichting Safe AI Netherlands. Transformative AI could reshape
+              the economy, science, and society on the scale of a major historical revolution;
+              whether that goes well is not decided yet. We are a national talent pipeline: local
+              chapters on shared infrastructure, from first contact through courses and the Project
+              Hub, with a handoff into the wider field. This page shows that path, what we have
+              written down, and the people who run it.
             </p>
           </Reveal>
         </div>
@@ -205,24 +207,22 @@ export default function AboutPage() {
             </h2>
             <div className="mt-6 flex max-w-[720px] flex-col gap-5 font-sans text-body text-navy/72">
               <p>
-                Some harms from AI are already visible. The ones we focus on grow with the systems
-                themselves. The more capability and autonomy we hand to AI, the harder it becomes to
-                keep meaningful human control, and a system that fails does not check who built it.
-                The harm lands on the people and institutions that deployed it as much as on anyone
-                else.
+                On the current trajectory, AI systems may soon do most economically and strategically
+                important cognitive work, including AI research itself. The critical question is not
+                only what AI will become, but whether enough people are ready to shape what happens
+                next. Right now, far too few are working on that problem.
               </p>
               <p>
-                Nobody can say how fast this goes, and we will not pretend to. The honest position
-                is that readiness is not something the Netherlands has by default. It is something
-                people build.
+                Nobody can name the exact timeline, and we will not pretend to. Readiness is not
+                something the Netherlands has by default. It is something people build, while
+                European institutions are staffing their AI safety functions in the next few years.
               </p>
               <p>
-                This country has world-class universities, a strong tech sector, and institutions
-                like ASML. What it lacked was a unified civil-society voice on AI safety, and a
-                clear route for a talented person to get from curiosity to meaningful contribution.
-                SAIN was created to close that gap. Our answer is not a campaign but human capital:
-                people who understand the risks, have the skills to address them, and sit where they
-                can act.
+                The Netherlands has world-class universities, ASML at the centre of the global
+                semiconductor supply chain, proximity to Brussels, and emerging AI safety groups.
+                What it lacked was a unified civil-society voice and a clear path from interest to
+                capability to meaningful contribution. SAIN was created to close that gap. We develop
+                the people; the field puts them to work.
               </p>
             </div>
           </Reveal>

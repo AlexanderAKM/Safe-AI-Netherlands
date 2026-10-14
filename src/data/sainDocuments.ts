@@ -12,7 +12,7 @@ export const sainDocuments = [
     title: "Theory of Change",
     eyebrow: "How change happens",
     description:
-      "The causal logic behind SAIN's work: inputs, activities, outputs, outcomes, and scaling dynamics.",
+      "Why we believe our work prepares the Netherlands for transformative AI: our causal argument, what we measure, and the assumptions we track.",
     fileName: "theory_of_change.md",
   },
   {
