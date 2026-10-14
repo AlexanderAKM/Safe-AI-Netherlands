@@ -18,7 +18,7 @@ This Code of Conduct has two parts. **Part I** sets behavioural standards for ev
 
 ## **2\. Scope**
 
-This Code applies to all SAIN-organized events (national and local, in-person and online), all SAIN digital spaces (WhatsApp, Slack, Discord, email lists, social media), all activities conducted under the SAIN name (courses, research collaborations, hackathons, publications, public appearances), and all individuals acting in a SAIN capacity (team members, volunteers, course participants, event attendees, research collaborators, and speakers). It applies equally across all chapters.
+This Code applies to all SAIN-organized events (national and local, in-person and online), all SAIN digital spaces (WhatsApp, Discord, email lists, social media), all activities conducted under the SAIN name (courses, research collaborations, hackathons, publications, public appearances), and all individuals acting in a SAIN capacity (team members, volunteers, course participants, event attendees, research collaborators, and speakers). It applies equally across all chapters.
 
 ## **3\. Expected Behavior**
 
@@ -50,7 +50,7 @@ Anyone who experiences or witnesses a violation is encouraged to report it:
 
 Reports can be made in writing or in person. Anonymous reports are accepted, though they may limit investigative capacity.
 
-**Process:** (1) Acknowledgment within 1 week. (2) Assessment of severity; local matters are handled by the chapter with SAIN national guidance if needed, serious or cross-chapter matters by SAIN national. (3) Investigation where warranted. All parties heard, confidentiality maintained. (4) Resolution, which may range from a private conversation to a formal warning, temporary suspension, or permanent removal from SAIN activities.
+**Process:** (1) Acknowledgement within 1 week. (2) Assessment of severity; local matters are handled by the chapter with SAIN national guidance if needed, serious or cross-chapter matters by SAIN national. (3) Investigation where warranted. All parties will be heard, while confidentiality is maintained. (4) Resolution, which may range from a private conversation to a formal warning, temporary suspension, or permanent removal from SAIN activities.
 
 **Principles:** Consequences are proportional to severity and any pattern of past conduct. All parties are treated with respect. The accused has the opportunity to respond. Details are shared only with those who need to know. SAIN actively protects anyone who reports in good faith.
 
@@ -58,22 +58,25 @@ Reports can be made in writing or in person. Anonymous reports are accepted, tho
 
 AI safety is a broad and evolving field. Reasonable people disagree about the relative severity of different risks, the best mitigation approaches, and timelines. SAIN does not impose a single orthodoxy.
 
+SAIN's primary focus is on skilling up talent and creating the pipeline that allows people to work on AI risks. We are concerned with risks arising from increasingly capable and potentially transformative AI systems, which include risks that could have profound consequences for humanity's long-term future. Members need not agree on every claim, forecast, or prioritization, but should engage seriously and in good faith with the challenges posed by transformative AI.
+
 What we require:
 
-* **Engagement with the full spectrum.** SAIN addresses everything from near-term societal harms (deepfakes, misinformation, algorithmic psychosis) to long-term existential risks (loss of control over advanced AI systems) and everything in between. Members need not prioritize all areas equally, but must respect that SAIN's scope encompasses them all.  
+* **Respect for the mission.** SAIN focuses on the risks of transformative AI. We are also concerned by the potential existential risks that could emerge from increasingly capable systems. Members are expected to respect this focus, even if they differ on specific priorities, timelines, or interventions.  
 * **Evidence-based discourse.** Arguments grounded in evidence and reasoning, not appeals to identity, authority, or tribal affiliation.  
-* **Openness to updating.** Intellectual humility is expected. The field moves fast.  
+* **Constructive disagreement.** Serious disagreements about strategy, governance, technical approaches, or priorities are normal and valuable. We encourage respectful debate aimed at improving understanding.  
+* **Openness to updating.** Intellectual humility is expected. The field moves fast, evidence changes, and people should be willing to revise their views.  
 * **No gatekeeping.** Anyone engaging in good faith with the mission belongs here.
 
 ### **Organizational Neutrality and Individual Expression**
 
-SAIN as an organization occupies a specific position on the AI safety spectrum: we are the **conveyor and enabler of discussion** across the full range of perspectives, not an advocate for any particular stance within it. In practice, this means:
+SAIN's role is to build the infrastructure, opportunities, and connections that help people contribute to AI safety. We bring people into the field, develop their capabilities, and connect them with research, projects, organisations, and other opportunities to do meaningful work. In practice, this means:
 
-* SAIN may share opportunities, events, and resources from organizations across the AI safety landscape (e.g., linking to a PauseAI event, an Anthropic talk, or an AI governance workshop) without this constituting an endorsement of that organization's specific positions.  
-* SAIN does not enter into explicit advocacy partnerships with organizations that hold a specific position within the AI safety debate. We platform the discussion; we do not pick sides.  
-* **Individuals within SAIN are free to hold and express specific opinions** on AI safety matters—including publicly. What they may not do is present those opinions as official SAIN positions (see Section 3: "Use SAIN's name responsibly").
+* **We enable the field; we do not represent every position within it.** SAIN may share opportunities, events, and resources from organizations across the AI safety landscape (e.g., linking to a PauseAI event, an Anthropic talk, or an AI governance workshop) without this constituting an endorsement of that organization's specific positions.  
+* **We connect people to opportunities across the field.** We may share events, research opportunities, fellowships, jobs, and other resources from organisations with different approaches to AI safety. Our role is to help people find opportunities to learn and contribute.  
+* **We distinguish SAIN from individual views.** Individuals within SAIN are free to hold and express specific opinions on AI safety matters publicly. What they may **not** do is present those opinions as official SAIN positions (see Section 3: "Use SAIN's name responsibly").
 
-This distinction must be especially clear to chapter PR teams and anyone communicating on SAIN's behalf. When in doubt, frame it as: "SAIN member X believes..." rather than "SAIN believes..."
+This distinction must be especially clear to chapter Communications teams and anyone communicating on SAIN's behalf. When in doubt, frame it as: "SAIN member X believes..." rather than "SAIN believes..."
 
 ---
 
@@ -98,7 +101,7 @@ Any group of motivated individuals in a Dutch city can apply to become a SAIN ch
 * Google Workspace accounts and shared infrastructure  
 * Complete operational playbooks (4-team model, course curricula, facilitator guides, event templates)  
 * Direct mentorship from experienced chapter organizers  
-* Access to the national Research Hub  
+* Access to the national Project Hub  
 * Listing on the SAIN website and inclusion in national communications
 
 ## **2\. Brand and Identity**
@@ -132,7 +135,7 @@ Each chapter must have:
 
 * A **chapter lead** (or co-leads) who serves as primary contact with SAIN national and represents the chapter on the national council that meets regularly to discuss strategy, share best practices, and coordinate across the network (no formal legal governance power, but real influence)  
 * Clear internal roles, ideally following the 4-team model adapted to local capacity  
-* A transparent process for leadership transitions, communicated to SAIN national in advance. While chapter directors are expected to stay active for at least one year and team leads for at least half a year, this differs case by case. 
+* A transparent process for leadership transitions, communicated to SAIN national in advance. While chapter directors are expected to stay active for at least one year and team leads for at least half a year, this differs case by case.
 
 **Leadership conduct.** Chapter directors are held to a higher standard. In addition to Part I, they must: model SAIN's values, handle conduct reports fairly and promptly, communicate transparently with their team and SAIN national, disclose conflicts of interest.
 
@@ -142,7 +145,7 @@ Each chapter must have:
 
 **Transparency.** Chapters maintain basic financial records, respond to reasonable information requests, and receive regular updates on their earmarked funds from SAIN national.
 
-**Budget approval.** Chapter budgets are proposed by the chapter lead and approved by SAIN national. Significant expenditures outside the approved budget, and any financial commitments (contracts, leases, employment agreements) on behalf of SAIN, require prior authorization from the board.
+**Budget approval.** Chapter budgets are proposed by the chapter director and approved by SAIN national. Significant expenditures outside the approved budget, and any financial commitments (contracts, leases, employment agreements) on behalf of SAIN, require prior authorization from the board.
 
 **Unfunded chapters.** Chapters operating on a volunteer basis with no external funding have no financial obligations to SAIN national. There are no membership fees, brand licensing fees, or revenue-sharing requirements.
 
@@ -150,7 +153,7 @@ Each chapter must have:
 
 The guiding principle is **local freedom, national coherence.**
 
-Chapters have full autonomy over event formats, scheduling, additional activities (book clubs, policy workshops, local consulting—anything consistent with the mission), team structure, recruitment, local partnerships, and pacing of growth.
+Chapters have full autonomy over event formats, scheduling, additional activities (book clubs, policy workshops—anything consistent with the mission), team structure, recruitment, local partnerships, and pacing of growth.
 
 What must remain consistent: the SAIN mission and values, brand and visual identity, minimum activity standards, participation in national coordination, financial transparency, and adherence to Part I of this Code.
 
@@ -162,7 +165,7 @@ In rare and serious cases, a chapter may lose recognition. This is a last resort
 
 **Process:**
 
-1. SAIN national communicates the concern in writing, specifying grounds and providing at least 30 days to respond.  
+1. SAIN national communicates the concern in writing, specifying grounds and providing at most 30 days to respond.  
 2. Chapter leadership presents their perspective and may propose remediation.  
 3. The SAIN board makes the final decision.  
 4. If disaffiliation is decided: the chapter ceases using the SAIN brand; earmarked funds are handled per original grant terms; the chapter's website listing is removed; stakeholders are informed with appropriate discretion.  
@@ -174,7 +177,7 @@ In rare and serious cases, a chapter may lose recognition. This is a last resort
 
 ## **Adoption and Amendments**
 
-This Code of Conduct is adopted by the SAIN board and applies to all chapters, members, and participants from the date of adoption. Amendments may be proposed by any chapter through the Chapter Council or directly to SAIN national. The board decides on amendments after consulting the Chapter Council. Significant changes will be communicated to all chapters with reasonable advance notice.
+This Code of Conduct is adopted by the SAIN Leadership and applies to all chapters, members, and participants from the date of adoption. Amendments may be proposed by any chapter to the Chapter Director or directly to SAIN national. Leadership decides on amendments after consulting the Chapter Council. Significant changes will be communicated to all chapters with reasonable advance notice.
 
 ---
 
