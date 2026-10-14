@@ -79,7 +79,7 @@ Heading (heading role): `Anyone can start. The path narrows on purpose.`
 
 Body, left of the funnel (the diagram draws the five steps; the prose must not recap them one by one):
 
-> The drawing beside this text is the whole organisation. The wide end is a free course anyone can join, no technical background required. The narrow end is full-time work on AI safety, in policy, research, industry or civil society. Between them sit the community, the Research Hub, and fellowships. We call it the SAIN talent pipeline.
+> The drawing beside this text is the whole organisation. The wide end is a free course anyone can join, no technical background required. The narrow end is full-time work on AI safety, in policy, research, industry or civil society. Between them sit the community, the Project Hub, and fellowships. We call it the SAIN talent pipeline.
 
 > We are open about where our effort goes. SAIN builds the wide end: getting people in, teaching foundations, and scaffolding a first real contribution such as a supervised research project. At the narrow end we mainly connect and refer, with introductions and referral letters.
 
