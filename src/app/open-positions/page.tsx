@@ -413,14 +413,14 @@ export default function CareersPage() {
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
-            {/* The founding-team call has its own page and its own form. */}
+            {/* The starting-team call has its own page and its own form. */}
             <p className="font-sans text-label text-navy/72">
               Starting something new?{" "}
               <Link
                 href="/new-chapters"
                 className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Paid founding teams wanted in Eindhoven, Delft and The Hague
+                Paid starting teams wanted in Eindhoven, Delft and The Hague
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </p>

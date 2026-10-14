@@ -1,7 +1,7 @@
 /* The Netherlands with SAIN's six cities, as the /new-chapters hero drawing.
 
    The geometry is the claim: three chapters already run (navy), three are
-   being founded (orange, the part of the picture that is still rising). The
+   being started (orange, the part of the picture that is still rising). The
    outline is a simplified projection of the real coastline and borders, so
    every city sits where it actually is; the IJsselmeer and the Wadden islands
    are drawn because without them the shape stops reading as the Netherlands.
@@ -57,7 +57,7 @@ export default function ChapterMap({ className }: { className?: string }) {
       >
         <title id="chapter-map-title">SAIN&rsquo;s chapters in the Netherlands</title>
         <desc id="chapter-map-desc">
-          Chapters run in Groningen, Amsterdam and Utrecht. Founding teams are
+          Chapters run in Groningen, Amsterdam and Utrecht. Starting teams are
           wanted in Eindhoven, Delft and The Hague.
         </desc>
 
@@ -116,7 +116,7 @@ export default function ChapterMap({ className }: { className?: string }) {
           >
             <span className="block size-full rounded-full bg-orange" />
           </span>
-          Founding team wanted
+          Starting team wanted
         </span>
       </figcaption>
     </figure>

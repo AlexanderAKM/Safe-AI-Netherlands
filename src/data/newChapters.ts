@@ -1,8 +1,8 @@
 /**
- * Content for /new-chapters: the founding-team call for Eindhoven, Delft and
+ * Content for /new-chapters: the starting-team call for Eindhoven, Delft and
  * The Hague (winter 2026-27).
  *
- * Source of truth for the copy: Alexander's founding-team role descriptions
+ * Source of truth for the copy: Alexander's starting-team role descriptions
  * (14 October 2026). The same text sits in the Airtable form's conditional
  * role descriptions, so when one changes, change the other.
  */
@@ -14,8 +14,8 @@ import type { TimelineStep } from "@/data/openPositions";
 // -----------------------------------------------------------------------------
 
 /**
- * The founding-team application form: an Airtable interface form, writing to
- * the "Founding Team Applications" table.
+ * The starting-team application form: an Airtable interface form, writing to
+ * the "Starting Team Applications" table.
  *
  * Interface forms take `prefill_<Field name>` parameters, matched on the
  * table's field names rather than the questions the form shows (checked 14
@@ -95,7 +95,7 @@ export const FOUNDING_CITIES: FoundingCity[] = [
 export const EXISTING_CHAPTERS = ["Groningen", "Amsterdam", "Utrecht"];
 
 // -----------------------------------------------------------------------------
-// The founding position: what is missing, what is already there
+// The starting position: what is missing, what is already there
 // -----------------------------------------------------------------------------
 
 export const NOT_THERE_YET = [
@@ -135,8 +135,8 @@ export type IncubationStop = {
 export const INCUBATION_STOPS: IncubationStop[] = [
   {
     when: "Mid-December 2026",
-    title: "Founding teams start",
-    detail: "A joint kickoff for all three founding teams.",
+    title: "Starting teams begin",
+    detail: "A joint kickoff for all three starting teams.",
   },
   {
     when: "January 2027",
@@ -173,7 +173,7 @@ export type OfferIcon =
 export const FOUNDING_OFFER: Array<{ icon: OfferIcon; title: string; detail: string }> = [
   {
     icon: "flag",
-    title: "A founding role",
+    title: "A role on the starting team",
     detail: "In a funded national organisation, with SAIN's name and backing behind you.",
   },
   {
@@ -243,32 +243,32 @@ export type FoundingRole = {
 
 const SHARED_LOCATION =
   "Eindhoven, Delft or The Hague (whichever one you are based in), with occasional trips to Amsterdam and the other chapters.";
-const SHARED_START = "Mid-December 2026, with a joint kickoff for all three founding teams.";
+const SHARED_START = "Mid-December 2026, with a joint kickoff for all three starting teams.";
 const HOLIDAY = "8% on top of your gross salary.";
 
 export const FOUNDING_ROLES: FoundingRole[] = [
   {
     id: "director",
-    title: "Founding Chapter Director",
+    title: "Starting Chapter Director",
     formValue: "Chapter Director",
     team: "directors",
     hours: "12 to 16 hours a week, December 2026 to June 2027",
-    summary: "Leads the founding team and opens the city's doors.",
+    summary: "Leads the starting team and opens the city's doors.",
     about: [
-      "Every SAIN chapter started with one person who decided it should exist and then made it happen. In Groningen, Amsterdam and Utrecht that took years of trial and error. In Eindhoven, Delft and The Hague we want it to take six months, because this time the founder does not start from nothing.",
-      "You would be the person leading it! You will develop the team (and will even be included in the final interviews of the other founding team roles in your city) and open the doors to collaboration: at the university or hogeschools, with local organisations, and in The Hague with the ministries and institutions. By June there should be a chapter that runs basically autonomously. You work directly with SAIN's national team, and you are accountable for whether your city reaches its milestones.",
+      "Every SAIN chapter started with one person who decided it should exist and then made it happen. In Groningen, Amsterdam and Utrecht that took years of trial and error. In Eindhoven, Delft and The Hague we want it to take six months, because this time the director does not start from nothing.",
+      "You would be the person leading it! You will develop the team (and will even be included in the final interviews of the other starting team roles in your city) and open the doors to collaboration: at the university or hogeschools, with local organisations, and in The Hague with the ministries and institutions. By June there should be a chapter that runs basically autonomously. You work directly with SAIN's national team, and you are accountable for whether your city reaches its milestones.",
       "Importantly: this role is about building something from nothing and about people, not about being the most knowledgeable person on AI safety in the room. You need enough grounding to represent the field credibly, which is why we ask for a completed AI safety course. Your real job, though, is to find the people who know more than you and get them involved. You are the one that builds, that keeps the team together, and that multiplies what everyone else does.",
       "This means we expect high agency from you. For instance, you will not get a week-by-week checklist. Instead, we will set the destination together, you then choose the route, and you pull in support when you need it.",
       "What the chapter looks like depends on the city. In Eindhoven and Delft, a technical profile fits best: you will mostly be talking to engineers, students and researchers. In The Hague, the director is ideally someone who knows how the government works from the inside.",
     ],
     firstMonths: [
-      "Grow the founding team to at least five people with clear roles, starting with the leads selected alongside you.",
+      "Grow the starting team to at least five people with clear roles, starting with the leads selected alongside you.",
       "Secure office space (we will help you) and use your connections within the city for collaborations and useful advisors that can help you navigate the city and develop the chapter.",
       "Get the chapter's communications going and schedule its first course for spring.",
       "Get regular events going.",
     ],
     responsibilities: [
-      "Lead the founding team: set direction, run the weekly team meeting, clear blockers, and bring in new members as the chapter grows.",
+      "Lead the starting team: set direction, run the weekly team meeting, clear blockers, and bring in new members as the chapter grows.",
       "Build the chapter's relationships with the university and local organisations, and in The Hague with government and international institutions.",
       "Own the chapter's plan, milestones and budget, together with the national team.",
       "Represent the chapter at events, with partners and in the press.",
@@ -299,7 +299,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
   },
   {
     id: "education-lead",
-    title: "Founding Education Lead",
+    title: "Starting Education Lead",
     formValue: "Education Lead",
     team: "education",
     hours: "8 to 12 hours a week, December 2026 to June 2027",
@@ -345,7 +345,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
   },
   {
     id: "events-lead",
-    title: "Founding Events Lead",
+    title: "Starting Events Lead",
     formValue: "Events Lead",
     team: "events",
     hours: "8 to 12 hours a week, December 2026 to June 2027",
@@ -390,7 +390,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
   },
   {
     id: "communications-lead",
-    title: "Founding Communications Lead",
+    title: "Starting Communications Lead",
     formValue: "Communications Lead",
     team: "communications",
     hours: "8 to 12 hours a week, December 2026 to June 2027",
@@ -458,11 +458,11 @@ export const FOUNDING_APPLICATION_STEPS: TimelineStep[] = [
   },
   {
     label: "Decision",
-    detail: "By mid-December we invite a founding team of four people per city.",
+    detail: "By mid-December we invite a starting team of four people per city.",
   },
   {
     label: "Start",
     detail:
-      "If you are in the founding team, your work really kicks off in mid-January.",
+      "If you are in the starting team, your work really kicks off in mid-January.",
   },
 ];

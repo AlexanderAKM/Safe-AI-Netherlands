@@ -37,7 +37,7 @@ import {
 export const metadata: Metadata = {
   title: "Start a chapter in Eindhoven, Delft or The Hague",
   description:
-    "SAIN is starting chapters in Eindhoven, Delft and The Hague. Each city gets a paid, part-time founding team of four: a Chapter Director and leads for education, events and communications.",
+    "SAIN is starting chapters in Eindhoven, Delft and The Hague. Each city gets a paid, part-time starting team of four: a Chapter Director and leads for education, events and communications.",
 };
 
 const OFFER_ICON: Record<OfferIcon, Icon> = {
@@ -51,7 +51,7 @@ const OFFER_ICON: Record<OfferIcon, Icon> = {
   seal: SealCheck,
 };
 
-function ApplyButton({ label = "Apply to a founding team" }: { label?: string }) {
+function ApplyButton({ label = "Apply to a starting team" }: { label?: string }) {
   return (
     <a
       href={buildFoundingApplicationUrl()}
@@ -72,7 +72,7 @@ export default function NewChaptersPage() {
       <OpenOnHash />
 
       {/* Hero. The claim and the ask on the left; the map on the right is the
-          premise drawn: three chapters run, three are being founded. */}
+          premise drawn: three chapters run, three are being started. */}
       <section
         aria-labelledby="new-chapters-heading"
         className="relative isolate overflow-hidden"
@@ -86,7 +86,7 @@ export default function NewChaptersPage() {
           <Reveal hero className="flex min-w-0 flex-col gap-6">
             <p className="kicker flex items-center gap-3 text-kicker text-navy/65">
               <span className="size-[7px] bg-orange" aria-hidden="true" />
-              Founding teams wanted
+              Starting teams wanted
             </p>
             <h1 id="new-chapters-heading" className="font-serif text-display text-navy">
               Start SAIN in Eindhoven, Delft or The Hague.
@@ -94,7 +94,7 @@ export default function NewChaptersPage() {
             <p className="max-w-[620px] font-sans text-body text-navy/72">
               SAIN builds the national AI safety talent pipeline, with chapters in
               Groningen, Amsterdam and Utrecht. This winter we are starting three
-              more. Each city gets a founding team of four: a Chapter Director, an
+              more. Each city gets a starting team of four: a Chapter Director, an
               Education Lead, an Events Lead and a Communications Lead. All four
               roles are paid and part-time.
             </p>
@@ -117,7 +117,7 @@ export default function NewChaptersPage() {
       </section>
 
       {/* The honest position: what does not exist yet, set against what is
-          already behind the founder. Two ledgers on one rule, the missing side
+          already behind the starting team. Two ledgers on one rule, the missing side
           drawn with a dashed marker because it is still to be built. */}
       <section
         aria-labelledby="building-heading"
@@ -228,12 +228,12 @@ export default function NewChaptersPage() {
               id="incubation-heading"
               className="max-w-[720px] font-serif text-heading text-white"
             >
-              Six months from founding team to SAIN chapter.
+              Six months from starting team to SAIN chapter.
             </h2>
             <div className="mt-5 flex max-w-[760px] flex-col gap-4 font-sans text-body text-white/75">
               <p>
                 New chapters start as incubating chapters. From mid-December 2026 to
-                June 2027, the founding team develops the chapter towards a few
+                June 2027, the starting team develops the chapter towards a few
                 concrete milestones. Internally, we treat you as a SAIN chapter from
                 the start.
               </p>
@@ -303,7 +303,7 @@ export default function NewChaptersPage() {
         </div>
       </section>
 
-      {/* What the founder gets, as career rows: orange stroke icon, serif
+      {/* What the starting team gets, as career rows: orange stroke icon, serif
           title, one line of fact. Hairlines, no cards. */}
       <section
         aria-labelledby="offer-heading"
@@ -359,7 +359,7 @@ export default function NewChaptersPage() {
               Four roles in every city.
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              Every founding team has the same four roles. Open one for the full
+              Every starting team has the same four roles. Open one for the full
               description. You can apply for more than one, and the form asks which
               city you are based in.
             </p>
@@ -397,9 +397,9 @@ export default function NewChaptersPage() {
                     Everyone who applies hears back from us.
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
-                    If you are not in the founding team, you are still the start of the
+                    If you are not in the starting team, you are still the start of the
                     chapter&rsquo;s community. With your permission, we will introduce
-                    you to the founding team, and you are first in line for its course
+                    you to the starting team, and you are first in line for its course
                     and events.
                   </p>
                 </div>
