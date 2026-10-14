@@ -484,6 +484,26 @@
   transform: translateY(16px);
 }
 
+/* The founding rings on the /new-chapters map draw in once on arrival, from
+   their own centre, after the hero has risen. Pure CSS like the hero, with
+   `both` so reduced motion lands them on their end state. */
+@keyframes founding-ring {
+  from {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.founding-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: founding-ring 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
