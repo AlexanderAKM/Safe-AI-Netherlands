@@ -14,14 +14,13 @@ import type { TimelineStep } from "@/data/openPositions";
 // -----------------------------------------------------------------------------
 
 /**
- * The founding-team application form: an Airtable interface form.
+ * The founding-team application form: an Airtable interface form, writing to
+ * the "Founding Team Applications" table.
  *
- * Interface forms take `prefill_<Field name>` parameters (checked 14 October
- * 2026: `prefill_Name` fills the Name field). The names below are the table's
- * field names, not the questions the form shows. At that check the city and
- * role fields were not yet called "City" and "Role", so those two prefills
- * were ignored and the applicant picks city and role in the form; renaming
- * the two fields in Airtable switches the prefill on without a code change.
+ * Interface forms take `prefill_<Field name>` parameters, matched on the
+ * table's field names rather than the questions the form shows (checked 14
+ * October 2026: `prefill_City=Delft&prefill_Role=Chapter Director` fills both).
+ * Keep the two field names below in step with the table.
  */
 export const FOUNDING_FORM_URL: string =
   "https://airtable.com/appBt9aud43DOhyE7/pagfucm2gVY91sjPg/form";
@@ -446,7 +445,7 @@ export const FOUNDING_APPLICATION_STEPS: TimelineStep[] = [
   {
     label: "Application form",
     detail:
-      "Your CV, a few short written questions, and one question for each role you apply for. About 30 minutes.",
+      "Your CV, a few short written questions, and one question for each role you apply for. About 45 minutes.",
   },
   {
     label: "Work sample",

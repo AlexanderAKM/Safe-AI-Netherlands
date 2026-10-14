@@ -422,8 +422,9 @@ export default function NewChaptersPage() {
                     to the institutions and organisations that need them.
                   </p>
                   <p className="mt-3 font-sans text-caption text-navy/65">
-                    We do not sponsor visas. If you are in the Netherlands on a student
-                    residence permit, you can still apply.
+                    We do not sponsor visas. On a student residence permit, paid work
+                    of up to 16 hours a week is possible with a work permit (TWV)
+                    that we would apply for.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">
