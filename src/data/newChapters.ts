@@ -14,18 +14,17 @@ import type { TimelineStep } from "@/data/openPositions";
 // -----------------------------------------------------------------------------
 
 /**
- * The founding-team application form in Airtable.
+ * The founding-team application form: an Airtable interface form.
  *
- * PRE-SHIP BLOCKER: empty until the form is built. While it is empty every
- * apply button falls back to /contact, so the page never links to nothing,
- * but it must not go live that way.
- *
- * Use the form view's shared link (airtable.com/app.../shr...), which accepts
- * `prefill_<Field name>` parameters. The field names below must match the
- * form's fields exactly; Airtable ignores a prefill it cannot match, so a
- * wrong name costs the applicant one extra click and nothing else.
+ * Interface forms take `prefill_<Field name>` parameters (checked 14 October
+ * 2026: `prefill_Name` fills the Name field). The names below are the table's
+ * field names, not the questions the form shows. At that check the city and
+ * role fields were not yet called "City" and "Role", so those two prefills
+ * were ignored and the applicant picks city and role in the form; renaming
+ * the two fields in Airtable switches the prefill on without a code change.
  */
-export const FOUNDING_FORM_URL = "";
+export const FOUNDING_FORM_URL: string =
+  "https://airtable.com/appBt9aud43DOhyE7/pagfucm2gVY91sjPg/form";
 
 export const FOUNDING_FORM_FIELDS = {
   city: "City",
@@ -43,7 +42,6 @@ export function buildFoundingApplicationUrl(opts?: {
   return url.toString();
 }
 
-export const isFoundingFormLive = FOUNDING_FORM_URL !== "";
 
 // -----------------------------------------------------------------------------
 // Dates
