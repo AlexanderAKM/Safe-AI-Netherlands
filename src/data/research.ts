@@ -1,5 +1,5 @@
 /**
- * Research Hub facts: what has been published, and who supervises.
+ * Project Hub facts: what has been published, and who supervises.
  *
  * Shared by the landing page (the inverse "Already in the literature" band and
  * the supervisor list) and /research, so a new paper or a new supervisor is
@@ -144,8 +144,8 @@ export const publications: Publication[] = [
   },
   {
     title: "Playing with Perception: Fooling Traffic Sign Classifiers via Copy-Paste Manipulation",
-    venueShort: "Research project",
-    venue: "Research project",
+    venueShort: "SAIN project",
+    venue: "SAIN Project Hub",
     authors: "Davide Zani, Alexandru Dimofte",
     link: "https://drive.google.com/file/d/1JvhstWaLIHB9QPI-cg5S-1ASexhmqLSN/view",
     chipTitle: "Playing with Perception",
@@ -230,9 +230,53 @@ export const supervisors: Supervisor[] = [
     agenda:
       "https://docs.google.com/document/d/122Bvbp-Om_6-KKq8f_DorvbDnEXYEzcNrsvVPbmpa2o/edit?usp=drivesdk",
   },
+  /* The four Amsterdam supervisors confirmed in October 2026. Positions are
+     taken from the agendas they wrote for SAIN; the agendas are shared with
+     anyone who has the link. */
+  {
+    name: "Filip Ilievski",
+    position: "Assistant Professor of Commonsense AI, Vrije Universiteit Amsterdam",
+    positionShort: "Assistant Professor, VU Amsterdam",
+    /* The source is 483px wide, so there is no 800 rung. */
+    image: "/photos/supervisors/Filip_Ilievski.jpg",
+    imageSmall: "/photos/supervisors/Filip_Ilievski-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1FvdDTbzwoOI6eXJfvzdq4yvBqrBgwOe7FGBJFDLEuP8/edit?usp=sharing",
+  },
+  {
+    name: "Satchit Chatterji",
+    position: "PhD candidate, University of Amsterdam",
+    positionShort: "PhD candidate, University of Amsterdam",
+    /* The source is 576px square, so there is no 800 rung. */
+    image: "/photos/supervisors/Satchit_Chatterji.jpg",
+    imageSmall: "/photos/supervisors/Satchit_Chatterji-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1iumFQp6NNNAhzwaFMY8t6-iE-jpSepjAhjNRsBMiW3k/edit?usp=sharing",
+  },
+  {
+    name: "Sandro Pezzelle",
+    position: "Assistant Professor in Responsible AI, ILLC, University of Amsterdam",
+    positionShort: "Assistant Professor, University of Amsterdam",
+    image: "/photos/supervisors/Sandro_Pezzelle-800.jpg",
+    imageSmall: "/photos/supervisors/Sandro_Pezzelle-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1GIFYPzEXVrRLYNT27PNV5L9TPAGcYl7gLMJoXEy1agY/edit?usp=sharing",
+  },
+  {
+    name: "Fausto Carcassi",
+    position: "Assistant Professor, ILLC, University of Amsterdam",
+    positionShort: "Assistant Professor, University of Amsterdam",
+    image: "/photos/supervisors/Fausto_Carcassi-800.jpg",
+    imageSmall: "/photos/supervisors/Fausto_Carcassi-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1JDNKwhsbOJD3kSR2SDvOnIV_xlM1ozEOpYvySRanREQ/edit?usp=sharing",
+  },
 ];
 
 export const RESEARCH_EMAIL = "research@safeainetherlands.org";
+/* The Project Hub's inbox, which the v3 handbook names as the primary
+   contact for projects. */
+export const PROJECTS_EMAIL = "projects@safeainetherlands.org";
 export const RESEARCH_INTEREST_FORM_URL = "https://forms.gle/na3wbBR4V1YVHAnFA";
 /* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */
 export const SUPERVISOR_INTEREST_FORM_URL =
