@@ -32,7 +32,7 @@ const navigation: {
       p.startsWith("/chapters"),
   },
   {
-    name: "Research hub",
+    name: "Project hub",
     href: "/research",
     isActive: (p) => p.startsWith("/research"),
   },
