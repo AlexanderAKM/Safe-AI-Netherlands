@@ -46,9 +46,15 @@ export function buildFoundingApplicationUrl(opts?: {
 // Dates
 // -----------------------------------------------------------------------------
 
-/* Soft deadline. 16 November 2026 is a Monday; the weekday is left out on
-   purpose until the date is confirmed (the Asana milestone says 14 Nov). */
+/* Soft deadline, confirmed 14 October 2026. It is a Monday; copy names the
+   date only, never the weekday. */
 export const SOFT_DEADLINE = "16 November 2026";
+export const SOFT_DEADLINE_SHORT = "16 November";
+
+/* The switch for the site-wide call-outs: the announcement bar, the nav item
+   and the two lines on the landing. Set it to false when the starting teams
+   are chosen; /new-chapters itself stays up. */
+export const STARTING_TEAMS_RECRUITING = true;
 
 // -----------------------------------------------------------------------------
 // Cities
