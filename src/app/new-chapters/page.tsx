@@ -17,6 +17,8 @@ import type { Icon } from "@phosphor-icons/react";
 import Reveal from "@/components/landing/Reveal";
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import ApplicationSteps from "@/components/careers/ApplicationSteps";
+import ChapterPrints from "@/components/landing/ChapterPrints";
+import CommunityPrints from "@/components/landing/CommunityPrints";
 import ChapterMap from "@/components/expansion/ChapterMap";
 import FoundingRoleDisclosure from "@/components/expansion/FoundingRoleDisclosure";
 import OpenOnHash from "@/components/expansion/OpenOnHash";
@@ -301,6 +303,39 @@ export default function NewChaptersPage() {
                 ))}
               </ul>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* What the incubation is for, shown rather than told: the landing's
+          community band, with the running chapters as prints and the event
+          strip under them, and the claim turned towards the reader's city. */}
+      <section
+        aria-labelledby="community-heading"
+        className="relative isolate overflow-hidden bg-cream"
+      >
+        <div className="shell band-section flex flex-col gap-10 lg:gap-14">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
+            <Reveal className="flex flex-col items-start gap-5">
+              <h2 id="community-heading" className="font-serif text-heading text-navy">
+                This is what you would be starting.
+              </h2>
+              <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
+                <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
+                <strong>talks</strong>, and the evenings after. In Groningen,
+                Amsterdam and Utrecht, people meet{" "}
+                <strong>friends and collaborators</strong> at SAIN, and often find
+                their <strong>next step in AI safety</strong>. Apply now, and a
+                year from now your city has a community like this, built by you.
+              </p>
+              <ApplyButton />
+            </Reveal>
+            <Reveal delay={0.06} className="min-w-0">
+              <ChapterPrints />
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <CommunityPrints />
           </Reveal>
         </div>
       </section>

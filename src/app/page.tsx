@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import ChapterPrints from "@/components/landing/ChapterPrints";
 import CommunityPrints from "@/components/landing/CommunityPrints";
 import CourseTracks from "@/components/landing/CourseTracks";
 import FoldPin from "@/components/landing/FoldPin";
@@ -12,7 +13,6 @@ import ResearchOffer from "@/components/landing/ResearchOffer";
 import HeroChart from "@/components/landing/HeroChart";
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
-import { ATLAS } from "@/data/chapterAtlas";
 import {
   SOFT_DEADLINE_SHORT,
   STARTING_TEAMS_RECRUITING,
@@ -136,8 +136,8 @@ export default function Home() {
 
       {/* What SAIN is for, before the page offers any door. Inverse, as a
           deliberate pause between the hero and the first programme: the
-          statement gets a ground of its own, and the courses band starts clean
-          on white after it. It ranks none of the ways in. */}
+          statement gets a ground of its own, and the community band starts on
+          paper after it. It ranks none of the ways in. */}
       <section
         id="mission"
         aria-labelledby="mission-heading"
@@ -166,53 +166,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Courses. The mission copy and the funnel it was built around moved
-          to /about, where the argument and the diagram sit together; what is
-          left on this ground is the first step itself. */}
-      <section
-        id="courses"
-        aria-labelledby="courses-heading"
-        className="relative isolate scroll-mt-36 overflow-hidden bg-white"
-      >
-        <SectionOrbits className="-left-20 top-6 h-[400px] w-[300px] md:-left-12" />
-        <div className="shell band-section-top relative isolate pb-14">
-          <div className="mb-10 max-w-[680px]">
-            <h2 id="courses-heading" className="font-serif text-heading text-navy">
-              Start with a free course
-            </h2>
-            <p className="mt-3 font-sans text-body leading-[26px] text-navy/74">
-              Pick a track. Every programme is free and taught in person. What you join, and how it
-              runs, depends on the chapter.
-            </p>
-            {/* Which chapters are taking applications, read from the same file
-                the chapter pages read. A cohort can never be advertised as open
-                here and closed there, and when the last one closes this line
-                removes itself rather than going stale. */}
-            {openCourseApplications.length > 0 && (
-              <p className="mt-3 font-sans text-caption text-navy/65">
-                You can apply now in {formatCityList(openCourseApplications)}.
-              </p>
-            )}
-          </div>
-          <Reveal><CourseTracks /></Reveal>
-        </div>
-      </section>
-
-      {/* Show the community first, then explain how to join it. */}
-      {/* The fold. Community pins under the header and the navy research
-          band slides up over it, as a sheet laid on the paper. CSS only
-          (sticky, no scroll listener). The wrapper bounds the pin, so it lets
-          go when research ends; FoldPin picks the offset so the whole band has
-          been on screen before research covers it, at any window height. */}
-      <div>
-        <FoldPin>
-      {/* Community, made of its chapters. Paper, its own ground between the
-          white mission-and-courses run and the navy research band. The claim
-          on the left, and on the right the three chapters as prints: each is
-          the photograph its chapter page opens with, so the print is the room
-          previewed and the whole print is the door. (This replaced both the
-          thin "Local communities" strip under the hero, whose #chapters anchor
-          it took, and a separate strip of uncaptioned event prints.) */}
+      {/* Community, made of its chapters, straight after the mission: the
+          people first, then the first programme they can join. Paper, its own
+          ground between the navy mission and the white courses band. The claim
+          on the left, and on the right the three chapters as prints (see
+          ChapterPrints). Under them, a strip of event photographs. */}
       <section id="community" aria-labelledby="community-heading" className="relative isolate scroll-mt-36 overflow-hidden bg-cream">
         <div className="shell band-section flex flex-col gap-10 lg:gap-14">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
@@ -254,53 +212,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.06} className="min-w-0">
-            <nav id="chapters" aria-label="Chapters" className="scroll-mt-36">
-              {/* A snap strip below sm, the next print past the edge as the
-                  affordance; three across from sm. */}
-              <ul
-                role="list"
-                className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-3 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 lg:gap-7"
-              >
-                {ATLAS.map((chapter, i) => (
-                  <li key={chapter.id} className="w-[72vw] max-w-[300px] shrink-0 snap-center sm:w-auto sm:max-w-none">
-                    <Link
-                      href={chapter.href}
-                      className={`group block ${i === 1 ? "sm:translate-y-4" : ""}`}
-                    >
-                      {/* Only the print tilts; the line under it stays level. */}
-                      <span
-                        className={`block bg-white p-2 shadow-[0_7px_22px_#021C4D1F] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-hover:rotate-0 group-hover:shadow-[0_14px_34px_#021C4D29] group-focus-visible:rotate-0 ${
-                          ["-rotate-[2deg]", "rotate-[1.5deg]", "-rotate-[1deg]"][i]
-                        }`}
-                      >
-                        <span className="relative block aspect-[4/5] overflow-hidden bg-cream">
-                          <img
-                            src={`${chapter.photo}-640.webp`}
-                            srcSet={`${chapter.photo}-640.webp 640w, ${chapter.photo}-960.webp 960w`}
-                            sizes="(min-width: 1440px) 280px, (min-width: 640px) 30vw, 72vw"
-                            alt=""
-                            loading="lazy"
-                            className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                          />
-                        </span>
-                        <span className="block px-1.5 pb-1 pt-3 font-serif text-title text-navy">
-                          {chapter.city}
-                        </span>
-                      </span>
-                      <span className="mt-4 flex items-start justify-between gap-3 px-1">
-                        <span className="kicker text-kicker-sm text-navy/65">{chapter.origin}</span>
-                        <ArrowRight
-                          size={16}
-                          weight="regular"
-                          aria-hidden="true"
-                          className="mt-0.5 shrink-0 text-navy/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-navy"
-                        />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <ChapterPrints id="chapters" />
           </Reveal>
         </div>
 
@@ -309,6 +221,45 @@ export default function Home() {
         <Reveal delay={0.1}>
           <CommunityPrints />
         </Reveal>
+        </div>
+      </section>
+
+      {/* The fold. Courses pin under the header and the navy research band
+          slides up over them, as a sheet laid on the paper. CSS only (sticky,
+          no scroll listener). The wrapper bounds the pin, so it lets go when
+          research ends; FoldPin picks the offset so the whole band has been on
+          screen before research covers it, at any window height. */}
+      <div>
+        <FoldPin>
+      {/* Courses. The mission copy and the funnel it was built around moved
+          to /about, where the argument and the diagram sit together; what is
+          left on this ground is the first step itself. */}
+      <section
+        id="courses"
+        aria-labelledby="courses-heading"
+        className="relative isolate scroll-mt-36 overflow-hidden bg-white"
+      >
+        <SectionOrbits className="-left-20 top-6 h-[400px] w-[300px] md:-left-12" />
+        <div className="shell band-section-top relative isolate pb-14">
+          <div className="mb-10 max-w-[680px]">
+            <h2 id="courses-heading" className="font-serif text-heading text-navy">
+              Start with a free course
+            </h2>
+            <p className="mt-3 font-sans text-body leading-[26px] text-navy/74">
+              Pick a track. Every programme is free and taught in person. What you join, and how it
+              runs, depends on the chapter.
+            </p>
+            {/* Which chapters are taking applications, read from the same file
+                the chapter pages read. A cohort can never be advertised as open
+                here and closed there, and when the last one closes this line
+                removes itself rather than going stale. */}
+            {openCourseApplications.length > 0 && (
+              <p className="mt-3 font-sans text-caption text-navy/65">
+                You can apply now in {formatCityList(openCourseApplications)}.
+              </p>
+            )}
+          </div>
+          <Reveal><CourseTracks /></Reveal>
         </div>
       </section>
         </FoldPin>
