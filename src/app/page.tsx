@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import ChapterPrints from "@/components/landing/ChapterPrints";
 import CommunityPrints from "@/components/landing/CommunityPrints";
 import CourseTracks from "@/components/landing/CourseTracks";
 import FoldPin from "@/components/landing/FoldPin";
@@ -12,7 +13,10 @@ import ResearchOffer from "@/components/landing/ResearchOffer";
 import HeroChart from "@/components/landing/HeroChart";
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
-import { ATLAS } from "@/data/chapterAtlas";
+import {
+  SOFT_DEADLINE_SHORT,
+  STARTING_TEAMS_RECRUITING,
+} from "@/data/newChapters";
 import {
   formatCityList,
   openCourseApplications,
@@ -104,6 +108,25 @@ export default function Home() {
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
+            {/* The hire of the season, said once above the fold. It reads the
+                same switch as the announcement bar and the nav item. */}
+            {STARTING_TEAMS_RECRUITING && (
+              <Link
+                href="/new-chapters"
+                className="group inline-flex max-w-[620px] items-start gap-3 border-t border-navy/12 pt-5 font-sans text-caption text-navy/74"
+              >
+                <span className="mt-[7px] size-[7px] shrink-0 bg-orange" aria-hidden="true" />
+                <span>
+                  <span className="font-semibold text-navy">We are hiring paid starting teams</span>{" "}
+                  for new chapters in Eindhoven, Delft and The Hague. Apply by{" "}
+                  {SOFT_DEADLINE_SHORT}.{" "}
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap text-navy underline decoration-navy/30 underline-offset-4 transition-colors group-hover:decoration-navy group-focus-visible:decoration-navy">
+                    See the roles
+                    <Arrow />
+                  </span>
+                </span>
+              </Link>
+            )}
           </Reveal>
           <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
             <HeroChart />
@@ -113,8 +136,8 @@ export default function Home() {
 
       {/* What SAIN is for, before the page offers any door. Inverse, as a
           deliberate pause between the hero and the first programme: the
-          statement gets a ground of its own, and the courses band starts clean
-          on white after it. It ranks none of the ways in. */}
+          statement gets a ground of its own, and the community band starts on
+          paper after it. It ranks none of the ways in. */}
       <section
         id="mission"
         aria-labelledby="mission-heading"
@@ -143,6 +166,71 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Community, made of its chapters, straight after the mission: the
+          people first, then the first programme they can join. Paper, its own
+          ground between the navy mission and the white courses band. The claim
+          on the left, and on the right the three chapters as prints (see
+          ChapterPrints). Under them, a strip of event photographs. */}
+      <section id="community" aria-labelledby="community-heading" className="relative isolate scroll-mt-36 overflow-hidden bg-cream">
+        <div className="shell band-section flex flex-col gap-10 lg:gap-14">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
+          <Reveal className="flex flex-col items-start gap-5">
+            <h2 id="community-heading" className="font-serif text-heading text-navy">
+              Participate in the community
+            </h2>
+            <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
+              <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
+              <strong>talks</strong>, and the evenings after. People meet{" "}
+              <strong>friends and collaborators</strong> here, and often find their{" "}
+              <strong>next step in AI Safety</strong>.
+            </p>
+            {/* Same words as the hero's button on purpose: one label per
+                destination, so the second ask reads as the same door. */}
+            <a href={COMMUNITY_JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn-accent mt-2 gap-2">
+              Join the community
+              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <p className="font-sans text-footnote text-navy/65">
+              Our Discord community currently focuses on our SAIN Amsterdam,
+              Utrecht and Groningen chapters.{" "}
+              {STARTING_TEAMS_RECRUITING ? (
+                <>
+                  Eindhoven, Delft and The Hague are next:{" "}
+                  <Link
+                    href="/new-chapters"
+                    className="text-navy underline decoration-navy/30 underline-offset-4 transition-colors hover:decoration-navy focus-visible:decoration-navy"
+                  >
+                    we are hiring their starting teams
+                  </Link>
+                  .
+                </>
+              ) : (
+                "More cities to come."
+              )}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.06} className="min-w-0">
+            <ChapterPrints id="chapters" />
+          </Reveal>
+        </div>
+
+        {/* Under the chapters, what happens in them: a strip of event
+            photographs across the full width of the band. */}
+        <Reveal delay={0.1}>
+          <CommunityPrints />
+        </Reveal>
+        </div>
+      </section>
+
+      {/* The fold. Courses pin under the header and the navy research band
+          slides up over them, as a sheet laid on the paper. CSS only (sticky,
+          no scroll listener). The wrapper bounds the pin, so it lets go when
+          research ends; FoldPin picks the offset so the whole band has been on
+          screen before research covers it, at any window height. */}
+      <div>
+        <FoldPin>
       {/* Courses. The mission copy and the funnel it was built around moved
           to /about, where the argument and the diagram sit together; what is
           left on this ground is the first step itself. */}
@@ -172,106 +260,6 @@ export default function Home() {
             )}
           </div>
           <Reveal><CourseTracks /></Reveal>
-        </div>
-      </section>
-
-      {/* Show the community first, then explain how to join it. */}
-      {/* The fold. Community pins under the header and the navy research
-          band slides up over it, as a sheet laid on the paper. CSS only
-          (sticky, no scroll listener). The wrapper bounds the pin, so it lets
-          go when research ends; FoldPin picks the offset so the whole band has
-          been on screen before research covers it, at any window height. */}
-      <div>
-        <FoldPin>
-      {/* Community, made of its chapters. Paper, its own ground between the
-          white mission-and-courses run and the navy research band. The claim
-          on the left, and on the right the three chapters as prints: each is
-          the photograph its chapter page opens with, so the print is the room
-          previewed and the whole print is the door. (This replaced both the
-          thin "Local communities" strip under the hero, whose #chapters anchor
-          it took, and a separate strip of uncaptioned event prints.) */}
-      <section id="community" aria-labelledby="community-heading" className="relative isolate scroll-mt-36 overflow-hidden bg-cream">
-        <div className="shell band-section flex flex-col gap-10 lg:gap-14">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
-          <Reveal className="flex flex-col items-start gap-5">
-            <h2 id="community-heading" className="font-serif text-heading text-navy">
-              Participate in the community
-            </h2>
-            <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
-              <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
-              <strong>talks</strong>, and the evenings after. People meet{" "}
-              <strong>friends and collaborators</strong> here, and often find their{" "}
-              <strong>next step in AI Safety</strong>.
-            </p>
-            {/* Same words as the hero's button on purpose: one label per
-                destination, so the second ask reads as the same door. */}
-            <a href={COMMUNITY_JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn-accent mt-2 gap-2">
-              Join the community
-              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <p className="font-sans text-footnote text-navy/65">
-              Our Discord community currently focuses on our SAIN Amsterdam,
-              Utrecht and Groningen chapters. More cities to come.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.06} className="min-w-0">
-            <nav id="chapters" aria-label="Chapters" className="scroll-mt-36">
-              {/* A snap strip below sm, the next print past the edge as the
-                  affordance; three across from sm. */}
-              <ul
-                role="list"
-                className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-3 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 lg:gap-7"
-              >
-                {ATLAS.map((chapter, i) => (
-                  <li key={chapter.id} className="w-[72vw] max-w-[300px] shrink-0 snap-center sm:w-auto sm:max-w-none">
-                    <Link
-                      href={chapter.href}
-                      className={`group block ${i === 1 ? "sm:translate-y-4" : ""}`}
-                    >
-                      {/* Only the print tilts; the line under it stays level. */}
-                      <span
-                        className={`block bg-white p-2 shadow-[0_7px_22px_#021C4D1F] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-hover:rotate-0 group-hover:shadow-[0_14px_34px_#021C4D29] group-focus-visible:rotate-0 ${
-                          ["-rotate-[2deg]", "rotate-[1.5deg]", "-rotate-[1deg]"][i]
-                        }`}
-                      >
-                        <span className="relative block aspect-[4/5] overflow-hidden bg-cream">
-                          <img
-                            src={`${chapter.photo}-640.webp`}
-                            srcSet={`${chapter.photo}-640.webp 640w, ${chapter.photo}-960.webp 960w`}
-                            sizes="(min-width: 1440px) 280px, (min-width: 640px) 30vw, 72vw"
-                            alt=""
-                            loading="lazy"
-                            className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                          />
-                        </span>
-                        <span className="block px-1.5 pb-1 pt-3 font-serif text-title text-navy">
-                          {chapter.city}
-                        </span>
-                      </span>
-                      <span className="mt-4 flex items-start justify-between gap-3 px-1">
-                        <span className="kicker text-kicker-sm text-navy/65">{chapter.origin}</span>
-                        <ArrowRight
-                          size={16}
-                          weight="regular"
-                          aria-hidden="true"
-                          className="mt-0.5 shrink-0 text-navy/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-navy"
-                        />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </Reveal>
-        </div>
-
-        {/* Under the chapters, what happens in them: a strip of event
-            photographs across the full width of the band. */}
-        <Reveal delay={0.1}>
-          <CommunityPrints />
-        </Reveal>
         </div>
       </section>
         </FoldPin>

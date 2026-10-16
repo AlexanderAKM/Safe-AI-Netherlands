@@ -7,9 +7,9 @@ import {
   ChatsCircle,
   Flag,
   Handshake,
+  Plant,
   SealCheck,
   Stack,
-  UsersThree,
   Wallet,
 } from "@phosphor-icons/react/dist/ssr";
 import type { Icon } from "@phosphor-icons/react";
@@ -17,6 +17,8 @@ import type { Icon } from "@phosphor-icons/react";
 import Reveal from "@/components/landing/Reveal";
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import ApplicationSteps from "@/components/careers/ApplicationSteps";
+import ChapterPrints from "@/components/landing/ChapterPrints";
+import CommunityPrints from "@/components/landing/CommunityPrints";
 import ChapterMap from "@/components/expansion/ChapterMap";
 import FoundingRoleDisclosure from "@/components/expansion/FoundingRoleDisclosure";
 import OpenOnHash from "@/components/expansion/OpenOnHash";
@@ -47,7 +49,7 @@ const OFFER_ICON: Record<OfferIcon, Icon> = {
   stack: Stack,
   wallet: Wallet,
   handshake: Handshake,
-  users: UsersThree,
+  growth: Plant,
   seal: SealCheck,
 };
 
@@ -92,11 +94,11 @@ export default function NewChaptersPage() {
               Start SAIN in Eindhoven, Delft or The Hague.
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              SAIN builds the national AI safety talent pipeline, with chapters in
-              Groningen, Amsterdam and Utrecht. This winter we are starting three
-              more. Each city gets a starting team of four: a Chapter Director, an
-              Education Lead, an Events Lead and a Communications Lead. All four
-              roles are paid and part-time.
+              SAIN has chapters in Groningen, Amsterdam and Utrecht. This winter we
+              are starting three more: Eindhoven, Delft and The Hague. Each city gets
+              a starting team of four people: a Chapter Director, an Education Lead,
+              an Events Lead and a Communications Lead. All four roles are paid and
+              part-time.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <ApplyButton />
@@ -131,10 +133,10 @@ export default function NewChaptersPage() {
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
               You would be the person building a SAIN chapter in your city, and you
-              will be in charge of setting up everything. You will not be doing it
-              alone: a funded national organisation and a network of advisors,
-              researchers and partner organisations want nothing more than your
-              chapter to succeed.
+              will be in charge of setting up everything. However, you&rsquo;ll have
+              support: a funded national organisation behind you, and a network of
+              advisors, researchers and partner organisations who want nothing more
+              than your chapter to succeed.
             </p>
 
             <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-0">
@@ -183,8 +185,8 @@ export default function NewChaptersPage() {
               Three cities with the most potential.
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              We have identified these three cities as the highest-potential ones to
-              expand to. Each one will grow a chapter with its own profile.
+              We have identified these three cities as the highest-potential ones for
+              us to expand to. Here is, very briefly, why we think so.
             </p>
             <div className="mt-10 grid gap-y-10 md:grid-cols-3">
               {FOUNDING_CITIES.map((city) => (
@@ -233,16 +235,18 @@ export default function NewChaptersPage() {
             <div className="mt-5 flex max-w-[760px] flex-col gap-4 font-sans text-body text-white/75">
               <p>
                 New chapters start as incubating chapters. From mid-December 2026 to
-                June 2027, the starting team develops the chapter towards a few
-                concrete milestones. Internally, we treat you as a SAIN chapter from
+                June 2027, the starting team will develop the chapter towards a few
+                concrete milestones. Importantly, although this phase is part of the
+                incubation, internally we&rsquo;ll treat you as a SAIN chapter from
                 the start.
               </p>
               <p>
-                We agree on where we want to be in June 2027; how you get there is up
-                to you, and we work together to make sure you reach your fullest
-                potential. In June 2027 we review how things have gone. Chapters that
-                get there become official SAIN chapters, and the director and lead
-                roles stay paid part-time positions.
+                We&rsquo;ll agree on where we want to be in June 2027; how you get
+                there is up to you. We&rsquo;ll work together to make sure you reach
+                your fullest potential. In June 2027 we will do a final review of how
+                things have gone. Chapters that get there become official SAIN
+                chapters, and the director and lead roles stay paid part-time
+                positions.
               </p>
             </div>
           </Reveal>
@@ -299,6 +303,39 @@ export default function NewChaptersPage() {
                 ))}
               </ul>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* What the incubation is for, shown rather than told: the landing's
+          community band, with the running chapters as prints and the event
+          strip under them, and the claim turned towards the reader's city. */}
+      <section
+        aria-labelledby="community-heading"
+        className="relative isolate overflow-hidden bg-cream"
+      >
+        <div className="shell band-section flex flex-col gap-10 lg:gap-14">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
+            <Reveal className="flex flex-col items-start gap-5">
+              <h2 id="community-heading" className="font-serif text-heading text-navy">
+                This is what you would be starting.
+              </h2>
+              <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
+                <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
+                <strong>talks</strong>, and the evenings after. In Groningen,
+                Amsterdam and Utrecht, people meet{" "}
+                <strong>friends and collaborators</strong> at SAIN, and often find
+                their <strong>next step in AI safety</strong>. Apply now, and a
+                year from now your city has a community like this, built by you.
+              </p>
+              <ApplyButton />
+            </Reveal>
+            <Reveal delay={0.06} className="min-w-0">
+              <ChapterPrints />
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <CommunityPrints />
           </Reveal>
         </div>
       </section>
@@ -398,9 +435,9 @@ export default function NewChaptersPage() {
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
                     If you are not in the starting team, you are still the start of the
-                    chapter&rsquo;s community. With your permission, we will introduce
-                    you to the starting team, and you are first in line for its course
-                    and events.
+                    chapter&rsquo;s community! We will send you what you need to join
+                    SAIN&rsquo;s online community, so you are among the first to hear
+                    about new activities and opportunities in your city.
                   </p>
                 </div>
                 <div className="border-t border-navy/14 pt-6">
@@ -408,8 +445,9 @@ export default function NewChaptersPage() {
                     We only start a chapter when the team is strong enough.
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
-                    If a city is not ready this round, we will open a second round
-                    later on.
+                    If we do not have strong enough applications to start the
+                    incubation in a particular city, we will open a second round later
+                    on.
                   </p>
                 </div>
                 <div className="border-t border-navy/14 pt-6">
@@ -422,9 +460,8 @@ export default function NewChaptersPage() {
                     to the institutions and organisations that need them.
                   </p>
                   <p className="mt-3 font-sans text-caption text-navy/65">
-                    We do not sponsor visas. On a student residence permit, paid work
-                    of up to 16 hours a week is possible with a work permit (TWV)
-                    that we would apply for.
+                    We do not sponsor visas. If you are in the Netherlands on a student
+                    residence permit, you can still apply.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">
