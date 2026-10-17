@@ -199,7 +199,9 @@ export default function NewChaptersPage() {
               <span className="mt-[6.5px] size-[7px] shrink-0 bg-orange" aria-hidden="true" />
               <span>
                 We are already in touch with people working on AI safety in these
-                cities. Already running something there and not heard from us yet?{" "}
+                cities. Where people have already been running things, we can build
+                on top of that and be much more ambitious. Already running something
+                there and not heard from us yet?{" "}
                 <Link
                   href="/contact"
                   className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
