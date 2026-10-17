@@ -342,7 +342,7 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="offer-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              You start from zero, but not alone.
+              You won&rsquo;t be doing it alone.
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
               Everything the three existing chapters learned the hard way is written
