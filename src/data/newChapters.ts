@@ -101,16 +101,8 @@ export const FOUNDING_CITIES: FoundingCity[] = [
 export const EXISTING_CHAPTERS = ["Groningen", "Amsterdam", "Utrecht"];
 
 // -----------------------------------------------------------------------------
-// The starting position: what is missing, what is already there
+// What is already behind the starting team
 // -----------------------------------------------------------------------------
-
-export const NOT_THERE_YET = [
-  "A team",
-  "A booked room",
-  "A first course",
-  "A first event",
-  "A mailing list",
-];
 
 export const ALREADY_THERE = [
   "A funded national organisation",
@@ -266,7 +258,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
     about: [
       "Every SAIN chapter started with one person who had a vision and made it happen. In Groningen, Amsterdam and Utrecht that took years of trial and error. In Eindhoven, Delft and The Hague we want it to take six months, because this time the director has all of SAIN's resources to get started.",
       "As the Director, you would be the person leading everything in your city. You will develop the team (and will even be included in the final interviews of the other starting team roles in your city if possible) and open the doors to collaboration: at the university or hogescholen, with local organisations, and in The Hague with the ministries and institutions. By June there should be a chapter that runs basically autonomously. You work directly with SAIN's national team, and you are accountable for whether your city reaches its milestones.",
-      "Importantly: this role is about building something from nothing, and about people. Whilst AI safety knowledge is helpful, your job is to gather the most knowledgeable people into your community, not to be that person yourself. You need enough grounding to represent the field credibly, which is why we ask, at least, for a completed AI safety course. You are the one that builds, that keeps the team together, and that multiplies what everyone else does.",
+      "Importantly: this role is about building, and about people. Whilst AI safety knowledge is helpful, your job is to gather the most knowledgeable people into your community, not to be that person yourself. You need enough grounding to represent the field credibly, which is why we ask, at least, for a completed AI safety course. You are the one that builds, that keeps the team together, and that multiplies what everyone else does.",
       "This means we expect high agency from you. For instance, you will not get a week-by-week checklist. Instead, we will set the destination together, you then choose the route, and you pull in support when you need it.",
       "What the chapter looks like depends on the city. In Eindhoven and Delft, a technical profile fits best: you will mostly be talking to engineers, students and researchers. In The Hague, the director is ideally someone who knows how the government works from the inside. It is your job to identify your city's strengths and steer AI safety into the field.",
     ],
@@ -314,7 +306,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
     hours: `8 hours a week depending on preference and availability, ${SHARED_TERM}`,
     summary: "Brings the first AI safety course to the city.",
     about: [
-      "Courses are where most people's path into AI safety begins. At SAIN, hundreds of people a year take one at our existing chapters, and many of them go on to (research) projects, jobs and chapter roles of their own. In your city, that first course does not exist yet. You make it exist!",
+      "Courses are where most people's path into AI safety begins. At SAIN, hundreds of people a year take one at our existing chapters, and many of them go on to (research) projects, jobs and chapter roles of their own. In your city, SAIN's first course does not exist yet. You make it exist!",
       "You will not have to write a curriculum. We already have a clear playbook and curricula running in three cities, with readings, session plans and facilitator guides. Your job is to bring one to your city, get as many of the best people in your city to join, make sure they finish, and go on to develop themselves further.",
       "Which course comes first depends on the city: most likely a technical track in Eindhoven and Delft, and a governance & policy track in The Hague. You decide this with your director.",
     ],
@@ -402,10 +394,10 @@ export const FOUNDING_ROLES: FoundingRole[] = [
     formValue: "Communications Lead",
     team: "communications",
     hours: `8 hours a week depending on preference and availability, ${SHARED_TERM}`,
-    summary: "Builds the chapter's audience from zero.",
+    summary: "Builds the chapter's audience in the city.",
     about: [
       "Nobody joins something they have never heard of. That is where you come in! You make sure the right people in your city hear about AI safety: researchers and professionals who would make great facilitators, engineers and students who have been quietly worried about the progress of AI and need a community, and civil servants who want to understand what is actually going on.",
-      "You launch the chapter's social media accounts and make them run reliably. As SAIN, we have a brand kit, templates and more that are ready to be used. You will be working together with the national team and the other chapters' Communications Leads to share what works and what doesn't. What does not exist yet is an audience in your city, and building one is the job.",
+      "You launch the chapter's social media accounts and make them run reliably. As SAIN, we have a brand kit, templates and more that are ready to be used. You will be working together with the national team and the other chapters' Communications Leads to share what works and what doesn't. Building the chapter's audience in your city is the job.",
       "Importantly: this role is about getting the right people to act (sign up, show up, apply, move through the talent pipeline, and so on), not about follower or like counts per se.",
       "The tone will differ per city. In The Hague, being able to communicate in Dutch matters a lot, in Delft not so much. You should know your city best, though.",
     ],

@@ -30,7 +30,6 @@ import {
   FOUNDING_ROLES,
   INCUBATION_MILESTONES,
   INCUBATION_STOPS,
-  NOT_THERE_YET,
   SOFT_DEADLINE,
   buildFoundingApplicationUrl,
   type OfferIcon,
@@ -118,9 +117,7 @@ export default function NewChaptersPage() {
         </div>
       </section>
 
-      {/* The honest position: what does not exist yet, set against what is
-          already behind the starting team. Two ledgers on one rule, the missing side
-          drawn with a dashed marker because it is still to be built. */}
+      {/* What is already behind the starting team, as one ledger on a rule. */}
       <section
         aria-labelledby="building-heading"
         className="relative isolate overflow-hidden border-t border-navy/10 bg-white"
@@ -139,38 +136,19 @@ export default function NewChaptersPage() {
               than your chapter to succeed.
             </p>
 
-            <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-0">
-              <div className="md:border-r md:border-navy/10 md:pr-12">
-                <p className="kicker text-kicker-sm text-navy/60">Not there yet</p>
-                <ul role="list" className="mt-4 border-b border-navy/10">
-                  {NOT_THERE_YET.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-4 border-t border-navy/10 py-3.5"
-                    >
-                      <span
-                        className="h-0 w-5 shrink-0 border-t border-dashed border-navy/40"
-                        aria-hidden="true"
-                      />
-                      <span className="font-serif text-title-sm text-navy/50">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="md:pl-12">
-                <p className="kicker text-kicker-sm text-navy/60">Already behind you</p>
-                <ul role="list" className="mt-4 border-b border-navy/10">
-                  {ALREADY_THERE.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-4 border-t border-navy/10 py-3.5"
-                    >
-                      <span className="h-px w-5 shrink-0 bg-navy" aria-hidden="true" />
-                      <span className="font-serif text-title-sm text-navy">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="mt-10 max-w-[620px]">
+              <p className="kicker text-kicker-sm text-navy/60">Already behind you</p>
+              <ul role="list" className="mt-4 border-b border-navy/10">
+                {ALREADY_THERE.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-4 border-t border-navy/10 py-3.5"
+                  >
+                    <span className="h-px w-5 shrink-0 bg-navy" aria-hidden="true" />
+                    <span className="font-serif text-title-sm text-navy">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
@@ -217,6 +195,22 @@ export default function NewChaptersPage() {
                 </article>
               ))}
             </div>
+            <p className="mt-10 flex max-w-[760px] gap-3 font-sans text-caption leading-[20px] text-navy/74">
+              <span className="mt-[6.5px] size-[7px] shrink-0 bg-orange" aria-hidden="true" />
+              <span>
+                We are already in touch with people working on AI safety in these
+                cities. Where people have already been running things, we can build
+                on top of that and be much more ambitious. Already running something
+                there and not heard from us yet?{" "}
+                <Link
+                  href="/contact"
+                  className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                >
+                  Please get in touch
+                </Link>
+                , so we can work together instead of duplicating efforts.
+              </span>
+            </p>
           </Reveal>
         </div>
       </section>
@@ -350,7 +344,7 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="offer-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              You start from zero, but not alone.
+              You won&rsquo;t be doing it alone.
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
               Everything the three existing chapters learned the hard way is written
