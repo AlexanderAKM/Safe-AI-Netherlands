@@ -172,6 +172,19 @@ export default function NewChaptersPage() {
                 </ul>
               </div>
             </div>
+            <p className="mt-6 flex items-center gap-3 font-sans text-caption text-navy/65">
+              <span className="size-[7px] shrink-0 bg-orange" aria-hidden="true" />
+              <span>
+                Eindhoven has a head start: people there have already been running
+                an AI safety course.{" "}
+                <a
+                  href="#eindhoven"
+                  className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                >
+                  More below
+                </a>
+              </span>
+            </p>
           </Reveal>
         </div>
       </section>
@@ -204,6 +217,15 @@ export default function NewChaptersPage() {
                   <p className="mt-3 font-sans text-caption leading-[20px] text-navy/65">
                     {city.profile}
                   </p>
+                  {city.headStart && (
+                    <p className="mt-4 flex gap-3 font-sans text-caption leading-[20px] text-navy/80">
+                      <span className="mt-[6.5px] size-[7px] shrink-0 bg-orange" aria-hidden="true" />
+                      <span>
+                        <span className="font-semibold text-navy">A head start. </span>
+                        {city.headStart}
+                      </span>
+                    </p>
+                  )}
                   <a
                     href={buildFoundingApplicationUrl({ city: city.name })}
                     target="_blank"
