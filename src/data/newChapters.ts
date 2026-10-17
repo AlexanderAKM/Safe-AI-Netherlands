@@ -68,9 +68,6 @@ export type FoundingCity = {
   why: string;
   /** One line on the chapter's likely profile. */
   profile: string;
-  /** What already runs in the city before the starting team does, set as a
-      short note on the cell. */
-  headStart?: string;
 };
 
 export const FOUNDING_CITIES: FoundingCity[] = [
@@ -81,8 +78,6 @@ export const FOUNDING_CITIES: FoundingCity[] = [
     why: "Brainport is home to ASML and one of Europe's densest clusters of engineering talent.",
     profile:
       "Likely a valuable technical chapter with some important governance questions sprinkled in: interpretability, evaluations, engineering, compute verification and the governance of the hardware AI runs on.",
-    headStart:
-      "People in Eindhoven have already been running an AI safety course and more. We are in touch with them and working out how to make the most of it together, so in Eindhoven we can be extra ambitious.",
   },
   {
     id: "delft",
@@ -106,16 +101,8 @@ export const FOUNDING_CITIES: FoundingCity[] = [
 export const EXISTING_CHAPTERS = ["Groningen", "Amsterdam", "Utrecht"];
 
 // -----------------------------------------------------------------------------
-// The starting position: what is missing, what is already there
+// What is already behind the starting team
 // -----------------------------------------------------------------------------
-
-export const NOT_THERE_YET = [
-  "A team",
-  "A booked room",
-  "A first course",
-  "A first event",
-  "A mailing list",
-];
 
 export const ALREADY_THERE = [
   "A funded national organisation",
@@ -319,7 +306,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
     hours: `8 hours a week depending on preference and availability, ${SHARED_TERM}`,
     summary: "Brings the first AI safety course to the city.",
     about: [
-      "Courses are where most people's path into AI safety begins. At SAIN, hundreds of people a year take one at our existing chapters, and many of them go on to (research) projects, jobs and chapter roles of their own. In Delft and The Hague, that first course does not exist yet. You make it exist! In Eindhoven, people have already run one, so there you build on what they started.",
+      "Courses are where most people's path into AI safety begins. At SAIN, hundreds of people a year take one at our existing chapters, and many of them go on to (research) projects, jobs and chapter roles of their own. In your city, SAIN's first course does not exist yet. You make it exist!",
       "You will not have to write a curriculum. We already have a clear playbook and curricula running in three cities, with readings, session plans and facilitator guides. Your job is to bring one to your city, get as many of the best people in your city to join, make sure they finish, and go on to develop themselves further.",
       "Which course comes first depends on the city: most likely a technical track in Eindhoven and Delft, and a governance & policy track in The Hague. You decide this with your director.",
     ],
