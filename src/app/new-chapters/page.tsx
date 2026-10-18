@@ -235,8 +235,15 @@ export default function NewChaptersPage() {
                 the start.
               </p>
               <p>
-                We&rsquo;ll agree on where we want to be in June 2027; how you get
-                there is up to you. We&rsquo;ll work together to make sure you reach
+                We&rsquo;re ambitious about this. In some of these cities, people
+                already run AI safety courses, and we want to build on that and go much
+                further: courses with dozens of participants, events that bring
+                hundreds of new people into AI safety, a community of hundreds in every
+                city, and people moving on into real projects.
+              </p>
+              <p>
+                The exact milestones for June 2027 we&rsquo;ll set together with you
+                in your first weeks; how you get there is up to you. We&rsquo;ll work together to make sure you reach
                 your fullest potential. In June 2027 we will do a final review of how
                 things have gone. Chapters that get there become official SAIN
                 chapters, and the director and lead roles stay paid part-time
@@ -278,11 +285,11 @@ export default function NewChaptersPage() {
           <Reveal delay={0.1}>
             <div className="mt-14 border-t border-white/15 pt-8">
               <p className="kicker text-kicker-sm text-white/55">
-                The milestones we agree on together
+                What we&rsquo;re aiming for
               </p>
               <ul
                 role="list"
-                className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-5"
+                className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-6"
               >
                 {INCUBATION_MILESTONES.map((milestone, i) => (
                   <li key={milestone} className="flex gap-3 lg:flex-col lg:gap-1.5">

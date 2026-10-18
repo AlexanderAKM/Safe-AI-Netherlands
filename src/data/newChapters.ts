@@ -116,12 +116,16 @@ export const ALREADY_THERE = [
 // Incubation
 // -----------------------------------------------------------------------------
 
+/* Directional on purpose: the exact numbers are set with each starting team
+   in its first weeks, and the internal graduation bar lives in the Expansion
+   Plan, not here. */
 export const INCUBATION_MILESTONES = [
   "A strong team",
-  "A first AI safety course",
-  "Regular public events",
+  "Courses with dozens of participants",
+  "Hundreds of new faces at events",
+  "A community of hundreds",
   "Local partners",
-  "A steady funnel into the national Project Hub",
+  "Projects running through the Project Hub",
 ];
 
 export type IncubationStop = {
@@ -143,8 +147,8 @@ export const INCUBATION_STOPS: IncubationStop[] = [
   },
   {
     when: "Spring 2027",
-    title: "First course and events",
-    detail: "The chapter runs its first course and regular public events.",
+    title: "Courses and events",
+    detail: "The chapter runs its first courses and regular public events.",
   },
   {
     when: "June 2027",
@@ -314,7 +318,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
       "Choose the first course and track with your director, and schedule it for spring.",
       "Find the right place for people to do the course, recruit and onboard the appropriate number of facilitators, and get ready for applications! We will help you set up the application process.",
       "Promote the first cohort with your Communications Lead.",
-      "By June: tens of people have finished the course (or courses, if you are ambitious), and you have documented clear lessons to run courses better next year.",
+      "By June: dozens of people through your courses, aiming for more than a hundred across the spring, and documented lessons to run them even better next year.",
     ],
     responsibilities: [
       "Plan and run course iterations using SAIN's curricula and the Education Handbook.",
@@ -359,7 +363,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
       "Run the chapter's first public event early in the new year.",
       "Build a spring calendar with a mix of talks, socials and at least one hands-on format, such as a hackathon or reading group.",
       "Find two or three venues you can rely on, and start a list of local speakers.",
-      "By June: a history of regular, valuable AI safety events with a clear path to next opportunities.",
+      "By June: regular events that have brought hundreds of new faces to AI safety in your city, each with a clear next step for the people who came.",
     ],
     responsibilities: [
       "Plan a balanced calendar of professional events, community socials and hackathons using SAIN's Events Handbook, and share key dates with the Communications Lead early.",
@@ -404,8 +408,8 @@ export const FOUNDING_ROLES: FoundingRole[] = [
     firstMonths: [
       "Set up the chapter's LinkedIn and Instagram, plus its WhatsApp or Discord announcements, within SAIN's brand kit.",
       "Announce the chapter, and promote its first events and its first course.",
-      "Reach at least 100 relevant people in the city through the chapter's channels by spring.",
       "Set up a simple monthly content calendar with the Events and Education Leads.",
+      "By June: a chapter community of hundreds of people in your city who follow along, sign up and show up.",
     ],
     responsibilities: [
       "Run the chapter's Instagram and LinkedIn, and its WhatsApp and Discord announcements, in line with SAIN's brand kit.",
