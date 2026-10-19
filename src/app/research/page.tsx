@@ -8,6 +8,8 @@ import FittingTheCurve from "@/components/research/FittingTheCurve";
 import FeaturedPublications from "@/components/research/FeaturedPublications";
 import SectionOrbits from "@/components/research/SectionOrbits";
 import SupervisorRow from "@/components/research/SupervisorRow";
+import ProjectBrowser from "@/components/research/ProjectBrowser";
+import { projects } from "@/data/projects";
 import {
   publications,
   supervisors,
@@ -32,8 +34,9 @@ const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
    page lists. A number on this page has to be checkable by the reader, because
    the reader is the sort who checks. */
 const factLine = [
-  `${publications.length} publications`,
+  `${projects.filter((project) => project.open).length} open projects`,
   `${supervisors.length} supervisors`,
+  `${publications.length} publications`,
   "rolling applications",
 ];
 
@@ -41,8 +44,8 @@ const factLine = [
    the same way: no track is styled as the real one. */
 const projectRoutes = [
   {
-    lead: "Work from a supervisor's agenda.",
-    body: "Every SAIN supervisor keeps a public agenda: the projects they would like to supervise and the open questions behind them. Read the agendas below and pick one that fits your background.",
+    lead: "Join a supervisor's project.",
+    body: "Every project a SAIN supervisor has offered is listed at the top of this page. Find one that fits your background and register your interest; the projects team introduces you to the supervisor.",
   },
   {
     lead: "Join an open collaboration.",
@@ -174,18 +177,18 @@ export default function ResearchPage() {
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
               <Link
-                href="/research/handbook"
+                href="#projects"
                 className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Read the Project Hub handbook
+                Browse open projects
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
 
-            {/* The quiet version of a stat row: three checkable facts on a
-                hairline, two of them counted straight off this page. The
-                separators are drawn rather than typed, so a screen reader reads
-                three facts and not two middots. */}
+            {/* The quiet version of a stat row: checkable facts on a hairline,
+                three of them counted straight off this page. The separators
+                are drawn rather than typed, so a screen reader reads the facts
+                and not the middots. */}
             <ul
               role="list"
               className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-navy/14 pt-4"
@@ -202,6 +205,41 @@ export default function ResearchPage() {
           <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
             <FittingTheCurve />
           </Reveal>
+        </div>
+      </section>
+
+      {/* The projects themselves, straight after the claim: the reader came
+          to find one. Every project goes through the same interest form, so
+          "I'm interested" sits once beside the header instead of on each card. */}
+      <section
+        id="projects"
+        aria-labelledby="projects-heading"
+        className="scroll-mt-28 border-t border-navy/10 bg-cream"
+      >
+        <div className="shell band-section flex flex-col gap-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            <div className="flex max-w-[760px] flex-col gap-4">
+              <h2 id="projects-heading" className="font-serif text-heading text-navy">
+                Find a project, then join it
+              </h2>
+              <p className="font-sans text-body text-navy/74">
+                Each project here was offered by a SAIN supervisor and is described in their own
+                words. One interest form covers all of them. You can name up to three, and the
+                projects team will introduce you to the supervisors within a working week.
+              </p>
+            </div>
+            <a
+              href={RESEARCH_INTEREST_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-accent shrink-0 gap-2 self-start lg:self-center"
+            >
+              I&rsquo;m interested
+              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+              <span className="sr-only"> (opens the interest form in a new tab)</span>
+            </a>
+          </div>
+          <ProjectBrowser />
         </div>
       </section>
 
