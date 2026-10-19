@@ -271,6 +271,18 @@ export const supervisors: Supervisor[] = [
     agenda:
       "https://docs.google.com/document/d/1JDNKwhsbOJD3kSR2SDvOnIV_xlM1ozEOpYvySRanREQ/edit?usp=sharing",
   },
+  /* Joined October 2026. Position from his SAIN agenda, which describes him
+     as an assistant professor at the VU working on neurosymbolic machine
+     learning. */
+  {
+    name: "Emile van Krieken",
+    position: "Assistant Professor, Vrije Universiteit Amsterdam",
+    positionShort: "Assistant Professor, VU Amsterdam",
+    image: "/photos/supervisors/Emile_van_Krieken-800.jpg",
+    imageSmall: "/photos/supervisors/Emile_van_Krieken-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1idEzHtH4QzusQ3wpwGyBkEeCLNZsc5DD_jcw-U8CNHA/edit?usp=sharing",
+  },
 ];
 
 export const RESEARCH_EMAIL = "research@safeainetherlands.org";
