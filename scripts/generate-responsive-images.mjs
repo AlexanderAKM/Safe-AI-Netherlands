@@ -98,7 +98,7 @@ const TARGETS = [
        pointing at a file that was never written. Every rung is JPEG even where
        the source is a PNG: these are photographs, and the two PNGs carry alpha
        that flattens onto the white ground the band draws them on. */
-    note: "About portraits: leadership tiles <=158 CSS, advisory <=146 CSS",
+    note: "About portraits: leadership, chapter director and board tiles <=158 CSS, advisory <=146 CSS",
     files: [
       "photos/team/Alexander.jpg",
       "photos/team/Tarteel_Mohamed.jpg",
@@ -107,6 +107,7 @@ const TARGETS = [
       "photos/team/Riccardo_resized.jpeg",
       "photos/team/Marta.jpg",
       "photos/team/Tjebbe.jpeg",
+      "photos/team/Joris_Postmus.png",
       "photos/advisory_board/Teun.jpg",
       "photos/advisory_board/Jesse.jpg",
       "photos/advisory_board/nandi.jpg",
