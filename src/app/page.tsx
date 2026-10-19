@@ -114,9 +114,8 @@ export default function Home() {
             {STARTING_TEAMS_RECRUITING && (
               <Link
                 href="/new-chapters"
-                className="group inline-flex max-w-[620px] items-start gap-3 border-t border-navy/12 pt-5 font-sans text-caption text-navy/74"
+                className="group inline-flex max-w-[620px] border-t border-navy/12 pt-5 font-sans text-caption text-navy/74"
               >
-                <span className="mt-[7px] size-[7px] shrink-0 bg-orange" aria-hidden="true" />
                 <span>
                   <span className="font-semibold text-navy">We are hiring paid starting teams</span>{" "}
                   for new chapters in Eindhoven, Delft and The Hague. Apply by{" "}
