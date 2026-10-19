@@ -1115,8 +1115,7 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoutr@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "education-lead-utrecht" },
-      { roleId: "education-facilitator-evals" },
+      { roleId: "community-manager" },
       { roleId: "education-facilitator-cybersec" },
       { roleId: "education-facilitator-biosecurity" },
       { roleId: "education-facilitator-embodied" },
