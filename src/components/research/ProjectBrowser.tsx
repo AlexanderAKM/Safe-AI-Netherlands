@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import {
   ArrowUpRightIcon,
   CaretDownIcon,
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { PROJECTS_EMAIL, RESEARCH_INTEREST_FORM_URL } from "@/data/research";
+import { PROJECTS_EMAIL } from "@/data/research";
 import {
   projectBases,
   projectCategories,
@@ -23,20 +23,29 @@ import {
    Every filter shows how many projects it would leave, so a reader never
    clicks into an empty grid.
 
-   The last step stays human. "I'm interested" opens the interest form, where
-   the applicant names up to three projects, and the projects team makes the
-   introduction. No accounts, no application system.
+   Every project leads to the same interest form, so its one "I'm interested"
+   button sits in the section header (src/app/research/page.tsx), not on each
+   card. No accounts, no application system.
 
-   The site's own language throughout: square corners, navy hairlines, the
-   serif for titles, orange only for the one action on a card, and the same
-   square portraits the supervisor row uses. */
+   The site's own language throughout: square corners, navy hairlines, and the
+   serif for titles. Faces live in the supervisor filter; a card names its
+   supervisor in text, so two projects from one person do not read as the
+   same card twice. */
+
+/* "Thesis" sits with the topics but reads the format the supervisor gave, so
+   it only picks projects they explicitly offered as a thesis. */
+type Topic = ProjectCategory | "Thesis";
 
 type Filters = {
   query: string;
   base: ProjectBase | "Anywhere";
-  category: ProjectCategory | "All";
+  category: Topic | "All";
   supervisor: string | null;
 };
+
+function matchesTopic(project: Project, topic: Topic) {
+  return topic === "Thesis" ? /thesis/i.test(project.format ?? "") : project.categories.includes(topic);
+}
 
 const NO_FILTERS: Filters = { query: "", base: "Anywhere", category: "All", supervisor: null };
 
@@ -68,9 +77,7 @@ function filterExcept(filters: Filters, skip: keyof Filters | null) {
     (project) =>
       (skip === "query" || matchesQuery(project, filters.query)) &&
       (skip === "base" || filters.base === "Anywhere" || project.supervisor.base === filters.base) &&
-      (skip === "category" ||
-        filters.category === "All" ||
-        project.categories.includes(filters.category)) &&
+      (skip === "category" || filters.category === "All" || matchesTopic(project, filters.category)) &&
       (skip === "supervisor" || !filters.supervisor || project.supervisor.name === filters.supervisor),
   );
 }
@@ -113,22 +120,100 @@ function ChipRow({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
+/* While any card is open, give each card the height its row would have with
+   every card closed: the tallest closed height in that row. A card's closed
+   height is its height minus its open details. Re-measured whenever the grid
+   or any card resizes, which covers opening, closing, filtering and the
+   window width. */
+function useRestRowHeights(gridRef: RefObject<HTMLUListElement>, shown: Project[]) {
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const measure = () => {
+      const items = Array.from(grid.children) as HTMLElement[];
+      items.forEach((item) => (item.style.minHeight = ""));
+      if (!grid.querySelector("[data-showing]")) return;
+      const rows = new Map<number, number>();
+      const rest = items.map((item) => {
+        const details = item.querySelector<HTMLElement>("[data-details]");
+        const height = item.offsetHeight - (details?.offsetHeight ?? 0);
+        rows.set(item.offsetTop, Math.max(rows.get(item.offsetTop) ?? 0, height));
+        return item.offsetTop;
+      });
+      items.forEach((item, i) => (item.style.minHeight = `${rows.get(rest[i])}px`));
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(grid);
+    Array.from(grid.children).forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [gridRef, shown]);
+}
+
+/* A card opens the way the open-positions rows do: the title is the toggle
+   and a caret sits opposite it. The toggle's hit area is stretched over the
+   whole top of the card (title, topics, supervisor, summary), but not over
+   the details, so selecting text or following a link there never closes it.
+
+   The details slide open by animating the row of a one-row grid from 0fr to
+   1fr, which reaches the content's real height without measuring it. They
+   stay mounted while closed, hidden (visibility) once folded so nothing
+   inside can be tabbed to or read out. `showing` outlives `open` until the closing slide ends, so the
+   grid keeps its rows still while a card folds back up. */
 function ProjectCard({ project }: { project: Project }) {
   const [open, setOpen] = useState(false);
+  const [showing, setShowing] = useState(false);
   const person = project.supervisor;
+  const titleId = `project-${project.id}-title`;
   const detailsId = `project-${project.id}-details`;
   const links = [{ label: "Agenda", href: person.agenda }, ...person.links];
+
+  const toggle = () => {
+    if (!open) setShowing(true);
+    setOpen(!open);
+  };
 
   return (
     <li className="flex min-w-0">
       <article
-        aria-labelledby={`project-${project.id}-title`}
-        className="flex w-full flex-col border border-navy/12 bg-white transition-colors duration-200 hover:border-navy/30"
+        aria-labelledby={titleId}
+        className={`flex w-full flex-col border transition-colors duration-200 hover:border-navy/30 ${
+          project.open ? "border-navy/12 bg-white" : "border-dashed border-navy/22 bg-white/55"
+        }`}
       >
-        <div className="flex flex-1 flex-col p-5 md:p-6">
-          <div className="flex flex-wrap gap-1.5">
+        <div className="relative flex flex-1 flex-col p-5 md:p-6">
+          {/* A closed card reads as set aside rather than switched off: a
+              dashed edge, the cream showing through, and its text eased back
+              to 80%. The small grey lines (tags, position) start a step darker
+              so they still clear 4.5:1 once eased back. It still opens. */}
+          <div className={project.open ? "contents" : "contents [&>*]:opacity-80"}>
+          <div className="flex items-start justify-between gap-4">
+            <h3 id={titleId} className="font-serif text-title-sm text-navy">
+              <button
+                type="button"
+                onClick={toggle}
+                aria-expanded={open}
+                aria-controls={detailsId}
+                className="cursor-pointer text-left after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-navy focus-visible:after:[outline-style:solid]"
+              >
+                {project.title}
+              </button>
+            </h3>
+            <CaretDownIcon
+              size={14}
+              weight="bold"
+              aria-hidden="true"
+              className={`mt-1.5 shrink-0 text-navy/50 transition-transform duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                open ? "rotate-180" : ""
+              }`}
+            />
+          </div>
+
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {project.categories.map((category) => (
-              <span key={category} className="bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 text-navy/70">
+              <span
+                key={category}
+                className={`bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 ${project.open ? "text-navy/70" : "text-navy/85"}`}
+              >
                 {category}
               </span>
             ))}
@@ -139,28 +224,41 @@ function ProjectCard({ project }: { project: Project }) {
             )}
           </div>
 
-          <h3 id={`project-${project.id}-title`} className="mt-4 font-serif text-title-sm text-navy">
-            {project.title}
-          </h3>
-
-          <div className="mt-3.5 flex items-center gap-3">
-            <Image
-              src={person.imageSmall}
-              alt=""
-              width={312}
-              height={312}
-              className="size-10 shrink-0 border border-navy/15 object-cover"
-            />
-            <p className="min-w-0 text-caption leading-[18px]">
-              <span className="block font-medium text-navy">{person.name}</span>
-              <span className="block text-navy/60">{person.positionShort}</span>
-            </p>
-          </div>
+          <p className="mt-4 text-caption leading-[18px]">
+            <span className="block font-medium text-navy">{person.name}</span>
+            <span className={`block ${project.open ? "text-navy/60" : "text-navy/75"}`}>{person.positionShort}</span>
+          </p>
 
           <p className="mt-4 text-[15px] leading-6 text-navy/78">{project.summary}</p>
+          </div>
 
-          {open && (
-            <div id={detailsId} className="mt-4 flex flex-col gap-3 border-t border-navy/10 pt-4">
+          {/* Pinned to the card's foot (mt-auto) so closed notes line up
+              across a row, and set apart by a hairline rather than colour:
+              closed is a state to read, not an alarm. Kept at full strength,
+              since it is the one line on the card that explains the rest. */}
+          {!project.open && (
+            <div className="mt-auto pt-5">
+              <p className="border-t border-navy/12 pt-3.5 text-caption leading-[18px] text-navy/70">
+                <span className="font-medium text-navy">Closed for now.</span> This project is not
+                taking new students at the moment.
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div
+          id={detailsId}
+          data-details
+          onTransitionEnd={(event) => {
+            if (event.target === event.currentTarget && !open) setShowing(false);
+          }}
+          data-showing={showing || undefined}
+          className={`grid transition-[grid-template-rows,opacity] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-opacity ${
+            open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          } ${showing ? "" : "invisible"}`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div className="mx-5 flex flex-col gap-3 border-t border-navy/10 pb-5 pt-4 md:mx-6 md:pb-6">
               {project.details.map((line) => (
                 <p key={line} className="text-[14.5px] leading-[23px] text-navy/74">
                   {line}
@@ -199,39 +297,7 @@ function ProjectCard({ project }: { project: Project }) {
                 ))}
               </ul>
             </div>
-          )}
-        </div>
-
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-navy/10 px-5 py-3.5 md:px-6">
-          {project.open ? (
-            <a
-              href={RESEARCH_INTEREST_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent gap-2 !px-4 !py-2.5 !text-[14px]"
-            >
-              I&rsquo;m interested
-              <ArrowUpRightIcon size={16} aria-hidden="true" />
-              <span className="sr-only"> (opens the interest form in a new tab)</span>
-            </a>
-          ) : (
-            <span className="text-caption text-navy/60">Closed for now</span>
-          )}
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            aria-expanded={open}
-            aria-controls={detailsId}
-            className="inline-flex min-h-[40px] items-center gap-1.5 text-label text-navy/75 hover:text-navy"
-          >
-            {open ? "Less" : "Details"}
-            <CaretDownIcon
-              size={14}
-              weight="bold"
-              aria-hidden="true"
-              className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-            />
-          </button>
+          </div>
         </div>
       </article>
     </li>
@@ -243,6 +309,8 @@ export default function ProjectBrowser() {
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
 
   const shown = useMemo(() => filterExcept(filters, null), [filters]);
+  const gridRef = useRef<HTMLUListElement>(null);
+  useRestRowHeights(gridRef, shown);
   const forCategories = useMemo(() => filterExcept(filters, "category"), [filters]);
   const forSupervisors = useMemo(() => filterExcept(filters, "supervisor"), [filters]);
   const forBases = useMemo(() => filterExcept(filters, "base"), [filters]);
@@ -267,8 +335,20 @@ export default function ProjectBrowser() {
               value={filters.query}
               onChange={(event) => set({ query: event.target.value })}
               placeholder="Topic, method or supervisor"
-              className="h-12 w-full border border-navy/18 bg-white pl-10 pr-4 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy/60"
+              className="h-12 w-full appearance-none border border-navy/18 bg-white pl-10 pr-11 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none"
             />
+            {/* Our own clear button in place of the browser's blue one; the
+                border turning navy is the focus state, so no second ring. */}
+            {filters.query && (
+              <button
+                type="button"
+                onClick={() => set({ query: "" })}
+                aria-label="Clear search"
+                className="absolute right-1 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center text-navy/45 hover:text-navy focus-visible:outline-offset-0"
+              >
+                <XIcon size={16} aria-hidden="true" />
+              </button>
+            )}
           </label>
           {/* One joined control rather than four chips: the four places are
               one question with one answer. The hairlines between the cells are
@@ -292,7 +372,12 @@ export default function ProjectBrowser() {
                   aria-pressed={on}
                   onClick={() => set({ base: value })}
                   className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 xl:flex-none ${
-                    on ? "bg-navy text-white" : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
+                    on
+                      ? /* The ring paints over the light frame, so the chosen
+                           cell fills the control's full height instead of
+                           sitting 1px inside it like a shorter button. */
+                        "relative bg-navy text-white ring-1 ring-navy"
+                      : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
                   }`}
                 >
                   {value}
@@ -304,12 +389,12 @@ export default function ProjectBrowser() {
         </div>
 
         <ChipRow label="Topic">
-          {(["All", ...projectCategories] as const).map((value) => {
+          {(["All", ...projectCategories, "Thesis"] as const).map((value) => {
             const on = filters.category === value;
             const n =
               value === "All"
                 ? forCategories.length
-                : forCategories.filter((project) => project.categories.includes(value)).length;
+                : forCategories.filter((project) => matchesTopic(project, value)).length;
             return (
               <button
                 key={value}
@@ -356,7 +441,11 @@ export default function ProjectBrowser() {
         <p className="text-caption text-navy/65" aria-live="polite">
           {shown.length} {shown.length === 1 ? "project" : "projects"} from {supervisorCount}{" "}
           {supervisorCount === 1 ? "supervisor" : "supervisors"}
-          {filters.category !== "All" ? ` in ${filters.category}` : ""}
+          {filters.category === "Thesis"
+            ? ", offered as a thesis"
+            : filters.category !== "All"
+              ? ` in ${filters.category}`
+              : ""}
           {filters.base !== "Anywhere"
             ? filters.base === "Remote"
               ? ", supervised remotely"
@@ -377,7 +466,14 @@ export default function ProjectBrowser() {
       </div>
 
       {shown.length > 0 ? (
-        <ul role="list" className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        /* Cards stretch to a common height per row. While one is open the
+           grid stops stretching (so the open card grows alone) and
+           useRestRowHeights holds every row at its closed height. */
+        <ul
+          ref={gridRef}
+          role="list"
+          className="grid gap-4 has-[[data-showing]]:items-start md:grid-cols-2 xl:grid-cols-3"
+        >
           {shown.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

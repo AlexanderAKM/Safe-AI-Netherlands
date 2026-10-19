@@ -209,26 +209,35 @@ export default function ResearchPage() {
       </section>
 
       {/* The projects themselves, straight after the claim: the reader came
-          to find one. Search, filter by topic, place or supervisor, open a
-          card, and "I'm interested" opens the interest form. */}
+          to find one. Every project goes through the same interest form, so
+          "I'm interested" sits once beside the header instead of on each card. */}
       <section
         id="projects"
         aria-labelledby="projects-heading"
         className="scroll-mt-28 border-t border-navy/10 bg-cream"
       >
         <div className="shell band-section flex flex-col gap-8">
-          <div className="flex max-w-[760px] flex-col gap-4">
-            <p className="kicker text-kicker text-navy/60">Open projects</p>
-            <h2 id="projects-heading" className="font-serif text-heading text-navy">
-              Find a project, then join it
-            </h2>
-            <p className="font-sans text-body text-navy/74">
-              These are the projects SAIN supervisors have offered, in their own words. Narrow
-              them down by topic, place, or supervisor, open a card for the detail, and if one
-              fits, press &ldquo;I&rsquo;m interested&rdquo;. In the form, name up to three
-              projects; the projects team gets back to you within a working week and introduces
-              you to the supervisor.
-            </p>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            <div className="flex max-w-[760px] flex-col gap-4">
+              <h2 id="projects-heading" className="font-serif text-heading text-navy">
+                Find a project, then join it
+              </h2>
+              <p className="font-sans text-body text-navy/74">
+                Each project here was offered by a SAIN supervisor and is described in their own
+                words. One interest form covers all of them. You can name up to three, and the
+                projects team will introduce you to the supervisors within a working week.
+              </p>
+            </div>
+            <a
+              href={RESEARCH_INTEREST_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-accent shrink-0 gap-2 self-start lg:self-center"
+            >
+              I&rsquo;m interested
+              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+              <span className="sr-only"> (opens the interest form in a new tab)</span>
+            </a>
           </div>
           <ProjectBrowser />
         </div>
