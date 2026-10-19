@@ -23,7 +23,7 @@ export const nationalContacts: NationalContact[] = [
   },
   {
     label: "Research",
-    detail: "Research Hub, supervisors, and collaborations",
+    detail: "Project Hub, supervisors, and collaborations",
     email: "research@safeainetherlands.org",
   },
   {

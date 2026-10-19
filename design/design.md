@@ -1,6 +1,6 @@
 ---
 name: sain-design
-description: "Design, build, or substantially improve official Safe AI Netherlands (SAIN) pages. Use for the marketing site, landing, courses, research hub, careers, community, and any SAIN-authored surface that must carry the civic navy-and-orange language of the shipped landing page."
+description: "Design, build, or substantially improve official Safe AI Netherlands (SAIN) pages. Use for the marketing site, landing, courses, project hub, careers, community, and any SAIN-authored surface that must carry the civic navy-and-orange language of the shipped landing page."
 ---
 
 # Design official SAIN pages
@@ -29,12 +29,12 @@ Write for that reader. British spelling (`programme`, `organisation`). Sentence 
 
 The site the landing belongs to. Build inner pages into this structure; do not invent routes.
 
-**Primary nav:** `Courses` (/courses) | `Community` (/community) | `Research hub` (/research) | `About` (/about). **Header buttons:** `Join a free course` (/courses, ink fill) and `Volunteer` (/get-involved, ghost). **Open positions** lives at `/open-positions` and is reached from the announcement bar and the footer only, never the nav. One time-bound exception: while `STARTING_TEAMS_RECRUITING` in `src/data/newChapters.ts` is true, `New chapters` (/new-chapters) sits between Community and Research hub, marked with the 7×7 orange kicker square, and leaves the nav when the switch goes off. Chapter sub-pages stay at `/chapters/utrecht`, `/chapters/groningen`, `/chapters/amsterdam`, under the Community page. `/research/handbook` is the research handbook. `/contact` stays.
+**Primary nav:** `Courses` (/courses) | `Community` (/community) | `Project hub` (/research) | `About` (/about). **Header buttons:** `Join a free course` (/courses, ink fill) and `Volunteer` (/get-involved, ghost). **Open positions** lives at `/open-positions` and is reached from the announcement bar and the footer only, never the nav. One time-bound exception: while `STARTING_TEAMS_RECRUITING` in `src/data/newChapters.ts` is true, `New chapters` (/new-chapters) sits between Community and Project hub, marked with the 7×7 orange kicker square, and leaves the nav when the switch goes off. Chapter sub-pages stay at `/chapters/utrecht`, `/chapters/groningen`, `/chapters/amsterdam`, under the Community page. `/research/handbook` is the research handbook. `/contact` stays.
 
 One avatar per page. Write each page to exactly one reader:
 
 - **Community** speaks to the same person the landing speaks to: someone deciding whether to walk into an event and join the community.
-- **Research hub** speaks to researchers. Primarily beginning researchers choosing a first real project; experienced researchers read the same page for reputability, and the page moves them to become supervisors.
+- **Project hub** speaks to researchers. Primarily beginning researchers choosing a first real project; experienced researchers read the same page for reputability, and the page moves them to become supervisors.
 - **About** speaks to outsiders who need the mission and the means (the talent pipeline) established. It may inspire; it must be crystal clear about scale and stakes.
 - **Open positions** speaks to candidates.
 
@@ -61,7 +61,7 @@ SAIN talks to universities, ministries, and frontier labs while recruiting stude
 
 **Orange `#FF6025` is Dutch and it is action.** The A in the wordmark is orange. The pinwheel interlocks navy and orange through a white core. The announcement bar is a full-bleed orange strip. Orange is not a 10% accent you sprinkle on icons. It marks joining, hiring, the active course track, the last step of the pipeline, and the part of the trajectory that is still rising. If a page uses orange only as a bullet dot, it is not SAIN.
 
-**White is the reading page. Paper `#F7F5F2` is the printed programme.** White is default. Cream is for the chapters index, courses, and careers, the parts that behave like a schedule. Navy inverse is earned. Use it when the page is presenting proof (the research hub band, publications) or asking for a decision (the get-involved close, footer). Do not default the site to dark.
+**White is the reading page. Paper `#F7F5F2` is the printed programme.** White is default. Cream is for the chapters index, courses, and careers, the parts that behave like a schedule. Navy inverse is earned. Use it when the page is presenting proof (the project hub band, publications) or asking for a decision (the get-involved close, footer). Do not default the site to dark.
 
 **IBM Plex Serif is the voice. Archivo is the work.** Headlines are a newspaper serif at weight 400, not a bold billboard. Kickers are IBM Plex Serif italic, not tracked uppercase. Body is Archivo at 16.5/27. IBM Plex Mono has been retired from the implementation: it is not loaded, and indices (`01` `02` `03`) are set in Archivo at the index role, or as serif numerals beside inverse step headings. Do not reintroduce a mono face.
 
@@ -183,7 +183,7 @@ Build vertical rhythm from relationships, not a universal stack:
 - Paragraph → CTA: 4px extra, then the button.
 - Group → new section: the band clamps above.
 
-Headings are sentence case. They state a claim or a reader action (`Your AI Safety career starts here.`, `The community is how SAIN works.`, `Start with a free course`, `The next decade is being decided now`). They do not name the section type (`Our mission`, `What we offer`). A proper noun may be the heading when the name is the message (`The SAIN Research Hub`).
+Headings are sentence case. They state a claim or a reader action (`Your AI Safety career starts here.`, `The community is how SAIN works.`, `Start with a free course`, `The next decade is being decided now`). They do not name the section type (`Our mission`, `What we offer`). A proper noun may be the heading when the name is the message (`The SAIN Project Hub`).
 
 ## Color, surfaces, and boundaries
 
@@ -405,7 +405,7 @@ The landing as shipped, for orientation and for what each band's ground means:
 3. Local communities, cream: thin index band, kicker as the band's h2, three photo-backed chapter cells
 4. Courses, white with orbit ornament: centered heading and intro, open-application line, course tabs
 5. Community, white with orbit ornament: prints strip, then heading-sm + body + hairline list + accent CTA
-6. Research hub, inverse navy: heading + workbench illustration, offer strip, three steps (handbook, supervisors, featured publications), closing ask with accent CTA
+6. Project hub, inverse navy: heading + workbench illustration, offer strip, three steps (handbook, supervisors, featured publications), closing ask with accent CTA
 7. Careers, cream: heading-sm claim, paragraph, track names on one rule, quote alongside
 8. Get involved, inverse: closing claim + invitation line left, accent CTA + ghost CTA right
 9. Footer, inverse
