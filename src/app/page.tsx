@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import Affiliations from "@/components/landing/Affiliations";
 import ChapterPrints from "@/components/landing/ChapterPrints";
 import CommunityPrints from "@/components/landing/CommunityPrints";
 import CourseTracks from "@/components/landing/CourseTracks";
@@ -133,6 +134,10 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* Who SAIN works with, straight under the claim: a quiet strip of
+          logos between the hero and the navy mission band. */}
+      <Affiliations />
 
       {/* What SAIN is for, before the page offers any door. Inverse, as a
           deliberate pause between the hero and the first programme: the
