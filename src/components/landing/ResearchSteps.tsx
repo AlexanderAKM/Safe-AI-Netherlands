@@ -55,7 +55,7 @@ export default function ResearchSteps() {
           <p className="mb-5 text-label text-white/65">Explore our supervisors’ research agendas</p>
           <ResearchPeople />
           {/* Same supervisor form /research and the handbook link to. */}
-          <a href={SUPERVISOR_INTEREST_FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-3 text-label text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
+          <a href={SUPERVISOR_INTEREST_FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 text-label text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
             Become a supervisor <ArrowUpRight size={16} aria-hidden="true" />
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
