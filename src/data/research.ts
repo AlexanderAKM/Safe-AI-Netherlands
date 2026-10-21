@@ -34,7 +34,16 @@ export type Publication = {
   /** Short form used on the landing chips, where the full title does not fit. */
   chipTitle: string;
   authors: string;
+  /** Where the paper lives: arXiv, OpenReview, Apart Research, ... */
   link: string;
+  /** The paper is hosted on this site (public/papers) and opens in SAIN's own
+      reader at /research/papers/<slug> instead of linking out. `license` is
+      set only when the source states one; the reader page says so. */
+  reader?: {
+    slug: string;
+    pdf: string;
+    license?: string;
+  };
   /** Selected landing-page evidence; summaries are grounded in the linked papers. */
   featured?: {
     illustration: "alignment" | "ablation" | "eu-agents";
@@ -51,6 +60,11 @@ export const publications: Publication[] = [
     venue: "NeurIPS 2025 Mechanistic Interpretability Workshop · Spotlight",
     authors: "Jeremias Ferrao, Matthijs van der Lende, Ilija Lichkovski",
     link: "https://arxiv.org/abs/2509.12934",
+    reader: {
+      slug: "anatomy-of-alignment",
+      pdf: "/papers/anatomy-of-alignment.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "The Anatomy of Alignment",
     featured: {
       illustration: "alignment",
@@ -65,6 +79,13 @@ export const publications: Publication[] = [
     authors:
       "Jeremias Ferrao, Luhan Mikaelson, Keenan Pepper, Natalia Perez-Campanero Antolin",
     link: "https://openreview.net/pdf?id=QcmEb490bK",
+    /* The hosted PDF is the arXiv copy (2505.00509): OpenReview does not
+       serve its PDF to scripts, and arXiv carries the licence. */
+    reader: {
+      slug: "self-ablating-transformers",
+      pdf: "/papers/self-ablating-transformers.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "Self-Ablating Transformers",
     featured: {
       illustration: "ablation",
@@ -78,6 +99,11 @@ export const publications: Publication[] = [
     venue: "NeurIPS 2025 Regulatable ML Workshop",
     authors: "Ilija Lichkovski, Alexander Müller, Mariam Ibrahim, Tiwai Mhundwa",
     link: "https://arxiv.org/abs/2510.21524",
+    reader: {
+      slug: "eu-agent-bench",
+      pdf: "/papers/eu-agent-bench.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "EU-Agent-Bench",
     featured: {
       illustration: "eu-agents",
@@ -92,6 +118,10 @@ export const publications: Publication[] = [
     venue: "ICLR 2025 SLLM Workshop",
     authors: "Davide Zani, Felix Michalak, Steven Abreu",
     link: "https://openreview.net/pdf?id=TGWzg86kYv",
+    /* Not hosted yet: the paper is only on OpenReview, which puts scripted
+       downloads behind a browser check, and its licence could not be read.
+       Add the PDF as public/papers/contextual-sparsity-hybrid-models.pdf
+       and a `reader` entry here once someone has downloaded it. */
     chipTitle: "Contextual Sparsity",
   },
   {
@@ -100,6 +130,14 @@ export const publications: Publication[] = [
     venue: "NeurIPS 2024 Workshop on Foundation Model Interventions",
     authors: "Joris Postmus, Steven Abreu",
     link: "https://jorispos.github.io/conceptor_steering/",
+    /* The hosted PDF is the arXiv version (2410.16314), which carries the
+       licence; its full title adds "Improving Addition-Based Activation
+       Engineering". */
+    reader: {
+      slug: "steering-conceptors",
+      pdf: "/papers/steering-conceptors.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "Steering LLMs using Conceptors",
   },
   {
@@ -108,6 +146,12 @@ export const publications: Publication[] = [
     venue: "Apart Research hackathon",
     authors: "Jeremias Ferrao",
     link: "https://www.apartresearch.com/project/autosteer-weight-preserving-reinforcement-learning-for-interpretable-model-control",
+    /* This and the Apart Research reports below, and the Drive report, state
+       no licence, so their reader pages show none. */
+    reader: {
+      slug: "autosteer",
+      pdf: "/papers/autosteer.pdf",
+    },
     chipTitle: "AutoSteer",
   },
   {
@@ -116,6 +160,10 @@ export const publications: Publication[] = [
     venue: "Apart Research hackathon",
     authors: "Jeremias Ferrao, Ilija Lichkovski",
     link: "https://apartresearch.com/project/local-learning-coefficients-predict-developmental-milestones-during-group-relative-policy-optimization-2te2",
+    reader: {
+      slug: "local-learning-coefficients-grpo",
+      pdf: "/papers/local-learning-coefficients-grpo.pdf",
+    },
     chipTitle: "Local Learning Coefficients",
   },
   {
@@ -124,6 +172,10 @@ export const publications: Publication[] = [
     venue: "Apart Research hackathon",
     authors: "Alexander Müller, Arsenijs Golicins, Galina Lesnic",
     link: "https://apartresearch.com/project/collective-deliberation-for-safer-cbrn-decisions-a-multi-agent-llm-debate-pipeline-3w8q",
+    reader: {
+      slug: "cbrn-collective-deliberation",
+      pdf: "/papers/cbrn-collective-deliberation.pdf",
+    },
     chipTitle: "Collective Deliberation",
   },
   {
@@ -132,6 +184,10 @@ export const publications: Publication[] = [
     venue: "Apart Research",
     authors: "Jeremias Ferrao, Davide Zani",
     link: "https://www.apartresearch.com/project/sandbagging-llms-using-activation-steering",
+    reader: {
+      slug: "sandbagging-activation-steering",
+      pdf: "/papers/sandbagging-activation-steering.pdf",
+    },
     chipTitle: "Sandbagging LLMs using Activation Steering",
   },
   {
@@ -140,6 +196,10 @@ export const publications: Publication[] = [
     venue: "Apart Research",
     authors: "Davide Zani, Felix Michalak, Jeremias Ferrao",
     link: "https://www.apartresearch.com/project/cybersecurity-persistence-benchmark",
+    reader: {
+      slug: "cybersecurity-persistence-benchmark",
+      pdf: "/papers/cybersecurity-persistence-benchmark.pdf",
+    },
     chipTitle: "Cybersecurity Persistence Benchmark",
   },
   {
@@ -148,6 +208,10 @@ export const publications: Publication[] = [
     venue: "SAIN Project Hub",
     authors: "Davide Zani, Alexandru Dimofte",
     link: "https://drive.google.com/file/d/1JvhstWaLIHB9QPI-cg5S-1ASexhmqLSN/view",
+    reader: {
+      slug: "playing-with-perception",
+      pdf: "/papers/playing-with-perception.pdf",
+    },
     chipTitle: "Playing with Perception",
   },
   {
@@ -156,6 +220,10 @@ export const publications: Publication[] = [
     venue: "Apart Research",
     authors: "Davide Zani, Mariam Ibrahim, Tiwai Mhundwa, Felix Michalak, Andrei Avram",
     link: "https://www.apartresearch.com/project/ai-misinformation-and-threats-to-democratic-rights",
+    reader: {
+      slug: "ai-misinformation-democratic-rights",
+      pdf: "/papers/ai-misinformation-democratic-rights.pdf",
+    },
     chipTitle: "AI Misinformation and Democratic Rights",
   },
 ];
@@ -285,11 +353,32 @@ export const supervisors: Supervisor[] = [
   },
 ];
 
+/* Where a paper opens: SAIN's own reader when the PDF is hosted here,
+   otherwise the paper's source. An internal href has to go through next/link. */
+export function paperHref(paper: Publication) {
+  return paper.reader ? `/research/papers/${paper.reader.slug}` : paper.link;
+}
+
+/* How the reader page names the paper's source: "View on arXiv". */
+export function paperSourceName(paper: Publication) {
+  const host = new URL(paper.link).hostname;
+  if (host.endsWith("arxiv.org")) return "arXiv";
+  if (host.endsWith("openreview.net")) return "OpenReview";
+  if (host.endsWith("apartresearch.com")) return "Apart Research";
+  if (host.endsWith("drive.google.com")) return "Google Drive";
+  if (host.endsWith("github.io")) return "the project page";
+  return host.replace(/^www\./, "");
+}
+
 export const RESEARCH_EMAIL = "research@safeainetherlands.org";
 /* The Project Hub's inbox, which the v3 handbook names as the primary
    contact for projects. */
 export const PROJECTS_EMAIL = "projects@safeainetherlands.org";
-export const RESEARCH_INTEREST_FORM_URL = "https://forms.gle/na3wbBR4V1YVHAnFA";
+/* Every "Register your interest" and "I'm interested" button for the Project
+   Hub goes here: SAIN's one Fillout sign-up form, which has its own paths for
+   joining or proposing a project, supervising, and courses. It is the same
+   form as COMMUNITY_JOIN_URL (src/data/siteContact.ts). */
+export const RESEARCH_INTEREST_FORM_URL = "https://sainonboard.fillout.com/new";
 /* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */
 export const SUPERVISOR_INTEREST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScpE5jSBGAihD_8qJn7wRWdEFGieYQdLaPUZ8JiZyUVpn519g/viewform";
