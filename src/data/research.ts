@@ -36,12 +36,13 @@ export type Publication = {
   authors: string;
   /** Where the paper lives: arXiv, OpenReview, Apart Research, ... */
   link: string;
-  /** The paper is hosted on this site (public/papers) and opens in SAIN's own
-      reader at /research/papers/<slug> instead of linking out. `license` is
-      set only when the source states one; the reader page says so. */
+  /** The paper has its own page at /research/papers/<slug> instead of linking
+      out. With a `pdf` (hosted in public/papers) the page shows it in SAIN's
+      reader; without one, the page sends the reader on to `link`. `license`
+      is set only when the source states one; the reader page says so. */
   reader?: {
     slug: string;
-    pdf: string;
+    pdf?: string;
     license?: string;
   };
   /** Selected landing-page evidence; summaries are grounded in the linked papers. */
@@ -118,10 +119,12 @@ export const publications: Publication[] = [
     venue: "ICLR 2025 SLLM Workshop",
     authors: "Davide Zani, Felix Michalak, Steven Abreu",
     link: "https://openreview.net/pdf?id=TGWzg86kYv",
-    /* Not hosted yet: the paper is only on OpenReview, which puts scripted
-       downloads behind a browser check, and its licence could not be read.
-       Add the PDF as public/papers/contextual-sparsity-hybrid-models.pdf
-       and a `reader` entry here once someone has downloaded it. */
+    /* A page without the PDF: the paper is only on OpenReview and states no
+       licence, so it is not shared here. The page's main action opens it on
+       OpenReview. */
+    reader: {
+      slug: "contextual-sparsity-hybrid-models",
+    },
     chipTitle: "Contextual Sparsity",
   },
   {
