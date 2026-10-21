@@ -504,6 +504,33 @@
   animation: founding-ring 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* The affiliations line rolls when it is wider than its strip. The track holds
+   the list twice, so sliding it by half lands the second copy exactly where
+   the first began. Linear and endless; it holds still while a reader points
+   at or tabs to a logo. The edges fade so logos slide in rather than appear
+   cut. Under reduced motion the component never renders the track. */
+@keyframes affiliations-roll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.affiliations-viewport {
+  mask-image: linear-gradient(to right, transparent, #000 32px, #000 calc(100% - 32px), transparent);
+}
+
+.affiliations-track {
+  animation: affiliations-roll linear infinite;
+}
+
+.affiliations-viewport:hover .affiliations-track,
+.affiliations-viewport:focus-within .affiliations-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
