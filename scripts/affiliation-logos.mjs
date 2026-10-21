@@ -1,9 +1,10 @@
 /**
  * Alpha masks for the landing's affiliations strip.
  *
- * The four logos arrive in four different forms: black on off-white (ERO),
- * black on transparent (BlueDot), white type knocked out of a navy box
- * (HIP), and a multicoloured mark on transparent (ELLIS). The strip draws
+ * The logos arrive in different forms: black on off-white (ERO), black on
+ * transparent (BlueDot), white type knocked out of a navy box (HIP), black
+ * vector on white (Aithos, exported from its PDF to SVG), and a
+ * multicoloured mark on transparent (ELLIS). The strip draws
  * every logo in one muted navy through a CSS mask, so each source is reduced
  * to a single alpha channel here:
  *
@@ -31,6 +32,7 @@ const LOGOS = [
   { name: "ero", source: "ero-source.jpeg", mode: "ink" },
   { name: "bluedot", source: "bluedot-source.png", mode: "ink" },
   { name: "hip", source: "hip-source.svg", mode: "ink" },
+  { name: "aithos", source: "aithos-source.svg", mode: "ink" },
 ];
 
 for (const logo of LOGOS) {
