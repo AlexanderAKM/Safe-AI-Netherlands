@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
+  ArrowLineUpIcon,
   ArrowSquareOutIcon,
   DownloadSimpleIcon,
   MagnifyingGlassMinusIcon,
@@ -345,6 +346,19 @@ export default function PaperReader({ src, title }: { src: string; title: string
           >
             <ArrowSquareOutIcon size={18} aria-hidden="true" />
           </a>
+          {/* Back to the title of the page. The toolbar is sticky, so this is
+              in reach on every page of a long paper. The scroll follows the
+              site's smooth scrolling, which is off under reduced motion. */}
+          <span className="mx-1.5 h-5 w-px bg-white/15" aria-hidden="true" />
+          <button
+            type="button"
+            className={toolButton}
+            onClick={() => window.scrollTo({ top: 0 })}
+            aria-label="Back to top"
+          >
+            <ArrowLineUpIcon size={18} aria-hidden="true" />
+            <span className="hidden font-sans text-footnote sm:inline">Top</span>
+          </button>
         </div>
       </div>
 
