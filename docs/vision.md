@@ -120,7 +120,7 @@ Importantly, progressing further through the pipeline is not the only valuable o
 
 SAIN's chapter model is the vehicle through which our vision scales. A strong central identity provides strategy, legal status, brand authority, financial infrastructure, shared resources, and proven operational playbooks. Local chapters run their own activities, build their own communities, and forge their own partnerships. Crucially, they *never have to start from scratch*.
 
-A new chapter does not need to register a foundation, set up accounting, or develop a curriculum from nothing. They adopt the SAIN brand and hit the ground running. (For the full details of chapter requirements and standards, see SAIN's [Code of Conduct](/about/code-of-conduct).)
+A new chapter does not need to register a foundation, set up accounting, or develop a curriculum from nothing. They adopt the SAIN brand and hit the ground running.
 
 This balance—**local freedom within a shared national framework**—is what allows SAIN to scale without losing the grassroots energy that makes local communities thrive. Each new chapter extends SAIN's reach, strengthens the national brand, and demonstrates the model's scalability.
 
