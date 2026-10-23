@@ -8,7 +8,7 @@ import {
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { PROJECTS_EMAIL } from "@/data/research";
+import { PROJECTS_EMAIL, supervisors, type Supervisor } from "@/data/research";
 import {
   projectBases,
   projectCategories,
@@ -110,10 +110,12 @@ function interleaveBySupervisor(list: Project[]) {
 /* How many projects the grid shows before "Show all": two rows at full width. */
 const PREVIEW_COUNT = 6;
 
-/* The supervisors who have projects, in the order the site lists them. */
-const projectSupervisors = projects
-  .map((project) => project.supervisor)
-  .filter((person, i, all) => all.findIndex((other) => other.name === person.name) === i);
+/* Every supervisor on the site: those with projects in the order the projects
+   list them, then anyone without one yet, who still shows with a 0. */
+const projectSupervisors: Supervisor[] = [
+  ...projects.map((project) => project.supervisor),
+  ...supervisors,
+].filter((person, i, all) => all.findIndex((other) => other.name === person.name) === i);
 
 function chipClass(active: boolean) {
   return `inline-flex min-h-[38px] shrink-0 items-center gap-2 border px-3 text-[14px] leading-5 transition-colors duration-150 ${
@@ -135,7 +137,7 @@ function Count({ n, active }: { n: number; active: boolean }) {
    this way" without a grey bar under every row. */
 function ChipRow({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="border-t border-navy/10 px-4 py-4 md:px-6">
+    <div className="px-4 py-4 md:px-6">
       <p className="mb-3 font-sans text-footnote text-navy/60">{label}</p>
       <div
         role="group"
@@ -352,9 +354,99 @@ export default function ProjectBrowser() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="border border-navy/12 bg-white">
-        <div className="flex flex-col gap-4 px-4 py-4 md:px-6 md:py-5 xl:flex-row xl:items-center xl:justify-between">
-          <label className="relative block w-full xl:max-w-[440px]">
+      {/* Supervisors first, then topic and location, with the search under
+          them: the faces are what most readers come looking for. */}
+      <div className="divide-y divide-navy/10 border border-navy/12 bg-white">
+        <ChipRow label="Supervisor">
+          {projectSupervisors.map((person) => {
+            const on = filters.supervisor === person.name;
+            const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;
+            return (
+              <button
+                key={person.name}
+                type="button"
+                aria-pressed={on}
+                onClick={() => set({ supervisor: on ? null : person.name })}
+                className={`${chipClass(on)} !pl-1 ${n === 0 && !on ? "opacity-45" : ""}`}
+              >
+                <Image
+                  src={person.imageSmall}
+                  alt=""
+                  width={312}
+                  height={312}
+                  className="size-[28px] shrink-0 object-cover"
+                />
+                {person.name}
+                <Count n={n} active={on} />
+              </button>
+            );
+          })}
+        </ChipRow>
+
+        <ChipRow label="Topic">
+          {(["All", ...projectCategories, "Thesis"] as const).map((value) => {
+            const on = filters.category === value;
+            const n =
+              value === "All"
+                ? forCategories.length
+                : forCategories.filter((project) => matchesTopic(project, value)).length;
+            return (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={on}
+                onClick={() => set({ category: value })}
+                className={chipClass(on)}
+              >
+                {value === "All" ? "All topics" : value}
+                <Count n={n} active={on} />
+              </button>
+            );
+          })}
+        </ChipRow>
+
+        <div className="px-4 py-4 md:px-6">
+          <p className="mb-3 font-sans text-footnote text-navy/60">Location</p>
+          {/* One joined control rather than four chips: the four places are
+              one question with one answer. The hairlines between the cells are
+              the navy ground showing through a 1px gap, so they hold whether
+              the cells sit in a row or, on a phone, a two-by-two grid. */}
+          <div
+            role="group"
+            aria-label="Where the supervisor is based"
+            className="grid w-full grid-cols-2 gap-px border border-navy/18 bg-navy/18 sm:inline-flex sm:w-auto"
+          >
+            {(["Anywhere", ...projectBases] as const).map((value) => {
+              const on = filters.base === value;
+              const n =
+                value === "Anywhere"
+                  ? forBases.length
+                  : forBases.filter((project) => project.supervisor.base === value).length;
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => set({ base: value })}
+                  className={`inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 ${
+                    on
+                      ? /* The ring paints over the light frame, so the chosen
+                           cell fills the control's full height instead of
+                           sitting 1px inside it like a shorter button. */
+                        "relative bg-navy text-white ring-1 ring-navy"
+                      : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
+                  }`}
+                >
+                  {value}
+                  <Count n={n} active={on} />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="px-4 py-4 md:px-6 md:py-5">
+          <label className="relative block w-full">
             <span className="sr-only">Search projects</span>
             <MagnifyingGlassIcon
               size={18}
@@ -381,91 +473,7 @@ export default function ProjectBrowser() {
               </button>
             )}
           </label>
-          {/* One joined control rather than four chips: the four places are
-              one question with one answer. The hairlines between the cells are
-              the navy ground showing through a 1px gap, so they hold whether
-              the cells sit in a row or, on a phone, a two-by-two grid. */}
-          <div
-            role="group"
-            aria-label="Where the supervisor is based"
-            className="grid w-full grid-cols-2 gap-px border border-navy/18 bg-navy/18 sm:flex xl:w-auto xl:shrink-0"
-          >
-            {(["Anywhere", ...projectBases] as const).map((value) => {
-              const on = filters.base === value;
-              const n =
-                value === "Anywhere"
-                  ? forBases.length
-                  : forBases.filter((project) => project.supervisor.base === value).length;
-              return (
-                <button
-                  key={value}
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => set({ base: value })}
-                  className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 xl:flex-none ${
-                    on
-                      ? /* The ring paints over the light frame, so the chosen
-                           cell fills the control's full height instead of
-                           sitting 1px inside it like a shorter button. */
-                        "relative bg-navy text-white ring-1 ring-navy"
-                      : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
-                  }`}
-                >
-                  {value}
-                  <Count n={n} active={on} />
-                </button>
-              );
-            })}
-          </div>
         </div>
-
-        <ChipRow label="Topic">
-          {(["All", ...projectCategories, "Thesis"] as const).map((value) => {
-            const on = filters.category === value;
-            const n =
-              value === "All"
-                ? forCategories.length
-                : forCategories.filter((project) => matchesTopic(project, value)).length;
-            return (
-              <button
-                key={value}
-                type="button"
-                aria-pressed={on}
-                onClick={() => set({ category: value })}
-                className={chipClass(on)}
-              >
-                {value === "All" ? "All topics" : value}
-                <Count n={n} active={on} />
-              </button>
-            );
-          })}
-        </ChipRow>
-
-        <ChipRow label="Supervisor">
-          {projectSupervisors.map((person) => {
-            const on = filters.supervisor === person.name;
-            const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;
-            return (
-              <button
-                key={person.name}
-                type="button"
-                aria-pressed={on}
-                onClick={() => set({ supervisor: on ? null : person.name })}
-                className={`${chipClass(on)} !pl-1 ${n === 0 && !on ? "opacity-45" : ""}`}
-              >
-                <Image
-                  src={person.imageSmall}
-                  alt=""
-                  width={312}
-                  height={312}
-                  className="size-[28px] shrink-0 object-cover"
-                />
-                {person.name}
-                <Count n={n} active={on} />
-              </button>
-            );
-          })}
-        </ChipRow>
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
