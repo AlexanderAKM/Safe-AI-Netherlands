@@ -13,6 +13,7 @@ import {
   projectBases,
   projectCategories,
   projects,
+  thesisLabel,
   type Project,
   type ProjectBase,
   type ProjectCategory,
@@ -23,17 +24,23 @@ import {
    Every filter shows how many projects it would leave, so a reader never
    clicks into an empty grid.
 
-   Every project leads to the same interest form, so its one "I'm interested"
-   button sits in the section header (src/app/research/page.tsx), not on each
-   card. No accounts, no application system.
+   Every project leads to the same application form, so its one "Apply for a
+   project" button sits in the section header (src/app/research/page.tsx), not
+   on each card. No accounts, no application system.
 
    The site's own language throughout: square corners, navy hairlines, and the
    serif for titles. Faces live in the supervisor filter; a card names its
    supervisor in text, so two projects from one person do not read as the
-   same card twice. */
+   same card twice.
 
-/* "Thesis" sits with the topics but reads the format the supervisor gave, so
-   it only picks projects they explicitly offered as a thesis. */
+   The grid opens on its first six projects, with a button under it for the
+   rest, so the section does not push everything after it far down the page.
+   The list is dealt out one supervisor at a time, so those first six come
+   from six different people rather than from whoever has the most entries. */
+
+/* "Thesis" sits with the topics but reads each project's `thesis` field, so it
+   picks every project offered as a thesis, at whatever level, and nothing
+   else. */
 type Topic = ProjectCategory | "Thesis";
 
 type Filters = {
@@ -44,7 +51,7 @@ type Filters = {
 };
 
 function matchesTopic(project: Project, topic: Topic) {
-  return topic === "Thesis" ? /thesis/i.test(project.format ?? "") : project.categories.includes(topic);
+  return topic === "Thesis" ? Boolean(project.thesis) : project.categories.includes(topic);
 }
 
 const NO_FILTERS: Filters = { query: "", base: "Anywhere", category: "All", supervisor: null };
@@ -59,6 +66,7 @@ function matchesQuery(project: Project, query: string) {
     project.supervisor.position,
     project.categories.join(" "),
     project.format ?? "",
+    thesisLabel(project) ?? "",
     project.lookingFor ?? "",
   ]
     .join(" ")
@@ -81,6 +89,26 @@ function filterExcept(filters: Filters, skip: keyof Filters | null) {
       (skip === "supervisor" || !filters.supervisor || project.supervisor.name === filters.supervisor),
   );
 }
+
+/* One project per supervisor in turn: each supervisor's first project, then
+   each one's second, and so on, keeping the data's order within a person. */
+function interleaveBySupervisor(list: Project[]) {
+  const queues = new Map<string, Project[]>();
+  for (const project of list) {
+    const name = project.supervisor.name;
+    queues.set(name, [...(queues.get(name) ?? []), project]);
+  }
+  const dealt: Project[] = [];
+  for (let round = 0; dealt.length < list.length; round++) {
+    for (const queue of Array.from(queues.values())) {
+      if (queue[round]) dealt.push(queue[round]);
+    }
+  }
+  return dealt;
+}
+
+/* How many projects the grid shows before "Show all": two rows at full width. */
+const PREVIEW_COUNT = 6;
 
 /* The supervisors who have projects, in the order the site lists them. */
 const projectSupervisors = projects
@@ -217,11 +245,11 @@ function ProjectCard({ project }: { project: Project }) {
                 {category}
               </span>
             ))}
-            {project.format && (
-              <span className="border border-orange/50 px-2 py-[3px] text-[12px] leading-4 text-orange-ink">
-                {project.format}
+            {[thesisLabel(project), project.format].filter(Boolean).map((label) => (
+              <span key={label} className="border border-orange/50 px-2 py-[3px] text-[12px] leading-4 text-orange-ink">
+                {label}
               </span>
-            )}
+            ))}
           </div>
 
           <p className="mt-4 text-caption leading-[18px]">
@@ -308,9 +336,12 @@ export default function ProjectBrowser() {
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
 
-  const shown = useMemo(() => filterExcept(filters, null), [filters]);
+  const shown = useMemo(() => interleaveBySupervisor(filterExcept(filters, null)), [filters]);
+  /* Once opened, the grid stays open across filters until it is closed. */
+  const [expanded, setExpanded] = useState(false);
+  const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
   const gridRef = useRef<HTMLUListElement>(null);
-  useRestRowHeights(gridRef, shown);
+  useRestRowHeights(gridRef, visible);
   const forCategories = useMemo(() => filterExcept(filters, "category"), [filters]);
   const forSupervisors = useMemo(() => filterExcept(filters, "supervisor"), [filters]);
   const forBases = useMemo(() => filterExcept(filters, "base"), [filters]);
@@ -469,15 +500,40 @@ export default function ProjectBrowser() {
         /* Cards stretch to a common height per row. While one is open the
            grid stops stretching (so the open card grows alone) and
            useRestRowHeights holds every row at its closed height. */
-        <ul
-          ref={gridRef}
-          role="list"
-          className="grid gap-4 has-[[data-showing]]:items-start md:grid-cols-2 xl:grid-cols-3"
-        >
-          {shown.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </ul>
+        <div className="flex flex-col items-center gap-6">
+          <ul
+            ref={gridRef}
+            id="project-grid"
+            role="list"
+            className="grid w-full scroll-mt-28 gap-4 has-[[data-showing]]:items-start md:grid-cols-2 xl:grid-cols-3"
+          >
+            {visible.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </ul>
+          {shown.length > PREVIEW_COUNT && (
+            <button
+              type="button"
+              aria-expanded={expanded}
+              aria-controls="project-grid"
+              onClick={() => {
+                /* Closing a long list would leave the reader far below it,
+                   so bring the top of the grid back into view. */
+                if (expanded) gridRef.current?.scrollIntoView({ block: "start" });
+                setExpanded(!expanded);
+              }}
+              className="btn-outline-ink gap-2"
+            >
+              {expanded ? "Show fewer projects" : `Show all ${shown.length} projects`}
+              <CaretDownIcon
+                size={14}
+                weight="bold"
+                aria-hidden="true"
+                className={`transition-transform duration-[250ms] ${expanded ? "rotate-180" : ""}`}
+              />
+            </button>
+          )}
+        </div>
       ) : (
         <div className="flex flex-col items-center gap-3 border border-dashed border-navy/20 bg-white px-6 py-10 text-center">
           <p className="text-body text-navy/74">No project matches these filters.</p>

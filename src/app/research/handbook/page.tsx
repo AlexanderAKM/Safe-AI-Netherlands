@@ -548,15 +548,15 @@ export default function ProjectHubHandbookPage() {
                   ]}
                 />
 
-                <Turn>Supervised matching begins with an expression of interest</Turn>
+                <Turn>Supervised matching begins with an application</Turn>
                 <P>
                   For supervised project matching, or to join an existing open
-                  collaboration, fill in the expression of interest form or
-                  email <ProjectsMail />.
+                  collaboration, fill in the application form or email{" "}
+                  <ProjectsMail />.
                 </P>
                 <p>
                   <OutLink href={RESEARCH_INTEREST_FORM_URL}>
-                    Register your interest
+                    Apply for a project
                   </OutLink>
                 </p>
 
@@ -1058,9 +1058,9 @@ export default function ProjectHubHandbookPage() {
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Register your interest
+              Apply for a project
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> (opens the application form in a new tab)</span>
             </a>
             <a
               href={SUPERVISOR_INTEREST_FORM_URL}

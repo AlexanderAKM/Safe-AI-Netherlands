@@ -296,7 +296,7 @@ export default function Home() {
               used to sit inside step three beside "View all publications",
               where the page's one orange button in this band read as a
               footnote to publishing. It sends readers to the hub rather than
-              straight into the interest form: the terms of applying are the
+              straight into the application form: the terms of applying are the
               line beside it, and the page that explains them is one click on.
               The form itself is on /research, twice. */}
           <Reveal delay={0.05} className="mt-12 flex flex-col gap-6 border-t border-white/15 pt-8 md:mt-16 md:flex-row md:items-center md:justify-between md:gap-12">
