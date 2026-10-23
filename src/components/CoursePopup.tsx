@@ -233,11 +233,12 @@ export default function CoursePopup() {
                           </span>
                         ) : course.open ? (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
-                            Apply by {course.deadlines.participants}
-                            <span aria-hidden="true" className="px-2 text-navy/25">
-                              ·
+                            <span className="block">
+                              Apply by {course.deadlines.participants}
                             </span>
-                            Facilitators by {course.deadlines.facilitators}
+                            <span className="block">
+                              Facilitators by {course.deadlines.facilitators}
+                            </span>
                           </span>
                         ) : (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">

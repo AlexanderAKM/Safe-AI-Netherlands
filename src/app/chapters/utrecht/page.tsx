@@ -100,6 +100,39 @@ const courses: Course[] = [
       "RLHF, GRPO and reward hacking",
     ],
   },
+  {
+    id: "governance",
+    title: "AI Governance",
+    summary:
+      "AI Governance is a new four-week course at SAIN Utrecht, open to everyone, with no previous background needed. Most AI governance courses focus on the US and China. In this course, we also look at their visions and ambitions and at where middle powers like the EU fit in. We also dedicate an entire lecture to how Europe and the Netherlands are regulating AI. Throughout the course, we read and discuss primary sources, such as government strategies, laws, and documents from AI labs, giving you the tools to follow developments in AI regulation and geopolitics independently. Each week has about one to two hours of reading and a 1.5-hour lecture.",
+    outlineTitle: "Sessions, autumn 2026",
+    outline: [
+      {
+        title: "Introduction to AI governance and AI safety",
+        meta: "Wed 18 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "What AI governance is, how it differs from technical safety, why it matters now, and the main risks: misuse, loss of control, and concentration of power.",
+      },
+      {
+        title: "AI geopolitics",
+        meta: "Wed 25 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "The key actors (governments, labs, safety organisations, the UN), US and Chinese visions and ambitions, and where middle powers fit.",
+      },
+      {
+        title: "The tools of the policymaker",
+        meta: "Wed 2 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "Analysis of past incidents like the Hugging Face case, system cards, and future scenarios.",
+      },
+      {
+        title: "Governance in Europe and the Netherlands",
+        meta: "Wed 9 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "The EU AI Act and its gaps, the EU AI Office and the GPAI Code of Practice, the Dutch AI landscape.",
+      },
+    ],
+  },
 ];
 
 const team: readonly TeamMember[] = [
@@ -195,8 +228,8 @@ export default function UtrechtPage() {
 
       <CourseBand
         city="Utrecht"
-        heading="Two free courses run in Utrecht"
-        openLead="Applications for the autumn cohort are open."
+        heading="Three free courses run in Utrecht"
+        openLead="Applications for AI Governance are open."
         footnote={
           <>
             These courses are independently run by SAIN Utrecht and are not

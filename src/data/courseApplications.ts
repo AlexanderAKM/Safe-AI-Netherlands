@@ -118,10 +118,15 @@ const cohorts: CourseApplication[] = [
   {
     chapter: "Utrecht",
     href: "/chapters/utrecht#programs",
-    /* The 18 September 2026 cohort has closed; the course itself runs from
-       23 September, see the session dates on the Utrecht page. */
-    open: false,
-    closedNote: "Sign ups for the next cohort will open next semester.",
+    /* AI Governance, autumn 2026. The course runs from 18 November; see the
+       session dates on the Utrecht page. */
+    open: true,
+    deadlines: {
+      participants: "15 November 2026",
+      facilitators: "1 November 2026",
+    },
+    closesAfter: "2026-11-15",
+    lapsedNote: "Sign ups for the next cohort will open next semester.",
   },
 ];
 
@@ -134,12 +139,15 @@ export function courseApplicationFor(chapter: ChapterName): CourseApplication {
 }
 
 /* The chapter course tab each national track lands on, where the chapter has
-   one. Groningen runs its two tracks as one course without tabs, and Utrecht's
-   governance offering is a discussion group, so those fall back to the
-   chapter's programmes band. Keys are the track ids on the landing and
-   /courses; values are the `id`s of the chapter page's CourseDisclosure. */
+   one. Groningen runs its two tracks as one course without tabs, so it falls
+   back to the chapter's programmes band. Keys are the track ids on the landing
+   and /courses; values are the `id`s of the chapter page's CourseDisclosure. */
 const CHAPTER_COURSE_TAB: Partial<Record<ChapterName, Record<string, string>>> = {
-  Utrecht: { fundamentals: "fundamentals", technical: "technical" },
+  Utrecht: {
+    fundamentals: "fundamentals",
+    technical: "technical",
+    policy: "governance",
+  },
   Amsterdam: { technical: "technical", policy: "governance" },
 };
 

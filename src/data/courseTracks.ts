@@ -92,9 +92,9 @@ export const TRACKS: Track[] = [
     id: "policy",
     index: "03",
     title: "Governance & Policy",
-    tagline: "Course or discussion group, by city.",
+    tagline: "BlueDot, CAIS or SAIN Utrecht, by city.",
     summary:
-      "Amsterdam runs BlueDot Frontier AI Governance. Groningen runs the governance track of AI Safety, Ethics, and Society. Utrecht hosts a weekly AI Governance & Policy discussion group. Facilitators include researchers, risk consultants, and public-sector people.",
+      "Amsterdam runs BlueDot Frontier AI Governance. Groningen runs the governance track of AI Safety, Ethics, and Society. Utrecht runs a four-week AI Governance course that also looks at where Europe and other middle powers fit. Facilitators include researchers, risk consultants, and public-sector people.",
     outlineTitle: "Six-week courses (Groningen and Amsterdam)",
     outline: [
       "The EU AI Act: duties across the lifecycle",
@@ -107,7 +107,7 @@ export const TRACKS: Track[] = [
     cities: [
       {
         city: "Utrecht",
-        detail: "Weekly AI Governance & Policy discussion group.",
+        detail: "AI Governance. 4 weeks, 1.5-hour lectures. No background needed.",
       },
       {
         city: "Groningen",
