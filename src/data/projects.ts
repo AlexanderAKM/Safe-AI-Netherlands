@@ -11,8 +11,8 @@ import { supervisors, type Supervisor } from "@/data/research";
 
    A summary paraphrases the supervisor's own words and adds nothing to them:
    no prerequisite, commitment, format or level appears unless the supervisor
-   stated it. Where an agenda gives directions rather than projects, the entry
-   says so.
+   stated it, or the Project Hub team confirmed it (the entry says so). Where an
+   agenda gives directions rather than projects, the entry says so.
 
    To add a project: add an entry with its supervisor and categories. To close
    one: set `open: false` (it stays listed, marked closed) or delete it. */
@@ -53,13 +53,23 @@ export type Project = {
   summary: string;
   details: string[];
   categories: ProjectCategory[];
-  /** Only what the supervisor said: "Thesis", "Team project"... */
+  /** Offered as a thesis. `true` when no level was given; otherwise what
+      qualifies it, such as "MSc AI" or "BSc or MSc". Every project with this
+      set gets the Thesis tag and shows under the Thesis filter. */
+  thesis?: true | string;
+  /** Any other format the supervisor named: "Team project"... */
   format?: string;
   /** Only when the supervisor stated it. */
   lookingFor?: string;
   commitment?: string;
   open: boolean;
 };
+
+/** The tag a thesis project carries: "Thesis", or "Thesis · MSc AI". */
+export function thesisLabel(project: Project) {
+  if (!project.thesis) return null;
+  return project.thesis === true ? "Thesis" : `Thesis · ${project.thesis}`;
+}
 
 function byName(
   name: string,
@@ -98,12 +108,16 @@ const jobst = byName("Jobst Heitzig", "Remote", [
   { label: "Theory paper", href: "https://arxiv.org/abs/2508.00159v2" },
   { label: "Code", href: "https://github.com/pik-gane/empo" },
 ]);
+const emile = byName("Emile van Krieken", "Amsterdam");
 const steven = byName("Steven Abreu", "Remote", [
   { label: "Website", href: "https://stevenabreu.com/" },
 ]);
 
 const SANDRO_ANGLE = "Every project in Sandro's lab can take an AI safety angle.";
 const FAUSTO_OPEN = "Fausto offers these as possible directions to shape together.";
+/* Satchit supervises BSc and MSc theses: his agenda does not say so, Ana
+   confirmed it to the Project Hub team (October 2026). */
+const SATCHIT_THESIS = "BSc or MSc";
 const SATCHIT_OPEN =
   "Satchit offers this as a research direction rather than a fixed project. Bring an idea, or reach out to chat about one.";
 const STEVEN_OPEN = "Brainstorm a specific idea together, or propose your own.";
@@ -121,7 +135,7 @@ export const projects: Project[] = [
       "Rich enough for more than one student. The ambition is publication at a high-quality venue such as ICWSM or an ACL conference.",
     ],
     categories: ["Societal", "Evaluations"],
-    format: "Thesis",
+    thesis: true,
     open: true,
   },
   {
@@ -135,6 +149,7 @@ export const projects: Project[] = [
       SATCHIT_OPEN,
     ],
     categories: ["Formal methods", "Alignment and RL"],
+    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -145,6 +160,7 @@ export const projects: Project[] = [
       "Safety questions in reinforcement learning and multi-agent RL, including game-theoretic approaches to the incentives and behaviour of interacting agents.",
     details: [SATCHIT_OPEN],
     categories: ["Multi-agent", "Alignment and RL"],
+    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -155,6 +171,7 @@ export const projects: Project[] = [
       "Mechanisms that constrain, monitor or correct what language models do, built to hold up under distribution shift and adversarial inputs.",
     details: [SATCHIT_OPEN],
     categories: ["Security and privacy", "Evaluations"],
+    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -168,6 +185,7 @@ export const projects: Project[] = [
       "Satchit lists this among his wider interests, open to research and collaboration.",
     ],
     categories: ["Societal"],
+    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -304,9 +322,11 @@ export const projects: Project[] = [
       "An open call: propose a project related to Ana's work on (mechanistic) interpretability, scientific machine learning and AI safety.",
     details: [
       "Ana leads the explainable AI for science lab at the University of Amsterdam. Get in touch with a specific project in mind related to her published topics.",
+      "She primarily supervises MSc AI thesis projects, and is also open to ELLIS honours projects.",
     ],
     categories: ["Interpretability"],
-    format: "MSc AI thesis or ELLIS honours project",
+    thesis: "MSc AI",
+    format: "ELLIS honours project",
     open: true,
   },
   {
@@ -401,7 +421,7 @@ export const projects: Project[] = [
       "Start from a population of fixed agents with diverse cooperative and competitive behaviours, apply curriculum methods to select partners, and measure efficiency and generalisation to unseen partners.",
     ],
     categories: ["Multi-agent", "Alignment and RL"],
-    format: "Thesis",
+    thesis: true,
     open: true,
   },
   {
@@ -414,7 +434,7 @@ export const projects: Project[] = [
       "A direct comparison of local and global task selection on unsupervised environment design benchmarks such as Kinetix, measuring learning speed, robustness and generalisation.",
     ],
     categories: ["Alignment and RL"],
-    format: "Thesis",
+    thesis: true,
     open: true,
   },
   {
@@ -445,6 +465,21 @@ export const projects: Project[] = [
       "Study recurrent and hybrid transformer-recurrent LLMs, including how they implement retrieval, in the mechanistic interpretability style of earlier AISIG projects.",
     details: [STEVEN_OPEN],
     categories: ["Interpretability"],
+    open: true,
+  },
+  {
+    id: "reward-hacking-rlvr",
+    title: "Reward hacking in LLM agents trained on verifiable rewards",
+    supervisor: emile,
+    summary:
+      "Study in which scenarios LLM agents trained with reinforcement learning from verifiable rewards (RLVR) learn to reward-hack, from an empirical or a theoretical angle.",
+    details: [
+      "RLVR brings marked gains in coding, mathematics and precise reasoning, but agents can also learn shortcuts that pass a reward in unexpected, possibly unsafe ways: because the reward is under-specified or even wrong, or because another solution passes it without proper understanding.",
+      "A Master's thesis project at the Vrije Universiteit Amsterdam.",
+    ],
+    categories: ["Alignment and RL"],
+    thesis: "MSc, VU Amsterdam",
+    lookingFor: "Students who have taken the VU course Project Reinforcement Learning, which this thesis requires",
     open: true,
   },
 ];

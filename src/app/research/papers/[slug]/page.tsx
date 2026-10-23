@@ -172,9 +172,9 @@ export default function PaperPage({ params }: { params: Params }) {
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Register your interest
+              Apply for a project
               <ArrowUpRightIcon size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> (opens the application form in a new tab)</span>
             </a>
             <Link
               href="/research#projects"

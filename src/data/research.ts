@@ -377,9 +377,10 @@ export const RESEARCH_EMAIL = "research@safeainetherlands.org";
 /* The Project Hub's inbox, which the v3 handbook names as the primary
    contact for projects. */
 export const PROJECTS_EMAIL = "projects@safeainetherlands.org";
-/* Every "Register your interest" and "I'm interested" button for the Project
-   Hub goes here: SAIN's one Fillout sign-up form, which has its own paths for
-   joining or proposing a project, supervising, and courses. It is the same
+/* Every "Apply for a project" button for the Project Hub goes here: SAIN's one
+   Fillout sign-up form, which has its own paths for joining or proposing a
+   project, supervising, and courses. The form calls itself an application, so
+   the buttons do too. It is the same
    form as COMMUNITY_JOIN_URL (src/data/siteContact.ts). */
 export const RESEARCH_INTEREST_FORM_URL = "https://sainonboard.fillout.com/new";
 /* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */

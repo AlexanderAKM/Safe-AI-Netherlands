@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, BookOpen } from "@phosphor-icons/react/dist/ssr";
 
 import Reveal from "@/components/landing/Reveal";
 import FittingTheCurve from "@/components/research/FittingTheCurve";
@@ -34,11 +34,12 @@ const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
    traced to nothing while the third contradicted the exact twelve papers this
    page lists. A number on this page has to be checkable by the reader, because
    the reader is the sort who checks. */
+/* Each counted fact links down to the section it counts. */
 const factLine = [
-  `${projects.filter((project) => project.open).length} open projects`,
-  `${supervisors.length} supervisors`,
-  `${publications.length} publications`,
-  "rolling applications",
+  { text: `${projects.filter((project) => project.open).length} open projects`, href: "#projects" },
+  { text: `${supervisors.length} supervisors`, href: "#supervisors" },
+  { text: `${publications.length} publications`, href: "#publications" },
+  { text: "rolling applications" },
 ];
 
 /* The three doors into a project. All three are normal, so all three are set
@@ -166,17 +167,25 @@ export default function ResearchPage() {
               and takes a project from open question to published finding. It is voluntary,
               remote-friendly, and open for applications at any time.
             </p>
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-1">
+            {/* Three ways on, in order of weight: apply (the one orange
+                button), read how the hub works (an outline button, so the
+                handbook is findable from the first screen), and the plain
+                link down to the projects. */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-1">
               <a
                 href={RESEARCH_INTEREST_FORM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Register your interest
+                Apply for a project
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> (opens the application form in a new tab)</span>
               </a>
+              <Link href="/research/handbook" className="btn-outline-ink gap-2">
+                <BookOpen size={18} weight="regular" aria-hidden="true" />
+                Read the handbook
+              </Link>
               <Link
                 href="#projects"
                 className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
@@ -195,9 +204,18 @@ export default function ResearchPage() {
               className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-navy/14 pt-4"
             >
               {factLine.map((fact, i) => (
-                <li key={fact} className="flex items-center gap-3">
+                <li key={fact.text} className="flex items-center gap-3">
                   {i > 0 ? <span aria-hidden="true" className="text-navy/25">·</span> : null}
-                  <span className="font-sans text-footnote text-navy/65">{fact}</span>
+                  {fact.href ? (
+                    <a
+                      href={fact.href}
+                      className="font-sans text-footnote text-navy/65 underline decoration-navy/15 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {fact.text}
+                    </a>
+                  ) : (
+                    <span className="font-sans text-footnote text-navy/65">{fact.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -210,8 +228,9 @@ export default function ResearchPage() {
       </section>
 
       {/* The projects themselves, straight after the claim: the reader came
-          to find one. Every project goes through the same interest form, so
-          "I'm interested" sits once beside the header instead of on each card. */}
+          to find one. Every project goes through the same application form,
+          so "Apply for a project" sits once beside the header instead of on
+          each card. */}
       <section
         id="projects"
         aria-labelledby="projects-heading"
@@ -225,8 +244,8 @@ export default function ResearchPage() {
               </h2>
               <p className="font-sans text-body text-navy/74">
                 Each project here was offered by a SAIN supervisor and is described in their own
-                words. One interest form covers all of them. You can name up to three, and the
-                projects team will introduce you to the supervisors within a working week.
+                words. One application form covers all of them: name up to three projects in it,
+                and the projects team will introduce you to the supervisors within a working week.
               </p>
             </div>
             <a
@@ -235,9 +254,9 @@ export default function ResearchPage() {
               rel="noopener noreferrer"
               className="btn-accent shrink-0 gap-2 self-start lg:self-center"
             >
-              I&rsquo;m interested
+              Apply for a project
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens the interest form in a new tab)</span>
+              <span className="sr-only"> (opens the application form in a new tab)</span>
             </a>
           </div>
           <ProjectBrowser />
@@ -245,11 +264,13 @@ export default function ResearchPage() {
       </section>
 
       {/* Eligibility, on paper: this band is the terms page of a printed
-          programme, so it runs on cream and stays a column plus a short list. */}
-      <section
-        aria-labelledby="eligibility-heading"
-        className="border-t border-navy/10 bg-cream"
-      >
+          programme, so it runs on cream and stays a column plus a short list.
+          Both bands are cream, so the rule between them stops at the content's
+          edges rather than running the full width. */}
+      <section aria-labelledby="eligibility-heading" className="bg-cream">
+        <div className="shell" aria-hidden="true">
+          <span className="block h-px bg-navy/10" />
+        </div>
         <div className="shell band-section flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <h2
             id="eligibility-heading"
@@ -351,8 +372,8 @@ export default function ResearchPage() {
             <Step step="02" id="support" title="Work with support">
               <div className="mt-5 flex max-w-[760px] flex-col gap-4">
                 <p className="text-body text-white/75">
-                  Fill in the interest form and, for supervised projects, you hear back within a
-                  working week. If there is a fit, a supervisor is formally assigned and the project
+                  Fill in the application form and, for supervised projects, you hear back within
+                  a working week. If there is a fit, a supervisor is formally assigned and the project
                   gets its own channel in the community.
                 </p>
                 <p className="text-body text-white/75">
@@ -522,8 +543,8 @@ export default function ResearchPage() {
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
               Applications are rolling, and for supervised projects you hear back within a working
-              week. Fill in the interest form, or email the projects team if you are not sure where
-              you fit and we will help route you.
+              week. Fill in the application form, or email the projects team if you are not sure
+              where you fit and we will help route you.
             </p>
           </div>
 
@@ -535,9 +556,9 @@ export default function ResearchPage() {
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Register your interest
+                Apply for a project
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> (opens the application form in a new tab)</span>
               </a>
               <a href={PROJECTS_MAILTO} className="btn-ghost-inverse">
                 Email the projects team
