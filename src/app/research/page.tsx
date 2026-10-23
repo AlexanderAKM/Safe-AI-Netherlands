@@ -34,11 +34,12 @@ const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
    traced to nothing while the third contradicted the exact twelve papers this
    page lists. A number on this page has to be checkable by the reader, because
    the reader is the sort who checks. */
+/* Each counted fact links down to the section it counts. */
 const factLine = [
-  `${projects.filter((project) => project.open).length} open projects`,
-  `${supervisors.length} supervisors`,
-  `${publications.length} publications`,
-  "rolling applications",
+  { text: `${projects.filter((project) => project.open).length} open projects`, href: "#projects" },
+  { text: `${supervisors.length} supervisors`, href: "#supervisors" },
+  { text: `${publications.length} publications`, href: "#publications" },
+  { text: "rolling applications" },
 ];
 
 /* The three doors into a project. All three are normal, so all three are set
@@ -203,9 +204,18 @@ export default function ResearchPage() {
               className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-navy/14 pt-4"
             >
               {factLine.map((fact, i) => (
-                <li key={fact} className="flex items-center gap-3">
+                <li key={fact.text} className="flex items-center gap-3">
                   {i > 0 ? <span aria-hidden="true" className="text-navy/25">·</span> : null}
-                  <span className="font-sans text-footnote text-navy/65">{fact}</span>
+                  {fact.href ? (
+                    <a
+                      href={fact.href}
+                      className="font-sans text-footnote text-navy/65 underline decoration-navy/15 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {fact.text}
+                    </a>
+                  ) : (
+                    <span className="font-sans text-footnote text-navy/65">{fact.text}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -254,11 +264,13 @@ export default function ResearchPage() {
       </section>
 
       {/* Eligibility, on paper: this band is the terms page of a printed
-          programme, so it runs on cream and stays a column plus a short list. */}
-      <section
-        aria-labelledby="eligibility-heading"
-        className="border-t border-navy/10 bg-cream"
-      >
+          programme, so it runs on cream and stays a column plus a short list.
+          Both bands are cream, so the rule between them stops at the content's
+          edges rather than running the full width. */}
+      <section aria-labelledby="eligibility-heading" className="bg-cream">
+        <div className="shell" aria-hidden="true">
+          <span className="block h-px bg-navy/10" />
+        </div>
         <div className="shell band-section flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <h2
             id="eligibility-heading"
