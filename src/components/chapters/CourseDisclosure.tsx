@@ -24,7 +24,7 @@ import { ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
  *
  * Closed panels leave the flow at every width. They used to stay in the shared
  * cell from md up, invisible, so a short course sat above the empty height of
- * the longest one (Utrecht's ARENA under Fundamentals' session list).
+ * the longest one (Utrecht's old ARENA themes under Fundamentals' session list).
  */
 
 /**

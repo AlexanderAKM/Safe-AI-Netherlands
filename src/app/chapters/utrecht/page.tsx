@@ -89,15 +89,35 @@ const courses: Course[] = [
   },
   {
     id: "technical",
-    title: "Technical AI safety (ARENA)",
+    title: "Technical AI Safety",
     summary:
-      "The technical course teaches from ARENA, an open technical AI safety curriculum; SAIN Utrecht is the first SAIN chapter to teach from it. Four weeks of weekly lectures (about 90 minutes) plus hands-on notebooks, in person at Utrecht University and streamed online. Prerequisites: Python, plus linear algebra and probability. You get the certificate by completing the notebooks and attending in person.",
-    outlineTitle: "Weekly themes",
+      "Technical AI Safety is a four-week, in-person course at SAIN Utrecht for people who can program and know the basics of AI. Knowing how transformers work is recommended. Each week covers one area of the field: the first two weeks focus on how AI safety evaluators test models, week three looks at safety in robots and other physical systems, and week four covers securing AI agents. The weekly assignments use material from ARENA, an established AI safety training programme, and especially strong solutions are sent to ARENA for review and may be added to their repository. A workshop every Saturday from 13:00 to 15:00 helps you complete them. After the course, we launch a research challenge where our mentors help you develop your own ideas. Each week has about one hour of reading, one to three hours of assignments and a 1.5-hour lecture.",
+    outlineTitle: "Sessions, autumn 2026",
     outline: [
-      "Transformers and mechanistic interpretability (opening a model up to study what its internals compute)",
-      "Probing and representations",
-      "PPO and RLHF (the techniques used to train models from human feedback)",
-      "RLHF, GRPO and reward hacking",
+      {
+        title: "Introduction to AI safety evaluations",
+        meta: "Thu 19 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "What evaluations are and why we need them, capability versus alignment evaluations, and how to design one: threat models, datasets and scoring.",
+      },
+      {
+        title: "Implementing and evaluating AI safety evaluations",
+        meta: "Thu 26 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "Running evaluations in practice with tools, understanding the common problems that make results unreliable, and how results are communicated to policymakers.",
+      },
+      {
+        title: "Embodied AI safety",
+        meta: "Thu 3 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "The safety risks of robots and other physical AI systems, safety filters, using vision-language models to spot unsafe actions, and measuring uncertainty.",
+      },
+      {
+        title: "Securing AI agents",
+        meta: "Thu 10 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "How agents are attacked through prompt injection and their tools, why model-level defences fail, secure design and AI Control, and how AI can also act as a defender.",
+      },
     ],
   },
   {
@@ -229,7 +249,7 @@ export default function UtrechtPage() {
       <CourseBand
         city="Utrecht"
         heading="Three free courses run in Utrecht"
-        openLead="Applications for AI Governance are open."
+        openLead="Applications for AI Governance and Technical AI Safety are open."
         footnote={
           <>
             These courses are independently run by SAIN Utrecht and are not
