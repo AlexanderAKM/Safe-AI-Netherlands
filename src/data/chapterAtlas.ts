@@ -62,7 +62,7 @@ export const ATLAS: AtlasChapter[] = [
          is a workshop paper. */
       { label: "Research", value: "Members published at NeurIPS and ICLR workshops" },
     ],
-    course: "AI Safety, Ethics, and Society",
+    course: "Technical AI Safety & Frontier AI Governance",
     calendar: "cal-jjqTmBdWcqoyEUF",
     calendarUrl: "https://luma.com/user/SAINGroningen",
   },

@@ -55,9 +55,9 @@ export const TRACKS: Track[] = [
     id: "technical",
     index: "02",
     title: "Technical Alignment",
-    tagline: "ARENA, CAIS or BlueDot, by city.",
+    tagline: "ARENA or BlueDot, by city.",
     summary:
-      "Each chapter runs a technical track, with a different curriculum. Utrecht covers evaluations, embodied AI and agent security, with assignments from ARENA. Groningen uses the Center for AI Safety course. Amsterdam uses BlueDot.",
+      "Each chapter runs a technical track, with a different curriculum. Utrecht covers evaluations, embodied AI and agent security, with assignments from ARENA. Groningen and Amsterdam use BlueDot.",
     outlineTitle: "Utrecht Technical AI Safety",
     outline: [
       "Introduction to AI safety evaluations",
@@ -74,7 +74,7 @@ export const TRACKS: Track[] = [
       {
         city: "Groningen",
         detail:
-          "Technical track of AI Safety, Ethics, and Society. 6 weeks, 3 to 4 cohorts a year.",
+          "BlueDot Technical AI Safety. 6 weeks, on-site, application-based.",
       },
       {
         city: "Amsterdam",
@@ -93,9 +93,9 @@ export const TRACKS: Track[] = [
     id: "policy",
     index: "03",
     title: "Governance & Policy",
-    tagline: "BlueDot, CAIS or SAIN Utrecht, by city.",
+    tagline: "BlueDot or SAIN Utrecht, by city.",
     summary:
-      "Amsterdam runs BlueDot Frontier AI Governance. Groningen runs the governance track of AI Safety, Ethics, and Society. Utrecht runs a four-week AI Governance course that also looks at where Europe and other middle powers fit. Facilitators include researchers, risk consultants, and public-sector people.",
+      "Amsterdam and Groningen run BlueDot Frontier AI Governance, and Groningen adds materials on the EU perspective. Utrecht runs a four-week AI Governance course that also looks at where Europe and other middle powers fit. Facilitators include researchers, risk consultants, and public-sector people.",
     outlineTitle: "Six-week courses (Groningen and Amsterdam)",
     outline: [
       "The EU AI Act: duties across the lifecycle",
@@ -112,7 +112,7 @@ export const TRACKS: Track[] = [
       },
       {
         city: "Groningen",
-        detail: "Governance track of AI Safety, Ethics, and Society. On-site.",
+        detail: "BlueDot Frontier AI Governance, with EU materials. On-site, application-based.",
       },
       {
         city: "Amsterdam",

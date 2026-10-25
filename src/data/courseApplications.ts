@@ -112,8 +112,10 @@ const cohorts: CourseApplication[] = [
        placed in the next one that starts. */
     open: true,
     rolling: true,
-    rollingNote:
-      "Applications are always open, and you will join the next cohort that starts.",
+    rollingNote: "Applications for the next course iteration are open.",
+    /* Undated: the chapter page names both of its tracks. */
+    chapterNote:
+      "Applications for the next course iterations for both tracks are open.",
   },
   {
     chapter: "Utrecht",
@@ -140,9 +142,9 @@ export function courseApplicationFor(chapter: ChapterName): CourseApplication {
 }
 
 /* The chapter course tab each national track lands on, where the chapter has
-   one. Groningen runs its two tracks as one course without tabs, so it falls
-   back to the chapter's programmes band. Keys are the track ids on the landing
-   and /courses; values are the `id`s of the chapter page's CourseDisclosure. */
+   one, falling back to the chapter's programmes band. Keys are the track ids
+   on the landing and /courses; values are the `id`s of the chapter page's
+   CourseDisclosure. */
 const CHAPTER_COURSE_TAB: Partial<Record<ChapterName, Record<string, string>>> = {
   Utrecht: {
     fundamentals: "fundamentals",
@@ -150,6 +152,7 @@ const CHAPTER_COURSE_TAB: Partial<Record<ChapterName, Record<string, string>>> =
     policy: "governance",
   },
   Amsterdam: { technical: "technical", policy: "governance" },
+  Groningen: { technical: "technical", policy: "governance" },
 };
 
 /** A track's page in one chapter: its course tab there, or its programmes. */

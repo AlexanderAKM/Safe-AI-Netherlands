@@ -266,9 +266,8 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                             </span>
                           ) : null}
                           {item.paths?.length ? (
-                            /* The two-track columns on one hairline, the same
-                               geometry Groningen's tracks use, nested in the
-                               session that forks. */
+                            /* The two-track columns on one hairline, nested in
+                               the session that forks. */
                             <span className="mt-4 grid gap-4 md:grid-cols-2 md:gap-6">
                               {item.paths.map((path) => (
                                 <span
