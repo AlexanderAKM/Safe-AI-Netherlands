@@ -98,18 +98,19 @@ const TRACKS: Track[] = [
     whoItSuits:
       "For people who want to build: interpretability, RLHF, and the alignment pipeline, hands-on.",
     summary:
-      "Each chapter runs a technical track, with a different curriculum. Utrecht teaches from ARENA. Groningen uses the Center for AI Safety course. Amsterdam uses BlueDot.",
-    outlineTitle: "Utrecht ARENA",
+      "Each chapter runs a technical track, with a different curriculum. Utrecht covers evaluations, embodied AI and agent security, with assignments from ARENA. Groningen uses the Center for AI Safety course. Amsterdam uses BlueDot.",
+    outlineTitle: "Utrecht Technical AI Safety",
     outline: [
-      "Transformers and mechanistic interpretability",
-      "Probing and representations: linear probes, SAEs",
-      "PPO and RLHF: the alignment pipeline",
-      "GRPO and reward hacking: seeing failure modes",
+      "Introduction to AI safety evaluations",
+      "Implementing and evaluating AI safety evaluations",
+      "Embodied AI safety",
+      "Securing AI agents",
     ],
     cities: [
       {
         city: "Utrecht",
-        detail: "ARENA. 4 weeks. Streamed lectures; notebook certificate.",
+        detail:
+          "Technical AI Safety. 4 weeks, 1.5-hour lectures, Saturday workshops. Programming needed.",
       },
       {
         city: "Groningen",

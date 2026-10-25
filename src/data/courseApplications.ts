@@ -118,8 +118,9 @@ const cohorts: CourseApplication[] = [
   {
     chapter: "Utrecht",
     href: "/chapters/utrecht#programs",
-    /* AI Governance, autumn 2026. The course runs from 18 November; see the
-       session dates on the Utrecht page. */
+    /* AI Governance and Technical AI Safety, autumn 2026, on one set of
+       deadlines. The courses run from 18 and 19 November; see the session
+       dates on the Utrecht page. */
     open: true,
     deadlines: {
       participants: "15 November 2026",

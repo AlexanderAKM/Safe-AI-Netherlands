@@ -37,7 +37,7 @@ const someoneIsOpen = openCourseApplications.length > 0;
    rows rather than a paragraph: she is checking whether her weeks have room in
    them, and a row is something you scan for your own city. */
 const CADENCE = [
-  "Cohorts run per chapter. Groningen and Amsterdam teach in six-week blocks, and Groningen runs three to four cohorts a year. Utrecht's ARENA and AI Governance blocks run four weeks.",
+  "Cohorts run per chapter. Groningen and Amsterdam teach in six-week blocks, and Groningen runs three to four cohorts a year. Utrecht's Technical AI Safety and AI Governance blocks run four weeks.",
   "The six-week courses pair weekly readings with an on-site discussion session.",
   "AI Safety Fundamentals in Utrecht is weekly and modular. Drop in for any theme, about 60 minutes.",
   "Some programmes are application-based and close per cohort. The Amsterdam BlueDot tracks are an example.",
