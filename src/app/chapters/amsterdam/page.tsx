@@ -17,6 +17,13 @@ import PrintStrip, { type Print } from "@/components/chapters/PrintStrip";
 import ShowUpBand from "@/components/chapters/ShowUpBand";
 import TeamBand, { type TeamMember } from "@/components/chapters/TeamBand";
 import lumaPastEventsAmsterdam from "@/data/lumaPastEventsAmsterdam.json";
+import {
+  BLUEDOT_URL,
+  FRONTIER_AI_GOVERNANCE_URL,
+  FRONTIER_AI_GOVERNANCE_WEEKS,
+  TECHNICAL_AI_SAFETY_URL,
+  TECHNICAL_AI_SAFETY_WEEKS,
+} from "@/data/bluedotCourses";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
@@ -49,8 +56,6 @@ function ExternalLink({ href, children }: { href: string; children: ReactNode })
   );
 }
 
-const BLUEDOT_URL = "https://bluedot.org/";
-
 /* Said under each course rather than once under both, because a tab is read
    on its own. */
 const courseNote = (
@@ -69,8 +74,8 @@ const courseNote = (
 
 /* The two courses behind the same disclosure tabs Utrecht uses, so a reader
    moving between chapter pages meets one device for "this chapter's courses".
-   The copy and the week-by-week outline are the chapter's own, each week
-   linking to its unit on BlueDot. */
+   The copy is the chapter's own; the week-by-week outline is BlueDot's, shared
+   with Groningen through bluedotCourses.ts. */
 const courses: Course[] = [
   {
     id: "technical",
@@ -84,7 +89,7 @@ const courses: Course[] = [
         <p>
           SAIN Amsterdam facilitates the{" "}
           <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
-          <ExternalLink href="https://bluedot.org/courses/technical-ai-safety">
+          <ExternalLink href={TECHNICAL_AI_SAFETY_URL}>
             Technical AI Safety
           </ExternalLink>{" "}
           course for people who want to help close the gap between how fast AI
@@ -104,32 +109,7 @@ const courses: Course[] = [
       </>
     ),
     outlineTitle: "What you will learn each week",
-    outline: [
-      {
-        title: "The technical challenge with AI",
-        href: "https://bluedot.org/courses/technical-ai-safety/1/1",
-      },
-      {
-        title: "Training safer models",
-        href: "https://bluedot.org/courses/technical-ai-safety/2/1",
-      },
-      {
-        title: "Detecting danger",
-        href: "https://bluedot.org/courses/technical-ai-safety/3/1",
-      },
-      {
-        title: "Understanding AI",
-        href: "https://bluedot.org/courses/technical-ai-safety/4/1",
-      },
-      {
-        title: "Minimising harm",
-        href: "https://bluedot.org/courses/technical-ai-safety/5/1",
-      },
-      {
-        title: "Plan your AI safety career",
-        href: "https://bluedot.org/courses/technical-ai-safety/6/1",
-      },
-    ],
+    outline: TECHNICAL_AI_SAFETY_WEEKS,
     note: courseNote,
   },
   {
@@ -144,7 +124,7 @@ const courses: Course[] = [
         <p>
           SAIN Amsterdam facilitates the{" "}
           <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
-          <ExternalLink href="https://bluedot.org/courses/ai-governance#curriculum">
+          <ExternalLink href={FRONTIER_AI_GOVERNANCE_URL}>
             Frontier AI Governance
           </ExternalLink>{" "}
           course, which helps you build the judgment to shape how frontier AI
@@ -164,32 +144,7 @@ const courses: Course[] = [
       </>
     ),
     outlineTitle: "What you will learn each week",
-    outline: [
-      {
-        title: "Assess frontier AI evidence",
-        href: "https://bluedot.org/courses/ai-governance/1/1",
-      },
-      {
-        title: "Map institutions and power",
-        href: "https://bluedot.org/courses/ai-governance/2/1",
-      },
-      {
-        title: "Compare governance strategies",
-        href: "https://bluedot.org/courses/ai-governance/3/1",
-      },
-      {
-        title: "Test proposals under pressure",
-        href: "https://bluedot.org/courses/ai-governance/4/1",
-      },
-      {
-        title: "Defend a position",
-        href: "https://bluedot.org/courses/ai-governance/5/1",
-      },
-      {
-        title: "Plan your AI safety career",
-        href: "https://bluedot.org/courses/ai-governance/6/1",
-      },
-    ],
+    outline: FRONTIER_AI_GOVERNANCE_WEEKS,
     note: courseNote,
   },
 ];

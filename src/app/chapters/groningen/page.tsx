@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 
 import ChapterClose from "@/components/chapters/ChapterClose";
 import ChapterHero from "@/components/chapters/ChapterHero";
 import CourseBand from "@/components/chapters/CourseBand";
+import CourseDisclosure, {
+  type Course,
+} from "@/components/chapters/CourseDisclosure";
 import EvidenceBand from "@/components/chapters/EvidenceBand";
 import PrintStrip, { type Print } from "@/components/chapters/PrintStrip";
 import PublicationChips from "@/components/chapters/PublicationChips";
 import ShowUpBand from "@/components/chapters/ShowUpBand";
 import TeamBand, { type TeamMember } from "@/components/chapters/TeamBand";
 import { aisigTeam } from "@/data/aisigTeam";
+import {
+  BLUEDOT_URL,
+  FRONTIER_AI_GOVERNANCE_URL,
+  FRONTIER_AI_GOVERNANCE_WEEKS,
+  TECHNICAL_AI_SAFETY_URL,
+  TECHNICAL_AI_SAFETY_WEEKS,
+} from "@/data/bluedotCourses";
 import { publications } from "@/data/research";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
@@ -30,15 +41,72 @@ const LINKTREE_URL = "https://linktr.ee/saingroningen";
 /* The roster the chapter confirmed in September 2026, in the order it gave. */
 const team: readonly TeamMember[] = aisigTeam;
 
-const tracks = [
+const LINK =
+  "underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy";
+
+function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={LINK}>
+      {children}
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
+
+/* The same two BlueDot courses as Amsterdam, behind the same disclosure tabs.
+   The copy is the chapter's own (from its Education Lead); the governance
+   course adds EU materials to BlueDot's curriculum. */
+const courses: Course[] = [
   {
-    name: "Technical track",
-    detail: "Mechanistic interpretability, adversarial attacks, complex systems.",
+    id: "technical",
+    title: "Technical AI Safety",
+    summary: (
+      <>
+        <p>Curious to learn about the technical approaches to AI safety?</p>
+        <p>
+          SAIN Groningen facilitates the{" "}
+          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
+          <ExternalLink href={TECHNICAL_AI_SAFETY_URL}>
+            Technical AI Safety
+          </ExternalLink>{" "}
+          course for people who want to learn about the open problems in
+          technical AI safety and the techniques to address them. It takes six
+          weeks, with about three hours of reading and a two-hour discussion
+          session each week. The discussion sessions are guided by a
+          facilitator, creating the perfect space to both discuss the material
+          and connect with others who are eager to work on AI safety too.
+        </p>
+      </>
+    ),
+    outlineTitle: "What you will learn each week",
+    outline: TECHNICAL_AI_SAFETY_WEEKS,
   },
   {
-    name: "Governance track",
-    detail:
-      "Case studies and the regulatory, legal, and societal challenges of advanced AI.",
+    id: "governance",
+    title: "Frontier AI Governance",
+    summary: (
+      <>
+        <p>Curious to learn about the governance challenges around AI safety?</p>
+        <p>
+          SAIN Groningen facilitates the{" "}
+          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
+          <ExternalLink href={FRONTIER_AI_GOVERNANCE_URL}>
+            Frontier AI Governance
+          </ExternalLink>{" "}
+          course, which helps you build the judgment to shape how frontier AI
+          is governed. Since the BlueDot course mainly covers the US and China
+          dynamic, we have extended the curriculum with hand-picked materials
+          on tackling AI safety from the EU&rsquo;s perspective. The course
+          takes six weeks, with about three hours of reading and a two-hour
+          discussion session each week. The discussion sessions are guided by
+          a facilitator, creating the perfect space to both discuss the
+          materials in detail and connect with others who are eager to work on
+          AI safety too.
+        </p>
+      </>
+    ),
+    outlineTitle: "What you will learn each week",
+    outline: FRONTIER_AI_GOVERNANCE_WEEKS,
   },
 ];
 
@@ -121,15 +189,14 @@ export default function GroningenPage() {
 
       <CourseBand
         city="Groningen"
-        heading="One free course, two tracks"
+        heading="Join one of our free courses!"
         footnote={
           <>
-            The course is independently run by SAIN Groningen and is not
-            affiliated with the University of Groningen. Questions:{" "}
-            <a
-              href={`mailto:${EDU_EMAIL}`}
-              className="underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-            >
+            The courses are independently run by SAIN Groningen and are not
+            affiliated with the University of Groningen (RUG). The certificate
+            of completion is awarded by SAIN Groningen, not BlueDot Impact.
+            Questions:{" "}
+            <a href={`mailto:${EDU_EMAIL}`} className={LINK}>
               {EDU_EMAIL}
             </a>
             .
@@ -145,30 +212,7 @@ export default function GroningenPage() {
           </p>
         }
       >
-        <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-          We facilitate the Center for AI Safety course &ldquo;AI Safety,
-          Ethics, and Society&rdquo; in two cohorts, one technical and one
-          governance. Six weeks per block, about two hours of reading and two
-          hours of discussion a week, on site in Groningen, with a certificate
-          on completion. Selection is application-based. We run three to four
-          cohorts a year, reaching around 60 people annually.
-        </p>
-
-        <dl className="grid max-w-[var(--container-copy-wide)] gap-6 md:grid-cols-2 md:gap-8">
-          {tracks.map((track) => (
-            <div
-              key={track.name}
-              className="border-l border-navy/14 py-1 pl-[18px]"
-            >
-              <dt className="font-serif text-title-sm text-navy">
-                {track.name}
-              </dt>
-              <dd className="mt-1.5 font-sans text-ui text-navy/74">
-                {track.detail}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <CourseDisclosure courses={courses} />
       </CourseBand>
 
       <TeamBand
