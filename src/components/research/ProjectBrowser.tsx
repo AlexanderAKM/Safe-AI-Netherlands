@@ -77,6 +77,7 @@ function matchesQuery(project: Project, query: string) {
     project.categories.join(" "),
     project.format ?? "",
     thesisLabel(project) ?? "",
+    project.thesis ? `${project.thesis.university} students` : "",
     project.lookingFor ?? "",
   ]
     .join(" ")
@@ -254,6 +255,19 @@ function ProjectCard({ project }: { project: Project }) {
             />
           </div>
 
+          {/* Straight under the title, where a student decides whether a
+              project is for them: a thesis counts towards a degree at that
+              university, so it is for that university's students. */}
+          {project.thesis && (
+            <p className="mt-2 text-caption leading-[18px]">
+              <span className="font-medium text-orange-ink">{thesisLabel(project)}</span>
+              <span className={project.open ? "text-navy/60" : "text-navy/75"}>
+                {" "}
+                · for {project.thesis.university} students
+              </span>
+            </p>
+          )}
+
           <div className="mt-3 flex flex-wrap gap-1.5">
             {project.categories.map((category) => (
               <span
@@ -263,11 +277,11 @@ function ProjectCard({ project }: { project: Project }) {
                 {category}
               </span>
             ))}
-            {[thesisLabel(project), project.format].filter(Boolean).map((label) => (
-              <span key={label} className="border border-orange/50 px-2 py-[3px] text-[12px] leading-4 text-orange-ink">
-                {label}
+            {project.format && (
+              <span className="border border-orange/50 px-2 py-[3px] text-[12px] leading-4 text-orange-ink">
+                {project.format}
               </span>
-            ))}
+            )}
           </div>
 
           <p className="mt-4 text-caption leading-[18px]">

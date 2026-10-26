@@ -16,6 +16,10 @@ import { supervisors, type Supervisor } from "@/data/research";
 
    Only (assistant) professors can supervise a thesis, so only their projects
    carry `thesis`, even where a PhD supervisor's agenda frames a project as one.
+   A thesis counts towards a degree at the supervisor's university and is
+   graded by its examiners (at the VU, at least one examiner is VU staff; the
+   UvA MSc AI thesis is a course in the UvA programme), so `thesis` names that
+   university and the card says the project is for its students.
 
    To add a project: add an entry with its supervisor and categories. To close
    one: set `open: false` (it stays listed, marked closed) or delete it. */
@@ -49,6 +53,8 @@ export type ProjectSupervisor = Supervisor & {
   links: { label: string; href: string }[];
 };
 
+export type ThesisUniversity = "VU" | "UvA";
+
 export type Project = {
   id: string;
   title: string;
@@ -56,10 +62,10 @@ export type Project = {
   summary: string;
   details: string[];
   categories: ProjectCategory[];
-  /** Offered as a thesis. `true` when no level was given; otherwise what
-      qualifies it, such as "MSc AI" or "BSc or MSc". Every project with this
-      set gets the Thesis tag and shows under the Thesis filter. */
-  thesis?: true | string;
+  /** Offered as a thesis at this university, for its students. `level` only
+      when the supervisor stated it ("MSc", "MSc AI"). Every project with this
+      set shows its label under the title and under the Thesis filter. */
+  thesis?: { university: ThesisUniversity; level?: string };
   /** Any other format the supervisor named: "Team project"... */
   format?: string;
   /** Only when the supervisor stated it. */
@@ -68,10 +74,11 @@ export type Project = {
   open: boolean;
 };
 
-/** The tag a thesis project carries: "Thesis", or "Thesis · MSc AI". */
+/** A thesis project's label: "VU thesis", or "UvA thesis · MSc AI". */
 export function thesisLabel(project: Project) {
   if (!project.thesis) return null;
-  return project.thesis === true ? "Thesis" : `Thesis · ${project.thesis}`;
+  const { university, level } = project.thesis;
+  return level ? `${university} thesis · ${level}` : `${university} thesis`;
 }
 
 function byName(
@@ -138,7 +145,7 @@ export const projects: Project[] = [
       "Rich enough for more than one student. The ambition is publication at a high-quality venue such as ICWSM or an ACL conference.",
     ],
     categories: ["Societal", "Evaluations"],
-    thesis: true,
+    thesis: { university: "VU" },
     open: true,
   },
   {
@@ -321,10 +328,10 @@ export const projects: Project[] = [
       "An open call: propose a project related to Ana's work on (mechanistic) interpretability, scientific machine learning and AI safety.",
     details: [
       "Ana leads the explainable AI for science lab at the University of Amsterdam. Get in touch with a specific project in mind related to her published topics.",
-      "She primarily supervises MSc AI thesis projects, and is also open to ELLIS honours projects.",
+      "She primarily supervises MSc AI thesis projects, and is also open to ELLIS honours projects. The ELLIS honours programme is for excellent UvA MSc AI students.",
     ],
     categories: ["Interpretability"],
-    thesis: "MSc AI",
+    thesis: { university: "UvA", level: "MSc AI" },
     format: "ELLIS honours project",
     open: true,
   },
@@ -475,8 +482,10 @@ export const projects: Project[] = [
       "A Master's thesis project at the Vrije Universiteit Amsterdam.",
     ],
     categories: ["Alignment and RL"],
-    thesis: "MSc, VU Amsterdam",
-    lookingFor: "Students who have taken the VU course Project Reinforcement Learning, which this thesis requires",
+    thesis: { university: "VU", level: "MSc" },
+    /* Emile's agenda says "Project Reinforcement Learning"; the VU course is
+       listed as "Projects on Reinforcement Learning". */
+    lookingFor: "Students who have taken the VU course Projects on Reinforcement Learning, which this thesis requires",
     open: true,
   },
   {
@@ -490,7 +499,7 @@ export const projects: Project[] = [
       "A thesis at the Vrije Universiteit Amsterdam.",
     ],
     categories: ["Formal methods", "Alignment and RL"],
-    thesis: "VU Amsterdam",
+    thesis: { university: "VU" },
     lookingFor: "A strong aptitude for theoretical work, which is required; the course Reinforcement Learning is recommended",
     commitment: "Supervision from the VU, plus an hour a week from AIXI labs",
     open: true,

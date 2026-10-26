@@ -246,6 +246,9 @@ export default function ResearchPage() {
                 Each project here was offered by a SAIN supervisor and is described in their own
                 words. One application form covers all of them: name up to three projects in it,
                 and the projects team will introduce you to the supervisors within a working week.
+                A VU or UvA thesis counts towards a degree there, so it is for that
+                university&rsquo;s students; every other project is open to anyone with the right
+                background.
               </p>
             </div>
             <a
