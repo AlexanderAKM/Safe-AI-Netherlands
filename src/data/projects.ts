@@ -14,6 +14,9 @@ import { supervisors, type Supervisor } from "@/data/research";
    stated it, or the Project Hub team confirmed it (the entry says so). Where an
    agenda gives directions rather than projects, the entry says so.
 
+   Only (assistant) professors can supervise a thesis, so only their projects
+   carry `thesis`, even where a PhD supervisor's agenda frames a project as one.
+
    To add a project: add an entry with its supervisor and categories. To close
    one: set `open: false` (it stays listed, marked closed) or delete it. */
 
@@ -414,7 +417,6 @@ export const projects: Project[] = [
       "Start from a population of fixed agents with diverse cooperative and competitive behaviours, apply curriculum methods to select partners, and measure efficiency and generalisation to unseen partners.",
     ],
     categories: ["Multi-agent", "Alignment and RL"],
-    thesis: true,
     open: true,
   },
   {
@@ -427,7 +429,6 @@ export const projects: Project[] = [
       "A direct comparison of local and global task selection on unsupervised environment design benchmarks such as Kinetix, measuring learning speed, robustness and generalisation.",
     ],
     categories: ["Alignment and RL"],
-    thesis: true,
     open: true,
   },
   {
