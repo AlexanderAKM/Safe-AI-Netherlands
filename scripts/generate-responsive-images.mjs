@@ -86,6 +86,7 @@ const TARGETS = [
       "photos/supervisors/Sandro_Pezzelle.jpg",
       "photos/supervisors/Fausto_Carcassi.jpg",
       "photos/supervisors/Emile_van_Krieken.jpg",
+      "photos/supervisors/Peter_Bloem.jpg",
     ],
     widths: [312, 800],
   },

@@ -361,14 +361,13 @@ export const supervisors: Supervisor[] = [
     agenda:
       "https://docs.google.com/document/d/1idEzHtH4QzusQ3wpwGyBkEeCLNZsc5DD_jcw-U8CNHA/edit?usp=sharing",
   },
-  /* No headshot yet: an initials tile stands in. Swap both paths for the
-     photo's -800 and -312 rungs once it is in the Drive "Headshots" folder. */
   {
     name: "Peter Bloem",
     position: "Assistant Professor, Vrije Universiteit Amsterdam",
     positionShort: "Assistant Professor, VU Amsterdam",
-    image: "/photos/supervisors/Peter_Bloem-initials.svg",
-    imageSmall: "/photos/supervisors/Peter_Bloem-initials.svg",
+    /* The source is 469px square, so there is no 800 rung. */
+    image: "/photos/supervisors/Peter_Bloem.jpg",
+    imageSmall: "/photos/supervisors/Peter_Bloem-312.jpg",
     agenda:
       "https://docs.google.com/document/d/1FemtRz4vx2-i7MTamkOqngWjcDfHzXuHUtqBF1_wHzA/edit?usp=sharing",
   },
