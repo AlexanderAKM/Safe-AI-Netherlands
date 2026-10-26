@@ -8,7 +8,7 @@ import {
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { PROJECTS_EMAIL, supervisors, type Supervisor } from "@/data/research";
+import { PROJECTS_EMAIL, confirmedFirst, supervisors, type Supervisor } from "@/data/research";
 import {
   projectBases,
   projectCategories,
@@ -36,7 +36,9 @@ import {
    The grid opens on its first six projects, with a button under it for the
    rest, so the section does not push everything after it far down the page.
    The list is dealt out one supervisor at a time, so those first six come
-   from six different people rather than from whoever has the most entries. */
+   from six different people rather than from whoever has the most entries.
+   Projects from supervisors whose availability is unconfirmed come after
+   all the others. */
 
 /* "Thesis" sits with the topics but reads each project's `thesis` field, so it
    picks every project offered as a thesis, at whatever level, and nothing
@@ -124,15 +126,28 @@ function interleaveBySupervisor(list: Project[]) {
   return dealt;
 }
 
+/* The grid's order: projects from confirmed supervisors dealt out first, then
+   those from supervisors whose availability is unconfirmed, dealt the same
+   way, so the opening cards are ones a student can count on. */
+function gridOrder(list: Project[]) {
+  return [
+    ...interleaveBySupervisor(list.filter((project) => !project.supervisor.unconfirmed)),
+    ...interleaveBySupervisor(list.filter((project) => project.supervisor.unconfirmed)),
+  ];
+}
+
 /* How many projects the grid shows before "Show all": two rows at full width. */
 const PREVIEW_COUNT = 6;
 
 /* Every supervisor on the site: those with projects in the order the projects
-   list them, then anyone without one yet, who still shows with a 0. */
-const projectSupervisors: Supervisor[] = [
-  ...projects.map((project) => project.supervisor),
-  ...supervisors,
-].filter((person, i, all) => all.findIndex((other) => other.name === person.name) === i);
+   list them, then anyone without one yet, who still shows with a 0. Anyone
+   whose availability is unconfirmed goes to the end until it is confirmed. */
+const projectSupervisors: Supervisor[] = confirmedFirst(
+  [...projects.map((project) => project.supervisor), ...supervisors].filter(
+    (person, i, all) => all.findIndex((other) => other.name === person.name) === i,
+  ),
+);
+const anyUnconfirmed = projectSupervisors.some((person) => person.unconfirmed);
 
 function chipClass(active: boolean) {
   return `inline-flex min-h-[38px] shrink-0 items-center gap-2 border px-3 text-[14px] leading-5 transition-colors duration-150 ${
@@ -151,8 +166,13 @@ function Count({ n, active }: { n: number; active: boolean }) {
 /* A row of chips: wrapping from md, a sideways scroll on a phone so ten
    supervisors do not push the projects off the first screen. The scrollbar is
    hidden there and the row fades at its right edge instead, which says "more
-   this way" without a grey bar under every row. */
-function ChipRow({ label, children }: { label: string; children: ReactNode }) {
+   this way" without a grey bar under every row.
+
+   A `note` sits under the chips for a line that explains something about
+   them: italic and a step smaller than the label, so it reads as an aside
+   rather than a second heading, and matching the italic note in the
+   supervisor row. */
+function ChipRow({ label, note, children }: { label: string; note?: ReactNode; children: ReactNode }) {
   return (
     <div className="px-4 py-4 md:px-6">
       <p className="mb-3 font-sans text-footnote text-navy/60">{label}</p>
@@ -163,6 +183,7 @@ function ChipRow({ label, children }: { label: string; children: ReactNode }) {
       >
         {children}
       </div>
+      {note && <p className="mt-3 font-sans text-[12px] italic leading-[17px] text-navy/60">{note}</p>}
     </div>
   );
 }
@@ -287,6 +308,13 @@ function ProjectCard({ project }: { project: Project }) {
           <p className="mt-4 text-caption leading-[18px]">
             <span className="block font-medium text-navy">{person.name}</span>
             <span className={`block ${project.open ? "text-navy/60" : "text-navy/75"}`}>{person.positionShort}</span>
+            {/* Words, not a fade: fading is how a closed card reads. Same
+                italic line as the supervisor row and the filter's note. */}
+            {person.unconfirmed && (
+              <span className={`mt-1 block italic ${project.open ? "text-navy/60" : "text-navy/75"}`}>
+                Availability to be confirmed
+              </span>
+            )}
           </p>
 
           <p className="mt-4 text-[15px] leading-6 text-navy/78">{project.summary}</p>
@@ -368,7 +396,7 @@ export default function ProjectBrowser() {
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
 
-  const shown = useMemo(() => interleaveBySupervisor(filterExcept(filters, null)), [filters]);
+  const shown = useMemo(() => gridOrder(filterExcept(filters, null)), [filters]);
   /* Once opened, the grid stays open across filters until it is closed. */
   const [expanded, setExpanded] = useState(false);
   const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
@@ -387,7 +415,12 @@ export default function ProjectBrowser() {
       {/* Supervisors first, then topic and location, with the search under
           them: the faces are what most readers come looking for. */}
       <div className="divide-y divide-navy/10 border border-navy/12 bg-white">
-        <ChipRow label="Supervisor">
+        {/* The fade alone would leave a reader guessing, so a line under
+            the chips says what it means. It goes once nobody is unconfirmed. */}
+        <ChipRow
+          label="Supervisor"
+          note={anyUnconfirmed ? "Greyed-out supervisors have not confirmed their availability for this round yet." : undefined}
+        >
           {projectSupervisors.map((person) => {
             const on = filters.supervisor === person.name;
             const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;

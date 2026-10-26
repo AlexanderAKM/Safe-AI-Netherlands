@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { supervisors } from "@/data/research";
+import { confirmedFirst, supervisors } from "@/data/research";
 
 /* The supervisors, as a left-aligned row of 140px square portraits on white.
  *
@@ -17,14 +17,14 @@ import { supervisors } from "@/data/research";
  * Hover cues repeat on focus-visible, because a keyboard never fires hover, and
  * both transforms sit behind motion-safe.
  *
- * A supervisor whose availability is not confirmed yet keeps their place, but
- * their portrait is greyed and eased back, and a line under the position says
+ * A supervisor whose availability is not confirmed yet moves to the end of the
+ * row, their portrait greyed and eased back, and a line under the position says
  * why, so the fade is never the only signal.
  */
 export default function SupervisorRow() {
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
-      {supervisors.map((person) => (
+      {confirmedFirst(supervisors).map((person) => (
         <li key={person.name} className="w-[140px]">
           <a
             href={person.agenda}

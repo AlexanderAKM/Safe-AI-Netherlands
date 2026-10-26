@@ -242,7 +242,8 @@ export type Supervisor = {
   imageSmall: string;
   agenda: string;
   /** Not yet confirmed as able to supervise this round. The Project Hub page
-      shows their portrait faded, with "Availability to be confirmed". */
+      lists them last with their portrait faded, and their project cards come
+      last and say "Availability to be confirmed". */
   unconfirmed?: boolean;
 };
 
@@ -372,6 +373,13 @@ export const supervisors: Supervisor[] = [
       "https://docs.google.com/document/d/1FemtRz4vx2-i7MTamkOqngWjcDfHzXuHUtqBF1_wHzA/edit?usp=sharing",
   },
 ];
+
+/* The confirmed supervisors first, then the unconfirmed ones, each group in
+   the order given. Used by the Project Hub's filter and supervisor row, so an
+   unconfirmed supervisor moves up on their own once the flag is removed. */
+export function confirmedFirst<T extends Pick<Supervisor, "unconfirmed">>(people: T[]) {
+  return [...people].sort((a, b) => Number(Boolean(a.unconfirmed)) - Number(Boolean(b.unconfirmed)));
+}
 
 /* Where a paper opens: SAIN's own reader when the PDF is hosted here,
    otherwise the paper's source. An internal href has to go through next/link. */
