@@ -56,14 +56,24 @@ function matchesTopic(project: Project, topic: Topic) {
 
 const NO_FILTERS: Filters = { query: "", base: "Anywhere", category: "All", supervisor: null };
 
+/* Universities by the names people search for. A position spells out
+   "Vrije Universiteit Amsterdam"; a student types "VU". */
+const UNIVERSITY_NAMES: [RegExp, string][] = [
+  [/vrije universiteit|\bvu\b/i, "VU"],
+  [/university of amsterdam|\buva\b/i, "UvA"],
+  [/university of groningen|\brug\b/i, "RUG"],
+];
+
 function matchesQuery(project: Project, query: string) {
   if (!query) return true;
+  const position = project.supervisor.position;
   const haystack = [
     project.title,
     project.summary,
     ...project.details,
     project.supervisor.name,
-    project.supervisor.position,
+    position,
+    ...UNIVERSITY_NAMES.filter(([pattern]) => pattern.test(position)).map(([, name]) => name),
     project.categories.join(" "),
     project.format ?? "",
     thesisLabel(project) ?? "",
@@ -71,11 +81,17 @@ function matchesQuery(project: Project, query: string) {
   ]
     .join(" ")
     .toLowerCase();
+  const words = haystack.split(/[^a-z0-9]+/);
+  /* Short terms ("VU", "RL", "LLM") match whole words, plural allowed, so
+     "VU" finds the VU and not "vulnerability". Longer terms match anywhere,
+     so "interp" still finds "interpretability". */
   return query
     .toLowerCase()
     .split(/\s+/)
     .filter(Boolean)
-    .every((word) => haystack.includes(word));
+    .every((term) =>
+      term.length <= 3 ? words.some((word) => word === term || word === `${term}s`) : haystack.includes(term),
+    );
 }
 
 /* Every filter but one, so a filter's own count says what choosing it would
@@ -458,7 +474,7 @@ export default function ProjectBrowser() {
               type="search"
               value={filters.query}
               onChange={(event) => set({ query: event.target.value })}
-              placeholder="Topic, method or supervisor"
+              placeholder="Topic, person or university"
               className="h-12 w-full appearance-none border border-navy/18 bg-white pl-10 pr-11 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none"
             />
             {/* Our own clear button in place of the browser's blue one; the

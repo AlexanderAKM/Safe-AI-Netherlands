@@ -112,6 +112,9 @@ const jobst = byName("Jobst Heitzig", "Remote", [
   { label: "Code", href: "https://github.com/pik-gane/empo" },
 ]);
 const emile = byName("Emile van Krieken", "Amsterdam");
+const peter = byName("Peter Bloem", "Amsterdam", [
+  { label: "AIXI labs", href: "http://aixi-labs.github.io/" },
+]);
 const steven = byName("Steven Abreu", "Remote", [
   { label: "Website", href: "https://stevenabreu.com/" },
 ]);
@@ -474,6 +477,22 @@ export const projects: Project[] = [
     categories: ["Alignment and RL"],
     thesis: "MSc, VU Amsterdam",
     lookingFor: "Students who have taken the VU course Project Reinforcement Learning, which this thesis requires",
+    open: true,
+  },
+  {
+    id: "aixi-safety",
+    title: "AI safety in universal AI (AIXI)",
+    supervisor: peter,
+    summary:
+      "AIXI is a mathematical model of a maximally intelligent AI, which makes it an interesting framework in which to study AI safety. Explore this direction with the VU and AIXI labs in London.",
+    details: [
+      "The topic is open and is decided together with the student(s); the AIXI labs website shows the sort of directions that are possible.",
+      "A thesis at the Vrije Universiteit Amsterdam.",
+    ],
+    categories: ["Formal methods", "Alignment and RL"],
+    thesis: "VU Amsterdam",
+    lookingFor: "A strong aptitude for theoretical work, which is required; the course Reinforcement Learning is recommended",
+    commitment: "Supervision from the VU, plus an hour a week from AIXI labs",
     open: true,
   },
 ];
