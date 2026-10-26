@@ -14,6 +14,13 @@ import { supervisors, type Supervisor } from "@/data/research";
    stated it, or the Project Hub team confirmed it (the entry says so). Where an
    agenda gives directions rather than projects, the entry says so.
 
+   Only (assistant) professors can supervise a thesis, so only their projects
+   carry `thesis`, even where a PhD supervisor's agenda frames a project as one.
+   A thesis counts towards a degree at the supervisor's university and is
+   graded by its examiners (at the VU, at least one examiner is VU staff; the
+   UvA MSc AI thesis is a course in the UvA programme), so `thesis` names that
+   university and the card says the project is for its students.
+
    To add a project: add an entry with its supervisor and categories. To close
    one: set `open: false` (it stays listed, marked closed) or delete it. */
 
@@ -46,6 +53,8 @@ export type ProjectSupervisor = Supervisor & {
   links: { label: string; href: string }[];
 };
 
+export type ThesisUniversity = "VU" | "UvA";
+
 export type Project = {
   id: string;
   title: string;
@@ -53,10 +62,10 @@ export type Project = {
   summary: string;
   details: string[];
   categories: ProjectCategory[];
-  /** Offered as a thesis. `true` when no level was given; otherwise what
-      qualifies it, such as "MSc AI" or "BSc or MSc". Every project with this
-      set gets the Thesis tag and shows under the Thesis filter. */
-  thesis?: true | string;
+  /** Offered as a thesis at this university, for its students. `level` only
+      when the supervisor stated it ("MSc", "MSc AI"). Every project with this
+      set shows its label under the title and under the Thesis filter. */
+  thesis?: { university: ThesisUniversity; level?: string };
   /** Any other format the supervisor named: "Team project"... */
   format?: string;
   /** Only when the supervisor stated it. */
@@ -65,10 +74,11 @@ export type Project = {
   open: boolean;
 };
 
-/** The tag a thesis project carries: "Thesis", or "Thesis · MSc AI". */
+/** A thesis project's label: "VU thesis", or "UvA thesis · MSc AI". */
 export function thesisLabel(project: Project) {
   if (!project.thesis) return null;
-  return project.thesis === true ? "Thesis" : `Thesis · ${project.thesis}`;
+  const { university, level } = project.thesis;
+  return level ? `${university} thesis · ${level}` : `${university} thesis`;
 }
 
 function byName(
@@ -109,15 +119,15 @@ const jobst = byName("Jobst Heitzig", "Remote", [
   { label: "Code", href: "https://github.com/pik-gane/empo" },
 ]);
 const emile = byName("Emile van Krieken", "Amsterdam");
+const peter = byName("Peter Bloem", "Amsterdam", [
+  { label: "AIXI labs", href: "http://aixi-labs.github.io/" },
+]);
 const steven = byName("Steven Abreu", "Remote", [
   { label: "Website", href: "https://stevenabreu.com/" },
 ]);
 
 const SANDRO_ANGLE = "Every project in Sandro's lab can take an AI safety angle.";
 const FAUSTO_OPEN = "Fausto offers these as possible directions to shape together.";
-/* Satchit supervises BSc and MSc theses: his agenda does not say so, Ana
-   confirmed it to the Project Hub team (October 2026). */
-const SATCHIT_THESIS = "BSc or MSc";
 const SATCHIT_OPEN =
   "Satchit offers this as a research direction rather than a fixed project. Bring an idea, or reach out to chat about one.";
 const STEVEN_OPEN = "Brainstorm a specific idea together, or propose your own.";
@@ -135,7 +145,7 @@ export const projects: Project[] = [
       "Rich enough for more than one student. The ambition is publication at a high-quality venue such as ICWSM or an ACL conference.",
     ],
     categories: ["Societal", "Evaluations"],
-    thesis: true,
+    thesis: { university: "VU" },
     open: true,
   },
   {
@@ -149,7 +159,6 @@ export const projects: Project[] = [
       SATCHIT_OPEN,
     ],
     categories: ["Formal methods", "Alignment and RL"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -160,7 +169,6 @@ export const projects: Project[] = [
       "Safety questions in reinforcement learning and multi-agent RL, including game-theoretic approaches to the incentives and behaviour of interacting agents.",
     details: [SATCHIT_OPEN],
     categories: ["Multi-agent", "Alignment and RL"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -171,7 +179,6 @@ export const projects: Project[] = [
       "Mechanisms that constrain, monitor or correct what language models do, built to hold up under distribution shift and adversarial inputs.",
     details: [SATCHIT_OPEN],
     categories: ["Security and privacy", "Evaluations"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -185,7 +192,6 @@ export const projects: Project[] = [
       "Satchit lists this among his wider interests, open to research and collaboration.",
     ],
     categories: ["Societal"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -322,10 +328,10 @@ export const projects: Project[] = [
       "An open call: propose a project related to Ana's work on (mechanistic) interpretability, scientific machine learning and AI safety.",
     details: [
       "Ana leads the explainable AI for science lab at the University of Amsterdam. Get in touch with a specific project in mind related to her published topics.",
-      "She primarily supervises MSc AI thesis projects, and is also open to ELLIS honours projects.",
+      "She primarily supervises MSc AI thesis projects, and is also open to ELLIS honours projects. The ELLIS honours programme is for excellent UvA MSc AI students.",
     ],
     categories: ["Interpretability"],
-    thesis: "MSc AI",
+    thesis: { university: "UvA", level: "MSc AI" },
     format: "ELLIS honours project",
     open: true,
   },
@@ -421,7 +427,6 @@ export const projects: Project[] = [
       "Start from a population of fixed agents with diverse cooperative and competitive behaviours, apply curriculum methods to select partners, and measure efficiency and generalisation to unseen partners.",
     ],
     categories: ["Multi-agent", "Alignment and RL"],
-    thesis: true,
     open: true,
   },
   {
@@ -434,7 +439,6 @@ export const projects: Project[] = [
       "A direct comparison of local and global task selection on unsupervised environment design benchmarks such as Kinetix, measuring learning speed, robustness and generalisation.",
     ],
     categories: ["Alignment and RL"],
-    thesis: true,
     open: true,
   },
   {
@@ -478,8 +482,26 @@ export const projects: Project[] = [
       "A Master's thesis project at the Vrije Universiteit Amsterdam.",
     ],
     categories: ["Alignment and RL"],
-    thesis: "MSc, VU Amsterdam",
-    lookingFor: "Students who have taken the VU course Project Reinforcement Learning, which this thesis requires",
+    thesis: { university: "VU", level: "MSc" },
+    /* Emile's agenda says "Project Reinforcement Learning"; the VU course is
+       listed as "Projects on Reinforcement Learning". */
+    lookingFor: "Students who have taken the VU course Projects on Reinforcement Learning, which this thesis requires",
+    open: true,
+  },
+  {
+    id: "aixi-safety",
+    title: "AI safety in universal AI (AIXI)",
+    supervisor: peter,
+    summary:
+      "AIXI is a mathematical model of a maximally intelligent AI, which makes it an interesting framework in which to study AI safety. Explore this direction with the VU and AIXI labs in London.",
+    details: [
+      "The topic is open and is decided together with the student(s); the AIXI labs website shows the sort of directions that are possible.",
+      "A thesis at the Vrije Universiteit Amsterdam.",
+    ],
+    categories: ["Formal methods", "Alignment and RL"],
+    thesis: { university: "VU" },
+    lookingFor: "A strong aptitude for theoretical work, which is required; the course Reinforcement Learning is recommended",
+    commitment: "Supervision from the VU, plus an hour a week from AIXI labs",
     open: true,
   },
 ];

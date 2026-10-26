@@ -241,11 +241,16 @@ export type Supervisor = {
   /** The landing circle, 88-104 CSS. Written by `npm run images`. */
   imageSmall: string;
   agenda: string;
+  /** Not yet confirmed as able to supervise this round. The Project Hub page
+      lists them last with their portrait faded, and their project cards come
+      last and say "Availability to be confirmed". */
+  unconfirmed?: boolean;
 };
 
 export const supervisors: Supervisor[] = [
   {
     name: "Steven Abreu",
+    unconfirmed: true,
     position: "Research Scientist, MakerMaker",
     positionShort: "Research Scientist, MakerMaker",
     image: "/photos/supervisors/steven-800.webp",
@@ -264,6 +269,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Jobst Heitzig",
+    unconfirmed: true,
     position:
       "Working Group Leader, Senior Scientist, Potsdam Institute for Climate Impact Research",
     positionShort: "Senior Scientist, Potsdam Institute",
@@ -274,6 +280,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Guillaume Pourcel",
+    unconfirmed: true,
     position: "PhD AI Candidate, University of Groningen",
     positionShort: "PhD AI Candidate, University of Groningen",
     image: "/photos/supervisors/Guillame.jpg",
@@ -354,7 +361,24 @@ export const supervisors: Supervisor[] = [
     agenda:
       "https://docs.google.com/document/d/1idEzHtH4QzusQ3wpwGyBkEeCLNZsc5DD_jcw-U8CNHA/edit?usp=sharing",
   },
+  {
+    name: "Peter Bloem",
+    position: "Assistant Professor, Vrije Universiteit Amsterdam",
+    positionShort: "Assistant Professor, VU Amsterdam",
+    /* The source is 469px square, so there is no 800 rung. */
+    image: "/photos/supervisors/Peter_Bloem.jpg",
+    imageSmall: "/photos/supervisors/Peter_Bloem-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1FemtRz4vx2-i7MTamkOqngWjcDfHzXuHUtqBF1_wHzA/edit?usp=sharing",
+  },
 ];
+
+/* The confirmed supervisors first, then the unconfirmed ones, each group in
+   the order given. Used by the Project Hub's filter and supervisor row, so an
+   unconfirmed supervisor moves up on their own once the flag is removed. */
+export function confirmedFirst<T extends Pick<Supervisor, "unconfirmed">>(people: T[]) {
+  return [...people].sort((a, b) => Number(Boolean(a.unconfirmed)) - Number(Boolean(b.unconfirmed)));
+}
 
 /* Where a paper opens: SAIN's own reader when the PDF is hosted here,
    otherwise the paper's source. An internal href has to go through next/link. */
