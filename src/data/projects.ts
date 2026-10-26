@@ -115,9 +115,6 @@ const steven = byName("Steven Abreu", "Remote", [
 
 const SANDRO_ANGLE = "Every project in Sandro's lab can take an AI safety angle.";
 const FAUSTO_OPEN = "Fausto offers these as possible directions to shape together.";
-/* Satchit supervises BSc and MSc theses: his agenda does not say so, Ana
-   confirmed it to the Project Hub team (October 2026). */
-const SATCHIT_THESIS = "BSc or MSc";
 const SATCHIT_OPEN =
   "Satchit offers this as a research direction rather than a fixed project. Bring an idea, or reach out to chat about one.";
 const STEVEN_OPEN = "Brainstorm a specific idea together, or propose your own.";
@@ -149,7 +146,6 @@ export const projects: Project[] = [
       SATCHIT_OPEN,
     ],
     categories: ["Formal methods", "Alignment and RL"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -160,7 +156,6 @@ export const projects: Project[] = [
       "Safety questions in reinforcement learning and multi-agent RL, including game-theoretic approaches to the incentives and behaviour of interacting agents.",
     details: [SATCHIT_OPEN],
     categories: ["Multi-agent", "Alignment and RL"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -171,7 +166,6 @@ export const projects: Project[] = [
       "Mechanisms that constrain, monitor or correct what language models do, built to hold up under distribution shift and adversarial inputs.",
     details: [SATCHIT_OPEN],
     categories: ["Security and privacy", "Evaluations"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {
@@ -185,7 +179,6 @@ export const projects: Project[] = [
       "Satchit lists this among his wider interests, open to research and collaboration.",
     ],
     categories: ["Societal"],
-    thesis: SATCHIT_THESIS,
     open: true,
   },
   {

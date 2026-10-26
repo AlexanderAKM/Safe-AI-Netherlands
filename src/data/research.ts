@@ -241,11 +241,15 @@ export type Supervisor = {
   /** The landing circle, 88-104 CSS. Written by `npm run images`. */
   imageSmall: string;
   agenda: string;
+  /** Not yet confirmed as able to supervise this round. The Project Hub page
+      shows their portrait faded, with "Availability to be confirmed". */
+  unconfirmed?: boolean;
 };
 
 export const supervisors: Supervisor[] = [
   {
     name: "Steven Abreu",
+    unconfirmed: true,
     position: "Research Scientist, MakerMaker",
     positionShort: "Research Scientist, MakerMaker",
     image: "/photos/supervisors/steven-800.webp",
@@ -264,6 +268,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Jobst Heitzig",
+    unconfirmed: true,
     position:
       "Working Group Leader, Senior Scientist, Potsdam Institute for Climate Impact Research",
     positionShort: "Senior Scientist, Potsdam Institute",
@@ -274,6 +279,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Guillaume Pourcel",
+    unconfirmed: true,
     position: "PhD AI Candidate, University of Groningen",
     positionShort: "PhD AI Candidate, University of Groningen",
     image: "/photos/supervisors/Guillame.jpg",

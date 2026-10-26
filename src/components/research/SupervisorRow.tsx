@@ -16,6 +16,10 @@ import { supervisors } from "@/data/research";
  *
  * Hover cues repeat on focus-visible, because a keyboard never fires hover, and
  * both transforms sit behind motion-safe.
+ *
+ * A supervisor whose availability is not confirmed yet keeps their place, but
+ * their portrait is greyed and eased back, and a line under the position says
+ * why, so the fade is never the only signal.
  */
 export default function SupervisorRow() {
   return (
@@ -36,7 +40,9 @@ export default function SupervisorRow() {
                 alt=""
                 width={312}
                 height={312}
-                className="aspect-square w-full object-cover transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]"
+                className={`aspect-square w-full object-cover transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04] ${
+                  person.unconfirmed ? "opacity-50 grayscale" : ""
+                }`}
               />
             </span>
 
@@ -60,6 +66,11 @@ export default function SupervisorRow() {
             <p className="mt-1.5 text-footnote leading-5 text-navy/65">
               {person.position}
             </p>
+            {person.unconfirmed && (
+              <p className="mt-1.5 text-footnote italic leading-5 text-navy/55">
+                Availability to be confirmed
+              </p>
+            )}
             {/* The whole portrait is the link, so the destination has to be
                 named for anyone who cannot see the hover state. */}
             <span className="sr-only">Research agenda (opens in a new tab)</span>

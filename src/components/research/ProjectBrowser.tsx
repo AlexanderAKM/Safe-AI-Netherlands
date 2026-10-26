@@ -374,9 +374,10 @@ export default function ProjectBrowser() {
                   alt=""
                   width={312}
                   height={312}
-                  className="size-[28px] shrink-0 object-cover"
+                  className={`size-[28px] shrink-0 object-cover ${person.unconfirmed ? "opacity-50 grayscale" : ""}`}
                 />
                 {person.name}
+                {person.unconfirmed && <span className="sr-only"> (availability to be confirmed)</span>}
                 <Count n={n} active={on} />
               </button>
             );
