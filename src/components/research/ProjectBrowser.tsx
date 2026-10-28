@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import {
   ArrowUpRightIcon,
   CaretDownIcon,
+  FunnelSimpleIcon,
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
@@ -58,20 +59,40 @@ import {
    else. */
 type Topic = ProjectCategory | "Thesis";
 
+/* Every filter takes any number of answers, and a project needs to match only
+   one of them ("Amsterdam or Remote"); across filters it must match each. An
+   empty list is the filter's first option ("Anywhere", "All topics"), which
+   covers everything else, so choosing it clears the rest. */
 type Filters = {
   query: string;
-  base: ProjectBase | "Anywhere";
-  category: Topic | "All";
+  bases: ProjectBase[];
+  topics: Topic[];
   /* Who can apply: open to everyone, or a VU or UvA thesis. */
-  who: Eligibility | "All";
-  supervisor: string | null;
+  who: Eligibility[];
+  supervisors: string[];
 };
 
 function matchesTopic(project: Project, topic: Topic) {
   return topic === "Thesis" ? Boolean(project.thesis) : project.categories.includes(topic);
 }
 
-const NO_FILTERS: Filters = { query: "", base: "Anywhere", category: "All", who: "All", supervisor: null };
+const NO_FILTERS: Filters = { query: "", bases: [], topics: [], who: [], supervisors: [] };
+
+function toggle<T>(list: T[], value: T) {
+  return list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
+}
+
+/* "a", "a or b", "a, b or c". */
+function joinOr(items: string[]) {
+  return items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items[items.length - 1]}`;
+}
+
+/* One filter's part of the results line: ", in Evaluations or offered as a
+   thesis", or nothing when the filter is on its first option. */
+function summaryClause(parts: string[]) {
+  const said = parts.filter(Boolean);
+  return said.length > 0 ? `, ${said.join(" or ")}` : "";
+}
 
 const WHO_LABELS: Record<Eligibility | "All", string> = {
   All: "All projects",
@@ -126,10 +147,14 @@ function filterExcept(filters: Filters, skip: keyof Filters | null) {
   return projects.filter(
     (project) =>
       (skip === "query" || matchesQuery(project, filters.query)) &&
-      (skip === "base" || filters.base === "Anywhere" || project.supervisor.base === filters.base) &&
-      (skip === "category" || filters.category === "All" || matchesTopic(project, filters.category)) &&
-      (skip === "who" || filters.who === "All" || eligibilityOf(project) === filters.who) &&
-      (skip === "supervisor" || !filters.supervisor || project.supervisor.name === filters.supervisor),
+      (skip === "bases" || filters.bases.length === 0 || filters.bases.includes(project.supervisor.base)) &&
+      (skip === "topics" ||
+        filters.topics.length === 0 ||
+        filters.topics.some((topic) => matchesTopic(project, topic))) &&
+      (skip === "who" || filters.who.length === 0 || filters.who.includes(eligibilityOf(project))) &&
+      (skip === "supervisors" ||
+        filters.supervisors.length === 0 ||
+        filters.supervisors.includes(project.supervisor.name)),
   );
 }
 
@@ -192,38 +217,35 @@ function chipClass(active: boolean) {
   }`;
 }
 
-/* A joined control: one question with one answer. The hairlines between the
-   cells are the navy ground showing through a 1px gap, so they hold whether
-   the cells sit in a row or, on a phone, a two-by-two grid. */
-function Segmented<T extends string>({
+/* A joined control: one question, its answers side by side, any number of
+   them on. The hairlines between the cells are the navy ground showing
+   through a 1px gap, so they hold whether the cells sit in a row or, on a
+   phone, a two-by-two grid. */
+function Segmented({
   label,
   groupLabel,
   options,
-  value,
-  onChange,
 }: {
   label: string;
   groupLabel: string;
-  options: { value: T; label: string; n: number }[];
-  value: T;
-  onChange: (value: T) => void;
+  options: { value: string; label: string; n: number; on: boolean; onClick: () => void }[];
 }) {
   return (
     <div className="min-w-0">
-      <p className="mb-3 font-sans text-footnote text-navy/60">{label}</p>
+      <p className="mb-1.5 font-sans text-footnote text-navy/60">{label}</p>
       <div
         role="group"
         aria-label={groupLabel}
         className="grid w-full grid-cols-2 gap-px border border-navy/18 bg-navy/18 sm:inline-flex sm:w-auto"
       >
         {options.map((option) => {
-          const on = option.value === value;
+          const on = option.on;
           return (
             <button
               key={option.value}
               type="button"
               aria-pressed={on}
-              onClick={() => onChange(option.value)}
+              onClick={option.onClick}
               className={`inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 ${
                 on
                   ? /* The ring paints over the light frame, so the chosen
@@ -260,8 +282,8 @@ function Count({ n, active }: { n: number; active: boolean }) {
    supervisor row. */
 function ChipRow({ label, note, children }: { label: string; note?: ReactNode; children: ReactNode }) {
   return (
-    <div className="px-4 py-4 md:px-6">
-      <p className="mb-3 font-sans text-footnote text-navy/60">{label}</p>
+    <div className="px-4 md:px-6">
+      <p className="mb-1.5 font-sans text-footnote text-navy/60">{label}</p>
       <div
         role="group"
         aria-label={label}
@@ -269,7 +291,7 @@ function ChipRow({ label, note, children }: { label: string; note?: ReactNode; c
       >
         {children}
       </div>
-      {note && <p className="mt-3 font-sans text-[12px] italic leading-[17px] text-navy/60">{note}</p>}
+      {note && <p className="mt-2 font-sans text-[12px] italic leading-[17px] text-navy/60">{note}</p>}
     </div>
   );
 }
@@ -494,138 +516,333 @@ export default function ProjectBrowser() {
   const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
   const gridRef = useRef<HTMLUListElement>(null);
   useRestRowHeights(gridRef, visible);
-  const forCategories = useMemo(() => filterExcept(filters, "category"), [filters]);
-  const forSupervisors = useMemo(() => filterExcept(filters, "supervisor"), [filters]);
-  const forBases = useMemo(() => filterExcept(filters, "base"), [filters]);
+  const forTopics = useMemo(() => filterExcept(filters, "topics"), [filters]);
+  const forSupervisors = useMemo(() => filterExcept(filters, "supervisors"), [filters]);
+  const forBases = useMemo(() => filterExcept(filters, "bases"), [filters]);
   const forWho = useMemo(() => filterExcept(filters, "who"), [filters]);
 
   const active =
     filters.query !== "" ||
-    filters.base !== "Anywhere" ||
-    filters.category !== "All" ||
-    filters.who !== "All" ||
-    filters.supervisor !== null;
+    filters.bases.length > 0 ||
+    filters.topics.length > 0 ||
+    filters.who.length > 0 ||
+    filters.supervisors.length > 0;
   const supervisorCount = new Set(shown.map((project) => project.supervisor.name)).size;
+
+  /* The filters open as a popover over the projects; a click anywhere outside
+     it, or Escape, puts it away again. The pills under the search say what is
+     chosen in the meantime. */
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const filterBoxRef = useRef<HTMLDivElement>(null);
+  const filterButtonRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!filtersOpen) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!filterBoxRef.current?.contains(event.target as Node)) setFiltersOpen(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setFiltersOpen(false);
+      filterButtonRef.current?.focus();
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [filtersOpen]);
+
+  /* The search and filters stay pinned under the site header while the
+     reader moves through the projects, so the header's height is measured
+     (it can wrap) and kept current. */
+  const [stickyTop, setStickyTop] = useState(71);
+  useEffect(() => {
+    const header = document.querySelector("header");
+    if (!header) return;
+    const measure = () => setStickyTop(header.offsetHeight);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
+
+  /* Scrolls to the first project, clear of both the site header and the
+     pinned filters above it. */
+  const scrollToGrid = (behavior: ScrollBehavior) => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const offset = stickyTop + (filterBoxRef.current?.offsetHeight ?? 0) + 16;
+    window.scrollTo({ top: grid.getBoundingClientRect().top + window.scrollY - offset, behavior });
+  };
+
+  /* The popover opens below the button when it fits there, above it when only
+     that fits (the sticky header counts as taken), and otherwise below with
+     the page scrolled up just enough to show it, never so far that the
+     button goes under the header. Measured before paint, so it never flashes
+     in the wrong place. */
+  const popoverRef = useRef<HTMLDivElement>(null);
+  const [opensAbove, setOpensAbove] = useState(false);
+  useLayoutEffect(() => {
+    const button = filterButtonRef.current;
+    const popover = popoverRef.current;
+    if (!filtersOpen || !button || !popover) return;
+    const gap = 12;
+    const headerBottom = Math.max(0, document.querySelector("header")?.getBoundingClientRect().bottom ?? 0);
+    const anchor = button.getBoundingClientRect();
+    const height = popover.offsetHeight;
+    const roomBelow = window.innerHeight - anchor.bottom - gap;
+    const roomAbove = anchor.top - headerBottom - gap;
+    if (height <= roomBelow) {
+      setOpensAbove(false);
+    } else if (height <= roomAbove) {
+      setOpensAbove(true);
+    } else {
+      setOpensAbove(false);
+      window.scrollBy({
+        top: Math.min(height - roomBelow, roomAbove),
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
+    }
+  }, [filtersOpen]);
+  const chosen: { label: string; clear: Partial<Filters> }[] = [
+    ...filters.supervisors.map((name) => ({
+      label: name,
+      clear: { supervisors: filters.supervisors.filter((item) => item !== name) },
+    })),
+    ...filters.topics.map((topic) => ({
+      label: topic,
+      clear: { topics: filters.topics.filter((item) => item !== topic) },
+    })),
+    ...filters.bases.map((base) => ({
+      label: base,
+      clear: { bases: filters.bases.filter((item) => item !== base) },
+    })),
+    ...filters.who.map((who) => ({
+      label: WHO_LABELS[who],
+      clear: { who: filters.who.filter((item) => item !== who) },
+    })),
+  ];
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Supervisors first, then topic and location, with the search under
-          them: the faces are what most readers come looking for. */}
-      <div className="divide-y divide-navy/10 border border-navy/12 bg-white">
-        {/* The fade alone would leave a reader guessing, so a line under
-            the chips says what it means. It goes once nobody is greyed out. */}
-        <ChipRow label="Supervisor" note={greyedNote}>
-          {projectSupervisors.map((person) => {
-            const on = filters.supervisor === person.name;
-            const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;
-            return (
-              <button
-                key={person.name}
-                type="button"
-                aria-pressed={on}
-                onClick={() => set({ supervisor: on ? null : person.name })}
-                className={`${chipClass(on)} !pl-1 ${n === 0 && !on ? "opacity-45" : ""}`}
+      {/* The search and a Filters button, with whatever is chosen shown as
+          pills under them; the full filters float over the projects on
+          request, so they never push the grid down. */}
+      <div
+        ref={filterBoxRef}
+        style={{ top: stickyTop }}
+        className="sticky z-30 border border-navy/12 bg-white py-4 md:py-5"
+      >
+        <div className="flex flex-col gap-3 px-4 md:px-6">
+          <div className="relative flex gap-2">
+            <label className="relative block min-w-0 flex-1">
+              <span className="sr-only">Search projects</span>
+              <MagnifyingGlassIcon
+                size={18}
+                aria-hidden="true"
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-navy/50"
+              />
+              <input
+                type="search"
+                value={filters.query}
+                onChange={(event) => set({ query: event.target.value })}
+                placeholder="Topic, person or university"
+                className="h-12 w-full appearance-none border border-navy/18 bg-white pl-10 pr-11 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none"
+              />
+              {/* Our own clear button in place of the browser's blue one; the
+                  border turning navy is the focus state, so no second ring. */}
+              {filters.query && (
+                <button
+                  type="button"
+                  onClick={() => set({ query: "" })}
+                  aria-label="Clear search"
+                  className="absolute right-1 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center text-navy/45 hover:text-navy focus-visible:outline-offset-0"
+                >
+                  <XIcon size={16} aria-hidden="true" />
+                </button>
+              )}
+            </label>
+            <button
+              ref={filterButtonRef}
+              type="button"
+              aria-expanded={filtersOpen}
+              aria-controls="project-filters"
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className={`inline-flex h-12 shrink-0 items-center gap-2 border px-4 text-[15px] transition-colors duration-150 ${
+                filtersOpen
+                  ? "border-navy bg-navy text-white"
+                  : "border-navy/18 bg-white text-navy hover:border-navy/45"
+              }`}
+            >
+              <FunnelSimpleIcon size={18} aria-hidden="true" />
+              <span className="max-sm:sr-only">Filters</span>
+              {chosen.length > 0 && (
+                <span
+                  className={`inline-flex size-5 items-center justify-center text-[12px] tabular-nums ${
+                    filtersOpen ? "bg-white text-navy" : "bg-navy text-white"
+                  }`}
+                >
+                  {chosen.length}
+                  <span className="sr-only"> chosen</span>
+                </span>
+              )}
+            </button>
+            {filtersOpen && (
+              <div
+                ref={popoverRef}
+                id="project-filters"
+                className={`absolute inset-x-0 ${opensAbove ? "bottom-full mb-1.5" : "top-full mt-1.5"} z-40 flex max-h-[min(70vh,640px)] flex-col border border-navy/15 bg-white shadow-[0_2px_8px_#021C4D14,0_24px_56px_-8px_#021C4D47] md:left-auto md:w-[min(680px,100%)]`}
               >
-                <Image
-                  src={person.imageSmall}
-                  alt=""
-                  width={312}
-                  height={312}
-                  className={`size-[28px] shrink-0 object-cover ${isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""}`}
-                />
-                {person.name}
-                {availabilityLine(person.availability, person.availabilityNote) && (
-                  <span className="sr-only"> ({availabilityLine(person.availability, person.availabilityNote)})</span>
-                )}
-                <Count n={n} active={on} />
-              </button>
-            );
-          })}
-        </ChipRow>
+                <div className="flex flex-col gap-6 overflow-y-auto py-5 md:py-6">
+                  {/* The fade alone would leave a reader guessing, so a line under
+                      the chips says what it means. It goes once nobody is greyed out. */}
+                  <ChipRow label="Supervisor" note={greyedNote}>
+                    {projectSupervisors.map((person) => {
+                      const on = filters.supervisors.includes(person.name);
+                      const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;
+                      return (
+                        <button
+                          key={person.name}
+                          type="button"
+                          aria-pressed={on}
+                          onClick={() => set({ supervisors: toggle(filters.supervisors, person.name) })}
+                          className={`${chipClass(on)} !pl-1 ${n === 0 && !on ? "opacity-45" : ""}`}
+                        >
+                          <Image
+                            src={person.imageSmall}
+                            alt=""
+                            width={312}
+                            height={312}
+                            className={`size-[28px] shrink-0 object-cover ${isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""}`}
+                          />
+                          {person.name}
+                          {availabilityLine(person.availability, person.availabilityNote) && (
+                            <span className="sr-only"> ({availabilityLine(person.availability, person.availabilityNote)})</span>
+                          )}
+                          <Count n={n} active={on} />
+                        </button>
+                      );
+                    })}
+                  </ChipRow>
 
-        <ChipRow label="Topic">
-          {(["All", ...projectCategories, "Thesis"] as const).map((value) => {
-            const on = filters.category === value;
-            const n =
-              value === "All"
-                ? forCategories.length
-                : forCategories.filter((project) => matchesTopic(project, value)).length;
-            return (
-              <button
-                key={value}
-                type="button"
-                aria-pressed={on}
-                onClick={() => set({ category: value })}
-                className={chipClass(on)}
-              >
-                {value === "All" ? "All topics" : value}
-                <Count n={n} active={on} />
-              </button>
-            );
-          })}
-        </ChipRow>
+                  <ChipRow label="Topic">
+                    {(["All", ...projectCategories, "Thesis"] as const).map((value) => {
+                      const on = value === "All" ? filters.topics.length === 0 : filters.topics.includes(value);
+                      const n =
+                        value === "All"
+                          ? forTopics.length
+                          : forTopics.filter((project) => matchesTopic(project, value)).length;
+                      return (
+                        <button
+                          key={value}
+                          type="button"
+                          aria-pressed={on}
+                          onClick={() => set({ topics: value === "All" ? [] : toggle(filters.topics, value) })}
+                          className={chipClass(on)}
+                        >
+                          {value === "All" ? "All topics" : value}
+                          <Count n={n} active={on} />
+                        </button>
+                      );
+                    })}
+                  </ChipRow>
 
-        {/* Where and who, side by side once there is room: two questions with
-            one answer each. */}
-        <div className="flex flex-col gap-5 px-4 py-4 md:px-6 xl:flex-row xl:gap-10">
-          <Segmented
-            label="Location"
-            groupLabel="Where the supervisor is based"
-            value={filters.base}
-            onChange={(base) => set({ base })}
-            options={(["Anywhere", ...projectBases] as const).map((value) => ({
-              value,
-              label: value,
-              n:
-                value === "Anywhere"
-                  ? forBases.length
-                  : forBases.filter((project) => project.supervisor.base === value).length,
-            }))}
-          />
-          <Segmented
-            label="Who can apply"
-            groupLabel="Who can apply"
-            value={filters.who}
-            onChange={(who) => set({ who })}
-            options={(["All", "everyone", "VU", "UvA"] as const).map((value) => ({
-              value,
-              label: WHO_LABELS[value],
-              n:
-                value === "All"
-                  ? forWho.length
-                  : forWho.filter((project) => eligibilityOf(project) === value).length,
-            }))}
-          />
-        </div>
-
-        <div className="px-4 py-4 md:px-6 md:py-5">
-          <label className="relative block w-full">
-            <span className="sr-only">Search projects</span>
-            <MagnifyingGlassIcon
-              size={18}
-              aria-hidden="true"
-              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-navy/50"
-            />
-            <input
-              type="search"
-              value={filters.query}
-              onChange={(event) => set({ query: event.target.value })}
-              placeholder="Topic, person or university"
-              className="h-12 w-full appearance-none border border-navy/18 bg-white pl-10 pr-11 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none"
-            />
-            {/* Our own clear button in place of the browser's blue one; the
-                border turning navy is the focus state, so no second ring. */}
-            {filters.query && (
-              <button
-                type="button"
-                onClick={() => set({ query: "" })}
-                aria-label="Clear search"
-                className="absolute right-1 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center text-navy/45 hover:text-navy focus-visible:outline-offset-0"
-              >
-                <XIcon size={16} aria-hidden="true" />
-              </button>
+                  <div className="flex flex-col gap-6 px-4 md:px-6">
+                    <Segmented
+                      label="Location"
+                      groupLabel="Where the supervisor is based"
+                      options={[
+                        {
+                          value: "Anywhere",
+                          label: "Anywhere",
+                          n: forBases.length,
+                          on: filters.bases.length === 0,
+                          onClick: () => set({ bases: [] }),
+                        },
+                        ...projectBases.map((value) => ({
+                          value,
+                          label: value,
+                          n: forBases.filter((project) => project.supervisor.base === value).length,
+                          on: filters.bases.includes(value),
+                          onClick: () => set({ bases: toggle(filters.bases, value) }),
+                        })),
+                      ]}
+                    />
+                    <Segmented
+                      label="Who can apply"
+                      groupLabel="Who can apply"
+                      options={[
+                        {
+                          value: "All",
+                          label: WHO_LABELS.All,
+                          n: forWho.length,
+                          on: filters.who.length === 0,
+                          onClick: () => set({ who: [] }),
+                        },
+                        ...(["everyone", "VU", "UvA"] as const).map((value) => ({
+                          value,
+                          label: WHO_LABELS[value],
+                          n: forWho.filter((project) => eligibilityOf(project) === value).length,
+                          on: filters.who.includes(value),
+                          onClick: () => set({ who: toggle(filters.who, value) }),
+                        })),
+                      ]}
+                    />
+                  </div>
+                </div>
+                <div className="flex items-center justify-between gap-4 border-t border-navy/10 px-4 py-3 md:px-6">
+                  {chosen.length > 0 ? (
+                    <button
+                      type="button"
+                      onClick={() => setFilters({ ...NO_FILTERS, query: filters.query })}
+                      className="text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
+                    >
+                      Reset filters
+                    </button>
+                  ) : (
+                    <span />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      /* Take the reader to the first project. When nothing
+                         matches, the empty state already sits right under
+                         the filters, so there is nowhere to go. */
+                      setFiltersOpen(false);
+                      filterButtonRef.current?.focus({ preventScroll: true });
+                      scrollToGrid(
+                        window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                      );
+                    }}
+                    className="btn-ink"
+                  >
+                    Show {shown.length} {shown.length === 1 ? "project" : "projects"}
+                  </button>
+                </div>
+              </div>
             )}
-          </label>
+          </div>
+
+          {/* What is chosen stays in sight, each one a click away from being
+              undone. */}
+          {chosen.length > 0 && (
+            <ul role="list" className="flex flex-wrap gap-2">
+              {chosen.map((item) => (
+                <li key={item.label}>
+                  <button
+                    type="button"
+                    onClick={() => set(item.clear)}
+                    aria-label={`Remove filter: ${item.label}`}
+                    className="inline-flex min-h-[32px] items-center gap-1.5 border border-navy bg-navy pl-3 pr-2 text-[13px] text-white hover:bg-navy/85"
+                  >
+                    {item.label}
+                    <XIcon size={12} aria-hidden="true" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 
@@ -633,21 +850,27 @@ export default function ProjectBrowser() {
         <p className="text-caption text-navy/65" aria-live="polite">
           {shown.length} {shown.length === 1 ? "project" : "projects"} from {supervisorCount}{" "}
           {supervisorCount === 1 ? "supervisor" : "supervisors"}
-          {filters.category === "Thesis"
-            ? ", offered as a thesis"
-            : filters.category !== "All"
-              ? ` in ${filters.category}`
-              : ""}
-          {filters.base !== "Anywhere"
-            ? filters.base === "Remote"
-              ? ", supervised remotely"
-              : `, based in ${filters.base}`
-            : ""}
-          {filters.who === "everyone"
-            ? ", open to everyone"
-            : filters.who !== "All"
-              ? `, for ${filters.who} students only`
-              : ""}
+          {summaryClause([
+            (() => {
+              const areas = filters.topics.filter((topic) => topic !== "Thesis");
+              return areas.length > 0 ? `in ${joinOr(areas)}` : "";
+            })(),
+            filters.topics.includes("Thesis") ? "offered as a thesis" : "",
+          ])}
+          {summaryClause([
+            (() => {
+              const cities = filters.bases.filter((base) => base !== "Remote");
+              return cities.length > 0 ? `based in ${joinOr(cities)}` : "";
+            })(),
+            filters.bases.includes("Remote") ? "supervised remotely" : "",
+          ])}
+          {summaryClause([
+            filters.who.includes("everyone") ? "open to everyone" : "",
+            (() => {
+              const universities = filters.who.filter((who) => who !== "everyone");
+              return universities.length > 0 ? `for ${joinOr(universities)} students only` : "";
+            })(),
+          ])}
           {filters.query ? ` matching "${filters.query}"` : ""}
         </p>
         {active && (
@@ -685,7 +908,7 @@ export default function ProjectBrowser() {
               onClick={() => {
                 /* Closing a long list would leave the reader far below it,
                    so bring the top of the grid back into view. */
-                if (expanded) gridRef.current?.scrollIntoView({ block: "start" });
+                if (expanded) scrollToGrid("auto");
                 setExpanded(!expanded);
               }}
               className="btn-outline-ink gap-2"
