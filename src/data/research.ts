@@ -241,16 +241,27 @@ export type Supervisor = {
   /** The landing circle, 88-104 CSS. Written by `npm run images`. */
   imageSmall: string;
   agenda: string;
-  /** Not yet confirmed as able to supervise this round. The Project Hub page
-      lists them last with their portrait faded, and their project cards come
-      last and say "Availability to be confirmed". */
-  unconfirmed?: boolean;
+  /** How much room they have this round; "open" when left out. See
+      `Availability`. A single project can override it (src/data/projects.ts). */
+  availability?: Availability;
+  /** The limit in a few words, shown after "Limited:" for a limited
+      supervisor, e.g. "1 place left across his projects". */
+  availabilityNote?: string;
 };
+
+/* How much room a supervisor (or one project) has this round.
+   - open: taking students.
+   - limited: a few places left; `availabilityNote` says how many.
+   - full: not taking students now. Still listed, greyed out, and left out of
+     the hero's open count.
+   - unconfirmed: not yet confirmed as able to supervise this round. Listed
+     after everyone else, portrait faded, "Availability to be confirmed". */
+export type Availability = "open" | "limited" | "full" | "unconfirmed";
 
 export const supervisors: Supervisor[] = [
   {
     name: "Steven Abreu",
-    unconfirmed: true,
+    availability: "unconfirmed",
     position: "Research Scientist, MakerMaker",
     positionShort: "Research Scientist, MakerMaker",
     image: "/photos/supervisors/steven-800.webp",
@@ -269,7 +280,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Jobst Heitzig",
-    unconfirmed: true,
+    availability: "unconfirmed",
     position:
       "Working Group Leader, Senior Scientist, Potsdam Institute for Climate Impact Research",
     positionShort: "Senior Scientist, Potsdam Institute",
@@ -280,7 +291,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Guillaume Pourcel",
-    unconfirmed: true,
+    availability: "unconfirmed",
     position: "PhD AI Candidate, University of Groningen",
     positionShort: "PhD AI Candidate, University of Groningen",
     image: "/photos/supervisors/Guillame.jpg",
@@ -290,6 +301,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Ana Lucic",
+    availability: "full",
     position: "Assistant Professor, University of Amsterdam",
     positionShort: "Assistant Professor, University of Amsterdam",
     image: "/photos/supervisors/Ana_Lucic-800.png",
@@ -342,6 +354,8 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Fausto Carcassi",
+    availability: "limited",
+    availabilityNote: "1 place left across his projects",
     position: "Assistant Professor, ILLC, University of Amsterdam",
     positionShort: "Assistant Professor, University of Amsterdam",
     image: "/photos/supervisors/Fausto_Carcassi-800.jpg",
@@ -373,11 +387,36 @@ export const supervisors: Supervisor[] = [
   },
 ];
 
-/* The confirmed supervisors first, then the unconfirmed ones, each group in
-   the order given. Used by the Project Hub's filter and supervisor row, so an
-   unconfirmed supervisor moves up on their own once the flag is removed. */
-export function confirmedFirst<T extends Pick<Supervisor, "unconfirmed">>(people: T[]) {
-  return [...people].sort((a, b) => Number(Boolean(a.unconfirmed)) - Number(Boolean(b.unconfirmed)));
+/* Taking students first (open or limited), then those to be confirmed, then
+   the full ones, each group in the order given. A supervisor moves on their
+   own once their availability changes. */
+const AVAILABILITY_RANK: Record<Availability, number> = {
+  open: 0,
+  limited: 0,
+  unconfirmed: 1,
+  full: 2,
+};
+
+export function availabilityRank(availability: Availability = "open") {
+  return AVAILABILITY_RANK[availability];
+}
+
+export function byAvailability<T extends Pick<Supervisor, "availability">>(people: T[]) {
+  return [...people].sort((a, b) => availabilityRank(a.availability) - availabilityRank(b.availability));
+}
+
+/** Full or not yet confirmed: their portrait is greyed out. */
+export function isGreyedOut(availability: Availability = "open") {
+  return availability === "full" || availability === "unconfirmed";
+}
+
+/** The words that say a status, wherever a portrait or card shows it; none
+    for open. */
+export function availabilityLine(availability: Availability = "open", note?: string) {
+  if (availability === "limited") return note ? `Limited: ${note}` : "Limited places";
+  if (availability === "full") return "Full for now";
+  if (availability === "unconfirmed") return "Availability to be confirmed";
+  return null;
 }
 
 /* Where a paper opens: SAIN's own reader when the PDF is hosted here,
@@ -407,6 +446,9 @@ export const PROJECTS_EMAIL = "projects@safeainetherlands.org";
    the buttons do too. It is the same
    form as COMMUNITY_JOIN_URL (src/data/siteContact.ts). */
 export const RESEARCH_INTEREST_FORM_URL = "https://sainonboard.fillout.com/new";
+/* The page that holds that form on this site (src/app/research/apply). Every
+   "Apply for a project" button goes here rather than off the site. */
+export const APPLY_PATH = "/research/apply";
 /* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */
 export const SUPERVISOR_INTEREST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScpE5jSBGAihD_8qJn7wRWdEFGieYQdLaPUZ8JiZyUVpn519g/viewform";

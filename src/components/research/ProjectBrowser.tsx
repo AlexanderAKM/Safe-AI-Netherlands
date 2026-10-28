@@ -8,12 +8,25 @@ import {
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { PROJECTS_EMAIL, confirmedFirst, supervisors, type Supervisor } from "@/data/research";
 import {
+  PROJECTS_EMAIL,
+  availabilityLine,
+  availabilityRank,
+  byAvailability,
+  isGreyedOut,
+  supervisors,
+  type Supervisor,
+} from "@/data/research";
+import {
+  eligibilityLabel,
+  eligibilityOf,
+  projectAvailability,
+  projectAvailabilityNote,
   projectBases,
   projectCategories,
   projects,
   thesisLabel,
+  type Eligibility,
   type Project,
   type ProjectBase,
   type ProjectCategory,
@@ -37,8 +50,8 @@ import {
    rest, so the section does not push everything after it far down the page.
    The list is dealt out one supervisor at a time, so those first six come
    from six different people rather than from whoever has the most entries.
-   Projects from supervisors whose availability is unconfirmed come after
-   all the others. */
+   Projects whose availability is to be confirmed come after the others, and
+   full ones last, greyed out but still there to read. */
 
 /* "Thesis" sits with the topics but reads each project's `thesis` field, so it
    picks every project offered as a thesis, at whatever level, and nothing
@@ -49,6 +62,8 @@ type Filters = {
   query: string;
   base: ProjectBase | "Anywhere";
   category: Topic | "All";
+  /* Who can apply: open to everyone, or a VU or UvA thesis. */
+  who: Eligibility | "All";
   supervisor: string | null;
 };
 
@@ -56,7 +71,14 @@ function matchesTopic(project: Project, topic: Topic) {
   return topic === "Thesis" ? Boolean(project.thesis) : project.categories.includes(topic);
 }
 
-const NO_FILTERS: Filters = { query: "", base: "Anywhere", category: "All", supervisor: null };
+const NO_FILTERS: Filters = { query: "", base: "Anywhere", category: "All", who: "All", supervisor: null };
+
+const WHO_LABELS: Record<Eligibility | "All", string> = {
+  All: "All projects",
+  everyone: "Open to everyone",
+  VU: "VU students only",
+  UvA: "UvA students only",
+};
 
 /* Universities by the names people search for. A position spells out
    "Vrije Universiteit Amsterdam"; a student types "VU". */
@@ -79,7 +101,8 @@ function matchesQuery(project: Project, query: string) {
     project.categories.join(" "),
     project.format ?? "",
     thesisLabel(project) ?? "",
-    project.thesis ? `${project.thesis.university} students` : "",
+    eligibilityLabel(project),
+    availabilityLine(projectAvailability(project), projectAvailabilityNote(project)) ?? "",
     project.lookingFor ?? "",
   ]
     .join(" ")
@@ -105,6 +128,7 @@ function filterExcept(filters: Filters, skip: keyof Filters | null) {
       (skip === "query" || matchesQuery(project, filters.query)) &&
       (skip === "base" || filters.base === "Anywhere" || project.supervisor.base === filters.base) &&
       (skip === "category" || filters.category === "All" || matchesTopic(project, filters.category)) &&
+      (skip === "who" || filters.who === "All" || eligibilityOf(project) === filters.who) &&
       (skip === "supervisor" || !filters.supervisor || project.supervisor.name === filters.supervisor),
   );
 }
@@ -126,28 +150,39 @@ function interleaveBySupervisor(list: Project[]) {
   return dealt;
 }
 
-/* The grid's order: projects from confirmed supervisors dealt out first, then
-   those from supervisors whose availability is unconfirmed, dealt the same
-   way, so the opening cards are ones a student can count on. */
+/* The grid's order: open and limited projects dealt out first, then those to
+   be confirmed, then the full ones, each group dealt the same way, so the
+   opening cards are ones a student can count on. */
 function gridOrder(list: Project[]) {
-  return [
-    ...interleaveBySupervisor(list.filter((project) => !project.supervisor.unconfirmed)),
-    ...interleaveBySupervisor(list.filter((project) => project.supervisor.unconfirmed)),
-  ];
+  return [0, 1, 2].flatMap((rank) =>
+    interleaveBySupervisor(list.filter((project) => availabilityRank(projectAvailability(project)) === rank)),
+  );
 }
 
 /* How many projects the grid shows before "Show all": two rows at full width. */
 const PREVIEW_COUNT = 6;
 
 /* Every supervisor on the site: those with projects in the order the projects
-   list them, then anyone without one yet, who still shows with a 0. Anyone
-   whose availability is unconfirmed goes to the end until it is confirmed. */
-const projectSupervisors: Supervisor[] = confirmedFirst(
+   list them, then anyone without one yet, who still shows with a 0. Anyone to
+   be confirmed goes after them, and anyone full last. */
+const projectSupervisors: Supervisor[] = byAvailability(
   [...projects.map((project) => project.supervisor), ...supervisors].filter(
     (person, i, all) => all.findIndex((other) => other.name === person.name) === i,
   ),
 );
-const anyUnconfirmed = projectSupervisors.some((person) => person.unconfirmed);
+
+/* The line under the supervisor chips, naming whichever greyed-out states
+   are present; none once nobody is greyed out. */
+const anyFull = projectSupervisors.some((person) => person.availability === "full");
+const anyUnconfirmed = projectSupervisors.some((person) => person.availability === "unconfirmed");
+const greyedNote =
+  anyFull && anyUnconfirmed
+    ? "Greyed-out supervisors are full for now, or have not confirmed their availability for this round yet."
+    : anyFull
+      ? "Greyed-out supervisors are full for now."
+      : anyUnconfirmed
+        ? "Greyed-out supervisors have not confirmed their availability for this round yet."
+        : undefined;
 
 function chipClass(active: boolean) {
   return `inline-flex min-h-[38px] shrink-0 items-center gap-2 border px-3 text-[14px] leading-5 transition-colors duration-150 ${
@@ -155,6 +190,57 @@ function chipClass(active: boolean) {
       ? "border-navy bg-navy text-white"
       : "border-navy/18 bg-white text-navy/80 hover:border-navy/45 hover:text-navy"
   }`;
+}
+
+/* A joined control: one question with one answer. The hairlines between the
+   cells are the navy ground showing through a 1px gap, so they hold whether
+   the cells sit in a row or, on a phone, a two-by-two grid. */
+function Segmented<T extends string>({
+  label,
+  groupLabel,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  groupLabel: string;
+  options: { value: T; label: string; n: number }[];
+  value: T;
+  onChange: (value: T) => void;
+}) {
+  return (
+    <div className="min-w-0">
+      <p className="mb-3 font-sans text-footnote text-navy/60">{label}</p>
+      <div
+        role="group"
+        aria-label={groupLabel}
+        className="grid w-full grid-cols-2 gap-px border border-navy/18 bg-navy/18 sm:inline-flex sm:w-auto"
+      >
+        {options.map((option) => {
+          const on = option.value === value;
+          return (
+            <button
+              key={option.value}
+              type="button"
+              aria-pressed={on}
+              onClick={() => onChange(option.value)}
+              className={`inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 ${
+                on
+                  ? /* The ring paints over the light frame, so the chosen
+                       cell fills the control's full height instead of
+                       sitting 1px inside it like a shorter button. */
+                    "relative bg-navy text-white ring-1 ring-navy"
+                  : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
+              }`}
+            >
+              {option.label}
+              <Count n={option.n} active={on} />
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function Count({ n, active }: { n: number; active: boolean }) {
@@ -234,6 +320,9 @@ function ProjectCard({ project }: { project: Project }) {
   const titleId = `project-${project.id}-title`;
   const detailsId = `project-${project.id}-details`;
   const links = [{ label: "Agenda", href: person.agenda }, ...person.links];
+  const availability = projectAvailability(project);
+  const full = availability === "full";
+  const statusLine = availabilityLine(availability, projectAvailabilityNote(project));
 
   const toggle = () => {
     if (!open) setShowing(true);
@@ -245,15 +334,15 @@ function ProjectCard({ project }: { project: Project }) {
       <article
         aria-labelledby={titleId}
         className={`flex w-full flex-col border transition-colors duration-200 hover:border-navy/30 ${
-          project.open ? "border-navy/12 bg-white" : "border-dashed border-navy/22 bg-white/55"
+          full ? "border-dashed border-navy/22 bg-white/55" : "border-navy/12 bg-white"
         }`}
       >
         <div className="relative flex flex-1 flex-col p-5 md:p-6">
-          {/* A closed card reads as set aside rather than switched off: a
+          {/* A full card reads as set aside rather than switched off: a
               dashed edge, the cream showing through, and its text eased back
               to 80%. The small grey lines (tags, position) start a step darker
               so they still clear 4.5:1 once eased back. It still opens. */}
-          <div className={project.open ? "contents" : "contents [&>*]:opacity-80"}>
+          <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
           <div className="flex items-start justify-between gap-4">
             <h3 id={titleId} className="font-serif text-title-sm text-navy">
               <button
@@ -277,23 +366,22 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {/* Straight under the title, where a student decides whether a
-              project is for them: a thesis counts towards a degree at that
-              university, so it is for that university's students. */}
-          {project.thesis && (
-            <p className="mt-2 text-caption leading-[18px]">
-              <span className="font-medium text-orange-ink">{thesisLabel(project)}</span>
-              <span className={project.open ? "text-navy/60" : "text-navy/75"}>
-                {" "}
-                · for {project.thesis.university} students
-              </span>
-            </p>
-          )}
+              project is for them. A thesis counts towards a degree at that
+              university, so it is for that university's students and says so
+              in orange; everything else is open to everyone. */}
+          <p
+            className={`mt-2 text-caption leading-[18px] ${
+              project.thesis ? "font-medium text-orange-ink" : full ? "text-navy/75" : "text-navy/60"
+            }`}
+          >
+            {eligibilityLabel(project)}
+          </p>
 
           <div className="mt-3 flex flex-wrap gap-1.5">
             {project.categories.map((category) => (
               <span
                 key={category}
-                className={`bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 ${project.open ? "text-navy/70" : "text-navy/85"}`}
+                className={`bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 ${full ? "text-navy/85" : "text-navy/70"}`}
               >
                 {category}
               </span>
@@ -307,12 +395,16 @@ function ProjectCard({ project }: { project: Project }) {
 
           <p className="mt-4 text-caption leading-[18px]">
             <span className="block font-medium text-navy">{person.name}</span>
-            <span className={`block ${project.open ? "text-navy/60" : "text-navy/75"}`}>{person.positionShort}</span>
-            {/* Words, not a fade: fading is how a closed card reads. Same
-                italic line as the supervisor row and the filter's note. */}
-            {person.unconfirmed && (
-              <span className={`mt-1 block italic ${project.open ? "text-navy/60" : "text-navy/75"}`}>
-                Availability to be confirmed
+            <span className={`block ${full ? "text-navy/75" : "text-navy/60"}`}>{person.positionShort}</span>
+            {/* Words, not a fade: fading is how a full card reads. Same italic
+                line as the supervisor row and the filter's note; a limited
+                one in orange, since it is the one a student should act on. A
+                full card says so at its foot instead. */}
+            {statusLine && !full && (
+              <span
+                className={`mt-1 block italic ${availability === "limited" ? "text-orange-ink" : "text-navy/60"}`}
+              >
+                {statusLine}
               </span>
             )}
           </p>
@@ -324,11 +416,11 @@ function ProjectCard({ project }: { project: Project }) {
               across a row, and set apart by a hairline rather than colour:
               closed is a state to read, not an alarm. Kept at full strength,
               since it is the one line on the card that explains the rest. */}
-          {!project.open && (
+          {full && (
             <div className="mt-auto pt-5">
               <p className="border-t border-navy/12 pt-3.5 text-caption leading-[18px] text-navy/70">
-                <span className="font-medium text-navy">Closed for now.</span> This project is not
-                taking new students at the moment.
+                <span className="font-medium text-navy">Full for now.</span> Not taking new
+                students at the moment.
               </p>
             </div>
           )}
@@ -405,9 +497,14 @@ export default function ProjectBrowser() {
   const forCategories = useMemo(() => filterExcept(filters, "category"), [filters]);
   const forSupervisors = useMemo(() => filterExcept(filters, "supervisor"), [filters]);
   const forBases = useMemo(() => filterExcept(filters, "base"), [filters]);
+  const forWho = useMemo(() => filterExcept(filters, "who"), [filters]);
 
   const active =
-    filters.query !== "" || filters.base !== "Anywhere" || filters.category !== "All" || filters.supervisor !== null;
+    filters.query !== "" ||
+    filters.base !== "Anywhere" ||
+    filters.category !== "All" ||
+    filters.who !== "All" ||
+    filters.supervisor !== null;
   const supervisorCount = new Set(shown.map((project) => project.supervisor.name)).size;
 
   return (
@@ -416,11 +513,8 @@ export default function ProjectBrowser() {
           them: the faces are what most readers come looking for. */}
       <div className="divide-y divide-navy/10 border border-navy/12 bg-white">
         {/* The fade alone would leave a reader guessing, so a line under
-            the chips says what it means. It goes once nobody is unconfirmed. */}
-        <ChipRow
-          label="Supervisor"
-          note={anyUnconfirmed ? "Greyed-out supervisors have not confirmed their availability for this round yet." : undefined}
-        >
+            the chips says what it means. It goes once nobody is greyed out. */}
+        <ChipRow label="Supervisor" note={greyedNote}>
           {projectSupervisors.map((person) => {
             const on = filters.supervisor === person.name;
             const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;
@@ -437,10 +531,12 @@ export default function ProjectBrowser() {
                   alt=""
                   width={312}
                   height={312}
-                  className={`size-[28px] shrink-0 object-cover ${person.unconfirmed ? "opacity-50 grayscale" : ""}`}
+                  className={`size-[28px] shrink-0 object-cover ${isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""}`}
                 />
                 {person.name}
-                {person.unconfirmed && <span className="sr-only"> (availability to be confirmed)</span>}
+                {availabilityLine(person.availability, person.availabilityNote) && (
+                  <span className="sr-only"> ({availabilityLine(person.availability, person.availabilityNote)})</span>
+                )}
                 <Count n={n} active={on} />
               </button>
             );
@@ -469,44 +565,37 @@ export default function ProjectBrowser() {
           })}
         </ChipRow>
 
-        <div className="px-4 py-4 md:px-6">
-          <p className="mb-3 font-sans text-footnote text-navy/60">Location</p>
-          {/* One joined control rather than four chips: the four places are
-              one question with one answer. The hairlines between the cells are
-              the navy ground showing through a 1px gap, so they hold whether
-              the cells sit in a row or, on a phone, a two-by-two grid. */}
-          <div
-            role="group"
-            aria-label="Where the supervisor is based"
-            className="grid w-full grid-cols-2 gap-px border border-navy/18 bg-navy/18 sm:inline-flex sm:w-auto"
-          >
-            {(["Anywhere", ...projectBases] as const).map((value) => {
-              const on = filters.base === value;
-              const n =
+        {/* Where and who, side by side once there is room: two questions with
+            one answer each. */}
+        <div className="flex flex-col gap-5 px-4 py-4 md:px-6 xl:flex-row xl:gap-10">
+          <Segmented
+            label="Location"
+            groupLabel="Where the supervisor is based"
+            value={filters.base}
+            onChange={(base) => set({ base })}
+            options={(["Anywhere", ...projectBases] as const).map((value) => ({
+              value,
+              label: value,
+              n:
                 value === "Anywhere"
                   ? forBases.length
-                  : forBases.filter((project) => project.supervisor.base === value).length;
-              return (
-                <button
-                  key={value}
-                  type="button"
-                  aria-pressed={on}
-                  onClick={() => set({ base: value })}
-                  className={`inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 ${
-                    on
-                      ? /* The ring paints over the light frame, so the chosen
-                           cell fills the control's full height instead of
-                           sitting 1px inside it like a shorter button. */
-                        "relative bg-navy text-white ring-1 ring-navy"
-                      : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
-                  }`}
-                >
-                  {value}
-                  <Count n={n} active={on} />
-                </button>
-              );
-            })}
-          </div>
+                  : forBases.filter((project) => project.supervisor.base === value).length,
+            }))}
+          />
+          <Segmented
+            label="Who can apply"
+            groupLabel="Who can apply"
+            value={filters.who}
+            onChange={(who) => set({ who })}
+            options={(["All", "everyone", "VU", "UvA"] as const).map((value) => ({
+              value,
+              label: WHO_LABELS[value],
+              n:
+                value === "All"
+                  ? forWho.length
+                  : forWho.filter((project) => eligibilityOf(project) === value).length,
+            }))}
+          />
         </div>
 
         <div className="px-4 py-4 md:px-6 md:py-5">
@@ -554,6 +643,11 @@ export default function ProjectBrowser() {
               ? ", supervised remotely"
               : `, based in ${filters.base}`
             : ""}
+          {filters.who === "everyone"
+            ? ", open to everyone"
+            : filters.who !== "All"
+              ? `, for ${filters.who} students only`
+              : ""}
           {filters.query ? ` matching "${filters.query}"` : ""}
         </p>
         {active && (

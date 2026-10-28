@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { confirmedFirst, supervisors } from "@/data/research";
+import { availabilityLine, byAvailability, isGreyedOut, supervisors } from "@/data/research";
 
 /* The supervisors, as a left-aligned row of 140px square portraits on white.
  *
@@ -17,14 +17,15 @@ import { confirmedFirst, supervisors } from "@/data/research";
  * Hover cues repeat on focus-visible, because a keyboard never fires hover, and
  * both transforms sit behind motion-safe.
  *
- * A supervisor whose availability is not confirmed yet moves to the end of the
- * row, their portrait greyed and eased back, and a line under the position says
- * why, so the fade is never the only signal.
+ * A supervisor who is full, or whose availability is not confirmed yet, moves
+ * towards the end of the row, their portrait greyed and eased back, and a line
+ * under the position says why, so the fade is never the only signal. A limited
+ * supervisor keeps their portrait and gets the line in orange.
  */
 export default function SupervisorRow() {
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
-      {confirmedFirst(supervisors).map((person) => (
+      {byAvailability(supervisors).map((person) => (
         <li key={person.name} className="w-[140px]">
           <a
             href={person.agenda}
@@ -41,7 +42,7 @@ export default function SupervisorRow() {
                 width={312}
                 height={312}
                 className={`aspect-square w-full object-cover transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04] ${
-                  person.unconfirmed ? "opacity-50 grayscale" : ""
+                  isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""
                 }`}
               />
             </span>
@@ -66,9 +67,13 @@ export default function SupervisorRow() {
             <p className="mt-1.5 text-footnote leading-5 text-navy/65">
               {person.position}
             </p>
-            {person.unconfirmed && (
-              <p className="mt-1.5 text-footnote italic leading-5 text-navy/55">
-                Availability to be confirmed
+            {availabilityLine(person.availability, person.availabilityNote) && (
+              <p
+                className={`mt-1.5 text-footnote italic leading-5 ${
+                  person.availability === "limited" ? "text-orange-ink" : "text-navy/55"
+                }`}
+              >
+                {availabilityLine(person.availability, person.availabilityNote)}
               </p>
             )}
             {/* The whole portrait is the link, so the destination has to be

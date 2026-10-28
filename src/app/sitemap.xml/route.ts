@@ -19,6 +19,7 @@ const routes = [
   "/chapters/utrecht",
   "/chapters/amsterdam",
   "/research/handbook",
+  "/research/apply",
   // The governing documents under /about/[document], read from the same
   // source the pages are generated from, so a new document cannot ship
   // unlisted.

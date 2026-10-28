@@ -9,13 +9,12 @@ import FeaturedPublications from "@/components/research/FeaturedPublications";
 import SectionOrbits from "@/components/research/SectionOrbits";
 import SupervisorRow from "@/components/research/SupervisorRow";
 import ProjectBrowser from "@/components/research/ProjectBrowser";
-import { projects } from "@/data/projects";
+import { projectHubStats } from "@/data/projects";
 import {
   paperHref,
   publications,
-  supervisors,
+  APPLY_PATH,
   PROJECTS_EMAIL,
-  RESEARCH_INTEREST_FORM_URL,
   SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
 
@@ -33,12 +32,15 @@ const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
    Projects  ·  20+ Researchers  ·  12+ Publications", and two of the three
    traced to nothing while the third contradicted the exact twelve papers this
    page lists. A number on this page has to be checkable by the reader, because
-   the reader is the sort who checks. */
-/* Each counted fact links down to the section it counts. */
+   the reader is the sort who checks. projectHubStats counts from the same
+   lists the cards show: projects that are not full, the supervisors with at
+   least one of them, and the publications listed.
+   Each counted fact links down to the section it counts. */
+const stats = projectHubStats();
 const factLine = [
-  { text: `${projects.filter((project) => project.open).length} open projects`, href: "#projects" },
-  { text: `${supervisors.length} supervisors`, href: "#supervisors" },
-  { text: `${publications.length} publications`, href: "#publications" },
+  { text: `${stats.openProjects} open projects`, href: "#projects" },
+  { text: `${stats.supervisors} supervisors`, href: "#supervisors" },
+  { text: `${stats.publications} publications`, href: "#publications" },
   { text: "rolling applications" },
 ];
 
@@ -172,16 +174,10 @@ export default function ResearchPage() {
                 handbook is findable from the first screen), and the plain
                 link down to the projects. */}
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-1">
-              <a
-                href={RESEARCH_INTEREST_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-accent gap-2"
-              >
+              <Link href={APPLY_PATH} className="btn-accent gap-2">
                 Apply for a project
-                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens the application form in a new tab)</span>
-              </a>
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
               <Link href="/research/handbook" className="btn-outline-ink gap-2">
                 <BookOpen size={18} weight="regular" aria-hidden="true" />
                 Read the handbook
@@ -251,16 +247,10 @@ export default function ResearchPage() {
                 background.
               </p>
             </div>
-            <a
-              href={RESEARCH_INTEREST_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent shrink-0 gap-2 self-start lg:self-center"
-            >
+            <Link href={APPLY_PATH} className="btn-accent shrink-0 gap-2 self-start lg:self-center">
               Apply for a project
-              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens the application form in a new tab)</span>
-            </a>
+              <ArrowRight size={16} weight="regular" aria-hidden="true" />
+            </Link>
           </div>
           <ProjectBrowser />
         </div>
@@ -553,16 +543,10 @@ export default function ResearchPage() {
 
           <div className="flex flex-col gap-5 lg:shrink-0">
             <div className="flex flex-wrap gap-3">
-              <a
-                href={RESEARCH_INTEREST_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-accent gap-2"
-              >
+              <Link href={APPLY_PATH} className="btn-accent gap-2">
                 Apply for a project
-                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens the application form in a new tab)</span>
-              </a>
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
               <a href={PROJECTS_MAILTO} className="btn-ghost-inverse">
                 Email the projects team
               </a>

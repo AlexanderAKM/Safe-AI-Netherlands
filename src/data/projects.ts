@@ -1,4 +1,4 @@
-import { supervisors, type Supervisor } from "@/data/research";
+import { publications, supervisors, type Availability, type Supervisor } from "@/data/research";
 
 /* The Project Hub's open projects: what each supervisor has offered to
    supervise, written up from the agendas they wrote for SAIN (the Drive
@@ -21,8 +21,26 @@ import { supervisors, type Supervisor } from "@/data/research";
    UvA MSc AI thesis is a course in the UvA programme), so `thesis` names that
    university and the card says the project is for its students.
 
-   To add a project: add an entry with its supervisor and categories. To close
-   one: set `open: false` (it stays listed, marked closed) or delete it. */
+   Availability comes from the supervisor (src/data/research.ts): open,
+   limited, full or to be confirmed. A project can override it with its own
+   `availability`, for instance to mark one project full while the
+   supervisor's others stay open.
+
+   To add a project: add an entry with its supervisor and categories. To take
+   one off the open count but keep it listed, set `availability: "full"`; to
+   remove it, delete it.
+
+   Later source: Airtable, base "SAIN Pipeline", table "Project Hub", the
+   records with Status "Project Accepted". The page reads nothing but
+   `projects` and `supervisors`: the hero's numbers (projectHubStats), the
+   filters and the cards are all computed from them, so a fetch that writes
+   these two lists in these shapes is the only change the switch needs. The
+   table cannot do that yet. It holds a project's name, status and supervisor,
+   not what a card shows: the summary and details, topics, thesis university
+   and level, location and availability would need fields first. And its list
+   has to catch up with this file: on 28 October 2026 it had 13 accepted
+   projects to the 32 here, with nothing yet for Sandro, Leon, Steven, Jobst,
+   Guillaume or Peter, and Fatih's five as one. */
 
 export type ProjectCategory =
   | "Interpretability"
@@ -55,6 +73,10 @@ export type ProjectSupervisor = Supervisor & {
 
 export type ThesisUniversity = "VU" | "UvA";
 
+/** Who can apply: a thesis is for students of its university; every other
+    project is open to everyone. */
+export type Eligibility = ThesisUniversity | "everyone";
+
 export type Project = {
   id: string;
   title: string;
@@ -71,7 +93,10 @@ export type Project = {
   /** Only when the supervisor stated it. */
   lookingFor?: string;
   commitment?: string;
-  open: boolean;
+  /** Only to differ from the supervisor's own availability. */
+  availability?: Availability;
+  /** With a project-level `availability`: the limit in a few words. */
+  availabilityNote?: string;
 };
 
 /** A thesis project's label: "VU thesis", or "UvA thesis · MSc AI". */
@@ -79,6 +104,33 @@ export function thesisLabel(project: Project) {
   if (!project.thesis) return null;
   const { university, level } = project.thesis;
   return level ? `${university} thesis · ${level}` : `${university} thesis`;
+}
+
+export function eligibilityOf(project: Project): Eligibility {
+  return project.thesis?.university ?? "everyone";
+}
+
+/** The line under every card's title: "VU thesis (MSc): VU students only",
+    or "Open to everyone". */
+export function eligibilityLabel(project: Project) {
+  if (!project.thesis) return "Open to everyone";
+  const { university, level } = project.thesis;
+  return `${university} thesis${level ? ` (${level})` : ""}: ${university} students only`;
+}
+
+/** The project's own availability, else its supervisor's, else open. */
+export function projectAvailability(project: Project): Availability {
+  return project.availability ?? project.supervisor.availability ?? "open";
+}
+
+export function projectAvailabilityNote(project: Project) {
+  return project.availability ? project.availabilityNote : project.supervisor.availabilityNote;
+}
+
+/** Counts as open: everything but full. Limited is open with fewer places,
+    and "to be confirmed" stays open until it is settled either way. */
+export function isOpenProject(project: Project) {
+  return projectAvailability(project) !== "full";
 }
 
 function byName(
@@ -146,7 +198,6 @@ export const projects: Project[] = [
     ],
     categories: ["Societal", "Evaluations"],
     thesis: { university: "VU" },
-    open: true,
   },
   {
     id: "formal-neurosymbolic-safety",
@@ -159,7 +210,6 @@ export const projects: Project[] = [
       SATCHIT_OPEN,
     ],
     categories: ["Formal methods", "Alignment and RL"],
-    open: true,
   },
   {
     id: "multi-agent-rl-safety",
@@ -169,7 +219,6 @@ export const projects: Project[] = [
       "Safety questions in reinforcement learning and multi-agent RL, including game-theoretic approaches to the incentives and behaviour of interacting agents.",
     details: [SATCHIT_OPEN],
     categories: ["Multi-agent", "Alignment and RL"],
-    open: true,
   },
   {
     id: "llm-guardrails",
@@ -179,7 +228,6 @@ export const projects: Project[] = [
       "Mechanisms that constrain, monitor or correct what language models do, built to hold up under distribution shift and adversarial inputs.",
     details: [SATCHIT_OPEN],
     categories: ["Security and privacy", "Evaluations"],
-    open: true,
   },
   {
     id: "human-societal-safety",
@@ -192,7 +240,6 @@ export const projects: Project[] = [
       "Satchit lists this among his wider interests, open to research and collaboration.",
     ],
     categories: ["Societal"],
-    open: true,
   },
   {
     id: "vlm-visual-events",
@@ -202,7 +249,6 @@ export const projects: Project[] = [
       "Measure how well current VLMs understand and narrate visual events, and whether human behavioural and cognitive patterns can improve them.",
     details: [SANDRO_ANGLE],
     categories: ["Evaluations"],
-    open: true,
   },
   {
     id: "ambiguous-language",
@@ -212,7 +258,6 @@ export const projects: Project[] = [
       "How do LLMs and VLMs handle language with several readings, missing information, or an implied message, and can linguistics boost their understanding?",
     details: [SANDRO_ANGLE],
     categories: ["Evaluations"],
-    open: true,
   },
   {
     id: "human-inspired-interp",
@@ -222,7 +267,6 @@ export const projects: Project[] = [
       "Find the circuits in LLMs and VLMs responsible for a specific behaviour, and ask whether they mirror the cognitive and neural mechanisms seen in humans.",
     details: [SANDRO_ANGLE],
     categories: ["Interpretability"],
-    open: true,
   },
   {
     id: "communicative-benchmarks",
@@ -231,7 +275,6 @@ export const projects: Project[] = [
     summary: "Can LLMs be used, and evaluated, in genuinely communicative and collaborative settings?",
     details: [SANDRO_ANGLE],
     categories: ["Evaluations", "Multi-agent"],
-    open: true,
   },
   {
     id: "program-synthesis-interp",
@@ -244,7 +287,6 @@ export const projects: Project[] = [
       FAUSTO_OPEN,
     ],
     categories: ["Interpretability", "Formal methods"],
-    open: true,
   },
   {
     id: "cognitive-skills-interp",
@@ -254,7 +296,6 @@ export const projects: Project[] = [
       "Use mechanistic interpretability to study cognitive skills in LLMs, such as theory of mind and plausible deniability.",
     details: [FAUSTO_OPEN],
     categories: ["Interpretability"],
-    open: true,
   },
   {
     id: "emergent-personas",
@@ -263,7 +304,6 @@ export const projects: Project[] = [
     summary: "Study the personas that emerge when LLMs design themselves.",
     details: [FAUSTO_OPEN],
     categories: ["Alignment and RL"],
-    open: true,
   },
   {
     id: "ai-poisoning-signatures",
@@ -273,7 +313,6 @@ export const projects: Project[] = [
       "Can you tell, from high-level summaries of its text, whether a small simulated internet has been poisoned by AI-generated traces?",
     details: [FAUSTO_OPEN],
     categories: ["Security and privacy", "Societal"],
-    open: true,
   },
   {
     id: "llm-theory-of-mind",
@@ -283,7 +322,6 @@ export const projects: Project[] = [
       "Study whether LLMs use theory of mind about each other when coordinating, and whether it differs from how they model human users.",
     details: [FAUSTO_OPEN],
     categories: ["Multi-agent", "Interpretability"],
-    open: true,
   },
   {
     id: "dangerous-behaviour-evals",
@@ -296,7 +334,6 @@ export const projects: Project[] = [
       "Leon is more familiar with some topics than others, so the first step is agreeing a concrete, tractable question.",
     ],
     categories: ["Interpretability", "Evaluations"],
-    open: true,
   },
   {
     id: "safe-rl-training",
@@ -308,7 +345,6 @@ export const projects: Project[] = [
       "RL on LLMs is compute-intensive, so the scope adapts to the resources available: smaller toy experiments on a specific phenomenon, or finding relevant compute.",
     ],
     categories: ["Alignment and RL"],
-    open: true,
   },
   {
     id: "llm-reward-values",
@@ -318,7 +354,6 @@ export const projects: Project[] = [
       "Explore how LLMs themselves can improve reward functions and align them with different moral values.",
     details: ["RL on LLMs is compute-intensive, so the scope adapts to the resources available."],
     categories: ["Alignment and RL"],
-    open: true,
   },
   {
     id: "xai-science-thesis",
@@ -331,9 +366,10 @@ export const projects: Project[] = [
       "She primarily supervises MSc AI thesis projects, and is also open to ELLIS honours projects. The ELLIS honours programme is for excellent UvA MSc AI students.",
     ],
     categories: ["Interpretability"],
-    thesis: { university: "UvA", level: "MSc AI" },
+    /* Honours only: Ana takes only excellent UvA MSc AI students now
+       (Project Hub team, 28 October 2026). */
+    thesis: { university: "UvA", level: "MSc AI, honours" },
     format: "ELLIS honours project",
-    open: true,
   },
   {
     id: "llm-rag-security",
@@ -345,7 +381,6 @@ export const projects: Project[] = [
       "Fatih's group regularly enters security and privacy of AI challenges, and invites students to team up.",
     ],
     categories: ["Security and privacy"],
-    open: true,
   },
   {
     id: "decentralised-privacy",
@@ -357,7 +392,6 @@ export const projects: Project[] = [
       "Includes identifying attacks such as inference and adversarial manipulation, and defending with privacy-enhancing technologies.",
     ],
     categories: ["Security and privacy"],
-    open: true,
   },
   {
     id: "neuromorphic-security",
@@ -366,7 +400,6 @@ export const projects: Project[] = [
     summary: "Study the security and privacy of brain-inspired computing systems.",
     details: [],
     categories: ["Security and privacy"],
-    open: true,
   },
   {
     id: "ai-security-testing",
@@ -376,7 +409,6 @@ export const projects: Project[] = [
       "Use LLMs to test software and systems, discover vulnerabilities and patch them automatically.",
     details: [],
     categories: ["Security and privacy"],
-    open: true,
   },
   {
     id: "autonomous-cyberdefence",
@@ -385,7 +417,6 @@ export const projects: Project[] = [
     summary: "Build autonomous reinforcement learning agents for cyberdefence.",
     details: [],
     categories: ["Security and privacy", "Alignment and RL"],
-    open: true,
   },
   {
     id: "empo",
@@ -402,7 +433,6 @@ export const projects: Project[] = [
     lookingFor:
       "Experienced ML users, ideally with reinforcement learning or multi-agent RL experience",
     commitment: "Weekly one-on-one and team meetings, remote",
-    open: true,
   },
   {
     id: "persuasion-benchmark",
@@ -415,7 +445,6 @@ export const projects: Project[] = [
       "The aim is to reveal patterns such as models trained for truthfulness defending positions less robustly than models trained to persuade.",
     ],
     categories: ["Evaluations", "Alignment and RL"],
-    open: true,
   },
   {
     id: "curriculum-cooperation",
@@ -427,7 +456,6 @@ export const projects: Project[] = [
       "Start from a population of fixed agents with diverse cooperative and competitive behaviours, apply curriculum methods to select partners, and measure efficiency and generalisation to unseen partners.",
     ],
     categories: ["Multi-agent", "Alignment and RL"],
-    open: true,
   },
   {
     id: "global-curriculum-signals",
@@ -439,7 +467,6 @@ export const projects: Project[] = [
       "A direct comparison of local and global task selection on unsupervised environment design benchmarks such as Kinetix, measuring learning speed, robustness and generalisation.",
     ],
     categories: ["Alignment and RL"],
-    open: true,
   },
   {
     id: "self-improving-agents",
@@ -449,7 +476,6 @@ export const projects: Project[] = [
       "Anything on developing and aligning self-improving agents: scalable oversight, debate, self-play, iterated distillation and amplification.",
     details: [STEVEN_OPEN],
     categories: ["Alignment and RL"],
-    open: true,
   },
   {
     id: "steering",
@@ -459,7 +485,6 @@ export const projects: Project[] = [
       "Detect and steer safety-relevant behaviours in LLMs, for example with conceptors as steering matrices.",
     details: [STEVEN_OPEN],
     categories: ["Interpretability"],
-    open: true,
   },
   {
     id: "hybrid-recurrent",
@@ -469,7 +494,6 @@ export const projects: Project[] = [
       "Study recurrent and hybrid transformer-recurrent LLMs, including how they implement retrieval, in the mechanistic interpretability style of earlier AISIG projects.",
     details: [STEVEN_OPEN],
     categories: ["Interpretability"],
-    open: true,
   },
   {
     id: "reward-hacking-rlvr",
@@ -486,7 +510,6 @@ export const projects: Project[] = [
     /* Emile's agenda says "Project Reinforcement Learning"; the VU course is
        listed as "Projects on Reinforcement Learning". */
     lookingFor: "Students who have taken the VU course Projects on Reinforcement Learning, which this thesis requires",
-    open: true,
   },
   {
     id: "aixi-safety",
@@ -502,6 +525,18 @@ export const projects: Project[] = [
     thesis: { university: "VU" },
     lookingFor: "A strong aptitude for theoretical work, which is required; the course Reinforcement Learning is recommended",
     commitment: "Supervision from the VU, plus an hour a week from AIXI labs",
-    open: true,
   },
 ];
+
+/* The hero's numbers, counted from the same lists the page shows, so they
+   always agree with the cards: projects open to applications (all but full
+   ones), the supervisors with at least one of them, and the publications
+   listed. */
+export function projectHubStats() {
+  const open = projects.filter(isOpenProject);
+  return {
+    openProjects: open.length,
+    supervisors: new Set(open.map((project) => project.supervisor.name)).size,
+    publications: publications.length,
+  };
+}
