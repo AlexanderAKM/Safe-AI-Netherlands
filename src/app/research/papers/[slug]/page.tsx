@@ -12,7 +12,7 @@ import PaperReader from "@/components/research/PaperReader";
 import {
   publications,
   paperSourceName,
-  RESEARCH_INTEREST_FORM_URL,
+  APPLY_PATH,
   type Publication,
 } from "@/data/research";
 
@@ -166,16 +166,10 @@ export default function PaperPage({ params }: { params: Params }) {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:shrink-0">
-            <a
-              href={RESEARCH_INTEREST_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent gap-2"
-            >
+            <Link href={APPLY_PATH} className="btn-accent gap-2">
               Apply for a project
-              <ArrowUpRightIcon size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens the application form in a new tab)</span>
-            </a>
+              <ArrowRightIcon size={16} weight="regular" aria-hidden="true" />
+            </Link>
             <Link
               href="/research#projects"
               className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"

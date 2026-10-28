@@ -16,10 +16,10 @@ import {
   SubTitle,
   Turn,
 } from "@/components/handbook/prose";
-import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import {
+  APPLY_PATH,
   PROJECTS_EMAIL,
-  RESEARCH_INTEREST_FORM_URL,
   SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
 
@@ -555,9 +555,15 @@ export default function ProjectHubHandbookPage() {
                   <ProjectsMail />.
                 </P>
                 <p>
-                  <OutLink href={RESEARCH_INTEREST_FORM_URL}>
+                  {/* The form lives on this site now, so this is OutLink's
+                      look with an arrow that stays on the page. */}
+                  <Link
+                    href={APPLY_PATH}
+                    className="inline-flex items-baseline gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                  >
                     Apply for a project
-                  </OutLink>
+                    <ArrowRight size={16} weight="regular" aria-hidden="true" className="translate-y-[2px]" />
+                  </Link>
                 </p>
 
                 <Turn>Open collaborations begin with a project proposal</Turn>
@@ -1052,16 +1058,10 @@ export default function ProjectHubHandbookPage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
-            <a
-              href={RESEARCH_INTEREST_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-accent gap-2"
-            >
+            <Link href={APPLY_PATH} className="btn-accent gap-2">
               Apply for a project
-              <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens the application form in a new tab)</span>
-            </a>
+              <ArrowRight size={16} weight="regular" aria-hidden="true" />
+            </Link>
             <a
               href={SUPERVISOR_INTEREST_FORM_URL}
               target="_blank"
