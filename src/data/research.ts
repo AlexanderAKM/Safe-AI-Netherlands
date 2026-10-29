@@ -449,6 +449,14 @@ export const RESEARCH_INTEREST_FORM_URL = "https://sainonboard.fillout.com/new";
 /* The page that holds that form on this site (src/app/research/apply). Every
    "Apply for a project" button goes here rather than off the site. */
 export const APPLY_PATH = "/research/apply";
+/* The Project Team's live tracker: the "Open Projects (Website)" view of the
+   Project Hub table in the SAIN Pipeline Airtable base, shared read-only and
+   embedded as-is under the project cards, so a change in Airtable shows on
+   the site at once. The view holds only public fields (no Notes). Anything
+   added to it shows here too, including in its "Download CSV". */
+export const PROJECT_TRACKER_EMBED_URL =
+  "https://airtable.com/embed/appQC7SP1Qy95K03h/shrcqLIFBIbLOxkgM?viewControls=on";
+export const PROJECT_TRACKER_URL = "https://airtable.com/appQC7SP1Qy95K03h/shrcqLIFBIbLOxkgM";
 /* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */
 export const SUPERVISOR_INTEREST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScpE5jSBGAihD_8qJn7wRWdEFGieYQdLaPUZ8JiZyUVpn519g/viewform";
