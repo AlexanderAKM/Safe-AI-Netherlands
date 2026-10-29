@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRightIcon, CaretDownIcon, MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 import { Segmented } from "@/components/research/ProjectBrowser";
 import {
-  trackerProjects,
+  TRACKER_DATA_URL,
+  readTracker,
+  trackerSnapshot,
   trackerStatuses,
-  trackerUpdatedAt,
   type TrackerProject,
   type TrackerStatus,
 } from "@/data/tracker";
@@ -17,17 +18,22 @@ import {
    rather than cards, so it reads as the record it is and not as a second copy
    of the project browser above it.
 
+   The page is built with the copy in src/data, then swaps in the latest one
+   from the tracker-data branch once the browser has it; the section sits far
+   enough down the page that the swap is done before a reader gets there. If
+   GitHub cannot be reached, the built copy simply stays.
+
    It opens on its first six, with a button for the rest, like the browser. */
 
 const PREVIEW_COUNT = 6;
 
 /* Fixed to Amsterdam time and an en-GB date, so the build and the browser
    write the same words. */
-const updated = new Intl.DateTimeFormat("en-GB", {
+const dateFormat = new Intl.DateTimeFormat("en-GB", {
   dateStyle: "long",
   timeStyle: "short",
   timeZone: "Europe/Amsterdam",
-}).format(new Date(trackerUpdatedAt));
+});
 
 const statusLabel = (status: TrackerStatus) => trackerStatuses.find((item) => item.value === status)?.label ?? "";
 
@@ -101,11 +107,24 @@ function TrackerRow({ project }: { project: TrackerProject }) {
 }
 
 export default function ProjectTracker() {
+  const [tracker, setTracker] = useState(trackerSnapshot);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(TRACKER_DATA_URL, { signal: controller.signal })
+      .then((res) => (res.ok ? res.json() : undefined))
+      .then((data) => {
+        const latest = readTracker(data);
+        if (latest) setTracker(latest);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
+
   const [query, setQuery] = useState("");
   const [statuses, setStatuses] = useState<TrackerStatus[]>([]);
   const [expanded, setExpanded] = useState(false);
 
-  const found = useMemo(() => trackerProjects.filter((project) => matches(project, query)), [query]);
+  const found = useMemo(() => tracker.projects.filter((project) => matches(project, query)), [tracker, query]);
   const shown = statuses.length === 0 ? found : found.filter((project) => statuses.includes(project.status));
   const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
   const clear = () => {
@@ -168,7 +187,7 @@ export default function ProjectTracker() {
         {shown.length} {shown.length === 1 ? "project" : "projects"}
         {query ? ` matching "${query}"` : ""}
         <span className="text-navy/45"> · </span>
-        Updated {updated}
+        Updated {dateFormat.format(new Date(tracker.updatedAt))}
       </p>
 
       {shown.length > 0 ? (

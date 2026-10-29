@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node --use-system-ca node_modules/next/dist/bin/next dev",
     "dev:turbo": "node --use-system-ca node_modules/next/dist/bin/next dev --turbo",
-    "build": "node --use-system-ca scripts/fetch-airtable-projects.mjs && node --use-system-ca node_modules/next/dist/bin/next build",
+    "build": "node --use-system-ca node_modules/next/dist/bin/next build",
     "start": "node --use-system-ca node_modules/next/dist/bin/next start",
     "preview": "node --use-system-ca node_modules/next/dist/bin/next build && npx --yes serve out -l 3000",
     "lint": "node --use-system-ca node_modules/next/dist/bin/next lint",

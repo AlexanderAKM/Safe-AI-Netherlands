@@ -255,10 +255,10 @@ export default function ResearchPage() {
           </div>
           <ProjectBrowser />
 
-          {/* The Project Team's own tracker, read from Airtable each time the
-              site builds (src/data/tracker.ts): every project the team has
-              taken on and where it stands. It sits under the cards, after a
-              hairline: the record next to the browsing tool, not a
+          {/* The Project Team's own tracker, kept in step with Airtable by an
+              hourly workflow (src/data/tracker.ts): every project the team
+              has taken on and where it stands. It sits under the cards, after
+              a hairline: the record next to the browsing tool, not a
               replacement for it. */}
           <div id="tracker" className="flex scroll-mt-28 flex-col gap-6 border-t border-navy/10 pt-8">
             <div className="flex max-w-[760px] flex-col gap-2">
