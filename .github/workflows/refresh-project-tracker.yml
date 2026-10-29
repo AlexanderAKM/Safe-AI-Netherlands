@@ -1,0 +1,34 @@
+name: Refresh project tracker
+
+# Keeps the Project Hub's live tracker (/research) within an hour of Airtable.
+# Every build reads the tracker from Airtable (scripts/fetch-airtable-projects.mjs),
+# so this only has to ask Vercel for a fresh production build once an hour,
+# through the same deploy hook deploy.yml uses. It checks nothing out, commits
+# nothing and opens no PR. The Airtable token lives in Vercel, not here.
+#
+# Scheduled workflows run from main only, so this starts once it is merged.
+
+on:
+  schedule:
+    - cron: "17 * * * *" # every hour, at 17 past
+  workflow_dispatch: {} # lets you refresh by hand from the Actions tab
+
+permissions: {}
+
+concurrency:
+  group: refresh-project-tracker
+  cancel-in-progress: false
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK secret not set; skipping."
+            exit 0
+          fi
+          curl --fail -s -X POST "$DEPLOY_HOOK"

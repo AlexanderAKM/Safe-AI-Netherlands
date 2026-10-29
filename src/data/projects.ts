@@ -31,8 +31,9 @@ import { publications, supervisors, type Availability, type Supervisor } from "@
    remove it, delete it.
 
    Later source: Airtable, base "SAIN Pipeline", table "Project Hub", the
-   records with Status "Project Accepted". The page reads nothing but
-   `projects` and `supervisors`: the hero's numbers (projectHubStats), the
+   records with Status "Project Accepted". The tracker under the cards already
+   reads that table at build time (src/data/tracker.ts), so the fetch exists.
+   The page reads nothing but `projects` and `supervisors`: the hero's numbers (projectHubStats), the
    filters and the cards are all computed from them, so a fetch that writes
    these two lists in these shapes is the only change the switch needs. The
    table cannot do that yet. It holds a project's name, status and supervisor,

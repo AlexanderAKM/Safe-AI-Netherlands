@@ -9,13 +9,12 @@ import FeaturedPublications from "@/components/research/FeaturedPublications";
 import SectionOrbits from "@/components/research/SectionOrbits";
 import SupervisorRow from "@/components/research/SupervisorRow";
 import ProjectBrowser from "@/components/research/ProjectBrowser";
+import ProjectTracker from "@/components/research/ProjectTracker";
 import { projectHubStats } from "@/data/projects";
 import {
   paperHref,
   publications,
   APPLY_PATH,
-  PROJECT_TRACKER_EMBED_URL,
-  PROJECT_TRACKER_URL,
   PROJECTS_EMAIL,
   SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
@@ -256,40 +255,21 @@ export default function ResearchPage() {
           </div>
           <ProjectBrowser />
 
-          {/* The Project Team's own tracker, live from Airtable: the projects
-              as they stand right now. It cannot take the site's styling (it
-              is Airtable's page in a frame), so it sits under the cards, after
-              a hairline, in a frame of ours: the live record next to the
-              browsing tool, not a replacement for it. Lazy, so the page does
-              not load Airtable until a reader gets near it. */}
-          <div id="tracker" className="flex scroll-mt-28 flex-col gap-4 border-t border-navy/10 pt-8">
+          {/* The Project Team's own tracker, read from Airtable each time the
+              site builds (src/data/tracker.ts): every project the team has
+              taken on and where it stands. It sits under the cards, after a
+              hairline: the record next to the browsing tool, not a
+              replacement for it. */}
+          <div id="tracker" className="flex scroll-mt-28 flex-col gap-6 border-t border-navy/10 pt-8">
             <div className="flex max-w-[760px] flex-col gap-2">
               <h3 className="font-serif text-title text-navy">Live project tracker</h3>
               <p className="font-sans text-body text-navy/74">
-                The Project Team&rsquo;s tracker in Airtable, as it stands right now. It updates
-                the moment a project is added or its status changes.
+                Every project the projects team has taken on, and where it stands: open to new
+                students, in progress or completed. It comes straight from the team&rsquo;s own
+                tracker and is refreshed every hour.
               </p>
             </div>
-            <div className="border border-navy/12 bg-white">
-              <iframe
-                src={PROJECT_TRACKER_EMBED_URL}
-                title="Project Hub live project tracker, in Airtable"
-                loading="lazy"
-                className="block h-[533px] w-full bg-transparent md:h-[600px]"
-              />
-            </div>
-            <p className="font-sans text-footnote text-navy/60">
-              <a
-                href={PROJECT_TRACKER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-baseline gap-1 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-              >
-                Open the tracker in Airtable
-                <ArrowUpRight size={13} weight="regular" aria-hidden="true" className="translate-y-[1px]" />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </p>
+            <ProjectTracker />
           </div>
         </div>
       </section>

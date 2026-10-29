@@ -221,7 +221,7 @@ function chipClass(active: boolean) {
    them on. The hairlines between the cells are the navy ground showing
    through a 1px gap, so they hold whether the cells sit in a row or, on a
    phone, a two-by-two grid. */
-function Segmented({
+export function Segmented({
   label,
   groupLabel,
   options,
