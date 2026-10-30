@@ -13,8 +13,9 @@ import snapshot from "./airtableProjects.json";
 
    The view's Name reads "Supervisor: Project title", so the supervisor's name
    comes from there. Status is the team's own: an accepted project is one open
-   to students. A record with any other status, or none, is left out rather
-   than guessed at.
+   to students, and a full one is still offered but not taking anyone new for
+   now. A record with any other status, or none, is left out rather than
+   guessed at.
 
    A local test build can point the page at another copy with
    NEXT_PUBLIC_TRACKER_DATA_URL; the live site leaves it unset. */
@@ -23,7 +24,7 @@ export const TRACKER_DATA_URL =
   process.env.NEXT_PUBLIC_TRACKER_DATA_URL ||
   "https://raw.githubusercontent.com/AlexanderAKM/Safe-AI-Netherlands/tracker-data/airtableProjects.json";
 
-export type TrackerStatus = "open" | "in-progress" | "completed";
+export type TrackerStatus = "open" | "in-progress" | "completed" | "full";
 
 export type TrackerProject = {
   id: string;
@@ -50,13 +51,16 @@ const STATUSES: Record<string, TrackerStatus> = {
   "Project Accepted": "open",
   "Project In-Progress": "in-progress",
   "Project Completed": "completed",
+  "Project Full": "full",
 };
 
-/* In the order the tracker lists them: what a student can still join first. */
+/* In the order the tracker lists them: what a student can still join first,
+   and full projects last, as on the hand-kept cards. */
 export const trackerStatuses: { value: TrackerStatus; label: string }[] = [
   { value: "open", label: "Open" },
   { value: "in-progress", label: "In progress" },
   { value: "completed", label: "Completed" },
+  { value: "full", label: "Full" },
 ];
 
 const statusRank = (status: TrackerStatus) => trackerStatuses.findIndex((item) => item.value === status);

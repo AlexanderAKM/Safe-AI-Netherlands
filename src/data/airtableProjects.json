@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T12:43:26.000Z",
+  "updatedAt": "2026-10-30T16:57:28.000Z",
   "records": [
     {
       "id": "recu8rx9UYS7rbNg4",
@@ -20,7 +20,7 @@
     {
       "id": "recyj6Gvvrcakcmpw",
       "name": "Ana Lucic: Interpretability and AI safety for science (bring your own project)",
-      "status": "Project Accepted",
+      "status": "Project Full",
       "description": "Open call: propose your own project related to (scientific) machine learning, (mechanistic) interpretability and AI safety, supervised by Ana Lucic (University of Amsterdam). Primarily for MSc AI thesis students and ELLIS honours projects.",
       "tags": []
     },

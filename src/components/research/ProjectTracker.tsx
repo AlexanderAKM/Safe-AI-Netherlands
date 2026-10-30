@@ -147,14 +147,17 @@ function ChipGroup({ label, options }: { label: string; options: Option[] }) {
   );
 }
 
-/* Open is navy, in progress orange (taken, for now), completed eased back. */
+/* Open is navy, in progress orange (taken, for now), completed and full
+   eased back: completed with a hollow mark, full with a pale one. */
 function StatusLabel({ status }: { status: TrackerStatus }) {
   const tone =
     status === "open"
       ? "text-navy [&>span]:bg-navy"
       : status === "in-progress"
         ? "text-orange-ink [&>span]:bg-orange"
-        : "text-navy/60 [&>span]:border [&>span]:border-navy/45";
+        : status === "full"
+          ? "text-navy/70 [&>span]:bg-navy/30"
+          : "text-navy/60 [&>span]:border [&>span]:border-navy/45";
   return (
     <p className={`inline-flex shrink-0 items-center gap-2 text-caption font-medium leading-[18px] ${tone}`}>
       <span aria-hidden="true" className="size-2" />
@@ -163,9 +166,14 @@ function StatusLabel({ status }: { status: TrackerStatus }) {
   );
 }
 
+/* A full project reads as set aside rather than switched off, as on the
+   hand-kept cards: the cream showing through, its text eased back to 80%,
+   and a line at its foot that says why. It is still there to read. */
 function TrackerRow({ project }: { project: TrackerProject }) {
+  const full = project.status === "full";
   return (
-    <li className="flex flex-col p-5 md:p-6">
+    <li className={`flex flex-col p-5 md:p-6 ${full ? "bg-cream/60" : ""}`}>
+      <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-serif text-title-sm text-navy">{project.title}</h3>
         <div className="mt-1">
@@ -211,6 +219,12 @@ function TrackerRow({ project }: { project: TrackerProject }) {
             </li>
           ))}
         </ul>
+      )}
+      </div>
+      {full && (
+        <p className="mt-4 border-t border-navy/12 pt-3.5 text-caption leading-[18px] text-navy/70">
+          <span className="font-medium text-navy">Full for now.</span> Not taking new students at the moment.
+        </p>
       )}
     </li>
   );
