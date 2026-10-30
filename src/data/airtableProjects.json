@@ -1,11 +1,50 @@
 {
-  "updatedAt": "2026-10-29T14:53:02.000Z",
+  "updatedAt": "2026-10-30T12:39:06.350Z",
   "records": [
+    {
+      "id": "recu8rx9UYS7rbNg4",
+      "name": "Filip Ilievski: How memes, reels and headlines shape public narratives about AI",
+      "status": "Project Accepted",
+      "description": "How do different media (memes, reels, news headlines), independently and together, shape societal narratives about AI and its harms and benefits? Combines social-science frameworks with AI modelling. Looking for experience with vision language models or LLMs, knowledge graphs and machine learning (e.g. clustering), plus interest in social media and computational social science. Room for more than one student; aim is a publication at a venue like ICWSM or *ACL. VU Amsterdam.",
+      "tags": [],
+      "website": "ilievski.info"
+    },
+    {
+      "id": "recFpFMViwSwPV51f",
+      "name": "Emile van Krieken: Reward hacking in LLM agents trained with verifiable rewards",
+      "status": "Project Accepted",
+      "description": "When and why do LLM agents trained with reinforcement learning from verifiable rewards (RLVR) find shortcuts that pass the reward without solving the task (reward hacking)? Empirical or theoretical. Requires the VU course Project Reinforcement Learning or comparable RL experience. Priority for VU students.",
+      "tags": [],
+      "website": "https://emilevankrieken.com/"
+    },
+    {
+      "id": "recyj6Gvvrcakcmpw",
+      "name": "Ana Lucic: Interpretability and AI safety for science (bring your own project)",
+      "status": "Project Accepted",
+      "description": "Open call: propose your own project related to (scientific) machine learning, (mechanistic) interpretability and AI safety, supervised by Ana Lucic (University of Amsterdam). Primarily for MSc AI thesis students and ELLIS honours projects.",
+      "tags": []
+    },
+    {
+      "id": "recWuSuDWa5Sg61y4",
+      "name": "Fausto Carcassi: Program synthesis for mechanistic interpretability",
+      "status": "Project Accepted",
+      "description": "Applying program synthesis methods to mechanistic interpretability, for example automating the building of models of how LLMs implement computations. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
     {
       "id": "rec0FSCfyZfbP8fjo",
       "name": "Fausto Carcassi: Theory of mind and plausible deniability, from the inside",
       "status": "Project Accepted",
       "description": "Using mechanistic interpretability methods to study cognitive skills in LLMs, such as theory of mind and plausible deniability. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "reclVmsNzJ4vgcoXN",
+      "name": "Fausto Carcassi: Emergent personas in self-designing LLMs",
+      "status": "Project Accepted",
+      "description": "Studying the personas that emerge when LLMs design themselves. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
       "tags": [],
       "website": "faustocarcassi.com"
     },
@@ -18,17 +57,25 @@
       "website": "faustocarcassi.com"
     },
     {
+      "id": "recFzZoZ8hLrxTOep",
+      "name": "Fausto Carcassi: Do LLMs model each other's minds to coordinate?",
+      "status": "Project Accepted",
+      "description": "Do LLMs use theory of mind about each other when they coordinate, and does this differ from how they model human users? Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "reczCBm9JbjkHcWEf",
+      "name": "Satchit Chatterji: Formal and neurosymbolic approaches to safe AI",
+      "status": "Project Accepted",
+      "description": "Research direction: using formal guarantees and symbolic methods to make machine learning systems safer. Open to your own ideas within this direction. University of Amsterdam.",
+      "tags": []
+    },
+    {
       "id": "rec7TbSNu6wgjB8q0",
       "name": "Satchit Chatterji: Safety in multi-agent and reinforcement learning systems",
       "status": "Project Accepted",
       "description": "Research direction: safety of reinforcement learning and multi-agent systems, including game-theoretic incentives. Open to your own ideas within this direction. University of Amsterdam.",
-      "tags": []
-    },
-    {
-      "id": "recBfo731xhhao2bI",
-      "name": "Fatih Turkmen: Security and privacy of AI systems",
-      "status": "Project Accepted",
-      "description": "Problems and solutions at the intersection of AI, security and privacy. Example directions: LLM and RAG security and privacy; privacy-preserving decentralised machine learning; neuromorphic security and privacy; AI-assisted security testing and patching; autonomous cyberdefence with reinforcement learning. Best for people who can work autonomously; meetings are flexible. University of Groningen.",
       "tags": []
     },
     {
@@ -39,30 +86,6 @@
       "tags": []
     },
     {
-      "id": "recFpFMViwSwPV51f",
-      "name": "Emile van Krieken: Reward hacking in LLM agents trained with verifiable rewards",
-      "status": "Project Accepted",
-      "description": "When and why do LLM agents trained with reinforcement learning from verifiable rewards (RLVR) find shortcuts that pass the reward without solving the task (reward hacking)? Empirical or theoretical. Requires the VU course Project Reinforcement Learning or comparable RL experience. Priority for VU students.",
-      "tags": [],
-      "website": "https://emilevankrieken.com/"
-    },
-    {
-      "id": "recFzZoZ8hLrxTOep",
-      "name": "Fausto Carcassi: Do LLMs model each other's minds to coordinate?",
-      "status": "Project Accepted",
-      "description": "Do LLMs use theory of mind about each other when they coordinate, and does this differ from how they model human users? Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
-      "tags": [],
-      "website": "faustocarcassi.com"
-    },
-    {
-      "id": "recWuSuDWa5Sg61y4",
-      "name": "Fausto Carcassi: Program synthesis for mechanistic interpretability",
-      "status": "Project Accepted",
-      "description": "Applying program synthesis methods to mechanistic interpretability, for example automating the building of models of how LLMs implement computations. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
-      "tags": [],
-      "website": "faustocarcassi.com"
-    },
-    {
       "id": "recgo0HCtx614iHZe",
       "name": "Satchit Chatterji: Human agency, power and pluralism as AI grows more capable",
       "status": "Project Accepted",
@@ -70,33 +93,10 @@
       "tags": []
     },
     {
-      "id": "reclVmsNzJ4vgcoXN",
-      "name": "Fausto Carcassi: Emergent personas in self-designing LLMs",
+      "id": "recBfo731xhhao2bI",
+      "name": "Fatih Turkmen: Security and privacy of AI systems",
       "status": "Project Accepted",
-      "description": "Studying the personas that emerge when LLMs design themselves. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
-      "tags": [],
-      "website": "faustocarcassi.com"
-    },
-    {
-      "id": "recu8rx9UYS7rbNg4",
-      "name": "Filip Ilievski: How memes, reels and headlines shape public narratives about AI",
-      "status": "Project Accepted",
-      "description": "How do different media (memes, reels, news headlines), independently and together, shape societal narratives about AI and its harms and benefits? Combines social-science frameworks with AI modelling. Looking for experience with vision language models or LLMs, knowledge graphs and machine learning (e.g. clustering), plus interest in social media and computational social science. Room for more than one student; aim is a publication at a venue like ICWSM or *ACL. VU Amsterdam.",
-      "tags": [],
-      "website": "ilievski.info"
-    },
-    {
-      "id": "recyj6Gvvrcakcmpw",
-      "name": "Ana Lucic: Interpretability and AI safety for science (bring your own project)",
-      "status": "Project Accepted",
-      "description": "Open call: propose your own project related to (scientific) machine learning, (mechanistic) interpretability and AI safety, supervised by Ana Lucic (University of Amsterdam). Primarily for MSc AI thesis students and ELLIS honours projects.",
-      "tags": []
-    },
-    {
-      "id": "reczCBm9JbjkHcWEf",
-      "name": "Satchit Chatterji: Formal and neurosymbolic approaches to safe AI",
-      "status": "Project Accepted",
-      "description": "Research direction: using formal guarantees and symbolic methods to make machine learning systems safer. Open to your own ideas within this direction. University of Amsterdam.",
+      "description": "Problems and solutions at the intersection of AI, security and privacy. Example directions: LLM and RAG security and privacy; privacy-preserving decentralised machine learning; neuromorphic security and privacy; AI-assisted security testing and patching; autonomous cyberdefence with reinforcement learning. Best for people who can work autonomously; meetings are flexible. University of Groningen.",
       "tags": []
     }
   ]
