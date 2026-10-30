@@ -134,7 +134,7 @@ export default function ProjectTracker() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4 border border-navy/12 bg-white px-4 py-4 md:flex-row md:items-end md:px-6 md:py-5">
+      <div className="flex flex-col gap-4 border border-navy/12 bg-white px-4 py-4 md:px-6 md:py-5 lg:flex-row lg:items-end">
         <label className="relative block min-w-0 flex-1">
           <span className="sr-only">Search the tracker</span>
           <MagnifyingGlassIcon
