@@ -14,9 +14,13 @@ import snapshot from "./airtableProjects.json";
    The view's Name reads "Supervisor: Project title", so the supervisor's name
    comes from there. Status is the team's own: an accepted project is one open
    to students. A record with any other status, or none, is left out rather
-   than guessed at. */
+   than guessed at.
+
+   A local test build can point the page at another copy with
+   NEXT_PUBLIC_TRACKER_DATA_URL; the live site leaves it unset. */
 
 export const TRACKER_DATA_URL =
+  process.env.NEXT_PUBLIC_TRACKER_DATA_URL ||
   "https://raw.githubusercontent.com/AlexanderAKM/Safe-AI-Netherlands/tracker-data/airtableProjects.json";
 
 export type TrackerStatus = "open" | "in-progress" | "completed";
@@ -28,7 +32,12 @@ export type TrackerProject = {
   website?: string;
   status: TrackerStatus;
   summary: string;
-  tags: string[];
+  /* Whose students may apply ("VU", "UvA"); empty means everyone. */
+  universities: string[];
+  /* The thesis levels it can count as ("Master's thesis"); empty means none. */
+  theses: string[];
+  /* Every other tag: topics, and kinds of project such as a team project. */
+  topics: string[];
 };
 
 export type Tracker = {
@@ -53,6 +62,36 @@ export const trackerStatuses: { value: TrackerStatus; label: string }[] = [
 const statusRank = (status: TrackerStatus) => trackerStatuses.findIndex((item) => item.value === status);
 
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
+
+/* Airtable's tags are in title case ("Formal Methods"); the site writes
+   sentence case ("Formal methods") and keeps acronyms ("Alignment and RL"). */
+const sentenceCase = (tag: string) =>
+  tag
+    .split(" ")
+    .map((word, i) => (i === 0 || /^[A-Z]{2,}$/.test(word) ? word : word.toLowerCase()))
+    .join(" ");
+
+/* The university abbreviations as students write them. */
+const UNIVERSITIES: Record<string, string> = { VU: "VU", UVA: "UvA", RUG: "RUG", UU: "UU" };
+export const universityOrder = Object.values(UNIVERSITIES);
+
+/* Project Tags mixes three kinds of tag: "VU Only" and the like say whose
+   students may apply, a tag with "thesis" in it says the project can be a
+   thesis at that level, and the rest are topics and kinds of project. Sorted
+   by pattern rather than by a fixed list, so a tag added in Airtable lands in
+   the right filter on its own. */
+function sortTags(tags: string[]) {
+  const universities: string[] = [];
+  const theses: string[] = [];
+  const topics: string[] = [];
+  for (const tag of tags) {
+    const only = tag.match(/^(.+?)\s+only$/i);
+    if (only) universities.push(UNIVERSITIES[only[1].toUpperCase()] ?? only[1]);
+    else if (/thesis/i.test(tag)) theses.push(sentenceCase(tag));
+    else topics.push(sentenceCase(tag));
+  }
+  return { universities, theses, topics };
+}
 
 /* Web addresses only, given the https:// the field often leaves off; anything
    else (a mailto:, a javascript: link) is dropped. */
@@ -92,7 +131,7 @@ export function readTracker(data: unknown): Tracker | undefined {
           website: webHref(text(record.website)),
           status,
           summary: text(record.description),
-          tags: Array.isArray(record.tags) ? record.tags.map(text).filter(Boolean) : [],
+          ...sortTags(Array.isArray(record.tags) ? record.tags.map(text).filter(Boolean) : []),
         },
       ];
     })
