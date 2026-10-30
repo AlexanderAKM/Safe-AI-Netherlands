@@ -1,0 +1,84 @@
+name: Refresh project tracker
+
+# Keeps the Project Hub's live tracker (/research) in step with Airtable, with
+# no rebuild and nothing to merge. Once an hour it reads the tracker from
+# Airtable (scripts/fetch-airtable-projects.mjs) and, only IF a project
+# changed, commits the new airtableProjects.json to the `tracker-data` branch.
+# The page loads that file in the reader's browser
+# (src/components/research/ProjectTracker.tsx), so a change shows within
+# minutes, without a deploy.
+#
+# It never touches main (main needs a reviewed PR) and never deploys. The
+# `tracker-data` branch holds this one file and nothing else; the first run
+# creates it.
+#
+# Needs the repo secret AIRTABLE_TOKEN: a read-only Airtable token (scope
+# data.records:read, SAIN Pipeline base only). Without it a run does nothing.
+
+on:
+  schedule:
+    - cron: "17 * * * *" # every hour, at 17 past
+  workflow_dispatch: {} # lets you refresh by hand from the Actions tab
+
+# The only permission this job needs: push the tracker-data branch.
+permissions:
+  contents: write
+
+# Never let two refresh runs overlap.
+concurrency:
+  group: refresh-project-tracker
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The data branch in its own folder: the copy last published, to compare
+      # against, or on the first run a new branch with no history.
+      - name: Check out the tracker-data branch
+        run: |
+          set -euo pipefail
+          if git fetch --depth=1 origin tracker-data; then
+            git worktree add -B tracker-data data FETCH_HEAD
+          else
+            git worktree add --orphan -b tracker-data data
+          fi
+
+      # The fetch script uses only Node built-ins, so no `npm install` needed.
+      - name: Fetch the tracker from Airtable
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: node scripts/fetch-airtable-projects.mjs data/airtableProjects.json
+
+      - name: Publish it if it changed (guarded)
+        working-directory: data
+        run: |
+          set -euo pipefail
+
+          # The ONLY file this workflow is ever allowed to publish.
+          FILE="airtableProjects.json"
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No change in the tracker; nothing to publish."
+            exit 0
+          fi
+
+          # GUARD: if anything other than that one file changed, publish nothing.
+          if [ "$(git status --porcelain --untracked-files=all | awk '{print $2}')" != "$FILE" ]; then
+            echo "::error::Unexpected changes on tracker-data — aborting, nothing published."
+            git status --porcelain --untracked-files=all
+            exit 1
+          fi
+
+          git config user.name  "sain-tracker-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$FILE"
+          git commit -q -m "Refresh project tracker from Airtable"
+          git push origin HEAD:refs/heads/tracker-data
+          echo "Published the new tracker to tracker-data."

@@ -8,8 +8,8 @@ import FittingTheCurve from "@/components/research/FittingTheCurve";
 import FeaturedPublications from "@/components/research/FeaturedPublications";
 import SectionOrbits from "@/components/research/SectionOrbits";
 import SupervisorRow from "@/components/research/SupervisorRow";
-import ProjectBrowser from "@/components/research/ProjectBrowser";
-import { projectHubStats } from "@/data/projects";
+import HeroFacts from "@/components/research/HeroFacts";
+import ProjectFinder from "@/components/research/ProjectFinder";
 import {
   paperHref,
   publications,
@@ -27,22 +27,6 @@ export const metadata: Metadata = {
 const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
   "Project Hub: question",
 )}`;
-
-/* Counted from the data file rather than typed. The old hero carried "6+ Active
-   Projects  ·  20+ Researchers  ·  12+ Publications", and two of the three
-   traced to nothing while the third contradicted the exact twelve papers this
-   page lists. A number on this page has to be checkable by the reader, because
-   the reader is the sort who checks. projectHubStats counts from the same
-   lists the cards show: projects that are not full, the supervisors with at
-   least one of them, and the publications listed.
-   Each counted fact links down to the section it counts. */
-const stats = projectHubStats();
-const factLine = [
-  { text: `${stats.openProjects} open projects`, href: "#projects" },
-  { text: `${stats.supervisors} supervisors`, href: "#supervisors" },
-  { text: `${stats.publications} publications`, href: "#publications" },
-  { text: "rolling applications" },
-];
 
 /* The three doors into a project. All three are normal, so all three are set
    the same way: no track is styled as the real one. */
@@ -191,30 +175,7 @@ export default function ResearchPage() {
               </Link>
             </div>
 
-            {/* The quiet version of a stat row: checkable facts on a hairline,
-                three of them counted straight off this page. The separators
-                are drawn rather than typed, so a screen reader reads the facts
-                and not the middots. */}
-            <ul
-              role="list"
-              className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-navy/14 pt-4"
-            >
-              {factLine.map((fact, i) => (
-                <li key={fact.text} className="flex items-center gap-3">
-                  {i > 0 ? <span aria-hidden="true" className="text-navy/25">·</span> : null}
-                  {fact.href ? (
-                    <a
-                      href={fact.href}
-                      className="font-sans text-footnote text-navy/65 underline decoration-navy/15 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
-                    >
-                      {fact.text}
-                    </a>
-                  ) : (
-                    <span className="font-sans text-footnote text-navy/65">{fact.text}</span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <HeroFacts />
           </Reveal>
 
           <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
@@ -239,8 +200,8 @@ export default function ResearchPage() {
                 Find a project, then join it
               </h2>
               <p className="font-sans text-body text-navy/74">
-                Each project here was offered by a SAIN supervisor and is described in their own
-                words. One application form covers all of them: name up to three projects in it,
+                Every project SAIN supervisors have on offer, kept up to date by the projects team.
+                One application form covers all of them: name up to three projects in it,
                 and the projects team will introduce you to the supervisors within a working week.
                 A VU or UvA thesis counts towards a degree there, so it is for that
                 university&rsquo;s students; every other project is open to anyone with the right
@@ -252,7 +213,7 @@ export default function ResearchPage() {
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>
-          <ProjectBrowser />
+          <ProjectFinder />
         </div>
       </section>
 

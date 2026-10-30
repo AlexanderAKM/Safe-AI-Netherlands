@@ -11,7 +11,8 @@
     "lint": "node --use-system-ca node_modules/next/dist/bin/next lint",
     "images": "node --use-system-ca scripts/generate-responsive-images.mjs",
     "fetch-luma-events-amsterdam": "node --use-system-ca scripts/fetch-luma-events-amsterdam.mjs",
-    "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs"
+    "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs",
+    "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

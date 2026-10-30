@@ -1,0 +1,180 @@
+{
+  "updatedAt": "2026-10-30T16:57:28.000Z",
+  "records": [
+    {
+      "id": "recu8rx9UYS7rbNg4",
+      "name": "Filip Ilievski: How memes, reels and headlines shape public narratives about AI",
+      "status": "Project Accepted",
+      "description": "How do different media (memes, reels, news headlines), independently and together, shape societal narratives about AI and its harms and benefits? Combines social-science frameworks with AI modelling. Looking for experience with vision language models or LLMs, knowledge graphs and machine learning (e.g. clustering), plus interest in social media and computational social science. Room for more than one student; aim is a publication at a venue like ICWSM or *ACL. VU Amsterdam.",
+      "tags": [],
+      "website": "ilievski.info"
+    },
+    {
+      "id": "recFpFMViwSwPV51f",
+      "name": "Emile van Krieken: Reward hacking in LLM agents trained with verifiable rewards",
+      "status": "Project Accepted",
+      "description": "When and why do LLM agents trained with reinforcement learning from verifiable rewards (RLVR) find shortcuts that pass the reward without solving the task (reward hacking)? Empirical or theoretical. Requires the VU course Project Reinforcement Learning or comparable RL experience. Priority for VU students.",
+      "tags": [],
+      "website": "https://emilevankrieken.com/"
+    },
+    {
+      "id": "recyj6Gvvrcakcmpw",
+      "name": "Ana Lucic: Interpretability and AI safety for science (bring your own project)",
+      "status": "Project Full",
+      "description": "Open call: propose your own project related to (scientific) machine learning, (mechanistic) interpretability and AI safety, supervised by Ana Lucic (University of Amsterdam). Primarily for MSc AI thesis students and ELLIS honours projects.",
+      "tags": []
+    },
+    {
+      "id": "recWuSuDWa5Sg61y4",
+      "name": "Fausto Carcassi: Program synthesis for mechanistic interpretability",
+      "status": "Project Accepted",
+      "description": "Applying program synthesis methods to mechanistic interpretability, for example automating the building of models of how LLMs implement computations. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "rec0FSCfyZfbP8fjo",
+      "name": "Fausto Carcassi: Theory of mind and plausible deniability, from the inside",
+      "status": "Project Accepted",
+      "description": "Using mechanistic interpretability methods to study cognitive skills in LLMs, such as theory of mind and plausible deniability. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "reclVmsNzJ4vgcoXN",
+      "name": "Fausto Carcassi: Emergent personas in self-designing LLMs",
+      "status": "Project Accepted",
+      "description": "Studying the personas that emerge when LLMs design themselves. Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "rec1RWnUFPEoZ7CU7",
+      "name": "Fausto Carcassi: Detecting AI poisoning at internet scale",
+      "status": "Project Accepted",
+      "description": "Can we tell from high-level summaries of the text whether a small simulated internet has been poisoned by AI-generated content? Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "recFzZoZ8hLrxTOep",
+      "name": "Fausto Carcassi: Do LLMs model each other's minds to coordinate?",
+      "status": "Project Accepted",
+      "description": "Do LLMs use theory of mind about each other when they coordinate, and does this differ from how they model human users? Programming experience required, cognitive science knowledge preferred. University of Amsterdam.",
+      "tags": [],
+      "website": "faustocarcassi.com"
+    },
+    {
+      "id": "reczCBm9JbjkHcWEf",
+      "name": "Satchit Chatterji: Formal and neurosymbolic approaches to safe AI",
+      "status": "Project Accepted",
+      "description": "Research direction: using formal guarantees and symbolic methods to make machine learning systems safer. Open to your own ideas within this direction. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "rec7TbSNu6wgjB8q0",
+      "name": "Satchit Chatterji: Safety in multi-agent and reinforcement learning systems",
+      "status": "Project Accepted",
+      "description": "Research direction: safety of reinforcement learning and multi-agent systems, including game-theoretic incentives. Open to your own ideas within this direction. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recDqZLnS9nIZDkus",
+      "name": "Satchit Chatterji: Reliable and robust guardrails for language models",
+      "status": "Project Accepted",
+      "description": "Research direction: mechanisms that constrain or monitor language models. Open to your own ideas within this direction. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recgo0HCtx614iHZe",
+      "name": "Satchit Chatterji: Human agency, power and pluralism as AI grows more capable",
+      "status": "Project Accepted",
+      "description": "AI's effects on institutions, democracy and power as AI becomes more capable. Open to research and collaboration. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recBfo731xhhao2bI",
+      "name": "Fatih Turkmen: Security and privacy of AI systems",
+      "status": "Project Accepted",
+      "description": "Problems and solutions at the intersection of AI, security and privacy. Example directions: LLM and RAG security and privacy; privacy-preserving decentralised machine learning; neuromorphic security and privacy; AI-assisted security testing and patching; autonomous cyberdefence with reinforcement learning. Best for people who can work autonomously; meetings are flexible. University of Groningen.",
+      "tags": []
+    },
+    {
+      "id": "recKzF7KvsQl3NWLD",
+      "name": "Sandro Pezzelle: Can vision-language models understand and narrate visual events?",
+      "status": "Project Accepted",
+      "description": "Measure how well current vision-language models understand and narrate visual events, and whether human behavioural and cognitive patterns can improve them. Every project in Sandro's lab can take an AI safety angle. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recXyOYwu5vDFMGhT",
+      "name": "Sandro Pezzelle: Ambiguous, underspecified and implicit language in LLMs",
+      "status": "Project Accepted",
+      "description": "How do LLMs and vision-language models handle language with several readings, missing information, or an implied message, and can linguistics boost their understanding? Every project in Sandro's lab can take an AI safety angle. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "reciZC1bKPe2mpZIJ",
+      "name": "Sandro Pezzelle: Human-inspired mechanistic interpretability",
+      "status": "Project Accepted",
+      "description": "Find the circuits in LLMs and vision-language models responsible for a specific behaviour, and ask whether they mirror the cognitive and neural mechanisms seen in humans. Every project in Sandro's lab can take an AI safety angle. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recISlMuUd6543gmU",
+      "name": "Sandro Pezzelle: Benchmarking LLMs in real communication and collaboration",
+      "status": "Project Accepted",
+      "description": "Can LLMs be used, and evaluated, in genuinely communicative and collaborative settings? Every project in Sandro's lab can take an AI safety angle. University of Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recPR8G0nwmEF4wbp",
+      "name": "Leon Eshuijs: Evaluating and interpreting weird or dangerous model behaviour",
+      "status": "Project Accepted",
+      "description": "Build evaluations or use interpretability methods to study behaviours such as sycophancy, or how models analyse user characteristics when they respond. The topic is brainstormed together, starting from a concrete, tractable question. VU Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recaD4VbusphXr5jA",
+      "name": "Leon Eshuijs: Preventing harmful misalignment during RL training",
+      "status": "Project Accepted",
+      "description": "Investigate mitigations such as safe exploration, filtering, or penalising harmful responses that could stop RL training from producing harmful behaviour. RL on LLMs is compute-intensive, so the scope adapts to the resources available. VU Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "rec0Tvmj87d6mvSgG",
+      "name": "Leon Eshuijs: Using LLMs to align reward functions with moral values",
+      "status": "Project Accepted",
+      "description": "Explore how LLMs themselves can improve reward functions and align them with different moral values. RL on LLMs is compute-intensive, so the scope adapts to the resources available. VU Amsterdam.",
+      "tags": []
+    },
+    {
+      "id": "recs1nG4flif6iqxs",
+      "name": "Steven Abreu: Safety of recursively self-improving AI agents",
+      "status": "Project Accepted",
+      "description": "Anything on developing and aligning self-improving agents: scalable oversight, debate, self-play, iterated distillation and amplification. Brainstorm a specific idea together, or propose your own. Remote.",
+      "tags": []
+    },
+    {
+      "id": "rec0M2I4B10hwDcvx",
+      "name": "Steven Abreu: Representation engineering and steering",
+      "status": "Project Accepted",
+      "description": "Detect and steer safety-relevant behaviours in LLMs, for example with conceptors as steering matrices. Brainstorm a specific idea together, or propose your own. Remote.",
+      "tags": []
+    },
+    {
+      "id": "recInM1KotrnZeIle",
+      "name": "Steven Abreu: Inside hybrid transformer-recurrent models",
+      "status": "Project Accepted",
+      "description": "Study recurrent and hybrid transformer-recurrent LLMs, including how they implement retrieval, in the mechanistic interpretability style of earlier AISIG projects. Brainstorm a specific idea together, or propose your own. Remote.",
+      "tags": []
+    },
+    {
+      "id": "rec0q0VODO10cPIVV",
+      "name": "Peter Bloem: AI safety in universal AI (AIXI)",
+      "status": "Project Accepted",
+      "description": "AIXI is a mathematical model of a maximally intelligent AI, which makes it an interesting framework in which to study AI safety. Explore this direction with the VU and AIXI labs in London; the topic is decided together with the student(s). A strong aptitude for theoretical work is required; the course Reinforcement Learning is recommended. A thesis at VU Amsterdam.",
+      "tags": []
+    }
+  ]
+}
