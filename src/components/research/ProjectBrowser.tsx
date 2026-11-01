@@ -209,7 +209,7 @@ const greyedNote =
         ? "Greyed-out supervisors have not confirmed their availability for this round yet."
         : undefined;
 
-function chipClass(active: boolean) {
+export function chipClass(active: boolean) {
   return `inline-flex min-h-[38px] shrink-0 items-center gap-2 border px-3 text-[14px] leading-5 transition-colors duration-150 ${
     active
       ? "border-navy bg-navy text-white"
@@ -221,7 +221,7 @@ function chipClass(active: boolean) {
    them on. The hairlines between the cells are the navy ground showing
    through a 1px gap, so they hold whether the cells sit in a row or, on a
    phone, a two-by-two grid. */
-function Segmented({
+export function Segmented({
   label,
   groupLabel,
   options,
@@ -265,7 +265,7 @@ function Segmented({
   );
 }
 
-function Count({ n, active }: { n: number; active: boolean }) {
+export function Count({ n, active }: { n: number; active: boolean }) {
   return (
     <span className={`text-[12px] tabular-nums ${active ? "text-white/70" : "text-navy/45"}`}>{n}</span>
   );
