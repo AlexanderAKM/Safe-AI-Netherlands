@@ -1,16 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowRightIcon,
   ArrowUpRightIcon,
   CaretDownIcon,
-  FunnelSimpleIcon,
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { Count, Segmented, chipClass } from "@/components/research/ProjectBrowser";
+import { Count, chipClass } from "@/components/research/ProjectBrowser";
 import { APPLY_PATH, PROJECTS_EMAIL } from "@/data/research";
 import {
   trackerStatuses,
@@ -21,15 +20,15 @@ import {
 } from "@/data/tracker";
 
 /* The Project Team's tracker, in the site's own language: a search, the
-   status as a joined control whose counts are the tracker's numbers at a
-   glance, and the projects as a ruled list.
+   filters, and the projects as a ruled list.
 
-   The tags in Airtable become filters behind a Filters button: who can apply
-   (a "VU Only" tag and the like), thesis level, and topic. A filter shows only
-   once some project carries a tag for it, so an untagged tracker shows a plain
-   search rather than filters that all say 0. As in the hand-kept browser,
-   every answer shows how many projects it would leave, and what is chosen
-   stays in sight as pills under the search.
+   The filters are all in sight from the start, topic first, since that is
+   what most readers look for; then who can apply (a "VU Only" tag and the
+   like) and thesis level, which come from the tags in Airtable; and the
+   status last, whose counts are the tracker's numbers at a glance. A tag
+   filter shows only once some project carries a tag for it, so an untagged
+   tracker never shows filters that all say 0. As in the hand-kept browser,
+   every answer shows how many projects it would leave.
 
    It opens on its first six, with a button for the rest. */
 
@@ -122,16 +121,22 @@ function passes(project: TrackerProject, filters: Filters, skip?: keyof Filters)
 const toggle = (list: string[], value: string) =>
   list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 
-/* A filter's answers as chips that wrap, so a long list of universities or
-   topics never runs off a phone. The first chip is the filter's "all", which
-   clears the rest. A chip that would leave nothing is faded, not hidden. */
+/* A filter's answers as chips. The first chip is the filter's "all", which
+   clears the rest; a chip that would leave nothing is faded, not hidden. They
+   wrap from md; on a phone the row scrolls sideways instead, fading at its
+   right edge to say "more this way", so the filters do not push the projects
+   off the first screen. */
 type Option = { value: string; label: string; n: number; on: boolean; onClick: () => void };
 
 function ChipGroup({ label, options }: { label: string; options: Option[] }) {
   return (
     <div>
       <p className="mb-1.5 font-sans text-footnote text-navy/60">{label}</p>
-      <div role="group" aria-label={label} className="flex flex-wrap gap-2">
+      <div
+        role="group"
+        aria-label={label}
+        className="-mx-4 flex gap-2 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,black_82%,transparent)] [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:[mask-image:none] [&::-webkit-scrollbar]:hidden"
+      >
         {options.map((option) => (
           <button
             key={option.value}
@@ -251,7 +256,6 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
   const [expanded, setExpanded] = useState(false);
-  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const projects = tracker.projects;
   const shown = useMemo(() => projects.filter((project) => passes(project, filters)), [projects, filters]);
@@ -275,38 +279,17 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
     () => Array.from(new Set(projects.flatMap((project) => project.topics))).sort((a, b) => a.localeCompare(b)),
     [projects],
   );
-  const hasFilters = universities.length + theses.length + topics.length > 0;
-
-  const chosen: { label: string; clear: Partial<Filters> }[] = [
-    ...filters.who.map((who) => ({ label: whoLabel(who), clear: { who: filters.who.filter((item) => item !== who) } })),
-    ...filters.theses.map((thesis) => ({
-      label: thesisLabel(thesis),
-      clear: { theses: filters.theses.filter((item) => item !== thesis) },
-    })),
-    ...filters.topics.map((topic) => ({
-      label: topic,
-      clear: { topics: filters.topics.filter((item) => item !== topic) },
-    })),
-  ];
-  const active = filters.query !== "" || filters.statuses.length > 0 || chosen.length > 0;
-
-  /* Escape folds the filters away again, back onto their button. */
-  const filterButtonRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (!filtersOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
-      setFiltersOpen(false);
-      filterButtonRef.current?.focus();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [filtersOpen]);
+  const active =
+    filters.query !== "" ||
+    filters.statuses.length > 0 ||
+    filters.who.length > 0 ||
+    filters.theses.length > 0 ||
+    filters.topics.length > 0;
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4 border border-navy/12 bg-white px-4 py-4 md:px-6 md:py-5">
-        <div className="flex gap-2">
+        <div className="flex">
           <label className="relative block min-w-0 flex-1">
             <span className="sr-only">Search projects</span>
             <MagnifyingGlassIcon
@@ -332,36 +315,73 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
               </button>
             )}
           </label>
-          {hasFilters && (
-            <button
-              ref={filterButtonRef}
-              type="button"
-              aria-expanded={filtersOpen}
-              aria-controls="project-filters"
-              onClick={() => setFiltersOpen(!filtersOpen)}
-              className={`inline-flex h-12 shrink-0 items-center gap-2 border px-4 text-[15px] transition-colors duration-150 ${
-                filtersOpen ? "border-navy bg-navy text-white" : "border-navy/18 bg-white text-navy hover:border-navy/45"
-              }`}
-            >
-              <FunnelSimpleIcon size={18} aria-hidden="true" />
-              <span className="max-sm:sr-only">Filters</span>
-              {chosen.length > 0 && (
-                <span
-                  className={`inline-flex size-5 items-center justify-center text-[12px] tabular-nums ${
-                    filtersOpen ? "bg-white text-navy" : "bg-navy text-white"
-                  }`}
-                >
-                  {chosen.length}
-                  <span className="sr-only"> chosen</span>
-                </span>
-              )}
-            </button>
-          )}
         </div>
 
-        <Segmented
+        {topics.length > 0 && (
+          <ChipGroup
+            label="Topic"
+            options={[
+              {
+                value: "all",
+                label: "All topics",
+                n: countWithout("topics", () => true),
+                on: filters.topics.length === 0,
+                onClick: () => set({ topics: [] }),
+              },
+              ...topics.map((topic) => ({
+                value: topic,
+                label: topic,
+                n: countWithout("topics", (project) => project.topics.includes(topic)),
+                on: filters.topics.includes(topic),
+                onClick: () => set({ topics: toggle(filters.topics, topic) }),
+              })),
+            ]}
+          />
+        )}
+        {universities.length > 0 && (
+          <ChipGroup
+            label="Who can apply"
+            options={[
+              {
+                value: "all",
+                label: "All projects",
+                n: countWithout("who", () => true),
+                on: filters.who.length === 0,
+                onClick: () => set({ who: [] }),
+              },
+              ...[EVERYONE, ...universities].map((who) => ({
+                value: who,
+                label: whoLabel(who),
+                n: countWithout("who", (project) => whoOf(project).includes(who)),
+                on: filters.who.includes(who),
+                onClick: () => set({ who: toggle(filters.who, who) }),
+              })),
+            ]}
+          />
+        )}
+        {theses.length > 0 && (
+          <ChipGroup
+            label="Thesis"
+            options={[
+              {
+                value: "all",
+                label: "Any",
+                n: countWithout("theses", () => true),
+                on: filters.theses.length === 0,
+                onClick: () => set({ theses: [] }),
+              },
+              ...[...theses, NOT_A_THESIS].map((thesis) => ({
+                value: thesis,
+                label: thesisLabel(thesis),
+                n: countWithout("theses", (project) => thesesOf(project).includes(thesis)),
+                on: filters.theses.includes(thesis),
+                onClick: () => set({ theses: toggle(filters.theses, thesis) }),
+              })),
+            ]}
+          />
+        )}
+        <ChipGroup
           label="Status"
-          groupLabel="Project status"
           options={[
             {
               value: "all",
@@ -379,94 +399,6 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
             })),
           ]}
         />
-
-        {hasFilters && filtersOpen && (
-          <div id="project-filters" className="flex flex-col gap-5 border-t border-navy/10 pt-4">
-            {universities.length > 0 && (
-              <ChipGroup
-                label="Who can apply"
-                options={[
-                  {
-                    value: "all",
-                    label: "All projects",
-                    n: countWithout("who", () => true),
-                    on: filters.who.length === 0,
-                    onClick: () => set({ who: [] }),
-                  },
-                  ...[EVERYONE, ...universities].map((who) => ({
-                    value: who,
-                    label: whoLabel(who),
-                    n: countWithout("who", (project) => whoOf(project).includes(who)),
-                    on: filters.who.includes(who),
-                    onClick: () => set({ who: toggle(filters.who, who) }),
-                  })),
-                ]}
-              />
-            )}
-            {theses.length > 0 && (
-              <ChipGroup
-                label="Thesis"
-                options={[
-                  {
-                    value: "all",
-                    label: "Any",
-                    n: countWithout("theses", () => true),
-                    on: filters.theses.length === 0,
-                    onClick: () => set({ theses: [] }),
-                  },
-                  ...[...theses, NOT_A_THESIS].map((thesis) => ({
-                    value: thesis,
-                    label: thesisLabel(thesis),
-                    n: countWithout("theses", (project) => thesesOf(project).includes(thesis)),
-                    on: filters.theses.includes(thesis),
-                    onClick: () => set({ theses: toggle(filters.theses, thesis) }),
-                  })),
-                ]}
-              />
-            )}
-            {topics.length > 0 && (
-              <ChipGroup
-                label="Topic"
-                options={[
-                  {
-                    value: "all",
-                    label: "All topics",
-                    n: countWithout("topics", () => true),
-                    on: filters.topics.length === 0,
-                    onClick: () => set({ topics: [] }),
-                  },
-                  ...topics.map((topic) => ({
-                    value: topic,
-                    label: topic,
-                    n: countWithout("topics", (project) => project.topics.includes(topic)),
-                    on: filters.topics.includes(topic),
-                    onClick: () => set({ topics: toggle(filters.topics, topic) }),
-                  })),
-                ]}
-              />
-            )}
-          </div>
-        )}
-
-        {/* What is chosen stays in sight, each one a click away from being
-            undone. */}
-        {chosen.length > 0 && (
-          <ul role="list" className="flex flex-wrap gap-2">
-            {chosen.map((item) => (
-              <li key={item.label}>
-                <button
-                  type="button"
-                  onClick={() => set(item.clear)}
-                  aria-label={`Remove filter: ${item.label}`}
-                  className="inline-flex min-h-[32px] items-center gap-1.5 border border-navy bg-navy pl-3 pr-2 text-[13px] text-white hover:bg-navy/85"
-                >
-                  {item.label}
-                  <XIcon size={12} aria-hidden="true" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
