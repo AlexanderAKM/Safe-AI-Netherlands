@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  ArrowRightIcon,
   ArrowUpRightIcon,
   CaretDownIcon,
   FunnelSimpleIcon,
@@ -9,7 +11,7 @@ import {
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import { Count, Segmented, chipClass } from "@/components/research/ProjectBrowser";
-import { PROJECTS_EMAIL } from "@/data/research";
+import { APPLY_PATH, PROJECTS_EMAIL } from "@/data/research";
 import {
   trackerStatuses,
   universityOrder,
@@ -221,6 +223,21 @@ function TrackerRow({ project }: { project: TrackerProject }) {
         </ul>
       )}
       </div>
+      {/* Straight on to the application form with this project chosen
+          (src/app/research/apply), for the projects that can take someone
+          now. */}
+      {project.status === "open" && (
+        <p className="mt-4">
+          <Link
+            href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
+            className="inline-flex items-center gap-1.5 text-label font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+          >
+            Apply for this project
+            <ArrowRightIcon size={15} aria-hidden="true" />
+            <span className="sr-only">: {project.title}</span>
+          </Link>
+        </p>
+      )}
       {full && (
         <p className="mt-4 border-t border-navy/12 pt-3.5 text-caption leading-[18px] text-navy/70">
           <span className="font-medium text-navy">Full for now.</span> Not taking new students at the moment.
