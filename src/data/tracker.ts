@@ -3,7 +3,7 @@ import snapshot from "./airtableProjects.json";
 /* The Project Team's tracker, from Airtable: the "Open Projects (Website)"
    view of the Project Hub table in the SAIN Pipeline base.
 
-   An hourly workflow (.github/workflows/refresh-project-tracker.yml) reads it
+   A scheduled workflow (.github/workflows/refresh-project-tracker.yml) reads it
    with scripts/fetch-airtable-projects.mjs and, when a project changed,
    commits the result to the `tracker-data` branch. The page loads that file
    in the reader's browser (TRACKER_DATA_URL), so a change shows without a
