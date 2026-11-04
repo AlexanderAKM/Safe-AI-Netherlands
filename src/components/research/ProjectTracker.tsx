@@ -168,25 +168,59 @@ function StatusLabel({ status }: { status: TrackerStatus }) {
   return (
     <p className={`inline-flex shrink-0 items-center gap-2 text-caption font-medium leading-[18px] ${tone}`}>
       <span aria-hidden="true" className="size-2" />
-      {statusLabel(status)}
+      {status === "full" ? "Full for now" : statusLabel(status)}
     </p>
   );
 }
 
 /* A full project reads as set aside rather than switched off, as on the
-   hand-kept cards: the cream showing through, its text eased back to 80%,
-   and a line at its foot that says why. It is still there to read. */
+   hand-kept cards: a cream-tinted white and its text eased back to 80%. Each
+   card stands on its own, with the page showing between them.
+   It is still there to read.
+
+   The top right says what the reader can do: an open project takes them
+   straight on to the application form with it chosen (src/app/research/apply);
+   any other shows its status instead, since it cannot take anyone now. */
 function TrackerRow({ project }: { project: TrackerProject }) {
   const full = project.status === "full";
   return (
-    <li className={`flex flex-col p-5 md:p-6 ${full ? "bg-cream/60" : ""}`}>
+    <li
+      className={`flex flex-col border border-navy/12 p-5 md:p-6 ${
+        full ? "bg-[color-mix(in_srgb,var(--color-cream)_60%,white)]" : "bg-white"
+      }`}
+    >
       <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-serif text-title-sm text-navy">{project.title}</h3>
-        <div className="mt-1">
-          <StatusLabel status={project.status} />
+        <div className="mt-1 shrink-0">
+          {project.status === "open" ? (
+            <Link
+              href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
+              className="inline-flex items-center gap-1.5 text-label font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+            >
+              Apply
+              <ArrowRightIcon size={15} aria-hidden="true" />
+              <span className="sr-only">: {project.title}</span>
+            </Link>
+          ) : (
+            <StatusLabel status={project.status} />
+          )}
         </div>
       </div>
+      {project.theses.length + project.topics.length > 0 && (
+        <ul role="list" className="mb-2 mt-1 flex flex-wrap gap-1.5">
+          {project.theses.map((thesis) => (
+            <li key={thesis} className="border border-orange/50 px-2 py-[3px] text-[12px] leading-4 text-orange-ink">
+              {thesis}
+            </li>
+          ))}
+          {project.topics.map((topic) => (
+            <li key={topic} className="bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 text-navy/70">
+              {topic}
+            </li>
+          ))}
+        </ul>
+      )}
       {project.supervisor && (
         <p className="mt-2 text-caption leading-[18px] text-navy/65">
           {project.website ? (
@@ -213,41 +247,7 @@ function TrackerRow({ project }: { project: TrackerProject }) {
         </p>
       )}
       {project.summary && <p className="mt-3 max-w-[820px] text-[15px] leading-6 text-navy/78">{project.summary}</p>}
-      {project.theses.length + project.topics.length > 0 && (
-        <ul role="list" className="mt-3 flex flex-wrap gap-1.5">
-          {project.theses.map((thesis) => (
-            <li key={thesis} className="border border-orange/50 px-2 py-[3px] text-[12px] leading-4 text-orange-ink">
-              {thesis}
-            </li>
-          ))}
-          {project.topics.map((topic) => (
-            <li key={topic} className="bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 text-navy/70">
-              {topic}
-            </li>
-          ))}
-        </ul>
-      )}
       </div>
-      {/* Straight on to the application form with this project chosen
-          (src/app/research/apply), for the projects that can take someone
-          now. */}
-      {project.status === "open" && (
-        <p className="mt-4">
-          <Link
-            href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
-            className="inline-flex items-center gap-1.5 text-label font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-          >
-            Apply for this project
-            <ArrowRightIcon size={15} aria-hidden="true" />
-            <span className="sr-only">: {project.title}</span>
-          </Link>
-        </p>
-      )}
-      {full && (
-        <p className="mt-4 border-t border-navy/12 pt-3.5 text-caption leading-[18px] text-navy/70">
-          <span className="font-medium text-navy">Full for now.</span> Not taking new students at the moment.
-        </p>
-      )}
     </li>
   );
 }
@@ -422,7 +422,7 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
 
       {shown.length > 0 ? (
         <div className="flex flex-col items-center gap-6">
-          <ul id="project-list" role="list" className="w-full divide-y divide-navy/10 border border-navy/12 bg-white">
+          <ul id="project-list" role="list" className="flex w-full flex-col gap-3">
             {visible.map((project) => (
               <TrackerRow key={project.id} project={project} />
             ))}
