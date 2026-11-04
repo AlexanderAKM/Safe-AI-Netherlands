@@ -341,7 +341,7 @@ function ProjectCard({ project }: { project: Project }) {
   const person = project.supervisor;
   const titleId = `project-${project.id}-title`;
   const detailsId = `project-${project.id}-details`;
-  const links = [{ label: "Agenda", href: person.agenda }, ...person.links];
+  const links = [...(person.agenda ? [{ label: "Agenda", href: person.agenda }] : []), ...person.links];
   const availability = projectAvailability(project);
   const full = availability === "full";
   const statusLine = availabilityLine(availability, projectAvailabilityNote(project));

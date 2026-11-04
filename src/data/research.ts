@@ -240,7 +240,9 @@ export type Supervisor = {
   image: string;
   /** The landing circle, 88-104 CSS. Written by `npm run images`. */
   imageSmall: string;
-  agenda: string;
+  /** Their research agenda or profile, which the portrait links to. Left out
+      until they have one; the portrait is then not a link. */
+  agenda?: string;
   /** How much room they have this round; "open" when left out. See
       `Availability`. A single project can override it (src/data/projects.ts). */
   availability?: Availability;
@@ -384,6 +386,17 @@ export const supervisors: Supervisor[] = [
     imageSmall: "/photos/supervisors/Peter_Bloem-312.jpg",
     agenda:
       "https://docs.google.com/document/d/1FemtRz4vx2-i7MTamkOqngWjcDfHzXuHUtqBF1_wHzA/edit?usp=sharing",
+  },
+  /* Confirmed by email in November 2026, based in The Hague. His profile
+     document is still to come, so his portrait links nowhere yet; his topics
+     are projects in the Airtable tracker. The photo is his own, cropped square
+     as he invited. */
+  {
+    name: "William Lippert",
+    position: "Senior Non-Resident Fellow, Global Governance Institute (GGI); based in The Hague",
+    positionShort: "Senior Non-Resident Fellow, GGI",
+    image: "/photos/supervisors/William_Lippert-800.jpg",
+    imageSmall: "/photos/supervisors/William_Lippert-312.jpg",
   },
 ];
 
