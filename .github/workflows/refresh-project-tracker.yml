@@ -1,7 +1,7 @@
 name: Refresh project tracker
 
 # Keeps the Project Hub's live tracker (/research) in step with Airtable, with
-# no rebuild and nothing to merge. Once an hour it reads the tracker from
+# no rebuild and nothing to merge. Every 15 minutes it reads the tracker from
 # Airtable (scripts/fetch-airtable-projects.mjs) and, only IF a project
 # changed, commits the new airtableProjects.json to the `tracker-data` branch.
 # The page loads that file in the reader's browser
@@ -17,7 +17,10 @@ name: Refresh project tracker
 
 on:
   schedule:
-    - cron: "17 * * * *" # every hour, at 17 past
+    # Every 15 minutes, off the hour. GitHub delays and drops scheduled runs
+    # when it is busy (hourly gave two runs in eleven hours), so the schedule
+    # is denser than needed. A run without a change commits nothing.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch: {} # lets you refresh by hand from the Actions tab
 
 # The only permission this job needs: push the tracker-data branch.

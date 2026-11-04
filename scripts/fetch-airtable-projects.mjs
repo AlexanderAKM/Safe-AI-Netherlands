@@ -2,7 +2,7 @@
 /**
  * Fetch the Project Team's tracker from Airtable and write its public fields
  * to a JSON file: by default src/data/airtableProjects.json (the copy the site
- * is built with), or the path given as the first argument. The hourly
+ * is built with), or the path given as the first argument. The scheduled
  * workflow .github/workflows/refresh-project-tracker.yml uses the argument to
  * write to the `tracker-data` branch, which the page loads in the browser.
  *

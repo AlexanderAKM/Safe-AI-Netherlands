@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
-import { PROJECTS_EMAIL, RESEARCH_INTEREST_FORM_URL } from "@/data/research";
+import ApplyForm from "@/components/research/ApplyForm";
+import { PROJECTS_EMAIL } from "@/data/research";
 
 export const metadata: Metadata = {
   title: "Apply for a project",
@@ -22,7 +22,8 @@ export const metadata: Metadata = {
    client-side link would find an empty box. The frame is a screen tall and
    the form scrolls inside it, which keeps its own page-by-page flow intact.
    The link to open it in its own tab stays for any browser that will not
-   show a form from another site. */
+   show a form from another site. Both live in ApplyForm, which also names the
+   project when the reader came from one. */
 
 const linkClass =
   "text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy";
@@ -69,25 +70,7 @@ export default function ApplyPage() {
 
       <section aria-label="Application form" className="bg-white">
         <div className="shell py-6 md:py-10">
-          <div className="border border-navy/12">
-            <iframe
-              src={RESEARCH_INTEREST_FORM_URL}
-              title="SAIN Project Hub application form"
-              className="block h-[calc(100dvh-140px)] min-h-[640px] w-full bg-white"
-            />
-          </div>
-          <p className="mt-4 font-sans text-footnote text-navy/60">
-            Form not showing?{" "}
-            <a
-              href={RESEARCH_INTEREST_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-baseline gap-1 ${linkClass}`}
-            >
-              Open it in a new tab
-              <ArrowUpRight size={13} weight="regular" aria-hidden="true" className="translate-y-[1px]" />
-            </a>
-          </p>
+          <ApplyForm linkClass={linkClass} />
         </div>
       </section>
     </>
