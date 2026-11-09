@@ -58,14 +58,19 @@ export const metadata: Metadata = {
   /* Served straight from public/ rather than rasterised on the fly. The old
      /icon route used next/og, whose bundled font it cannot resolve on Windows,
      so both `next dev` and `next build` failed there. A static SVG needs no
-     runtime and satisfies `output: export`. Still missing: a 180x180 PNG
-     apple-touch-icon, since iOS does not render SVG icons. */
+     runtime and satisfies `output: export`. The PNG and ICO files are that same
+     SVG rasterised: Google's search results show a favicon only from a raster
+     icon whose size is a multiple of 48px, and fall back to /favicon.ico, so
+     with the SVG alone the result showed a blank globe. iOS needs the 180px PNG
+     apple-touch-icon, as it does not render SVG icons. */
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
       { url: "/sain-symbol.svg", type: "image/svg+xml" },
-      { url: "/sain-symbol.svg", sizes: "any" },
     ],
-    shortcut: ["/sain-symbol.svg"],
+    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
     title: "Safe AI Netherlands",
