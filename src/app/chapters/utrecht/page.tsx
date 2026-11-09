@@ -162,23 +162,44 @@ const team: readonly TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
   },
   {
-    name: "Luca 'Dug' Dughera",
+    name: "Luca Dughera",
     title: "Events Lead",
     linkedin: "https://www.linkedin.com/in/luca-dughera/",
   },
   {
-    name: "Carolien Tran",
-    title: "Discussion Group Lead",
-    linkedin: "https://www.linkedin.com/in/carolientran/",
+    name: "Asya Korshunova",
+    title: "Education Lead",
+    linkedin:
+      "https://www.linkedin.com/in/anastasiia-korshunova-resilient-changemaking/",
   },
   {
     name: "Elena Clacova",
-    title: "Communication Lead",
+    title: "Communications Lead",
     linkedin: "https://www.linkedin.com/in/elenaclacova/",
   },
   {
+    name: "Ying-Kai Dang",
+    title: "Research Ops",
+    linkedin: "https://www.linkedin.com/in/ying-kai-dang/",
+  },
+  {
+    name: "Matthijs Vossen",
+    title: "Research Ops",
+    linkedin: "https://www.linkedin.com/in/matthijsvossen/",
+  },
+  {
+    name: "Carolien Tran",
+    title: "Discussion Coordinator",
+    linkedin: "https://www.linkedin.com/in/carolientran/",
+  },
+  {
+    name: "Prerna Chaudhary",
+    title: "Discussion Facilitator",
+    linkedin: "https://www.linkedin.com/in/prerna-chaudhary/",
+  },
+  {
     name: "Cem Kaya",
-    title: "Research Operations",
+    title: "Facilitator",
     linkedin: "https://www.linkedin.com/in/cem-kaya-om8/",
   },
   {
@@ -187,9 +208,34 @@ const team: readonly TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
   },
   {
-    name: "Max Schaffelder",
+    name: "Chetlur Vasundhara",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/chetlur-vasundhara-a0a7a3288/",
+  },
+  {
+    name: "Giovanni Varricchione",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/giovannivarr/",
+  },
+  {
+    name: "Milan Schouten",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/milan-schouten/",
+  },
+  {
+    name: "Qasim Sajjad",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/rqasimsajjad/",
+  },
+  {
+    name: "Nityaa Kalra",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/nityaakalra/",
+  },
+  {
+    name: "Jaffar Hussain",
     title: "Advisor",
-    linkedin: "https://www.linkedin.com/in/maxschaffelder/",
+    linkedin: "https://www.linkedin.com/in/jaffar-hussain-3414383/",
   },
 ];
 
