@@ -975,6 +975,83 @@ export const ROLES: Record<string, Role> = {
     specialisationOf: "Events Team Member",
   },
 
+  "governance-coordinator": {
+    id: "governance-coordinator",
+    title: "Governance Coordinator",
+    team: "education",
+    scope: "chapter",
+    reportsTo:
+      "The Lead responsible for collaborations; the Education Lead for course teaching",
+    timeCommitment:
+      "About 6 to 8 hours per week (the facilitator workload plus partner meetings and follow-up), for at least two quarters (6 months)",
+    mission:
+      "Build on the Education Course Facilitator: AI Governance role and extend it with partnership work. A coordinator is a facilitator with more privileges and responsibilities: an expert in their field who is the main point of contact for partner companies, and who implements partnerships and keeps them operational. The Governance Coordinator connects the governance courses to what comes after them: the projects proposed during the courses, the challenges that follow the courses, and research opportunities.",
+    responsibilities: [
+      "Prepare and deliver the four lectures: Introduction to AI governance and AI safety, AI geopolitics, The tools of the policymaker, and Governance in Europe and the Netherlands.",
+      "Read the primary sources ahead of each session and point participants to them, so they can check information independently.",
+      "Build the course slides in Canva and save a view-only PDF copy in Slides for participants; participants never get access to the original slides.",
+      "Keep the course outline, schedule and resources in the SAIN Education Playbook up to date, and get the participant outline approved before sharing it.",
+      "Support the optional weekly discussion groups (scheduled on Luma) and answer participant questions on Discord.",
+      "Run the final project and weekly homework, and help assess them.",
+      "Guide the side project on fellowship applications and give feedback on participants' answers.",
+      "Track attendance and share the feedback form at the end of each lecture.",
+      "Log course expenses in the cost table with a link to the receipt, so they can be reimbursed.",
+      "Attend regular facilitator check-ins with the Education Lead. Report on cohort progress and flag strong participants for fellowships and the Governance pipeline.",
+      "Interface with companies working on AI governance and act as their main point of contact.",
+      "Find partners for the projects proposed during the courses, such as the research proposals from the final project, and connect strong participants with them.",
+      "Set up and run the challenges that follow the courses together with partners, from defining the challenge with the partner to reporting the results back to them.",
+      "Identify research opportunities with partners and route promising participants and projects to them.",
+      "Implement the partnership strategy set by the Lead and keep each partnership operational.",
+      "Supervise and support the facilitators working on governance partnerships.",
+      "Keep the Lead informed about the status of each partnership and flag risks early, so the Lead can document the status and steer the trajectory when needed.",
+    ],
+    preferredBackground: {
+      field:
+        "AI governance, with at least the knowledge expected of an AI Governance facilitator (the EU AI Act, the EU AI Office, Dutch AI supervisors, US and Chinese AI strategy).",
+      experience:
+        "A facilitator with experience in AI safety who has worked in the field for at least 1.5 years.",
+      softSkills:
+        "Comfortable representing SAIN Utrecht to companies, reliable follow-up with partners, and the judgment to escalate strategic questions to the Lead.",
+    },
+    collaborations:
+      "The Lead responsible for collaborations, Education Lead, AI Governance facilitators, Events Lead (challenges), Communications Lead, partner companies.",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+  },
+
+  "social-media-copywriter": {
+    id: "social-media-copywriter",
+    title: "Social Media Copywriter",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Communications Lead",
+    timeCommitment: "3 to 5 hours per week",
+    mission:
+      "Write, edit, and publish SAIN's written content on social media. Turn the chapter's activities, ideas, and mission into clear, engaging copy that grows its audience and keeps one consistent voice.",
+    responsibilities: [
+      "Draft, edit, and publish regular LinkedIn newsletters and long-form thought-leadership articles on themes set by the Communications team.",
+      "Write clear, engaging captions for daily and weekly updates, event announcements, and media releases.",
+      "Keep all written content in SAIN's brand voice, so the tone stays consistent across platforms and formats.",
+      "Structure posts so they are easy to read and reach more people: strong hooks, short paragraphs, bullet points, and LinkedIn best practices for organic engagement.",
+      "Proofread and edit written materials so they are error-free, clear, and aligned with SAIN's goals.",
+      "Incorporate feedback from the Communications Lead on tone, messaging, and priorities.",
+      "Attend the weekly Communications team meeting.",
+    ],
+    preferredBackground: {
+      field:
+        "Open. Communication, journalism, marketing, or linguistics are helpful; familiarity with AI or AI safety is a plus.",
+      level:
+        "Not relevant. Writing samples and a strong command of English count for more than credentials.",
+      experience:
+        "Prior copywriting, content writing, or editing experience is required, ideally including writing for LinkedIn or other social media. A portfolio or past writing samples are strongly preferred.",
+      softSkills:
+        "Attention to detail, adapting tone to different audiences, explaining complex topics in plain language, reliably meeting publishing deadlines, and openness to feedback.",
+    },
+    collaborations:
+      "Communications Lead, Content Creator, Photographer (matching visuals), Events Lead (event announcements).",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+    specialisationOf: "Communications Team Member",
+  },
+
   "communications-lead-groningen": {
     id: "communications-lead-groningen",
     title: "Communications Lead",
@@ -1122,8 +1199,10 @@ export const chapterPositions: ChapterPosting[] = [
       { roleId: "research-ops-repository-steward" },
       { roleId: "sain-ambassador" },
       { roleId: "events-team-member-facilitator" },
+      { roleId: "governance-coordinator" },
       { roleId: "graphic-designer" },
       { roleId: "photographer" },
+      { roleId: "social-media-copywriter" },
     ],
   },
   {
