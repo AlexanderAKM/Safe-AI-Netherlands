@@ -1052,6 +1052,40 @@ export const ROLES: Record<string, Role> = {
     specialisationOf: "Communications Team Member",
   },
 
+  "video-editor-short-form": {
+    id: "video-editor-short-form",
+    title: "Video Editor (Short-Form)",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Communications Lead",
+    timeCommitment: "3 to 5 hours per week",
+    mission:
+      "Film, edit, and publish high-quality short-form video that documents SAIN's activities, humanises the organisation's mission, and brings our story to life on Instagram Reels, TikTok, and YouTube Shorts.",
+    responsibilities: [
+      "Film live events, workshops, panels, and social gatherings hosted by the chapter, capturing footage with editing in mind.",
+      "Conduct planned shoots for team features, member stories, marketing campaigns, and promotional content.",
+      "Edit footage into polished, vertical-first short-form videos (Instagram Reels, TikToks, Shorts) with strong hooks, pacing, captions, and sound that fit each platform's native style.",
+      "Adapt and repurpose content across platforms, including cutting longer recordings into multiple short clips.",
+      "Maintain a shared digital media library (e.g. Google Drive) with organised, tagged raw footage and final exports for the Communications team.",
+      "Incorporate feedback from the Communications Lead on visual style, storytelling, and selection.",
+      "Attend the weekly Communications team meeting.",
+    ],
+    preferredBackground: {
+      field:
+        "Open. Video production, filmmaking, media, or visual arts are helpful.",
+      level:
+        "Not relevant; portfolio and technical skill carry more weight than credentials.",
+      experience:
+        "Prior filming and video editing experience required, ideally with short-form content. Experience with Adobe Premiere Pro, DaVinci Resolve, Final Cut Pro, CapCut, or equivalent editing software. Access to a professional or semi-professional camera (or a high-end smartphone with stabilisation and good audio equipment) is helpful. A portfolio or reel of past work is strongly preferred.",
+      softSkills:
+        "Keen eye for framing, lighting, and pacing; an instinct for what makes a hook work on social platforms; ability to capture candid moments; reliability in meeting post-production deadlines; and a comfortable demeanour when filming event attendees.",
+    },
+    collaborations:
+      "Communications Lead, Content Creator, Events Lead (for event content).",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+    specialisationOf: "Communications Team Member",
+  },
+
   "communications-lead-groningen": {
     id: "communications-lead-groningen",
     title: "Communications Lead",
@@ -1178,9 +1212,8 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoams@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "events-lead" },
       { roleId: "photographer" },
-      { roleId: "community-manager" },
+      { roleId: "video-editor-short-form" },
     ],
   },
   {
