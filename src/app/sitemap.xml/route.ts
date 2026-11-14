@@ -1,4 +1,5 @@
 import { sainDocuments } from "@/data/sainDocuments";
+import { publications } from "@/data/research";
 
 const siteUrl = "https://safeainetherlands.org";
 
@@ -18,10 +19,13 @@ const routes = [
   "/chapters/utrecht",
   "/chapters/amsterdam",
   "/research/handbook",
+  "/research/apply",
   // The governing documents under /about/[document], read from the same
   // source the pages are generated from, so a new document cannot ship
   // unlisted.
   ...sainDocuments.map((document) => `/about/${document.slug}`),
+  // The papers hosted in the reader, from the same list as the pages.
+  ...publications.flatMap((paper) => (paper.reader ? [`/research/papers/${paper.reader.slug}`] : [])),
 ];
 
 function escapeXml(value: string) {

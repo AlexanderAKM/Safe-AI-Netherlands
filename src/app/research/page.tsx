@@ -1,62 +1,54 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight, BookOpen } from "@phosphor-icons/react/dist/ssr";
 
 import Reveal from "@/components/landing/Reveal";
 import FittingTheCurve from "@/components/research/FittingTheCurve";
 import FeaturedPublications from "@/components/research/FeaturedPublications";
 import SectionOrbits from "@/components/research/SectionOrbits";
 import SupervisorRow from "@/components/research/SupervisorRow";
+import HeroFacts from "@/components/research/HeroFacts";
+import ProjectFinder from "@/components/research/ProjectFinder";
 import {
+  paperHref,
   publications,
-  supervisors,
-  RESEARCH_EMAIL,
-  RESEARCH_INTEREST_FORM_URL,
+  APPLY_PATH,
+  PROJECTS_EMAIL,
   SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
 
 export const metadata: Metadata = {
-  title: "Research hub",
+  title: "Project hub",
   description:
-    "The SAIN Research Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. Voluntary, remote-friendly, and open for applications at any time.",
+    "The SAIN Project Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. Voluntary, remote-friendly, and open for applications at any time.",
 };
 
-const RESEARCHER_MAILTO = `mailto:${RESEARCH_EMAIL}?subject=${encodeURIComponent(
-  "Research Hub: joining as a researcher",
+const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
+  "Project Hub: question",
 )}`;
-
-/* Counted from the data file rather than typed. The old hero carried "6+ Active
-   Projects  ·  20+ Researchers  ·  12+ Publications", and two of the three
-   traced to nothing while the third contradicted the exact twelve papers this
-   page lists. A number on this page has to be checkable by the reader, because
-   the reader is the sort who checks. */
-const factLine = [
-  `${publications.length} publications`,
-  `${supervisors.length} supervisors`,
-  "rolling applications",
-];
 
 /* The three doors into a project. All three are normal, so all three are set
    the same way: no track is styled as the real one. */
 const projectRoutes = [
   {
-    lead: "Work from a supervisor's agenda.",
-    body: "Every SAIN supervisor keeps a public research agenda, a document of open questions they want help investigating. Read the agendas below and pick a question that fits your background.",
+    lead: "Join a supervisor's project.",
+    body: "Every project a SAIN supervisor has offered is listed at the top of this page. Find one that fits your background and register your interest; the projects team introduces you to the supervisor.",
   },
   {
     lead: "Join an open collaboration.",
-    body: "Some projects run without formal supervision. One researcher leads, usually the person who designed the project, and SAIN connects collaborators and supports the work.",
+    body: "Some projects run without formal supervision. One person leads, usually whoever designed the project, and SAIN connects collaborators and supports the work.",
   },
   {
     lead: "Bring your own idea.",
-    body: "Write a short proposal: the question, why it matters, how you would test it, and what you need. SAIN's research team reviews it, and can help you shape it if it is not fully formed yet.",
+    body: "Write a short proposal: the question, why it matters, how you would test it, and what you need. SAIN's Project Team reviews it, and can help you shape it if it is not fully formed yet.",
   },
 ];
 
 const eligibility = [
   "Students at Bachelor, Master, or PhD level",
-  "Researchers working in industry",
+  "Researchers, and people working in industry",
+  "Policy professionals",
   "People with no formal affiliation",
 ];
 
@@ -154,48 +146,36 @@ export default function ResearchPage() {
         <div className="shell band-hero grid min-h-[60dvh] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] xl:grid-cols-[minmax(0,700px)_minmax(0,1fr)]">
           <Reveal hero className="flex min-w-0 flex-col gap-6">
             <h1 id="research-hero-heading" className="font-serif text-display text-navy">
-              Make a first real contribution to AI Safety research
+              Make a first real contribution to AI Safety
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              The SAIN Research Hub matches you with an experienced supervisor, arranges compute,
+              The SAIN Project Hub matches you with an experienced supervisor, arranges compute,
               and takes a project from open question to published finding. It is voluntary,
               remote-friendly, and open for applications at any time.
             </p>
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-1">
-              <a
-                href={RESEARCH_INTEREST_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-accent gap-2"
-              >
-                Register your interest
-                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+            {/* Three ways on, in order of weight: apply (the one orange
+                button), read how the hub works (an outline button, so the
+                handbook is findable from the first screen), and the plain
+                link down to the projects. */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-1">
+              <Link href={APPLY_PATH} className="btn-accent gap-2">
+                Apply for a project
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
+              <Link href="/research/handbook" className="btn-outline-ink gap-2">
+                <BookOpen size={18} weight="regular" aria-hidden="true" />
+                Read the handbook
+              </Link>
               <Link
-                href="/research/handbook"
+                href="#projects"
                 className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Read the research handbook
+                Browse open projects
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
 
-            {/* The quiet version of a stat row: three checkable facts on a
-                hairline, two of them counted straight off this page. The
-                separators are drawn rather than typed, so a screen reader reads
-                three facts and not two middots. */}
-            <ul
-              role="list"
-              className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-navy/14 pt-4"
-            >
-              {factLine.map((fact, i) => (
-                <li key={fact} className="flex items-center gap-3">
-                  {i > 0 ? <span aria-hidden="true" className="text-navy/25">·</span> : null}
-                  <span className="font-sans text-footnote text-navy/65">{fact}</span>
-                </li>
-              ))}
-            </ul>
+            <HeroFacts />
           </Reveal>
 
           <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
@@ -204,12 +184,47 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      {/* Eligibility, on paper: this band is the terms page of a printed
-          programme, so it runs on cream and stays a column plus a short list. */}
+      {/* The projects themselves, straight after the claim: the reader came
+          to find one. Every project goes through the same application form,
+          so "Apply for a project" sits once beside the header instead of on
+          each card. */}
       <section
-        aria-labelledby="eligibility-heading"
-        className="border-t border-navy/10 bg-cream"
+        id="projects"
+        aria-labelledby="projects-heading"
+        className="scroll-mt-28 border-t border-navy/10 bg-cream"
       >
+        <div className="shell band-section flex flex-col gap-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            <div className="flex max-w-[760px] flex-col gap-4">
+              <h2 id="projects-heading" className="font-serif text-heading text-navy">
+                Find a project, then join it
+              </h2>
+              <p className="font-sans text-body text-navy/74">
+                Every project SAIN supervisors have on offer, kept up to date by the projects team.
+                One application form covers all of them: name up to three projects in it,
+                and the projects team will introduce you to the supervisors within a working week.
+                A VU or UvA thesis counts towards a degree there, so it is for that
+                university&rsquo;s students; every other project is open to anyone with the right
+                background.
+              </p>
+            </div>
+            <Link href={APPLY_PATH} className="btn-accent shrink-0 gap-2 self-start lg:self-center">
+              Apply for a project
+              <ArrowRight size={16} weight="regular" aria-hidden="true" />
+            </Link>
+          </div>
+          <ProjectFinder />
+        </div>
+      </section>
+
+      {/* Eligibility, on paper: this band is the terms page of a printed
+          programme, so it runs on cream and stays a column plus a short list.
+          Both bands are cream, so the rule between them stops at the content's
+          edges rather than running the full width. */}
+      <section aria-labelledby="eligibility-heading" className="bg-cream">
+        <div className="shell" aria-hidden="true">
+          <span className="block h-px bg-navy/10" />
+        </div>
         <div className="shell band-section flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <h2
             id="eligibility-heading"
@@ -230,7 +245,7 @@ export default function ResearchPage() {
               <p className="font-sans text-body text-navy/74">
                 The hub is open to anyone with sufficient background:
               </p>
-              {/* The landing's dash list rather than hairline rows: three
+              {/* The landing's dash list rather than hairline rows: four
                   short items do not need a table, and the rules were reading
                   as a form inside a reading column. */}
               <ul role="list" className="mt-4 flex flex-col gap-2.5">
@@ -272,7 +287,7 @@ export default function ResearchPage() {
 
           <Reveal delay={0.05}>
           <ol role="list" aria-label="The three steps of a project" className="mt-12 md:mt-16">
-            <Step step="01" id="choose" title="Choose a research project">
+            <Step step="01" id="choose" title="Choose a project">
               <p className="mt-5 max-w-[760px] text-body text-white/75">
                 There are three ways in, and all three are normal.
               </p>
@@ -295,36 +310,38 @@ export default function ResearchPage() {
               </ol>
 
               <p className="mt-7 max-w-[760px] text-body text-white/75">
-                The scope is broad on purpose: technical alignment and interpretability, governance
-                and policy with an EU and Dutch emphasis, and foundational questions about how the
-                field measures progress. If you are unsure whether a topic counts as AI Safety, the
-                default answer is yes, provided you can articulate a plausible pathway from the work
-                to reducing AI-related risk.
+                Not every valuable contribution is a research paper: the work can be technical,
+                governance, policy, or conceptual. When choosing projects, the team looks at three
+                things: relevance to the Netherlands and Europe, relevance to transformative AI, and
+                whether it can succeed on a small budget. If you are unsure whether a topic counts as
+                AI Safety, the default answer is yes, provided you can articulate a plausible pathway
+                from the work to reducing risk from transformative AI.
               </p>
 
               <div className="mt-6">
-                <InverseLink href="/research/handbook">Read the research handbook</InverseLink>
+                <InverseLink href="/research/handbook">Read the Project Hub handbook</InverseLink>
               </div>
             </Step>
 
             <Step step="02" id="support" title="Work with support">
               <div className="mt-5 flex max-w-[760px] flex-col gap-4">
                 <p className="text-body text-white/75">
-                  Fill in the interest form and, for supervised projects, you hear back within a
-                  working week. If there is a fit, a supervisor is formally assigned and the project
+                  Fill in the application form and, for supervised projects, you hear back within
+                  a working week. If there is a fit, a supervisor is formally assigned and the project
                   gets its own channel in the community.
                 </p>
                 <p className="text-body text-white/75">
                   Supervision is a working relationship, not a lecture. You drive the day-to-day
-                  research; your supervisor helps scope the project realistically, reviews
+                  work; your supervisor helps scope the project realistically, reviews
                   experiments and drafts, and steps in when a direction stops being productive.
                   Meetings run weekly or biweekly, and you agree your commitment per project up
                   front, whether that is five to ten hours a week alongside a degree or something
                   closer to full time.
                 </p>
                 <p className="text-body text-white/75">
-                  Supervisors are usually researchers at PhD level or more senior, with exceptions.
-                  Compute is arranged per project at the start, and computationally inexpensive
+                  Supervisors come from universities, industry, and government. In academia they
+                  are usually at PhD level or more senior; outside it, they have several years of
+                  senior experience in a relevant role. Compute is arranged per project at the start, and computationally inexpensive
                   projects are encouraged. Remote participation works throughout.
                 </p>
               </div>
@@ -339,8 +356,8 @@ export default function ResearchPage() {
                 <p className="text-body text-white/75">
                   A project is complete when its main question is adequately answered, including
                   when the answer is negative, and the result is published in a presentable form: a
-                  workshop paper, a policy brief, or a blog post on SAIN&rsquo;s Substack or
-                  LessWrong. You get feedback on drafts, and SAIN may help with conference travel
+                  paper, a policy brief, an evaluation or open-source tool, or a blog post on
+                  SAIN&rsquo;s Substack or LessWrong. You get feedback on drafts, and SAIN may help with conference travel
                   within reason.
                 </p>
                 <p className="text-body text-white/75">
@@ -359,30 +376,56 @@ export default function ResearchPage() {
                 aria-label="All publications from the SAIN community"
                 className="research-publications mt-10 grid scroll-mt-36 gap-3 sm:grid-cols-2 xl:grid-cols-3"
               >
-                {publications.map((paper) => (
-                  <li key={paper.link} className="flex">
-                    <a
-                      href={paper.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pub-chip w-full"
-                    >
+                {publications.map((paper) => {
+                  /* Hosted papers open in the reader on this site; any
+                     paper without a PDF here still goes to its source. */
+                  const chip = (
+                    <>
                       <span className="w-[118px] shrink-0 font-sans text-footnote font-medium text-orange md:w-[136px]">
                         {paper.venueShort}
                       </span>
                       <span className="min-w-0 font-serif text-kicker-sm text-white">
                         {paper.chipTitle}
-                        <ArrowUpRight
-                          size={14}
-                          weight="regular"
-                          aria-hidden="true"
-                          className="ml-1 inline-block shrink-0 align-[-2px] text-white/70"
-                        />
-                        <span className="sr-only"> (opens in a new tab)</span>
+                        {paper.reader ? (
+                          <ArrowRight
+                            size={14}
+                            weight="regular"
+                            aria-hidden="true"
+                            className="ml-1 inline-block shrink-0 align-[-2px] text-white/70"
+                          />
+                        ) : (
+                          <>
+                            <ArrowUpRight
+                              size={14}
+                              weight="regular"
+                              aria-hidden="true"
+                              className="ml-1 inline-block shrink-0 align-[-2px] text-white/70"
+                            />
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </>
+                        )}
                       </span>
-                    </a>
-                  </li>
-                ))}
+                    </>
+                  );
+                  return (
+                    <li key={paper.link} className="flex">
+                      {paper.reader ? (
+                        <Link href={paperHref(paper)} className="pub-chip w-full">
+                          {chip}
+                        </Link>
+                      ) : (
+                        <a
+                          href={paper.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pub-chip w-full"
+                        >
+                          {chip}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </Step>
           </ol>
@@ -405,9 +448,9 @@ export default function ResearchPage() {
                 The people you would work with
               </h2>
               <p className="max-w-[720px] font-sans text-body text-navy/74">
-                Every supervisor keeps a public research agenda. Read it before you apply: the
-                strongest expressions of interest respond to a question a supervisor has already
-                posed.
+                Every supervisor keeps a public agenda of the projects they would like to supervise.
+                Read it before you apply: the strongest expressions of interest respond to a
+                question a supervisor has already posed.
               </p>
             </div>
 
@@ -421,10 +464,12 @@ export default function ResearchPage() {
             <div className="flex max-w-[720px] flex-col items-start gap-5 border-t border-navy/14 pt-8">
               <h3 className="font-serif text-title text-navy">Supervise the next project</h3>
               <p className="font-sans text-body text-navy/74">
-                If you are an experienced researcher, usually at PhD level or above, and the
-                papers above look like work you could have guided, more supervisors means more
-                projects. Supervision is remote-friendly, meetings run at a cadence you agree per
-                project, and the research team handles the coordination around you. Fill in the
+                If you have substantial experience in a relevant field, usually PhD level or above in
+                academia or several years in a senior role in industry or policy, and the work above
+                looks like something you could guide, more supervisors means more projects. You do
+                not need to be an AI Safety expert already. Supervision is remote-friendly, meetings
+                run at a cadence you agree per project, and the Project Team handles the
+                coordination around you. Fill in the
                 supervisor form and we will follow up with next steps.
               </p>
               <a
@@ -452,25 +497,19 @@ export default function ResearchPage() {
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
               Applications are rolling, and for supervised projects you hear back within a working
-              week. Fill in the interest form, or email the research team if you are not sure where
-              you fit and we will help route you.
+              week. Fill in the application form, or email the projects team if you are not sure
+              where you fit and we will help route you.
             </p>
           </div>
 
           <div className="flex flex-col gap-5 lg:shrink-0">
             <div className="flex flex-wrap gap-3">
-              <a
-                href={RESEARCH_INTEREST_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-accent gap-2"
-              >
-                Register your interest
-                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-              <a href={RESEARCHER_MAILTO} className="btn-ghost-inverse">
-                Email the research team
+              <Link href={APPLY_PATH} className="btn-accent gap-2">
+                Apply for a project
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
+              <a href={PROJECTS_MAILTO} className="btn-ghost-inverse">
+                Email the projects team
               </a>
             </div>
             <p className="max-w-[420px] font-sans text-footnote leading-[19px] text-white/60">
@@ -479,7 +518,7 @@ export default function ResearchPage() {
                 href="/research/handbook"
                 className="text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white"
               >
-                Read the research handbook
+                Read the Project Hub handbook
               </Link>
             </p>
           </div>

@@ -24,7 +24,7 @@ import { ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
  *
  * Closed panels leave the flow at every width. They used to stay in the shared
  * cell from md up, invisible, so a short course sat above the empty height of
- * the longest one (Utrecht's ARENA under Fundamentals' session list).
+ * the longest one (Utrecht's old ARENA themes under Fundamentals' session list).
  */
 
 /**
@@ -266,9 +266,8 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                             </span>
                           ) : null}
                           {item.paths?.length ? (
-                            /* The two-track columns on one hairline, the same
-                               geometry Groningen's tracks use, nested in the
-                               session that forks. */
+                            /* The two-track columns on one hairline, nested in
+                               the session that forks. */
                             <span className="mt-4 grid gap-4 md:grid-cols-2 md:gap-6">
                               {item.paths.map((path) => (
                                 <span

@@ -279,7 +279,7 @@ export const ROLES: Record<string, Role> = {
       "Document key points, arguments, disagreements, and open questions in the group's shared session document.",
       "Manage the group's communication platform: keep it on-topic, send reminder posters 2 days before each session, nudge less active participants supportively.",
       "At the start of each block, run the sign-up form, prune inactive members, and refresh the group with new participants.",
-      "Surface participants who want to go deeper to the Education Lead, the Research Hub, or Substack opportunities.",
+      "Surface participants who want to go deeper to the Education Lead, the Project Hub, or Substack opportunities.",
     ],
     preferredBackground: {
       field:
@@ -608,14 +608,14 @@ export const ROLES: Record<string, Role> = {
     timeCommitment:
       "Full-time (1.0 FTE), 40 hours per week, 5-day week",
     mission:
-      "Hundreds of people in the Netherlands finish an AI safety course each year, and almost none go on to do anything with it. The Research Hub exists to close that gap: it is where someone who has done a course or two makes their first real contribution, whether that is a paper, a policy submission, an eval, a tool, or a Dutch-language resource. You run both of its tracks, supervised projects and open collaboration, and you are accountable for how many reach a finished, valuable state. Today the Hub has a few supervisors, a few completed projects, and volunteer teams in three chapter cities. Your job is to make it flourish. As the fourth person on SAIN's national team, you own its strategy, budget, and volunteer teams. The work is project management and relationship-building: you do not need to be the smartest researcher in the room, you need to be the person who makes sure fifty projects actually get finished.",
+      "Hundreds of people in the Netherlands finish an AI safety course each year, and almost none go on to do anything with it. The Project Hub exists to close that gap: it is where someone who has done a course or two makes their first real contribution, whether that is a paper, a policy submission, an eval, a tool, or a Dutch-language resource. You run both of its tracks, supervised projects and open collaboration, and you are accountable for how many reach a finished, valuable state. Today the Hub has a few supervisors, a few completed projects, and volunteer teams in three chapter cities. Your job is to make it flourish. As the fourth person on SAIN's national team, you own its strategy, budget, and volunteer teams. The work is project management and relationship-building: you do not need to be the smartest researcher in the room, you need to be the person who makes sure fifty projects actually get finished.",
     responsibilities: [
-      "Set and hold the strategic direction of the Research Hub, together with leadership and the Advisory Board.",
+      "Set and hold the strategic direction of the Project Hub, together with leadership and the Advisory Board.",
       "Proactively recruit supervisors and source projects, across research, policy and technical work.",
       "Run the application process; match people to supervisors and projects.",
       "Monitor active projects and intervene when they stall.",
       "Recruit, onboard and manage the Research Operations teams in each chapter; maintain continuity across academic-year turnover.",
-      "Work with Communications to publish and promote the Hub's output; maintain the Research Hub Handbook; track and report Hub metrics.",
+      "Work with Communications to publish and promote the Hub's output; maintain the Project Hub Handbook; track and report Hub metrics.",
     ],
     goodFitIf: [
       "Have demonstrated experience managing a team, volunteers, or junior researchers.",
@@ -640,7 +640,7 @@ export const ROLES: Record<string, Role> = {
       benefits: [
         "8% holiday allowance",
         "Flexible additional leave",
-        "A budget for the Research Hub's operations",
+        "A budget for the Project Hub's operations",
       ],
     },
     applicationProcess: [
@@ -660,10 +660,10 @@ export const ROLES: Record<string, Role> = {
     timeCommitment:
       "2 hours per week in quiet times to 8 hours per week when many supervisors and researchers are onboarded",
     mission:
-      "Make the Research Hub run smoothly day-to-day. Handle operational logistics, onboard new researchers and supervisors, and shape the research direction with the Research Lead.",
+      "Make the Project Hub run smoothly day-to-day. Handle operational logistics, onboard new researchers and supervisors, and shape the research direction with the Research Lead.",
     responsibilities: [
-      "Decide the strategic direction of the Research Hub together with the Lead.",
-      "Track applicants and ongoing projects (the Research Hub interest tracker).",
+      "Decide the strategic direction of the Project Hub together with the Lead.",
+      "Track applicants and ongoing projects (the Project Hub interest tracker).",
       "Send check-in forms and follow up on open ones.",
       "Maintain Discord channels and the GitHub organisation.",
       "Keep the website's research section updated.",
@@ -695,11 +695,11 @@ export const ROLES: Record<string, Role> = {
     responsibilities: [
       "Plan and coordinate course iterations (Intro, Technical, Governance), including the Technical AI Safety program (e.g. ARENA 2-4) and the Agents + CyberSec, Biorisk, and Embodied AI Safety modules: schedules, cohort logistics, participant communication, and curriculum currency.",
       "Coordinate with Incubation Ops (Research Team) to turn strong course participants into projects in the pre-incubation stage: scope Forge proposals, match participants to project tracks and mentors, and hand projects over to Incubation Ops with a clear status summary.",
-      "Work with the Research Ops & Repository Steward to make sure Forge proposals and incubating projects get a technical assessment before they progress to the Research Hub, a Grant (Type 1/2), or an external mentor pipeline.",
+      "Work with the Research Ops & Repository Steward to make sure Forge proposals and incubating projects get a technical assessment before they progress to the Project Hub, a Grant (Type 1/2), or an external mentor pipeline.",
       "Find and maintain partnerships in the AI safety field (e.g. ARENA, Apart Research, SecureBio, Convergent Robotics, BlueDot Impact) that strengthen SAIN's courses, mentor network, and project pipeline.",
       "Find and maintain partnerships with institutions (UU departments, other universities, research groups, companies) for SAIN courses: guest lecturers, course recognition or credit, shared cohorts, and co-run programs. Hand leads to the Ambassador and Director where relevant.",
       "Recruit, train, and support facilitators and TAs, and run regular facilitator check-ins. Track cohort progress and flag participants ready for early hand-off.",
-      "Coordinate updates to course content with the Director, the Discussion Team, and SAIN Research Hub agenda topics.",
+      "Coordinate updates to course content with the Director, the Discussion Team, and SAIN Project Hub agenda topics.",
       "Coordinate with the Communications Lead on course marketing and with the Events Lead on hackathon and challenge design.",
       "Keep a steady weekly presence, not only on weekends: check the education inbox and facilitator channels on weekdays, answer participant and partner messages promptly, and keep pre-incubation and partnership threads moving with regular small actions. A few short check-ins during the week are worth more than one long weekend session.",
     ],
@@ -727,7 +727,7 @@ export const ROLES: Record<string, Role> = {
       "Build and look after SAIN Utrecht's technical backbone. Create and maintain the SAIN Repository, hold incubated code to a high engineering standard, and collaborate with external companies on projects. This role makes sure that what SAIN publishes, benchmarks, and demonstrates is reproducible and technically trustworthy.",
     responsibilities: [
       "Create and maintain the SAIN Repository: repo structure, contribution standards, PR review and approval, CI/testing hygiene, documentation, and reproducibility of benchmarks and demos.",
-      "Collaborate with the Education Lead and Incubation Ops to provide technical assessment of Forge proposals and incubating projects, and advise on which are ready to progress to the Research Hub, a Grant, or an external mentor pipeline.",
+      "Collaborate with the Education Lead and Incubation Ops to provide technical assessment of Forge proposals and incubating projects, and advise on which are ready to progress to the Project Hub, a Grant, or an external mentor pipeline.",
       "Collaborate with external companies on projects: scope joint work, keep technical deliverables on track, and act as the technical contact.",
       "Support course facilitators who own module repositories (e.g. Embodied AI Safety) by aligning their repos with SAIN-wide standards.",
       "Help design hands-on project tracks (agent security benchmarks, sandboxing, MCP/tool-ecosystem security, AI×Bio project ladder, embodied AI red-teaming), calibrated to participants' skill levels.",
@@ -771,7 +771,7 @@ export const ROLES: Record<string, Role> = {
       "Develop demos of risks for SAIN to show at events and courses (e.g. live model-behaviour demos, eval walkthroughs, \"how do we know if a model is dangerous?\" interactive exhibits). Coordinate with the Events Lead on format and with the Communications Lead on how demos are presented publicly.",
       "Keep demos responsible: they illustrate risk and evaluation methods without providing operational uplift or hazardous content, and sensitive demos get sign-off from the Education Lead or Director before public use.",
       "Review homework notebooks and project code, give direct technical feedback, and flag strong participants for the Forge/Incubation pipeline.",
-      "Keep the module current as evaluation methods, benchmarks, and model capabilities change, in coordination with the Education Lead and the SAIN Research Hub agenda.",
+      "Keep the module current as evaluation methods, benchmarks, and model capabilities change, in coordination with the Education Lead and the SAIN Project Hub agenda.",
       "Attend regular facilitator check-ins with the Education Lead and report on cohort progress and curriculum needs.",
       "Contribute throughout the week rather than only on weekends: short weekday check-ins on participant questions, cross-track coordination, and demo development.",
     ],
@@ -843,7 +843,7 @@ export const ROLES: Record<string, Role> = {
       "Read all assigned readings ahead of sessions (SecureBio biorisk evaluations, dual-use LLM risk literature, relevant governance material) and keep pace with fast-moving developments in this area.",
       "Run weekly sessions introducing AI×bio risk concepts at the appropriate level for each track: high-level risk-pathway framing for Intro, deeper technical and evaluation framing for Technical, and policy or governance framing for the Governance program.",
       "Guide participants toward safe, non-dangerous project formats from the AI×Bio project ladder (e.g. risk-landscape mapping, threat modeling, capability taxonomies, evaluation-benchmark design, governance gap analysis), strictly avoiding any project that could generate or require real operational biological uplift content.",
-      "Provide feedback on written project work (essays, threat models, policy papers) and flag strong candidates for the Research Hub or Governance E2I pipeline.",
+      "Provide feedback on written project work (essays, threat models, policy papers) and flag strong candidates for the Project Hub or Governance E2I pipeline.",
       "Coordinate with the Education Lead on maintaining curriculum accuracy as CBRN-related guidance and public research evolves.",
       "Attend regular facilitator check-ins with the Education Lead.",
     ],
@@ -975,6 +975,117 @@ export const ROLES: Record<string, Role> = {
     specialisationOf: "Events Team Member",
   },
 
+  "governance-coordinator": {
+    id: "governance-coordinator",
+    title: "Governance Coordinator",
+    team: "education",
+    scope: "chapter",
+    reportsTo:
+      "The Lead responsible for collaborations; the Education Lead for course teaching",
+    timeCommitment:
+      "About 6 to 8 hours per week (the facilitator workload plus partner meetings and follow-up), for at least two quarters (6 months)",
+    mission:
+      "Build on the Education Course Facilitator: AI Governance role and extend it with partnership work. A coordinator is a facilitator with more privileges and responsibilities: an expert in their field who is the main point of contact for partner companies, and who implements partnerships and keeps them operational. The Governance Coordinator connects the governance courses to what comes after them: the projects proposed during the courses, the challenges that follow the courses, and research opportunities.",
+    responsibilities: [
+      "Prepare and deliver the four lectures: Introduction to AI governance and AI safety, AI geopolitics, The tools of the policymaker, and Governance in Europe and the Netherlands.",
+      "Read the primary sources ahead of each session and point participants to them, so they can check information independently.",
+      "Build the course slides in Canva and save a view-only PDF copy in Slides for participants; participants never get access to the original slides.",
+      "Keep the course outline, schedule and resources in the SAIN Education Playbook up to date, and get the participant outline approved before sharing it.",
+      "Support the optional weekly discussion groups (scheduled on Luma) and answer participant questions on Discord.",
+      "Run the final project and weekly homework, and help assess them.",
+      "Guide the side project on fellowship applications and give feedback on participants' answers.",
+      "Track attendance and share the feedback form at the end of each lecture.",
+      "Log course expenses in the cost table with a link to the receipt, so they can be reimbursed.",
+      "Attend regular facilitator check-ins with the Education Lead. Report on cohort progress and flag strong participants for fellowships and the Governance pipeline.",
+      "Interface with companies working on AI governance and act as their main point of contact.",
+      "Find partners for the projects proposed during the courses, such as the research proposals from the final project, and connect strong participants with them.",
+      "Set up and run the challenges that follow the courses together with partners, from defining the challenge with the partner to reporting the results back to them.",
+      "Identify research opportunities with partners and route promising participants and projects to them.",
+      "Implement the partnership strategy set by the Lead and keep each partnership operational.",
+      "Supervise and support the facilitators working on governance partnerships.",
+      "Keep the Lead informed about the status of each partnership and flag risks early, so the Lead can document the status and steer the trajectory when needed.",
+    ],
+    preferredBackground: {
+      field:
+        "AI governance, with at least the knowledge expected of an AI Governance facilitator (the EU AI Act, the EU AI Office, Dutch AI supervisors, US and Chinese AI strategy).",
+      experience:
+        "A facilitator with experience in AI safety who has worked in the field for at least 1.5 years.",
+      softSkills:
+        "Comfortable representing SAIN Utrecht to companies, reliable follow-up with partners, and the judgment to escalate strategic questions to the Lead.",
+    },
+    collaborations:
+      "The Lead responsible for collaborations, Education Lead, AI Governance facilitators, Events Lead (challenges), Communications Lead, partner companies.",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+  },
+
+  "social-media-copywriter": {
+    id: "social-media-copywriter",
+    title: "Social Media Copywriter",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Communications Lead",
+    timeCommitment: "3 to 5 hours per week",
+    mission:
+      "Write, edit, and publish SAIN's written content on social media. Turn the chapter's activities, ideas, and mission into clear, engaging copy that grows its audience and keeps one consistent voice.",
+    responsibilities: [
+      "Draft, edit, and publish regular LinkedIn newsletters and long-form thought-leadership articles on themes set by the Communications team.",
+      "Write clear, engaging captions for daily and weekly updates, event announcements, and media releases.",
+      "Keep all written content in SAIN's brand voice, so the tone stays consistent across platforms and formats.",
+      "Structure posts so they are easy to read and reach more people: strong hooks, short paragraphs, bullet points, and LinkedIn best practices for organic engagement.",
+      "Proofread and edit written materials so they are error-free, clear, and aligned with SAIN's goals.",
+      "Incorporate feedback from the Communications Lead on tone, messaging, and priorities.",
+      "Attend the weekly Communications team meeting.",
+    ],
+    preferredBackground: {
+      field:
+        "Open. Communication, journalism, marketing, or linguistics are helpful; familiarity with AI or AI safety is a plus.",
+      level:
+        "Not relevant. Writing samples and a strong command of English count for more than credentials.",
+      experience:
+        "Prior copywriting, content writing, or editing experience is required, ideally including writing for LinkedIn or other social media. A portfolio or past writing samples are strongly preferred.",
+      softSkills:
+        "Attention to detail, adapting tone to different audiences, explaining complex topics in plain language, reliably meeting publishing deadlines, and openness to feedback.",
+    },
+    collaborations:
+      "Communications Lead, Content Creator, Photographer (matching visuals), Events Lead (event announcements).",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+    specialisationOf: "Communications Team Member",
+  },
+
+  "video-editor-short-form": {
+    id: "video-editor-short-form",
+    title: "Video Editor (Short-Form)",
+    team: "communications",
+    scope: "chapter",
+    reportsTo: "Communications Lead",
+    timeCommitment: "3 to 5 hours per week",
+    mission:
+      "Film, edit, and publish high-quality short-form video that documents SAIN's activities, humanises the organisation's mission, and brings our story to life on Instagram Reels, TikTok, and YouTube Shorts.",
+    responsibilities: [
+      "Film live events, workshops, panels, and social gatherings hosted by the chapter, capturing footage with editing in mind.",
+      "Conduct planned shoots for team features, member stories, marketing campaigns, and promotional content.",
+      "Edit footage into polished, vertical-first short-form videos (Instagram Reels, TikToks, Shorts) with strong hooks, pacing, captions, and sound that fit each platform's native style.",
+      "Adapt and repurpose content across platforms, including cutting longer recordings into multiple short clips.",
+      "Maintain a shared digital media library (e.g. Google Drive) with organised, tagged raw footage and final exports for the Communications team.",
+      "Incorporate feedback from the Communications Lead on visual style, storytelling, and selection.",
+      "Attend the weekly Communications team meeting.",
+    ],
+    preferredBackground: {
+      field:
+        "Open. Video production, filmmaking, media, or visual arts are helpful.",
+      level:
+        "Not relevant; portfolio and technical skill carry more weight than credentials.",
+      experience:
+        "Prior filming and video editing experience required, ideally with short-form content. Experience with Adobe Premiere Pro, DaVinci Resolve, Final Cut Pro, CapCut, or equivalent editing software. Access to a professional or semi-professional camera (or a high-end smartphone with stabilisation and good audio equipment) is helpful. A portfolio or reel of past work is strongly preferred.",
+      softSkills:
+        "Keen eye for framing, lighting, and pacing; an instinct for what makes a hook work on social platforms; ability to capture candid moments; reliability in meeting post-production deadlines; and a comfortable demeanour when filming event attendees.",
+    },
+    collaborations:
+      "Communications Lead, Content Creator, Events Lead (for event content).",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+    specialisationOf: "Communications Team Member",
+  },
+
   "communications-lead-groningen": {
     id: "communications-lead-groningen",
     title: "Communications Lead",
@@ -1101,9 +1212,8 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoams@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "events-lead" },
       { roleId: "photographer" },
-      { roleId: "community-manager" },
+      { roleId: "video-editor-short-form" },
     ],
   },
   {
@@ -1115,16 +1225,17 @@ export const chapterPositions: ChapterPosting[] = [
     inboxEmail: "infoutr@safeainetherlands.org",
     status: "open",
     postings: [
-      { roleId: "education-lead-utrecht" },
-      { roleId: "education-facilitator-evals" },
+      { roleId: "community-manager" },
       { roleId: "education-facilitator-cybersec" },
       { roleId: "education-facilitator-biosecurity" },
       { roleId: "education-facilitator-embodied" },
       { roleId: "research-ops-repository-steward" },
       { roleId: "sain-ambassador" },
       { roleId: "events-team-member-facilitator" },
+      { roleId: "governance-coordinator" },
       { roleId: "graphic-designer" },
       { roleId: "photographer" },
+      { roleId: "social-media-copywriter" },
     ],
   },
   {
@@ -1199,7 +1310,7 @@ export const isNationalRecruiting = openNationalPostings.length > 0;
 
 /**
  * Whether a specific national role is currently advertised. Used by
- * /research to decide whether to show its Research Hub hiring banner.
+ * /research to decide whether to show its Project Hub hiring banner.
  */
 export function isNationalRoleOpen(roleId: keyof typeof ROLES): boolean {
   return openNationalPostings.some((p) => p.roleId === roleId);

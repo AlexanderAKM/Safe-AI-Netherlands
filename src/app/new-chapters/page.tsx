@@ -7,9 +7,9 @@ import {
   ChatsCircle,
   Flag,
   Handshake,
+  Plant,
   SealCheck,
   Stack,
-  UsersThree,
   Wallet,
 } from "@phosphor-icons/react/dist/ssr";
 import type { Icon } from "@phosphor-icons/react";
@@ -17,6 +17,8 @@ import type { Icon } from "@phosphor-icons/react";
 import Reveal from "@/components/landing/Reveal";
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import ApplicationSteps from "@/components/careers/ApplicationSteps";
+import ChapterPrints from "@/components/landing/ChapterPrints";
+import CommunityPrints from "@/components/landing/CommunityPrints";
 import ChapterMap from "@/components/expansion/ChapterMap";
 import FoundingRoleDisclosure from "@/components/expansion/FoundingRoleDisclosure";
 import OpenOnHash from "@/components/expansion/OpenOnHash";
@@ -28,7 +30,6 @@ import {
   FOUNDING_ROLES,
   INCUBATION_MILESTONES,
   INCUBATION_STOPS,
-  NOT_THERE_YET,
   SOFT_DEADLINE,
   buildFoundingApplicationUrl,
   type OfferIcon,
@@ -47,9 +48,35 @@ const OFFER_ICON: Record<OfferIcon, Icon> = {
   stack: Stack,
   wallet: Wallet,
   handshake: Handshake,
-  users: UsersThree,
+  growth: Plant,
   seal: SealCheck,
 };
+
+/* The word in each aim that carries its ambition, set in full white while
+   the rest of the line steps back. Keyed by the aim's text so the emphasis
+   follows the aim if INCUBATION_MILESTONES is reordered; an aim with no
+   entry is simply printed whole. */
+const MILESTONE_EMPHASIS: Record<string, string> = {
+  "A strong team": "strong",
+  "Courses with dozens of participants": "dozens",
+  "Hundreds of new faces at events": "Hundreds",
+  "A community of hundreds": "hundreds",
+  "Local partners": "Local",
+  "Projects running through the Project Hub": "Projects",
+};
+
+function Milestone({ text }: { text: string }) {
+  const word = MILESTONE_EMPHASIS[text];
+  const at = word ? text.indexOf(word) : -1;
+  if (at < 0) return <span className="text-white">{text}</span>;
+  return (
+    <>
+      {text.slice(0, at)}
+      <span className="text-white">{word}</span>
+      {text.slice(at + word.length)}
+    </>
+  );
+}
 
 function ApplyButton({ label = "Apply to a starting team" }: { label?: string }) {
   return (
@@ -84,19 +111,15 @@ export default function NewChaptersPage() {
         <SectionOrbits className="-left-24 top-0 h-[420px] w-[320px] md:-left-14" />
         <div className="shell band-hero grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] xl:grid-cols-[minmax(0,700px)_minmax(0,1fr)]">
           <Reveal hero className="flex min-w-0 flex-col gap-6">
-            <p className="kicker flex items-center gap-3 text-kicker text-navy/65">
-              <span className="size-[7px] bg-orange" aria-hidden="true" />
-              Starting teams wanted
-            </p>
             <h1 id="new-chapters-heading" className="font-serif text-display text-navy">
               Start SAIN in Eindhoven, Delft or The Hague.
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              SAIN builds the national AI safety talent pipeline, with chapters in
-              Groningen, Amsterdam and Utrecht. This winter we are starting three
-              more. Each city gets a starting team of four: a Chapter Director, an
-              Education Lead, an Events Lead and a Communications Lead. All four
-              roles are paid and part-time.
+              SAIN has chapters in Groningen, Amsterdam and Utrecht. This winter we
+              are starting three more: Eindhoven, Delft and The Hague. Each city gets
+              a starting team of four people: a Chapter Director, an Education Lead,
+              an Events Lead and a Communications Lead. All four roles are paid and
+              part-time.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <ApplyButton />
@@ -116,9 +139,7 @@ export default function NewChaptersPage() {
         </div>
       </section>
 
-      {/* The honest position: what does not exist yet, set against what is
-          already behind the starting team. Two ledgers on one rule, the missing side
-          drawn with a dashed marker because it is still to be built. */}
+      {/* What is already behind the starting team, as one ledger on a rule. */}
       <section
         aria-labelledby="building-heading"
         className="relative isolate overflow-hidden border-t border-navy/10 bg-white"
@@ -131,44 +152,25 @@ export default function NewChaptersPage() {
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
               You would be the person building a SAIN chapter in your city, and you
-              will be in charge of setting up everything. You will not be doing it
-              alone: a funded national organisation and a network of advisors,
-              researchers and partner organisations want nothing more than your
-              chapter to succeed.
+              will be in charge of setting up everything. However, you&rsquo;ll have
+              support: a funded national organisation behind you, and a network of
+              advisors, researchers and partner organisations who want nothing more
+              than your chapter to succeed.
             </p>
 
-            <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-0">
-              <div className="md:border-r md:border-navy/10 md:pr-12">
-                <p className="kicker text-kicker-sm text-navy/60">Not there yet</p>
-                <ul role="list" className="mt-4 border-b border-navy/10">
-                  {NOT_THERE_YET.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-4 border-t border-navy/10 py-3.5"
-                    >
-                      <span
-                        className="h-0 w-5 shrink-0 border-t border-dashed border-navy/40"
-                        aria-hidden="true"
-                      />
-                      <span className="font-serif text-title-sm text-navy/50">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="md:pl-12">
-                <p className="kicker text-kicker-sm text-navy/60">Already behind you</p>
-                <ul role="list" className="mt-4 border-b border-navy/10">
-                  {ALREADY_THERE.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-4 border-t border-navy/10 py-3.5"
-                    >
-                      <span className="h-px w-5 shrink-0 bg-navy" aria-hidden="true" />
-                      <span className="font-serif text-title-sm text-navy">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="mt-10 max-w-[620px]">
+              <p className="kicker text-kicker-sm text-navy/60">Already behind you</p>
+              <ul role="list" className="mt-4">
+                {ALREADY_THERE.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-4 py-3"
+                  >
+                    <span className="h-px w-5 shrink-0 bg-navy" aria-hidden="true" />
+                    <span className="font-serif text-title-sm text-navy">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
@@ -183,8 +185,8 @@ export default function NewChaptersPage() {
               Three cities with the most potential.
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              We have identified these three cities as the highest-potential ones to
-              expand to. Each one will grow a chapter with its own profile.
+              We have identified these three cities as the highest-potential ones for
+              us to expand to. Here is, very briefly, why we think so.
             </p>
             <div className="mt-10 grid gap-y-10 md:grid-cols-3">
               {FOUNDING_CITIES.map((city) => (
@@ -215,6 +217,21 @@ export default function NewChaptersPage() {
                 </article>
               ))}
             </div>
+            <p className="mt-10 max-w-[1000px] font-sans text-caption leading-[20px] text-navy/74">
+              <span>
+                We are already in touch with people working on AI safety in these
+                cities. Where people have already been running things, we can build
+                on top of that and be much more ambitious. Already running something
+                there and not heard from us yet?{" "}
+                <Link
+                  href="/contact"
+                  className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                >
+                  Please get in touch
+                </Link>
+                , so we can work together instead of duplicating efforts.
+              </span>
+            </p>
           </Reveal>
         </div>
       </section>
@@ -233,24 +250,38 @@ export default function NewChaptersPage() {
             <div className="mt-5 flex max-w-[760px] flex-col gap-4 font-sans text-body text-white/75">
               <p>
                 New chapters start as incubating chapters. From mid-December 2026 to
-                June 2027, the starting team develops the chapter towards a few
-                concrete milestones. Internally, we treat you as a SAIN chapter from
+                June 2027, the starting team will develop the chapter towards a few
+                concrete milestones. Importantly, although this phase is part of the
+                incubation, internally we&rsquo;ll treat you as a SAIN chapter from
                 the start.
               </p>
               <p>
-                We agree on where we want to be in June 2027; how you get there is up
-                to you, and we work together to make sure you reach your fullest
-                potential. In June 2027 we review how things have gone. Chapters that
-                get there become official SAIN chapters, and the director and lead
-                roles stay paid part-time positions.
+                We&rsquo;re ambitious about this. In some of these cities, people
+                already run AI safety courses, and we want to build on that and go much
+                further: courses with dozens of participants, events that bring
+                hundreds of new people into AI safety, a community of hundreds in every
+                city, and people moving on into real projects.
+              </p>
+              <p>
+                The exact milestones for June 2027 we&rsquo;ll set together with you
+                in your first weeks; how you get there is up to you. We&rsquo;ll work together to make sure you reach
+                your fullest potential. In June 2027 we will do a final review of how
+                things have gone. Chapters that get there become official SAIN
+                chapters, and the director and lead roles stay paid part-time
+                positions.
               </p>
             </div>
           </Reveal>
 
+          {/* The trail ends in an arrowhead rather than at the last dot: June
+              is a review, not a finish line, and the chapter carries on
+              after it. Drawn on ::after at the line's far end, pointing
+              right on the horizontal trail and down on the phone's vertical
+              one. */}
           <Reveal delay={0.06}>
             <ol
               role="list"
-              className="relative mt-14 grid gap-10 md:grid-cols-4 md:gap-8 before:absolute before:bottom-2 before:left-[5px] before:top-2 before:w-px before:bg-white/20 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-[5px] md:before:h-px md:before:w-auto"
+              className="relative mt-14 grid gap-10 md:grid-cols-4 md:gap-8 before:absolute before:bottom-2 before:left-[5px] before:top-2 before:w-px before:bg-white/20 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-[5px] md:before:h-px md:before:w-auto after:absolute after:bottom-[7px] after:left-[2px] after:size-[7px] after:rotate-45 after:border-b after:border-r after:border-white/40 md:after:bottom-auto md:after:left-auto md:after:right-[1px] md:after:top-[2px] md:after:rotate-[-45deg]"
             >
               {INCUBATION_STOPS.map((stop, i) => {
                 const last = i === INCUBATION_STOPS.length - 1;
@@ -277,28 +308,62 @@ export default function NewChaptersPage() {
             </ol>
           </Reveal>
 
+          {/* The aims as type, not as another icon list: "What you get"
+              further down already pairs a glyph with each line, and the
+              aims are not steps, so numbers would only imply an order. Two
+              columns of large serif lines with hairlines between them (none
+              above the first row, which the band's rule already tops), each
+              with its measure of ambition in full white. No orange, so the trail's
+              last dot stays the band's only orange. */}
           <Reveal delay={0.1}>
-            <div className="mt-14 border-t border-white/15 pt-8">
+            <div className="mt-14 grid gap-6 border-t border-white/15 pt-10 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)] lg:gap-12">
               <p className="kicker text-kicker-sm text-white/55">
-                The milestones we agree on together
+                What we&rsquo;re aiming for
               </p>
-              <ul
-                role="list"
-                className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-5"
-              >
-                {INCUBATION_MILESTONES.map((milestone, i) => (
-                  <li key={milestone} className="flex gap-3 lg:flex-col lg:gap-1.5">
-                    <span
-                      aria-hidden="true"
-                      className="font-serif text-title tabular-nums text-white/40"
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-serif text-title-sm text-white">{milestone}</span>
+              <ul role="list" className="grid gap-x-12 sm:grid-cols-2">
+                {INCUBATION_MILESTONES.map((milestone) => (
+                  <li
+                    key={milestone}
+                    className="border-t border-white/10 py-4 font-serif text-heading-sm text-white/50 first:border-t-0 first:pt-0 sm:[&:nth-child(2)]:border-t-0 sm:[&:nth-child(2)]:pt-0"
+                  >
+                    <Milestone text={milestone} />
                   </li>
                 ))}
               </ul>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* What the incubation is for, shown rather than told: the landing's
+          community band, with the running chapters as prints and the event
+          strip under them, and the claim turned towards the reader's city. */}
+      <section
+        aria-labelledby="community-heading"
+        className="relative isolate overflow-hidden bg-cream"
+      >
+        <div className="shell band-section flex flex-col gap-10 lg:gap-14">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
+            <Reveal className="flex flex-col items-start gap-5">
+              <h2 id="community-heading" className="font-serif text-heading text-navy">
+                This is what you would be starting.
+              </h2>
+              <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
+                <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
+                <strong>talks</strong>, and the evenings after. In Groningen,
+                Amsterdam and Utrecht, people meet{" "}
+                <strong>friends and collaborators</strong> at SAIN, and often find
+                their <strong>next step in AI safety</strong>. Apply now, and a
+                year from now your city has a community like this, built by you.
+              </p>
+              <ApplyButton />
+            </Reveal>
+            <Reveal delay={0.06} className="min-w-0">
+              <ChapterPrints />
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <CommunityPrints />
           </Reveal>
         </div>
       </section>
@@ -313,7 +378,7 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="offer-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              You start from zero, but not alone.
+              You won&rsquo;t be doing it alone.
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
               Everything the three existing chapters learned the hard way is written
@@ -398,9 +463,9 @@ export default function NewChaptersPage() {
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
                     If you are not in the starting team, you are still the start of the
-                    chapter&rsquo;s community. With your permission, we will introduce
-                    you to the starting team, and you are first in line for its course
-                    and events.
+                    chapter&rsquo;s community! We will send you what you need to join
+                    SAIN&rsquo;s online community, so you are among the first to hear
+                    about new activities and opportunities in your city.
                   </p>
                 </div>
                 <div className="border-t border-navy/14 pt-6">
@@ -408,8 +473,9 @@ export default function NewChaptersPage() {
                     We only start a chapter when the team is strong enough.
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
-                    If a city is not ready this round, we will open a second round
-                    later on.
+                    If we do not have strong enough applications to start the
+                    incubation in a particular city, we will open a second round later
+                    on.
                   </p>
                 </div>
                 <div className="border-t border-navy/14 pt-6">
@@ -422,9 +488,8 @@ export default function NewChaptersPage() {
                     to the institutions and organisations that need them.
                   </p>
                   <p className="mt-3 font-sans text-caption text-navy/65">
-                    We do not sponsor visas. On a student residence permit, paid work
-                    of up to 16 hours a week is possible with a work permit (TWV)
-                    that we would apply for.
+                    We do not sponsor visas. If you are in the Netherlands on a student
+                    residence permit, you can still apply.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">

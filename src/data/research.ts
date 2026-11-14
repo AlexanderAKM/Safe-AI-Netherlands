@@ -1,5 +1,5 @@
 /**
- * Research Hub facts: what has been published, and who supervises.
+ * Project Hub facts: what has been published, and who supervises.
  *
  * Shared by the landing page (the inverse "Already in the literature" band and
  * the supervisor list) and /research, so a new paper or a new supervisor is
@@ -34,7 +34,17 @@ export type Publication = {
   /** Short form used on the landing chips, where the full title does not fit. */
   chipTitle: string;
   authors: string;
+  /** Where the paper lives: arXiv, OpenReview, Apart Research, ... */
   link: string;
+  /** The paper has its own page at /research/papers/<slug> instead of linking
+      out. With a `pdf` (hosted in public/papers) the page shows it in SAIN's
+      reader; without one, the page sends the reader on to `link`. `license`
+      is set only when the source states one; the reader page says so. */
+  reader?: {
+    slug: string;
+    pdf?: string;
+    license?: string;
+  };
   /** Selected landing-page evidence; summaries are grounded in the linked papers. */
   featured?: {
     illustration: "alignment" | "ablation" | "eu-agents";
@@ -51,6 +61,11 @@ export const publications: Publication[] = [
     venue: "NeurIPS 2025 Mechanistic Interpretability Workshop · Spotlight",
     authors: "Jeremias Ferrao, Matthijs van der Lende, Ilija Lichkovski",
     link: "https://arxiv.org/abs/2509.12934",
+    reader: {
+      slug: "anatomy-of-alignment",
+      pdf: "/papers/anatomy-of-alignment.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "The Anatomy of Alignment",
     featured: {
       illustration: "alignment",
@@ -65,6 +80,13 @@ export const publications: Publication[] = [
     authors:
       "Jeremias Ferrao, Luhan Mikaelson, Keenan Pepper, Natalia Perez-Campanero Antolin",
     link: "https://openreview.net/pdf?id=QcmEb490bK",
+    /* The hosted PDF is the arXiv copy (2505.00509): OpenReview does not
+       serve its PDF to scripts, and arXiv carries the licence. */
+    reader: {
+      slug: "self-ablating-transformers",
+      pdf: "/papers/self-ablating-transformers.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "Self-Ablating Transformers",
     featured: {
       illustration: "ablation",
@@ -78,6 +100,11 @@ export const publications: Publication[] = [
     venue: "NeurIPS 2025 Regulatable ML Workshop",
     authors: "Ilija Lichkovski, Alexander Müller, Mariam Ibrahim, Tiwai Mhundwa",
     link: "https://arxiv.org/abs/2510.21524",
+    reader: {
+      slug: "eu-agent-bench",
+      pdf: "/papers/eu-agent-bench.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "EU-Agent-Bench",
     featured: {
       illustration: "eu-agents",
@@ -92,6 +119,12 @@ export const publications: Publication[] = [
     venue: "ICLR 2025 SLLM Workshop",
     authors: "Davide Zani, Felix Michalak, Steven Abreu",
     link: "https://openreview.net/pdf?id=TGWzg86kYv",
+    /* A page without the PDF: the paper is only on OpenReview and states no
+       licence, so it is not shared here. The page's main action opens it on
+       OpenReview. */
+    reader: {
+      slug: "contextual-sparsity-hybrid-models",
+    },
     chipTitle: "Contextual Sparsity",
   },
   {
@@ -100,6 +133,14 @@ export const publications: Publication[] = [
     venue: "NeurIPS 2024 Workshop on Foundation Model Interventions",
     authors: "Joris Postmus, Steven Abreu",
     link: "https://jorispos.github.io/conceptor_steering/",
+    /* The hosted PDF is the arXiv version (2410.16314), which carries the
+       licence; its full title adds "Improving Addition-Based Activation
+       Engineering". */
+    reader: {
+      slug: "steering-conceptors",
+      pdf: "/papers/steering-conceptors.pdf",
+      license: "CC BY 4.0",
+    },
     chipTitle: "Steering LLMs using Conceptors",
   },
   {
@@ -108,6 +149,12 @@ export const publications: Publication[] = [
     venue: "Apart Research hackathon",
     authors: "Jeremias Ferrao",
     link: "https://www.apartresearch.com/project/autosteer-weight-preserving-reinforcement-learning-for-interpretable-model-control",
+    /* This and the Apart Research reports below, and the Drive report, state
+       no licence, so their reader pages show none. */
+    reader: {
+      slug: "autosteer",
+      pdf: "/papers/autosteer.pdf",
+    },
     chipTitle: "AutoSteer",
   },
   {
@@ -116,6 +163,10 @@ export const publications: Publication[] = [
     venue: "Apart Research hackathon",
     authors: "Jeremias Ferrao, Ilija Lichkovski",
     link: "https://apartresearch.com/project/local-learning-coefficients-predict-developmental-milestones-during-group-relative-policy-optimization-2te2",
+    reader: {
+      slug: "local-learning-coefficients-grpo",
+      pdf: "/papers/local-learning-coefficients-grpo.pdf",
+    },
     chipTitle: "Local Learning Coefficients",
   },
   {
@@ -124,6 +175,10 @@ export const publications: Publication[] = [
     venue: "Apart Research hackathon",
     authors: "Alexander Müller, Arsenijs Golicins, Galina Lesnic",
     link: "https://apartresearch.com/project/collective-deliberation-for-safer-cbrn-decisions-a-multi-agent-llm-debate-pipeline-3w8q",
+    reader: {
+      slug: "cbrn-collective-deliberation",
+      pdf: "/papers/cbrn-collective-deliberation.pdf",
+    },
     chipTitle: "Collective Deliberation",
   },
   {
@@ -132,6 +187,10 @@ export const publications: Publication[] = [
     venue: "Apart Research",
     authors: "Jeremias Ferrao, Davide Zani",
     link: "https://www.apartresearch.com/project/sandbagging-llms-using-activation-steering",
+    reader: {
+      slug: "sandbagging-activation-steering",
+      pdf: "/papers/sandbagging-activation-steering.pdf",
+    },
     chipTitle: "Sandbagging LLMs using Activation Steering",
   },
   {
@@ -140,14 +199,22 @@ export const publications: Publication[] = [
     venue: "Apart Research",
     authors: "Davide Zani, Felix Michalak, Jeremias Ferrao",
     link: "https://www.apartresearch.com/project/cybersecurity-persistence-benchmark",
+    reader: {
+      slug: "cybersecurity-persistence-benchmark",
+      pdf: "/papers/cybersecurity-persistence-benchmark.pdf",
+    },
     chipTitle: "Cybersecurity Persistence Benchmark",
   },
   {
     title: "Playing with Perception: Fooling Traffic Sign Classifiers via Copy-Paste Manipulation",
-    venueShort: "Research project",
-    venue: "Research project",
+    venueShort: "SAIN project",
+    venue: "SAIN Project Hub",
     authors: "Davide Zani, Alexandru Dimofte",
     link: "https://drive.google.com/file/d/1JvhstWaLIHB9QPI-cg5S-1ASexhmqLSN/view",
+    reader: {
+      slug: "playing-with-perception",
+      pdf: "/papers/playing-with-perception.pdf",
+    },
     chipTitle: "Playing with Perception",
   },
   {
@@ -156,6 +223,10 @@ export const publications: Publication[] = [
     venue: "Apart Research",
     authors: "Davide Zani, Mariam Ibrahim, Tiwai Mhundwa, Felix Michalak, Andrei Avram",
     link: "https://www.apartresearch.com/project/ai-misinformation-and-threats-to-democratic-rights",
+    reader: {
+      slug: "ai-misinformation-democratic-rights",
+      pdf: "/papers/ai-misinformation-democratic-rights.pdf",
+    },
     chipTitle: "AI Misinformation and Democratic Rights",
   },
 ];
@@ -169,12 +240,30 @@ export type Supervisor = {
   image: string;
   /** The landing circle, 88-104 CSS. Written by `npm run images`. */
   imageSmall: string;
-  agenda: string;
+  /** Their research agenda or profile, which the portrait links to. Left out
+      until they have one; the portrait is then not a link. */
+  agenda?: string;
+  /** How much room they have this round; "open" when left out. See
+      `Availability`. A single project can override it (src/data/projects.ts). */
+  availability?: Availability;
+  /** The limit in a few words, shown after "Limited:" for a limited
+      supervisor, e.g. "1 place left across his projects". */
+  availabilityNote?: string;
 };
+
+/* How much room a supervisor (or one project) has this round.
+   - open: taking students.
+   - limited: a few places left; `availabilityNote` says how many.
+   - full: not taking students now. Still listed, greyed out, and left out of
+     the hero's open count.
+   - unconfirmed: not yet confirmed as able to supervise this round. Listed
+     after everyone else, portrait faded, "Availability to be confirmed". */
+export type Availability = "open" | "limited" | "full" | "unconfirmed";
 
 export const supervisors: Supervisor[] = [
   {
     name: "Steven Abreu",
+    availability: "unconfirmed",
     position: "Research Scientist, MakerMaker",
     positionShort: "Research Scientist, MakerMaker",
     image: "/photos/supervisors/steven-800.webp",
@@ -193,6 +282,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Jobst Heitzig",
+    availability: "unconfirmed",
     position:
       "Working Group Leader, Senior Scientist, Potsdam Institute for Climate Impact Research",
     positionShort: "Senior Scientist, Potsdam Institute",
@@ -203,6 +293,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Guillaume Pourcel",
+    availability: "unconfirmed",
     position: "PhD AI Candidate, University of Groningen",
     positionShort: "PhD AI Candidate, University of Groningen",
     image: "/photos/supervisors/Guillame.jpg",
@@ -212,6 +303,7 @@ export const supervisors: Supervisor[] = [
   },
   {
     name: "Ana Lucic",
+    availability: "full",
     position: "Assistant Professor, University of Amsterdam",
     positionShort: "Assistant Professor, University of Amsterdam",
     image: "/photos/supervisors/Ana_Lucic-800.png",
@@ -230,10 +322,146 @@ export const supervisors: Supervisor[] = [
     agenda:
       "https://docs.google.com/document/d/122Bvbp-Om_6-KKq8f_DorvbDnEXYEzcNrsvVPbmpa2o/edit?usp=drivesdk",
   },
+  /* The four Amsterdam supervisors confirmed in October 2026. Positions are
+     taken from the agendas they wrote for SAIN; the agendas are shared with
+     anyone who has the link. */
+  {
+    name: "Filip Ilievski",
+    position: "Assistant Professor of Commonsense AI, Vrije Universiteit Amsterdam",
+    positionShort: "Assistant Professor, VU Amsterdam",
+    /* The source is 483px wide, so there is no 800 rung. */
+    image: "/photos/supervisors/Filip_Ilievski.jpg",
+    imageSmall: "/photos/supervisors/Filip_Ilievski-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1FvdDTbzwoOI6eXJfvzdq4yvBqrBgwOe7FGBJFDLEuP8/edit?usp=sharing",
+  },
+  {
+    name: "Satchit Chatterji",
+    position: "PhD candidate, University of Amsterdam",
+    positionShort: "PhD candidate, University of Amsterdam",
+    /* The source is 576px square, so there is no 800 rung. */
+    image: "/photos/supervisors/Satchit_Chatterji.jpg",
+    imageSmall: "/photos/supervisors/Satchit_Chatterji-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1iumFQp6NNNAhzwaFMY8t6-iE-jpSepjAhjNRsBMiW3k/edit?usp=sharing",
+  },
+  {
+    name: "Sandro Pezzelle",
+    position: "Assistant Professor in Responsible AI, ILLC, University of Amsterdam",
+    positionShort: "Assistant Professor, University of Amsterdam",
+    image: "/photos/supervisors/Sandro_Pezzelle-800.jpg",
+    imageSmall: "/photos/supervisors/Sandro_Pezzelle-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1GIFYPzEXVrRLYNT27PNV5L9TPAGcYl7gLMJoXEy1agY/edit?usp=sharing",
+  },
+  {
+    name: "Fausto Carcassi",
+    availability: "limited",
+    availabilityNote: "1 place left across his projects",
+    position: "Assistant Professor, ILLC, University of Amsterdam",
+    positionShort: "Assistant Professor, University of Amsterdam",
+    image: "/photos/supervisors/Fausto_Carcassi-800.jpg",
+    imageSmall: "/photos/supervisors/Fausto_Carcassi-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1JDNKwhsbOJD3kSR2SDvOnIV_xlM1ozEOpYvySRanREQ/edit?usp=sharing",
+  },
+  /* Joined October 2026. Position from his SAIN agenda, which describes him
+     as an assistant professor at the VU working on neurosymbolic machine
+     learning. */
+  {
+    name: "Emile van Krieken",
+    position: "Assistant Professor, Vrije Universiteit Amsterdam",
+    positionShort: "Assistant Professor, VU Amsterdam",
+    image: "/photos/supervisors/Emile_van_Krieken-800.jpg",
+    imageSmall: "/photos/supervisors/Emile_van_Krieken-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1idEzHtH4QzusQ3wpwGyBkEeCLNZsc5DD_jcw-U8CNHA/edit?usp=sharing",
+  },
+  {
+    name: "Peter Bloem",
+    position: "Assistant Professor, Vrije Universiteit Amsterdam",
+    positionShort: "Assistant Professor, VU Amsterdam",
+    /* The source is 469px square, so there is no 800 rung. */
+    image: "/photos/supervisors/Peter_Bloem.jpg",
+    imageSmall: "/photos/supervisors/Peter_Bloem-312.jpg",
+    agenda:
+      "https://docs.google.com/document/d/1FemtRz4vx2-i7MTamkOqngWjcDfHzXuHUtqBF1_wHzA/edit?usp=sharing",
+  },
+  /* Confirmed by email in November 2026, based in The Hague. His profile
+     document is still to come, so his portrait links nowhere yet; his topics
+     are projects in the Airtable tracker. The photo is his own, cropped square
+     as he invited. */
+  {
+    name: "William Lippert",
+    position: "Senior Non-Resident Fellow, Global Governance Institute (GGI); based in The Hague",
+    positionShort: "Senior Non-Resident Fellow, GGI",
+    image: "/photos/supervisors/William_Lippert-800.jpg",
+    imageSmall: "/photos/supervisors/William_Lippert-312.jpg",
+  },
 ];
 
+/* Taking students first (open or limited), then those to be confirmed, then
+   the full ones, each group in the order given. A supervisor moves on their
+   own once their availability changes. */
+const AVAILABILITY_RANK: Record<Availability, number> = {
+  open: 0,
+  limited: 0,
+  unconfirmed: 1,
+  full: 2,
+};
+
+export function availabilityRank(availability: Availability = "open") {
+  return AVAILABILITY_RANK[availability];
+}
+
+export function byAvailability<T extends Pick<Supervisor, "availability">>(people: T[]) {
+  return [...people].sort((a, b) => availabilityRank(a.availability) - availabilityRank(b.availability));
+}
+
+/** Full or not yet confirmed: their portrait is greyed out. */
+export function isGreyedOut(availability: Availability = "open") {
+  return availability === "full" || availability === "unconfirmed";
+}
+
+/** The words that say a status, wherever a portrait or card shows it; none
+    for open. */
+export function availabilityLine(availability: Availability = "open", note?: string) {
+  if (availability === "limited") return note ? `Limited: ${note}` : "Limited places";
+  if (availability === "full") return "Full for now";
+  if (availability === "unconfirmed") return "Availability to be confirmed";
+  return null;
+}
+
+/* Where a paper opens: SAIN's own reader when the PDF is hosted here,
+   otherwise the paper's source. An internal href has to go through next/link. */
+export function paperHref(paper: Publication) {
+  return paper.reader ? `/research/papers/${paper.reader.slug}` : paper.link;
+}
+
+/* How the reader page names the paper's source: "View on arXiv". */
+export function paperSourceName(paper: Publication) {
+  const host = new URL(paper.link).hostname;
+  if (host.endsWith("arxiv.org")) return "arXiv";
+  if (host.endsWith("openreview.net")) return "OpenReview";
+  if (host.endsWith("apartresearch.com")) return "Apart Research";
+  if (host.endsWith("drive.google.com")) return "Google Drive";
+  if (host.endsWith("github.io")) return "the project page";
+  return host.replace(/^www\./, "");
+}
+
 export const RESEARCH_EMAIL = "research@safeainetherlands.org";
-export const RESEARCH_INTEREST_FORM_URL = "https://forms.gle/na3wbBR4V1YVHAnFA";
+/* The Project Hub's inbox, which the v3 handbook names as the primary
+   contact for projects. */
+export const PROJECTS_EMAIL = "projects@safeainetherlands.org";
+/* Every "Apply for a project" button for the Project Hub goes here: SAIN's one
+   Fillout sign-up form, which has its own paths for joining or proposing a
+   project, supervising, and courses. The form calls itself an application, so
+   the buttons do too. It is the same
+   form as COMMUNITY_JOIN_URL (src/data/siteContact.ts). */
+export const RESEARCH_INTEREST_FORM_URL = "https://sainonboard.fillout.com/new";
+/* The page that holds that form on this site (src/app/research/apply). Every
+   "Apply for a project" button goes here rather than off the site. */
+export const APPLY_PATH = "/research/apply";
 /* Every "Become a supervisor" link goes here (upstream #57), not to the inbox. */
 export const SUPERVISOR_INTEREST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScpE5jSBGAihD_8qJn7wRWdEFGieYQdLaPUZ8JiZyUVpn519g/viewform";

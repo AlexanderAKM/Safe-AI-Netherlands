@@ -20,7 +20,7 @@ export const sainDocuments = [
     title: "Code of Conduct",
     eyebrow: "How we work together",
     description:
-      "Behavioural standards for SAIN participants and operational standards for chapters under the SAIN brand.",
+      "Behavioral standards for everyone who takes part in SAIN activities, and how concerns are reported and handled.",
     fileName: "code_of_conduct.md",
   },
 ] as const;

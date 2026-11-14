@@ -334,8 +334,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
 
   /* The page prints the document's title in its own h1. Carrying the file's
      H1 through as well would give the page two, so the leading one is
-     dropped; a later H1 (the Code of Conduct's two Parts) is structure and
-     stays. */
+     dropped; a later H1 is structure and stays. */
   const blocks =
     parsed[0]?.type === "heading" && parsed[0].level === 1
       ? parsed.slice(1)

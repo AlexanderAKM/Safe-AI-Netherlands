@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { supervisors } from "@/data/research";
+import { availabilityLine, byAvailability, isGreyedOut, supervisors } from "@/data/research";
 
 /* The supervisors, as a left-aligned row of 140px square portraits on white.
  *
@@ -16,56 +16,77 @@ import { supervisors } from "@/data/research";
  *
  * Hover cues repeat on focus-visible, because a keyboard never fires hover, and
  * both transforms sit behind motion-safe.
+ *
+ * A supervisor who is full, or whose availability is not confirmed yet, moves
+ * towards the end of the row, their portrait greyed and eased back, and a line
+ * under the position says why, so the fade is never the only signal. A limited
+ * supervisor keeps their portrait and gets the line in orange.
  */
 export default function SupervisorRow() {
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
-      {supervisors.map((person) => (
-        <li key={person.name} className="w-[140px]">
-          <a
-            href={person.agenda}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block outline-offset-4"
-          >
-            {/* isolate: a scaled child under a clip needs its own stacking
-                context or Safari lets the corners through. */}
-            <span className="block isolate overflow-hidden border border-navy/20 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-navy/50 group-focus-visible:border-navy/50">
-              <Image
-                src={person.imageSmall}
-                alt=""
-                width={312}
-                height={312}
-                className="aspect-square w-full object-cover transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]"
-              />
-            </span>
-
-            <h3 className="mt-3.5 font-serif text-title-sm leading-6 text-navy">
-              {/* inline-block so the rule hugs the name rather than the column. */}
-              <span className="relative inline-block">
-                {person.name}
-                <ArrowUpRight
-                  size={14}
-                  weight="regular"
-                  aria-hidden="true"
-                  className="ml-1 inline-block shrink-0 align-[-2px]"
-                />
-                <span
-                  aria-hidden="true"
-                  className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-orange transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
+      {byAvailability(supervisors).map((person) => {
+        const Card = person.agenda ? "a" : "div";
+        return (
+          <li key={person.name} className="w-[140px]">
+            {/* A supervisor without an agenda yet gets the same card, but not
+                as a link: no arrow, no hover, nothing to follow. */}
+            <Card
+              {...(person.agenda ? { href: person.agenda, target: "_blank", rel: "noopener noreferrer" } : {})}
+              className={person.agenda ? "group block outline-offset-4" : "block"}
+            >
+              {/* isolate: a scaled child under a clip needs its own stacking
+                  context or Safari lets the corners through. */}
+              <span className="block isolate overflow-hidden border border-navy/20 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-navy/50 group-focus-visible:border-navy/50">
+                <Image
+                  src={person.imageSmall}
+                  alt=""
+                  width={312}
+                  height={312}
+                  className={`aspect-square w-full object-cover transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04] ${
+                    isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""
+                  }`}
                 />
               </span>
-            </h3>
 
-            <p className="mt-1.5 text-footnote leading-5 text-navy/65">
-              {person.position}
-            </p>
-            {/* The whole portrait is the link, so the destination has to be
-                named for anyone who cannot see the hover state. */}
-            <span className="sr-only">Research agenda (opens in a new tab)</span>
-          </a>
-        </li>
-      ))}
+              <h3 className="mt-3.5 font-serif text-title-sm leading-6 text-navy">
+                {/* inline-block so the rule hugs the name rather than the column. */}
+                <span className="relative inline-block">
+                  {person.name}
+                  {person.agenda && (
+                    <ArrowUpRight
+                      size={14}
+                      weight="regular"
+                      aria-hidden="true"
+                      className="ml-1 inline-block shrink-0 align-[-2px]"
+                    />
+                  )}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-orange transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                  />
+                </span>
+              </h3>
+
+              <p className="mt-1.5 text-footnote leading-5 text-navy/65">
+                {person.position}
+              </p>
+              {availabilityLine(person.availability, person.availabilityNote) && (
+                <p
+                  className={`mt-1.5 text-footnote italic leading-5 ${
+                    person.availability === "limited" ? "text-orange-ink" : "text-navy/55"
+                  }`}
+                >
+                  {availabilityLine(person.availability, person.availabilityNote)}
+                </p>
+              )}
+              {/* The whole portrait is the link, so the destination has to be
+                  named for anyone who cannot see the hover state. */}
+              {person.agenda && <span className="sr-only">Research agenda (opens in a new tab)</span>}
+            </Card>
+          </li>
+        );
+      })}
     </ul>
   );
 }

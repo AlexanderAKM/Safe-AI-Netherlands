@@ -6,7 +6,7 @@ import Portrait from "@/components/about/Portrait";
 import Reveal from "@/components/landing/Reveal";
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import TalentFunnel from "@/components/TalentFunnel";
-import { leadership } from "@/data/leadership";
+import { board, chapterDirectors, leadership } from "@/data/leadership";
 import { sainDocuments } from "@/data/sainDocuments";
 
 export const metadata: Metadata = {
@@ -76,12 +76,6 @@ const advisoryGroups = [
     label: "Strategy and operations",
     members: [
       {
-        name: "Richard Rushby",
-        affiliation: "Director, The Entrepreneurial Ecosystem",
-        link: "https://www.linkedin.com/in/richardrushby/",
-        image: "/photos/advisory_board/Richard.png",
-      },
-      {
         name: "Jesselit Jimenez",
         affiliation: "Global Director Strategy and Transformation",
         link: "https://www.linkedin.com/in/jesselit-jimenez-65b0b891/",
@@ -113,7 +107,7 @@ const record = [
   {
     year: "2025",
     title: "Research at top venues.",
-    line: "Publications at NeurIPS and ICLR; the Research Hub launches, matching emerging researchers with PhD-level supervisors.",
+    line: "Publications at NeurIPS and ICLR; the Project Hub launches, matching emerging researchers with PhD-level supervisors.",
   },
   {
     year: "2026",
@@ -247,7 +241,7 @@ export default function AboutPage() {
                 The Funnel Diagram is the whole organisation. The wide end is a free
                 course anyone can join, no technical background required. The narrow end is
                 full-time work on AI safety, in policy, research, industry or civil society. Between
-                them sit the community, the Research Hub, and fellowships. Progress through it is
+                them sit the community, the Project Hub, and fellowships. Progress through it is
                 visible, to us and to the person making it, and SAIN&rsquo;s job is to make each
                 next step reachable, so that every step someone takes compounds into a more
                 effective mission.
@@ -338,15 +332,35 @@ export default function AboutPage() {
               A small leadership, close to the work.
             </h2>
             <p className="mt-5 max-w-[720px] font-sans text-body text-navy/72">
-              SAIN is led by its leadership: the national director, the chapter directors of
-              Groningen, Amsterdam and Utrecht, and the heads of growth, operations and projects. The leadership takes the strategic decisions; the
-              chapters run the courses, events and communities.
+              SAIN is led by its national director and the heads of growth, operations and
+              projects. The leadership takes the strategic decisions; the chapters run the
+              courses, events and communities.
             </p>
           </Reveal>
 
           <Reveal delay={0.05}>
             <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
               {leadership.map((person) => (
+                <Portrait
+                  key={person.name}
+                  name={person.name}
+                  meta={person.role}
+                  href={person.linkedin}
+                  image={person.image}
+                  width="w-[140px] sm:w-[158px]"
+                  sizes="(min-width: 640px) 158px, 140px"
+                />
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">Chapter Directors</h3>
+            <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
+              Each chapter is run by its own Chapter Director.
+            </p>
+            <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
+              {chapterDirectors.map((person) => (
                 <Portrait
                   key={person.name}
                   name={person.name}
@@ -389,6 +403,26 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">Board</h3>
+            <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
+              The board of Stichting Safe AI Netherlands.
+            </p>
+            <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
+              {board.map((person) => (
+                <Portrait
+                  key={person.name}
+                  name={person.name}
+                  meta={person.role}
+                  href={person.linkedin}
+                  image={person.image}
+                  width="w-[140px] sm:w-[158px]"
+                  sizes="(min-width: 640px) 158px, 140px"
+                />
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
@@ -498,7 +532,7 @@ export default function AboutPage() {
             {/* "Join the community" is reserved site-wide for the onboarding
                 form (COMMUNITY_JOIN_URL). This goes to the community page, so
                 it carries the page label, the way the chapter pages say
-                "Visit the Research hub". */}
+                "Visit the Project hub". */}
             <Link href="/community" className="btn-accent">
               Visit the community
             </Link>

@@ -89,15 +89,68 @@ const courses: Course[] = [
   },
   {
     id: "technical",
-    title: "Technical AI safety (ARENA)",
+    title: "Technical AI Safety",
     summary:
-      "The technical course teaches from ARENA, an open technical AI safety curriculum; SAIN Utrecht is the first SAIN chapter to teach from it. Four weeks of weekly lectures (about 90 minutes) plus hands-on notebooks, in person at Utrecht University and streamed online. Prerequisites: Python, plus linear algebra and probability. You get the certificate by completing the notebooks and attending in person.",
-    outlineTitle: "Weekly themes",
+      "Technical AI Safety is a four-week, in-person course at SAIN Utrecht for people who can program and know the basics of AI. Knowing how transformers work is recommended. Each week covers one area of the field: the first two weeks focus on how AI safety evaluators test models, week three looks at safety in robots and other physical systems, and week four covers securing AI agents. The weekly assignments use material from ARENA, an established AI safety training programme, and especially strong solutions are sent to ARENA for review and may be added to their repository. A workshop every Saturday from 13:00 to 15:00 helps you complete them. After the course, we launch a research challenge where our mentors help you develop your own ideas. Each week has about one hour of reading, one to three hours of assignments and a 1.5-hour lecture.",
+    outlineTitle: "Sessions, autumn 2026",
     outline: [
-      "Transformers and mechanistic interpretability (opening a model up to study what its internals compute)",
-      "Probing and representations",
-      "PPO and RLHF (the techniques used to train models from human feedback)",
-      "RLHF, GRPO and reward hacking",
+      {
+        title: "Introduction to AI safety evaluations",
+        meta: "Thu 19 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "What evaluations are and why we need them, capability versus alignment evaluations, and how to design one: threat models, datasets and scoring.",
+      },
+      {
+        title: "Implementing and evaluating AI safety evaluations",
+        meta: "Thu 26 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "Running evaluations in practice with tools, understanding the common problems that make results unreliable, and how results are communicated to policymakers.",
+      },
+      {
+        title: "Embodied AI safety",
+        meta: "Thu 3 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "The safety risks of robots and other physical AI systems, safety filters, using vision-language models to spot unsafe actions, and measuring uncertainty.",
+      },
+      {
+        title: "Securing AI agents",
+        meta: "Thu 10 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "How agents are attacked through prompt injection and their tools, why model-level defences fail, secure design and AI Control, and how AI can also act as a defender.",
+      },
+    ],
+  },
+  {
+    id: "governance",
+    title: "AI Governance",
+    summary:
+      "AI Governance is a new four-week course at SAIN Utrecht, open to everyone, with no previous background needed. Most AI governance courses focus on the US and China. In this course, we also look at their visions and ambitions and at where middle powers like the EU fit in. We also dedicate an entire lecture to how Europe and the Netherlands are regulating AI. Throughout the course, we read and discuss primary sources, such as government strategies, laws, and documents from AI labs, giving you the tools to follow developments in AI regulation and geopolitics independently. Each week has about one to two hours of reading and a 1.5-hour lecture.",
+    outlineTitle: "Sessions, autumn 2026",
+    outline: [
+      {
+        title: "Introduction to AI governance and AI safety",
+        meta: "Wed 18 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "What AI governance is, how it differs from technical safety, why it matters now, and the main risks: misuse, loss of control, and concentration of power.",
+      },
+      {
+        title: "AI geopolitics",
+        meta: "Wed 25 Nov · 18:00-19:30 · Location TBD",
+        detail:
+          "The key actors (governments, labs, safety organisations, the UN), US and Chinese visions and ambitions, and where middle powers fit.",
+      },
+      {
+        title: "The tools of the policymaker",
+        meta: "Wed 2 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "Analysis of past incidents like the Hugging Face case, system cards, and future scenarios.",
+      },
+      {
+        title: "Governance in Europe and the Netherlands",
+        meta: "Wed 9 Dec · 18:00-19:30 · Location TBD",
+        detail:
+          "The EU AI Act and its gaps, the EU AI Office and the GPAI Code of Practice, the Dutch AI landscape.",
+      },
     ],
   },
 ];
@@ -109,23 +162,44 @@ const team: readonly TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/riccardo-campanella/",
   },
   {
-    name: "Luca 'Dug' Dughera",
+    name: "Luca Dughera",
     title: "Events Lead",
     linkedin: "https://www.linkedin.com/in/luca-dughera/",
   },
   {
-    name: "Carolien Tran",
-    title: "Discussion Group Lead",
-    linkedin: "https://www.linkedin.com/in/carolientran/",
+    name: "Asya Korshunova",
+    title: "Education Lead",
+    linkedin:
+      "https://www.linkedin.com/in/anastasiia-korshunova-resilient-changemaking/",
   },
   {
     name: "Elena Clacova",
-    title: "Communication Lead",
+    title: "Communications Lead",
     linkedin: "https://www.linkedin.com/in/elenaclacova/",
   },
   {
+    name: "Ying-Kai Dang",
+    title: "Research Ops",
+    linkedin: "https://www.linkedin.com/in/ying-kai-dang/",
+  },
+  {
+    name: "Matthijs Vossen",
+    title: "Research Ops",
+    linkedin: "https://www.linkedin.com/in/matthijsvossen/",
+  },
+  {
+    name: "Carolien Tran",
+    title: "Discussion Coordinator",
+    linkedin: "https://www.linkedin.com/in/carolientran/",
+  },
+  {
+    name: "Prerna Chaudhary",
+    title: "Discussion Facilitator",
+    linkedin: "https://www.linkedin.com/in/prerna-chaudhary/",
+  },
+  {
     name: "Cem Kaya",
-    title: "Research Operations",
+    title: "Facilitator",
     linkedin: "https://www.linkedin.com/in/cem-kaya-om8/",
   },
   {
@@ -134,9 +208,34 @@ const team: readonly TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/dimitra-tsolka/",
   },
   {
-    name: "Max Schaffelder",
+    name: "Chetlur Vasundhara",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/chetlur-vasundhara-a0a7a3288/",
+  },
+  {
+    name: "Giovanni Varricchione",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/giovannivarr/",
+  },
+  {
+    name: "Milan Schouten",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/milan-schouten/",
+  },
+  {
+    name: "Qasim Sajjad",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/rqasimsajjad/",
+  },
+  {
+    name: "Nityaa Kalra",
+    title: "Facilitator",
+    linkedin: "https://www.linkedin.com/in/nityaakalra/",
+  },
+  {
+    name: "Jaffar Hussain",
     title: "Advisor",
-    linkedin: "https://www.linkedin.com/in/maxschaffelder/",
+    linkedin: "https://www.linkedin.com/in/jaffar-hussain-3414383/",
   },
 ];
 
@@ -195,8 +294,8 @@ export default function UtrechtPage() {
 
       <CourseBand
         city="Utrecht"
-        heading="Two free courses run in Utrecht"
-        openLead="Applications for the autumn cohort are open."
+        heading="Three free courses run in Utrecht"
+        openLead="Applications for AI Governance and Technical AI Safety are open."
         footnote={
           <>
             These courses are independently run by SAIN Utrecht and are not
@@ -233,13 +332,13 @@ export default function UtrechtPage() {
             <p className="font-sans text-body text-navy/74">
               The chapter is building a research track: red-teaming language
               models, safety evaluation, interpretability, and agent behaviour.
-              The Research Hub launches in October 2026.
+              The Project Hub launches in October 2026.
             </p>
             <Link
               href="/research"
               className="inline-flex items-center gap-2 self-start font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Visit the Research hub
+              Visit the Project hub
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </>

@@ -27,7 +27,7 @@ src/
     about/                # About, plus the vision / theory of change / code of conduct documents
     community/            # Community and chapter overview
     courses/              # Free courses
-    research/             # Research hub and handbook
+    research/             # Project hub and handbook
     get-involved/         # Volunteering
     open-positions/       # Careers
     contact/
