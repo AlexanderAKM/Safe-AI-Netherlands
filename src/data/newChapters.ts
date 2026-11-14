@@ -91,7 +91,7 @@ export const FOUNDING_CITIES: FoundingCity[] = [
     id: "the-hague",
     name: "The Hague",
     origin: "Ministries, regulators and campuses",
-    why: "Ministries, regulators, international institutions, and the Leiden and Haagse Hogeschool campuses. Notably strong for cybersecurity, with national and international cyber institutions, including The Hague Security Delta (HSD), Europe's largest security cluster.",
+    why: "Ministries, regulators, international institutions, and the campuses of Leiden University The Hague and the Haagse Hogeschool. Notably strong for cybersecurity, with national and international cyber institutions, including The Hague Security Delta (HSD), Europe's largest security cluster.",
     profile:
       "Likely a strong governance chapter that reaches civil servants and policy professionals as much as students.",
   },
@@ -335,7 +335,7 @@ export const FOUNDING_ROLES: FoundingRole[] = [
     ],
     alsoStrong: [
       "A master's degree (finished or in progress), or professional experience in education.",
-      "Connections to study associations or teaching staff at TU/e, TU Delft, Leiden or the Haagse Hogeschool (whichever is appropriate to your city).",
+      "Connections to study associations or teaching staff at TU/e, TU Delft, Leiden University The Hague or the Haagse Hogeschool (whichever is appropriate to your city).",
       "Experience facilitating an AI safety course.",
     ],
     logistics: [
