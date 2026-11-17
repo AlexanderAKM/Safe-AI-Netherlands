@@ -56,14 +56,10 @@ const STATUSES: Record<string, TrackerStatus> = {
 
 /* In the order the tracker lists them: what a student can still join first,
    and full projects last, as on the hand-kept cards. */
-export const trackerStatuses: { value: TrackerStatus; label: string }[] = [
-  { value: "open", label: "Open" },
-  { value: "in-progress", label: "In progress" },
-  { value: "completed", label: "Completed" },
-  { value: "full", label: "Full" },
-];
+/* Their labels are the dictionary's (projects.tracker.statuses). */
+export const trackerStatuses: TrackerStatus[] = ["open", "in-progress", "completed", "full"];
 
-const statusRank = (status: TrackerStatus) => trackerStatuses.findIndex((item) => item.value === status);
+const statusRank = (status: TrackerStatus) => trackerStatuses.indexOf(status);
 
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 

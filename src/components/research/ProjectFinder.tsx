@@ -9,11 +9,24 @@ import type { Dictionary } from "@/i18n";
    Airtable (ProjectTracker). If its latest copy cannot be loaded, the
    hand-kept list in src/data/projects.ts (ProjectBrowser) takes its place, so
    a reader never meets an outdated record without knowing it. */
-export default function ProjectFinder({ availability }: { availability: Dictionary["availability"] }) {
+/* A client component: the research page hands it the words both lists need. */
+export default function ProjectFinder({
+  t,
+  availability,
+  opensInNewTab,
+  or,
+  dateLocale,
+}: {
+  t: Dictionary["projects"];
+  availability: Dictionary["availability"];
+  opensInNewTab: string;
+  or: string;
+  dateLocale: string;
+}) {
   const { tracker, source } = useLiveTracker();
   return source === "unavailable" ? (
-    <ProjectBrowser availability={availability} />
+    <ProjectBrowser t={t} availability={availability} opensInNewTab={opensInNewTab} or={or} />
   ) : (
-    <ProjectTracker tracker={tracker} />
+    <ProjectTracker tracker={tracker} t={t} opensInNewTab={opensInNewTab} or={or} dateLocale={dateLocale} />
   );
 }

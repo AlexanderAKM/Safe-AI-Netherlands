@@ -17,7 +17,7 @@ import {
   PROJECTS_EMAIL,
   SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
-import { getDictionary, rich } from "@/i18n";
+import { dateLocale, getDictionary, rich } from "@/i18n";
 
 const locale = "en";
 const dictionary = getDictionary(locale);
@@ -193,7 +193,13 @@ export default function ResearchPage() {
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>
-          <ProjectFinder availability={dictionary.availability} />
+          <ProjectFinder
+            t={dictionary.projects}
+            availability={dictionary.availability}
+            opensInNewTab={dictionary.common.opensInNewTab}
+            or={dictionary.common.or}
+            dateLocale={dateLocale[locale]}
+          />
         </div>
       </section>
 

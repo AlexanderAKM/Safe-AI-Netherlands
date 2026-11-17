@@ -18,6 +18,10 @@ import {
   type TrackerProject,
   type TrackerStatus,
 } from "@/data/tracker";
+import type { Dictionary } from "@/i18n";
+import { format, rich } from "@/i18n/rich";
+
+type Words = Dictionary["projects"];
 
 /* The Project Team's tracker, in the site's own language: a search, the
    filters, and the projects as a ruled list.
@@ -34,15 +38,16 @@ import {
 
 const PREVIEW_COUNT = 6;
 
-/* Fixed to Amsterdam time and an en-GB date, so the build and the browser
-   write the same words. */
-const dateFormat = new Intl.DateTimeFormat("en-GB", {
-  dateStyle: "long",
-  timeStyle: "short",
-  timeZone: "Europe/Amsterdam",
-});
+/* Fixed to Amsterdam time and the page language's date format, so the build
+   and the browser write the same words. */
+const dateFormat = (dateLocale: string) =>
+  new Intl.DateTimeFormat(dateLocale, {
+    dateStyle: "long",
+    timeStyle: "short",
+    timeZone: "Europe/Amsterdam",
+  });
 
-const statusLabel = (status: TrackerStatus) => trackerStatuses.find((item) => item.value === status)?.label ?? "";
+const statusLabel = (status: TrackerStatus, t: Words) => t.tracker.statuses[status];
 
 /* A project with no "... Only" tag is open to everyone; one with no thesis
    tag is not a thesis. */
@@ -51,11 +56,12 @@ const NOT_A_THESIS = "not a thesis";
 const whoOf = (project: TrackerProject) => (project.universities.length ? project.universities : [EVERYONE]);
 const thesesOf = (project: TrackerProject) => (project.theses.length ? project.theses : [NOT_A_THESIS]);
 
-const whoLabel = (who: string) => (who === EVERYONE ? "Open to everyone" : `${who} students only`);
-const thesisLabel = (thesis: string) => (thesis === NOT_A_THESIS ? "Not a thesis" : thesis);
+const whoLabel = (who: string, t: Words) =>
+  who === EVERYONE ? t.openToEveryone : format(t.studentsOnly, { university: who });
+const thesisLabel = (thesis: string, t: Words) => (thesis === NOT_A_THESIS ? t.tracker.notAThesis : thesis);
 
-function joinOr(items: string[]) {
-  return items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items[items.length - 1]}`;
+function joinOr(items: string[], or: string) {
+  return items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} ${or} ${items[items.length - 1]}`;
 }
 
 /* Universities by every name people search for: "UvA" finds a project whose
@@ -67,14 +73,14 @@ const UNIVERSITY_NAMES: [RegExp, string][] = [
   [/utrecht university|\buu\b/i, "UU Utrecht University"],
 ];
 
-function matches(project: TrackerProject, query: string) {
+function matches(project: TrackerProject, query: string, t: Words) {
   if (!query) return true;
   const text = [
     project.title,
     project.supervisor ?? "",
     project.summary,
-    statusLabel(project.status),
-    project.universities.map(whoLabel).join(" "),
+    statusLabel(project.status, t),
+    project.universities.map((who) => whoLabel(who, t)).join(" "),
     ...project.theses,
     ...project.topics,
   ].join(" ");
@@ -107,10 +113,10 @@ const NO_FILTERS: Filters = { query: "", statuses: [], who: [], theses: [], topi
 /* Within a filter one answer is enough ("VU or UvA"); across filters a
    project must match each. `skip` leaves one filter out, so that filter's own
    counts say what choosing an answer would leave. */
-function passes(project: TrackerProject, filters: Filters, skip?: keyof Filters) {
+function passes(project: TrackerProject, filters: Filters, t: Words, skip?: keyof Filters) {
   const any = (values: string[], chosen: string[]) => chosen.length === 0 || values.some((v) => chosen.includes(v));
   return (
-    (skip === "query" || matches(project, filters.query)) &&
+    (skip === "query" || matches(project, filters.query, t)) &&
     (skip === "statuses" || any([project.status], filters.statuses)) &&
     (skip === "who" || any(whoOf(project), filters.who)) &&
     (skip === "theses" || any(thesesOf(project), filters.theses)) &&
@@ -156,7 +162,7 @@ function ChipGroup({ label, options }: { label: string; options: Option[] }) {
 
 /* Open is navy, in progress orange (taken, for now), completed and full
    eased back: completed with a hollow mark, full with a pale one. */
-function StatusLabel({ status }: { status: TrackerStatus }) {
+function StatusLabel({ status, t }: { status: TrackerStatus; t: Words }) {
   const tone =
     status === "open"
       ? "text-navy [&>span]:bg-navy"
@@ -168,7 +174,7 @@ function StatusLabel({ status }: { status: TrackerStatus }) {
   return (
     <p className={`inline-flex shrink-0 items-center gap-2 text-caption font-medium leading-[18px] ${tone}`}>
       <span aria-hidden="true" className="size-2" />
-      {status === "full" ? "Full for now" : statusLabel(status)}
+      {status === "full" ? t.tracker.fullForNow : statusLabel(status, t)}
     </p>
   );
 }
@@ -181,7 +187,17 @@ function StatusLabel({ status }: { status: TrackerStatus }) {
    The top right says what the reader can do: an open project takes them
    straight on to the application form with it chosen (src/app/research/apply);
    any other shows its status instead, since it cannot take anyone now. */
-function TrackerRow({ project }: { project: TrackerProject }) {
+function TrackerRow({
+  project,
+  t,
+  opensInNewTab,
+  or,
+}: {
+  project: TrackerProject;
+  t: Words;
+  opensInNewTab: string;
+  or: string;
+}) {
   const full = project.status === "full";
   return (
     <li
@@ -198,12 +214,12 @@ function TrackerRow({ project }: { project: TrackerProject }) {
               href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
               className="inline-flex items-center gap-1.5 text-label font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Apply
+              {t.tracker.apply}
               <ArrowRightIcon size={15} aria-hidden="true" />
               <span className="sr-only">: {project.title}</span>
             </Link>
           ) : (
-            <StatusLabel status={project.status} />
+            <StatusLabel status={project.status} t={t} />
           )}
         </div>
       </div>
@@ -232,7 +248,7 @@ function TrackerRow({ project }: { project: TrackerProject }) {
             >
               {project.supervisor}
               <ArrowUpRightIcon size={13} aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {opensInNewTab}</span>
             </a>
           ) : (
             <span className="font-medium text-navy">{project.supervisor}</span>
@@ -243,7 +259,7 @@ function TrackerRow({ project }: { project: TrackerProject }) {
           is the line that decides whether a project is for the reader. */}
       {project.universities.length > 0 && (
         <p className="mt-2 text-caption font-medium leading-[18px] text-orange-ink">
-          {joinOr(project.universities)} students only
+          {format(t.studentsOnly, { university: joinOr(project.universities, or) })}
         </p>
       )}
       {project.summary && <p className="mt-3 max-w-[820px] text-[15px] leading-6 text-navy/78">{project.summary}</p>}
@@ -252,16 +268,30 @@ function TrackerRow({ project }: { project: TrackerProject }) {
   );
 }
 
-export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
+/* A client component: the research page hands it its words through
+   ProjectFinder. */
+export default function ProjectTracker({
+  tracker,
+  t,
+  opensInNewTab,
+  or,
+  dateLocale,
+}: {
+  tracker: Tracker;
+  t: Words;
+  opensInNewTab: string;
+  or: string;
+  dateLocale: string;
+}) {
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
   const [expanded, setExpanded] = useState(false);
 
   const projects = tracker.projects;
-  const shown = useMemo(() => projects.filter((project) => passes(project, filters)), [projects, filters]);
+  const shown = useMemo(() => projects.filter((project) => passes(project, filters, t)), [projects, filters, t]);
   const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
   const countWithout = (skip: keyof Filters, test: (project: TrackerProject) => boolean) =>
-    projects.filter((project) => passes(project, filters, skip) && test(project)).length;
+    projects.filter((project) => passes(project, filters, t, skip) && test(project)).length;
 
   /* The answers each filter offers: only what some project is tagged with. */
   const universities = useMemo(() => {
@@ -291,7 +321,7 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
       <div className="flex flex-col gap-4 border border-navy/12 bg-white px-4 py-4 md:px-6 md:py-5">
         <div className="flex">
           <label className="relative block min-w-0 flex-1">
-            <span className="sr-only">Search projects</span>
+            <span className="sr-only">{t.searchLabel}</span>
             <MagnifyingGlassIcon
               size={18}
               aria-hidden="true"
@@ -301,14 +331,14 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
               type="search"
               value={filters.query}
               onChange={(event) => set({ query: event.target.value })}
-              placeholder="Topic, person or university"
+              placeholder={t.searchPlaceholder}
               className="h-12 w-full appearance-none border border-navy/18 bg-white pl-10 pr-11 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none"
             />
             {filters.query && (
               <button
                 type="button"
                 onClick={() => set({ query: "" })}
-                aria-label="Clear search"
+                aria-label={t.clearSearch}
                 className="absolute right-1 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center text-navy/45 hover:text-navy focus-visible:outline-offset-0"
               >
                 <XIcon size={16} aria-hidden="true" />
@@ -319,11 +349,11 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
 
         {topics.length > 0 && (
           <ChipGroup
-            label="Topic"
+            label={t.topic}
             options={[
               {
                 value: "all",
-                label: "All topics",
+                label: t.allTopics,
                 n: countWithout("topics", () => true),
                 on: filters.topics.length === 0,
                 onClick: () => set({ topics: [] }),
@@ -340,18 +370,18 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
         )}
         {universities.length > 0 && (
           <ChipGroup
-            label="Who can apply"
+            label={t.whoCanApply}
             options={[
               {
                 value: "all",
-                label: "All projects",
+                label: t.allProjects,
                 n: countWithout("who", () => true),
                 on: filters.who.length === 0,
                 onClick: () => set({ who: [] }),
               },
               ...[EVERYONE, ...universities].map((who) => ({
                 value: who,
-                label: whoLabel(who),
+                label: whoLabel(who, t),
                 n: countWithout("who", (project) => whoOf(project).includes(who)),
                 on: filters.who.includes(who),
                 onClick: () => set({ who: toggle(filters.who, who) }),
@@ -361,18 +391,18 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
         )}
         {theses.length > 0 && (
           <ChipGroup
-            label="Thesis"
+            label={t.thesis}
             options={[
               {
                 value: "all",
-                label: "Any",
+                label: t.tracker.any,
                 n: countWithout("theses", () => true),
                 on: filters.theses.length === 0,
                 onClick: () => set({ theses: [] }),
               },
               ...[...theses, NOT_A_THESIS].map((thesis) => ({
                 value: thesis,
-                label: thesisLabel(thesis),
+                label: thesisLabel(thesis, t),
                 n: countWithout("theses", (project) => thesesOf(project).includes(thesis)),
                 on: filters.theses.includes(thesis),
                 onClick: () => set({ theses: toggle(filters.theses, thesis) }),
@@ -381,18 +411,18 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
           />
         )}
         <ChipGroup
-          label="Status"
+          label={t.tracker.status}
           options={[
             {
               value: "all",
-              label: "All",
+              label: t.tracker.all,
               n: countWithout("statuses", () => true),
               on: filters.statuses.length === 0,
               onClick: () => set({ statuses: [] }),
             },
-            ...trackerStatuses.map(({ value, label }) => ({
+            ...trackerStatuses.map((value) => ({
               value,
-              label,
+              label: statusLabel(value, t),
               n: countWithout("statuses", (project) => project.status === value),
               on: filters.statuses.includes(value),
               onClick: () => set({ statuses: toggle(filters.statuses, value) as TrackerStatus[] }),
@@ -403,10 +433,10 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
 
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
         <p className="text-caption text-navy/65" aria-live="polite">
-          {shown.length} {shown.length === 1 ? "project" : "projects"}
-          {filters.query ? ` matching "${filters.query}"` : ""}
+          {format(shown.length === 1 ? t.count.one : t.count.other, { count: shown.length })}
+          {filters.query ? ` ${format(t.clauses.matching, { query: filters.query })}` : ""}
           <span className="text-navy/45"> · </span>
-          Updated {dateFormat.format(new Date(tracker.updatedAt))}
+          {format(t.tracker.updated, { date: dateFormat(dateLocale).format(new Date(tracker.updatedAt)) })}
         </p>
         {active && (
           <button
@@ -415,7 +445,7 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
             className="inline-flex items-center gap-1.5 text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
           >
             <XIcon size={14} aria-hidden="true" />
-            Clear filters
+            {t.clearFilters}
           </button>
         )}
       </div>
@@ -424,7 +454,7 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
         <div className="flex flex-col items-center gap-6">
           <ul id="project-list" role="list" className="flex w-full flex-col gap-3">
             {visible.map((project) => (
-              <TrackerRow key={project.id} project={project} />
+              <TrackerRow key={project.id} project={project} t={t} opensInNewTab={opensInNewTab} or={or} />
             ))}
           </ul>
           {shown.length > PREVIEW_COUNT && (
@@ -435,7 +465,7 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
               onClick={() => setExpanded(!expanded)}
               className="btn-outline-ink gap-2"
             >
-              {expanded ? "Show fewer projects" : `Show all ${shown.length} projects`}
+              {expanded ? t.showFewer : format(t.showAll, { count: shown.length })}
               <CaretDownIcon
                 size={14}
                 weight="bold"
@@ -447,23 +477,25 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3 border border-dashed border-navy/20 bg-white px-6 py-10 text-center">
-          <p className="text-body text-navy/74">No project matches these filters.</p>
+          <p className="text-body text-navy/74">{t.noMatch}</p>
           <button
             type="button"
             onClick={() => setFilters(NO_FILTERS)}
             className="text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
           >
-            Clear filters
+            {t.clearFilters}
           </button>
           <p className="text-caption text-navy/60">
-            Have your own idea? Email{" "}
-            <a
-              href={`mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent("Project Hub: my own project idea")}`}
-              className="underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
-            >
-              {PROJECTS_EMAIL}
-            </a>
-            .
+            {rich(t.ownIdea, {}, {
+              email: (
+                <a
+                  href={`mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(t.ownIdeaSubject)}`}
+                  className="underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
+                >
+                  {PROJECTS_EMAIL}
+                </a>
+              ),
+            })}
           </p>
         </div>
       )}

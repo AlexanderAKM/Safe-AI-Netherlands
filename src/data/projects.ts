@@ -1,4 +1,6 @@
 import { publications, supervisors, type Availability, type Supervisor } from "@/data/research";
+import type { Dictionary } from "@/i18n";
+import { format } from "@/i18n/rich";
 
 /* The Project Hub's open projects: what each supervisor has offered to
    supervise, written up from the agendas they wrote for SAIN (the Drive
@@ -102,10 +104,14 @@ export type Project = {
 };
 
 /** A thesis project's label: "VU thesis", or "UvA thesis · MSc AI". */
-export function thesisLabel(project: Project) {
+/* The two labels below are phrased in the page's language: `words` is the
+   dictionary's projects.eligibility (and, for the second, projects). */
+export function thesisLabel(project: Project, words: Dictionary["projects"]["eligibility"]) {
   if (!project.thesis) return null;
   const { university, level } = project.thesis;
-  return level ? `${university} thesis · ${level}` : `${university} thesis`;
+  return level
+    ? format(words.thesisTag, { university, level })
+    : format(words.thesisTagNoLevel, { university });
 }
 
 export function eligibilityOf(project: Project): Eligibility {
@@ -114,10 +120,12 @@ export function eligibilityOf(project: Project): Eligibility {
 
 /** The line under every card's title: "VU thesis (MSc): VU students only",
     or "Open to everyone". */
-export function eligibilityLabel(project: Project) {
-  if (!project.thesis) return "Open to everyone";
+export function eligibilityLabel(project: Project, words: Dictionary["projects"]) {
+  if (!project.thesis) return words.openToEveryone;
   const { university, level } = project.thesis;
-  return `${university} thesis${level ? ` (${level})` : ""}: ${university} students only`;
+  return level
+    ? format(words.eligibility.thesisLine, { university, level })
+    : format(words.eligibility.thesisLineNoLevel, { university });
 }
 
 /** The project's own availability, else its supervisor's, else open. */

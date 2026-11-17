@@ -1379,5 +1379,85 @@
       "downloadInstead": "Download the PDF",
       "loadingPaper": "Loading the paper…"
     }
+  },
+  "projects": {
+    "searchLabel": "Search projects",
+    "searchPlaceholder": "Topic, person or university",
+    "clearSearch": "Clear search",
+    "filters": "Filters",
+    "chosen": "chosen",
+    "supervisor": "Supervisor",
+    "topic": "Topic",
+    "allTopics": "All topics",
+    "thesis": "Thesis",
+    "location": "Location",
+    "locationGroup": "Where the supervisor is based",
+    "anywhere": "Anywhere",
+    "remote": "Remote",
+    "whoCanApply": "Who can apply",
+    "allProjects": "All projects",
+    "openToEveryone": "Open to everyone",
+    "studentsOnly": "{university} students only",
+    "resetFilters": "Reset filters",
+    "show": {
+      "one": "Show {count} project",
+      "other": "Show {count} projects"
+    },
+    "removeFilter": "Remove filter: {label}",
+    "count": {
+      "one": "{count} project",
+      "other": "{count} projects"
+    },
+    "fromSupervisors": {
+      "one": " from {count} supervisor",
+      "other": " from {count} supervisors"
+    },
+    "clauses": {
+      "inTopics": "in {list}",
+      "asThesis": "offered as a thesis",
+      "basedIn": "based in {list}",
+      "remotely": "supervised remotely",
+      "openToEveryone": "open to everyone",
+      "forStudents": "for {list} students only",
+      "matching": "matching \"{query}\""
+    },
+    "clearFilters": "Clear filters",
+    "showFewer": "Show fewer projects",
+    "showAll": "Show all {count} projects",
+    "noMatch": "No project matches these filters.",
+    "ownIdea": "Have your own idea? Email {email}.",
+    "ownIdeaSubject": "Project Hub: my own project idea",
+    "greyed": {
+      "both": "Greyed-out supervisors are full for now, or have not confirmed their availability for this round yet.",
+      "full": "Greyed-out supervisors are full for now.",
+      "unconfirmed": "Greyed-out supervisors have not confirmed their availability for this round yet."
+    },
+    "card": {
+      "agenda": "Agenda",
+      "fullNote": "<strong>Full for now.</strong> Not taking new students at the moment.",
+      "lookingFor": "Looking for",
+      "supervision": "Supervision"
+    },
+    "eligibility": {
+      "thesisTag": "{university} thesis · {level}",
+      "thesisTagNoLevel": "{university} thesis",
+      "thesisLine": "{university} thesis ({level}): {university} students only",
+      "thesisLineNoLevel": "{university} thesis: {university} students only"
+    },
+    "tracker": {
+      "any": "Any",
+      "status": "Status",
+      "all": "All",
+      "notAThesis": "Not a thesis",
+      "fullForNow": "Full for now",
+      "apply": "Apply",
+      "updated": "Updated {date}",
+      "statuses": {
+        "open": "Open",
+        "in-progress": "In progress",
+        "completed": "Completed",
+        "full": "Full"
+      }
+    }
   }
 }
