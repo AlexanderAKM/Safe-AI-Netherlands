@@ -1,0 +1,169 @@
+{
+  "common": {
+    "opensInNewTab": "(opens in a new tab)",
+    "joinTheCommunity": "Join the community",
+    "volunteer": "Volunteer",
+    "joinAFreeCourse": "Join a free course",
+    "startWithAFreeCourse": "Start with a free course",
+    "visitTheProjectHub": "Visit the Project hub"
+  },
+  "site": {
+    "description": "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free.",
+    "logoImageAlt": "Safe AI Netherlands logo",
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "homeLinkLabel": "Safe AI Netherlands home",
+    "primaryLabel": "Primary",
+    "mobileLabel": "Mobile",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "items": {
+      "courses": "Courses",
+      "community": "Community",
+      "newChapters": "New chapters",
+      "projectHub": "Project hub",
+      "about": "About"
+    },
+    "hiringKicker": "We are hiring",
+    "startingTeamsShort": "Paid starting teams wanted in three new cities",
+    "startingTeamsLong": "Paid starting teams wanted in Eindhoven, Delft and The Hague",
+    "startingTeamsDeadline": ", apply by {deadline}",
+    "allOpenPositions": "All open positions",
+    "seeOpenPositions": "See open positions"
+  },
+  "footer": {
+    "columns": {
+      "community": "Community",
+      "programmes": "Programmes",
+      "organisation": "Organisation"
+    },
+    "links": {
+      "community": "Community",
+      "joinTheCommunity": "Join the community",
+      "courses": "Courses",
+      "projectHub": "Project hub",
+      "projectHubHandbook": "Project Hub handbook",
+      "volunteer": "Volunteer",
+      "about": "About",
+      "team": "Team",
+      "openPositions": "Open positions",
+      "contact": "Contact",
+      "newsletter": "Newsletter",
+      "vision": "Vision",
+      "theoryOfChange": "Theory of Change",
+      "codeOfConduct": "Code of Conduct"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Your AI Safety career starts here.",
+      "body": "AI Safety expertise has never been more important than today. SAIN provides the community, courses and resources to help students and professionals join the AI Safety field. We provide a clear path through education, community and practical projects, then connect strong contributors to the organisations, programmes and roles where they can take the next step.",
+      "hiring": "<strong>We are hiring paid starting teams</strong> for new chapters in Eindhoven, Delft and The Hague. Apply by {deadline}.",
+      "seeTheRoles": "See the roles"
+    },
+    "mission": {
+      "heading": "Why SAIN exists",
+      "body": "A free, volunteer-run path from curiosity to contribution, through courses, events, research and local chapters.",
+      "link": "Why SAIN exists"
+    },
+    "community": {
+      "heading": "Participate in the community",
+      "body": "<strong>Discussion groups</strong>, <strong>hackathons</strong>, <strong>talks</strong>, and the evenings after. People meet <strong>friends and collaborators</strong> here, and often find their <strong>next step in AI Safety</strong>.",
+      "chapters": "Our Discord community currently focuses on our SAIN Amsterdam, Utrecht and Groningen chapters.",
+      "nextCities": "Eindhoven, Delft and The Hague are next: <link>we are hiring their starting teams</link>.",
+      "moreCities": "More cities to come."
+    },
+    "courses": {
+      "body": "Pick a track. Every programme is free and taught in person. What you join, and how it runs, depends on the chapter.",
+      "applyNow": "You can apply now in {cities}."
+    },
+    "research": {
+      "heading": "The SAIN Project Hub",
+      "body": "Bring your academic expertise to AI Safety. Connect with researchers, develop a focused project, and take your work further with support from SAIN.",
+      "closing": "Apply any time. Determine your commitment per project. Remote participation is welcome."
+    },
+    "careers": {
+      "heading": "Build an AI Safety career",
+      "body": "Most people who end up working on AI Safety did not plan for it. We shorten that path with mentorship, funding advice, and introductions to the labs, institutes and ministries hiring in Europe right now.",
+      "tracks": [
+        "Technical research",
+        "Governance and policy",
+        "Field building",
+        "Security and compute"
+      ],
+      "quoteContext": "Internship · Existential Risk Observatory",
+      "quote": "Without this community I almost certainly wouldn’t be where I am.",
+      "quoteProject": "Mapping research on AI alignment techniques and government interventions"
+    },
+    "involved": {
+      "heading": "The next decade is being decided now",
+      "body": "You do not need a background in AI to be useful here. Every SAIN programme is free, run by volunteers, and takes you from curious to contributing, so pick one and begin."
+    }
+  },
+  "landing": {
+    "heroChartAlt": "An accelerating AI trajectory starts at the origin. Two people learn and practise while a third points up at the turning point, where the curve forks into a steep orange path and a gentler grey one.",
+    "affiliationsHeading": "Network and institutional affiliations",
+    "missionStatement": "<muted>Too few people know how to work on AI safety, in research, in policy, or in public debate.</muted> SAIN <verb>trains</verb> more of them, <verb>connects</verb> them, and gets them <verb>started</verb>.",
+    "chapterPrintsLabel": "Chapters",
+    "communityPrints": {
+      "label": "Photographs from SAIN events",
+      "previous": "Previous photographs",
+      "next": "Next photographs",
+      "alt": {
+        "graduationAmsterdam": "SAIN Amsterdam graduates celebrating outdoors with balloons and flowers",
+        "closingGroningen": "A SAIN Groningen closing evening on a rooftop terrace at sunset",
+        "lecture": "A SAIN lecture filling a university auditorium",
+        "cafeAmsterdam": "SAIN Amsterdam members around a café table with SAIN mugs",
+        "technicalGraduates": "Technical AI Safety graduates beside the SAIN Amsterdam banner",
+        "circle": "An outdoor community gathering in a circle",
+        "indoor": "A SAIN group session indoors"
+      }
+    },
+    "courseTracks": {
+      "whereItRuns": "Where it runs",
+      "notOffered": "(not offered)",
+      "seeAllCourses": "See all courses"
+    },
+    "researchIllustrationLabel": "Two researchers examining evidence together at a shared workbench",
+    "researchOffer": {
+      "matching": {
+        "title": "Supervised matching",
+        "description": "Connect with PhD+ supervisors for structured, mentored AI Safety research."
+      },
+      "compute": {
+        "title": "Compute & support",
+        "description": "Access compute and logistical support for your project or open collaboration."
+      },
+      "network": {
+        "title": "National network",
+        "description": "Work with researchers, advisors, and practitioners across SAIN’s Dutch chapters."
+      },
+      "publication": {
+        "title": "Publication track",
+        "description": "Build your research track record in a community with work at NeurIPS, ICLR, and other leading venues."
+      }
+    },
+    "researchSteps": {
+      "label": "Your research journey",
+      "project": {
+        "title": "Choose a research project",
+        "body": "Join a project or bring your own question. Put your academic expertise to work on AI Safety, with the people and resources to take it further.",
+        "link": "Read the research handbook"
+      },
+      "support": {
+        "title": "Work with support",
+        "body": "SAIN helps coordinate research and arrange compute according to project needs. Develop your work with supervisor feedback or independent collaborators.",
+        "agendas": "Explore our supervisors’ research agendas",
+        "becomeSupervisor": "Become a supervisor"
+      },
+      "publish": {
+        "title": "Publish your findings",
+        "body": "Turn your findings into a paper, policy brief, or research tool. Get feedback on drafts, with potential support for conference travel.",
+        "link": "View all publications"
+      }
+    },
+    "researchAgenda": "Research agenda",
+    "readPaper": "Read paper"
+  }
+}

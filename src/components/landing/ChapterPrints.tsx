@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 import { ATLAS } from "@/data/chapterAtlas";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * The running chapters as prints: each is the photograph its chapter page
@@ -11,9 +12,9 @@ import { ATLAS } from "@/data/chapterAtlas";
  * A snap strip below sm, the next print past the edge as the affordance;
  * three across from sm.
  */
-export default function ChapterPrints({ id }: { id?: string }) {
+export default function ChapterPrints({ id, locale }: { id?: string; locale: Locale }) {
   return (
-    <nav id={id} aria-label="Chapters" className="scroll-mt-36">
+    <nav id={id} aria-label={getDictionary(locale).landing.chapterPrintsLabel} className="scroll-mt-36">
       <ul
         role="list"
         className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-3 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 lg:gap-7"

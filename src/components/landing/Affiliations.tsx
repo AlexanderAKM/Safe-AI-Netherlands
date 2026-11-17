@@ -70,7 +70,7 @@ const ROW_WIDTH =
 // Rolling speed in px per second: slow enough to read each name in passing.
 const SPEED = 40;
 
-function Logos({ copy }: { copy?: boolean }) {
+function Logos({ copy, opensInNewTab }: { copy?: boolean; opensInNewTab: string }) {
   return AFFILIATIONS.map((org) => (
     <li key={org.name} className="shrink-0">
       <a
@@ -97,13 +97,21 @@ function Logos({ copy }: { copy?: boolean }) {
             WebkitMaskPosition: "center",
           }}
         />
-        <span className="sr-only"> (opens in a new tab)</span>
+        <span className="sr-only"> {opensInNewTab}</span>
       </a>
     </li>
   ));
 }
 
-export default function Affiliations() {
+/* The organisations keep their own names in every language; only the heading
+   and the screen-reader note are translated. */
+export default function Affiliations({
+  heading,
+  opensInNewTab,
+}: {
+  heading: string;
+  opensInNewTab: string;
+}) {
   const viewport = useRef<HTMLDivElement>(null);
   const [fits, setFits] = useState(true);
   const reduce = useReducedMotion();
@@ -127,7 +135,7 @@ export default function Affiliations() {
           id="affiliations-heading"
           className="shrink-0 font-sans text-label text-navy/75 lg:max-w-[190px]"
         >
-          Network and institutional affiliations
+          {heading}
         </h2>
         <div
           ref={viewport}
@@ -141,10 +149,10 @@ export default function Affiliations() {
               style={{ animationDuration: `${(ROW_WIDTH + GAP) / SPEED}s` }}
             >
               <ul role="list" className="flex items-center" style={{ gap: GAP, paddingRight: GAP }}>
-                <Logos />
+                <Logos opensInNewTab={opensInNewTab} />
               </ul>
               <ul aria-hidden="true" className="flex items-center" style={{ gap: GAP, paddingRight: GAP }}>
-                <Logos copy />
+                <Logos copy opensInNewTab={opensInNewTab} />
               </ul>
             </div>
           ) : (
@@ -153,7 +161,7 @@ export default function Affiliations() {
               className={`flex items-center ${fits ? "justify-between" : "w-max"}`}
               style={{ gap: GAP }}
             >
-              <Logos />
+              <Logos opensInNewTab={opensInNewTab} />
             </ul>
           )}
         </div>

@@ -9,6 +9,8 @@ import {
   STARTING_TEAMS_RECRUITING,
 } from "@/data/newChapters";
 import { ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
+import type { Dictionary } from "@/i18n";
+import { format } from "@/i18n/rich";
 
 /* The authorship shell: a civic broadcast strip, then the header. The strip
    scrolls away once read; the header pins to the top for the rest of the page.
@@ -17,7 +19,7 @@ import { ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
    a plain link like the others. */
 
 type NavItem = {
-  name: string;
+  key: keyof Dictionary["nav"]["items"];
   href: string;
   isActive: (path: string) => boolean;
   /** Carries the 7×7 orange kicker square: a time-bound door. */
@@ -29,7 +31,7 @@ type NavItem = {
    It sits next to Community because that is where the chapters live, and it
    leaves with the switch in data/newChapters.ts. */
 const newChaptersItem: NavItem = {
-  name: "New chapters",
+  key: "newChapters",
   href: "/new-chapters",
   isActive: (p) => p.startsWith("/new-chapters"),
   flagged: true,
@@ -37,12 +39,12 @@ const newChaptersItem: NavItem = {
 
 const baseNavigation: NavItem[] = [
   {
-    name: "Courses",
+    key: "courses",
     href: "/courses",
     isActive: (p) => p === "/courses" || p.startsWith("/courses/"),
   },
   {
-    name: "Community",
+    key: "community",
     href: "/community",
     /* The chapter pages live under the Community door, so they light it up. */
     isActive: (p) =>
@@ -51,12 +53,12 @@ const baseNavigation: NavItem[] = [
       p.startsWith("/chapters"),
   },
   {
-    name: "Project hub",
+    key: "projectHub",
     href: "/research",
     isActive: (p) => p.startsWith("/research"),
   },
   {
-    name: "About",
+    key: "about",
     href: "/about",
     isActive: (p) => p === "/about" || p.startsWith("/about/"),
   },
@@ -72,7 +74,15 @@ function FlagSquare() {
   );
 }
 
-export default function Navbar() {
+/* A client component: it gets its words from the layout, so the dictionary
+   never ships to the browser. */
+export default function Navbar({
+  t,
+  common,
+}: {
+  t: Dictionary["nav"];
+  common: Dictionary["common"];
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
@@ -95,7 +105,7 @@ export default function Navbar() {
       {announceStartingTeams ? (
         <div className="flex items-center justify-center gap-3 bg-orange px-6 py-[11px] md:px-12">
           <p className="kicker hidden shrink-0 text-kicker-sm text-white/85 sm:block">
-            We are hiring
+            {t.hiringKicker}
           </p>
           <span
             className="hidden h-px w-[22px] shrink-0 bg-white/50 sm:block"
@@ -105,14 +115,10 @@ export default function Navbar() {
             href="/new-chapters"
             className="text-center font-sans text-caption text-white underline decoration-white/45 underline-offset-4 transition-colors hover:decoration-white focus-visible:decoration-white"
           >
-            <span className="sm:hidden">
-              Paid starting teams wanted in three new cities
-            </span>
-            <span className="hidden sm:inline">
-              Paid starting teams wanted in Eindhoven, Delft and The Hague
-            </span>
+            <span className="sm:hidden">{t.startingTeamsShort}</span>
+            <span className="hidden sm:inline">{t.startingTeamsLong}</span>
             <span className="hidden lg:inline">
-              , apply by {SOFT_DEADLINE_SHORT}
+              {format(t.startingTeamsDeadline, { deadline: SOFT_DEADLINE_SHORT })}
             </span>
           </Link>
           {hasOpenPositions && (
@@ -125,7 +131,7 @@ export default function Navbar() {
                 href="/open-positions"
                 className="hidden shrink-0 font-sans text-caption text-white/85 underline decoration-white/35 underline-offset-4 transition-colors hover:text-white hover:decoration-white focus-visible:decoration-white md:inline"
               >
-                All open positions
+                {t.allOpenPositions}
               </Link>
             </>
           )}
@@ -133,7 +139,7 @@ export default function Navbar() {
       ) : hasOpenPositions ? (
         <div className="flex items-center justify-center gap-3 bg-orange px-6 py-[11px] md:px-12">
           <p className="kicker text-kicker-sm text-white/85">
-            We are hiring
+            {t.hiringKicker}
           </p>
           <span
             className="hidden h-px w-[22px] bg-white/50 sm:block"
@@ -143,7 +149,7 @@ export default function Navbar() {
             href="/open-positions"
             className="font-sans text-caption text-white underline decoration-white/45 underline-offset-4 transition-colors hover:decoration-white focus-visible:decoration-white"
           >
-            See open positions
+            {t.seeOpenPositions}
           </Link>
         </div>
       ) : null}
@@ -156,7 +162,7 @@ export default function Navbar() {
             <Link
               href="/"
               className="shrink-0"
-              aria-label="Safe AI Netherlands home"
+              aria-label={t.homeLinkLabel}
             >
               <img
                 src="/landing/logo-navy-140.png"
@@ -174,7 +180,7 @@ export default function Navbar() {
 
             <nav
               className="hidden items-center gap-[22px] lg:flex xl:gap-[30px]"
-              aria-label="Primary"
+              aria-label={t.primaryLabel}
             >
               {navigation.map((item) => {
                 const active = item.isActive(pathname);
@@ -184,13 +190,13 @@ export default function Navbar() {
 
                 return (
                   <Link
-                    key={item.name}
+                    key={item.key}
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={`inline-flex items-center gap-2 whitespace-nowrap border-b py-0.5 font-sans text-sm leading-5 text-navy transition-colors ${underline}`}
                   >
                     {item.flagged && <FlagSquare />}
-                    {item.name}
+                    {t.items[item.key]}
                   </Link>
                 );
               })}
@@ -198,10 +204,10 @@ export default function Navbar() {
 
             <div className="hidden items-center gap-2.5 sm:flex">
               <Link href="/get-involved" className="btn-ghost min-h-[44px] whitespace-nowrap">
-                Volunteer
+                {common.volunteer}
               </Link>
               <Link href="/courses" className="btn-ink min-h-[44px] whitespace-nowrap">
-                Join a free course
+                {common.joinAFreeCourse}
               </Link>
             </div>
 
@@ -211,7 +217,7 @@ export default function Navbar() {
               className="inline-flex size-11 items-center justify-center border border-navy/20 lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-label={mobileOpen ? t.closeMenu : t.openMenu}
             >
               {mobileOpen ? (
                 <XIcon size={18} weight="light" aria-hidden="true" />
@@ -226,19 +232,19 @@ export default function Navbar() {
           <nav
             id="mobile-nav"
             className="border-b border-navy/10 bg-white lg:hidden"
-            aria-label="Mobile"
+            aria-label={t.mobileLabel}
           >
             <div className="shell flex flex-col gap-1 py-4">
               {navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.key}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
                   aria-current={item.isActive(pathname) ? "page" : undefined}
                   className="flex min-h-[44px] items-center gap-2.5 font-sans text-sm leading-5 text-navy"
                 >
                   {item.flagged && <FlagSquare />}
-                  {item.name}
+                  {t.items[item.key]}
                 </Link>
               ))}
               {/* The header keeps both calls to action from sm up, so the sheet
@@ -249,14 +255,14 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 flex min-h-[44px] items-center justify-center border border-navy/20 px-4 text-center font-sans text-caption text-navy sm:hidden"
               >
-                Volunteer
+                {common.volunteer}
               </Link>
               <Link
                 href="/courses"
                 onClick={() => setMobileOpen(false)}
                 className="flex min-h-[44px] items-center justify-center bg-navy px-4 text-center font-sans text-caption text-white sm:hidden"
               >
-                Join a free course
+                {common.joinAFreeCourse}
               </Link>
             </div>
           </nav>

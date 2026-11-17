@@ -8,6 +8,7 @@ import {
   type ChapterName,
 } from "@/data/courseApplications";
 import { TRACKS } from "@/data/courseTracks";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * The landing's three course tracks, named rather than taught. Each column is a small
@@ -29,7 +30,8 @@ const GLYPH: Record<string, Icon> = {
   policy: Scales,
 };
 
-export default function CourseTracks() {
+export default function CourseTracks({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).landing.courseTracks;
   return (
     <div>
       <ul role="list" className="grid gap-px bg-navy/12 md:grid-cols-3 border-y border-navy/12">
@@ -53,7 +55,7 @@ export default function CourseTracks() {
               <p className="mt-2 font-sans text-ui text-navy/72">{track.tagline}</p>
 
               <div className="mt-auto pt-8">
-                <ul role="list" aria-label="Where it runs" className="grid grid-cols-3 border-t border-navy/12">
+                <ul role="list" aria-label={t.whereItRuns} className="grid grid-cols-3 border-t border-navy/12">
                   {CITIES.map((city) => {
                     const entry = track.cities.find((c) => c.city === city);
                     return (
@@ -74,7 +76,7 @@ export default function CourseTracks() {
                             <span aria-hidden="true" className="h-2 w-2 border border-navy/25" />
                             <span className="font-sans text-caption text-navy/35">
                               {city}
-                              <span className="sr-only"> (not offered)</span>
+                              <span className="sr-only"> {t.notOffered}</span>
                             </span>
                           </span>
                         )}
@@ -99,7 +101,7 @@ export default function CourseTracks() {
           href="/courses"
           className="inline-flex items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
         >
-          See all courses
+          {t.seeAllCourses}
           <ArrowRight size={16} weight="regular" aria-hidden="true" />
         </Link>
       </div>

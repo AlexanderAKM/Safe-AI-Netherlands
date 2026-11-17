@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import type { Dictionary } from "@/i18n";
+
+type Words = Dictionary["landing"]["communityPrints"];
 
 /* Plain <img>, not next/image: with `images.unoptimized` the wrapper emits no
    srcset, so the `sizes` below would have been inert. The rungs come from
@@ -25,7 +28,8 @@ type Print = {
   /** Widths on disk, when the photograph is shared with a band whose ladder
       differs from this one's 320/640/900. */
   rungs?: number[];
-  alt: string;
+  /** Its alt text in landing.communityPrints.alt. */
+  alt: keyof Words["alt"];
   /** Where the crop sits in the frame. */
   position: string;
   /** Alternating small tilts, so the row reads as prints laid down by hand. */
@@ -46,30 +50,31 @@ type Print = {
  *
  * Adding a photograph: put it in public/landing as `print-<name>.jpg`, add it
  * to the community gallery entry in scripts/generate-responsive-images.mjs,
- * run `npm run images`, and add a row here.
+ * run `npm run images`, add a row here, and give it alt text in en.json under
+ * landing.communityPrints.alt.
  */
 const PRINTS: Print[] = [
   {
     src: "/landing/print-graduation-amsterdam.jpg",
-    alt: "SAIN Amsterdam graduates celebrating outdoors with balloons and flowers",
+    alt: "graduationAmsterdam",
     position: "50% 40%",
     tilt: "rotate-[-1.5deg]",
   },
   {
     src: "/landing/print-closing-groningen.jpg",
-    alt: "A SAIN Groningen closing evening on a rooftop terrace at sunset",
+    alt: "closingGroningen",
     position: "62% 60%",
     tilt: "rotate-[1deg]",
   },
   {
     src: "/landing/print-lecture.jpg",
-    alt: "A SAIN lecture filling a university auditorium",
+    alt: "lecture",
     position: "58% 36%",
     tilt: "rotate-[-1deg]",
   },
   {
     src: "/landing/print-cafe-amsterdam.jpg",
-    alt: "SAIN Amsterdam members around a café table with SAIN mugs",
+    alt: "cafeAmsterdam",
     position: "50% 55%",
     tilt: "rotate-[1.5deg]",
   },
@@ -77,19 +82,19 @@ const PRINTS: Print[] = [
     /* The course band's photograph, so it carries that band's rungs. */
     src: "/landing/course-technical.jpg",
     rungs: [640, 960],
-    alt: "Technical AI Safety graduates beside the SAIN Amsterdam banner",
+    alt: "technicalGraduates",
     position: "50% 55%",
     tilt: "rotate-[-1.5deg]",
   },
   {
     src: "/landing/print-circle.jpg",
-    alt: "An outdoor community gathering in a circle",
+    alt: "circle",
     position: "50% 48%",
     tilt: "rotate-[1deg]",
   },
   {
     src: "/landing/print-indoor.jpg",
-    alt: "A SAIN group session indoors",
+    alt: "indoor",
     position: "64% 40%",
     tilt: "rotate-[-1deg]",
   },
@@ -109,7 +114,7 @@ const PRINTS: Print[] = [
 const ARROW =
   "strip-arrow strip-arrow-always absolute top-4 bottom-9 z-10 my-auto h-11 w-11 place-items-center bg-white text-navy opacity-55 shadow-[0_4px_14px_#021C4D14] hover:opacity-100 hover:shadow-[0_7px_22px_#021C4D1F] focus-visible:opacity-100 focus-visible:shadow-[0_7px_22px_#021C4D1F] disabled:pointer-events-none disabled:opacity-0";
 
-export default function CommunityPrints() {
+export default function CommunityPrints({ t }: { t: Words }) {
   const strip = useRef<HTMLDivElement>(null);
   /* Which directions still have somewhere to go. An arrow that is lit but
      moves nothing is worse than no arrow, so the ends disable rather than
@@ -164,7 +169,7 @@ export default function CommunityPrints() {
         /* A scroll container has to be reachable without a thumb, so it carries
            a name and a tab stop of its own. */
         role="region"
-        aria-label="Photographs from SAIN events"
+        aria-label={t.label}
         tabIndex={0}
         /* The negative margin matches the shell's gutter at each size, so the
            strip reaches the screen edge while its first print still lines up
@@ -181,7 +186,7 @@ export default function CommunityPrints() {
                 src={rung(print.src, (print.rungs ?? PHOTO_WIDTHS)[0])}
                 srcSet={srcSet(print)}
                 sizes={SIZES}
-                alt={print.alt}
+                alt={t.alt[print.alt]}
                 width={480}
                 height={360}
                 loading="lazy"
@@ -198,7 +203,7 @@ export default function CommunityPrints() {
         type="button"
         onClick={() => push(-1)}
         disabled={!reach.back}
-        aria-label="Previous photographs"
+        aria-label={t.previous}
         /* The nudge runs along the axis of travel rather than lifting: the
            chip leans the way it is about to take you. */
         className={`${ARROW} left-0 hover:-translate-x-0.5 focus-visible:-translate-x-0.5`}
@@ -209,7 +214,7 @@ export default function CommunityPrints() {
         type="button"
         onClick={() => push(1)}
         disabled={!reach.forward}
-        aria-label="Next photographs"
+        aria-label={t.next}
         className={`${ARROW} right-0 hover:translate-x-0.5 focus-visible:translate-x-0.5`}
       >
         <CaretRight size={18} weight="bold" aria-hidden="true" />

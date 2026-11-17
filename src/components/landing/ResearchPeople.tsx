@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { supervisors } from "@/data/research";
+import { getDictionary, type Locale } from "@/i18n";
 
 /* The supervisors, as a left-aligned row of square portraits.
  *
@@ -26,7 +27,8 @@ import { supervisors } from "@/data/research";
  * `group-focus-visible:` because a keyboard never fires `:hover`, and the two
  * transforms sit behind `motion-safe:`.
  */
-export default function ResearchPeople() {
+export default function ResearchPeople({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
       {supervisors.map((person) => {
@@ -75,7 +77,11 @@ export default function ResearchPeople() {
               </p>
               {/* The whole supervisor is the link, so the destination has to be
                   named for anyone who cannot see the hover state. */}
-              {person.agenda && <span className="sr-only">Research agenda (opens in a new tab)</span>}
+              {person.agenda && (
+                <span className="sr-only">
+                  {t.landing.researchAgenda} {t.common.opensInNewTab}
+                </span>
+              )}
             </Card>
           </li>
         );

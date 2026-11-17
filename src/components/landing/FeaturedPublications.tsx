@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { paperHref, publications } from "@/data/research";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * The three featured papers, as cream cards on the band's navy.
@@ -36,7 +37,8 @@ import { paperHref, publications } from "@/data/research";
  * it; the drawing keeps its own inset, so nothing actually touches the edge
  * except the tint.
  */
-export default function FeaturedPublications() {
+export default function FeaturedPublications({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   return (
     <div className="mt-7 grid gap-5 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_1fr_auto]">
       {publications.flatMap((paper) => {
@@ -51,7 +53,7 @@ export default function FeaturedPublications() {
           href={paperHref(paper)}
           {...(paper.reader
             ? { "aria-label": paper.title }
-            : { target: "_blank", rel: "noopener noreferrer", "aria-label": `${paper.title} (opens in a new tab)` })}
+            : { target: "_blank", rel: "noopener noreferrer", "aria-label": `${paper.title} ${t.common.opensInNewTab}` })}
           className="group grid min-w-0 bg-cream text-navy outline-offset-4 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white focus-visible:bg-white lg:row-span-5 lg:grid-rows-subgrid"
         >
           <div className="bg-navy/[0.04] px-7 py-6 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:bg-navy/[0.07] group-focus-visible:bg-navy/[0.07]">
@@ -67,7 +69,7 @@ export default function FeaturedPublications() {
           <h4 className="mt-3 px-6 font-serif text-title-sm underline-offset-4 group-hover:underline group-focus-visible:underline">{paper.title}</h4>
           <p className="mt-3 px-6 text-kicker-sm leading-6 text-navy/75">{paper.featured.summary}</p>
           <span className="mt-6 flex items-center gap-2 px-6 pb-6 text-label">
-            Read paper
+            {t.landing.readPaper}
             <Arrow
               size={16}
               aria-hidden="true"

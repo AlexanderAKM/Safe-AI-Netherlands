@@ -4,6 +4,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CoursePopup from "@/components/CoursePopup";
+import { getDictionary } from "@/i18n";
+
+/* Until the /nl routes exist, the whole site renders from en.json. */
+const t = getDictionary("en");
 
 /* League Spartan for headings and editorial lines, as on the original site. */
 const leagueSpartan = League_Spartan({
@@ -30,8 +34,7 @@ export const metadata: Metadata = {
     default: "Safe AI Netherlands",
     template: "%s | SAIN",
   },
-  description:
-    "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free.",
+  description: t.site.description,
   keywords: [
     "AI Safety",
     "Netherlands",
@@ -74,8 +77,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Safe AI Netherlands",
-    description:
-      "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free.",
+    description: t.site.description,
     url: "https://safeainetherlands.org",
     siteName: "Safe AI Netherlands",
     images: [
@@ -83,7 +85,7 @@ export const metadata: Metadata = {
         url: "/sain-symbol.svg",
         width: 512,
         height: 512,
-        alt: "Safe AI Netherlands logo",
+        alt: t.site.logoImageAlt,
       },
     ],
     type: "website",
@@ -129,13 +131,13 @@ export default function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-100 focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:outline focus:outline-2 focus:outline-navy"
         >
-          Skip to content
+          {t.site.skipToContent}
         </a>
-        <Navbar />
+        <Navbar t={t.nav} common={t.common} />
         <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer />
+        <Footer locale="en" />
         {/* Renders nothing unless a chapter is taking applications, or the URL
             carries ?preview-popup. */}
         <CoursePopup />

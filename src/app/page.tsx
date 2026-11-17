@@ -23,25 +23,21 @@ import {
   openCourseApplications,
 } from "@/data/courseApplications";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { format, getDictionary, rich } from "@/i18n";
+
+const locale = "en";
+const t = getDictionary(locale);
 
 /* No `title` here on purpose: the landing falls through to the root layout's
    `title.default`, so the tab reads "Safe AI Netherlands" and nothing more.
    The claim still reaches search and link previews via the description. */
 export const metadata: Metadata = {
-  description:
-    "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free.",
+  description: t.site.description,
 };
 
-
-/* The four kinds of work SAIN opens doors into, named once under the claim
-   they belong to. They were four cells with an icon apiece, which gave a
-   passing mention the footprint of a section. */
-const careerTracks = [
-  "Technical research",
-  "Governance and policy",
-  "Field building",
-  "Security and compute",
-];
+/* The four kinds of work SAIN opens doors into (home.careers.tracks) are named
+   once under the claim they belong to. They were four cells with an icon
+   apiece, which gave a passing mention the footprint of a section. */
 
 
 function Arrow() {
@@ -88,14 +84,10 @@ export default function Home() {
         <div className="shell band-hero grid min-h-[60dvh] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] xl:grid-cols-[minmax(0,700px)_minmax(0,1fr)]">
           <Reveal hero className="flex min-w-0 flex-col gap-6">
             <h1 id="hero-heading" className="font-serif text-display text-navy">
-              Your AI Safety career starts here.
+              {t.home.hero.title}
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              AI Safety expertise has never been more important than today. SAIN provides the
-              community, courses and resources to help students and professionals join the AI
-              Safety field. We provide a clear path through education, community and practical
-              projects, then connect strong contributors to the organisations, programmes and roles
-              where they can take the next step.
+              {t.home.hero.body}
             </p>
             <div className="pt-1">
               <a
@@ -104,9 +96,9 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Join the community
+                {t.common.joinTheCommunity}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {t.common.opensInNewTab}</span>
               </a>
             </div>
             {/* The hire of the season, said once above the fold. It reads the
@@ -117,11 +109,13 @@ export default function Home() {
                 className="group inline-flex max-w-[620px] border-t border-navy/12 pt-5 font-sans text-caption text-navy/74"
               >
                 <span>
-                  <span className="font-semibold text-navy">We are hiring paid starting teams</span>{" "}
-                  for new chapters in Eindhoven, Delft and The Hague. Apply by{" "}
-                  {SOFT_DEADLINE_SHORT}.{" "}
+                  {rich(
+                    t.home.hero.hiring,
+                    { strong: (chunk) => <span className="font-semibold text-navy">{chunk}</span> },
+                    { deadline: SOFT_DEADLINE_SHORT },
+                  )}{" "}
                   <span className="inline-flex items-center gap-1 whitespace-nowrap text-navy underline decoration-navy/30 underline-offset-4 transition-colors group-hover:decoration-navy group-focus-visible:decoration-navy">
-                    See the roles
+                    {t.home.hero.seeTheRoles}
                     <Arrow />
                   </span>
                 </span>
@@ -129,14 +123,14 @@ export default function Home() {
             )}
           </Reveal>
           <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
-            <HeroChart />
+            <HeroChart locale={locale} />
           </Reveal>
         </div>
       </section>
 
       {/* Who SAIN works with, straight under the claim: a quiet strip of
           logos between the hero and the navy mission band. */}
-      <Affiliations />
+      <Affiliations heading={t.landing.affiliationsHeading} opensInNewTab={t.common.opensInNewTab} />
 
       {/* What SAIN is for, before the page offers any door. Inverse, as a
           deliberate pause between the hero and the first programme: the
@@ -149,21 +143,20 @@ export default function Home() {
       >
         <div className="shell band-section flex flex-col items-center">
           <h2 id="mission-heading" className="sr-only">
-            Why SAIN exists
+            {t.home.mission.heading}
           </h2>
           <Reveal>
-            <MissionStatement />
+            <MissionStatement message={t.landing.missionStatement} />
           </Reveal>
           <Reveal delay={0.05} className="mt-7 flex flex-col items-center gap-3 text-center">
             <p className="max-w-[560px] font-sans text-body text-white/72">
-              A free, volunteer-run path from curiosity to contribution, through
-              courses, events, research and local chapters.
+              {t.home.mission.body}
             </p>
             <Link
               href="/about"
               className="inline-flex items-center gap-1.5 font-sans text-label text-white underline decoration-white/40 underline-offset-4 hover:decoration-white focus-visible:decoration-white"
             >
-              Why SAIN exists
+              {t.home.mission.link}
               <Arrow />
             </Link>
           </Reveal>
@@ -180,50 +173,44 @@ export default function Home() {
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
           <Reveal className="flex flex-col items-start gap-5">
             <h2 id="community-heading" className="font-serif text-heading text-navy">
-              Participate in the community
+              {t.home.community.heading}
             </h2>
             <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
-              <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
-              <strong>talks</strong>, and the evenings after. People meet{" "}
-              <strong>friends and collaborators</strong> here, and often find their{" "}
-              <strong>next step in AI Safety</strong>.
+              {rich(t.home.community.body, { strong: (chunk) => <strong>{chunk}</strong> })}
             </p>
             {/* Same words as the hero's button on purpose: one label per
                 destination, so the second ask reads as the same door. */}
             <a href={COMMUNITY_JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn-accent mt-2 gap-2">
-              Join the community
+              {t.common.joinTheCommunity}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {t.common.opensInNewTab}</span>
             </a>
             <p className="font-sans text-footnote text-navy/65">
-              Our Discord community currently focuses on our SAIN Amsterdam,
-              Utrecht and Groningen chapters.{" "}
-              {STARTING_TEAMS_RECRUITING ? (
-                <>
-                  Eindhoven, Delft and The Hague are next:{" "}
-                  <Link
-                    href="/new-chapters"
-                    className="text-navy underline decoration-navy/30 underline-offset-4 transition-colors hover:decoration-navy focus-visible:decoration-navy"
-                  >
-                    we are hiring their starting teams
-                  </Link>
-                  .
-                </>
-              ) : (
-                "More cities to come."
-              )}
+              {t.home.community.chapters}{" "}
+              {STARTING_TEAMS_RECRUITING
+                ? rich(t.home.community.nextCities, {
+                    link: (chunk) => (
+                      <Link
+                        href="/new-chapters"
+                        className="text-navy underline decoration-navy/30 underline-offset-4 transition-colors hover:decoration-navy focus-visible:decoration-navy"
+                      >
+                        {chunk}
+                      </Link>
+                    ),
+                  })
+                : t.home.community.moreCities}
             </p>
           </Reveal>
 
           <Reveal delay={0.06} className="min-w-0">
-            <ChapterPrints id="chapters" />
+            <ChapterPrints id="chapters" locale={locale} />
           </Reveal>
         </div>
 
         {/* Under the chapters, what happens in them: a strip of event
             photographs across the full width of the band. */}
         <Reveal delay={0.1}>
-          <CommunityPrints />
+          <CommunityPrints t={t.landing.communityPrints} />
         </Reveal>
         </div>
       </section>
@@ -247,11 +234,10 @@ export default function Home() {
         <div className="shell band-section-top relative isolate pb-14">
           <div className="mb-10 max-w-[680px]">
             <h2 id="courses-heading" className="font-serif text-heading text-navy">
-              Start with a free course
+              {t.common.startWithAFreeCourse}
             </h2>
             <p className="mt-3 font-sans text-body leading-[26px] text-navy/74">
-              Pick a track. Every programme is free and taught in person. What you join, and how it
-              runs, depends on the chapter.
+              {t.home.courses.body}
             </p>
             {/* Which chapters are taking applications, read from the same file
                 the chapter pages read. A cohort can never be advertised as open
@@ -259,11 +245,11 @@ export default function Home() {
                 removes itself rather than going stale. */}
             {openCourseApplications.length > 0 && (
               <p className="mt-3 font-sans text-caption text-navy/65">
-                You can apply now in {formatCityList(openCourseApplications)}.
+                {format(t.home.courses.applyNow, { cities: formatCityList(openCourseApplications) })}
               </p>
             )}
           </div>
-          <Reveal><CourseTracks /></Reveal>
+          <Reveal><CourseTracks locale={locale} /></Reveal>
         </div>
       </section>
         </FoldPin>
@@ -277,20 +263,20 @@ export default function Home() {
         <div className="shell band-research">
           <Reveal className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:gap-12 xl:grid-cols-[minmax(0,650px)_minmax(0,1fr)] xl:gap-24">
             <div className="flex flex-col items-start gap-6">
-              <h2 id="research-heading" className="max-w-[560px] font-serif text-heading">The SAIN Project Hub</h2>
-              <p className="max-w-[590px] text-body text-white/75">Bring your academic expertise to AI Safety. Connect with researchers, develop a focused project, and take your work further with support from SAIN.</p>
+              <h2 id="research-heading" className="max-w-[560px] font-serif text-heading">{t.home.research.heading}</h2>
+              <p className="max-w-[590px] text-body text-white/75">{t.home.research.body}</p>
               <Link href="/research" className="inline-flex items-center gap-3 text-label leading-6 text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
-                Visit the Project hub <ArrowRight size={16} aria-hidden="true" />
+                {t.common.visitTheProjectHub} <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
-            <ResearchIllustration />
+            <ResearchIllustration label={t.landing.researchIllustrationLabel} />
           </Reveal>
 
           {/* The offer, then the journey. No kicker above either: the landing
               already runs three of them across eight sections, which is the
               ceiling, and the h2 says what this band is without help. */}
-          <Reveal delay={0.05}><ResearchOffer /></Reveal>
-          <Reveal delay={0.05}><ResearchSteps /></Reveal>
+          <Reveal delay={0.05}><ResearchOffer locale={locale} /></Reveal>
+          <Reveal delay={0.05}><ResearchSteps locale={locale} /></Reveal>
 
           {/* The ask, closing the band rather than trailing the last step. It
               used to sit inside step three beside "View all publications",
@@ -301,13 +287,13 @@ export default function Home() {
               The form itself is on /research, twice. */}
           <Reveal delay={0.05} className="mt-12 flex flex-col gap-6 border-t border-white/15 pt-8 md:mt-16 md:flex-row md:items-center md:justify-between md:gap-12">
             <p className="max-w-[520px] font-serif text-title leading-[30px] text-white">
-              Apply any time. Determine your commitment per project. Remote participation is welcome.
+              {t.home.research.closing}
             </p>
             {/* One label per destination: the three chapter pages and the band
                 opener above all call /research "Visit the Project hub", so the
                 closing ask is the same door, not a second one. */}
             <Link href="/research" className="btn-accent shrink-0 self-start md:self-auto">
-              Visit the Project hub
+              {t.common.visitTheProjectHub}
             </Link>
           </Reveal>
         </div>
@@ -328,17 +314,15 @@ export default function Home() {
         <div className="shell band-index grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_minmax(280px,420px)]">
           <div className="flex min-w-0 flex-col gap-[22px]">
             <h2 id="careers-heading" className="max-w-[620px] font-serif text-heading-sm text-navy">
-              Build an AI Safety career
+              {t.home.careers.heading}
             </h2>
             <p className="max-w-[680px] font-sans text-body text-navy/74">
-              Most people who end up working on AI Safety did not plan for it. We shorten that
-              path with mentorship, funding advice, and introductions to the labs, institutes and
-              ministries hiring in Europe right now.
+              {t.home.careers.body}
             </p>
             {/* The separators are drawn rather than typed, so a screen reader
                 reads four names and not four middots. */}
             <ul role="list" className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-navy/14 pt-4">
-              {careerTracks.map((track, i) => (
+              {t.home.careers.tracks.map((track, i) => (
                 <li key={track} className="flex items-center gap-3">
                   {i > 0 ? <span aria-hidden="true" className="text-navy/25">·</span> : null}
                   <span className="kicker text-caption text-navy/65">{track}</span>
@@ -357,7 +341,7 @@ export default function Home() {
               actions. */}
           <blockquote className="flex min-w-0 flex-col gap-4 border-l border-navy/14 py-1 pl-6 lg:pl-7">
             <p className="kicker text-base leading-[22px] text-navy/65">
-              Internship · Existential Risk Observatory
+              {t.home.careers.quoteContext}
             </p>
             <p className="font-serif text-heading-sm font-light text-navy">
               <span
@@ -366,14 +350,14 @@ export default function Home() {
               >
                 &ldquo;
               </span>
-              Without this community I almost certainly wouldn&rsquo;t be where I am.
+              {t.home.careers.quote}
             </p>
             <footer className="border-t border-navy/14 pt-3">
               <cite className="block font-sans text-sm font-medium not-italic leading-5 text-navy">
                 Stefano Zuffi
               </cite>
               <p className="kicker mt-1 text-kicker-sm text-navy/65">
-                Mapping research on AI alignment techniques and government interventions
+                {t.home.careers.quoteProject}
               </p>
             </footer>
           </blockquote>
@@ -405,12 +389,10 @@ export default function Home() {
         <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
           <div className="min-w-0">
             <h2 id="involved-heading" className="max-w-[620px] font-serif text-closing text-white">
-              The next decade is being decided now
+              {t.home.involved.heading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              You do not need a background in AI to be useful here. Every SAIN programme is
-              free, run by volunteers, and takes you from curious to contributing, so pick
-              one and begin.
+              {t.home.involved.body}
             </p>
           </div>
 
@@ -418,10 +400,10 @@ export default function Home() {
               mean the same thing: the course section on this page. */}
           <div className="flex flex-wrap gap-3 lg:shrink-0">
             <Link href="#courses" className="btn-accent">
-              Start with a free course
+              {t.common.startWithAFreeCourse}
             </Link>
             <Link href="/get-involved" className="btn-ghost-inverse">
-              Volunteer
+              {t.common.volunteer}
             </Link>
           </div>
         </div>

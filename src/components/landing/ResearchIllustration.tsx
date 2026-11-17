@@ -3,14 +3,14 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
-export default function ResearchIllustration() {
+export default function ResearchIllustration({ label }: { label: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const transform = useTransform(scrollYProgress, [0, 1], ["translateY(12px)", "translateY(-12px)"]);
   return (
     <motion.div ref={ref} style={{ transform: reduce ? "none" : transform }} className="mx-auto w-full max-w-[380px]">
-      <svg viewBox="0 0 420 290" fill="none" role="img" aria-label="Two researchers examining evidence together at a shared workbench">
+      <svg viewBox="0 0 420 290" fill="none" role="img" aria-label={label}>
         <g stroke="#F7F5F2" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M45 217 Q205 214 374 217 M80 217 L73 272 M345 217 L351 272" />
           {/* Left researcher. One arm rests on the table, the other reaches the

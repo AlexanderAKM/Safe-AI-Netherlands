@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { rich } from "@/i18n/rich";
 
 /**
  * What SAIN is for, said once, before the landing starts offering doors.
@@ -36,18 +37,18 @@ function Verb({ step, children }: { step: number; children: React.ReactNode }) {
   );
 }
 
-export default function MissionStatement() {
+/* `message` is landing.missionStatement: <muted> wraps the problem, and each
+   <verb> inks in after the one before it, in the order the language puts
+   them. */
+export default function MissionStatement({ message }: { message: string }) {
   return (
     /* Set above the heading role on purpose: this is the landing's one
        statement band, and it has to carry the band on its own. */
     <p className="mx-auto max-w-[1000px] text-balance text-center font-serif text-[clamp(1.75rem,1.6vw+1.35rem,2.625rem)] leading-[1.3] tracking-[-0.018em] text-white">
-      <span className="text-white/50">
-        Too few people know how to work on AI safety, in research, in policy, or
-        in public debate.
-      </span>{" "}
-      SAIN <Verb step={0}>trains</Verb> more of them,{" "}
-      <Verb step={1}>connects</Verb> them, and gets them{" "}
-      <Verb step={2}>started</Verb>.
+      {rich(message, {
+        muted: (chunk) => <span className="text-white/50">{chunk}</span>,
+        verb: (chunk, step) => <Verb step={step}>{chunk}</Verb>,
+      })}
     </p>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import { getDictionary, type Dictionary, type Locale } from "@/i18n";
 
 /* Inverse navy close. Poppins italic for the stichting line and the
    column titles, Poppins for the links. One bottom rule, then the legal line
@@ -10,35 +11,38 @@ import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
    map: the community and its city doors, every programme, and the
    organisation pages the nav no longer names. */
 
-type FooterLink = { name: string; href: string; external?: boolean };
+/* A link is named by its key in en.json's footer.links, or, for a city or a
+   platform, by its own name, which stays the same in every language. */
+type LinkKey = keyof Dictionary["footer"]["links"];
+type FooterLink = ({ key: LinkKey } | { name: string }) & { href: string; external?: boolean };
 
-const columns: { title: string; links: FooterLink[] }[] = [
+const columns: { title: keyof Dictionary["footer"]["columns"]; links: FooterLink[] }[] = [
   {
-    title: "Community",
+    title: "community",
     links: [
-      { name: "Community", href: "/community" },
+      { key: "community", href: "/community" },
       { name: "Utrecht", href: "/chapters/utrecht" },
       { name: "Groningen", href: "/chapters/groningen" },
       { name: "Amsterdam", href: "/chapters/amsterdam" },
-      { name: "Join the community", href: COMMUNITY_JOIN_URL, external: true },
+      { key: "joinTheCommunity", href: COMMUNITY_JOIN_URL, external: true },
     ],
   },
   {
-    title: "Programmes",
+    title: "programmes",
     links: [
-      { name: "Courses", href: "/courses" },
-      { name: "Project hub", href: "/research" },
-      { name: "Project Hub handbook", href: "/research/handbook" },
-      { name: "Volunteer", href: "/get-involved" },
+      { key: "courses", href: "/courses" },
+      { key: "projectHub", href: "/research" },
+      { key: "projectHubHandbook", href: "/research/handbook" },
+      { key: "volunteer", href: "/get-involved" },
     ],
   },
   {
-    title: "Organisation",
+    title: "organisation",
     links: [
-      { name: "About", href: "/about" },
-      { name: "Team", href: "/team" },
-      { name: "Open positions", href: "/open-positions" },
-      { name: "Contact", href: "/contact" },
+      { key: "about", href: "/about" },
+      { key: "team", href: "/team" },
+      { key: "openPositions", href: "/open-positions" },
+      { key: "contact", href: "/contact" },
     ],
   },
 ];
@@ -56,23 +60,28 @@ const socials: FooterLink[] = [
     external: true,
   },
   {
-    name: "Newsletter",
+    key: "newsletter",
     href: "https://safeainetherlands.substack.com/",
     external: true,
   },
 ];
 
 const documents: FooterLink[] = [
-  { name: "Vision", href: "/about/vision" },
-  { name: "Theory of Change", href: "/about/theory-of-change" },
-  { name: "Code of Conduct", href: "/about/code-of-conduct" },
+  { key: "vision", href: "/about/vision" },
+  { key: "theoryOfChange", href: "/about/theory-of-change" },
+  { key: "codeOfConduct", href: "/about/code-of-conduct" },
 ];
+
+const nameOf = (link: FooterLink, t: Dictionary) =>
+  "key" in link ? t.footer.links[link.key] : link.name;
 
 function FooterAnchor({
   link,
+  t,
   iconSize = 16,
 }: {
   link: FooterLink;
+  t: Dictionary;
   iconSize?: 14 | 16;
 }) {
   const className =
@@ -86,21 +95,22 @@ function FooterAnchor({
         rel="noopener noreferrer"
         className={`inline-flex items-center gap-1.5 ${className}`}
       >
-        {link.name}
+        {nameOf(link, t)}
         <ArrowUpRight size={iconSize} weight="regular" aria-hidden="true" />
-        <span className="sr-only"> (opens in a new tab)</span>
+        <span className="sr-only"> {t.common.opensInNewTab}</span>
       </a>
     );
   }
 
   return (
     <Link href={link.href} className={className}>
-      {link.name}
+      {nameOf(link, t)}
     </Link>
   );
 }
 
-export default function Footer() {
+export default function Footer({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   return (
     <footer className="border-t border-white/16 bg-navy">
       <div className="shell pb-10 pt-[52px]">
@@ -125,8 +135,8 @@ export default function Footer() {
             </a>
             <ul role="list" className="flex flex-wrap gap-x-5 gap-y-1">
               {socials.map((social) => (
-                <li key={social.name}>
-                  <FooterAnchor link={social} iconSize={14} />
+                <li key={social.href}>
+                  <FooterAnchor link={social} t={t} iconSize={14} />
                 </li>
               ))}
             </ul>
@@ -135,9 +145,9 @@ export default function Footer() {
           <div className="grid flex-1 gap-8 sm:grid-cols-3 lg:grid-cols-[repeat(3,max-content)] lg:justify-end lg:gap-x-28 xl:gap-x-40">
             {columns.map((column) => (
               <div key={column.title} className="flex flex-col gap-[11px]">
-                <p className="kicker text-kicker-sm text-white/50">{column.title}</p>
+                <p className="kicker text-kicker-sm text-white/50">{t.footer.columns[column.title]}</p>
                 {column.links.map((link) => (
-                  <FooterAnchor key={link.name} link={link} />
+                  <FooterAnchor key={link.href} link={link} t={t} />
                 ))}
               </div>
             ))}
@@ -151,11 +161,11 @@ export default function Footer() {
           <div className="flex flex-wrap gap-5">
             {documents.map((document) => (
               <Link
-                key={document.name}
+                key={document.href}
                 href={document.href}
                 className="font-sans text-footnote text-white/60 transition-colors hover:text-white focus-visible:text-white"
               >
-                {document.name}
+                {nameOf(document, t)}
               </Link>
             ))}
           </div>

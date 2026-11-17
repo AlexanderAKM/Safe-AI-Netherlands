@@ -34,6 +34,10 @@ import {
   buildFoundingApplicationUrl,
   type OfferIcon,
 } from "@/data/newChapters";
+import { getDictionary } from "@/i18n";
+
+const locale = "en";
+const t = getDictionary(locale);
 
 export const metadata: Metadata = {
   title: "Start a chapter in Eindhoven, Delft or The Hague",
@@ -359,11 +363,11 @@ export default function NewChaptersPage() {
               <ApplyButton />
             </Reveal>
             <Reveal delay={0.06} className="min-w-0">
-              <ChapterPrints />
+              <ChapterPrints locale={locale} />
             </Reveal>
           </div>
           <Reveal delay={0.1}>
-            <CommunityPrints />
+            <CommunityPrints t={t.landing.communityPrints} />
           </Reveal>
         </div>
       </section>

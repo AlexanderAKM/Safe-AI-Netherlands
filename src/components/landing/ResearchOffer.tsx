@@ -1,4 +1,5 @@
 import { Cpu, FileText, Globe, UsersThree } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, type Dictionary, type Locale } from "@/i18n";
 
 /**
  * What the hub gives a researcher, as one strip under the band's claim.
@@ -17,46 +18,31 @@ import { Cpu, FileText, Globe, UsersThree } from "@phosphor-icons/react/dist/ssr
  * bullet-dot use. The band still spends orange where it means something: the
  * step numerals, the chart in the illustration, and "Join as a researcher".
  */
-const offer = [
-  {
-    title: "Supervised matching",
-    icon: UsersThree,
-    description: "Connect with PhD+ supervisors for structured, mentored AI Safety research.",
-  },
-  {
-    title: "Compute & support",
-    icon: Cpu,
-    description: "Access compute and logistical support for your project or open collaboration.",
-  },
-  {
-    title: "National network",
-    icon: Globe,
-    description: "Work with researchers, advisors, and practitioners across SAIN’s Dutch chapters.",
-  },
-  {
-    title: "Publication track",
-    icon: FileText,
-    description: "Build your research track record in a community with work at NeurIPS, ICLR, and other leading venues.",
-  },
+const offer: { key: keyof Dictionary["landing"]["researchOffer"]; icon: typeof Cpu }[] = [
+  { key: "matching", icon: UsersThree },
+  { key: "compute", icon: Cpu },
+  { key: "network", icon: Globe },
+  { key: "publication", icon: FileText },
 ];
 
-export default function ResearchOffer() {
+export default function ResearchOffer({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale).landing.researchOffer;
   return (
     /* Two rows at lg, and each column is a subgrid of them, so the four
        descriptions start on one line however long a title runs. That is what
        the `min-h` reservation here used to approximate, and it broke the
        moment a title wrapped to a line nobody had counted. */
     <dl className="mt-10 grid border-t border-white/15 md:mt-12 lg:grid-cols-4 lg:grid-rows-[auto_1fr]">
-      {offer.map(({ title, description, icon: Icon }) => (
+      {offer.map(({ key, icon: Icon }) => (
         <div
-          key={title}
+          key={key}
           className="border-b border-white/10 py-5 last:border-b-0 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:border-b-0 lg:border-l lg:px-6 lg:py-7 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0 xl:px-8"
         >
           <dt className="flex items-center gap-3 font-serif text-title text-white lg:block">
             <Icon size={26} weight="light" aria-hidden="true" className="shrink-0 text-white/45 lg:mb-4" />
-            <span className="lg:block lg:max-w-[170px]">{title}</span>
+            <span className="lg:block lg:max-w-[170px]">{t[key].title}</span>
           </dt>
-          <dd className="mt-3 text-kicker-sm leading-6 text-white/75">{description}</dd>
+          <dd className="mt-3 text-kicker-sm leading-6 text-white/75">{t[key].description}</dd>
         </div>
       ))}
     </dl>

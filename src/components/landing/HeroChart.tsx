@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { getDictionary, type Locale } from "@/i18n";
 
 /** Learning and practical work help people shape AI's trajectory. */
-export default function HeroChart() {
+export default function HeroChart({ locale }: { locale: Locale }) {
   return (
     <Image
       src="/illustrations/sain-learning-to-steering.svg"
-      alt="An accelerating AI trajectory starts at the origin. Two people learn and practise while a third points up at the turning point, where the curve forks into a steep orange path and a gentler grey one."
+      alt={getDictionary(locale).landing.heroChartAlt}
       width={720}
       height={500}
       className="h-auto w-full max-w-[560px]"
