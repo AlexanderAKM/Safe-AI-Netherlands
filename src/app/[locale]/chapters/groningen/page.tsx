@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { ReactNode } from "react";
-import Link from "next/link";
 
 import ChapterClose from "@/components/chapters/ChapterClose";
 import ChapterHero from "@/components/chapters/ChapterHero";
@@ -20,9 +21,8 @@ import { aisigTeam } from "@/data/aisigTeam";
 import {
   BLUEDOT_URL,
   FRONTIER_AI_GOVERNANCE_URL,
-  FRONTIER_AI_GOVERNANCE_WEEKS,
   TECHNICAL_AI_SAFETY_URL,
-  TECHNICAL_AI_SAFETY_WEEKS,
+  blueDotOutline,
 } from "@/data/bluedotCourses";
 import { publications } from "@/data/research";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
@@ -33,10 +33,13 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({
+    locale,
+    namespace: "chapters.groningen.metadata",
+  });
   return {
-    title: "Groningen chapter",
-    description:
-      "Free courses, hackathons, and published research, running in Groningen since 2023. It began as the AI Safety Initiative Groningen (AISIG) and continues as SAIN Groningen.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/chapters/groningen" }),
   };
 }
@@ -56,101 +59,42 @@ const LINK =
   "underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy";
 
 function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
+  const t = useTranslations("common.a11y");
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={LINK}>
       {children}
-      <span className="sr-only"> (opens in a new tab)</span>
+      <span className="sr-only"> {t("opensInNewTab")}</span>
     </a>
   );
 }
 
-/* The same two BlueDot courses as Amsterdam, behind the same disclosure tabs.
-   The copy is the chapter's own (from its Education Lead); the governance
-   course adds EU materials to BlueDot's curriculum. */
-const courses: Course[] = [
-  {
-    id: "technical",
-    title: "Technical AI Safety",
-    summary: (
-      <>
-        <p>Curious to learn about the technical approaches to AI safety?</p>
-        <p>
-          SAIN Groningen facilitates the{" "}
-          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
-          <ExternalLink href={TECHNICAL_AI_SAFETY_URL}>
-            Technical AI Safety
-          </ExternalLink>{" "}
-          course for people who want to learn about the open problems in
-          technical AI safety and the techniques to address them. It takes six
-          weeks, with about three hours of reading and a two-hour discussion
-          session each week. The discussion sessions are guided by a
-          facilitator, creating the perfect space to both discuss the material
-          and connect with others who are eager to work on AI safety too.
-        </p>
-      </>
-    ),
-    outlineTitle: "What you will learn each week",
-    outline: TECHNICAL_AI_SAFETY_WEEKS,
-  },
-  {
-    id: "governance",
-    title: "Frontier AI Governance",
-    summary: (
-      <>
-        <p>Curious to learn about the governance challenges around AI safety?</p>
-        <p>
-          SAIN Groningen facilitates the{" "}
-          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
-          <ExternalLink href={FRONTIER_AI_GOVERNANCE_URL}>
-            Frontier AI Governance
-          </ExternalLink>{" "}
-          course, which helps you build the judgment to shape how frontier AI
-          is governed. Since the BlueDot course mainly covers the US and China
-          dynamic, we have extended the curriculum with hand-picked materials
-          on tackling AI safety from the EU&rsquo;s perspective. The course
-          takes six weeks, with about three hours of reading and a two-hour
-          discussion session each week. The discussion sessions are guided by
-          a facilitator, creating the perfect space to both discuss the
-          materials in detail and connect with others who are eager to work on
-          AI safety too.
-        </p>
-      </>
-    ),
-    outlineTitle: "What you will learn each week",
-    outline: FRONTIER_AI_GOVERNANCE_WEEKS,
-  },
-];
-
 /* Four photographs from the archive. The archive also holds event posters;
    those are graphics rather than evidence of a room, so they stay on the
-   archive page and out of the prints. */
-const prints: Print[] = [
+   archive page and out of the prints. Alt text and captions are under
+   groningen.record.prints.<id>. */
+const prints: (Omit<Print, "alt" | "caption"> & { id: string })[] = [
   {
+    id: "graduationMarch2026",
     src: "/photos/events/archive/archive-04.jpeg",
     widths: [320, 640],
-    alt: "A speaker in front of the graduation slide at a Groningen ceremony",
-    caption: "Course graduation · March 2026",
     tilt: "xl:rotate-[-2deg]",
   },
   {
+    id: "graduationNovember2025",
     src: "/photos/events/archive/archive-08.jpeg",
     widths: [320, 640],
-    alt: "Two participants presenting their final project to the room",
-    caption: "Course graduation · November 2025",
     tilt: "xl:rotate-[1.5deg]",
   },
   {
+    id: "pubQuiz",
     src: "/photos/events/archive/archive-10.jpg",
     widths: [320, 640],
-    alt: "Organisers presenting to a seated audience at a Groningen evening",
-    caption: "Pub quiz · October 2025",
     tilt: "xl:rotate-[-1deg]",
   },
   {
+    id: "introSocial",
     src: "/photos/events/archive/archive-13.jpeg",
     widths: [320, 640],
-    alt: "A full room of students at the start-of-year introduction social",
-    caption: "Intro social · September 2025",
     tilt: "xl:rotate-[2deg]",
   },
 ];
@@ -187,14 +131,70 @@ export default function GroningenPage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("chapters.groningen");
+  const tChapters = useTranslations("chapters");
+  const tBlueDot = useTranslations("chapters.bluedot");
+  const tActions = useTranslations("common.actions");
+  const tA11y = useTranslations("common.a11y");
+
+  /* The same two BlueDot courses as Amsterdam, behind the same disclosure tabs.
+     The copy is the chapter's own (from its Education Lead); the governance
+     course adds EU materials to BlueDot's curriculum. */
+  const courses: Course[] = [
+    {
+      id: "technical",
+      title: "Technical AI Safety",
+      summary: (
+        <>
+          <p>{t("programs.courses.technical.intro")}</p>
+          <p>
+            {t.rich("programs.courses.technical.body", {
+              bluedot: (chunks) => (
+                <ExternalLink href={BLUEDOT_URL}>{chunks}</ExternalLink>
+              ),
+              course: (chunks) => (
+                <ExternalLink href={TECHNICAL_AI_SAFETY_URL}>{chunks}</ExternalLink>
+              ),
+            })}
+          </p>
+        </>
+      ),
+      outlineTitle: tBlueDot("outlineTitle"),
+      outline: blueDotOutline("technicalAiSafety", tBlueDot),
+    },
+    {
+      id: "governance",
+      title: "Frontier AI Governance",
+      summary: (
+        <>
+          <p>{t("programs.courses.governance.intro")}</p>
+          <p>
+            {t.rich("programs.courses.governance.body", {
+              bluedot: (chunks) => (
+                <ExternalLink href={BLUEDOT_URL}>{chunks}</ExternalLink>
+              ),
+              course: (chunks) => (
+                <ExternalLink href={FRONTIER_AI_GOVERNANCE_URL}>
+                  {chunks}
+                </ExternalLink>
+              ),
+            })}
+          </p>
+        </>
+      ),
+      outlineTitle: tBlueDot("outlineTitle"),
+      outline: blueDotOutline("frontierAiGovernance", tBlueDot),
+    },
+  ];
+
   return (
     <>
       <ChapterHero
         city="Groningen"
-        subheading="Free courses, hackathons, and published research, running in Groningen since 2023. It began as the AI Safety Initiative Groningen (AISIG) and continues as SAIN Groningen."
+        subheading={t("hero.subheading")}
         photo="/photos/cities/groningen-hero.jpg"
-        photoAlt="A canal in Groningen with the Der Aa-kerk tower behind the houses"
-        caption="Groningen, home of the chapter since 2023"
+        photoAlt={t("hero.photoAlt")}
+        caption={t("hero.caption")}
       />
 
       <ShowUpBand
@@ -206,52 +206,52 @@ export default function GroningenPage({
 
       <CourseBand
         city="Groningen"
-        heading="Join one of our free courses!"
+        heading={t("programs.heading")}
         footnote={
           <>
-            The courses are independently run by SAIN Groningen and are not
-            affiliated with the University of Groningen (RUG). The certificate
-            of completion is awarded by SAIN Groningen, not BlueDot Impact.
-            Questions:{" "}
-            <a href={`mailto:${EDU_EMAIL}`} className={LINK}>
-              {EDU_EMAIL}
-            </a>
-            .
+            {t("programs.footnote")}{" "}
+            {tChapters.rich("courseBand.questions", {
+              email: EDU_EMAIL,
+              link: (chunks) => (
+                <a href={`mailto:${EDU_EMAIL}`} className={LINK}>
+                  {chunks}
+                </a>
+              ),
+            })}
           </>
         }
         tail={
           <p className="font-sans text-body text-navy/74">
-            Two discussion groups meet through the year, each with at least one
-            experienced mentor: technical AI alignment (scalable oversight,
-            evaluation and red-teaming, preference learning, robustness,
-            deployment risks) and AI governance and privacy (policies,
-            regulations, accountability, transparency and fairness).
+            {t("programs.discussionGroups")}
           </p>
         }
       >
-        <CourseDisclosure courses={courses} />
+        <CourseDisclosure
+          courses={courses}
+          label={tChapters("courseDisclosure.label")}
+          newTabLabel={tA11y("opensInNewTab")}
+        />
       </CourseBand>
 
-      <TeamBand
-        city="Groningen"
-        body="SAIN Groningen is directed by Tarteel Mohamed, with work organised across four teams: education, events, communications, and research operations; a structure other chapters are adopting as they spin up. The chapter grew out of the AI Safety Initiative Groningen (AISIG), running since 2023."
-        team={team}
-      />
+      <TeamBand city="Groningen" body={t("team.body")} team={team} />
 
-      <EvidenceBand
-        heading="30 events and counting"
-        body="Since October 2023 the chapter has run 30 events: hackathons, course graduations, research talks, pub quizzes, and socials; first as AISIG and, since 30 April 2026, as SAIN Groningen. Members' research has been published at NeurIPS and ICLR workshops."
-      >
+      <EvidenceBand heading={t("record.heading")} body={t("record.body")}>
         <div>
           <PrintStrip
-            prints={prints}
-            label="Photographs from SAIN Groningen events"
+            prints={prints.map(({ id, ...print }) => ({
+              ...print,
+              alt: t(`record.prints.${id}.alt`),
+              caption: t(`record.prints.${id}.caption`),
+            }))}
+            label={tChapters("printStrip.label", { city: "Groningen" })}
+            previousLabel={tChapters("printStrip.previous")}
+            nextLabel={tChapters("printStrip.next")}
           />
           <Link
             href="/chapters/groningen/events"
             className="btn-outline-ink mt-2"
           >
-            Browse the events archive
+            {t("record.archive")}
           </Link>
         </div>
 
@@ -262,7 +262,7 @@ export default function GroningenPage({
               href="/research"
               className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Visit the Project hub
+              {tActions("visitProjectHub")}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </p>

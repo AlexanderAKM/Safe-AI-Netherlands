@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
-import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
+import { isChapterRecruiting } from "@/data/openPositions";
+import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 /**
@@ -16,9 +17,29 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
  * The recruiting line renders from `openPositions.ts`, so closing a chapter's
  * hiring closes it here too.
  */
+
+/** A role's title in each language is under `chapters.team.roles.<role>`. */
+export type TeamRole =
+  | "director"
+  | "researchOperationLead"
+  | "researchOperationVu"
+  | "researchOperations"
+  | "researchOps"
+  | "educationLead"
+  | "eventsLead"
+  | "communicationsLead"
+  | "communityManager"
+  | "discussionCoordinator"
+  | "discussionGroupFacilitator"
+  | "discussionFacilitator"
+  | "facilitator"
+  | "eventsTeamMember"
+  | "advisor"
+  | "advisoryBoard";
+
 export type TeamMember = {
   name: string;
-  title: string;
+  role: TeamRole;
   /** Only Utrecht has profile URLs so far. */
   linkedin?: string;
 };
@@ -33,6 +54,8 @@ export default function TeamBand({
   team: readonly TeamMember[];
 }) {
   const recruiting = isChapterRecruiting(city);
+  const t = useTranslations("chapters.team");
+  const tReview = useTranslations("openPositions.applicationReview");
 
   return (
     <section
@@ -42,12 +65,12 @@ export default function TeamBand({
     >
       <div className="shell band-section">
         <div className="max-w-[var(--container-copy)]">
-          <p className="kicker text-kicker text-navy/65">Run by volunteers</p>
+          <p className="kicker text-kicker text-navy/65">{t("kicker")}</p>
           <h2
             id="team-heading"
             className="mt-4 font-serif text-heading-sm text-navy"
           >
-            The people you will meet
+            {t("heading")}
           </h2>
           <p className="mt-4 font-sans text-body text-navy/74">{body}</p>
         </div>
@@ -58,7 +81,7 @@ export default function TeamBand({
         >
           {team.map((person) => (
             <li
-              key={`${person.name}-${person.title}`}
+              key={`${person.name}-${person.role}`}
               className="border-t border-navy/12 py-3.5"
             >
               <p className="font-serif text-title-sm text-navy">
@@ -76,16 +99,14 @@ export default function TeamBand({
                       aria-hidden="true"
                       className="ml-1 inline-block shrink-0 align-[-2px]"
                     />
-                    <span className="sr-only">
-                      , profile on LinkedIn (opens in a new tab)
-                    </span>
+                    <span className="sr-only">{t("linkedin")}</span>
                   </a>
                 ) : (
                   person.name
                 )}
               </p>
               <p className="mt-0.5 font-sans text-footnote text-navy/65">
-                {person.title}
+                {t(`roles.${person.role}`)}
               </p>
             </li>
           ))}
@@ -94,13 +115,13 @@ export default function TeamBand({
         {recruiting && (
           <div className="mt-10 flex flex-col items-start gap-5 border-t border-navy/14 pt-7">
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              The chapter is recruiting. {APPLICATION_REVIEW.sentence}
+              {t("recruiting")} {tReview("sentence")}
             </p>
             <Link
               href={`/open-positions#chapter-${city.toLowerCase()}`}
               className="btn-outline-ink"
             >
-              See open positions
+              {t("seeOpenPositions")}
             </Link>
           </div>
         )}
