@@ -12,22 +12,27 @@
     "images": "node --use-system-ca scripts/generate-responsive-images.mjs",
     "fetch-luma-events-amsterdam": "node --use-system-ca scripts/fetch-luma-events-amsterdam.mjs",
     "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs",
-    "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs"
+    "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs",
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "i18n:routes": "node scripts/i18n-english-routes.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
     "motion": "^13.2.0",
     "next": "^14.2.15",
+    "next-intl": "^4.15.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@formatjs/icu-messageformat-parser": "^3.5.23",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.15",
+    "eslint-plugin-i18next": "^6.1.5",
     "postcss": "^8.4.47",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3",

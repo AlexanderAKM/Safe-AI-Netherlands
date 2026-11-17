@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "description": "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free.",
+    "keywords": [
+      "AI Safety",
+      "Netherlands",
+      "SAIN",
+      "AI research",
+      "AI governance",
+      "AI alignment",
+      "AI ethics"
+    ],
+    "ogImageAlt": "Safe AI Netherlands logo"
+  },
+  "skipToContent": "Skip to content",
+  "a11y": {
+    "opensInNewTab": "(opens in a new tab)"
+  },
+  "nav": {
+    "homeLabel": "Safe AI Netherlands home",
+    "primaryLabel": "Primary",
+    "mobileLabel": "Mobile",
+    "items": {
+      "courses": "Courses",
+      "community": "Community",
+      "newChapters": "New chapters",
+      "projectHub": "Project hub",
+      "about": "About"
+    },
+    "volunteer": "Volunteer",
+    "joinCourse": "Join a free course",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hiringBar": {
+    "weAreHiring": "We are hiring",
+    "startingTeamsShort": "Paid starting teams wanted in three new cities",
+    "startingTeamsLong": "Paid starting teams wanted in Eindhoven, Delft and The Hague",
+    "applyBy": ", apply by {date}",
+    "allOpenPositions": "All open positions",
+    "seeOpenPositions": "See open positions"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "names": {
+      "en": "English",
+      "nl": "Nederlands"
+    }
+  },
+  "footer": {
+    "columns": {
+      "community": "Community",
+      "programmes": "Programmes",
+      "organisation": "Organisation"
+    },
+    "links": {
+      "community": "Community",
+      "joinCommunity": "Join the community",
+      "courses": "Courses",
+      "projectHub": "Project hub",
+      "handbook": "Project Hub handbook",
+      "volunteer": "Volunteer",
+      "about": "About",
+      "team": "Team",
+      "openPositions": "Open positions",
+      "contact": "Contact",
+      "newsletter": "Newsletter",
+      "vision": "Vision",
+      "theoryOfChange": "Theory of Change",
+      "codeOfConduct": "Code of Conduct"
+    }
+  },
+  "coursePopup": {
+    "title": "Free AI Safety courses, in person.",
+    "cities": "In {cities}.",
+    "description": "A few weeks of reading and discussion with people entering the field, taught by SAIN’s chapters. No previous background is needed, and every programme is free.",
+    "close": "Close",
+    "pickCity": "Pick your city",
+    "applyBy": "Apply by {date}",
+    "facilitatorsBy": "Facilitators by {date}",
+    "closed": "Applications are closed.",
+    "joinCourse": "Join a free course",
+    "maybeLater": "Maybe later"
+  },
+  "englishOnly": {
+    "note": "This page is only available in English for now."
+  }
+}

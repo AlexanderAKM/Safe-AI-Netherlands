@@ -1,0 +1,546 @@
+import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
+import { localeAlternates } from "@/i18n/metadata";
+import type { Locale } from "@/i18n/routing";
+import type { ReactNode } from "react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, BookOpen } from "@phosphor-icons/react/dist/ssr";
+
+import Reveal from "@/components/landing/Reveal";
+import FittingTheCurve from "@/components/research/FittingTheCurve";
+import FeaturedPublications from "@/components/research/FeaturedPublications";
+import SectionOrbits from "@/components/research/SectionOrbits";
+import SupervisorRow from "@/components/research/SupervisorRow";
+import HeroFacts from "@/components/research/HeroFacts";
+import ProjectFinder from "@/components/research/ProjectFinder";
+import {
+  paperHref,
+  publications,
+  APPLY_PATH,
+  PROJECTS_EMAIL,
+  SUPERVISOR_INTEREST_FORM_URL,
+} from "@/data/research";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { locale } = params;
+  return {
+    title: "Project hub",
+    description:
+      "The SAIN Project Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. Voluntary, remote-friendly, and open for applications at any time.",
+    alternates: localeAlternates({ locale, path: "/research" }),
+  };
+}
+
+const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
+  "Project Hub: question",
+)}`;
+
+/* The three doors into a project. All three are normal, so all three are set
+   the same way: no track is styled as the real one. */
+const projectRoutes = [
+  {
+    lead: "Join a supervisor's project.",
+    body: "Every project a SAIN supervisor has offered is listed at the top of this page. Find one that fits your background and register your interest; the projects team introduces you to the supervisor.",
+  },
+  {
+    lead: "Join an open collaboration.",
+    body: "Some projects run without formal supervision. One person leads, usually whoever designed the project, and SAIN connects collaborators and supports the work.",
+  },
+  {
+    lead: "Bring your own idea.",
+    body: "Write a short proposal: the question, why it matters, how you would test it, and what you need. SAIN's Project Team reviews it, and can help you shape it if it is not fully formed yet.",
+  },
+];
+
+const eligibility = [
+  "Students at Bachelor, Master, or PhD level",
+  "Researchers, and people working in industry",
+  "Policy professionals",
+  "People with no formal affiliation",
+];
+
+function InverseLink({ href, children, external = false }: {
+  href: string;
+  children: ReactNode;
+  external?: boolean;
+}) {
+  const className =
+    "inline-flex items-center gap-3 text-label leading-6 text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white";
+  const content = (
+    <>
+      {children}
+      <ArrowRight size={16} weight="regular" aria-hidden="true" />
+    </>
+  );
+  return external ? (
+    <a href={href} className={className}>
+      {content}
+    </a>
+  ) : (
+    <Link href={href} className={className}>
+      {content}
+    </Link>
+  );
+}
+
+/* One step of the spine. The numeral is the page's own serif at the heading's
+   size, so its baseline lands on the title's without a nudge, and a 1px white
+   spine carries the eye from one step to the next. Same device as the landing's
+   research band, because it is the same journey told at length. */
+function Step({ step, id, title, children }: {
+  step: string;
+  id: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <li
+      id={id}
+      className="relative scroll-mt-36 pb-12 before:absolute before:bottom-0 before:left-[19px] before:top-11 before:w-px before:bg-white/[0.08] last:pb-0 last:before:hidden md:pb-16"
+    >
+      <div className="grid grid-cols-[40px_minmax(0,1fr)] gap-x-4">
+        <span aria-hidden="true" className="font-serif text-heading-sm tabular-nums text-white/40">
+          {step}
+        </span>
+        <div className="min-w-0">
+          <h3 className="font-serif text-heading-sm">{title}</h3>
+          {children}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+export default function ResearchPage({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
+  const { locale } = params;
+  setRequestLocale(locale);
+  return (
+    <>
+      {/* Hero. The claim on the left, the argument of the page drawn on the
+          right: a scatter, two people fitting a line through it, and the line
+          leaving the plot as a printed page. White fades into paper in the last
+          5%, a seam rather than a sky. */}
+      <section
+        aria-labelledby="research-hero-heading"
+        className="relative isolate overflow-hidden"
+        style={{
+          backgroundImage:
+            "linear-gradient(in oklab 180deg, white 0%, white 95%, #f7f5f2 100%)",
+        }}
+      >
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+          <div
+            className="absolute -left-8 -top-20 h-[400px] w-[200px] opacity-[0.07] md:-left-4 md:-top-12 md:h-[440px] md:w-[260px] md:opacity-[0.12]"
+            style={{
+              backgroundImage: "url('/illustrations/hero-orbits.svg')",
+              backgroundSize: "260px 440px",
+              backgroundRepeat: "no-repeat",
+              maskImage: "linear-gradient(to right, black 15%, transparent 100%)",
+            }}
+          />
+          <svg
+            className="absolute -bottom-10 -right-10 h-[190px] w-[190px] -scale-x-100 text-navy opacity-[0.06] md:h-[230px] md:w-[230px] md:opacity-[0.09]"
+            viewBox="0 0 230 230"
+            fill="none"
+          >
+            <g stroke="currentColor" strokeWidth="1">
+              <circle cx="0" cy="230" r="85" />
+              <circle cx="0" cy="230" r="119" />
+              <circle cx="0" cy="230" r="153" />
+            </g>
+            <path d="M167 80 Q168 87 174 88 Q168 89 167 96 Q166 89 160 88 Q166 87 167 80Z" fill="currentColor" />
+          </svg>
+        </div>
+
+        <div className="shell band-hero grid min-h-[60dvh] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] xl:grid-cols-[minmax(0,700px)_minmax(0,1fr)]">
+          <Reveal hero className="flex min-w-0 flex-col gap-6">
+            <h1 id="research-hero-heading" className="font-serif text-display text-navy">
+              Make a first real contribution to AI Safety
+            </h1>
+            <p className="max-w-[620px] font-sans text-body text-navy/72">
+              The SAIN Project Hub matches you with an experienced supervisor, arranges compute,
+              and takes a project from open question to published finding. It is voluntary,
+              remote-friendly, and open for applications at any time.
+            </p>
+            {/* Three ways on, in order of weight: apply (the one orange
+                button), read how the hub works (an outline button, so the
+                handbook is findable from the first screen), and the plain
+                link down to the projects. */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-1">
+              <Link href={APPLY_PATH} className="btn-accent gap-2">
+                Apply for a project
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
+              <Link href="/research/handbook" className="btn-outline-ink gap-2">
+                <BookOpen size={18} weight="regular" aria-hidden="true" />
+                Read the handbook
+              </Link>
+              <Link
+                href="#projects"
+                className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              >
+                Browse open projects
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
+            </div>
+
+            <HeroFacts />
+          </Reveal>
+
+          <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
+            <FittingTheCurve />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The projects themselves, straight after the claim: the reader came
+          to find one. Every project goes through the same application form,
+          so "Apply for a project" sits once beside the header instead of on
+          each card. */}
+      <section
+        id="projects"
+        aria-labelledby="projects-heading"
+        className="scroll-mt-28 border-t border-navy/10 bg-cream"
+      >
+        <div className="shell band-section flex flex-col gap-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+            <div className="flex max-w-[760px] flex-col gap-4">
+              <h2 id="projects-heading" className="font-serif text-heading text-navy">
+                Find a project, then join it
+              </h2>
+              <p className="font-sans text-body text-navy/74">
+                Every project SAIN supervisors have on offer, kept up to date by the projects team.
+                One application form covers all of them: name up to three projects in it,
+                and the projects team will introduce you to the supervisors within a working week.
+                A VU or UvA thesis counts towards a degree there, so it is for that
+                university&rsquo;s students; every other project is open to anyone with the right
+                background.
+              </p>
+            </div>
+            <Link href={APPLY_PATH} className="btn-accent shrink-0 gap-2 self-start lg:self-center">
+              Apply for a project
+              <ArrowRight size={16} weight="regular" aria-hidden="true" />
+            </Link>
+          </div>
+          <ProjectFinder />
+        </div>
+      </section>
+
+      {/* Eligibility, on paper: this band is the terms page of a printed
+          programme, so it runs on cream and stays a column plus a short list.
+          Both bands are cream, so the rule between them stops at the content's
+          edges rather than running the full width. */}
+      <section aria-labelledby="eligibility-heading" className="bg-cream">
+        <div className="shell" aria-hidden="true">
+          <span className="block h-px bg-navy/10" />
+        </div>
+        <div className="shell band-section flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
+          <h2
+            id="eligibility-heading"
+            className="max-w-[420px] font-serif text-heading-sm text-navy lg:w-[360px] lg:shrink-0"
+          >
+            You do not need a university post to do this work
+          </h2>
+
+          <div className="flex min-w-0 max-w-[720px] flex-col gap-5">
+            <p className="font-sans text-body text-navy/74">
+              SAIN&rsquo;s offer is one line: bring your expertise to AI Safety, and the community,
+              supervision, and support are here to take it further. The rest of this page is the
+              mechanism behind that line: how a project is chosen, what support looks like week to
+              week, and where the work ends up.
+            </p>
+
+            <div>
+              <p className="font-sans text-body text-navy/74">
+                The hub is open to anyone with sufficient background:
+              </p>
+              {/* The landing's dash list rather than hairline rows: four
+                  short items do not need a table, and the rules were reading
+                  as a form inside a reading column. */}
+              <ul role="list" className="mt-4 flex flex-col gap-2.5">
+                {eligibility.map((item) => (
+                  <li key={item} className="flex items-center gap-3 font-sans text-kicker-sm leading-[22px] text-navy">
+                    <span className="h-px w-4 shrink-0 bg-navy/30" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="font-sans text-body text-navy/74">
+              Remote participation works. Applications are rolling, so you can apply whenever you
+              are ready, and for supervised projects you hear back within a working week.
+            </p>
+            <p className="font-sans text-body text-navy/74">
+              One thing the hub is not: a job. SAIN does not pay stipends or salaries;
+              participation is voluntary and educational. What SAIN does provide is supervision,
+              compute, coordination, and, within reason, help with conference travel.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* The process. Inverse is earned here because the band ends in the
+          page's proof: the three steps run into the papers they produced. */}
+      <section id="process" aria-labelledby="process-heading" className="scroll-mt-36 bg-navy text-white">
+        <div className="shell band-research">
+          <Reveal className="max-w-[760px]">
+            <h2 id="process-heading" className="font-serif text-heading">
+              From open question to published finding
+            </h2>
+            <p className="mt-4 text-body text-white/75">
+              Every project in the hub moves through the same three steps. The handbook spells each
+              one out in full; this is the shape of it.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+          <ol role="list" aria-label="The three steps of a project" className="mt-12 md:mt-16">
+            <Step step="01" id="choose" title="Choose a project">
+              <p className="mt-5 max-w-[760px] text-body text-white/75">
+                There are three ways in, and all three are normal.
+              </p>
+
+              <ol role="list" className="mt-6 max-w-[760px]">
+                {projectRoutes.map((route, i) => (
+                  <li key={route.lead} className="flex gap-3 border-t border-white/10 py-3.5">
+                    <span
+                      aria-hidden="true"
+                      className="w-[22px] shrink-0 pt-1 font-sans text-footnote text-orange"
+                    >
+                      {i + 1}
+                    </span>
+                    <p className="min-w-0 text-body text-white/75">
+                      <span className="font-serif text-title-sm text-white">{route.lead}</span>{" "}
+                      {route.body}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+
+              <p className="mt-7 max-w-[760px] text-body text-white/75">
+                Not every valuable contribution is a research paper: the work can be technical,
+                governance, policy, or conceptual. When choosing projects, the team looks at three
+                things: relevance to the Netherlands and Europe, relevance to transformative AI, and
+                whether it can succeed on a small budget. If you are unsure whether a topic counts as
+                AI Safety, the default answer is yes, provided you can articulate a plausible pathway
+                from the work to reducing risk from transformative AI.
+              </p>
+
+              <div className="mt-6">
+                <InverseLink href="/research/handbook">Read the Project Hub handbook</InverseLink>
+              </div>
+            </Step>
+
+            <Step step="02" id="support" title="Work with support">
+              <div className="mt-5 flex max-w-[760px] flex-col gap-4">
+                <p className="text-body text-white/75">
+                  Fill in the application form and, for supervised projects, you hear back within
+                  a working week. If there is a fit, a supervisor is formally assigned and the project
+                  gets its own channel in the community.
+                </p>
+                <p className="text-body text-white/75">
+                  Supervision is a working relationship, not a lecture. You drive the day-to-day
+                  work; your supervisor helps scope the project realistically, reviews
+                  experiments and drafts, and steps in when a direction stops being productive.
+                  Meetings run weekly or biweekly, and you agree your commitment per project up
+                  front, whether that is five to ten hours a week alongside a degree or something
+                  closer to full time.
+                </p>
+                <p className="text-body text-white/75">
+                  Supervisors come from universities, industry, and government. In academia they
+                  are usually at PhD level or more senior; outside it, they have several years of
+                  senior experience in a relevant role. Compute is arranged per project at the start, and computationally inexpensive
+                  projects are encouraged. Remote participation works throughout.
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <InverseLink href="#supervisors">Meet the supervisors</InverseLink>
+              </div>
+            </Step>
+
+            <Step step="03" id="publish" title="Publish your findings">
+              <div className="mt-5 flex max-w-[760px] flex-col gap-4">
+                <p className="text-body text-white/75">
+                  A project is complete when its main question is adequately answered, including
+                  when the answer is negative, and the result is published in a presentable form: a
+                  paper, a policy brief, an evaluation or open-source tool, or a blog post on
+                  SAIN&rsquo;s Substack or LessWrong. You get feedback on drafts, and SAIN may help with conference travel
+                  within reason.
+                </p>
+                <p className="text-body text-white/75">
+                  That is not hypothetical. Work from this community has been accepted at workshops
+                  at NeurIPS and ICLR, which is where most first contributions in this field land.
+                </p>
+              </div>
+
+              <FeaturedPublications />
+
+              {/* The full record. The landing and the handbook both deep-link
+                  to #publications, so the id belongs on the list itself. */}
+              <ul
+                role="list"
+                id="publications"
+                aria-label="All publications from the SAIN community"
+                className="research-publications mt-10 grid scroll-mt-36 gap-3 sm:grid-cols-2 xl:grid-cols-3"
+              >
+                {publications.map((paper) => {
+                  /* Hosted papers open in the reader on this site; any
+                     paper without a PDF here still goes to its source. */
+                  const chip = (
+                    <>
+                      <span className="w-[118px] shrink-0 font-sans text-footnote font-medium text-orange md:w-[136px]">
+                        {paper.venueShort}
+                      </span>
+                      <span className="min-w-0 font-serif text-kicker-sm text-white">
+                        {paper.chipTitle}
+                        {paper.reader ? (
+                          <ArrowRight
+                            size={14}
+                            weight="regular"
+                            aria-hidden="true"
+                            className="ml-1 inline-block shrink-0 align-[-2px] text-white/70"
+                          />
+                        ) : (
+                          <>
+                            <ArrowUpRight
+                              size={14}
+                              weight="regular"
+                              aria-hidden="true"
+                              className="ml-1 inline-block shrink-0 align-[-2px] text-white/70"
+                            />
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </>
+                        )}
+                      </span>
+                    </>
+                  );
+                  return (
+                    <li key={paper.link} className="flex">
+                      {paper.reader ? (
+                        <Link href={paperHref(paper)} className="pub-chip w-full">
+                          {chip}
+                        </Link>
+                      ) : (
+                        <a
+                          href={paper.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="pub-chip w-full"
+                        >
+                          {chip}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </Step>
+          </ol>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The people. White ground, one orbit, portraits you can click through
+          to the agenda each person actually wrote. */}
+      <section
+        id="supervisors"
+        aria-labelledby="supervisors-heading"
+        className="relative isolate scroll-mt-36 overflow-hidden bg-white"
+      >
+        <SectionOrbits className="-left-20 top-10 h-[400px] w-[300px] md:-left-12" />
+        <div className="shell band-section">
+          <Reveal className="flex flex-col gap-10">
+            <div className="flex flex-col gap-4">
+              <h2 id="supervisors-heading" className="max-w-[620px] font-serif text-heading-sm text-navy">
+                The people you would work with
+              </h2>
+              <p className="max-w-[720px] font-sans text-body text-navy/74">
+                Every supervisor keeps a public agenda of the projects they would like to supervise.
+                Read it before you apply: the strongest expressions of interest respond to a
+                question a supervisor has already posed.
+              </p>
+            </div>
+
+            <SupervisorRow />
+
+            {/* The page's one supervisor moment, placed where the reader has
+                just finished checking the other supervisors. One column under a
+                hairline: heading, paragraph, and the button directly under the
+                sentence that argues for it. The eligibility band already runs
+                the heading-left, copy-right split, and the page uses it once. */}
+            <div className="flex max-w-[720px] flex-col items-start gap-5 border-t border-navy/14 pt-8">
+              <h3 className="font-serif text-title text-navy">Supervise the next project</h3>
+              <p className="font-sans text-body text-navy/74">
+                If you have substantial experience in a relevant field, usually PhD level or above in
+                academia or several years in a senior role in industry or policy, and the work above
+                looks like something you could guide, more supervisors means more projects. You do
+                not need to be an AI Safety expert already. Supervision is remote-friendly, meetings
+                run at a cadence you agree per project, and the Project Team handles the
+                coordination around you. Fill in the
+                supervisor form and we will follow up with next steps.
+              </p>
+              <a
+                href={SUPERVISOR_INTEREST_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-ink mt-1 gap-2"
+              >
+                Become a supervisor
+                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* The close. The claim on the left, the two ways to act on the right,
+          and the handbook as a quiet footnote rather than a third button. */}
+      <section id="apply" aria-labelledby="apply-heading" className="scroll-mt-36 bg-navy">
+        <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
+          <div className="min-w-0">
+            <h2 id="apply-heading" className="max-w-[620px] font-serif text-closing text-white">
+              Apply whenever you are ready
+            </h2>
+            <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
+              Applications are rolling, and for supervised projects you hear back within a working
+              week. Fill in the application form, or email the projects team if you are not sure
+              where you fit and we will help route you.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-5 lg:shrink-0">
+            <div className="flex flex-wrap gap-3">
+              <Link href={APPLY_PATH} className="btn-accent gap-2">
+                Apply for a project
+                <ArrowRight size={16} weight="regular" aria-hidden="true" />
+              </Link>
+              <a href={PROJECTS_MAILTO} className="btn-ghost-inverse">
+                Email the projects team
+              </a>
+            </div>
+            <p className="max-w-[420px] font-sans text-footnote leading-[19px] text-white/60">
+              The full process, expectations, and norms are written down.{" "}
+              <Link
+                href="/research/handbook"
+                className="text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white"
+              >
+                Read the Project Hub handbook
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

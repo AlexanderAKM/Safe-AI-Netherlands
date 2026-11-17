@@ -1,0 +1,16 @@
+{
+  "applications": {
+    "amsterdam": {
+      "rollingNote": "Applications are always open, and you will join the next cohort that starts.",
+      "chapterNote": "Applications are open. Apply by 23 October 2026; the courses start in the first week of November."
+    },
+    "groningen": {
+      "rollingNote": "Applications for the next course iteration are open.",
+      "chapterNote": "Applications for the next course iterations for both tracks are open."
+    },
+    "utrecht": {
+      "lapsedNote": "Sign ups for the next cohort will open next semester."
+    },
+    "defaultLapsedNote": "Sign ups for the next cohort will open soon."
+  }
+}

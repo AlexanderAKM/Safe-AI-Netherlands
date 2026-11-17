@@ -1,12 +1,15 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/routing";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
 
 import {
   COURSE_APPLICATION_URL,
+  applicationText,
   courseApplicationFor,
   type ChapterName,
 } from "@/data/courseApplications";
@@ -36,6 +39,8 @@ const PANEL_CELL = "lg:col-start-2 lg:row-start-1 lg:row-end-5";
 
 function CourseLine({ city, course }: { city: ChapterName; course: string }) {
   const entry = courseApplicationFor(city);
+  const locale = useLocale() as Locale;
+  const text = applicationText(entry, useTranslations("courses.applications"), locale);
   return (
     <div className="border-t border-navy/10 pt-4">
       <p className="kicker text-kicker-sm text-navy/65">The free course</p>
@@ -44,11 +49,11 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
         <>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
             {entry.rolling ? (
-              entry.rollingNote
+              text.rollingNote
             ) : (
               <>
-                Participants by {entry.deadlines.participants}. Facilitators by{" "}
-                {entry.deadlines.facilitators}.
+                Participants by {text.deadlines?.participants}. Facilitators by{" "}
+                {text.deadlines?.facilitators}.
               </>
             )}
           </p>
@@ -65,7 +70,7 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
         </>
       ) : (
         <p className="mt-1.5 font-sans text-caption text-navy/65">
-          Applications are closed. {entry.closedNote}
+          Applications are closed. {text.closedNote}
         </p>
       )}
     </div>

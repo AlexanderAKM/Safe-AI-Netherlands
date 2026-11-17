@@ -1,0 +1,16 @@
+{
+  "applications": {
+    "amsterdam": {
+      "rollingNote": "Je kunt je altijd aanmelden; je start bij de eerstvolgende groep.",
+      "chapterNote": "De aanmelding is open. Meld je uiterlijk 23 oktober 2026 aan; de cursussen beginnen in de eerste week van november."
+    },
+    "groningen": {
+      "rollingNote": "De aanmelding voor de volgende cursusronde is open.",
+      "chapterNote": "De aanmelding voor de volgende cursusrondes van beide tracks is open."
+    },
+    "utrecht": {
+      "lapsedNote": "De aanmelding voor de volgende groep opent volgend semester."
+    },
+    "defaultLapsedNote": "De aanmelding voor de volgende groep opent binnenkort."
+  }
+}

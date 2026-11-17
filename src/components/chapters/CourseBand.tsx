@@ -1,8 +1,11 @@
 import type { ReactNode } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/routing";
 
 import SectionOrbits from "@/components/landing/SectionOrbits";
 import {
   COURSE_APPLICATION_URL,
+  applicationText,
   courseApplicationFor,
   type ChapterName,
 } from "@/data/courseApplications";
@@ -39,6 +42,8 @@ export default function CourseBand({
   tail?: ReactNode;
 }) {
   const application = courseApplicationFor(city);
+  const locale = useLocale() as Locale;
+  const text = applicationText(application, useTranslations("courses.applications"), locale);
 
   return (
     <section
@@ -60,12 +65,12 @@ export default function CourseBand({
             <>
               <p className="mt-3 font-sans text-body text-navy/74">
                 {application.rolling ? (
-                  application.chapterNote ?? application.rollingNote
+                  text.chapterNote ?? text.rollingNote
                 ) : (
                   <>
                     {openLead} Participants apply by{" "}
-                    {application.deadlines.participants}; facilitators by{" "}
-                    {application.deadlines.facilitators}.
+                    {text.deadlines?.participants}; facilitators by{" "}
+                    {text.deadlines?.facilitators}.
                   </>
                 )}
               </p>
@@ -82,7 +87,7 @@ export default function CourseBand({
             </>
           ) : (
             <p className="mt-3 font-sans text-body text-navy/74">
-              Applications are closed. {application.closedNote}{" "}
+              Applications are closed. {text.closedNote}{" "}
               <a
                 href={COMMUNITY_JOIN_URL}
                 target="_blank"

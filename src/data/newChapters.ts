@@ -46,10 +46,11 @@ export function buildFoundingApplicationUrl(opts?: {
 // Dates
 // -----------------------------------------------------------------------------
 
-/* Soft deadline, confirmed 14 October 2026. It is a Monday; copy names the
-   date only, never the weekday. */
-export const SOFT_DEADLINE = "16 November 2026";
-export const SOFT_DEADLINE_SHORT = "16 November";
+/* Soft deadline, confirmed 14 October 2026, as an ISO date. It is a Monday;
+   copy names the date only, never the weekday. Print it with formatDate from
+   @/i18n/format: "long" gives "16 November 2026" (Dutch: "16 november 2026"),
+   "dayMonth" gives "16 November". */
+export const SOFT_DEADLINE = "2026-11-16";
 
 /* The switch for the site-wide call-outs: the announcement bar, the nav item
    and the two lines on the landing. Set it to false when the starting teams

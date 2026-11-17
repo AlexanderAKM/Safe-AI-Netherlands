@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "description": "SAIN biedt de community, cursussen en middelen waarmee studenten en professionals in Nederland hun weg vinden in AI-veiligheid. Elk programma is gratis.",
+    "keywords": [
+      "AI-veiligheid",
+      "Nederland",
+      "SAIN",
+      "AI-onderzoek",
+      "AI-governance",
+      "AI alignment",
+      "AI-ethiek"
+    ],
+    "ogImageAlt": "Logo van Safe AI Netherlands"
+  },
+  "skipToContent": "Naar de inhoud",
+  "a11y": {
+    "opensInNewTab": "(opent in een nieuw tabblad)"
+  },
+  "nav": {
+    "homeLabel": "Safe AI Netherlands, homepage",
+    "primaryLabel": "Hoofdmenu",
+    "mobileLabel": "Mobiel menu",
+    "items": {
+      "courses": "Cursussen",
+      "community": "Community",
+      "newChapters": "Nieuwe afdelingen",
+      "projectHub": "Project hub",
+      "about": "Over ons"
+    },
+    "volunteer": "Word vrijwilliger",
+    "joinCourse": "Volg een gratis cursus",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten"
+  },
+  "hiringBar": {
+    "weAreHiring": "We zoeken versterking",
+    "startingTeamsShort": "Betaalde startteams gezocht in drie nieuwe steden",
+    "startingTeamsLong": "Betaalde startteams gezocht in Eindhoven, Delft en Den Haag",
+    "applyBy": ", solliciteer uiterlijk {date}",
+    "allOpenPositions": "Alle vacatures",
+    "seeOpenPositions": "Bekijk de vacatures"
+  },
+  "languageSwitcher": {
+    "label": "Taal",
+    "names": {
+      "en": "English",
+      "nl": "Nederlands"
+    }
+  },
+  "footer": {
+    "columns": {
+      "community": "Community",
+      "programmes": "Programma's",
+      "organisation": "Organisatie"
+    },
+    "links": {
+      "community": "Community",
+      "joinCommunity": "Word lid van de community",
+      "courses": "Cursussen",
+      "projectHub": "Project hub",
+      "handbook": "Handboek Project Hub",
+      "volunteer": "Vrijwilligerswerk",
+      "about": "Over ons",
+      "team": "Team",
+      "openPositions": "Vacatures",
+      "contact": "Contact",
+      "newsletter": "Nieuwsbrief",
+      "vision": "Visie",
+      "theoryOfChange": "Theory of Change",
+      "codeOfConduct": "Gedragscode"
+    }
+  },
+  "coursePopup": {
+    "title": "Gratis cursussen over AI-veiligheid, op locatie.",
+    "cities": "In {cities}.",
+    "description": "Een paar weken lezen en discussiëren met mensen die net het vakgebied in stappen, gegeven door de afdelingen van SAIN. Je hebt geen voorkennis nodig en elk programma is gratis.",
+    "close": "Sluiten",
+    "pickCity": "Kies je stad",
+    "applyBy": "Aanmelden uiterlijk {date}",
+    "facilitatorsBy": "Begeleiders uiterlijk {date}",
+    "closed": "De aanmelding is gesloten.",
+    "joinCourse": "Volg een gratis cursus",
+    "maybeLater": "Misschien later"
+  },
+  "englishOnly": {
+    "note": "Deze pagina is voorlopig alleen in het Engels beschikbaar."
+  }
+}
