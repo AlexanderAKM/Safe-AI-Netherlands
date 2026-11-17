@@ -140,7 +140,12 @@ export default function RootLayout({
         <Footer locale="en" />
         {/* Renders nothing unless a chapter is taking applications, or the URL
             carries ?preview-popup. */}
-        <CoursePopup />
+        <CoursePopup
+          t={t.coursePopup}
+          applications={t.applications}
+          or={t.common.or}
+          joinAFreeCourse={t.common.joinAFreeCourse}
+        />
       </body>
     </html>
   );

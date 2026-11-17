@@ -8,11 +8,14 @@ import { ATLAS } from "@/data/chapterAtlas";
 import EventPrints from "@/components/community/EventPrints";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, rich } from "@/i18n";
+
+const dictionary = getDictionary("en");
+const t = dictionary.community;
 
 export const metadata: Metadata = {
-  title: "Community",
-  description:
-    "SAIN is three local chapters, in Utrecht, Groningen and Amsterdam: weekly discussion groups, free courses, hackathons and talks. Find your chapter and see what is on.",
+  title: t.meta.title,
+  description: t.meta.description,
 };
 
 /* The hero's three prints, fanned. Each is the photograph its chapter page
@@ -25,23 +28,6 @@ const heroPrints = [
   { tilt: "rotate-[6deg]", lift: "translate-y-7", layer: "z-0" },
 ];
 
-const chapterProvides = [
-  "The SAIN brand and national recognition",
-  "Operational playbooks and handbooks",
-  "Course curriculum and facilitation guides",
-  "Google Workspace and digital infrastructure",
-  "One-on-one mentorship from experienced organisers",
-  "Outreach templates and media support",
-  "Connection to the national network",
-];
-
-const founderSteps = [
-  "Write to us about your city.",
-  "Work through the founding process with SAIN's leadership.",
-  "Set up your local channels and your chapter page on this site.",
-  "Do the first outreach and run the first meetup.",
-  "When you are ready, run a first course; the curriculum and guides are part of the kit.",
-];
 
 export default function CommunityPage() {
   return (
@@ -77,13 +63,10 @@ export default function CommunityPage() {
               id="community-hero-heading"
               className="font-serif text-display text-navy"
             >
-              One community, in three cities.
+              {t.hero.heading}
             </h1>
             <p className="max-w-[560px] font-sans text-body text-navy/72">
-              SAIN is its chapters. Utrecht, Groningen and Amsterdam each run
-              their own discussion groups, free courses and evenings, on a shared
-              curriculum and under one national organisation. Pick the one
-              nearest you and walk in.
+              {t.hero.body}
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-1">
               {/* Same words, same destination as the landing hero: one label
@@ -94,28 +77,27 @@ export default function CommunityPage() {
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Join the community
+                {dictionary.common.joinTheCommunity}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
               </a>
               <a
                 href="#chapters"
                 className="inline-flex items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Find your chapter
+                {t.hero.findYourChapter}
                 <ArrowDown size={16} weight="regular" aria-hidden="true" />
               </a>
             </div>
             <p className="max-w-[560px] font-sans text-footnote text-navy/65">
-              Our Discord community currently focuses on our SAIN Amsterdam,
-              Utrecht and Groningen chapters. More cities to come.
+              {t.hero.discordNote}
             </p>
           </Reveal>
 
           <Reveal hero delay={0.08} className="min-w-0">
             <ul
               role="list"
-              aria-label="The three chapters"
+              aria-label={t.hero.printsLabel}
               className="mx-auto flex max-w-[560px] items-start justify-center pb-8 pt-2 lg:mr-0"
             >
               {ATLAS.map((chapter, i) => (
@@ -158,16 +140,23 @@ export default function CommunityPage() {
         <div className="shell band-section">
           <div className="mb-10 grid gap-4 md:mb-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:items-end lg:gap-14 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-20">
             <h2 id="chapters-heading" className="font-serif text-heading text-navy">
-              Three chapters, each its own room.
+              {t.chapters.heading}
             </h2>
             <p className="max-w-[560px] font-sans text-body text-navy/72">
-              Same curriculum, same national support, different characters.
+              {t.chapters.body}
               <br/>
-              Choose a city to see who runs it, the courses and what is on this month.
+              {t.chapters.bodySecondLine}
             </p>
           </div>
           <Reveal delay={0.05}>
-            <ChapterAtlas />
+            <ChapterAtlas
+              words={{
+                t: dictionary.chapterAtlas,
+                atlas: dictionary.atlas,
+                applications: dictionary.applications,
+                opensInNewTab: dictionary.common.opensInNewTab,
+              }}
+            />
           </Reveal>
         </div>
       </section>
@@ -183,22 +172,24 @@ export default function CommunityPage() {
         <SectionOrbits className="-left-20 top-10 h-[400px] w-[300px] md:-left-12" />
         <div className="shell band-section flex flex-col gap-10 md:gap-12">
           <h2 id="rhythm-heading" className="font-serif text-heading text-navy">
-            Hackathons, talks, graduations and pub quizzes
+            {t.rhythm.heading}
           </h2>
 
           <Reveal>
-            <EventPrints />
+            <EventPrints t={dictionary.eventPrints} />
           </Reveal>
 
           <p className="font-sans text-caption text-navy/65">
-            Groningen keeps{" "}
-            <Link
-              href="/chapters/groningen/events"
-              className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-            >
-              a full archive
-            </Link>{" "}
-            of its events back to 2023.
+            {rich(t.rhythm.archive, {
+              link: (chunk) => (
+                <Link
+                  href="/chapters/groningen/events"
+                  className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                >
+                  {chunk}
+                </Link>
+              ),
+            })}
           </p>
         </div>
       </section>
@@ -215,7 +206,7 @@ export default function CommunityPage() {
             <Reveal className="order-last lg:order-none">
               <ul
                 role="list"
-                aria-label="The chapters so far, and the next to come"
+                aria-label={t.startChapter.printsLabel}
                 className="grid max-w-[420px] grid-cols-2 gap-4 sm:gap-5"
               >
                 {ATLAS.map((chapter, i) => (
@@ -239,7 +230,7 @@ export default function CommunityPage() {
                   </li>
                 ))}
                 <li className="flex -rotate-1 items-center justify-center border-[1.5px] border-dashed border-navy/35 p-1.5">
-                  <span className="kicker text-kicker text-navy/55">Your city?</span>
+                  <span className="kicker text-kicker text-navy/55">{t.startChapter.yourCity}</span>
                 </li>
               </ul>
             </Reveal>
@@ -249,35 +240,30 @@ export default function CommunityPage() {
                 id="start-chapter-heading"
                 className="font-serif text-heading text-navy"
               >
-                The next chapter starts with one meetup.
+                {t.startChapter.heading}
               </h2>
               <p className="max-w-[600px] font-sans text-body text-navy/74">
-                No chapter in your city yet? The three that exist all started the
-                same way: a few people who wanted a local AI safety community and
-                were willing to host the first meetup. SAIN&rsquo;s leadership
-                guides founders through the whole process, and new chapters operate
-                under the national stichting, so no separate legal entity is needed.
+                {t.startChapter.body}
               </p>
               <p className="max-w-[600px] font-sans text-body text-navy/74">
-                In Eindhoven, Delft or The Hague? We are looking for paid starting
-                teams there right now.{" "}
+                {t.startChapter.startingTeams}{" "}
                 <Link
                   href="/new-chapters"
                   className="inline-flex items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
                 >
-                  See the starting roles
+                  {t.startChapter.seeStartingRoles}
                   <ArrowRight size={16} weight="regular" aria-hidden="true" />
                 </Link>
               </p>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-1">
                 <a
-                  href="mailto:info@safeainetherlands.org?subject=Starting a SAIN chapter"
+                  href={`mailto:info@safeainetherlands.org?subject=${t.startChapter.emailSubject}`}
                   className="btn-outline-ink"
                 >
-                  Propose a chapter
+                  {t.startChapter.propose}
                 </a>
                 <p className="max-w-[300px] font-sans text-footnote text-navy/65">
-                  Send us an email with your city and a few things about you.
+                  {t.startChapter.proposeNote}
                 </p>
               </div>
             </div>
@@ -288,9 +274,9 @@ export default function CommunityPage() {
             className="mt-14 grid gap-10 border-t border-navy/14 pt-10 lg:grid-cols-2 lg:gap-20"
           >
             <div>
-              <h3 className="kicker text-kicker text-navy/65">What SAIN hands over</h3>
+              <h3 className="kicker text-kicker text-navy/65">{t.startChapter.handsOverHeading}</h3>
               <ul role="list" className="mt-5 grid gap-x-8 gap-y-3 font-sans text-ui text-navy sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                {chapterProvides.map((item) => (
+                {t.startChapter.handsOver.map((item) => (
                   <li key={item} className="flex items-baseline gap-3">
                     <span className="h-px w-4 shrink-0 translate-y-[-4px] bg-navy/30" aria-hidden="true" />
                     {item}
@@ -300,9 +286,9 @@ export default function CommunityPage() {
             </div>
 
             <div>
-              <h3 className="kicker text-kicker text-navy/65">What a founder does</h3>
+              <h3 className="kicker text-kicker text-navy/65">{t.startChapter.founderHeading}</h3>
               <ol role="list" className="mt-5 flex flex-col font-sans text-ui text-navy">
-                {founderSteps.map((step, i) => (
+                {t.startChapter.founderSteps.map((step, i) => (
                   <li
                     key={step}
                     className="flex items-baseline gap-4 border-t border-navy/10 py-2.5 first:border-t-0 first:pt-0"
@@ -332,11 +318,10 @@ export default function CommunityPage() {
               id="community-close-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              Nobody in these photographs knew anyone the first time either.
+              {t.close.heading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              Come to one session in the city nearest you. If you want to do more
-              than attend, every chapter has volunteer work waiting.
+              {t.close.body}
             </p>
           </div>
 
@@ -347,12 +332,12 @@ export default function CommunityPage() {
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Join the community
+              {dictionary.common.joinTheCommunity}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
             </a>
             <Link href="/get-involved" className="btn-ghost-inverse gap-2">
-              Volunteer
+              {dictionary.common.volunteer}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>

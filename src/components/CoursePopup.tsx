@@ -11,6 +11,8 @@ import {
   formatCityList,
   openCourseApplications,
 } from "@/data/courseApplications";
+import type { Dictionary } from "@/i18n";
+import { format } from "@/i18n/rich";
 
 /**
  * The course announcement, shown once per cohort.
@@ -42,7 +44,19 @@ const DISMISS_KEY = `sain:course-popup-dismissed:${openCourseApplications
   .map((c) => `${c.chapter}:${c.rolling ? "rolling" : c.deadlines.participants}`)
   .join("|")}`;
 
-export default function CoursePopup() {
+/* A client component in the root layout: its words arrive as props, so the
+   dictionary stays out of the browser bundle. */
+export default function CoursePopup({
+  t,
+  applications,
+  or,
+  joinAFreeCourse,
+}: {
+  t: Dictionary["coursePopup"];
+  applications: Dictionary["applications"];
+  or: string;
+  joinAFreeCourse: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [preview, setPreview] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -129,7 +143,7 @@ export default function CoursePopup() {
     ? [...courseApplications].sort((a, b) => Number(b.open) - Number(a.open))
     : openCourseApplications;
   const open = listed.filter((c) => c.open);
-  const cities = formatCityList(open.length ? open : listed);
+  const cities = formatCityList(open.length ? open : listed, or);
 
   return createPortal(
     <AnimatePresence>
@@ -186,18 +200,16 @@ export default function CoursePopup() {
                 id="course-popup-title"
                 className="relative font-serif text-heading text-white"
               >
-                Free AI Safety courses, in person.
+                {t.heading}
               </h2>
               <p className="relative mt-3 font-serif text-title-sm text-white/75">
-                In {cities}.
+                {format(t.inCities, { cities })}
               </p>
               <p
                 id="course-popup-description"
                 className="relative mt-6 max-w-[400px] font-sans text-caption leading-[22px] text-white/72"
               >
-                A few weeks of reading and discussion with people entering the
-                field, taught by SAIN&rsquo;s chapters. No previous background
-                is needed, and every programme is free.
+                {t.body}
               </p>
             </div>
 
@@ -206,14 +218,14 @@ export default function CoursePopup() {
               <button
                 type="button"
                 onClick={close}
-                aria-label="Close"
+                aria-label={t.close}
                 className="absolute right-3 top-3 inline-flex size-10 items-center justify-center text-navy/55 transition-colors hover:text-navy focus-visible:text-navy"
               >
                 <XIcon size={18} weight="light" aria-hidden="true" />
               </button>
 
               <p className="kicker pr-10 text-kicker-sm text-navy/65">
-                Pick your city
+                {t.pickYourCity}
               </p>
               <ul role="list" className="mt-4 border-b border-navy/12">
                 {listed.map((course) => (
@@ -234,15 +246,15 @@ export default function CoursePopup() {
                         ) : course.open ? (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
                             <span className="block">
-                              Apply by {course.deadlines.participants}
+                              {format(applications.applyBy, { date: course.deadlines.participants })}
                             </span>
                             <span className="block">
-                              Facilitators by {course.deadlines.facilitators}
+                              {format(applications.facilitatorsBy, { date: course.deadlines.facilitators })}
                             </span>
                           </span>
                         ) : (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
-                            Applications are closed. {course.closedNote}
+                            {format(applications.closedWithNote, { note: course.closedNote })}
                           </span>
                         )}
                       </span>
@@ -259,14 +271,14 @@ export default function CoursePopup() {
 
               <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <Link href="/courses" onClick={close} className="btn-accent">
-                  Join a free course
+                  {joinAFreeCourse}
                 </Link>
                 <button
                   type="button"
                   onClick={close}
                   className="font-sans text-label text-navy/65 underline decoration-navy/25 underline-offset-4 transition-colors hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
                 >
-                  Maybe later
+                  {t.maybeLater}
                 </button>
               </div>
             </div>

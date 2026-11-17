@@ -13,8 +13,9 @@ import { getDictionary, type Locale } from "@/i18n";
  * three across from sm.
  */
 export default function ChapterPrints({ id, locale }: { id?: string; locale: Locale }) {
+  const t = getDictionary(locale);
   return (
-    <nav id={id} aria-label={getDictionary(locale).landing.chapterPrintsLabel} className="scroll-mt-36">
+    <nav id={id} aria-label={t.landing.chapterPrintsLabel} className="scroll-mt-36">
       <ul
         role="list"
         className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-3 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 lg:gap-7"
@@ -46,7 +47,7 @@ export default function ChapterPrints({ id, locale }: { id?: string; locale: Loc
                 </span>
               </span>
               <span className="mt-4 flex items-start justify-between gap-3 px-1">
-                <span className="kicker text-kicker-sm text-navy/65">{chapter.origin}</span>
+                <span className="kicker text-kicker-sm text-navy/65">{t.atlas[chapter.id].origin}</span>
                 <ArrowRight
                   size={16}
                   weight="regular"

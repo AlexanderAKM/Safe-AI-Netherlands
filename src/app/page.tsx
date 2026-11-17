@@ -245,7 +245,7 @@ export default function Home() {
                 removes itself rather than going stale. */}
             {openCourseApplications.length > 0 && (
               <p className="mt-3 font-sans text-caption text-navy/65">
-                {format(t.home.courses.applyNow, { cities: formatCityList(openCourseApplications) })}
+                {format(t.home.courses.applyNow, { cities: formatCityList(openCourseApplications, t.common.or) })}
               </p>
             )}
           </div>

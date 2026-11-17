@@ -7,7 +7,7 @@ import {
   courseTrackHref,
   type ChapterName,
 } from "@/data/courseApplications";
-import { TRACKS } from "@/data/courseTracks";
+import { TRACKS, trackCityDetail } from "@/data/courseTracks";
 import { getDictionary, type Locale } from "@/i18n";
 
 /**
@@ -31,12 +31,14 @@ const GLYPH: Record<string, Icon> = {
 };
 
 export default function CourseTracks({ locale }: { locale: Locale }) {
-  const t = getDictionary(locale).landing.courseTracks;
+  const dictionary = getDictionary(locale);
+  const t = dictionary.landing.courseTracks;
   return (
     <div>
       <ul role="list" className="grid gap-px bg-navy/12 md:grid-cols-3 border-y border-navy/12">
         {TRACKS.map((track) => {
           const Glyph = GLYPH[track.id];
+          const words = dictionary.tracks[track.id];
           return (
             <li
               key={track.id}
@@ -52,18 +54,18 @@ export default function CourseTracks({ locale }: { locale: Locale }) {
                   {track.title}
                 </Link>
               </h3>
-              <p className="mt-2 font-sans text-ui text-navy/72">{track.tagline}</p>
+              <p className="mt-2 font-sans text-ui text-navy/72">{words.tagline}</p>
 
               <div className="mt-auto pt-8">
                 <ul role="list" aria-label={t.whereItRuns} className="grid grid-cols-3 border-t border-navy/12">
                   {CITIES.map((city) => {
-                    const entry = track.cities.find((c) => c.city === city);
+                    const runsHere = track.cities.includes(city);
                     return (
                       <li key={city} className="border-l border-navy/12 pl-3 first:border-l-0 first:pl-0">
-                        {entry ? (
+                        {runsHere ? (
                           <Link
                             href={chapterCourseHref(city, track.id)}
-                            title={entry.detail}
+                            title={trackCityDetail(words, city)}
                             className="relative z-10 flex flex-col gap-2 py-3"
                           >
                             <span aria-hidden="true" className="h-2 w-2 bg-navy" />

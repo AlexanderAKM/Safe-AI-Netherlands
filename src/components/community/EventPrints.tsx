@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import type { Dictionary } from "@/i18n";
 
 /**
  * Five photographs from rooms that happened, each named by its caption bar.
@@ -27,13 +28,15 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
  * pointing at a file nobody wrote is a broken image at that breakpoint.
  */
 
+type Words = Dictionary["eventPrints"];
+
 type Print = {
   /** The source on disk; the rungs sit beside it as `<name>-<width>.webp`. */
   src: string;
   /** Widths the generator actually wrote for this source. */
   rungs: number[];
-  alt: string;
-  caption: string;
+  /** Its alt text and caption, in en.json under eventPrints.prints. */
+  words: keyof Words["prints"];
   /** Where the crop sits in the frame. */
   position: string;
   /** Square on the strip; the scatter's own crop from xl up. */
@@ -51,8 +54,7 @@ const PRINTS: Print[] = [
        September 2026 so the hero carries the more legible of the pair. */
     src: "/photos/events/forecasting-hackathon.png",
     rungs: [320, 640, 900],
-    alt: "Announcement for the AISIG AI forecasting and timeline models hackathon in Groningen",
-    caption: "AI forecasting hackathon · SAIN Groningen",
+    words: "forecastingHackathon",
     position: "50% 45%",
     crop: "aspect-[4/3]",
     tilt: "rotate-[-1.5deg]",
@@ -61,8 +63,7 @@ const PRINTS: Print[] = [
   {
     src: "/photos/events/tedx-broerstraat.webp",
     rungs: [320, 640],
-    alt: "A SAIN Groningen speaker on the TEDxBroerstraat stage",
-    caption: "TEDxBroerstraat · SAIN Groningen",
+    words: "tedxBroerstraat",
     position: "50% 40%",
     crop: "aspect-[4/3] xl:aspect-[4/5]",
     tilt: "rotate-[1deg]",
@@ -71,8 +72,7 @@ const PRINTS: Print[] = [
   {
     src: "/photos/events/utrecht/aisfundamentals-graduation-ceremony.jpeg",
     rungs: [320, 640, 900],
-    alt: "An AI Safety Fundamentals cohort at its graduation ceremony in Utrecht",
-    caption: "Course graduation · SAIN Utrecht",
+    words: "utrechtGraduation",
     position: "50% 40%",
     crop: "aspect-[4/3]",
     /* The overlap only exists in the scatter, so the lift does too. */
@@ -82,8 +82,7 @@ const PRINTS: Print[] = [
   {
     src: "/photos/events/pub-quiz.jpg",
     rungs: [320, 640, 900],
-    alt: "A SAIN Groningen pub quiz in the evening",
-    caption: "Pub quiz · SAIN Groningen",
+    words: "pubQuiz",
     position: "50% 50%",
     crop: "aspect-[4/3]",
     tilt: "rotate-[1.5deg]",
@@ -92,8 +91,7 @@ const PRINTS: Print[] = [
   {
     src: "/photos/events/utrecht/discussion-eu2031.jpeg",
     rungs: [320, 640],
-    alt: "A discussion group in Utrecht working through a Europe 2031 scenario",
-    caption: "Europe 2031 scenario discussion · SAIN Utrecht",
+    words: "europe2031",
     position: "50% 45%",
     crop: "aspect-[4/3]",
     tilt: "rotate-[-1deg]",
@@ -111,7 +109,7 @@ const STRIP_GAP = 16;
 const ARROW =
   "strip-arrow absolute top-4 bottom-9 z-10 my-auto h-11 w-11 place-items-center bg-white text-navy opacity-55 shadow-[0_4px_14px_#021C4D14] hover:opacity-100 hover:shadow-[0_7px_22px_#021C4D1F] focus-visible:opacity-100 focus-visible:shadow-[0_7px_22px_#021C4D1F] disabled:pointer-events-none disabled:opacity-0";
 
-export default function EventPrints() {
+export default function EventPrints({ t }: { t: Words }) {
   const strip = useRef<HTMLDivElement>(null);
   /* An arrow that is lit but moves nothing is worse than no arrow, so the ends
      disable rather than dead-click. */
@@ -169,7 +167,7 @@ export default function EventPrints() {
         /* A scroll container has to be reachable without a thumb, so it carries
            a name and a tab stop of its own. */
         role="region"
-        aria-label="Photographs from SAIN chapter events"
+        aria-label={t.label}
         tabIndex={0}
         /* The negative margin matches the shell's gutter at each size, so the
            strip reaches the screen edge while its first print still lines up
@@ -193,7 +191,7 @@ export default function EventPrints() {
                    scatter, where the anchored print's 1.1 scale is the widest
                    any of them is drawn. */
                 sizes="(min-width: 1280px) 290px, (min-width: 1024px) 30vw, (min-width: 768px) 38vw, (min-width: 640px) 46vw, 72vw"
-                alt={print.alt}
+                alt={t.prints[print.words].alt}
                 width={480}
                 height={360}
                 loading="lazy"
@@ -204,7 +202,7 @@ export default function EventPrints() {
               {/* The caption names the city and the kind of evening. Without it
                   the band is five crowds; with it, it is a month. */}
               <figcaption className="kicker absolute inset-x-0 bottom-0 bg-navy/88 px-3 py-2 text-kicker-sm text-white">
-                {print.caption}
+                {t.prints[print.words].caption}
               </figcaption>
             </div>
           </figure>
@@ -216,7 +214,7 @@ export default function EventPrints() {
         type="button"
         onClick={() => push(-1)}
         disabled={!reach.back}
-        aria-label="Previous photographs"
+        aria-label={t.previous}
         /* The nudge runs along the axis of travel rather than lifting: the chip
            leans the way it is about to take you. */
         className={`${ARROW} left-0 hover:-translate-x-0.5 focus-visible:-translate-x-0.5`}
@@ -227,7 +225,7 @@ export default function EventPrints() {
         type="button"
         onClick={() => push(1)}
         disabled={!reach.forward}
-        aria-label="Next photographs"
+        aria-label={t.next}
         className={`${ARROW} right-0 hover:translate-x-0.5 focus-visible:translate-x-0.5`}
       >
         <CaretRight size={18} weight="bold" aria-hidden="true" />

@@ -12,11 +12,14 @@ import {
   type CourseApplication,
 } from "@/data/courseApplications";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { format, getDictionary, rich } from "@/i18n";
+
+const dictionary = getDictionary("en");
+const t = dictionary.courses;
 
 export const metadata: Metadata = {
-  title: "Join a free course",
-  description:
-    "Three tracks, taught in person in Utrecht, Groningen and Amsterdam. Every SAIN programme is free. Pick a track, pick your city, and apply.",
+  title: t.meta.title,
+  description: t.meta.description,
 };
 
 /* The reader arrived by clicking "Join a free course", so the page opens on the
@@ -33,16 +36,10 @@ const applications: CourseApplication[] = [
 
 const someoneIsOpen = openCourseApplications.length > 0;
 
-/* How a cohort actually runs, which is the part a course card never says. Five
-   rows rather than a paragraph: she is checking whether her weeks have room in
-   them, and a row is something you scan for your own city. */
-const CADENCE = [
-  "Cohorts run per chapter. Groningen and Amsterdam teach in six-week blocks, and Groningen runs three to four cohorts a year. Utrecht's Technical AI Safety and AI Governance blocks run four weeks.",
-  "The six-week courses pair weekly readings with an on-site discussion session.",
-  "AI Safety Fundamentals in Utrecht is weekly and modular. Drop in for any theme, about 60 minutes.",
-  "Some programmes are application-based and close per cohort. The Amsterdam BlueDot tracks are an example.",
-  "One form covers participants and facilitators. Facilitator deadlines close a few days earlier.",
-];
+/* How a cohort actually runs (courses.cadence.rows), which is the part a
+   course card never says. Five rows rather than a paragraph: she is checking
+   whether her weeks have room in them, and a row is something you scan for
+   your own city. */
 
 /* Deadlines carry their year in the data so a passed date reads as expired
    rather than ambiguous. In the apply row both dates sit in one sentence, so
@@ -78,24 +75,25 @@ export default function CoursesPage() {
         <div className="shell band-hero">
           <Reveal hero className="flex max-w-[720px] flex-col gap-6">
             <h1 id="courses-heading" className="font-serif text-display text-navy">
-              Join a free course
+              {t.hero.heading}
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              Every programme is free and taught in person. Pick a track, pick your city, and
-              apply. What you join, and how it runs, depends on the chapter.
+              {t.hero.body}
             </p>
             {/* Read from the same file the chapter pages read, so this line can
                 never advertise a city that is shut. When the last cohort
                 closes it removes itself instead of going stale. */}
             {someoneIsOpen && (
               <p className="font-sans text-caption text-navy/65">
-                You can apply now in {formatCityList(openCourseApplications)}.
+                {format(t.hero.applyNow, {
+                  cities: formatCityList(openCourseApplications, dictionary.common.or),
+                })}
               </p>
             )}
             <div className="pt-1">
               {someoneIsOpen ? (
                 <a href="#apply" className="btn-accent self-start">
-                  Apply in your city
+                  {t.hero.applyInYourCity}
                 </a>
               ) : (
                 /* Nothing to apply to is not nothing to do, and the community
@@ -106,9 +104,9 @@ export default function CoursesPage() {
                   rel="noopener noreferrer"
                   className="btn-accent gap-2 self-start"
                 >
-                  Join the community
+                  {dictionary.common.joinTheCommunity}
                   <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
                 </a>
               )}
             </div>
@@ -128,15 +126,14 @@ export default function CoursesPage() {
         <div className="shell band-section-top relative isolate pb-14">
           <div className="mx-auto mb-10 max-w-[640px] text-center">
             <h2 id="tracks-heading" className="font-serif text-heading text-navy">
-              Pick a track
+              {t.tracks.heading}
             </h2>
             <p className="mt-2.5 font-sans text-body leading-[26px] text-navy/74">
-              Three tracks, the same ones on every chapter&rsquo;s calendar. Each panel names
-              what runs in each city.
+              {t.tracks.body}
             </p>
           </div>
           <Reveal>
-            <CourseTabs />
+            <CourseTabs words={dictionary.tracks} t={dictionary.courseTabs} />
           </Reveal>
         </div>
       </section>
@@ -152,11 +149,10 @@ export default function CoursesPage() {
         <div className="shell band-index grid items-start gap-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16">
           <div className="flex min-w-0 flex-col gap-4">
             <h2 id="cadence-heading" className="font-serif text-heading-sm text-navy">
-              How cohorts run
+              {t.cadence.heading}
             </h2>
             <p className="max-w-[420px] font-sans text-body text-navy/74">
-              Not sure which chapter fits? Each city&rsquo;s page lists its own programmes in
-              detail.
+              {t.cadence.body}
             </p>
             <ul className="flex flex-col gap-2">
               {CITY_PAGES.map((entry) => (
@@ -177,7 +173,7 @@ export default function CoursesPage() {
               carry the sequence, and five hairlines beside a column of links
               read as a form. */}
           <ol className="flex min-w-0 flex-col gap-3 font-sans text-ui text-navy">
-            {CADENCE.map((item, i) => (
+            {t.cadence.rows.map((item, i) => (
               <li key={item} className="flex items-baseline gap-3">
                 <span className="w-[22px] shrink-0 font-sans text-xs text-orange-ink">
                   {i + 1}
@@ -196,15 +192,13 @@ export default function CoursesPage() {
         <div className="shell band-close">
           <div className="max-w-[620px]">
             <h2 id="apply-heading" className="font-serif text-closing text-white">
-              Apply in your city
+              {t.apply.heading}
             </h2>
             {/* One paragraph either way: while nothing is open it also says
                 so, in place of a list with nothing to apply to. */}
             <p className="mt-4 font-sans text-body text-white/78">
-              Applications open and close per chapter.
-              {someoneIsOpen
-                ? ""
-                : " They are closed right now, and sign ups for the next cohort will open soon."}
+              {t.apply.perChapter}
+              {someoneIsOpen ? "" : ` ${t.apply.allClosed}`}
             </p>
           </div>
 
@@ -221,22 +215,25 @@ export default function CoursesPage() {
                       <>
                         {!entry.rolling && (
                           <p className="mt-1 font-sans text-label text-white/78">
-                            Applications open.
+                            {t.apply.open}
                           </p>
                         )}
                         <p className="font-sans text-label text-white/78">
                           {entry.rolling
                             ? entry.rollingNote
-                            : `Apply by ${entry.deadlines.participants} (${facilitatorDate(
-                                entry.deadlines.participants,
-                                entry.deadlines.facilitators,
-                              )} to facilitate).`}
+                            : format(t.apply.deadlines, {
+                                participants: entry.deadlines.participants,
+                                facilitators: facilitatorDate(
+                                  entry.deadlines.participants,
+                                  entry.deadlines.facilitators,
+                                ),
+                              })}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mt-1 font-sans text-label text-white/78">
-                          Applications closed.
+                          {t.apply.closed}
                         </p>
                         <p className="font-sans text-label text-white/78">
                           {entry.closedNote}
@@ -247,7 +244,7 @@ export default function CoursesPage() {
 
                   {entry.open ? (
                     <Link href={entry.href} className="btn-accent shrink-0 self-start md:self-auto">
-                      Apply in {entry.chapter}
+                      {format(t.apply.applyIn, { chapter: entry.chapter })}
                     </Link>
                   ) : (
                     /* No button for a shut cohort: the row says when it
@@ -257,7 +254,7 @@ export default function CoursesPage() {
                       href={entry.href.replace(/#.*$/, "")}
                       className="inline-flex shrink-0 items-center gap-1.5 self-start font-sans text-label text-white underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white md:self-auto"
                     >
-                      View chapter
+                      {t.apply.viewChapter}
                       <ArrowRight size={16} weight="regular" aria-hidden="true" />
                     </Link>
                   )}
@@ -268,14 +265,16 @@ export default function CoursesPage() {
 
           <div className="mt-10 flex flex-col gap-5 border-t border-white/15 pt-8 md:flex-row md:items-center md:justify-between md:gap-12">
             <p className="max-w-[520px] font-sans text-body text-white/78">
-              Your chapter&rsquo;s page walks you through its form. Questions before you apply
-              are welcome.{" "}
-              <Link
-                href="/contact"
-                className="whitespace-nowrap text-white underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white"
-              >
-                Or get in touch first
-              </Link>
+              {rich(t.apply.walkthrough, {
+                link: (chunk) => (
+                  <Link
+                    href="/contact"
+                    className="whitespace-nowrap text-white underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white"
+                  >
+                    {chunk}
+                  </Link>
+                ),
+              })}
             </p>
             {/* The reader who is not ready for a cohort still has somewhere to
                 go, and it is the same door the landing offers. */}
@@ -285,9 +284,9 @@ export default function CoursesPage() {
               rel="noopener noreferrer"
               className="btn-ghost-inverse shrink-0 gap-2 self-start md:self-auto"
             >
-              Join the community
+              {dictionary.common.joinTheCommunity}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
             </a>
           </div>
         </div>

@@ -5,7 +5,8 @@
     "volunteer": "Volunteer",
     "joinAFreeCourse": "Join a free course",
     "startWithAFreeCourse": "Start with a free course",
-    "visitTheProjectHub": "Visit the Project hub"
+    "visitTheProjectHub": "Visit the Project hub",
+    "or": "or"
   },
   "site": {
     "description": "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free.",
@@ -574,6 +575,274 @@
       "formNoOption": "The form has no option for this role yet. Choose \"{option}\" there and name \"{title}\" in your motivation letter.",
       "formSpecialisation": "Applies through the form's \"{option}\" option. Mention \"{title}\" in your motivation letter.",
       "formShared": "Opens the shared application form. Choose \"{title}\" there."
+    }
+  },
+  "tracks": {
+    "fundamentals": {
+      "tagline": "First principles. Drop in any week.",
+      "whoItSuits": "For newcomers. Taught so you can drop in for any theme, no background needed.",
+      "summary": "A weekly series on risks, technical safety and governance, taught so newcomers can drop in. Three editions in Utrecht have reached more than 100 students, researchers, engineers and public-sector people.",
+      "outlineTitle": "Weekly themes",
+      "outline": [
+        "Introduction: capabilities, risks, and solution families",
+        "Risks and incidents: social harms, misuse, loss of control",
+        "Technical AI Safety: oversight, evaluations, interpretability",
+        "Regulation and governance: EU AI Act, audits, GPAI duties",
+        "Why safety is hard: incentives, funding gaps, race dynamics",
+        "Pathways: thesis, fellowship, then a full-time role"
+      ],
+      "cities": {
+        "Utrecht": "Weekly, modular. Drop in for any theme. ~60 min."
+      },
+      "photoAlt": "SAIN Utrecht cohort at graduation",
+      "caption": "Cohort graduation · SAIN Utrecht"
+    },
+    "technical": {
+      "tagline": "ARENA or BlueDot, by city.",
+      "whoItSuits": "For people who want to build: interpretability, RLHF, and the alignment pipeline, hands-on.",
+      "summary": "Each chapter runs a technical track, with a different curriculum. Utrecht covers evaluations, embodied AI and agent security, with assignments from ARENA. Groningen and Amsterdam use BlueDot.",
+      "outlineTitle": "Utrecht Technical AI Safety",
+      "outline": [
+        "Introduction to AI safety evaluations",
+        "Implementing and evaluating AI safety evaluations",
+        "Embodied AI safety",
+        "Securing AI agents"
+      ],
+      "cities": {
+        "Utrecht": "Technical AI Safety. 4 weeks, 1.5-hour lectures, Saturday workshops. Programming needed.",
+        "Groningen": "BlueDot Technical AI Safety. 6 weeks, on-site, application-based.",
+        "Amsterdam": "BlueDot Technical AI Safety. 6 weeks, on-site, application-based."
+      },
+      "photoAlt": "Technical alignment workshop in progress",
+      "caption": "Week 1 · Transformers and interpretability"
+    },
+    "policy": {
+      "tagline": "BlueDot or SAIN Utrecht, by city.",
+      "whoItSuits": "For people headed toward policy: the EU AI Act, audits, and Dutch implementation.",
+      "summary": "Amsterdam and Groningen run BlueDot Frontier AI Governance, and Groningen adds materials on the EU perspective. Utrecht runs a four-week AI Governance course that also looks at where Europe and other middle powers fit. Facilitators include researchers, risk consultants, and public-sector people.",
+      "outlineTitle": "Six-week courses (Groningen and Amsterdam)",
+      "outline": [
+        "The EU AI Act: duties across the lifecycle",
+        "Dutch implementation: ministries, regulators, standards",
+        "Accountability: audits, evidence, GPAI obligations",
+        "Risk management: NIST and frontier evaluation",
+        "Case studies: accidents, misuse, institutional lag",
+        "Pathways: policy fellowships, ministries, standards bodies"
+      ],
+      "cities": {
+        "Utrecht": "AI Governance. 4 weeks, 1.5-hour lectures. No background needed.",
+        "Groningen": "BlueDot Frontier AI Governance, with EU materials. On-site, application-based.",
+        "Amsterdam": "BlueDot Frontier AI Governance. On-site, application-based."
+      },
+      "photoAlt": "Governance and policy discussion group around a table",
+      "caption": "Discussion group · Utrecht"
+    }
+  },
+  "courseTabs": {
+    "label": "Course tracks",
+    "whereYouCanAttend": "Where you can attend"
+  },
+  "applications": {
+    "applyBy": "Apply by {date}",
+    "facilitatorsBy": "Facilitators by {date}",
+    "closedWithNote": "Applications are closed. {note}"
+  },
+  "coursePopup": {
+    "heading": "Free AI Safety courses, in person.",
+    "inCities": "In {cities}.",
+    "body": "A few weeks of reading and discussion with people entering the field, taught by SAIN’s chapters. No previous background is needed, and every programme is free.",
+    "close": "Close",
+    "pickYourCity": "Pick your city",
+    "maybeLater": "Maybe later"
+  },
+  "courses": {
+    "meta": {
+      "title": "Join a free course",
+      "description": "Three tracks, taught in person in Utrecht, Groningen and Amsterdam. Every SAIN programme is free. Pick a track, pick your city, and apply."
+    },
+    "hero": {
+      "heading": "Join a free course",
+      "body": "Every programme is free and taught in person. Pick a track, pick your city, and apply. What you join, and how it runs, depends on the chapter.",
+      "applyNow": "You can apply now in {cities}.",
+      "applyInYourCity": "Apply in your city"
+    },
+    "tracks": {
+      "heading": "Pick a track",
+      "body": "Three tracks, the same ones on every chapter’s calendar. Each panel names what runs in each city."
+    },
+    "cadence": {
+      "heading": "How cohorts run",
+      "body": "Not sure which chapter fits? Each city’s page lists its own programmes in detail.",
+      "rows": [
+        "Cohorts run per chapter. Groningen and Amsterdam teach in six-week blocks, and Groningen runs three to four cohorts a year. Utrecht's Technical AI Safety and AI Governance blocks run four weeks.",
+        "The six-week courses pair weekly readings with an on-site discussion session.",
+        "AI Safety Fundamentals in Utrecht is weekly and modular. Drop in for any theme, about 60 minutes.",
+        "Some programmes are application-based and close per cohort. The Amsterdam BlueDot tracks are an example.",
+        "One form covers participants and facilitators. Facilitator deadlines close a few days earlier."
+      ]
+    },
+    "apply": {
+      "heading": "Apply in your city",
+      "perChapter": "Applications open and close per chapter.",
+      "allClosed": "They are closed right now, and sign ups for the next cohort will open soon.",
+      "open": "Applications open.",
+      "closed": "Applications closed.",
+      "deadlines": "Apply by {participants} ({facilitators} to facilitate).",
+      "applyIn": "Apply in {chapter}",
+      "viewChapter": "View chapter",
+      "walkthrough": "Your chapter’s page walks you through its form. Questions before you apply are welcome. <link>Or get in touch first</link>"
+    }
+  },
+  "atlas": {
+    "utrecht": {
+      "origin": "Utrecht University and beyond",
+      "summary": "A free AI safety course, two discussion groups, and a growing research track at Utrecht University. Run by volunteers, open to anyone in the city.",
+      "photoAlt": "The Dom tower over the rooftops of Utrecht",
+      "facts": [
+        {
+          "label": "Directed by",
+          "value": "Riccardo Campanella"
+        },
+        {
+          "label": "Community",
+          "value": "240+ members, multidisciplinary"
+        },
+        {
+          "label": "This year",
+          "value": "Win4AISafety, a full ARENA-based technical course, and a research talk by an Anthropic researcher to more than 60 people"
+        }
+      ]
+    },
+    "groningen": {
+      "origin": "Since 2023, first as AISIG",
+      "summary": "Free courses, hackathons, and published research. It began as the AI Safety Initiative Groningen (AISIG) and continues as SAIN Groningen.",
+      "photoAlt": "Canal-side houses and moored boats in Groningen",
+      "facts": [
+        {
+          "label": "Directed by",
+          "value": "Tarteel Mohamed"
+        },
+        {
+          "label": "Since October 2023",
+          "value": "30 events: hackathons, graduations, talks, pub quizzes"
+        },
+        {
+          "label": "Research",
+          "value": "Members published at NeurIPS and ICLR workshops"
+        }
+      ]
+    },
+    "amsterdam": {
+      "origin": "UvA, VU and the city's tech scene",
+      "summary": "Free courses and a weekly discussion group, from BSc students to working professionals, supported by the ELLIS Unit Amsterdam.",
+      "photoAlt": "Canal houses leaning over the water in central Amsterdam",
+      "facts": [
+        {
+          "label": "Directed by",
+          "value": "Ana Paula Castillo Rodriguez"
+        },
+        {
+          "label": "Courses",
+          "value": "More than 120 applicants so far"
+        },
+        {
+          "label": "On stage",
+          "value": "The AI020 Conference and TEDxUniversiteit van Amsterdam"
+        }
+      ]
+    }
+  },
+  "chapterAtlas": {
+    "label": "The chapters",
+    "freeCourse": "The free course",
+    "deadlines": "Participants by {participants}. Facilitators by {facilitators}.",
+    "applyToCourse": "Apply to the free course",
+    "everythingOn": "Everything on SAIN {city}",
+    "comingUpIn": "Coming up in {city}",
+    "calendarTitle": "Upcoming SAIN {city} events",
+    "fullCalendar": "The full {city} calendar on Luma",
+    "walkIn": "Events are walk-in unless the event page says otherwise. Questions? Each chapter lists its events contact on its own page."
+  },
+  "eventPrints": {
+    "label": "Photographs from SAIN chapter events",
+    "previous": "Previous photographs",
+    "next": "Next photographs",
+    "prints": {
+      "forecastingHackathon": {
+        "alt": "Announcement for the AISIG AI forecasting and timeline models hackathon in Groningen",
+        "caption": "AI forecasting hackathon · SAIN Groningen"
+      },
+      "tedxBroerstraat": {
+        "alt": "A SAIN Groningen speaker on the TEDxBroerstraat stage",
+        "caption": "TEDxBroerstraat · SAIN Groningen"
+      },
+      "utrechtGraduation": {
+        "alt": "An AI Safety Fundamentals cohort at its graduation ceremony in Utrecht",
+        "caption": "Course graduation · SAIN Utrecht"
+      },
+      "pubQuiz": {
+        "alt": "A SAIN Groningen pub quiz in the evening",
+        "caption": "Pub quiz · SAIN Groningen"
+      },
+      "europe2031": {
+        "alt": "A discussion group in Utrecht working through a Europe 2031 scenario",
+        "caption": "Europe 2031 scenario discussion · SAIN Utrecht"
+      }
+    }
+  },
+  "community": {
+    "meta": {
+      "title": "Community",
+      "description": "SAIN is three local chapters, in Utrecht, Groningen and Amsterdam: weekly discussion groups, free courses, hackathons and talks. Find your chapter and see what is on."
+    },
+    "hero": {
+      "heading": "One community, in three cities.",
+      "body": "SAIN is its chapters. Utrecht, Groningen and Amsterdam each run their own discussion groups, free courses and evenings, on a shared curriculum and under one national organisation. Pick the one nearest you and walk in.",
+      "findYourChapter": "Find your chapter",
+      "discordNote": "Our Discord community currently focuses on our SAIN Amsterdam, Utrecht and Groningen chapters. More cities to come.",
+      "printsLabel": "The three chapters"
+    },
+    "chapters": {
+      "heading": "Three chapters, each its own room.",
+      "body": "Same curriculum, same national support, different characters.",
+      "bodySecondLine": "Choose a city to see who runs it, the courses and what is on this month."
+    },
+    "rhythm": {
+      "heading": "Hackathons, talks, graduations and pub quizzes",
+      "archive": "Groningen keeps <link>a full archive</link> of its events back to 2023."
+    },
+    "startChapter": {
+      "printsLabel": "The chapters so far, and the next to come",
+      "yourCity": "Your city?",
+      "heading": "The next chapter starts with one meetup.",
+      "body": "No chapter in your city yet? The three that exist all started the same way: a few people who wanted a local AI safety community and were willing to host the first meetup. SAIN’s leadership guides founders through the whole process, and new chapters operate under the national stichting, so no separate legal entity is needed.",
+      "startingTeams": "In Eindhoven, Delft or The Hague? We are looking for paid starting teams there right now.",
+      "seeStartingRoles": "See the starting roles",
+      "emailSubject": "Starting a SAIN chapter",
+      "propose": "Propose a chapter",
+      "proposeNote": "Send us an email with your city and a few things about you.",
+      "handsOverHeading": "What SAIN hands over",
+      "handsOver": [
+        "The SAIN brand and national recognition",
+        "Operational playbooks and handbooks",
+        "Course curriculum and facilitation guides",
+        "Google Workspace and digital infrastructure",
+        "One-on-one mentorship from experienced organisers",
+        "Outreach templates and media support",
+        "Connection to the national network"
+      ],
+      "founderHeading": "What a founder does",
+      "founderSteps": [
+        "Write to us about your city.",
+        "Work through the founding process with SAIN's leadership.",
+        "Set up your local channels and your chapter page on this site.",
+        "Do the first outreach and run the first meetup.",
+        "When you are ready, run a first course; the curriculum and guides are part of the kit."
+      ]
+    },
+    "close": {
+      "heading": "Nobody in these photographs knew anyone the first time either.",
+      "body": "Come to one session in the city nearest you. If you want to do more than attend, every chapter has volunteer work waiting."
     }
   }
 }

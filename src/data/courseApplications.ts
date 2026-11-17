@@ -175,9 +175,10 @@ export const openCourseApplications = courseApplications.filter(
   (c): c is OpenCourseApplication => c.open,
 );
 
-/** "Utrecht", "Utrecht or Groningen", "A, B or C", for prose. */
-export function formatCityList(chapters: readonly { chapter: string }[]): string {
+/** "Utrecht", "Utrecht or Groningen", "A, B or C", for prose. `or` is the
+    page language's word for it (common.or in the dictionary). */
+export function formatCityList(chapters: readonly { chapter: string }[], or: string): string {
   const names = chapters.map((c) => c.chapter);
   if (names.length <= 1) return names.join("");
-  return `${names.slice(0, -1).join(", ")} or ${names[names.length - 1]}`;
+  return `${names.slice(0, -1).join(", ")} ${or} ${names[names.length - 1]}`;
 }

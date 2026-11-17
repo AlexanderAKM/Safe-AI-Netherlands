@@ -11,6 +11,15 @@ import {
   type ChapterName,
 } from "@/data/courseApplications";
 import { ATLAS } from "@/data/chapterAtlas";
+import type { Dictionary } from "@/i18n";
+import { format } from "@/i18n/rich";
+
+type Words = {
+  t: Dictionary["chapterAtlas"];
+  atlas: Dictionary["atlas"];
+  applications: Dictionary["applications"];
+  opensInNewTab: string;
+};
 
 /**
  * The chapters as an atlas: the three cities set as a vertical index on the
@@ -34,11 +43,20 @@ import { ATLAS } from "@/data/chapterAtlas";
 const HEAD_CELL = ["lg:row-start-1", "lg:row-start-2", "lg:row-start-3"];
 const PANEL_CELL = "lg:col-start-2 lg:row-start-1 lg:row-end-5";
 
-function CourseLine({ city, course }: { city: ChapterName; course: string }) {
+function CourseLine({
+  city,
+  course,
+  words,
+}: {
+  city: ChapterName;
+  course: string;
+  words: Words;
+}) {
   const entry = courseApplicationFor(city);
+  const { t } = words;
   return (
     <div className="border-t border-navy/10 pt-4">
-      <p className="kicker text-kicker-sm text-navy/65">The free course</p>
+      <p className="kicker text-kicker-sm text-navy/65">{t.freeCourse}</p>
       <p className="mt-1.5 font-serif text-title-sm text-navy">{course}</p>
       {entry.open ? (
         <>
@@ -46,10 +64,10 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
             {entry.rolling ? (
               entry.rollingNote
             ) : (
-              <>
-                Participants by {entry.deadlines.participants}. Facilitators by{" "}
-                {entry.deadlines.facilitators}.
-              </>
+              format(t.deadlines, {
+                participants: entry.deadlines.participants,
+                facilitators: entry.deadlines.facilitators,
+              })
             )}
           </p>
           <a
@@ -58,22 +76,24 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
             rel="noopener noreferrer"
             className="btn-accent mt-4 gap-2"
           >
-            Apply to the free course
+            {t.applyToCourse}
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {words.opensInNewTab}</span>
           </a>
         </>
       ) : (
         <p className="mt-1.5 font-sans text-caption text-navy/65">
-          Applications are closed. {entry.closedNote}
+          {format(words.applications.closedWithNote, { note: entry.closedNote })}
         </p>
       )}
     </div>
   );
 }
 
-export default function ChapterAtlas() {
-  const [activeId, setActiveId] = useState(ATLAS[0].id);
+/* A client component: the community page hands it its words as props. */
+export default function ChapterAtlas({ words }: { words: Words }) {
+  const { t, atlas } = words;
+  const [activeId, setActiveId] = useState<string>(ATLAS[0].id);
   const [visited, setVisited] = useState<string[]>([ATLAS[0].id]);
   const headRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const reduce = useReducedMotion();
@@ -118,11 +138,12 @@ export default function ChapterAtlas() {
   return (
     <div
       role="group"
-      aria-label="The chapters"
+      aria-label={t.label}
       className="lg:grid lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-14 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-x-20"
     >
       {ATLAS.map((chapter, i) => {
         const on = chapter.id === activeId;
+        const about = atlas[chapter.id];
         return (
           <Fragment key={chapter.id}>
             <button
@@ -162,7 +183,7 @@ export default function ChapterAtlas() {
                     on ? "text-navy/65" : "text-navy/45"
                   }`}
                 >
-                  {chapter.origin}
+                  {about.origin}
                 </span>
               </span>
               <CaretDown
@@ -195,7 +216,7 @@ export default function ChapterAtlas() {
                       src={`${chapter.photo}-960.webp`}
                       srcSet={`${chapter.photo}-640.webp 640w, ${chapter.photo}-960.webp 960w, ${chapter.photo}-1280.webp 1280w`}
                       sizes="(min-width: 1440px) 880px, (min-width: 1024px) 64vw, 100vw"
-                      alt={chapter.photoAlt}
+                      alt={about.photoAlt}
                       className="absolute inset-0 size-full object-cover"
                     />
                     <figcaption className="kicker absolute bottom-0 left-0 bg-navy/88 px-5 py-2.5 text-kicker-sm text-white">
@@ -205,9 +226,9 @@ export default function ChapterAtlas() {
 
                   <div className="grid gap-10 pt-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:gap-12">
                     <div className="flex flex-col gap-6">
-                      <p className="font-sans text-body text-navy/78">{chapter.summary}</p>
+                      <p className="font-sans text-body text-navy/78">{about.summary}</p>
                       <dl className="flex flex-col">
-                        {chapter.facts.map((fact) => (
+                        {about.facts.map((fact) => (
                           <div
                             key={fact.label}
                             className="grid gap-1 border-t border-navy/10 py-3 sm:grid-cols-[132px_minmax(0,1fr)] sm:gap-4"
@@ -217,12 +238,12 @@ export default function ChapterAtlas() {
                           </div>
                         ))}
                       </dl>
-                      <CourseLine city={chapter.city} course={chapter.course} />
+                      <CourseLine city={chapter.city} course={chapter.course} words={words} />
                       <Link
                         href={chapter.href}
                         className="group/link inline-flex items-center gap-2 self-start font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
                       >
-                        Everything on SAIN {chapter.city}
+                        {format(t.everythingOn, { city: chapter.city })}
                         <ArrowRight
                           size={16}
                           weight="regular"
@@ -234,7 +255,7 @@ export default function ChapterAtlas() {
 
                     <div className="flex flex-col">
                       <p className="kicker pb-3 text-kicker-sm text-navy/65">
-                        Coming up in {chapter.city}
+                        {format(t.comingUpIn, { city: chapter.city })}
                       </p>
                       {/* A third-party document does not get to decide how
                           tall this band is: fixed height, its own scrollport,
@@ -242,7 +263,7 @@ export default function ChapterAtlas() {
                       <div className="h-[460px] overflow-auto border border-navy/10 bg-white">
                         <iframe
                           src={`https://luma.com/embed/calendar/${chapter.calendar}/events?lt=light`}
-                          title={`Upcoming SAIN ${chapter.city} events`}
+                          title={format(t.calendarTitle, { city: chapter.city })}
                           loading="lazy"
                           className="h-full w-full border-0"
                           allowFullScreen
@@ -254,9 +275,9 @@ export default function ChapterAtlas() {
                         rel="noopener noreferrer"
                         className="mt-3 inline-flex items-center gap-1.5 self-start font-sans text-caption text-navy/72 underline decoration-navy/20 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
                       >
-                        The full {chapter.city} calendar on Luma
+                        {format(t.fullCalendar, { city: chapter.city })}
                         <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-                        <span className="sr-only"> (opens in a new tab)</span>
+                        <span className="sr-only"> {words.opensInNewTab}</span>
                       </a>
                     </div>
                   </div>
@@ -270,8 +291,7 @@ export default function ChapterAtlas() {
       {/* Under the index, from lg: the one note every calendar shares. */}
       <div className="hidden lg:col-start-1 lg:row-start-4 lg:block lg:self-end">
         <p className="pt-8 font-sans text-caption text-navy/60">
-          Events are walk-in unless the event page says otherwise. Questions? Each
-          chapter lists its events contact on its own page.
+          {t.walkIn}
         </p>
       </div>
     </div>
