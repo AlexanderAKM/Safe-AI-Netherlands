@@ -1,1 +1,121 @@
-{}
+{
+  "metadata": {
+    "description": "SAIN provides the community, courses and resources to help students and professionals join the AI Safety field in the Netherlands. Every programme is free."
+  },
+  "hero": {
+    "heading": "Your AI Safety career starts here.",
+    "intro": "AI Safety expertise has never been more important than today. SAIN provides the community, courses and resources to help students and professionals join the AI Safety field. We provide a clear path through education, community and practical projects, then connect strong contributors to the organisations, programmes and roles where they can take the next step.",
+    "hiring": "<strong>We are hiring paid starting teams</strong> for new chapters in Eindhoven, Delft and The Hague. Apply by {date}. <roles>See the roles</roles>",
+    "chartAlt": "An accelerating AI trajectory starts at the origin. Two people learn and practise while a third points up at the turning point, where the curve forks into a steep orange path and a gentler grey one."
+  },
+  "affiliations": {
+    "heading": "Network and institutional affiliations"
+  },
+  "mission": {
+    "heading": "Why SAIN exists",
+    "statement": "<muted>Too few people know how to work on AI safety, in research, in policy, or in public debate.</muted> SAIN <verb1>trains</verb1> more of them, <verb2>connects</verb2> them, and gets them <verb3>started</verb3>.",
+    "intro": "A free, volunteer-run path from curiosity to contribution, through courses, events, research and local chapters.",
+    "aboutLink": "Why SAIN exists"
+  },
+  "community": {
+    "heading": "Participate in the community",
+    "intro": "<strong>Discussion groups</strong>, <strong>hackathons</strong>, <strong>talks</strong>, and the evenings after. People meet <strong>friends and collaborators</strong> here, and often find their <strong>next step in AI Safety</strong>.",
+    "discord": "Our Discord community currently focuses on our SAIN Amsterdam, Utrecht and Groningen chapters.",
+    "nextCities": "Eindhoven, Delft and The Hague are next: <link>we are hiring their starting teams</link>.",
+    "moreCities": "More cities to come."
+  },
+  "communityPrints": {
+    "label": "Photographs from SAIN events",
+    "previous": "Previous photographs",
+    "next": "Next photographs",
+    "photos": {
+      "graduationAmsterdam": "SAIN Amsterdam graduates celebrating outdoors with balloons and flowers",
+      "closingGroningen": "A SAIN Groningen closing evening on a rooftop terrace at sunset",
+      "lecture": "A SAIN lecture filling a university auditorium",
+      "cafeAmsterdam": "SAIN Amsterdam members around a café table with SAIN mugs",
+      "technicalGraduates": "Technical AI Safety graduates beside the SAIN Amsterdam banner",
+      "circle": "An outdoor community gathering in a circle",
+      "indoor": "A SAIN group session indoors"
+    }
+  },
+  "courses": {
+    "heading": "Start with a free course",
+    "intro": "Pick a track. Every programme is free and taught in person. What you join, and how it runs, depends on the chapter.",
+    "applyNow": "You can apply now in {cities}."
+  },
+  "courseTracks": {
+    "whereItRuns": "Where it runs",
+    "notOffered": "(not offered)",
+    "seeAll": "See all courses"
+  },
+  "research": {
+    "heading": "The SAIN Project Hub",
+    "intro": "Bring your academic expertise to AI Safety. Connect with researchers, develop a focused project, and take your work further with support from SAIN.",
+    "illustrationLabel": "Two researchers examining evidence together at a shared workbench",
+    "offer": {
+      "matching": {
+        "title": "Supervised matching",
+        "description": "Connect with PhD+ supervisors for structured, mentored AI Safety research."
+      },
+      "compute": {
+        "title": "Compute & support",
+        "description": "Access compute and logistical support for your project or open collaboration."
+      },
+      "network": {
+        "title": "National network",
+        "description": "Work with researchers, advisors, and practitioners across SAIN’s Dutch chapters."
+      },
+      "publication": {
+        "title": "Publication track",
+        "description": "Build your research track record in a community with work at NeurIPS, ICLR, and other leading venues."
+      }
+    },
+    "steps": {
+      "label": "Your research journey",
+      "project": {
+        "title": "Choose a research project",
+        "body": "Join a project or bring your own question. Put your academic expertise to work on AI Safety, with the people and resources to take it further.",
+        "handbook": "Read the research handbook"
+      },
+      "support": {
+        "title": "Work with support",
+        "body": "SAIN helps coordinate research and arrange compute according to project needs. Develop your work with supervisor feedback or independent collaborators.",
+        "agendas": "Explore our supervisors’ research agendas",
+        "becomeSupervisor": "Become a supervisor"
+      },
+      "publish": {
+        "title": "Publish your findings",
+        "body": "Turn your findings into a paper, policy brief, or research tool. Get feedback on drafts, with potential support for conference travel.",
+        "allPublications": "View all publications"
+      }
+    },
+    "people": {
+      "agenda": "Research agenda (opens in a new tab)"
+    },
+    "publications": {
+      "readPaper": "Read paper",
+      "externalLabel": "{title} (opens in a new tab)"
+    },
+    "close": "Apply any time. Determine your commitment per project. Remote participation is welcome."
+  },
+  "careers": {
+    "heading": "Build an AI Safety career",
+    "intro": "Most people who end up working on AI Safety did not plan for it. We shorten that path with mentorship, funding advice, and introductions to the labs, institutes and ministries hiring in Europe right now.",
+    "tracks": {
+      "technicalResearch": "Technical research",
+      "governance": "Governance and policy",
+      "fieldBuilding": "Field building",
+      "security": "Security and compute"
+    },
+    "quote": {
+      "context": "Internship · Existential Risk Observatory",
+      "text": "Without this community I almost certainly wouldn’t be where I am.",
+      "project": "Mapping research on AI alignment techniques and government interventions"
+    }
+  },
+  "involved": {
+    "heading": "The next decade is being decided now",
+    "intro": "You do not need a background in AI to be useful here. Every SAIN programme is free, run by volunteers, and takes you from curious to contributing, so pick one and begin.",
+    "startCourse": "Start with a free course"
+  }
+}
