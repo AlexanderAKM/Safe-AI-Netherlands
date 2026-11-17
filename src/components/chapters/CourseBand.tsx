@@ -8,6 +8,7 @@ import {
 } from "@/data/courseApplications";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { format, getDictionary, rich, type Locale } from "@/i18n";
 
 /**
  * The chapter's course, and whether you can apply to it today.
@@ -24,10 +25,11 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 export default function CourseBand({
   city,
   heading,
-  openLead = "Applications are open.",
+  openLead,
   footnote,
   children,
   tail,
+  locale,
 }: {
   city: ChapterName;
   heading: string;
@@ -37,8 +39,11 @@ export default function CourseBand({
   children: ReactNode;
   /** What keeps running between cohorts, after the course's own footnote. */
   tail?: ReactNode;
+  locale: Locale;
 }) {
   const application = courseApplicationFor(city);
+  const dictionary = getDictionary(locale);
+  const t = dictionary.chapter.course;
 
   return (
     <section
@@ -62,11 +67,11 @@ export default function CourseBand({
                 {application.rolling ? (
                   application.chapterNote ?? application.rollingNote
                 ) : (
-                  <>
-                    {openLead} Participants apply by{" "}
-                    {application.deadlines.participants}; facilitators by{" "}
-                    {application.deadlines.facilitators}.
-                  </>
+                  format(t.deadlines, {
+                    openLead: openLead ?? t.openLead,
+                    participants: application.deadlines.participants,
+                    facilitators: application.deadlines.facilitators,
+                  })
                 )}
               </p>
               <a
@@ -75,25 +80,31 @@ export default function CourseBand({
                 rel="noopener noreferrer"
                 className="btn-accent mt-6 gap-2"
               >
-                Apply to the free course
+                {t.apply}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
               </a>
             </>
           ) : (
             <p className="mt-3 font-sans text-body text-navy/74">
-              Applications are closed. {application.closedNote}{" "}
-              <a
-                href={COMMUNITY_JOIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-              >
-                Join the community
-                <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>{" "}
-              and you will hear when they open.
+              {rich(
+                t.closed,
+                {
+                  link: (chunk) => (
+                    <a
+                      href={COMMUNITY_JOIN_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {chunk}
+                      <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
+                      <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
+                    </a>
+                  ),
+                },
+                { note: application.closedNote },
+              )}
             </p>
           )}
         </div>

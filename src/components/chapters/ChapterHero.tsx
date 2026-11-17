@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Reveal from "@/components/landing/Reveal";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * The chapter hero. Same split the landing runs: the claim on the left, the
@@ -25,6 +26,7 @@ export default function ChapterHero({
   photoAlt,
   caption,
   belowCta,
+  locale,
 }: {
   city: string;
   subheading: string;
@@ -34,7 +36,9 @@ export default function ChapterHero({
   caption: string;
   /** Amsterdam's partner lockup. No other chapter has one. */
   belowCta?: ReactNode;
+  locale: Locale;
 }) {
+  const dictionary = getDictionary(locale);
   const rung = (w: number) => photo.replace(/\.jpg$/, `-${w}.webp`);
 
   return (
@@ -76,15 +80,15 @@ export default function ChapterHero({
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Join the community
+              {dictionary.common.joinTheCommunity}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
             </a>
             <a
               href="#events"
               className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              See what&rsquo;s on this week
+              {dictionary.chapter.hero.whatsOn}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </a>
           </div>

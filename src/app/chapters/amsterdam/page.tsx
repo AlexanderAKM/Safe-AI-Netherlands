@@ -20,17 +20,21 @@ import lumaPastEventsAmsterdam from "@/data/lumaPastEventsAmsterdam.json";
 import {
   BLUEDOT_URL,
   FRONTIER_AI_GOVERNANCE_URL,
-  FRONTIER_AI_GOVERNANCE_WEEKS,
   TECHNICAL_AI_SAFETY_URL,
-  TECHNICAL_AI_SAFETY_WEEKS,
+  frontierAiGovernanceWeeks,
+  technicalAiSafetyWeeks,
 } from "@/data/bluedotCourses";
 import { sainAmsTeam } from "@/data/sainAmsTeam";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, rich } from "@/i18n";
+
+const locale = "en";
+const dictionary = getDictionary(locale);
+const t = dictionary.chapters.amsterdam;
 
 export const metadata: Metadata = {
-  title: "Amsterdam chapter",
-  description:
-    "Free courses and a weekly discussion group across UvA, VU Amsterdam, and the city's tech scene, supported by ELLIS Unit Amsterdam.",
+  title: t.meta.title,
+  description: t.meta.description,
 };
 
 const LUMA_CALENDAR_ID = "cal-WD5xl5IYLpY7xNm";
@@ -51,7 +55,7 @@ function ExternalLink({ href, children }: { href: string; children: ReactNode })
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={LINK}>
       {children}
-      <span className="sr-only"> (opens in a new tab)</span>
+      <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
     </a>
   );
 }
@@ -60,125 +64,83 @@ function ExternalLink({ href, children }: { href: string; children: ReactNode })
    on its own. */
 const courseNote = (
   <>
-    The courses are independently run by SAIN Amsterdam and are not affiliated
-    with UvA or VU. The certificate of completion is awarded by SAIN Amsterdam,
-    not BlueDot Impact.
+    {t.courses.note}
     <br />
-    Questions:{" "}
-    <a href={`mailto:${EDU_EMAIL}`} className={LINK}>
-      {EDU_EMAIL}
-    </a>
-    .
+    {rich(dictionary.chapter.course.questions, {}, {
+      email: (
+        <a href={`mailto:${EDU_EMAIL}`} className={LINK}>
+          {EDU_EMAIL}
+        </a>
+      ),
+    })}
   </>
 );
+
+/* A course summary's paragraphs, with BlueDot and the course itself linked
+   where the words <bluedot> and <course> mark them. */
+function summary(paragraphs: string[], courseUrl: string) {
+  return (
+    <>
+      {paragraphs.map((paragraph) => (
+        <p key={paragraph}>
+          {rich(paragraph, {
+            bluedot: (chunk) => <ExternalLink href={BLUEDOT_URL}>{chunk}</ExternalLink>,
+            course: (chunk) => <ExternalLink href={courseUrl}>{chunk}</ExternalLink>,
+          })}
+        </p>
+      ))}
+    </>
+  );
+}
 
 /* The two courses behind the same disclosure tabs Utrecht uses, so a reader
    moving between chapter pages meets one device for "this chapter's courses".
    The copy is the chapter's own; the week-by-week outline is BlueDot's, shared
-   with Groningen through bluedotCourses.ts. */
+   with Groningen through bluedotCourses.ts. The course names are BlueDot's and
+   stay in English. */
 const courses: Course[] = [
   {
     id: "technical",
     title: "Technical AI Safety",
-    summary: (
-      <>
-        <p>
-          Curious where your technical skills could make the biggest difference
-          for AI safety?
-        </p>
-        <p>
-          SAIN Amsterdam facilitates the{" "}
-          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
-          <ExternalLink href={TECHNICAL_AI_SAFETY_URL}>
-            Technical AI Safety
-          </ExternalLink>{" "}
-          course for people who want to help close the gap between how fast AI
-          capabilities are advancing and how well we can make them safe. Over
-          six weeks, you&rsquo;ll diagnose why building safe AI is so
-          technically hard, evaluate current safety techniques (what works,
-          what doesn&rsquo;t, and where the gaps are), and map how defences
-          might break by building your own &ldquo;kill chain&rdquo;. You&rsquo;ll
-          leave with a fundable action plan for where your skills can make the
-          biggest difference. SAIN Amsterdam supports ambitious students in
-          finding their next steps in an AI safety career.
-        </p>
-        <p>
-          Technical understanding is ideal, but not a prerequisite. This is a
-          foundational course, covering the foundations of technical AI safety.
-        </p>
-      </>
-    ),
-    outlineTitle: "What you will learn each week",
-    outline: TECHNICAL_AI_SAFETY_WEEKS,
+    summary: summary(t.courses.technical, TECHNICAL_AI_SAFETY_URL),
+    outlineTitle: dictionary.chapter.course.weeklyOutline,
+    outline: technicalAiSafetyWeeks(dictionary.bluedot),
     note: courseNote,
   },
   {
     id: "governance",
     title: "Frontier AI Governance",
-    summary: (
-      <>
-        <p>
-          What would it take to govern technology that is advancing faster than
-          the rules meant to guide it?
-        </p>
-        <p>
-          SAIN Amsterdam facilitates the{" "}
-          <ExternalLink href={BLUEDOT_URL}>BlueDot Impact</ExternalLink>{" "}
-          <ExternalLink href={FRONTIER_AI_GOVERNANCE_URL}>
-            Frontier AI Governance
-          </ExternalLink>{" "}
-          course, which helps you build the judgment to shape how frontier AI
-          is governed. Over six weeks, you&rsquo;ll assess the evidence,
-          compare competing strategies, and test your ideas through practical
-          exercises and group discussion, leaving with a concrete plan for how
-          you can contribute. Because the course leans heavily on US and China
-          perspectives, our facilitators are encouraged to also bring in
-          European and Dutch materials. Whatever your background, Safe AI
-          Netherlands is here to help you take your next step toward a career
-          in AI safety.
-        </p>
-        <p>
-          No governance background needed. This is a foundational course that
-          builds up the core ideas of AI governance step by step.
-        </p>
-      </>
-    ),
-    outlineTitle: "What you will learn each week",
-    outline: FRONTIER_AI_GOVERNANCE_WEEKS,
+    summary: summary(t.courses.governance, FRONTIER_AI_GOVERNANCE_URL),
+    outlineTitle: dictionary.chapter.course.weeklyOutline,
+    outline: frontierAiGovernanceWeeks(dictionary.bluedot),
     note: courseNote,
   },
 ];
 
+/* The photographs; their alt text and captions are chapters.amsterdam.prints,
+   in this order. */
 const prints: Print[] = [
   {
     src: "/photos/events/amsterdam/governance-graduation.jpg",
     widths: [320, 640, 900],
-    alt: "Frontier AI Governance graduates holding their certificates of completion",
-    caption: "Governance course graduation · SAIN Amsterdam",
     tilt: "xl:rotate-[-2deg]",
   },
   {
     src: "/photos/events/amsterdam/governance-course.jpg",
     widths: [320, 640, 900],
-    alt: "Participants mapping AI governance mechanisms on a whiteboard covered in sticky notes",
-    caption: "Frontier AI Governance session",
     tilt: "xl:rotate-[1.5deg]",
   },
   {
     src: "/photos/events/amsterdam/discussion-group.jpeg",
     widths: [320, 640, 900],
-    alt: "A discussion group around a café table, some holding SAIN Amsterdam mugs",
-    caption: "Discussion group · SAIN Amsterdam",
     tilt: "xl:rotate-[-1deg]",
   },
   {
     src: "/photos/events/amsterdam/chapter-meeting.jpg",
     widths: [320, 640, 900],
-    alt: "Two organisers presenting the chapter's plans to a full room",
-    caption: "Chapter meeting",
     tilt: "xl:rotate-[2deg]",
   },
-];
+].map((print, i) => ({ ...print, ...t.prints[i] }));
 
 const pastEvents = pastEventsThisYear(
   lumaPastEventsAmsterdam as RawPastEvent[],
@@ -189,13 +151,14 @@ export default function AmsterdamPage() {
     <>
       <ChapterHero
         city="Amsterdam"
-        subheading="Free courses and a weekly discussion group across UvA, VU Amsterdam, and the city's tech scene, supported by ELLIS Unit Amsterdam."
+        subheading={t.hero.subheading}
         photo="/photos/cities/amsterdam-hero.jpg"
-        photoAlt="Canal houses leaning over the water in central Amsterdam"
-        caption="Amsterdam, where the courses run on site"
+        photoAlt={t.hero.photoAlt}
+        caption={t.hero.caption}
+        locale={locale}
         belowCta={
           <p className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-1 font-sans text-footnote text-navy/65">
-            Supported by
+            {t.hero.supportedBy}
             <a
               href={ELLIS_URL}
               target="_blank"
@@ -215,7 +178,7 @@ export default function AmsterdamPage() {
                 aria-hidden="true"
                 className="ml-1 inline-block shrink-0 align-[-2px]"
               />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
             </a>
           </p>
         }
@@ -226,64 +189,77 @@ export default function AmsterdamPage() {
         calendarId={LUMA_CALENDAR_ID}
         calendarUrl={LUMA_PUBLIC_URL}
         eventsEmail={EVENTS_EMAIL}
+        locale={locale}
       />
 
       <CourseBand
         city="Amsterdam"
-        heading="Two free courses run in Amsterdam"
+        heading={t.courses.heading}
+        locale={locale}
         tail={
           <>
             <p className="font-sans text-body text-navy/74">
-              A weekly discussion group on technical AI safety reads and
-              discusses current research; about two hours a session, guided by
-              experienced mentors.
+              {t.courses.discussionGroup}
             </p>
             <p className="-mt-2 font-sans text-label text-navy/74">
-              Find the next discussion group on{" "}
-              <a
-                href="https://luma.com/SAIN_Amsterdam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-              >
-                SAIN Amsterdam&rsquo;s Luma page
-                <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+              {rich(
+                dictionary.chapter.course.findDiscussionGroup,
+                {
+                  link: (chunk) => (
+                    <a
+                      href="https://luma.com/SAIN_Amsterdam"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {chunk}
+                      <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                      <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
+                    </a>
+                  ),
+                },
+                { city: "Amsterdam" },
+              )}
             </p>
             <p className="font-sans text-body text-navy/74">
-              Members also run research projects, currently including work on
-              failure modes of multi-agent debate.
+              {t.courses.research}
             </p>
             <Link
               href="/research"
               className="inline-flex items-center gap-2 self-start font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Visit the Project hub
+              {dictionary.common.visitTheProjectHub}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </>
         }
       >
-        <CourseDisclosure courses={courses} />
+        <CourseDisclosure
+          courses={courses}
+          label={dictionary.chapter.course.label}
+          opensInNewTab={dictionary.common.opensInNewTab}
+        />
       </CourseBand>
 
       <TeamBand
         city="Amsterdam"
-        body="SAIN Amsterdam is directed by Ana Paula Castillo Rodriguez, with a team covering research, education, events, and PR. Formerly AI Safety Amsterdam (AISA), the chapter draws people from BSc students to professionals at companies like Deloitte and Shell, and from independent researchers to ELLIS assistant professors."
+        body={t.teamBody}
         team={team}
+        locale={locale}
       />
 
       <EvidenceBand
-        heading="This already happened in Amsterdam"
-        body="The chapter's courses have drawn more than 120 applicants. It has also run a season of weekly discussion groups and presented at the AI020 Conference and TEDxUniversiteit van Amsterdam."
+        heading={t.evidence.heading}
+        body={t.evidence.body}
       >
         <PrintStrip
           prints={prints}
-          label="Photographs from SAIN Amsterdam events"
+          label={t.evidence.photosLabel}
+          previous={dictionary.chapter.photos.previous}
+          next={dictionary.chapter.photos.next}
         />
 
-        <PastEvents events={pastEvents} />
+        <PastEvents events={pastEvents} locale={locale} />
       </EvidenceBand>
 
       <ChapterClose
@@ -292,6 +268,7 @@ export default function AmsterdamPage() {
         eduEmail={EDU_EMAIL}
         infoEmail={INFO_EMAIL}
         linktreeUrl={LINKTREE_URL}
+        locale={locale}
       />
     </>
   );

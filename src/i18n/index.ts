@@ -13,6 +13,9 @@ export type Dictionary = typeof en;
 
 const dictionaries: Record<Locale, Dictionary> = { en };
 
+/** The BCP 47 tag each language's dates are formatted with. */
+export const dateLocale: Record<Locale, string> = { en: "en-GB" };
+
 /* Server components only. A client component gets the slice it needs as a
    prop, so the dictionaries stay out of the browser bundle: it imports only
    the Dictionary type from here, and format/rich from "@/i18n/rich". */

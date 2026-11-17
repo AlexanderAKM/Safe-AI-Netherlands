@@ -38,12 +38,17 @@ const STRIP_GAP = 16;
 const ARROW =
   "strip-arrow absolute top-4 bottom-9 z-10 my-auto h-11 w-11 place-items-center bg-white text-navy opacity-55 shadow-[0_4px_14px_#021C4D14] hover:opacity-100 hover:shadow-[0_7px_22px_#021C4D1F] focus-visible:opacity-100 focus-visible:shadow-[0_7px_22px_#021C4D1F] disabled:pointer-events-none disabled:opacity-0";
 
+/* A client component: the page hands it the arrows' labels with its own. */
 export default function PrintStrip({
   prints,
   label,
+  previous,
+  next,
 }: {
   prints: Print[];
   label: string;
+  previous: string;
+  next: string;
 }) {
   const strip = useRef<HTMLDivElement>(null);
   const [reach, setReach] = useState({ back: false, forward: false });
@@ -138,7 +143,7 @@ export default function PrintStrip({
         type="button"
         onClick={() => push(-1)}
         disabled={!reach.back}
-        aria-label="Previous photographs"
+        aria-label={previous}
         className={`${ARROW} left-0 hover:-translate-x-0.5 focus-visible:-translate-x-0.5`}
       >
         <CaretLeft size={18} weight="bold" aria-hidden="true" />
@@ -147,7 +152,7 @@ export default function PrintStrip({
         type="button"
         onClick={() => push(1)}
         disabled={!reach.forward}
-        aria-label="Next photographs"
+        aria-label={next}
         className={`${ARROW} right-0 hover:translate-x-0.5 focus-visible:translate-x-0.5`}
       >
         <CaretRight size={18} weight="bold" aria-hidden="true" />

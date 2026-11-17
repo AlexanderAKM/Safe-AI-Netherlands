@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { dateLocale, getDictionary, type Locale } from "@/i18n";
 
 /**
  * What the chapter has already run this academic year, pulled from the Luma
@@ -51,15 +52,18 @@ export default function PastEvents({
   events,
   recapsUrl,
   recapsLabel,
+  locale,
 }: {
   events: ReturnType<typeof pastEventsThisYear>;
   recapsUrl?: string;
   recapsLabel?: string;
+  locale: Locale;
 }) {
+  const dictionary = getDictionary(locale);
   if (events.length === 0) {
     return (
       <p className="max-w-[var(--container-copy)] border-t border-navy/10 pt-4 font-sans text-body text-navy/65">
-        No past events are listed here yet.
+        {dictionary.chapter.pastEvents.none}
       </p>
     );
   }
@@ -76,7 +80,7 @@ export default function PastEvents({
               className="flex items-baseline gap-4 border-t border-navy/10 py-3 transition-colors duration-200 hover:bg-navy/5 focus-visible:bg-navy/5"
             >
               <span className="w-[76px] shrink-0 font-sans text-footnote text-navy/65">
-                {event.startAt.toLocaleDateString("en-GB", {
+                {event.startAt.toLocaleDateString(dateLocale[locale], {
                   month: "short",
                   year: "numeric",
                 })}
@@ -90,7 +94,7 @@ export default function PastEvents({
                 aria-hidden="true"
                 className="shrink-0 self-center text-navy/45"
               />
-              <span className="sr-only">(opens in a new tab)</span>
+              <span className="sr-only">{dictionary.common.opensInNewTab}</span>
             </a>
           </li>
         ))}
@@ -105,7 +109,7 @@ export default function PastEvents({
           >
             {recapsLabel}
             <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
           </a>
         </p>
       )}

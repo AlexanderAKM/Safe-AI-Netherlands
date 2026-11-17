@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { APPLICATION_REVIEW, isChapterRecruiting } from "@/data/openPositions";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * Who runs the chapter, by name.
@@ -27,12 +28,16 @@ export default function TeamBand({
   city,
   body,
   team,
+  locale,
 }: {
   city: string;
   body: string;
   team: readonly TeamMember[];
+  locale: Locale;
 }) {
   const recruiting = isChapterRecruiting(city);
+  const dictionary = getDictionary(locale);
+  const t = dictionary.chapter.team;
 
   return (
     <section
@@ -42,12 +47,12 @@ export default function TeamBand({
     >
       <div className="shell band-section">
         <div className="max-w-[var(--container-copy)]">
-          <p className="kicker text-kicker text-navy/65">Run by volunteers</p>
+          <p className="kicker text-kicker text-navy/65">{t.kicker}</p>
           <h2
             id="team-heading"
             className="mt-4 font-serif text-heading-sm text-navy"
           >
-            The people you will meet
+            {t.heading}
           </h2>
           <p className="mt-4 font-sans text-body text-navy/74">{body}</p>
         </div>
@@ -77,7 +82,7 @@ export default function TeamBand({
                       className="ml-1 inline-block shrink-0 align-[-2px]"
                     />
                     <span className="sr-only">
-                      , profile on LinkedIn (opens in a new tab)
+                      {t.linkedinProfile} {dictionary.common.opensInNewTab}
                     </span>
                   </a>
                 ) : (
@@ -94,13 +99,13 @@ export default function TeamBand({
         {recruiting && (
           <div className="mt-10 flex flex-col items-start gap-5 border-t border-navy/14 pt-7">
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              The chapter is recruiting. {APPLICATION_REVIEW.sentence}
+              {t.recruiting} {APPLICATION_REVIEW.sentence}
             </p>
             <Link
               href={`/open-positions#chapter-${city.toLowerCase()}`}
               className="btn-outline-ink"
             >
-              See open positions
+              {t.seeOpenPositions}
             </Link>
           </div>
         )}

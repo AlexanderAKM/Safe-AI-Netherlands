@@ -7,12 +7,19 @@ import {
   groningenEventsArchive,
 } from "@/data/groningenEventsArchive";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
+import { format, getDictionary } from "@/i18n";
+
+const dictionary = getDictionary("en");
+const t = dictionary.groningenArchive;
 
 export const metadata: Metadata = {
-  title: "Groningen events archive",
-  description:
-    "Every event the Groningen chapter has run since October 2023, first as AISIG and then as SAIN Groningen.",
+  title: t.meta.title,
+  description: t.meta.description,
 };
+
+/* The entries themselves (src/data/groningenEventsArchive.ts) are the
+   chapter's announcements as they went out, so they stay in English in every
+   language; this page's own words are in en.json under groningenArchive. */
 
 /* The archive images are announcement graphics as often as they are
    photographs, so they are printed small and left to do their own work. Rungs
@@ -42,13 +49,10 @@ export default function GroningenEventsArchivePage() {
             id="archive-heading"
             className="mt-6 max-w-[720px] font-serif text-display text-navy"
           >
-            Every event the chapter has run
+            {t.heading}
           </h1>
           <p className="mt-5 max-w-[var(--container-copy)] font-sans text-body text-navy/72">
-            Everything before 30 April 2026 was organised as the AI Safety
-            Initiative Groningen (AISIG); everything after it continues as SAIN
-            Groningen. Each entry keeps the chapter&rsquo;s own announcement
-            from the time, so the wording is the wording it went out with.
+            {t.body}
           </p>
         </div>
       </section>
@@ -68,7 +72,9 @@ export default function GroningenEventsArchivePage() {
                     {year}
                   </h2>
                   <p className="font-sans text-footnote text-navy/65">
-                    {events.length} {events.length === 1 ? "event" : "events"}
+                    {format(events.length === 1 ? t.count.one : t.count.other, {
+                      count: events.length,
+                    })}
                   </p>
                 </div>
 
@@ -107,7 +113,7 @@ export default function GroningenEventsArchivePage() {
                             happened. Attributing the tense per row is what
                             keeps a 2023 entry from reading as a live one. */}
                         <p className="kicker mt-3 text-kicker-sm text-navy/55">
-                          From the announcement at the time
+                          {t.fromAnnouncement}
                         </p>
                         <div className="mt-1.5 flex max-w-[var(--container-copy)] flex-col gap-2.5 font-sans text-[15.5px] leading-[25px] text-navy/74">
                           {event.description
@@ -130,11 +136,11 @@ export default function GroningenEventsArchivePage() {
         <div className="shell band-close flex flex-col items-start gap-6">
           <Reveal>
             <p className="max-w-[560px] font-serif text-closing text-white">
-              Every one of these was free and open to walk into.
+              {t.close}
             </p>
           </Reveal>
           <Link href="/chapters/groningen#events" className="btn-accent">
-            See what&rsquo;s on this week
+            {dictionary.chapter.hero.whatsOn}
           </Link>
         </div>
       </section>

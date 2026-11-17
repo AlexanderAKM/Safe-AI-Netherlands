@@ -80,7 +80,17 @@ function useCompact() {
   );
 }
 
-export default function CourseDisclosure({ courses }: { courses: Course[] }) {
+/* A client component: the page hands it the group's label and the
+   screen-reader note with the courses. */
+export default function CourseDisclosure({
+  courses,
+  label,
+  opensInNewTab,
+}: {
+  courses: Course[];
+  label: string;
+  opensInNewTab: string;
+}) {
   const [activeId, setActiveId] = useState<string | null>(courses[0].id);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const compact = useCompact();
@@ -131,7 +141,7 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
     <div
       className={`bg-white md:grid ${columns}`}
       role="group"
-      aria-label="Courses in this chapter"
+      aria-label={label}
     >
       {courses.map((course, i) => {
         const on = course.id === activeId;
@@ -250,7 +260,7 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                                 aria-hidden="true"
                                 className="shrink-0 self-center text-navy/55"
                               />
-                              <span className="sr-only"> (opens in a new tab)</span>
+                              <span className="sr-only"> {opensInNewTab}</span>
                             </a>
                           ) : (
                             item.title

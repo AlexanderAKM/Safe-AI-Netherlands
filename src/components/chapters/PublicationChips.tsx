@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, type Locale } from "@/i18n";
 
 /**
  * Published work with a chapter's people on it.
@@ -21,9 +22,12 @@ export type Publication = {
 
 export default function PublicationChips({
   publications,
+  locale,
 }: {
   publications: Publication[];
+  locale: Locale;
 }) {
+  const dictionary = getDictionary(locale);
   return (
     <ul role="list" className="flex flex-col gap-3">
       {publications.map((paper) => (
@@ -49,7 +53,7 @@ export default function PublicationChips({
             </span>
             {paper.readLabel && (
               <span className="hidden shrink-0 font-sans text-label text-navy sm:inline">
-                Read paper
+                {dictionary.landing.readPaper}
               </span>
             )}
             <ArrowUpRight
@@ -58,7 +62,7 @@ export default function PublicationChips({
               aria-hidden="true"
               className="shrink-0 text-navy/55"
             />
-            <span className="sr-only">(opens in a new tab)</span>
+            <span className="sr-only">{dictionary.common.opensInNewTab}</span>
           </a>
         </li>
       ))}

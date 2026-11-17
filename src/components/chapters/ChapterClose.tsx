@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import { format, getDictionary, type Locale } from "@/i18n";
 
 /**
  * The close. Inverse navy, because this band asks for a decision.
@@ -17,13 +18,17 @@ export default function ChapterClose({
   eduEmail,
   infoEmail,
   linktreeUrl,
+  locale,
 }: {
   city: string;
   eventsEmail: string;
   eduEmail: string;
   infoEmail: string;
   linktreeUrl: string;
+  locale: Locale;
 }) {
+  const dictionary = getDictionary(locale);
+  const t = dictionary.chapter.close;
   const mailto =
     "underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white";
 
@@ -40,12 +45,10 @@ export default function ChapterClose({
               id="join-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              Everything SAIN runs in {city} is free. The only step is showing
-              up.
+              {format(t.heading, { city })}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              Fill in the onboarding form and the chapter will find you a first
-              session.
+              {t.body}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
@@ -55,19 +58,19 @@ export default function ChapterClose({
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Join the community
+              {dictionary.common.joinTheCommunity}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
             </a>
             <Link href="/get-involved" className="btn-ghost-inverse">
-              Volunteer
+              {dictionary.common.volunteer}
             </Link>
           </div>
         </div>
 
         <p className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-white/16 pt-5 font-sans text-footnote text-white/60">
           <span>
-            Events:{" "}
+            {t.events}{" "}
             <a href={`mailto:${eventsEmail}`} className={mailto}>
               {eventsEmail}
             </a>
@@ -76,7 +79,7 @@ export default function ChapterClose({
             ·
           </span>
           <span>
-            Courses:{" "}
+            {t.courses}{" "}
             <a href={`mailto:${eduEmail}`} className={mailto}>
               {eduEmail}
             </a>
@@ -85,7 +88,7 @@ export default function ChapterClose({
             ·
           </span>
           <span>
-            Everything else:{" "}
+            {t.everythingElse}{" "}
             <a href={`mailto:${infoEmail}`} className={mailto}>
               {infoEmail}
             </a>
@@ -99,9 +102,9 @@ export default function ChapterClose({
             rel="noopener noreferrer"
             className={`inline-flex items-center gap-1.5 ${mailto}`}
           >
-            All {city} links
+            {format(t.allLinks, { city })}
             <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
           </a>
         </p>
       </div>
