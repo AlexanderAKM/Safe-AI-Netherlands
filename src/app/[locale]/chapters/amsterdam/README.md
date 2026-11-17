@@ -46,9 +46,12 @@ empty record. Every row carries its own month and year either way.
 
 | File | Purpose |
 | --- | --- |
-| `page.tsx` | Amsterdam's facts: calendar id, inboxes, course copy, team. |
+| `page.tsx` | Amsterdam's facts: calendar id, inboxes, photographs, team. |
+| `messages/en/chapters.json` | The page's copy, under `amsterdam` (course texts, captions, team and record lines); the shared bands' copy is at the top of the file. |
+| `messages/nl/chapters.json` | The same keys in Dutch. |
 | `src/components/chapters/*` | The shared six-band chapter template. |
-| `src/data/sainAmsTeam.ts` | Team roster (name + role). |
+| `src/data/sainAmsTeam.ts` | Team roster (name + role key; the role titles are under `team.roles` in `chapters.json`). |
+| `src/data/bluedotCourses.ts` | The two BlueDot courses' week links, shared with Groningen; the week titles are under `bluedot` in `chapters.json`. |
 | `src/data/courseApplications.ts` | Whether the cohort is open, and the closed note. |
 | `src/data/lumaPastEventsAmsterdam.json` | Snapshot of past Luma events. |
 | `scripts/fetch-luma-events-amsterdam.mjs` | Refresh script for the snapshot above. |

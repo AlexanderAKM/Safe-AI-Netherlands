@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { formatDate } from "@/i18n/format";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import Link from "next/link";
 
 import Reveal from "@/components/landing/Reveal";
 import {
   groningenEventYears,
   groningenEventsArchive,
+  type GroningenArchivedEvent,
 } from "@/data/groningenEventsArchive";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 
@@ -17,10 +20,13 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({
+    locale,
+    namespace: "chapters.groningenEvents.metadata",
+  });
   return {
-    title: "Groningen events archive",
-    description:
-      "Every event the Groningen chapter has run since October 2023, first as AISIG and then as SAIN Groningen.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/chapters/groningen/events" }),
   };
 }
@@ -32,6 +38,37 @@ const WIDTHS = [320, 640];
 const rung = (src: string, width: number) =>
   src.replace(/\.[a-zA-Z]+$/, `-${width}.webp`);
 
+/* When an event ran. The English page prints the date and time exactly as the
+   announcement did; every other language formats `start` and `end` with the
+   messages under groningenEvents.event.when: "woensdag 1 juli 2026,
+   18.00-22.00 uur". */
+function eventWhen(
+  event: GroningenArchivedEvent,
+  locale: Locale,
+  t: (key: string, values: Record<string, string>) => string,
+): string {
+  if (locale === "en") {
+    return event.time ? `${event.date}, ${event.time}` : event.date;
+  }
+  const [startDay, startClock] = event.start.split("T");
+  const [endDay, endClock] = event.end.split("T");
+  const clock = (hhmm: string) => {
+    const [hour, minute] = hhmm.split(":");
+    return t("time", { hour, minute });
+  };
+  if (startDay !== endDay) {
+    return t("range", {
+      startDate: formatDate(startDay, locale, "weekdayLong"),
+      startTime: clock(startClock),
+      endDate: formatDate(endDay, locale, "weekdayLong"),
+      endTime: clock(endClock),
+    });
+  }
+  const date = formatDate(startDay, locale, "weekdayLong");
+  if (startClock === endClock) return t("at", { date, time: clock(startClock) });
+  return t("sameDay", { date, start: clock(startClock), end: clock(endClock) });
+}
+
 export default function GroningenEventsArchivePage({
   params,
 }: {
@@ -39,6 +76,9 @@ export default function GroningenEventsArchivePage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("chapters.groningenEvents");
+  const tWhen = useTranslations("chapters.groningenEvents.event.when");
+
   return (
     <>
       {/* A record, not a pitch: white ground, no photograph behind the claim,
@@ -59,13 +99,10 @@ export default function GroningenEventsArchivePage({
             id="archive-heading"
             className="mt-6 max-w-[720px] font-serif text-display text-navy"
           >
-            Every event the chapter has run
+            {t("hero.heading")}
           </h1>
           <p className="mt-5 max-w-[var(--container-copy)] font-sans text-body text-navy/72">
-            Everything before 30 April 2026 was organised as the AI Safety
-            Initiative Groningen (AISIG); everything after it continues as SAIN
-            Groningen. Each entry keeps the chapter&rsquo;s own announcement
-            from the time, so the wording is the wording it went out with.
+            {t("hero.intro")}
           </p>
         </div>
       </section>
@@ -85,7 +122,7 @@ export default function GroningenEventsArchivePage({
                     {year}
                   </h2>
                   <p className="font-sans text-footnote text-navy/65">
-                    {events.length} {events.length === 1 ? "event" : "events"}
+                    {t("year.count", { count: events.length })}
                   </p>
                 </div>
 
@@ -113,10 +150,12 @@ export default function GroningenEventsArchivePage({
 
                       <div className="min-w-0">
                         <p className="font-sans text-footnote text-navy/65">
-                          {event.date}
-                          {event.time ? `, ${event.time}` : ""}
+                          {eventWhen(event, locale, tWhen)}
                         </p>
-                        <h3 className="mt-1.5 font-serif text-title-sm text-navy">
+                        <h3
+                          lang="en"
+                          className="mt-1.5 font-serif text-title-sm text-navy"
+                        >
                           {event.title}
                         </h3>
                         {/* The blurbs are the original announcements, so many
@@ -124,9 +163,12 @@ export default function GroningenEventsArchivePage({
                             happened. Attributing the tense per row is what
                             keeps a 2023 entry from reading as a live one. */}
                         <p className="kicker mt-3 text-kicker-sm text-navy/55">
-                          From the announcement at the time
+                          {t("event.fromAnnouncement")}
                         </p>
-                        <div className="mt-1.5 flex max-w-[var(--container-copy)] flex-col gap-2.5 font-sans text-[15.5px] leading-[25px] text-navy/74">
+                        <div
+                          lang="en"
+                          className="mt-1.5 flex max-w-[var(--container-copy)] flex-col gap-2.5 font-sans text-[15.5px] leading-[25px] text-navy/74"
+                        >
                           {event.description
                             .split("\n\n")
                             .map((paragraph) => (
@@ -147,11 +189,11 @@ export default function GroningenEventsArchivePage({
         <div className="shell band-close flex flex-col items-start gap-6">
           <Reveal>
             <p className="max-w-[560px] font-serif text-closing text-white">
-              Every one of these was free and open to walk into.
+              {t("close.heading")}
             </p>
           </Reveal>
           <Link href="/chapters/groningen#events" className="btn-accent">
-            See what&rsquo;s on this week
+            {t("close.button")}
           </Link>
         </div>
       </section>

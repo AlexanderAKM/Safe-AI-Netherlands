@@ -25,6 +25,9 @@ import { ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
  * Closed panels leave the flow at every width. They used to stay in the shared
  * cell from md up, invisible, so a short course sat above the empty height of
  * the longest one (Utrecht's old ARENA themes under Fundamentals' session list).
+ *
+ * A client component, so its two labels arrive translated from the page, like
+ * the courses themselves.
  */
 
 /**
@@ -80,7 +83,17 @@ function useCompact() {
   );
 }
 
-export default function CourseDisclosure({ courses }: { courses: Course[] }) {
+export default function CourseDisclosure({
+  courses,
+  label,
+  newTabLabel,
+}: {
+  courses: Course[];
+  /** The group's accessible name: "Courses in this chapter". */
+  label: string;
+  /** Read after an outline link: "(opens in a new tab)". */
+  newTabLabel: string;
+}) {
   const [activeId, setActiveId] = useState<string | null>(courses[0].id);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const compact = useCompact();
@@ -131,7 +144,7 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
     <div
       className={`bg-white md:grid ${columns}`}
       role="group"
-      aria-label="Courses in this chapter"
+      aria-label={label}
     >
       {courses.map((course, i) => {
         const on = course.id === activeId;
@@ -250,7 +263,7 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                                 aria-hidden="true"
                                 className="shrink-0 self-center text-navy/55"
                               />
-                              <span className="sr-only"> (opens in a new tab)</span>
+                              <span className="sr-only"> {newTabLabel}</span>
                             </a>
                           ) : (
                             item.title

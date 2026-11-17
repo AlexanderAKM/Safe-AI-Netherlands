@@ -1,1 +1,351 @@
-{}
+{
+  "hero": {
+    "seeWhatsOn": "Bekijk wat er deze week te doen is"
+  },
+  "showUp": {
+    "heading": "Kom deze week langs",
+    "body": "Alles op de kalender is gratis en voor iedereen toegankelijk. Je hoeft geen lid te zijn en je hoeft de cursus niet gevolgd te hebben. Details en aanmelden vind je in de Luma-kalender van de afdeling hieronder.",
+    "calendarTitle": "Evenementenkalender van SAIN {city}",
+    "fullCalendar": "Bekijk de volledige kalender op Luma",
+    "questions": "Vragen over een evenement: <link>{email}</link>"
+  },
+  "courseBand": {
+    "openLead": "De aanmelding is open.",
+    "deadlines": "Deelnemers melden zich uiterlijk {participants} aan; facilitators uiterlijk {facilitators}.",
+    "closed": "De aanmelding is gesloten. {closedNote} <link>Word lid van de community</link>, dan hoor je het zodra de aanmelding weer opengaat.",
+    "questions": "Vragen: <link>{email}</link>.",
+    "findDiscussionGroup": "De volgende discussiegroep vind je op <link>de Luma-pagina van SAIN {city}</link>"
+  },
+  "courseDisclosure": {
+    "label": "Cursussen van deze afdeling"
+  },
+  "bluedot": {
+    "outlineTitle": "Wat je elke week leert",
+    "technicalAiSafety": {
+      "technicalChallenge": "De technische uitdaging van AI",
+      "saferModels": "Veiligere modellen trainen",
+      "detectingDanger": "Gevaar opsporen",
+      "understandingAi": "AI begrijpen",
+      "minimisingHarm": "Schade beperken",
+      "career": "Plan je carrière in AI-veiligheid"
+    },
+    "frontierAiGovernance": {
+      "evidence": "Beoordeel het bewijs over frontier AI",
+      "institutions": "Breng instellingen en macht in kaart",
+      "strategies": "Vergelijk governancestrategieën",
+      "proposals": "Test voorstellen onder druk",
+      "position": "Verdedig een standpunt",
+      "career": "Plan je carrière in AI-veiligheid"
+    }
+  },
+  "team": {
+    "kicker": "Gerund door vrijwilligers",
+    "heading": "De mensen die je ontmoet",
+    "linkedin": ", profiel op LinkedIn (opent in een nieuw tabblad)",
+    "roles": {
+      "director": "Directeur",
+      "researchOperationLead": "Hoofd onderzoekscoördinatie",
+      "researchOperationVu": "Onderzoekscoördinatie (Vrije Universiteit)",
+      "researchOperations": "Onderzoekscoördinatie",
+      "researchOps": "Onderzoekscoördinatie",
+      "educationLead": "Hoofd onderwijs",
+      "eventsLead": "Hoofd evenementen",
+      "communicationsLead": "Hoofd communicatie",
+      "communityManager": "Communitymanager",
+      "discussionCoordinator": "Coördinator discussiegroepen",
+      "discussionGroupFacilitator": "Facilitator discussiegroep",
+      "discussionFacilitator": "Facilitator discussiegroep",
+      "facilitator": "Facilitator",
+      "eventsTeamMember": "Lid evenemententeam",
+      "advisor": "Adviseur",
+      "advisoryBoard": "Raad van advies"
+    },
+    "recruiting": "De afdeling zoekt versterking.",
+    "seeOpenPositions": "Bekijk de vacatures"
+  },
+  "printStrip": {
+    "label": "Foto's van evenementen van SAIN {city}",
+    "previous": "Vorige foto's",
+    "next": "Volgende foto's"
+  },
+  "pastEvents": {
+    "empty": "Er staan hier nog geen eerdere evenementen."
+  },
+  "publicationChips": {
+    "readPaper": "Lees de paper"
+  },
+  "close": {
+    "heading": "Alles wat SAIN in {city} organiseert is gratis. Je hoeft alleen maar langs te komen.",
+    "body": "Vul het aanmeldformulier in, dan zoekt de afdeling een eerste bijeenkomst voor je uit.",
+    "events": "Evenementen: <link>{email}</link>",
+    "courses": "Cursussen: <link>{email}</link>",
+    "everythingElse": "Overige vragen: <link>{email}</link>",
+    "allLinks": "Alle links van SAIN {city}"
+  },
+  "amsterdam": {
+    "metadata": {
+      "title": "Afdeling Amsterdam",
+      "description": "Gratis cursussen en een wekelijkse discussiegroep voor de UvA, de VU en de Amsterdamse techscene, met steun van ELLIS Unit Amsterdam."
+    },
+    "hero": {
+      "subheading": "Gratis cursussen en een wekelijkse discussiegroep voor de UvA, de VU en de Amsterdamse techscene, met steun van ELLIS Unit Amsterdam.",
+      "photoAlt": "Grachtenpanden die over het water hellen, in het centrum van Amsterdam",
+      "caption": "Amsterdam, waar de cursussen op locatie plaatsvinden",
+      "supportedBy": "Met steun van"
+    },
+    "programs": {
+      "heading": "Twee gratis cursussen in Amsterdam",
+      "courses": {
+        "technical": {
+          "intro": "Benieuwd waar jouw technische vaardigheden het meeste verschil kunnen maken voor AI-veiligheid?",
+          "body": "SAIN Amsterdam begeleidt de cursus <course>Technical AI Safety</course> van <bluedot>BlueDot Impact</bluedot>, voor mensen die willen helpen de kloof te dichten tussen hoe snel de mogelijkheden van AI groeien en hoe goed we ze veilig kunnen maken. In zes weken analyseer je waarom het technisch zo moeilijk is om veilige AI te bouwen, beoordeel je de huidige veiligheidstechnieken (wat werkt, wat niet, en waar de gaten zitten) en breng je in kaart hoe verdedigingen kunnen bezwijken door je eigen “kill chain” op te stellen. Je sluit af met een actieplan waarvoor je financiering kunt aanvragen, gericht op de plek waar jouw vaardigheden het meeste verschil maken. SAIN Amsterdam helpt ambitieuze studenten hun volgende stap te vinden in een carrière in AI-veiligheid.",
+          "background": "Technische kennis is ideaal, maar geen vereiste. Dit is een basiscursus over de grondslagen van technische AI-veiligheid."
+        },
+        "governance": {
+          "intro": "Wat is er nodig om technologie in goede banen te leiden die sneller gaat dan de regels die haar moeten sturen?",
+          "body": "SAIN Amsterdam begeleidt de cursus <course>Frontier AI Governance</course> van <bluedot>BlueDot Impact</bluedot>, die je helpt het oordeelsvermogen te ontwikkelen om mee vorm te geven aan de governance van frontier AI. In zes weken weeg je het bewijs, vergelijk je concurrerende strategieën en test je je ideeën in praktische opdrachten en groepsdiscussies. Je sluit af met een concreet plan voor hoe jij kunt bijdragen. Omdat de cursus sterk leunt op Amerikaanse en Chinese perspectieven, moedigen we onze facilitators aan om ook Europees en Nederlands materiaal in te brengen. Wat je achtergrond ook is, Safe AI Netherlands helpt je graag bij je volgende stap richting een carrière in AI-veiligheid.",
+          "background": "Je hebt geen achtergrond in governance nodig. Dit is een basiscursus die de kernideeën van AI-governance stap voor stap opbouwt."
+        },
+        "note": "De cursussen worden zelfstandig georganiseerd door SAIN Amsterdam en zijn niet verbonden aan de UvA of de VU. Het certificaat dat je na afronding krijgt, wordt uitgereikt door SAIN Amsterdam, niet door BlueDot Impact."
+      },
+      "discussionGroup": "Een wekelijkse discussiegroep over technische AI-veiligheid leest en bespreekt actueel onderzoek: zo'n twee uur per bijeenkomst, onder begeleiding van ervaren mentoren.",
+      "research": "Leden doen ook onderzoeksprojecten, op dit moment onder meer naar de manieren waarop multi-agent debate kan falen."
+    },
+    "team": {
+      "body": "SAIN Amsterdam wordt geleid door Ana Paula Castillo Rodriguez, met een team voor onderzoek, onderwijs, evenementen en pr. De afdeling heette eerder AI Safety Amsterdam (AISA) en trekt mensen van bachelorstudenten tot professionals bij bedrijven als Deloitte en Shell, en van onafhankelijke onderzoekers tot universitair docenten bij ELLIS."
+    },
+    "record": {
+      "heading": "Dit is al gebeurd in Amsterdam",
+      "body": "De cursussen van de afdeling trokken meer dan 120 aanmeldingen. Daarnaast organiseerde de afdeling een seizoen wekelijkse discussiegroepen en gaf ze presentaties op de AI020 Conference en TEDxUniversiteit van Amsterdam.",
+      "prints": {
+        "governanceGraduation": {
+          "alt": "Deelnemers die Frontier AI Governance hebben afgerond, met hun certificaat in de hand",
+          "caption": "Afsluiting governancecursus · SAIN Amsterdam"
+        },
+        "governanceCourse": {
+          "alt": "Deelnemers brengen mechanismen van AI-governance in kaart op een whiteboard vol post-its",
+          "caption": "Bijeenkomst Frontier AI Governance"
+        },
+        "discussionGroup": {
+          "alt": "Een discussiegroep rond een cafétafel, sommigen met een mok van SAIN Amsterdam",
+          "caption": "Discussiegroep · SAIN Amsterdam"
+        },
+        "chapterMeeting": {
+          "alt": "Twee organisatoren presenteren de plannen van de afdeling aan een volle zaal",
+          "caption": "Afdelingsbijeenkomst"
+        }
+      }
+    }
+  },
+  "groningen": {
+    "metadata": {
+      "title": "Afdeling Groningen",
+      "description": "Gratis cursussen, hackathons en gepubliceerd onderzoek, sinds 2023 in Groningen. Het begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen."
+    },
+    "hero": {
+      "subheading": "Gratis cursussen, hackathons en gepubliceerd onderzoek, sinds 2023 in Groningen. Het begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen.",
+      "photoAlt": "Een gracht in Groningen met de toren van de Der Aa-kerk achter de huizen",
+      "caption": "Groningen, thuisbasis van de afdeling sinds 2023"
+    },
+    "programs": {
+      "heading": "Doe mee aan een van onze gratis cursussen!",
+      "courses": {
+        "technical": {
+          "intro": "Benieuwd naar de technische benaderingen van AI-veiligheid?",
+          "body": "SAIN Groningen begeleidt de cursus <course>Technical AI Safety</course> van <bluedot>BlueDot Impact</bluedot>, voor mensen die meer willen weten over de open problemen in technische AI-veiligheid en de technieken om ze aan te pakken. De cursus duurt zes weken, met elke week ongeveer drie uur leeswerk en een discussiebijeenkomst van twee uur. Een facilitator begeleidt de discussiebijeenkomsten: de perfecte plek om de stof te bespreken en anderen te leren kennen die ook graag aan AI-veiligheid willen werken."
+        },
+        "governance": {
+          "intro": "Benieuwd naar de governancevraagstukken rond AI-veiligheid?",
+          "body": "SAIN Groningen begeleidt de cursus <course>Frontier AI Governance</course> van <bluedot>BlueDot Impact</bluedot>, die je helpt het oordeelsvermogen te ontwikkelen om mee vorm te geven aan de governance van frontier AI. Omdat de cursus van BlueDot vooral over de verhouding tussen de VS en China gaat, hebben we het programma aangevuld met zorgvuldig gekozen materiaal over AI-veiligheid vanuit het perspectief van de EU. De cursus duurt zes weken, met elke week ongeveer drie uur leeswerk en een discussiebijeenkomst van twee uur. Een facilitator begeleidt de discussiebijeenkomsten: de perfecte plek om het materiaal grondig te bespreken en anderen te leren kennen die ook graag aan AI-veiligheid willen werken."
+        }
+      },
+      "footnote": "De cursussen worden zelfstandig georganiseerd door SAIN Groningen en zijn niet verbonden aan de Rijksuniversiteit Groningen (RUG). Het certificaat dat je na afronding krijgt, wordt uitgereikt door SAIN Groningen, niet door BlueDot Impact.",
+      "discussionGroups": "Het hele jaar door komen twee discussiegroepen samen, elk met minstens één ervaren mentor: technische AI-alignment (scalable oversight, evaluatie en red-teaming, preference learning, robuustheid, risico's bij de inzet van AI) en AI-governance en privacy (beleid, regelgeving, verantwoording, transparantie en eerlijkheid)."
+    },
+    "team": {
+      "body": "SAIN Groningen wordt geleid door Tarteel Mohamed. Het werk is verdeeld over vier teams: onderwijs, evenementen, communicatie en onderzoekscoördinatie; een opzet die andere afdelingen overnemen nu ze van start gaan. De afdeling is voortgekomen uit het AI Safety Initiative Groningen (AISIG), dat sinds 2023 bestaat."
+    },
+    "record": {
+      "heading": "30 evenementen en de teller loopt",
+      "body": "Sinds oktober 2023 heeft de afdeling 30 evenementen georganiseerd: hackathons, cursusafsluitingen, onderzoekslezingen, pubquizzen en borrels; eerst als AISIG en sinds 30 april 2026 als SAIN Groningen. Onderzoek van leden is gepubliceerd op workshops van NeurIPS en ICLR.",
+      "prints": {
+        "graduationMarch2026": {
+          "alt": "Een spreker voor de dia van de cursusafsluiting, tijdens een ceremonie in Groningen",
+          "caption": "Cursusafsluiting · maart 2026"
+        },
+        "graduationNovember2025": {
+          "alt": "Twee deelnemers presenteren hun eindproject aan de zaal",
+          "caption": "Cursusafsluiting · november 2025"
+        },
+        "pubQuiz": {
+          "alt": "Organisatoren presenteren voor een zittend publiek tijdens een avond in Groningen",
+          "caption": "Pubquiz · oktober 2025"
+        },
+        "introSocial": {
+          "alt": "Een volle zaal studenten bij de introductieborrel aan het begin van het jaar",
+          "caption": "Introborrel · september 2025"
+        }
+      },
+      "archive": "Bekijk het evenementenarchief"
+    }
+  },
+  "groningenEvents": {
+    "metadata": {
+      "title": "Evenementenarchief Groningen",
+      "description": "Alle evenementen die de afdeling Groningen sinds oktober 2023 heeft georganiseerd, eerst als AISIG en daarna als SAIN Groningen."
+    },
+    "hero": {
+      "heading": "Alle evenementen van de afdeling",
+      "intro": "Alles vóór 30 april 2026 werd georganiseerd als het AI Safety Initiative Groningen (AISIG); alles daarna valt onder SAIN Groningen. Bij elk evenement staat de aankondiging van de afdeling uit die tijd, in het Engels en precies zoals die toen werd verstuurd."
+    },
+    "year": {
+      "count": "{count, plural, one {# evenement} other {# evenementen}}"
+    },
+    "event": {
+      "when": {
+        "time": "{hour}.{minute}",
+        "sameDay": "{date}, {start}-{end} uur",
+        "at": "{date}, {time} uur",
+        "range": "{startDate}, {startTime} uur tot {endDate}, {endTime} uur"
+      },
+      "fromAnnouncement": "Uit de aankondiging van toen"
+    },
+    "close": {
+      "heading": "Al deze evenementen waren gratis, en je kon gewoon binnenlopen.",
+      "button": "Bekijk wat er deze week te doen is"
+    }
+  },
+  "utrecht": {
+    "metadata": {
+      "title": "Afdeling Utrecht",
+      "description": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Gerund door vrijwilligers, open voor iedereen in de stad."
+    },
+    "hero": {
+      "subheading": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Gerund door vrijwilligers, open voor iedereen in de stad.",
+      "photoAlt": "De Domtoren boven de huizen van de Utrechtse binnenstad",
+      "caption": "De Utrechtse binnenstad, waar de cursus samenkomt"
+    },
+    "programs": {
+      "heading": "Drie gratis cursussen in Utrecht",
+      "openLead": "De aanmelding voor AI Governance en Technical AI Safety is open.",
+      "outlineTitle": "Bijeenkomsten, najaar 2026",
+      "courses": {
+        "fundamentals": {
+          "summary": "AI Safety Fundamentals is al drie keer gegeven in Utrecht en bereikte meer dan 100 deelnemers: bachelor- en masterstudenten, onderzoekers, engineers en mensen uit de publieke sector. Vier weken, met elke week een uur leeswerk en een college van een uur, aan de Universiteit Utrecht in de binnenstad. In week vier kies je een technisch pad, een governancepad of allebei. Als je alle bijeenkomsten bijwoont, krijg je een certificaat; voorkennis is niet nodig.",
+          "sessions": {
+            "introduction": {
+              "title": "Introductie",
+              "meta": "wo 23 sep · 18.00-19.00 uur · Janskerkhof 2-3, zaal 0.19",
+              "detail": "Overzicht op hoofdlijnen van AI-veiligheid: waarom het nu belangrijk is, capaciteiten en verspreiding, soorten risico's, en oplossingsstrategieën, zowel technisch als op het gebied van governance."
+            },
+            "risks": {
+              "title": "Soorten risico's en incidenten",
+              "meta": "wo 30 sep · 18.00-19.00 uur · Janskerkhof 2-3, zaal 0.19",
+              "detail": "Maatschappelijke schade, risico's van frontier AI, misbruik, controleverlies; praktijkvoorbeelden en hoe onderzoek achterloopt op de inzet van AI."
+            },
+            "difficulty": {
+              "title": "Waarom AI-veiligheid moeilijk is",
+              "meta": "wo 7 okt · 18.00-19.00 uur · Janskerkhof 15A, zaal 101",
+              "detail": "Prikkels in de industrie, gaten in de financiering, onenigheid onder experts, trage regelgeving tegenover snelle labs, de geopolitieke wedloop."
+            },
+            "paths": {
+              "title": "Specialisatie per pad",
+              "detail": "De vierde week splitst zich in tweeën. Volg één pad, of allebei.",
+              "technical": {
+                "title": "Technische AI-veiligheid",
+                "meta": "wo 14 okt · 18.00-19.00 uur · Janskerkhof 2-3, zaal 0.19",
+                "detail": "Jailbreaking, het probleem van scalable oversight, RLHF en beloningssignalen."
+              },
+              "governance": {
+                "title": "Governance",
+                "meta": "do 15 okt · 18.00-19.00 uur · Drift 23, zaal 103",
+                "detail": "Overzicht van de EU AI Act, verantwoording bij AI-systemen, internationale spelers in AI-veiligheid."
+              }
+            }
+          }
+        },
+        "technical": {
+          "summary": "Technical AI Safety is een cursus van vier weken op locatie bij SAIN Utrecht, voor mensen die kunnen programmeren en de basis van AI kennen. Het is aan te raden dat je weet hoe transformers werken. Elke week behandelt één deel van het vakgebied: de eerste twee weken gaan over hoe evaluatoren van AI-veiligheid modellen testen, week drie over de veiligheid van robots en andere fysieke systemen, en week vier over het beveiligen van AI-agents. De wekelijkse opdrachten gebruiken materiaal van ARENA, een gevestigd trainingsprogramma voor AI-veiligheid, en bijzonder sterke oplossingen gaan naar ARENA ter beoordeling en kunnen in hun repository worden opgenomen. Elke zaterdag van 13.00 tot 15.00 uur is er een workshop die je helpt ze af te ronden. Na de cursus starten we een onderzoeksuitdaging waarin onze mentoren je helpen je eigen ideeën uit te werken. Elke week bestaat uit ongeveer een uur leeswerk, een tot drie uur opdrachten en een college van anderhalf uur.",
+          "sessions": {
+            "evaluationsIntro": {
+              "title": "Introductie tot evaluaties van AI-veiligheid",
+              "meta": "do 19 nov · 18.00-19.30 uur · locatie volgt",
+              "detail": "Wat evaluaties zijn en waarom we ze nodig hebben, evaluaties van capaciteiten tegenover alignment, en hoe je er een ontwerpt: dreigingsmodellen, datasets en scoring."
+            },
+            "evaluationsInPractice": {
+              "title": "Evaluaties van AI-veiligheid uitvoeren en beoordelen",
+              "meta": "do 26 nov · 18.00-19.30 uur · locatie volgt",
+              "detail": "Evaluaties in de praktijk uitvoeren met tools, de veelvoorkomende problemen begrijpen die resultaten onbetrouwbaar maken, en hoe resultaten aan beleidsmakers worden overgebracht."
+            },
+            "embodied": {
+              "title": "Veiligheid van embodied AI",
+              "meta": "do 3 dec · 18.00-19.30 uur · locatie volgt",
+              "detail": "De veiligheidsrisico's van robots en andere fysieke AI-systemen, veiligheidsfilters, vision-language models inzetten om onveilige handelingen te herkennen, en onzekerheid meten."
+            },
+            "agents": {
+              "title": "AI-agents beveiligen",
+              "meta": "do 10 dec · 18.00-19.30 uur · locatie volgt",
+              "detail": "Hoe agents worden aangevallen via prompt injection en via hun tools, waarom verdediging op modelniveau tekortschiet, veilig ontwerp en AI Control, en hoe AI ook zelf als verdediger kan optreden."
+            }
+          }
+        },
+        "governance": {
+          "summary": "AI Governance is een nieuwe cursus van vier weken bij SAIN Utrecht, open voor iedereen en zonder dat je voorkennis nodig hebt. De meeste cursussen over AI-governance richten zich op de VS en China. In deze cursus kijken we ook naar hun visies en ambities, en naar de plek van middenmachten zoals de EU. Een heel college gaat over hoe Europa en Nederland AI reguleren. Tijdens de cursus lezen en bespreken we primaire bronnen, zoals overheidsstrategieën, wetten en documenten van AI-labs. Zo leer je ontwikkelingen in AI-regulering en geopolitiek zelfstandig te volgen. Elke week bestaat uit ongeveer een tot twee uur leeswerk en een college van anderhalf uur.",
+          "sessions": {
+            "introduction": {
+              "title": "Introductie tot AI-governance en AI-veiligheid",
+              "meta": "wo 18 nov · 18.00-19.30 uur · locatie volgt",
+              "detail": "Wat AI-governance is, hoe het verschilt van technische veiligheid, waarom het nu belangrijk is, en de belangrijkste risico's: misbruik, controleverlies en machtsconcentratie."
+            },
+            "geopolitics": {
+              "title": "Geopolitiek van AI",
+              "meta": "wo 25 nov · 18.00-19.30 uur · locatie volgt",
+              "detail": "De belangrijkste spelers (overheden, labs, veiligheidsorganisaties, de VN), de visies en ambities van de VS en China, en de plek van middenmachten."
+            },
+            "policymakerTools": {
+              "title": "Het gereedschap van de beleidsmaker",
+              "meta": "wo 2 dec · 18.00-19.30 uur · locatie volgt",
+              "detail": "Analyse van eerdere incidenten zoals de Hugging Face-zaak, system cards en toekomstscenario's."
+            },
+            "europe": {
+              "title": "Governance in Europa en Nederland",
+              "meta": "wo 9 dec · 18.00-19.30 uur · locatie volgt",
+              "detail": "De EU AI Act en de hiaten erin, het EU AI Office en de GPAI Code of Practice, het Nederlandse AI-landschap."
+            }
+          }
+        }
+      },
+      "footnote": "Deze cursussen worden zelfstandig georganiseerd door SAIN Utrecht en zijn niet verbonden aan de Universiteit Utrecht.",
+      "discussionGroups": "Tussen de cursusrondes door blijven twee discussiegroepen samenkomen: een over technische AI-veiligheid, op dit moment een leesgroep over mechanistic interpretability, en een over AI-governance en beleid.",
+      "research": "De afdeling bouwt aan een onderzoekstrack: red-teaming van taalmodellen, veiligheidsevaluatie, interpretability en het gedrag van agents. De Project Hub gaat in oktober 2026 van start."
+    },
+    "team": {
+      "body": "SAIN Utrecht wordt geleid door Riccardo Campanella. Het team groeit op vier gebieden: onderwijs, evenementen, communicatie en onderzoek. Het werk van de afdeling wordt gefinancierd door BERI, met begeleiding van Pathfinder."
+    },
+    "record": {
+      "heading": "Dit is al gebeurd in Utrecht",
+      "body": "Het afgelopen jaar organiseerde de afdeling Win4AISafety, een open onderzoeksuitdaging in de zomer, een volledige technische cursus met een afsluitend diner, discussiegroepen, waaronder een scenariosessie over Europa in 2031, en onderzoekslezingen, onder meer van een onderzoeker van Anthropic voor meer dan 60 mensen.",
+      "prints": {
+        "graduation": {
+          "alt": "De groep van AI Safety Fundamentals samen bij hun afsluiting",
+          "caption": "Afsluiting van het programma · SAIN Utrecht"
+        },
+        "win4AISafety": {
+          "alt": "Het winnende team van de onderzoeksuitdaging Win4AISafety",
+          "caption": "Winnaars Win4AISafety · SAIN Utrecht"
+        },
+        "europe2031": {
+          "alt": "Een discussiegroep rond een tafel in Utrecht",
+          "caption": "Scenariodiscussie Europa 2031"
+        },
+        "technicalWeek2": {
+          "alt": "Een college in week twee van de cursus technische AI-veiligheid",
+          "caption": "Technische cursus, week 2"
+        }
+      },
+      "devpost": "Bekijk de inzendingen op Devpost",
+      "recaps": "Terugblikken op LinkedIn",
+      "paperNote": "Leden van SAIN Utrecht hebben aan dit onderzoek bijgedragen."
+    }
+  }
+}

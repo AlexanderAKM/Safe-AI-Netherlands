@@ -16,10 +16,11 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
  * The chapter's course, and whether you can apply to it today.
  *
  * Every word of the application state comes out of
- * `src/data/courseApplications.ts`: a cohort can never read open here and
- * closed on the landing, and a deadline is edited in one file. While a cohort
- * is closed the band carries no accent button at all, because the honest next
- * step is the community, not a form that will reject you.
+ * `src/data/courseApplications.ts` and its `courses.applications` messages: a
+ * cohort can never read open here and closed on the landing, and a deadline is
+ * edited in one file. While a cohort is closed the band carries no accent
+ * button at all, because the honest next step is the community, not a form
+ * that will reject you.
  *
  * `#programs` is the anchor the rest of the site already links to. It does not
  * move.
@@ -27,14 +28,15 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 export default function CourseBand({
   city,
   heading,
-  openLead = "Applications are open.",
+  openLead,
   footnote,
   children,
   tail,
 }: {
   city: ChapterName;
   heading: string;
-  /** First sentence of the open state, where a city names its cohort. */
+  /** First sentence of the open state, where a city names its cohort;
+   *  "Applications are open." otherwise. */
   openLead?: string;
   footnote?: ReactNode;
   children: ReactNode;
@@ -44,6 +46,9 @@ export default function CourseBand({
   const application = courseApplicationFor(city);
   const locale = useLocale() as Locale;
   const text = applicationText(application, useTranslations("courses.applications"), locale);
+  const t = useTranslations("chapters.courseBand");
+  const tActions = useTranslations("common.actions");
+  const tA11y = useTranslations("common.a11y");
 
   return (
     <section
@@ -68,9 +73,11 @@ export default function CourseBand({
                   text.chapterNote ?? text.rollingNote
                 ) : (
                   <>
-                    {openLead} Participants apply by{" "}
-                    {text.deadlines?.participants}; facilitators by{" "}
-                    {text.deadlines?.facilitators}.
+                    {openLead ?? t("openLead")}{" "}
+                    {t("deadlines", {
+                      participants: text.deadlines?.participants ?? "",
+                      facilitators: text.deadlines?.facilitators ?? "",
+                    })}
                   </>
                 )}
               </p>
@@ -80,25 +87,28 @@ export default function CourseBand({
                 rel="noopener noreferrer"
                 className="btn-accent mt-6 gap-2"
               >
-                Apply to the free course
+                {tActions("applyFreeCourse")}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
             </>
           ) : (
             <p className="mt-3 font-sans text-body text-navy/74">
-              Applications are closed. {text.closedNote}{" "}
-              <a
-                href={COMMUNITY_JOIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-              >
-                Join the community
-                <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>{" "}
-              and you will hear when they open.
+              {t.rich("closed", {
+                closedNote: text.closedNote ?? "",
+                link: (chunks) => (
+                  <a
+                    href={COMMUNITY_JOIN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                  >
+                    {chunks}
+                    <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
+                    <span className="sr-only"> {tA11y("opensInNewTab")}</span>
+                  </a>
+                ),
+              })}
             </p>
           )}
         </div>

@@ -1,19 +1,20 @@
 /**
  * SAIN Amsterdam organiser roster (name + role).
  * Advisory Board members are listed inline at the bottom, matching the
- * Groningen pattern in `aisigTeam.ts`.
+ * Groningen pattern in `aisigTeam.ts`. A role is a key: its title, in each
+ * language, is under `team.roles` in messages/<locale>/chapters.json.
  */
 export const sainAmsTeam = [
-  { name: "Ana Paula Castillo Rodriguez", title: "Director" },
-  { name: "Satchit Chatterji", title: "Research Operation Lead" },
-  { name: "Michele Vannucci", title: "Research Operation (Vrije University)" },
-  { name: "Prabhnoor Kohli", title: "Education Lead" },
-  { name: "Elina Kramers", title: "Communications Lead" },
-  { name: "Duje Vukovac", title: "Discussion Group Facilitator" },
-  { name: "Fiona Melzer", title: "Discussion Group Facilitator" },
-  { name: "Luan Fletcher", title: "Discussion Group Facilitator" },
-  { name: "Monika Stewart", title: "Discussion Group Facilitator" },
-  { name: "Henning Bartsch", title: "Advisory Board" },
-  { name: "Leonard Bereska", title: "Advisory Board" },
-  { name: "Zoe Tzifa-Kratira", title: "Advisory Board" },
+  { name: "Ana Paula Castillo Rodriguez", role: "director" },
+  { name: "Satchit Chatterji", role: "researchOperationLead" },
+  { name: "Michele Vannucci", role: "researchOperationVu" },
+  { name: "Prabhnoor Kohli", role: "educationLead" },
+  { name: "Elina Kramers", role: "communicationsLead" },
+  { name: "Duje Vukovac", role: "discussionGroupFacilitator" },
+  { name: "Fiona Melzer", role: "discussionGroupFacilitator" },
+  { name: "Luan Fletcher", role: "discussionGroupFacilitator" },
+  { name: "Monika Stewart", role: "discussionGroupFacilitator" },
+  { name: "Henning Bartsch", role: "advisoryBoard" },
+  { name: "Leonard Bereska", role: "advisoryBoard" },
+  { name: "Zoe Tzifa-Kratira", role: "advisoryBoard" },
 ] as const;
