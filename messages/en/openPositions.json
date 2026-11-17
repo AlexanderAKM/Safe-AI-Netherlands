@@ -1,1 +1,7 @@
-{}
+{
+  "applicationReview": {
+    "label": "Rolling applications",
+    "phrase": "on a rolling basis",
+    "sentence": "Applications are reviewed on a rolling basis, so apply whenever you are ready."
+  }
+}

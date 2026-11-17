@@ -58,7 +58,7 @@
       "joinCommunity": "Word lid van de community",
       "courses": "Cursussen",
       "projectHub": "Project hub",
-      "handbook": "Handboek Project Hub",
+      "handbook": "Project Hub-handboek",
       "volunteer": "Vrijwilligerswerk",
       "about": "Over ons",
       "team": "Team",
@@ -77,12 +77,19 @@
     "close": "Sluiten",
     "pickCity": "Kies je stad",
     "applyBy": "Aanmelden uiterlijk {date}",
-    "facilitatorsBy": "Begeleiders uiterlijk {date}",
+    "facilitatorsBy": "Facilitators uiterlijk {date}",
     "closed": "De aanmelding is gesloten.",
     "joinCourse": "Volg een gratis cursus",
     "maybeLater": "Misschien later"
   },
   "englishOnly": {
     "note": "Deze pagina is voorlopig alleen in het Engels beschikbaar."
+  },
+  "actions": {
+    "joinCommunity": "Word lid van de community",
+    "joinCourse": "Volg een gratis cursus",
+    "volunteer": "Word vrijwilliger",
+    "visitProjectHub": "Naar de Project hub",
+    "applyFreeCourse": "Meld je aan voor de gratis cursus"
   }
 }

@@ -84,5 +84,12 @@
   },
   "englishOnly": {
     "note": "This page is only available in English for now."
+  },
+  "actions": {
+    "joinCommunity": "Join the community",
+    "joinCourse": "Join a free course",
+    "volunteer": "Volunteer",
+    "visitProjectHub": "Visit the Project hub",
+    "applyFreeCourse": "Apply to the free course"
   }
 }
