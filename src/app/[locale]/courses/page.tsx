@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import ClientMessages from "@/i18n/ClientMessages";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import Link from "next/link";
 
 import CourseTabs from "@/components/courses/CourseTabs";
 import Reveal from "@/components/landing/Reveal";
@@ -24,10 +25,10 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "courses.metadata" });
   return {
-    title: "Join a free course",
-    description:
-      "Three tracks, taught in person in Utrecht, Groningen and Amsterdam. Every SAIN programme is free. Pick a track, pick your city, and apply.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/courses" }),
   };
 }
@@ -45,17 +46,6 @@ const applications: CourseApplication[] = [
 ];
 
 const someoneIsOpen = openCourseApplications.length > 0;
-
-/* How a cohort actually runs, which is the part a course card never says. Five
-   rows rather than a paragraph: she is checking whether her weeks have room in
-   them, and a row is something you scan for your own city. */
-const CADENCE = [
-  "Cohorts run per chapter. Groningen and Amsterdam teach in six-week blocks, and Groningen runs three to four cohorts a year. Utrecht's Technical AI Safety and AI Governance blocks run four weeks.",
-  "The six-week courses pair weekly readings with an on-site discussion session.",
-  "AI Safety Fundamentals in Utrecht is weekly and modular. Drop in for any theme, about 60 minutes.",
-  "Some programmes are application-based and close per cohort. The Amsterdam BlueDot tracks are an example.",
-  "One form covers participants and facilitators. Facilitator deadlines close a few days earlier.",
-];
 
 /* Deadlines carry their year in the data so a passed date reads as expired
    rather than ambiguous. In the apply row both dates sit in one sentence, so
@@ -80,7 +70,14 @@ export default function CoursesPage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("courses");
   const tApplications = useTranslations("courses.applications");
+  const tActions = useTranslations("common.actions");
+  const tA11y = useTranslations("common.a11y");
+  /* How a cohort actually runs, which is the part a course card never says. Five
+     rows rather than a paragraph: she is checking whether her weeks have room in
+     them, and a row is something you scan for your own city. */
+  const cadence = t.raw("cadence.items") as string[];
   return (
     <>
       {/* Hero. A conversion page this slim earns no illustration: the copy
@@ -98,24 +95,23 @@ export default function CoursesPage({
         <div className="shell band-hero">
           <Reveal hero className="flex max-w-[720px] flex-col gap-6">
             <h1 id="courses-heading" className="font-serif text-display text-navy">
-              Join a free course
+              {t("hero.heading")}
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              Every programme is free and taught in person. Pick a track, pick your city, and
-              apply. What you join, and how it runs, depends on the chapter.
+              {t("hero.intro")}
             </p>
             {/* Read from the same file the chapter pages read, so this line can
                 never advertise a city that is shut. When the last cohort
                 closes it removes itself instead of going stale. */}
             {someoneIsOpen && (
               <p className="font-sans text-caption text-navy/65">
-                You can apply now in {formatCityList(openCourseApplications, locale)}.
+                {t("hero.applyNow", { cities: formatCityList(openCourseApplications, locale) })}
               </p>
             )}
             <div className="pt-1">
               {someoneIsOpen ? (
                 <a href="#apply" className="btn-accent self-start">
-                  Apply in your city
+                  {t("hero.applyButton")}
                 </a>
               ) : (
                 /* Nothing to apply to is not nothing to do, and the community
@@ -126,9 +122,9 @@ export default function CoursesPage({
                   rel="noopener noreferrer"
                   className="btn-accent gap-2 self-start"
                 >
-                  Join the community
+                  {tActions("joinCommunity")}
                   <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> {tA11y("opensInNewTab")}</span>
                 </a>
               )}
             </div>
@@ -148,15 +144,16 @@ export default function CoursesPage({
         <div className="shell band-section-top relative isolate pb-14">
           <div className="mx-auto mb-10 max-w-[640px] text-center">
             <h2 id="tracks-heading" className="font-serif text-heading text-navy">
-              Pick a track
+              {t("pickTrack.heading")}
             </h2>
             <p className="mt-2.5 font-sans text-body leading-[26px] text-navy/74">
-              Three tracks, the same ones on every chapter&rsquo;s calendar. Each panel names
-              what runs in each city.
+              {t("pickTrack.intro")}
             </p>
           </div>
           <Reveal>
-            <CourseTabs />
+            <ClientMessages namespaces={["courses.tabs", "courses.tracks"]}>
+              <CourseTabs />
+            </ClientMessages>
           </Reveal>
         </div>
       </section>
@@ -172,11 +169,10 @@ export default function CoursesPage({
         <div className="shell band-index grid items-start gap-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16">
           <div className="flex min-w-0 flex-col gap-4">
             <h2 id="cadence-heading" className="font-serif text-heading-sm text-navy">
-              How cohorts run
+              {t("cadence.heading")}
             </h2>
             <p className="max-w-[420px] font-sans text-body text-navy/74">
-              Not sure which chapter fits? Each city&rsquo;s page lists its own programmes in
-              detail.
+              {t("cadence.intro")}
             </p>
             <ul className="flex flex-col gap-2">
               {CITY_PAGES.map((entry) => (
@@ -197,7 +193,7 @@ export default function CoursesPage({
               carry the sequence, and five hairlines beside a column of links
               read as a form. */}
           <ol className="flex min-w-0 flex-col gap-3 font-sans text-ui text-navy">
-            {CADENCE.map((item, i) => (
+            {cadence.map((item, i) => (
               <li key={item} className="flex items-baseline gap-3">
                 <span className="w-[22px] shrink-0 font-sans text-xs text-orange-ink">
                   {i + 1}
@@ -216,21 +212,20 @@ export default function CoursesPage({
         <div className="shell band-close">
           <div className="max-w-[620px]">
             <h2 id="apply-heading" className="font-serif text-closing text-white">
-              Apply in your city
+              {t("apply.heading")}
             </h2>
             {/* One paragraph either way: while nothing is open it also says
                 so, in place of a list with nothing to apply to. */}
             <p className="mt-4 font-sans text-body text-white/78">
-              Applications open and close per chapter.
-              {someoneIsOpen
-                ? ""
-                : " They are closed right now, and sign ups for the next cohort will open soon."}
+              {someoneIsOpen ? t("apply.intro") : t("apply.introAllClosed")}
             </p>
           </div>
 
           {someoneIsOpen ? (
             <ul className="mt-10 flex flex-col">
-              {applications.map((entry) => (
+              {applications.map((entry) => {
+                const text = applicationText(entry, tApplications, locale);
+                return (
                 <li
                   key={entry.chapter}
                   className="flex flex-col gap-4 border-t border-white/10 py-6 md:flex-row md:items-center md:justify-between md:gap-10"
@@ -241,25 +236,28 @@ export default function CoursesPage({
                       <>
                         {!entry.rolling && (
                           <p className="mt-1 font-sans text-label text-white/78">
-                            Applications open.
+                            {t("apply.statusOpen")}
                           </p>
                         )}
                         <p className="font-sans text-label text-white/78">
                           {entry.rolling
-                            ? applicationText(entry, tApplications, locale).rollingNote
-                            : `Apply by ${applicationText(entry, tApplications, locale).deadlines?.participants} (${facilitatorDate(
-                                applicationText(entry, tApplications, locale).deadlines?.participants ?? "",
-                                applicationText(entry, tApplications, locale).deadlines?.facilitators ?? "",
-                              )} to facilitate).`}
+                            ? text.rollingNote
+                            : t("apply.applyBy", {
+                                participants: text.deadlines?.participants ?? "",
+                                facilitators: facilitatorDate(
+                                  text.deadlines?.participants ?? "",
+                                  text.deadlines?.facilitators ?? "",
+                                ),
+                              })}
                         </p>
                       </>
                     ) : (
                       <>
                         <p className="mt-1 font-sans text-label text-white/78">
-                          Applications closed.
+                          {t("apply.statusClosed")}
                         </p>
                         <p className="font-sans text-label text-white/78">
-                          {applicationText(entry, tApplications, locale).closedNote}
+                          {text.closedNote}
                         </p>
                       </>
                     )}
@@ -267,7 +265,7 @@ export default function CoursesPage({
 
                   {entry.open ? (
                     <Link href={entry.href} className="btn-accent shrink-0 self-start md:self-auto">
-                      Apply in {entry.chapter}
+                      {t("apply.applyIn", { chapter: entry.chapter })}
                     </Link>
                   ) : (
                     /* No button for a shut cohort: the row says when it
@@ -277,25 +275,28 @@ export default function CoursesPage({
                       href={entry.href.replace(/#.*$/, "")}
                       className="inline-flex shrink-0 items-center gap-1.5 self-start font-sans text-label text-white underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white md:self-auto"
                     >
-                      View chapter
+                      {t("apply.viewChapter")}
                       <ArrowRight size={16} weight="regular" aria-hidden="true" />
                     </Link>
                   )}
                 </li>
-              ))}
+                );
+              })}
             </ul>
           ) : null}
 
           <div className="mt-10 flex flex-col gap-5 border-t border-white/15 pt-8 md:flex-row md:items-center md:justify-between md:gap-12">
             <p className="max-w-[520px] font-sans text-body text-white/78">
-              Your chapter&rsquo;s page walks you through its form. Questions before you apply
-              are welcome.{" "}
-              <Link
-                href="/contact"
-                className="whitespace-nowrap text-white underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white"
-              >
-                Or get in touch first
-              </Link>
+              {t.rich("apply.questions", {
+                link: (chunks) => (
+                  <Link
+                    href="/contact"
+                    className="whitespace-nowrap text-white underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white"
+                  >
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
             {/* The reader who is not ready for a cohort still has somewhere to
                 go, and it is the same door the landing offers. */}
@@ -305,9 +306,9 @@ export default function CoursesPage({
               rel="noopener noreferrer"
               className="btn-ghost-inverse shrink-0 gap-2 self-start md:self-auto"
             >
-              Join the community
+              {tActions("joinCommunity")}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {tA11y("opensInNewTab")}</span>
             </a>
           </div>
         </div>

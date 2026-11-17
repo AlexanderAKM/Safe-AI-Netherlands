@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import ResearchPeople from "./ResearchPeople";
 import FeaturedPublications from "./FeaturedPublications";
 import { SUPERVISOR_INTEREST_FORM_URL } from "@/data/research";
+import { Link } from "@/i18n/navigation";
 
 // Copy follows docs/research_hub_handbook.md: scope, programme modes,
 // applications, assignment, deliverables, and project-specific resources.
@@ -36,39 +37,41 @@ function ResearchStep({ step, title, id, children }: {
 }
 
 export default function ResearchSteps() {
+  const t = useTranslations("home.research.steps");
+  const tA11y = useTranslations("common.a11y");
   return (
-    <ol role="list" aria-label="Your research journey" className="mt-12 md:mt-16">
-      <ResearchStep step="01" id="research-project" title="Choose a research project">
+    <ol role="list" aria-label={t("label")} className="mt-12 md:mt-16">
+      <ResearchStep step="01" id="research-project" title={t("project.title")}>
         <p className="mt-5 max-w-[760px] text-body text-white/75">
-          Join a project or bring your own question. Put your academic expertise to work on AI Safety, with the people and resources to take it further.
+          {t("project.body")}
         </p>
         <Link href="/research/handbook" className="mt-6 inline-flex items-center gap-3 text-label leading-6 text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
-          Read the research handbook <ArrowRight size={16} aria-hidden="true" />
+          {t("project.handbook")} <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </ResearchStep>
 
-      <ResearchStep step="02" id="research-support" title="Work with support">
+      <ResearchStep step="02" id="research-support" title={t("support.title")}>
         <p className="mt-5 max-w-[760px] text-body text-white/75">
-          SAIN helps coordinate research and arrange compute according to project needs. Develop your work with supervisor feedback or independent collaborators.
+          {t("support.body")}
         </p>
         <div className="mt-6">
-          <p className="mb-5 text-label text-white/65">Explore our supervisors’ research agendas</p>
+          <p className="mb-5 text-label text-white/65">{t("support.agendas")}</p>
           <ResearchPeople />
           {/* Same supervisor form /research and the handbook link to. */}
           <a href={SUPERVISOR_INTEREST_FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 text-label text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
-            Become a supervisor <ArrowUpRight size={16} aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            {t("support.becomeSupervisor")} <ArrowUpRight size={16} aria-hidden="true" />
+            <span className="sr-only"> {tA11y("opensInNewTab")}</span>
           </a>
         </div>
       </ResearchStep>
 
-      <ResearchStep step="03" id="output" title="Publish your findings">
+      <ResearchStep step="03" id="output" title={t("publish.title")}>
         <p className="mt-5 max-w-[760px] text-body text-white/75">
-          Turn your findings into a paper, policy brief, or research tool. Get feedback on drafts, with potential support for conference travel.
+          {t("publish.body")}
         </p>
         <FeaturedPublications />
         <Link href="/research#publications" className="mt-8 inline-flex items-center gap-3 text-label text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white">
-          View all publications <ArrowRight size={16} aria-hidden="true" />
+          {t("publish.allPublications")} <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </ResearchStep>
     </ol>
