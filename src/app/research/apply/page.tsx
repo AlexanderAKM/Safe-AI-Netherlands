@@ -3,11 +3,13 @@ import Link from "next/link";
 
 import ApplyForm from "@/components/research/ApplyForm";
 import { PROJECTS_EMAIL } from "@/data/research";
+import { getDictionary, rich } from "@/i18n";
+
+const t = getDictionary("en").research.apply;
 
 export const metadata: Metadata = {
-  title: "Apply for a project",
-  description:
-    "Apply to the SAIN Project Hub in one form: join a project, propose your own, or offer to supervise.",
+  title: t.meta.title,
+  description: t.meta.description,
   alternates: { canonical: "/research/apply" },
 };
 
@@ -34,43 +36,44 @@ export default function ApplyPage() {
       <section aria-labelledby="apply-heading" className="border-b border-navy/10 bg-cream">
         <div className="shell band-index">
           <div className="max-w-copy-wide">
-            <nav aria-label="Breadcrumb" className="font-sans text-label text-navy/65">
+            <nav aria-label={t.breadcrumbLabel} className="font-sans text-label text-navy/65">
               <Link href="/research" className={linkClass}>
-                Project hub
+                {t.projectHub}
               </Link>
               <span aria-hidden="true" className="px-2 text-navy/35">
                 /
               </span>
-              <span aria-current="page">Apply</span>
+              <span aria-current="page">{t.apply}</span>
             </nav>
 
             <h1 id="apply-heading" className="mt-6 font-serif text-heading text-navy">
-              Apply for a project
+              {t.heading}
             </h1>
             <p className="mt-4 max-w-copy font-sans text-body text-navy/74">
-              One form for the Project Hub. Choose whether you want to join a project (name up to
-              three from the{" "}
-              <Link href="/research#projects" className={linkClass}>
-                open projects
-              </Link>
-              ), propose your own, or supervise. The projects team gets back to you within a
-              working week.
+              {rich(t.body, {
+                link: (chunk) => (
+                  <Link href="/research#projects" className={linkClass}>
+                    {chunk}
+                  </Link>
+                ),
+              })}
             </p>
             <p className="mt-4 max-w-copy font-sans text-footnote leading-[19px] text-navy/60">
-              A VU or UvA thesis is for students of that university; every other project is open
-              to everyone. Questions first? Email{" "}
-              <a href={`mailto:${PROJECTS_EMAIL}`} className={linkClass}>
-                {PROJECTS_EMAIL}
-              </a>
-              .
+              {rich(t.thesisNote, {}, {
+                email: (
+                  <a href={`mailto:${PROJECTS_EMAIL}`} className={linkClass}>
+                    {PROJECTS_EMAIL}
+                  </a>
+                ),
+              })}
             </p>
           </div>
         </div>
       </section>
 
-      <section aria-label="Application form" className="bg-white">
+      <section aria-label={t.formLabel} className="bg-white">
         <div className="shell py-6 md:py-10">
-          <ApplyForm linkClass={linkClass} />
+          <ApplyForm linkClass={linkClass} t={t} />
         </div>
       </section>
     </>

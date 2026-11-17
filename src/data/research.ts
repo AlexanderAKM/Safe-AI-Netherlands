@@ -1,3 +1,5 @@
+import type { Dictionary } from "@/i18n";
+
 /**
  * Project Hub facts: what has been published, and who supervises.
  *
@@ -424,11 +426,16 @@ export function isGreyedOut(availability: Availability = "open") {
 }
 
 /** The words that say a status, wherever a portrait or card shows it; none
-    for open. */
-export function availabilityLine(availability: Availability = "open", note?: string) {
-  if (availability === "limited") return note ? `Limited: ${note}` : "Limited places";
-  if (availability === "full") return "Full for now";
-  if (availability === "unconfirmed") return "Availability to be confirmed";
+    for open. `words` is the page language's (the dictionary's
+    availability); the note is the supervisor's own. */
+export function availabilityLine(
+  words: Dictionary["availability"],
+  availability: Availability = "open",
+  note?: string,
+) {
+  if (availability === "limited") return note ? words.limitedWithNote.replace("{note}", note) : words.limited;
+  if (availability === "full") return words.full;
+  if (availability === "unconfirmed") return words.unconfirmed;
   return null;
 }
 
@@ -438,14 +445,15 @@ export function paperHref(paper: Publication) {
   return paper.reader ? `/research/papers/${paper.reader.slug}` : paper.link;
 }
 
-/* How the reader page names the paper's source: "View on arXiv". */
-export function paperSourceName(paper: Publication) {
+/* How the reader page names the paper's source: "View on arXiv". A source
+   with no name of its own is "the project page", in the page's language. */
+export function paperSourceName(paper: Publication, projectPage: string) {
   const host = new URL(paper.link).hostname;
   if (host.endsWith("arxiv.org")) return "arXiv";
   if (host.endsWith("openreview.net")) return "OpenReview";
   if (host.endsWith("apartresearch.com")) return "Apart Research";
   if (host.endsWith("drive.google.com")) return "Google Drive";
-  if (host.endsWith("github.io")) return "the project page";
+  if (host.endsWith("github.io")) return projectPage;
   return host.replace(/^www\./, "");
 }
 

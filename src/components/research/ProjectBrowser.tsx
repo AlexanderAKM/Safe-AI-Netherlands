@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { Dictionary } from "@/i18n";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import {
   ArrowUpRightIcon,
@@ -109,7 +110,7 @@ const UNIVERSITY_NAMES: [RegExp, string][] = [
   [/university of groningen|\brug\b/i, "RUG"],
 ];
 
-function matchesQuery(project: Project, query: string) {
+function matchesQuery(project: Project, query: string, statusWords: Dictionary["availability"]) {
   if (!query) return true;
   const position = project.supervisor.position;
   const haystack = [
@@ -123,7 +124,7 @@ function matchesQuery(project: Project, query: string) {
     project.format ?? "",
     thesisLabel(project) ?? "",
     eligibilityLabel(project),
-    availabilityLine(projectAvailability(project), projectAvailabilityNote(project)) ?? "",
+    availabilityLine(statusWords, projectAvailability(project), projectAvailabilityNote(project)) ?? "",
     project.lookingFor ?? "",
   ]
     .join(" ")
@@ -143,10 +144,10 @@ function matchesQuery(project: Project, query: string) {
 
 /* Every filter but one, so a filter's own count says what choosing it would
    leave rather than what it already shows. */
-function filterExcept(filters: Filters, skip: keyof Filters | null) {
+function filterExcept(filters: Filters, skip: keyof Filters | null, words: Dictionary["availability"]) {
   return projects.filter(
     (project) =>
-      (skip === "query" || matchesQuery(project, filters.query)) &&
+      (skip === "query" || matchesQuery(project, filters.query, words)) &&
       (skip === "bases" || filters.bases.length === 0 || filters.bases.includes(project.supervisor.base)) &&
       (skip === "topics" ||
         filters.topics.length === 0 ||
@@ -335,7 +336,7 @@ function useRestRowHeights(gridRef: RefObject<HTMLUListElement>, shown: Project[
    stay mounted while closed, hidden (visibility) once folded so nothing
    inside can be tabbed to or read out. `showing` outlives `open` until the closing slide ends, so the
    grid keeps its rows still while a card folds back up. */
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, words }: { project: Project; words: Dictionary["availability"] }) {
   const [open, setOpen] = useState(false);
   const [showing, setShowing] = useState(false);
   const person = project.supervisor;
@@ -344,7 +345,7 @@ function ProjectCard({ project }: { project: Project }) {
   const links = [...(person.agenda ? [{ label: "Agenda", href: person.agenda }] : []), ...person.links];
   const availability = projectAvailability(project);
   const full = availability === "full";
-  const statusLine = availabilityLine(availability, projectAvailabilityNote(project));
+  const statusLine = availabilityLine(words, availability, projectAvailabilityNote(project));
 
   const toggle = () => {
     if (!open) setShowing(true);
@@ -506,20 +507,22 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export default function ProjectBrowser() {
+/* A client component: the research page hands it its words through
+   ProjectFinder. */
+export default function ProjectBrowser({ availability }: { availability: Dictionary["availability"] }) {
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
 
-  const shown = useMemo(() => gridOrder(filterExcept(filters, null)), [filters]);
+  const shown = useMemo(() => gridOrder(filterExcept(filters, null, availability)), [filters, availability]);
   /* Once opened, the grid stays open across filters until it is closed. */
   const [expanded, setExpanded] = useState(false);
   const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
   const gridRef = useRef<HTMLUListElement>(null);
   useRestRowHeights(gridRef, visible);
-  const forTopics = useMemo(() => filterExcept(filters, "topics"), [filters]);
-  const forSupervisors = useMemo(() => filterExcept(filters, "supervisors"), [filters]);
-  const forBases = useMemo(() => filterExcept(filters, "bases"), [filters]);
-  const forWho = useMemo(() => filterExcept(filters, "who"), [filters]);
+  const forTopics = useMemo(() => filterExcept(filters, "topics", availability), [filters, availability]);
+  const forSupervisors = useMemo(() => filterExcept(filters, "supervisors", availability), [filters, availability]);
+  const forBases = useMemo(() => filterExcept(filters, "bases", availability), [filters, availability]);
+  const forWho = useMemo(() => filterExcept(filters, "who", availability), [filters, availability]);
 
   const active =
     filters.query !== "" ||
@@ -717,8 +720,8 @@ export default function ProjectBrowser() {
                             className={`size-[28px] shrink-0 object-cover ${isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""}`}
                           />
                           {person.name}
-                          {availabilityLine(person.availability, person.availabilityNote) && (
-                            <span className="sr-only"> ({availabilityLine(person.availability, person.availabilityNote)})</span>
+                          {availabilityLine(availability, person.availability, person.availabilityNote) && (
+                            <span className="sr-only"> ({availabilityLine(availability, person.availability, person.availabilityNote)})</span>
                           )}
                           <Count n={n} active={on} />
                         </button>
@@ -897,7 +900,7 @@ export default function ProjectBrowser() {
             className="grid w-full scroll-mt-28 gap-4 has-[[data-showing]]:items-start md:grid-cols-2 xl:grid-cols-3"
           >
             {visible.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} words={availability} />
             ))}
           </ul>
           {shown.length > PREVIEW_COUNT && (

@@ -3,6 +3,8 @@
 import { useLiveTracker } from "@/components/research/useLiveTracker";
 import { publications } from "@/data/research";
 import { projectHubStats } from "@/data/projects";
+import type { Dictionary } from "@/i18n";
+import { format } from "@/i18n/rich";
 
 /* Counted rather than typed. The old hero carried "6+ Active Projects  ·  20+
    Researchers  ·  12+ Publications", and two of the three traced to nothing
@@ -18,7 +20,7 @@ import { projectHubStats } from "@/data/projects";
    The quiet version of a stat row: checkable facts on a hairline. The
    separators are drawn rather than typed, so a screen reader reads the facts
    and not the middots. */
-export default function HeroFacts() {
+export default function HeroFacts({ t }: { t: Dictionary["research"]["facts"] }) {
   const { tracker, source } = useLiveTracker();
   const open = tracker.projects.filter((project) => project.status === "open");
   const stats =
@@ -30,10 +32,10 @@ export default function HeroFacts() {
           publications: publications.length,
         };
   const facts = [
-    { text: `${stats.openProjects} open projects`, href: "#projects" },
-    { text: `${stats.supervisors} supervisors`, href: "#supervisors" },
-    { text: `${stats.publications} publications`, href: "#publications" },
-    { text: "rolling applications" },
+    { text: format(t.openProjects, { count: stats.openProjects }), href: "#projects" },
+    { text: format(t.supervisors, { count: stats.supervisors }), href: "#supervisors" },
+    { text: format(t.publications, { count: stats.publications }), href: "#publications" },
+    { text: t.rolling },
   ];
 
   return (

@@ -19,13 +19,13 @@
  * Navy linework on white, in the house stroke. No robots, no brains, no
  * network of dots.
  */
-export default function FittingTheCurve() {
+export default function FittingTheCurve({ label }: { label: string }) {
   return (
     <svg
       viewBox="0 0 720 500"
       fill="none"
       role="img"
-      aria-label="A scatter of observations on a plot. Two researchers, one seated and one standing and pointing, fit a single line through it; the fitted line rises clear of the scatter in orange and runs onto a pinned printed page, whose figure repeats the same line."
+      aria-label={label}
       className="h-auto w-full max-w-[560px]"
     >
       {/* Axes and ticks. Faint: the plot is the ground the work happens on. */}

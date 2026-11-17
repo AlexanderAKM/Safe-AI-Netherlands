@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { Dictionary } from "@/i18n";
+import { format } from "@/i18n/rich";
 import {
   ArrowLineUpIcon,
   ArrowSquareOutIcon,
@@ -77,6 +79,7 @@ function Sheet({
   pageCount,
   size,
   width,
+  pageLabel,
 }: {
   pdfjs: PdfJs;
   doc: PdfDocument;
@@ -84,6 +87,8 @@ function Sheet({
   pageCount: number;
   size: PageSize;
   width: number;
+  /** "Page {page} of {count}", in the page's language. */
+  pageLabel: string;
 }) {
   const sheetRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -155,7 +160,7 @@ function Sheet({
       ref={sheetRef}
       data-page={pageNumber}
       role="group"
-      aria-label={`Page ${pageNumber} of ${pageCount}`}
+      aria-label={format(pageLabel, { page: pageNumber, count: pageCount })}
       className="relative shrink-0 bg-white shadow-[0_1px_2px_rgb(0_0_0/0.25),0_12px_32px_-12px_rgb(0_0_0/0.5)]"
       style={{ width, height }}
     >
@@ -165,7 +170,16 @@ function Sheet({
   );
 }
 
-export default function PaperReader({ src, title }: { src: string; title: string }) {
+/* A client component: the paper page hands it its words. */
+export default function PaperReader({
+  src,
+  title,
+  t,
+}: {
+  src: string;
+  title: string;
+  t: Dictionary["research"]["reader"];
+}) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [pdfjs, setPdfjs] = useState<PdfJs | null>(null);
   const [doc, setDoc] = useState<PdfDocument | null>(null);
@@ -283,7 +297,7 @@ export default function PaperReader({ src, title }: { src: string; title: string
           because a sticky element inside an overflow box sticks to the box. */}
       <div
         role="toolbar"
-        aria-label="Paper reader"
+        aria-label={t.label}
         className="sticky top-[74px] z-20 flex items-center justify-between gap-3 border border-white/10 bg-[#03173d]/90 px-2 py-1.5 backdrop-blur-md sm:px-3"
       >
         <p className="min-w-0 truncate pl-1 font-sans text-footnote text-white/70">
@@ -297,11 +311,11 @@ export default function PaperReader({ src, title }: { src: string; title: string
                 {current} / {sizes.length}
               </span>
               <span className="hidden sm:inline">
-                Page {current} of {sizes.length}
+                {format(t.pageOf, { page: current, count: sizes.length })}
               </span>
             </span>
           ) : (
-            <span>Loading…</span>
+            <span>{t.loading}</span>
           )}
         </p>
         <div className="flex shrink-0 items-center gap-0.5">
@@ -310,7 +324,7 @@ export default function PaperReader({ src, title }: { src: string; title: string
             className={toolButton}
             onClick={() => zoomTo(Math.max(0, zoomIndex - 1))}
             disabled={!ready || zoomIndex === 0}
-            aria-label="Zoom out"
+            aria-label={t.zoomOut}
           >
             <MagnifyingGlassMinusIcon size={18} aria-hidden="true" />
           </button>
@@ -319,7 +333,7 @@ export default function PaperReader({ src, title }: { src: string; title: string
             className={`${toolButton} w-[52px] font-sans text-footnote tabular-nums`}
             onClick={() => zoomTo(ZOOM_STEPS.indexOf(1))}
             disabled={!ready}
-            aria-label={`Zoom ${Math.round(zoom * 100)} percent, reset to fit`}
+            aria-label={format(t.zoomReset, { percent: Math.round(zoom * 100) })}
           >
             {Math.round(zoom * 100)}%
           </button>
@@ -328,12 +342,12 @@ export default function PaperReader({ src, title }: { src: string; title: string
             className={toolButton}
             onClick={() => zoomTo(Math.min(ZOOM_STEPS.length - 1, zoomIndex + 1))}
             disabled={!ready || zoomIndex === ZOOM_STEPS.length - 1}
-            aria-label="Zoom in"
+            aria-label={t.zoomIn}
           >
             <MagnifyingGlassPlusIcon size={18} aria-hidden="true" />
           </button>
           <span className="mx-1.5 h-5 w-px bg-white/15" aria-hidden="true" />
-          <a href={src} download className={toolButton} aria-label="Download PDF">
+          <a href={src} download className={toolButton} aria-label={t.download}>
             <DownloadSimpleIcon size={18} aria-hidden="true" />
             <span className="hidden font-sans text-footnote sm:inline">PDF</span>
           </a>
@@ -342,7 +356,7 @@ export default function PaperReader({ src, title }: { src: string; title: string
             target="_blank"
             rel="noopener noreferrer"
             className={toolButton}
-            aria-label="Open the PDF in a new tab"
+            aria-label={t.openInTab}
           >
             <ArrowSquareOutIcon size={18} aria-hidden="true" />
           </a>
@@ -354,10 +368,10 @@ export default function PaperReader({ src, title }: { src: string; title: string
             type="button"
             className={toolButton}
             onClick={() => window.scrollTo({ top: 0 })}
-            aria-label="Back to top"
+            aria-label={t.backToTop}
           >
             <ArrowLineUpIcon size={18} aria-hidden="true" />
-            <span className="hidden font-sans text-footnote sm:inline">Top</span>
+            <span className="hidden font-sans text-footnote sm:inline">{t.top}</span>
           </button>
         </div>
       </div>
@@ -367,10 +381,10 @@ export default function PaperReader({ src, title }: { src: string; title: string
           {failed ? (
             <div className="flex max-w-[520px] flex-col items-center gap-4 py-16 text-center">
               <p className="text-body text-white/80">
-                The reader could not open this paper here.
+                {t.failed}
               </p>
               <a href={src} download className="btn-accent gap-2">
-                Download the PDF
+                {t.downloadInstead}
                 <DownloadSimpleIcon size={16} aria-hidden="true" />
               </a>
             </div>
@@ -384,6 +398,7 @@ export default function PaperReader({ src, title }: { src: string; title: string
                 pageCount={sizes.length}
                 size={size}
                 width={width}
+                pageLabel={t.pageOf}
               />
             ))
           ) : (
@@ -396,7 +411,7 @@ export default function PaperReader({ src, title }: { src: string; title: string
                 style={{ width: fitWidth || "100%", aspectRatio: "8.5 / 11" }}
               >
                 {i === 0 ? (
-                  <p className="font-sans text-footnote text-white/60">Loading the paper…</p>
+                  <p className="font-sans text-footnote text-white/60">{t.loadingPaper}</p>
                 ) : null}
               </div>
             ))

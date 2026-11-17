@@ -1232,5 +1232,152 @@
       "applyAs": "Apply as {role}",
       "oneForm": "One form for all four roles and all three cities. You can apply for more than one role."
     }
+  },
+  "availability": {
+    "limitedWithNote": "Limited: {note}",
+    "limited": "Limited places",
+    "full": "Full for now",
+    "unconfirmed": "Availability to be confirmed"
+  },
+  "research": {
+    "meta": {
+      "title": "Project hub",
+      "description": "The SAIN Project Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. Voluntary, remote-friendly, and open for applications at any time."
+    },
+    "projectsEmailSubject": "Project Hub: question",
+    "applyForProject": "Apply for a project",
+    "browseOpenProjects": "Browse open projects",
+    "readHandbookLink": "Read the Project Hub handbook",
+    "hero": {
+      "heading": "Make a first real contribution to AI Safety",
+      "body": "The SAIN Project Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. It is voluntary, remote-friendly, and open for applications at any time.",
+      "readHandbook": "Read the handbook",
+      "illustrationLabel": "A scatter of observations on a plot. Two researchers, one seated and one standing and pointing, fit a single line through it; the fitted line rises clear of the scatter in orange and runs onto a pinned printed page, whose figure repeats the same line."
+    },
+    "facts": {
+      "openProjects": "{count} open projects",
+      "supervisors": "{count} supervisors",
+      "publications": "{count} publications",
+      "rolling": "rolling applications"
+    },
+    "projects": {
+      "heading": "Find a project, then join it",
+      "body": "Every project SAIN supervisors have on offer, kept up to date by the projects team. One application form covers all of them: name up to three projects in it, and the projects team will introduce you to the supervisors within a working week. A VU or UvA thesis counts towards a degree there, so it is for that university’s students; every other project is open to anyone with the right background."
+    },
+    "eligibility": {
+      "heading": "You do not need a university post to do this work",
+      "offer": "SAIN’s offer is one line: bring your expertise to AI Safety, and the community, supervision, and support are here to take it further. The rest of this page is the mechanism behind that line: how a project is chosen, what support looks like week to week, and where the work ends up.",
+      "openTo": "The hub is open to anyone with sufficient background:",
+      "who": [
+        "Students at Bachelor, Master, or PhD level",
+        "Researchers, and people working in industry",
+        "Policy professionals",
+        "People with no formal affiliation"
+      ],
+      "remote": "Remote participation works. Applications are rolling, so you can apply whenever you are ready, and for supervised projects you hear back within a working week.",
+      "notAJob": "One thing the hub is not: a job. SAIN does not pay stipends or salaries; participation is voluntary and educational. What SAIN does provide is supervision, compute, coordination, and, within reason, help with conference travel."
+    },
+    "process": {
+      "heading": "From open question to published finding",
+      "body": "Every project in the hub moves through the same three steps. The handbook spells each one out in full; this is the shape of it.",
+      "label": "The three steps of a project",
+      "choose": {
+        "title": "Choose a project",
+        "intro": "There are three ways in, and all three are normal.",
+        "routes": [
+          {
+            "lead": "Join a supervisor's project.",
+            "body": "Every project a SAIN supervisor has offered is listed at the top of this page. Find one that fits your background and register your interest; the projects team introduces you to the supervisor."
+          },
+          {
+            "lead": "Join an open collaboration.",
+            "body": "Some projects run without formal supervision. One person leads, usually whoever designed the project, and SAIN connects collaborators and supports the work."
+          },
+          {
+            "lead": "Bring your own idea.",
+            "body": "Write a short proposal: the question, why it matters, how you would test it, and what you need. SAIN's Project Team reviews it, and can help you shape it if it is not fully formed yet."
+          }
+        ],
+        "criteria": "Not every valuable contribution is a research paper: the work can be technical, governance, policy, or conceptual. When choosing projects, the team looks at three things: relevance to the Netherlands and Europe, relevance to transformative AI, and whether it can succeed on a small budget. If you are unsure whether a topic counts as AI Safety, the default answer is yes, provided you can articulate a plausible pathway from the work to reducing risk from transformative AI."
+      },
+      "support": {
+        "title": "Work with support",
+        "paragraphs": [
+          "Fill in the application form and, for supervised projects, you hear back within a working week. If there is a fit, a supervisor is formally assigned and the project gets its own channel in the community.",
+          "Supervision is a working relationship, not a lecture. You drive the day-to-day work; your supervisor helps scope the project realistically, reviews experiments and drafts, and steps in when a direction stops being productive. Meetings run weekly or biweekly, and you agree your commitment per project up front, whether that is five to ten hours a week alongside a degree or something closer to full time.",
+          "Supervisors come from universities, industry, and government. In academia they are usually at PhD level or more senior; outside it, they have several years of senior experience in a relevant role. Compute is arranged per project at the start, and computationally inexpensive projects are encouraged. Remote participation works throughout."
+        ],
+        "meetSupervisors": "Meet the supervisors"
+      },
+      "publish": {
+        "title": "Publish your findings",
+        "paragraphs": [
+          "A project is complete when its main question is adequately answered, including when the answer is negative, and the result is published in a presentable form: a paper, a policy brief, an evaluation or open-source tool, or a blog post on SAIN’s Substack or LessWrong. You get feedback on drafts, and SAIN may help with conference travel within reason.",
+          "That is not hypothetical. Work from this community has been accepted at workshops at NeurIPS and ICLR, which is where most first contributions in this field land."
+        ],
+        "allPublicationsLabel": "All publications from the SAIN community"
+      }
+    },
+    "supervisors": {
+      "heading": "The people you would work with",
+      "body": "Every supervisor keeps a public agenda of the projects they would like to supervise. Read it before you apply: the strongest expressions of interest respond to a question a supervisor has already posed.",
+      "superviseHeading": "Supervise the next project",
+      "superviseBody": "If you have substantial experience in a relevant field, usually PhD level or above in academia or several years in a senior role in industry or policy, and the work above looks like something you could guide, more supervisors means more projects. You do not need to be an AI Safety expert already. Supervision is remote-friendly, meetings run at a cadence you agree per project, and the Project Team handles the coordination around you. Fill in the supervisor form and we will follow up with next steps.",
+      "become": "Become a supervisor"
+    },
+    "close": {
+      "heading": "Apply whenever you are ready",
+      "body": "Applications are rolling, and for supervised projects you hear back within a working week. Fill in the application form, or email the projects team if you are not sure where you fit and we will help route you.",
+      "emailTeam": "Email the projects team",
+      "handbookNote": "The full process, expectations, and norms are written down. <link>Read the Project Hub handbook</link>"
+    },
+    "apply": {
+      "meta": {
+        "title": "Apply for a project",
+        "description": "Apply to the SAIN Project Hub in one form: join a project, propose your own, or offer to supervise."
+      },
+      "breadcrumbLabel": "Breadcrumb",
+      "projectHub": "Project hub",
+      "apply": "Apply",
+      "heading": "Apply for a project",
+      "body": "One form for the Project Hub. Choose whether you want to join a project (name up to three from the <link>open projects</link>), propose your own, or supervise. The projects team gets back to you within a working week.",
+      "thesisNote": "A VU or UvA thesis is for students of that university; every other project is open to everyone. Questions first? Email {email}.",
+      "formLabel": "Application form",
+      "applyingFor": "Applying for",
+      "selectIt": "Make sure it is selected when the form asks which projects you would like to join. You can add up to two more.",
+      "formTitle": "SAIN Project Hub application form",
+      "formNotShowing": "Form not showing?",
+      "openInNewTab": "Open it in a new tab"
+    },
+    "paper": {
+      "publications": "Publications",
+      "readThePaper": "Read the paper",
+      "downloadPdf": "Download PDF",
+      "viewOn": "View on {source}",
+      "readOn": "Read on {source}",
+      "fromCommunity": "From the SAIN community.",
+      "sharedUnder": "Shared here under {license}; the original is on {source}.",
+      "originalOn": "The original is on {source}.",
+      "notHosted": "The paper is published on {source} and is not hosted here.",
+      "sectionLabel": "The paper",
+      "nextHeading": "Write the next one",
+      "nextBody": "Work like this is what the Project Hub is for. It matches you with a supervisor, arranges compute, and takes a project from open question to published finding.",
+      "projectPage": "the project page"
+    },
+    "reader": {
+      "label": "Paper reader",
+      "pageOf": "Page {page} of {count}",
+      "loading": "Loading…",
+      "zoomOut": "Zoom out",
+      "zoomReset": "Zoom {percent} percent, reset to fit",
+      "zoomIn": "Zoom in",
+      "download": "Download PDF",
+      "openInTab": "Open the PDF in a new tab",
+      "backToTop": "Back to top",
+      "top": "Top",
+      "failed": "The reader could not open this paper here.",
+      "downloadInstead": "Download the PDF",
+      "loadingPaper": "Loading the paper…"
+    }
   }
 }

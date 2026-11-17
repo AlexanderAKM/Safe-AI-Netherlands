@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { availabilityLine, byAvailability, isGreyedOut, supervisors } from "@/data/research";
+import { getDictionary, type Locale } from "@/i18n";
 
 /* The supervisors, as a left-aligned row of 140px square portraits on white.
  *
@@ -22,7 +23,8 @@ import { availabilityLine, byAvailability, isGreyedOut, supervisors } from "@/da
  * under the position says why, so the fade is never the only signal. A limited
  * supervisor keeps their portrait and gets the line in orange.
  */
-export default function SupervisorRow() {
+export default function SupervisorRow({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
       {byAvailability(supervisors).map((person) => {
@@ -71,18 +73,22 @@ export default function SupervisorRow() {
               <p className="mt-1.5 text-footnote leading-5 text-navy/65">
                 {person.position}
               </p>
-              {availabilityLine(person.availability, person.availabilityNote) && (
+              {availabilityLine(t.availability, person.availability, person.availabilityNote) && (
                 <p
                   className={`mt-1.5 text-footnote italic leading-5 ${
                     person.availability === "limited" ? "text-orange-ink" : "text-navy/55"
                   }`}
                 >
-                  {availabilityLine(person.availability, person.availabilityNote)}
+                  {availabilityLine(t.availability, person.availability, person.availabilityNote)}
                 </p>
               )}
               {/* The whole portrait is the link, so the destination has to be
                   named for anyone who cannot see the hover state. */}
-              {person.agenda && <span className="sr-only">Research agenda (opens in a new tab)</span>}
+              {person.agenda && (
+                <span className="sr-only">
+                  {t.landing.researchAgenda} {t.common.opensInNewTab}
+                </span>
+              )}
             </Card>
           </li>
         );
