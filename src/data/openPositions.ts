@@ -981,7 +981,7 @@ export const ROLES: Record<string, Role> = {
     team: "education",
     scope: "chapter",
     reportsTo:
-      "The Lead responsible for collaborations; the Education Lead for course teaching",
+      "Lead responsible for collaborations, and to the Education Lead for course teaching",
     timeCommitment:
       "About 6 to 8 hours per week (the facilitator workload plus partner meetings and follow-up), for at least two quarters (6 months)",
     mission:

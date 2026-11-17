@@ -41,9 +41,10 @@ export async function readKeptNames() {
     .filter(Boolean);
   const roleTitles = new Set([
     ...postedRoles.flatMap((role) => [role.title, role.specialisationOf]),
-    /* A role reports to a title, except where the field explains a split;
-       that sentence is translated, with the titles in it kept. */
-    ...postedRoles.map((role) => role.reportsTo).filter((title) => !title.includes(";")),
+    /* A role reports to a title, except where the field explains a split
+       ("Lead responsible for …"); that phrase is translated, with the titles
+       in it kept. A title is capitalised throughout. */
+    ...postedRoles.map((role) => role.reportsTo).filter((title) => /^[A-Z][\w&]*( [A-Z][\w&]*)*$/.test(title)),
     ...FOUNDING_ROLES.map((role) => role.title),
     "Chapter Director",
   ]);

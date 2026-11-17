@@ -1073,7 +1073,7 @@
             ]
           },
           "discussionGroups": "Between cohorts, two discussion groups keep meeting: one on technical AI safety, currently a mechanistic interpretability reading group, and one on AI governance and policy.",
-          "research": "The chapter is building a research track: red-teaming language models, safety evaluation, interpretability, and agent behaviour. The Project Hub launches in October 2026."
+          "research": "The chapter is building a research track: red-teaming language models, safety evaluation, interpretability, and agent behaviour. Its projects run through the Project Hub."
         },
         "teamBody": "SAIN Utrecht is directed by Riccardo Campanella. The team is growing across four areas: education, events, communication, and research. The chapter's work is funded by BERI, with mentorship from Pathfinder.",
         "evidence": {
@@ -2101,7 +2101,7 @@
         },
         "governance-coordinator": {
           "timeCommitment": "About 6 to 8 hours per week (the facilitator workload plus partner meetings and follow-up), for at least two quarters (6 months)",
-          "reportsTo": "The Lead responsible for collaborations; the Education Lead for course teaching",
+          "reportsTo": "Lead responsible for collaborations, and to the Education Lead for course teaching",
           "mission": "Build on the Education Course Facilitator: AI Governance role and extend it with partnership work. A coordinator is a facilitator with more privileges and responsibilities: an expert in their field who is the main point of contact for partner companies, and who implements partnerships and keeps them operational. The Governance Coordinator connects the governance courses to what comes after them: the projects proposed during the courses, the challenges that follow the courses, and research opportunities.",
           "responsibilities": [
             "Prepare and deliver the four lectures: Introduction to AI governance and AI safety, AI geopolitics, The tools of the policymaker, and Governance in Europe and the Netherlands.",

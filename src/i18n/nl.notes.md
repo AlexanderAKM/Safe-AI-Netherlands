@@ -157,7 +157,7 @@ what the English means, Sofia can answer that.
 - `chapters.utrecht.courses.governance.summary`: the English is logically odd. “Most courses focus on the US and China. In this course, we *also* look at their visions…” seems to mean “we cover the US and China too, but also the middle powers”. I translated it literally (“kijken we ook naar hun visies … en naar de plek van middenmachten”). The reviewer may want to smooth it.
 - `chapters.utrecht.courses.governance.sessions[3].detail`: kept “EU AI Act”, “EU AI Office”, “GPAI Code of Practice” in English. Official Dutch names exist (“AI-verordening”, “AI-bureau”, “praktijkcode voor AI voor algemene doeleinden”). The reviewer should decide which is more recognisable to the audience.
 - `chapters.utrecht.courses.governance.sessions[2].detail`: ambiguous English (are system cards and future scenarios also analysed, or separate topics?). I kept the same list structure.
-- `chapters.utrecht.courses.research`: “The Project Hub launches in October 2026” is already in the past (today is November 2026). The English needs updating; the translation keeps the future tense (“gaat … van start”).
+- `chapters.utrecht.courses.research`: the English said the Project Hub “launches in October 2026”; it now says the chapter’s projects run through the Project Hub, and the Dutch follows (“De projecten lopen via de Project Hub”).
 - `chapters.utrecht.evidence.body`, `chapters.utrecht.prints[2].caption`: “Europe 2031” kept in English, on the assumption that it is a named scenario. If it is not, use “Europa in 2031”. The long list sentence keeps the English structure and is heavy in Dutch too.
 - `chapters.utrecht.prints[0].caption`: “Programme graduation” → “Certificaatuitreiking” (dropped “programme”).
 
@@ -262,7 +262,7 @@ what the English means, Sofia can answer that.
 
 #### Fragments and joined texts
 
-- `openPositions.roles.governance-coordinator.reportsTo` — this value is a sentence, not a role title. The summary template is “Rapporteert aan de {reportsTo}”, and in English “Reports to the {reportsTo}” gives “Reports to the The Lead …”, so the English source has a bug. In Dutch I dropped the leading article (“Lead die verantwoordelijk is voor samenwerkingen; voor het lesgeven in de cursus de Education Lead”) so the line reads “Rapporteert aan de Lead die …”. The English source should be fixed too.
+- `openPositions.roles.governance-coordinator.reportsTo`: this value is a phrase, not a role title, and goes into “Rapporteert aan de {reportsTo}.” The English is now “Lead responsible for collaborations, and to the Education Lead for course teaching” (it used to read “Reports to the The Lead …”). Dutch: “Lead die verantwoordelijk is voor samenwerkingen, en voor het lesgeven in de cursus aan de Education Lead”. Please check that it reads well after “Rapporteert aan de”.
 - `openPositions.roles.*.goodFitIf` — written to continue “Deze rol past misschien bij je als je …”: lower-case start, verb at the end (“om de risico’s … geeft en ze beter wilt begrijpen.”). The extra sentences inside the first item stand on their own. If the lead-in label changes, these items must change with it.
 - `openPositions.chapters.Groningen.closedNote` — the full sentence reads “… Wil je in beeld komen als er iets vrijkomt? Mail dan naar {e-mail} en vertel ons wat je graag zou willen doen.” This should read well, but please check it on the page.
 
