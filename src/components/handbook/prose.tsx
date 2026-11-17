@@ -165,9 +165,12 @@ export function Callout({
    to discover after the fact. */
 export function OutLink({
   href,
+  newTab,
   children,
 }: {
   href: string;
+  /** The screen-reader note, in the page's language: "(opens in a new tab)". */
+  newTab: string;
   children: ReactNode;
 }) {
   return (
@@ -179,7 +182,7 @@ export function OutLink({
     >
       {children}
       <ArrowUpRight size={16} weight="regular" aria-hidden="true" className="translate-y-[2px]" />
-      <span className="sr-only"> (opens in a new tab)</span>
+      <span className="sr-only"> {newTab}</span>
     </a>
   );
 }

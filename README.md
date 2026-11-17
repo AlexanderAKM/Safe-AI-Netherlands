@@ -57,12 +57,14 @@ The site is being made bilingual (English and Dutch). The text is moving out of 
 components into `src/i18n/en.json`, page by page; the pages already moved are the
 layout, navbar, footer, homepage, about (with its documents), team, contact, volunteer,
 open positions, courses, community, the three chapter pages (with the Groningen events
-archive) and new chapters. The Dutch version, `nl.json`, comes back from a translator,
+archive), new chapters, and the Project Hub (with its handbook, apply page and papers). The Dutch version, `nl.json`, comes back from a translator,
 and the `/nl` pages and the language switch arrive with it.
 
-- Exceptions: `src/data/openPositions.ts`, `src/data/newChapters.ts` and
-  `src/data/courseApplications.ts` keep their text in the file, so roles, the
-  starting-team call and cohort notes are edited exactly as before. The translation
+- Exceptions: `src/data/openPositions.ts`, `src/data/newChapters.ts`,
+  `src/data/courseApplications.ts`, `src/data/research.ts` and `src/data/projects.ts`
+  keep their text in the file, so roles, the
+  starting-team call, cohort notes, papers, supervisors and projects are edited exactly as
+  before. The translation
   package copies that text out for the translator, and the Dutch comes back as a
   separate section. The pages' own words are in `en.json`.
 - The Groningen events archive (`src/data/groningenEventsArchive.ts`) and the Luma
