@@ -234,6 +234,20 @@ for (const file of sourceFilesUnder(join(root, "src"))) {
       index: match.index,
     });
   }
+  // A function that takes a translator as a parameter (`t: Translator`)
+  // starts a scope whose namespace is unknown here: calls in it are skipped.
+  const signatures = [
+    ...code.matchAll(/function\s*\w*\s*(?:<[^>]*>)?\s*\(([^)]*)/g),
+    ...code.matchAll(/\(([^()]*)\)\s*(?::[^=>{;]*)?=>/g),
+  ];
+  for (const name of new Set(declarations.map((d) => d.name))) {
+    const parameter = new RegExp(`(?:^|[\\s,(])${name}\\s*(?:[:,?)]|$)`);
+    for (const signature of signatures) {
+      if (parameter.test(signature[1])) {
+        declarations.push({ name, namespace: null, index: signature.index });
+      }
+    }
+  }
   for (const name of new Set(declarations.map((d) => d.name))) {
     const call = new RegExp(`\\b${name}(?:\\.(?:rich|raw|markup))?\\(\\s*(?:"([^"]+)"|'([^']+)')`, "g");
     for (const match of code.matchAll(call)) {
@@ -242,7 +256,7 @@ for (const file of sourceFilesUnder(join(root, "src"))) {
       const scope = declarations
         .filter((d) => d.name === name && d.index < match.index)
         .sort((a, b) => b.index - a.index)[0];
-      if (!scope) continue;
+      if (!scope || scope.namespace === null) continue;
       usedKeys += 1;
       const full = scope.namespace ? `${scope.namespace}.${key}` : key;
       if (lookup(full) === undefined) {
