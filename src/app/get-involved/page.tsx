@@ -12,91 +12,34 @@ import {
   Megaphone,
   UsersThree,
 } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, type Dictionary } from "@/i18n";
+
+const t = getDictionary("en");
 
 export const metadata: Metadata = {
-  title: "Volunteer",
-  description:
-    "SAIN runs on volunteers. Six teams across Amsterdam, Utrecht and Groningen, three to ten hours a week, one short application reviewed as it arrives.",
+  title: t.getInvolved.meta.title,
+  description: t.getInvolved.meta.description,
 };
 
-/* The six teams every chapter runs, with the hours that make the ask
-   evaluable in one scan. Hour ranges and mission lines are condensed from the
-   role catalogue in src/data/openPositions.ts; if a role's hours change there,
-   change the range here in the same commit.
+/* The six teams every chapter runs (getInvolved.work.teams), with the hours
+   that make the ask evaluable in one scan. Hour ranges and mission lines are
+   condensed from the role catalogue in src/data/openPositions.ts; if a role's
+   hours change there, change the range in en.json in the same commit.
 
    Icons are 26px Phosphor at light weight, orange stroke on a light ground,
    with no tile behind them: design.md's career row. */
-const TEAMS = [
-  {
-    name: "Education",
-    icon: GraduationCap,
-    description:
-      "Run course cohorts and discussion groups. Facilitate weekly sessions, support participants, and keep quality high across iterations.",
-    hours: "3 to 10 hours a week",
-  },
-  {
-    name: "Events",
-    icon: CalendarBlank,
-    description:
-      "Plan and deliver the chapter's calendar. Hackathons, expert talks, socials, and the logistics behind them.",
-    hours: "3 to 10 hours a week",
-  },
-  {
-    name: "Communications",
-    icon: Megaphone,
-    description:
-      "Writing, design, photography, video and the website. Make the chapter's work visible and on-brand.",
-    hours: "3 to 10 hours a week",
-  },
-  {
-    name: "Community",
-    icon: UsersThree,
-    description:
-      "Welcome new members, be the first point of contact, and help people find their way into deeper involvement.",
-    hours: "4 to 6 hours a week",
-  },
-  {
-    name: "Outreach",
-    icon: HandWaving,
-    description:
-      "Be SAIN's face on campus. Tabling, flyers, and inviting students to upcoming events.",
-    hours: "3 to 5 hours a week",
-  },
-  {
-    name: "Research operations",
-    icon: Flask,
-    description:
-      "Keep the Project Hub running day to day. Onboard researchers and supervisors, track projects, and unblock problems.",
-    hours: "2 to 8 hours a week",
-  },
+const TEAMS: { key: keyof Dictionary["getInvolved"]["work"]["teams"]; icon: typeof Flask }[] = [
+  { key: "education", icon: GraduationCap },
+  { key: "events", icon: CalendarBlank },
+  { key: "communications", icon: Megaphone },
+  { key: "community", icon: UsersThree },
+  { key: "outreach", icon: HandWaving },
+  { key: "research", icon: Flask },
 ];
 
-const RETURNS = [
-  "Experience with real responsibility, not shadowing",
-  "A network across three chapter cities",
-  "A track record in the field: cohorts taught, events run, work published",
-];
-
-/* The way in, in the order it happens. Four steps on a light ground, so the
-   numerals are orange-ink outline rows rather than the inverse serif device. */
-const STEPS = [
-  {
-    title: "Apply.",
-    body: "Pick the chapter and the role, attach your CV, and write a short motivation letter. One page is plenty.",
-  },
-  {
-    title: "Hear back.",
-    body: "We read applications as they arrive. First response within 2 to 3 weeks.",
-  },
-  {
-    title: "Talk.",
-    body: "A 30 to 45 minute call about the role, your motivation, and a small task or scenario relevant to the team.",
-  },
-  {
-    title: "Start.",
-    body: "If that goes well, onboarding begins with the next cycle, and joining at other dates is possible.",
-  },
-];
+/* The way in (getInvolved.apply.steps), in the order it happens. Four steps
+   on a light ground, so the numerals are orange-ink outline rows rather than
+   the inverse serif device. */
 
 const PRINT_WIDTHS = [320, 640, 900];
 const printSrcSet = (src: string) =>
@@ -120,15 +63,14 @@ export default function VolunteerPage() {
         <div className="shell band-hero grid items-center gap-10 lg:grid-cols-[minmax(0,640px)_minmax(0,1fr)] lg:gap-16">
           <Reveal hero className="flex min-w-0 flex-col gap-6">
             <h1 id="volunteer-heading" className="font-serif text-display text-navy">
-              SAIN runs on volunteers
+              {t.getInvolved.hero.heading}
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              Every programme is free because people give a few hours a week to run it. This
-              page is the work, what you get from it, and the way in.
+              {t.getInvolved.hero.body}
             </p>
             <div className="pt-1">
               <Link href="/open-positions" className="btn-accent self-start">
-                See open positions
+                {t.getInvolved.seeOpenPositions}
               </Link>
             </div>
           </Reveal>
@@ -139,7 +81,7 @@ export default function VolunteerPage() {
                 src="/landing/print-hackathon-640.jpg"
                 srcSet={printSrcSet("/landing/print-hackathon.jpg")}
                 sizes="(min-width: 1024px) 420px, (min-width: 640px) 60vw, 84vw"
-                alt="People working together at a table during a hackathon"
+                alt={t.getInvolved.hero.photoAlt}
                 width={640}
                 height={480}
                 className="aspect-[4/3] w-full object-cover object-[48%_80%]"
@@ -160,41 +102,42 @@ export default function VolunteerPage() {
         <SectionOrbits className="-bottom-24 -left-20 h-[460px] w-[340px] md:-left-12" />
         <div className="shell band-section">
           <div className="flex max-w-[720px] flex-col gap-4">
-            <p className="kicker text-kicker text-navy/65">The work</p>
+            <p className="kicker text-kicker text-navy/65">{t.getInvolved.work.kicker}</p>
             <h2 id="work-heading" className="font-serif text-heading text-navy">
-              Six teams, three to ten hours a week
+              {t.getInvolved.work.heading}
             </h2>
             <p className="max-w-[680px] font-sans text-body text-navy/74">
-              Amsterdam, Utrecht and Groningen each run the same teams. Leads carry a team and
-              report to the chapter&rsquo;s director; team members carry a slice of it. Most
-              roles are three to five hours a week, leads six to ten.
+              {t.getInvolved.work.body}
             </p>
           </div>
 
           <Reveal className="mt-10">
             <ul role="list">
-              {TEAMS.map(({ name, icon: Icon, description, hours }) => (
-                <li
-                  key={name}
-                  className="flex flex-col gap-4 border-t border-navy/10 py-[18px] sm:flex-row sm:items-start sm:gap-6 md:gap-8"
-                >
-                  <Icon
-                    size={26}
-                    weight="light"
-                    aria-hidden="true"
-                    className="shrink-0 text-orange sm:mt-1"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-serif text-title text-navy">{name}</h3>
-                    <p className="mt-1 max-w-[640px] font-sans text-body leading-[25px] text-navy/74">
-                      {description}
+              {TEAMS.map(({ key, icon: Icon }) => {
+                const { name, description, hours } = t.getInvolved.work.teams[key];
+                return (
+                  <li
+                    key={key}
+                    className="flex flex-col gap-4 border-t border-navy/10 py-[18px] sm:flex-row sm:items-start sm:gap-6 md:gap-8"
+                  >
+                    <Icon
+                      size={26}
+                      weight="light"
+                      aria-hidden="true"
+                      className="shrink-0 text-orange sm:mt-1"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-serif text-title text-navy">{name}</h3>
+                      <p className="mt-1 max-w-[640px] font-sans text-body leading-[25px] text-navy/74">
+                        {description}
+                      </p>
+                    </div>
+                    <p className="shrink-0 font-sans text-caption text-navy/65 sm:w-[164px] sm:pt-1.5 sm:text-right">
+                      {hours}
                     </p>
-                  </div>
-                  <p className="shrink-0 font-sans text-caption text-navy/65 sm:w-[164px] sm:pt-1.5 sm:text-right">
-                    {hours}
-                  </p>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           </Reveal>
 
@@ -202,13 +145,12 @@ export default function VolunteerPage() {
               paid post on a page about volunteering, and a row would give it
               the weight of a team. */}
           <p className="mt-6 max-w-[680px] border-t border-navy/10 pt-5 font-sans text-footnote leading-[19px] text-navy/65">
-            SAIN also hires a small number of paid national staff when a role needs it. Those
-            roles are listed with the open positions.
+            {t.getInvolved.work.paidNote}
           </p>
 
           <div className="mt-8">
             <Link href="/open-positions" className="btn-outline-ink">
-              See open positions
+              {t.getInvolved.seeOpenPositions}
             </Link>
           </div>
         </div>
@@ -227,17 +169,13 @@ export default function VolunteerPage() {
               id="what-you-get-heading"
               className="max-w-[620px] font-serif text-heading-sm text-navy"
             >
-              You leave with work you can point to
+              {t.getInvolved.returns.heading}
             </h2>
             <p className="max-w-[680px] font-sans text-body text-navy/74">
-              Volunteer roles at SAIN carry real ownership early. Leads report straight to
-              chapter directors, and team members run cohorts, events and channels that
-              actually happen. You work alongside people across Utrecht, Groningen and
-              Amsterdam who are moving into the field themselves, and many of the
-              introductions that matter later start here.
+              {t.getInvolved.returns.body}
             </p>
             <ul className="flex flex-col gap-2.5 border-t border-navy/14 pt-4 font-sans text-kicker-sm leading-[22px] text-navy">
-              {RETURNS.map((item) => (
+              {t.getInvolved.returns.items.map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   {/* Navy, not orange: the orange on this page belongs to the
                       buttons and the six icons. */}
@@ -250,18 +188,17 @@ export default function VolunteerPage() {
 
           <blockquote className="flex min-w-0 flex-col gap-[18px]">
             <p className="kicker text-base leading-[22px] text-navy/65">
-              Internship · Existential Risk Observatory
+              {t.testimonial.context}
             </p>
             <p className="font-serif text-title font-light leading-[31px] text-navy">
-              &ldquo;Without this community I almost certainly wouldn&rsquo;t be where I
-              am.&rdquo;
+              &ldquo;{t.testimonial.quote}&rdquo;
             </p>
             <footer className="border-t border-navy/14 pt-3">
               <cite className="block font-sans text-sm font-medium not-italic leading-5 text-navy">
                 Stefano Zuffi
               </cite>
               <p className="kicker mt-1 text-kicker-sm text-navy/65">
-                Mapping research on AI alignment techniques and government interventions
+                {t.testimonial.project}
               </p>
             </footer>
           </blockquote>
@@ -284,17 +221,15 @@ export default function VolunteerPage() {
               id="how-to-apply-heading"
               className="font-serif text-heading-sm text-navy"
             >
-              One short application, reviewed as it arrives
+              {t.getInvolved.apply.heading}
             </h2>
             <p className="max-w-[680px] font-sans text-body text-navy/74">
-              All chapter applications go through the same short form: name, CV, and a
-              one-page motivation letter. Applications are reviewed on a rolling basis, so
-              apply whenever you are ready.
+              {t.getInvolved.apply.body}
             </p>
           </div>
 
           <ol className="mt-9 font-sans text-body text-navy">
-            {STEPS.map((step, i) => (
+            {t.getInvolved.apply.steps.map((step, i) => (
               <li
                 key={step.title}
                 className="flex items-baseline gap-3 border-t border-navy/10 py-3"
@@ -310,8 +245,7 @@ export default function VolunteerPage() {
           </ol>
 
           <p className="mt-6 max-w-[680px] font-sans text-body text-navy/74">
-            No role that fits? Apply anyway. Tell us what you want to do in your motivation
-            letter, and we will figure out together what works well for you.
+            {t.getInvolved.apply.noRoleFits}
           </p>
 
           {/* No accent button here. The close is the page's last ask, and a
@@ -322,7 +256,7 @@ export default function VolunteerPage() {
               href="/contact"
               className="inline-flex items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Or get in touch first
+              {t.getInvolved.apply.getInTouch}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>
@@ -341,12 +275,11 @@ export default function VolunteerPage() {
             id="found-a-chapter-heading"
             className="font-serif text-title text-navy lg:w-[300px] lg:shrink-0"
           >
-            Want SAIN in your city?
+            {t.getInvolved.foundChapter.heading}
           </h2>
           <div className="flex min-w-0 flex-col items-start gap-3">
             <p className="max-w-[640px] font-sans text-body text-navy/74">
-              Founding a chapter is its own path, with its own playbooks and mentorship, and it
-              lives with the community.
+              {t.getInvolved.foundChapter.body}
             </p>
             <Link
               href="/community#start-chapter"
@@ -354,7 +287,7 @@ export default function VolunteerPage() {
             >
               {/* /about sends readers to this same anchor as "Start a chapter";
                   one label per destination. */}
-              Start a chapter
+              {t.getInvolved.foundChapter.link}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>
@@ -366,21 +299,19 @@ export default function VolunteerPage() {
         <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
           <div className="min-w-0">
             <h2 id="join-heading" className="max-w-[620px] font-serif text-closing text-white">
-              Every free programme has volunteers behind it
+              {t.getInvolved.close.heading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              A few hours a week, a team in your city, and applications reviewed on a rolling
-              basis. The next cohort of courses, events and research support gets run by
-              whoever joins now.
+              {t.getInvolved.close.body}
             </p>
           </div>
 
           <div className="flex flex-wrap gap-3 lg:shrink-0">
             <Link href="/open-positions" className="btn-accent">
-              See open positions
+              {t.getInvolved.seeOpenPositions}
             </Link>
             <Link href="/contact" className="btn-ghost-inverse">
-              Or get in touch first
+              {t.getInvolved.apply.getInTouch}
             </Link>
           </div>
         </div>

@@ -341,7 +341,7 @@ export default function Home() {
               actions. */}
           <blockquote className="flex min-w-0 flex-col gap-4 border-l border-navy/14 py-1 pl-6 lg:pl-7">
             <p className="kicker text-base leading-[22px] text-navy/65">
-              {t.home.careers.quoteContext}
+              {t.testimonial.context}
             </p>
             <p className="font-serif text-heading-sm font-light text-navy">
               <span
@@ -350,14 +350,14 @@ export default function Home() {
               >
                 &ldquo;
               </span>
-              {t.home.careers.quote}
+              {t.testimonial.quote}
             </p>
             <footer className="border-t border-navy/14 pt-3">
               <cite className="block font-sans text-sm font-medium not-italic leading-5 text-navy">
                 Stefano Zuffi
               </cite>
               <p className="kicker mt-1 text-kicker-sm text-navy/65">
-                {t.home.careers.quoteProject}
+                {t.testimonial.project}
               </p>
             </footer>
           </blockquote>

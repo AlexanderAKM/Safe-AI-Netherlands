@@ -24,53 +24,43 @@ import {
   openNationalPostings,
   recruitingChapters,
 } from "@/data/openPositions";
+import { format, getDictionary } from "@/i18n";
+
+const locale = "en";
+const dictionary = getDictionary(locale);
+const t = dictionary.openPositions;
+
+/* The roles themselves (titles, missions, the chapter headings and the
+   application timeline) stay in src/data/openPositions.ts in English; this
+   page's own words are in en.json under openPositions. */
 
 const INFO_EMAIL = "info@safeainetherlands.org";
-const JOIN_MAILTO = `mailto:${INFO_EMAIL}?subject=Joining SAIN`;
+const JOIN_MAILTO = `mailto:${INFO_EMAIL}?subject=${t.joinEmailSubject}`;
+const EMAIL_US = format(t.emailUs, { email: INFO_EMAIL });
 
 /* Title and description both follow the page's state, because the two states
    are answering different questions: one is a live listing of open roles, the
    other is a standing invitation. */
 export const metadata: Metadata = {
-  title: hasOpenPositions ? "Open positions" : "Join SAIN",
-  description: hasOpenPositions
-    ? "Volunteer and paid roles open at SAIN's chapters and on the national team. Apply with your CV and a short motivation letter."
-    : "Interested in volunteering with Safe AI Netherlands? There is always an open application. Get in touch.",
+  title: hasOpenPositions ? t.meta.titleOpen : t.meta.titleClosed,
+  description: hasOpenPositions ? t.meta.descriptionOpen : t.meta.descriptionClosed,
 };
 
-/* What the shared form asks for, in the order the form asks it. Kept beside
-   the page rather than in the data file: these are the form's fields, not
-   SAIN's roles, and they change when the form does. */
-const FORM_FIELDS = [
-  "Name and email",
-  "Chapter (Amsterdam, Utrecht, Groningen)",
-  "Role(s) you are applying for",
-  "CV (PDF)",
-  "Short motivation letter (PDF or text)",
-  "Optional: LinkedIn or portfolio link",
-];
+/* What the shared form asks for (openPositions.howToApply.formFields), in the
+   order the form asks it: these are the form's fields, not SAIN's roles, and
+   they change when the form does. */
 
-const NUMBER_WORDS = [
-  "zero",
-  "one",
-  "two",
-  "three",
-  "four",
-  "five",
-  "six",
-  "seven",
-  "eight",
-  "nine",
-  "ten",
-  "eleven",
-  "twelve",
-];
+const count = t.count;
 
 /* Counts in the hero are read off the data, and read as words: "Six roles are
    open right now", never "6 roles". Past twelve the digit is the honest
    fallback, and by then the sentence has other problems. */
 function numberWord(n: number): string {
-  return NUMBER_WORDS[n] ?? String(n);
+  return count.numbers[n] ?? String(n);
+}
+
+function plural(forms: { one: string; other: string }, n: number): string {
+  return n === 1 ? forms.one : forms.other;
 }
 
 function capitalise(word: string): string {
@@ -79,7 +69,7 @@ function capitalise(word: string): string {
 
 function formatList(items: string[]): string {
   if (items.length < 2) return items[0] ?? "";
-  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+  return `${items.slice(0, -1).join(", ")} ${count.and} ${items[items.length - 1]}`;
 }
 
 /** Roles for a chapter, in team order, flattened to one run of rows. */
@@ -106,28 +96,30 @@ function openingSentence(): string {
   const clauses: string[] = [];
   if (openChapterPostingCount > 0 && cities.length > 0) {
     clauses.push(
-      `${numberWord(openChapterPostingCount)} ${
-        openChapterPostingCount === 1 ? "role" : "roles"
-      } at the ${formatList(cities)} ${
-        cities.length === 1 ? "chapter" : "chapters"
-      }`,
+      format(count.chapterClause, {
+        count: numberWord(openChapterPostingCount),
+        role: plural(count.role, openChapterPostingCount),
+        cities: formatList(cities),
+        chapter: plural(count.chapter, cities.length),
+      }),
     );
   }
   if (nationalCount > 0) {
     clauses.push(
-      `${numberWord(nationalCount)} paid full-time ${
-        nationalCount === 1 ? "role" : "roles"
-      } on the national team`,
+      format(count.nationalClause, {
+        count: numberWord(nationalCount),
+        role: plural(count.role, nationalCount),
+      }),
     );
   }
 
-  const lead = `${capitalise(numberWord(total))} ${
-    total === 1 ? "role is" : "roles are"
-  } open right now`;
+  const lead = capitalise(format(plural(count.lead, total), { count: numberWord(total) }));
   const body =
-    clauses.length === 2 ? `${clauses[0]}, and ${clauses[1]}` : clauses[0];
+    clauses.length === 2
+      ? format(count.bothClauses, { chapters: clauses[0], national: clauses[1] })
+      : clauses[0];
 
-  return body ? `${lead}: ${body}.` : `${lead}.`;
+  return body ? format(count.withBody, { lead, body }) : format(count.withoutBody, { lead });
 }
 
 /** One link per unit with a section on this page: national first, then the
@@ -185,7 +177,7 @@ function ChapterSection({ chapter }: { chapter: ChapterPosting }) {
               <p className="mt-4 max-w-[720px] font-sans text-body text-navy/74">
                 {chapter.closedNote.beforeEmail}{" "}
                 <InlineMail
-                  href={`mailto:${chapter.inboxEmail}?subject=Future openings at SAIN ${chapter.chapterSlug}`}
+                  href={`mailto:${chapter.inboxEmail}?subject=${format(t.chapter.futureEmailSubject, { chapter: chapter.chapterSlug })}`}
                 >
                   {chapter.inboxEmail}
                 </InlineMail>{" "}
@@ -223,6 +215,7 @@ function ChapterSection({ chapter }: { chapter: ChapterPosting }) {
                 role={role}
                 note={note}
                 chapterSlug={chapter.chapterSlug}
+                locale={locale}
               />
             ))}
           </div>
@@ -234,13 +227,10 @@ function ChapterSection({ chapter }: { chapter: ChapterPosting }) {
               the three shared-form asks. */}
           <div className="mt-10">
             <h3 className="font-serif text-title-sm text-navy">
-              No role that fits? Apply anyway.
+              {t.chapter.noRoleFitsHeading}
             </h3>
             <p className="mt-3 max-w-[720px] font-sans text-body text-navy/74">
-              If you want to join {chapter.chapterName} and none of the roles
-              above quite suits you, we still want to hear from you. Tell us
-              about yourself and what draws you to SAIN in your motivation
-              letter, and we will work out together where you fit.
+              {format(t.chapter.noRoleFitsBody, { chapter: chapter.chapterName })}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
@@ -249,14 +239,14 @@ function ChapterSection({ chapter }: { chapter: ChapterPosting }) {
                 rel="noopener noreferrer"
                 className="btn-outline-ink gap-2"
               >
-                Apply for SAIN {chapter.chapterSlug}
+                {format(t.chapter.applyFor, { chapter: chapter.chapterSlug })}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
               </a>
               <p className="font-sans text-label text-navy/65">
-                Questions first?{" "}
+                {t.chapter.questionsFirst}{" "}
                 <InlineMail
-                  href={`mailto:${chapter.inboxEmail}?subject=Open positions ${chapter.chapterSlug}`}
+                  href={`mailto:${chapter.inboxEmail}?subject=${format(t.chapter.emailSubject, { chapter: chapter.chapterSlug })}`}
                 >
                   {chapter.inboxEmail}
                 </InlineMail>
@@ -291,21 +281,17 @@ function StandingApplication() {
               id="careers-heading"
               className="max-w-[760px] font-serif text-display text-navy"
             >
-              There is always an open application
+              {t.standing.heading}
             </h1>
             <p className="max-w-[680px] font-sans text-body text-navy/72">
-              SAIN is a volunteer organisation, run by people in Amsterdam,
-              Utrecht, and Groningen who care about the development and
-              integration of AI going well in the Netherlands and abroad. We are
-              not listing specific roles right now, but if you genuinely want to
-              contribute, we want to hear from you.
+              {t.standing.body}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <a href={JOIN_MAILTO} className="btn-accent">
-                Email {INFO_EMAIL}
+                {EMAIL_US}
               </a>
               <Link href="/get-involved" className="btn-ghost">
-                Volunteer
+                {dictionary.common.volunteer}
               </Link>
             </div>
           </Reveal>
@@ -322,23 +308,15 @@ function StandingApplication() {
               id="standing-apply-heading"
               className="font-serif text-heading-sm text-navy"
             >
-              Send us three things
+              {t.standing.sendHeading}
             </h2>
-            <OutlineRows
-              className="mt-6 max-w-[720px]"
-              items={[
-                "A short introduction: who you are and what you would like to do.",
-                "Your CV.",
-                "A brief motivation letter that names the chapter you are interested in and what draws you to SAIN.",
-              ]}
-            />
+            <OutlineRows className="mt-6 max-w-[720px]" items={t.standing.sendItems} />
             <p className="mt-6 max-w-[720px] font-sans text-body text-navy/74">
-              We read everything that comes in and will get back to you as soon
-              as we can.
+              {t.standing.weRead}
             </p>
             <div className="mt-6">
               <a href={JOIN_MAILTO} className="btn-accent">
-                Email {INFO_EMAIL}
+                {EMAIL_US}
               </a>
             </div>
           </Reveal>
@@ -352,19 +330,18 @@ function StandingApplication() {
               id="standing-close-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              No listed role does not mean no room.
+              {t.standing.closeHeading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              The chapters grow around the people who turn up. Tell us what you
-              want to work on.
+              {t.standing.closeBody}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
             <a href={JOIN_MAILTO} className="btn-accent">
-              Email {INFO_EMAIL}
+              {EMAIL_US}
             </a>
             <Link href="/get-involved" className="btn-ghost-inverse">
-              Volunteer
+              {dictionary.common.volunteer}
             </Link>
           </div>
         </div>
@@ -396,7 +373,7 @@ export default function CareersPage() {
               id="careers-heading"
               className="font-serif text-display text-navy"
             >
-              SAIN is hiring.
+              {t.hero.heading}
             </h1>
             <p className="max-w-[680px] font-sans text-body text-navy/72">
               {openingSentence()} {APPLICATION_REVIEW.sentence}
@@ -408,19 +385,19 @@ export default function CareersPage() {
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Open application form
+                {t.hero.openForm}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
               </a>
             </div>
             {/* The starting-team call has its own page and its own form. */}
             <p className="font-sans text-label text-navy/72">
-              Starting something new?{" "}
+              {t.hero.startingSomethingNew}{" "}
               <Link
                 href="/new-chapters"
                 className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Paid starting teams wanted in Eindhoven, Delft and The Hague
+                {t.hero.startingTeams}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </p>
@@ -441,21 +418,15 @@ export default function CareersPage() {
               id="volunteer-heading"
               className="max-w-[620px] font-serif text-heading-sm text-navy"
             >
-              SAIN is run by volunteers
+              {t.volunteers.heading}
             </h2>
             <p className="mt-5 max-w-[760px] font-sans text-body text-navy/74">
-              Most of the roles on this page are volunteer roles, taken on by
-              people who want AI to go well and have three to ten hours a week
-              to give to that beside their studies or job. You would run a
-              course, a chapter&rsquo;s events or its communications, with a team
-              around you and a chapter that counts on you. Many of the people
-              who started this way now work on AI safety at labs, institutes and
-              ministries, and a role here is often the first entry on that CV.
+              {t.volunteers.body}
             </p>
 
             {/* The wayfinding that used to be a band of its own: one row of
                 links to each unit's section, open units first. */}
-            <nav aria-label="Jump to a team" className="mt-8">
+            <nav aria-label={t.volunteers.jumpLabel} className="mt-8">
               <ul role="list" className="flex flex-wrap gap-x-7 gap-y-3">
                 {sectionLinks().map((link) => (
                   <li key={link.href}>
@@ -490,30 +461,26 @@ export default function CareersPage() {
               id="how-to-apply-heading"
               className="max-w-[620px] font-serif text-heading text-navy"
             >
-              One short form for every chapter role
+              {t.howToApply.heading}
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              Chapter applications go through the same form, whichever city and
-              role you choose. You pick the chapter and the role, attach your
-              CV, and write a short motivation letter; one page is plenty.
+              {t.howToApply.body}
               {/* The sentence naming where an application lands is out until
                   the form's submission trigger is wired to info@ and the
                   chapter inbox. See the setup notes in openPositions.ts. */}
-              {isNationalRecruiting
-                ? " National roles have their own forms, linked on each role below."
-                : ""}
+              {isNationalRecruiting ? ` ${t.howToApply.nationalForms}` : ""}
             </p>
 
             <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
                 <h3 className="font-serif text-title-sm text-navy">
-                  What the form asks for
+                  {t.howToApply.formAsksHeading}
                 </h3>
-                <OutlineRows className="mt-4" items={FORM_FIELDS} rules={false} />
+                <OutlineRows className="mt-4" items={t.howToApply.formFields} rules={false} />
               </div>
               <div>
                 <h3 className="mb-6 font-serif text-title-sm text-navy">
-                  What happens after you apply
+                  {t.howToApply.afterHeading}
                 </h3>
                 <ApplicationSteps steps={APPLICATION_TIMELINE} />
               </div>
@@ -526,14 +493,14 @@ export default function CareersPage() {
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Open application form
+                {t.hero.openForm}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
               </a>
               {/* /courses and /get-involved offer /contact under this same
                   label as the softer second step; one label per destination. */}
               <Link href="/contact" className="btn-outline-ink">
-                Or get in touch first
+                {t.howToApply.getInTouch}
               </Link>
             </div>
           </Reveal>
@@ -543,7 +510,7 @@ export default function CareersPage() {
       {/* B7. The paid role. One substantial row on white, not a band of peers:
           the badge and the salary are the honesty signals, and they get the
           same weight the volunteer hours get above. */}
-      <section aria-label="Open roles, by team" className="border-t border-navy/10 bg-cream">
+      <section aria-label={t.rolesLabel} className="border-t border-navy/10 bg-cream">
       {isNationalRecruiting ? (
         <div
           id={nationalPosting.slug}
@@ -572,15 +539,16 @@ export default function CareersPage() {
                       role={role}
                       note={note}
                       applyUrl={applyUrl}
+                      locale={locale}
                     />
                   );
                 })}
               </div>
 
               <p className="mt-6 font-sans text-label text-navy/65">
-                Questions about this role?{" "}
+                {t.national.questions}{" "}
                 <InlineMail
-                  href={`mailto:${nationalPosting.inboxEmail}?subject=National open positions at SAIN`}
+                  href={`mailto:${nationalPosting.inboxEmail}?subject=${t.national.emailSubject}`}
                 >
                   {nationalPosting.inboxEmail}
                 </InlineMail>
@@ -605,11 +573,10 @@ export default function CareersPage() {
               id="careers-close-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              SAIN runs on people who decided to show up.
+              {t.close.heading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              Send your CV and a short motivation letter. We respond within two
-              to three weeks, whenever you apply.
+              {t.close.body}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
@@ -619,12 +586,12 @@ export default function CareersPage() {
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Open application form
+              {t.hero.openForm}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
             </a>
             <Link href="/contact" className="btn-ghost-inverse">
-              Or get in touch first
+              {t.howToApply.getInTouch}
             </Link>
           </div>
         </div>

@@ -20,6 +20,7 @@ import {
   type Role,
   type Team,
 } from "@/data/openPositions";
+import { format, getDictionary, type Locale } from "@/i18n";
 
 /* The career row from design.md: a full-width row on a hairline with a 26px
    orange stroke icon, never an icon in a coloured tile. The glyph names the
@@ -43,17 +44,23 @@ function PanelLabel({ children }: { children: ReactNode }) {
   );
 }
 
+/* The card's own words come from en.json (openPositions.roleCard); the role's
+   are in src/data/openPositions.ts. */
 export default function RoleDisclosure({
   role,
   note,
   chapterSlug,
   applyUrl: applyUrlOverride,
+  locale,
 }: {
   role: Role;
   note?: string;
   chapterSlug?: string;
   applyUrl?: string;
+  locale: Locale;
 }) {
+  const dictionary = getDictionary(locale);
+  const t = dictionary.openPositions.roleCard;
   const applyUrl =
     applyUrlOverride ??
     buildApplicationUrl({
@@ -65,10 +72,10 @@ export default function RoleDisclosure({
   const backgroundRows: Array<[string, string]> = background
     ? (
         [
-          ["Field", background.field],
-          ["Level", background.level],
-          ["Experience", background.experience],
-          ["Soft skills", background.softSkills],
+          [t.background.field, background.field],
+          [t.background.level, background.level],
+          [t.background.experience, background.experience],
+          [t.background.softSkills, background.softSkills],
         ] as Array<[string, string | undefined]>
       ).filter((row): row is [string, string] => Boolean(row[1]))
     : [];
@@ -97,7 +104,7 @@ export default function RoleDisclosure({
             ) : null}
           </div>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
-            {role.timeCommitment}. Reports to the {role.reportsTo}.
+            {format(t.summary, { timeCommitment: role.timeCommitment, reportsTo: role.reportsTo })}
           </p>
         </div>
         <CaretDown
@@ -121,18 +128,18 @@ export default function RoleDisclosure({
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12">
           <div className="flex flex-col gap-7">
             <div>
-              <PanelLabel>What you would do</PanelLabel>
+              <PanelLabel>{t.whatYouWouldDo}</PanelLabel>
               <RuleList items={role.responsibilities} />
             </div>
             {role.goodFitIf?.length ? (
               <div>
-                <PanelLabel>You may be a good fit if you</PanelLabel>
+                <PanelLabel>{t.goodFitIf}</PanelLabel>
                 <RuleList items={role.goodFitIf} />
               </div>
             ) : null}
             {role.alsoStrong?.length ? (
               <div>
-                <PanelLabel>Strong candidates may also have</PanelLabel>
+                <PanelLabel>{t.alsoStrong}</PanelLabel>
                 <RuleList items={role.alsoStrong} />
               </div>
             ) : null}
@@ -141,7 +148,7 @@ export default function RoleDisclosure({
           <div className="flex flex-col gap-7">
             {backgroundRows.length ? (
               <div>
-                <PanelLabel>Preferred background</PanelLabel>
+                <PanelLabel>{t.preferredBackground}</PanelLabel>
                 <dl className="flex flex-col gap-3">
                   {backgroundRows.map(([term, value]) => (
                     <div key={term}>
@@ -156,13 +163,13 @@ export default function RoleDisclosure({
             ) : null}
             {role.employment ? (
               <div>
-                <PanelLabel>Terms</PanelLabel>
+                <PanelLabel>{t.terms}</PanelLabel>
                 <dl className="flex flex-col gap-3">
                   {[
-                    ["Salary", role.employment.salary],
-                    ["Contract", role.employment.contract],
-                    ["Location", role.employment.location],
-                    ["Start date", role.employment.startDate],
+                    [t.termLabels.salary, role.employment.salary],
+                    [t.termLabels.contract, role.employment.contract],
+                    [t.termLabels.location, role.employment.location],
+                    [t.termLabels.startDate, role.employment.startDate],
                   ].map(([term, value]) => (
                     <div key={term}>
                       <dt className="font-sans text-label text-navy">{term}</dt>
@@ -173,13 +180,13 @@ export default function RoleDisclosure({
                   ))}
                 </dl>
                 <div className="mt-6">
-                  <PanelLabel>What SAIN offers</PanelLabel>
+                  <PanelLabel>{t.offers}</PanelLabel>
                   <RuleList items={role.employment.benefits} />
                 </div>
               </div>
             ) : null}
             <div>
-              <PanelLabel>Who you would work with</PanelLabel>
+              <PanelLabel>{t.workWith}</PanelLabel>
               <p className="font-sans text-caption leading-[20px] text-navy/72">
                 {role.collaborations}
               </p>
@@ -192,7 +199,7 @@ export default function RoleDisclosure({
             starts. */}
         {role.applicationProcess?.length ? (
           <div className="mt-8 max-w-[760px] border-t border-navy/14 pt-7">
-            <PanelLabel>How this role is filled</PanelLabel>
+            <PanelLabel>{t.howFilled}</PanelLabel>
             <OutlineRows items={role.applicationProcess} rules={false} />
           </div>
         ) : null}
@@ -204,9 +211,9 @@ export default function RoleDisclosure({
             rel="noopener noreferrer"
             className="btn-accent gap-2"
           >
-            Apply for this role
+            {t.apply}
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
           </a>
           {/* The footnote tells the applicant what to do in the form rather
               than promising what the form will already have done for them: the
@@ -215,10 +222,10 @@ export default function RoleDisclosure({
           {applyUrlOverride ? null : (
             <p className="max-w-[400px] font-sans text-footnote text-navy/65">
               {role.formRoleValue === OPEN_POSITION_FORM_VALUE
-                ? `The form has no option for this role yet. Choose "${OPEN_POSITION_FORM_VALUE}" there and name "${role.title}" in your motivation letter.`
+                ? format(t.formNoOption, { option: OPEN_POSITION_FORM_VALUE, title: role.title })
                 : role.specialisationOf
-                  ? `Applies through the form's "${role.specialisationOf}" option. Mention "${role.title}" in your motivation letter.`
-                  : `Opens the shared application form. Choose "${role.title}" there.`}
+                  ? format(t.formSpecialisation, { option: role.specialisationOf, title: role.title })
+                  : format(t.formShared, { title: role.title })}
             </p>
           )}
         </div>
