@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary } from "@/i18n";
+
+const t = getDictionary("en");
 
 /* /team is an old address for the people band on /about.
  *
@@ -12,8 +15,8 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 const TARGET = "/about#team";
 
 export const metadata: Metadata = {
-  title: "Team",
-  description: "The board and advisory board of Stichting Safe AI Netherlands, on the about page.",
+  title: t.team.meta.title,
+  description: t.team.meta.description,
   robots: { index: false, follow: true },
   alternates: { canonical: "/about" },
 };
@@ -30,18 +33,17 @@ export default function TeamPage() {
             id="team-redirect-heading"
             className="max-w-[620px] font-serif text-heading text-navy"
           >
-            The team now lives on the about page.
+            {t.team.heading}
           </h1>
           <p className="mt-5 max-w-[620px] font-sans text-body text-navy/72">
-            The board and the advisory board are listed there, with the mission and the talent
-            pipeline around them.
+            {t.team.body}
           </p>
           <p className="mt-6">
             <Link
               href={TARGET}
               className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              The people running SAIN
+              {t.team.link}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </p>

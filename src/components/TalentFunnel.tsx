@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { getDictionary, type Dictionary, type Locale } from "@/i18n";
 
 /**
  * The SAIN Talent Pipeline. Every band points at the landing section that
@@ -27,7 +28,8 @@ type Band = {
   inset: number;
   /** The section of this page that describes the step. */
   href: string;
-  label: string;
+  /** Its label in en.json under funnel. */
+  label: keyof Dictionary["funnel"];
   labelClass: string;
   photo: string;
   objectPosition: string;
@@ -47,7 +49,7 @@ const BANDS: Band[] = [
     /* Not "Start with a free course": that label belongs to the accent CTA
        beside this diagram, which goes to /courses, while this band goes to the
        landing's courses section. One label per destination. */
-    label: "Take a free course, open to anyone",
+    label: "course",
     labelCqw: 3.7,
     labelClass: "max-w-[78%] text-center leading-[1.25]",
     photo: "/landing/funnel-01.jpg",
@@ -62,7 +64,7 @@ const BANDS: Band[] = [
     width: 356,
     inset: 9,
     href: "/#community",
-    label: "Participate in SAIN's community",
+    label: "community",
     labelCqw: 3.47,
     labelClass: "max-w-[78%] text-center leading-[1.27]",
     photo: "/landing/funnel-02.jpg",
@@ -77,7 +79,7 @@ const BANDS: Band[] = [
     width: 292,
     inset: 8.9,
     href: "/#research",
-    label: "Contribute and collaborate on research or projects",
+    label: "research",
     labelCqw: 3.24,
     labelClass: "max-w-[78%] text-center leading-[1.29]",
     photo: "/landing/funnel-03.jpg",
@@ -92,7 +94,7 @@ const BANDS: Band[] = [
     width: 240,
     inset: 9.2,
     href: "/#careers",
-    label: "Undertake a fellowship or internship in AI safety",
+    label: "fellowship",
     labelCqw: 3.01,
     labelClass: "max-w-[78%] text-center leading-[1.31]",
     photo: "/landing/funnel-04.jpg",
@@ -107,7 +109,7 @@ const BANDS: Band[] = [
     width: 196,
     inset: 10.2,
     href: "/#careers",
-    label: "Work full-time in AI safety",
+    label: "fullTime",
     labelCqw: 3.24,
     labelClass: "max-w-[78%] text-center leading-[1.29]",
     photo: "/landing/funnel-05.jpg",
@@ -165,7 +167,14 @@ const TERMINUS =
   `M ${EDGES[LAST]} ${y(LAST)} L ${right(LAST)} ${y(LAST)}` +
   ` L ${right(LAST + 1)} ${y(LAST + 1)} L ${EDGES[LAST + 1]} ${y(LAST + 1)} Z`;
 
-export default function TalentFunnel({ tone = "paper" }: { tone?: "paper" | "inverse" }) {
+export default function TalentFunnel({
+  locale,
+  tone = "paper",
+}: {
+  locale: Locale;
+  tone?: "paper" | "inverse";
+}) {
+  const t = getDictionary(locale).funnel;
   const inverse = tone === "inverse";
   return (
     <div
@@ -266,7 +275,7 @@ export default function TalentFunnel({ tone = "paper" }: { tone?: "paper" | "inv
                   fontSize: `clamp(11px, ${band.labelCqw}cqw, ${((band.labelCqw / 100) * WIDEST).toFixed(1)}px)`,
                 }}
               >
-                {band.label}
+                {t[band.label]}
               </p>
             </a>
           );

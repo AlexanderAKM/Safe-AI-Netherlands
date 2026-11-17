@@ -55,8 +55,14 @@ scripts/                  # Responsive image generation, Luma event fetches
 
 The site is being made bilingual (English and Dutch). The text is moving out of the
 components into `src/i18n/en.json`, page by page; the pages already moved are the
-layout, navbar, footer and homepage. The Dutch version, `nl.json`, comes back from a
-translator, and the `/nl` pages and the language switch arrive with it.
+layout, navbar, footer, homepage, about (with its documents), team and contact. The
+Dutch version, `nl.json`, comes back from a translator, and the `/nl` pages and the
+language switch arrive with it.
+
+- The documents under /about are markdown: English in `docs/`, a translation in
+  `docs/<locale>/` under the same file name.
+- Role titles (SAIN's own, and the job titles of board and advisory members) stay in
+  English in every language, so they stay in the code.
 
 - To change wording on a moved page, edit `en.json`. Keys are grouped by page or
   component (`home.hero.title`, `nav.items.courses`).

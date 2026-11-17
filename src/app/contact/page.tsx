@@ -9,11 +9,13 @@ import {
   leadershipContacts,
   nationalContacts,
 } from "@/data/siteContact";
+import { format, getDictionary } from "@/i18n";
+
+const t = getDictionary("en");
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Every address SAIN uses: national role addresses, the chapter addresses in Groningen, Amsterdam and Utrecht, and the people who run them.",
+  title: t.contact.meta.title,
+  description: t.contact.meta.description,
 };
 
 /* The two places SAIN publishes, both linked from the site's structured data
@@ -22,12 +24,12 @@ const online = [
   {
     name: "Substack",
     href: "https://safeainetherlands.substack.com/",
-    detail: "Writing on AI Safety",
+    detail: t.contact.elsewhere.substack,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/company/safe-ai-netherlands/",
-    detail: "Updates and open positions",
+    detail: t.contact.elsewhere.linkedin,
   },
 ];
 
@@ -50,11 +52,10 @@ export default function ContactPage() {
             id="contact-heading"
             className="max-w-[760px] font-serif text-display text-navy"
           >
-            Write to the address that fits the question.
+            {t.contact.hero.heading}
           </h1>
           <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/72">
-            Every SAIN inbox is on this page: the national role addresses, the
-            addresses each chapter keeps, and the people behind them.
+            {t.contact.hero.body}
           </p>
         </div>
       </section>
@@ -71,11 +72,10 @@ export default function ContactPage() {
               id="national-heading"
               className="font-serif text-heading text-navy"
             >
-              Start with a role address.
+              {t.contact.national.heading}
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              Use these when you know the topic but not the person who should
-              read it.
+              {t.contact.national.body}
             </p>
           </div>
 
@@ -86,10 +86,10 @@ export default function ContactPage() {
                 className="grid items-baseline gap-x-8 gap-y-1.5 border-t border-navy/10 py-5 md:grid-cols-[minmax(0,210px)_minmax(0,1fr)_minmax(0,auto)]"
               >
                 <h3 className="font-serif text-title-sm text-navy">
-                  {contact.label}
+                  {t.contact.national.addresses[contact.key].label}
                 </h3>
                 <p className="font-sans text-body text-navy/72">
-                  {contact.detail}
+                  {t.contact.national.addresses[contact.key].detail}
                 </p>
                 <a href={`mailto:${contact.email}`} className={emailLinkClass}>
                   {contact.email}
@@ -111,11 +111,10 @@ export default function ContactPage() {
               id="chapters-heading"
               className="font-serif text-heading-sm text-navy"
             >
-              Or write to a city.
+              {t.contact.chapters.heading}
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              Each chapter keeps its own addresses for collaboration, community,
-              education, events and outreach.
+              {t.contact.chapters.body}
             </p>
           </div>
 
@@ -132,7 +131,7 @@ export default function ContactPage() {
                       className="flex flex-col gap-1 border-t border-navy/10 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
                     >
                       <span className="font-sans text-caption text-navy/65">
-                        {role.label}
+                        {t.contact.chapters.roles[role.label]}
                       </span>
                       <a
                         href={`mailto:${role.email}`}
@@ -147,7 +146,7 @@ export default function ContactPage() {
                   href={chapter.href}
                   className="inline-flex w-fit items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/20 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
                 >
-                  View chapter
+                  {t.contact.chapters.viewChapter}
                   <ArrowRight size={16} weight="regular" aria-hidden="true" />
                 </Link>
               </article>
@@ -159,14 +158,12 @@ export default function ContactPage() {
               this is the second. */}
           <div className="flex flex-col gap-4 border-t border-navy/14 pt-7">
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              If you would rather join than write, you do not need an address.
-              The community page is the way in, and it is the same way in for
-              all three chapters.
+              {t.contact.chapters.joinInstead}
             </p>
             {/* "Join the community" is reserved site-wide for the onboarding
                 form; this is the community page, so it says so. */}
             <Link href="/community" className="btn-accent w-fit">
-              Visit the community
+              {t.contact.chapters.visitTheCommunity}
             </Link>
           </div>
         </Reveal>
@@ -183,11 +180,10 @@ export default function ContactPage() {
         <Reveal className="shell band-section flex flex-col gap-8">
           <div className="flex flex-col gap-2.5">
             <h2 id="leads-heading" className="font-serif text-heading-sm text-navy">
-              The people behind those addresses.
+              {t.contact.leads.heading}
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              The national director, the chapter directors and the head of
-              operations, each with the address only they read.
+              {t.contact.leads.body}
             </p>
           </div>
 
@@ -214,7 +210,9 @@ export default function ContactPage() {
                   </a>
                   {person.alsoAnswers ? (
                     <p className="font-sans text-footnote text-navy/60">
-                      {person.alsoAnswers}
+                      {person.alsoAnswers === "formal"
+                        ? t.contact.leads.alsoAnswersFormal
+                        : format(t.contact.leads.alsoAnswersChapter, person.alsoAnswers)}
                     </p>
                   ) : null}
                 </div>
@@ -225,9 +223,9 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="inline-flex w-fit items-center gap-1.5 font-sans text-label text-navy/72 underline decoration-navy/20 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:text-navy"
                   >
-                    Profile
+                    {t.contact.leads.profile}
                     <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                    <span className="sr-only"> (opens in a new tab)</span>
+                    <span className="sr-only"> {t.common.opensInNewTab}</span>
                   </a>
                 ) : null}
               </li>
@@ -254,7 +252,7 @@ export default function ContactPage() {
               {/* Column labels, not section names: the kicker is reserved for
                   the latter, and this band already has its heading. */}
               <p className="font-sans text-caption text-navy/65">
-                Registered address
+                {t.contact.elsewhere.registeredAddress}
               </p>
               <address className="font-sans text-body not-italic text-navy/74">
                 Stichting Safe AI Netherlands
@@ -263,12 +261,12 @@ export default function ContactPage() {
                 <br />
                 9711 GA Groningen
                 <br />
-                The Netherlands
+                {t.contact.elsewhere.country}
               </address>
             </div>
 
             <div className="flex flex-col gap-2">
-              <p className="font-sans text-caption text-navy/65">Online</p>
+              <p className="font-sans text-caption text-navy/65">{t.contact.elsewhere.online}</p>
               <ul className="flex flex-col gap-2">
                 {online.map((channel) => (
                   <li key={channel.name} className="flex flex-wrap items-baseline gap-x-3">
@@ -280,7 +278,7 @@ export default function ContactPage() {
                     >
                       {channel.name}
                       <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                      <span className="sr-only"> (opens in a new tab)</span>
+                      <span className="sr-only"> {t.common.opensInNewTab}</span>
                     </a>
                     <span className="font-sans text-caption text-navy/65">
                       {channel.detail}

@@ -8,20 +8,27 @@ import SectionOrbits from "@/components/landing/SectionOrbits";
 import TalentFunnel from "@/components/TalentFunnel";
 import { board, chapterDirectors, leadership } from "@/data/leadership";
 import { sainDocuments } from "@/data/sainDocuments";
+import { getDictionary, type Dictionary } from "@/i18n";
+
+const locale = "en";
+const t = getDictionary(locale);
 
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Stichting Safe AI Netherlands develops the talent the Netherlands needs to address the risks of transformative AI. The talent pipeline, the foundation documents, and the people who run it.",
+  title: t.about.meta.title,
+  description: t.about.meta.description,
 };
 
 /* The advisory board is not in src/data yet, so it stays here, where the page
    that prints it can be read alongside it. Affiliations are printed exactly as
    given: no gloss on what Resolution or CeSIA are, because nothing in the
-   sources says. */
-const advisoryGroups = [
+   sources says. They are job titles, so like SAIN's own roles they stay in
+   English on every language's page; the group labels are translated. */
+const advisoryGroups: {
+  label: keyof Dictionary["about"]["team"]["advisoryGroups"];
+  members: { name: string; affiliation: string; link: string; image: string }[];
+}[] = [
   {
-    label: "Technical AI safety",
+    label: "technical",
     members: [
       {
         name: "Teun van der Weij",
@@ -44,7 +51,7 @@ const advisoryGroups = [
     ],
   },
   {
-    label: "AI governance and policy",
+    label: "governance",
     members: [
       {
         name: "Jelle Donders",
@@ -73,7 +80,7 @@ const advisoryGroups = [
     ],
   },
   {
-    label: "Strategy and operations",
+    label: "strategy",
     members: [
       {
         name: "Jesselit Jimenez",
@@ -91,30 +98,10 @@ const advisoryGroups = [
   },
 ];
 
-/* The record, as claims rather than labels. "Rapid growth" and "National
-   recognition" named the shape of a year without saying what happened in it. */
-const record = [
-  {
-    year: "2023",
-    title: "AISIG founded.",
-    line: "The AI Safety Initiative Groningen starts as a student-led group teaching AI safety.",
-  },
-  {
-    year: "2024",
-    title: "Beyond students.",
-    line: "AISIG opens to professionals, runs multiple course cohorts, and hosts hackathons with Apart Research.",
-  },
-  {
-    year: "2025",
-    title: "Research at top venues.",
-    line: "Publications at NeurIPS and ICLR; the Project Hub launches, matching emerging researchers with PhD-level supervisors.",
-  },
-  {
-    year: "2026",
-    title: "Safe AI Netherlands.",
-    line: "With Alexander as founder and Ana, Andreea, Tarteel, and Riccardo as co-founders, Safe AI Netherlands is born and becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure.",
-  },
-];
+/* The record (about.record.years), as claims rather than labels. "Rapid
+   growth" and "National recognition" named the shape of a year without saying
+   what happened in it. */
+const record = Object.entries(t.about.record.years).map(([year, entry]) => ({ year, ...entry }));
 
 export default function AboutPage() {
   return (
@@ -163,20 +150,15 @@ export default function AboutPage() {
             {/* One clause per line, because the mission is three commitments
                 and not a paragraph. */}
             <h1 id="mission-heading" className="mt-5 max-w-[900px] font-serif text-display text-navy">
-              <span className="block">Develop the talent the Netherlands needs.</span>
-              <span className="block">Address the risks of transformative AI.</span>
-              <span className="block">Make a first real contribution possible.</span>
+              {t.about.hero.mission.map((clause) => (
+                <span key={clause} className="block">{clause}</span>
+              ))}
             </h1>
 
             <span className="mt-9 block h-px w-full max-w-[900px] bg-navy/14" aria-hidden="true" />
 
             <p className="mt-6 max-w-[760px] font-sans text-body text-navy/72">
-              That is the mission of Stichting Safe AI Netherlands. Transformative AI could reshape
-              the economy, science, and society on the scale of a major historical revolution;
-              whether that goes well is not decided yet. We are a national talent pipeline: local
-              chapters on shared infrastructure, from first contact through courses and the Project
-              Hub, with a handoff into the wider field. This page shows that path, what we have
-              written down, and the people who run it.
+              {t.about.hero.body}
             </p>
           </Reveal>
         </div>
@@ -197,27 +179,12 @@ export default function AboutPage() {
         <div className="shell band-section">
           <Reveal className="flex flex-col">
             <h2 id="path-heading" className="max-w-[620px] font-serif text-heading text-navy">
-              The Netherlands has the talent. It lacked the path.
+              {t.about.path.heading}
             </h2>
             <div className="mt-6 flex max-w-[720px] flex-col gap-5 font-sans text-body text-navy/72">
-              <p>
-                On the current trajectory, AI systems may soon do most economically and strategically
-                important cognitive work, including AI research itself. The critical question is not
-                only what AI will become, but whether enough people are ready to shape what happens
-                next. Right now, far too few are working on that problem.
-              </p>
-              <p>
-                Nobody can name the exact timeline, and we will not pretend to. Readiness is not
-                something the Netherlands has by default. It is something people build, while
-                European institutions are staffing their AI safety functions in the next few years.
-              </p>
-              <p>
-                The Netherlands has world-class universities, ASML at the centre of the global
-                semiconductor supply chain, proximity to Brussels, and emerging AI safety groups.
-                What it lacked was a unified civil-society voice and a clear path from interest to
-                capability to meaningful contribution. SAIN was created to close that gap. We develop
-                the people; the field puts them to work.
-              </p>
+              {t.about.path.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </Reveal>
         </div>
@@ -234,49 +201,29 @@ export default function AboutPage() {
         <div className="shell band-section grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,436px)] lg:gap-16">
           <Reveal className="flex min-w-0 flex-col">
             <h2 id="pipeline-heading" className="max-w-[620px] font-serif text-heading text-navy">
-              Anyone can start. The path narrows as you grow.
+              {t.about.pipeline.heading}
             </h2>
             <div className="mt-6 flex max-w-[640px] flex-col gap-5 font-sans text-body text-navy/72">
-              <p>
-                The Funnel Diagram is the whole organisation. The wide end is a free
-                course anyone can join, no technical background required. The narrow end is
-                full-time work on AI safety, in policy, research, industry or civil society. Between
-                them sit the community, the Project Hub, and fellowships. Progress through it is
-                visible, to us and to the person making it, and SAIN&rsquo;s job is to make each
-                next step reachable, so that every step someone takes compounds into a more
-                effective mission.
-              </p>
-              <p>
-                We are open about where our effort goes. SAIN builds the wide end: getting people
-                in, teaching foundations, and scaffolding a first real contribution such as a
-                supervised research project. At the narrow end we mainly connect and refer, with
-                introductions and referral letters.
-              </p>
-              <p>
-                We designed the pipeline with many good endings. Someone who takes one course and
-                returns to law, medicine or public administration carries that knowledge into their
-                profession, and a society fluent in AI risk is an outcome we actively want.
-              </p>
+              {t.about.pipeline.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
 
             {/* The record of the pipeline, on its own rule: it is evidence for
                 the three paragraphs above, not a fourth paragraph of them. */}
             <p className="mt-7 max-w-[640px] border-t border-navy/14 pt-6 font-sans text-body text-navy/74">
-              So far the pipeline has produced more than 100 course graduates across nine-plus
-              cohorts, currently around 60 a year, and peer-reviewed research at NeurIPS and ICLR.
-              The aim for mid-2027 is 250 or more graduates a year, reached by running the same
-              standardised course in more cities.
+              {t.about.pipeline.record}
             </p>
 
             <div className="pt-7">
               <Link href="/courses" className="btn-accent">
-                Start with a free course
+                {t.common.startWithAFreeCourse}
               </Link>
             </div>
           </Reveal>
 
           <Reveal delay={0.08} className="mx-auto w-full min-w-0 max-w-[436px]">
-            <TalentFunnel />
+            <TalentFunnel locale={locale} />
           </Reveal>
         </div>
       </section>
@@ -291,7 +238,7 @@ export default function AboutPage() {
         <div className="shell band-index flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <Reveal className="lg:w-[320px] lg:shrink-0">
             <h2 id="record-heading" className="max-w-[420px] font-serif text-heading-sm text-navy">
-              From one student group to a national foundation in three years.
+              {t.about.record.heading}
             </h2>
           </Reveal>
           <Reveal delay={0.05} className="min-w-0 flex-1">
@@ -327,14 +274,12 @@ export default function AboutPage() {
         <SectionOrbits className="-bottom-24 -left-20 h-[500px] w-[375px] rotate-[-20deg] md:-left-12" />
         <div className="shell band-section">
           <Reveal className="flex flex-col">
-            <p className="kicker text-kicker text-navy/65">The people behind it</p>
+            <p className="kicker text-kicker text-navy/65">{t.about.team.kicker}</p>
             <h2 id="team-heading" className="mt-4 max-w-[620px] font-serif text-heading text-navy">
-              A small leadership, close to the work.
+              {t.about.team.heading}
             </h2>
             <p className="mt-5 max-w-[720px] font-sans text-body text-navy/72">
-              SAIN is led by its national director and the heads of growth, operations and
-              projects. The leadership takes the strategic decisions; the chapters run the
-              courses, events and communities.
+              {t.about.team.body}
             </p>
           </Reveal>
 
@@ -349,15 +294,16 @@ export default function AboutPage() {
                   image={person.image}
                   width="w-[140px] sm:w-[158px]"
                   sizes="(min-width: 640px) 158px, 140px"
+                  locale={locale}
                 />
               ))}
             </ul>
           </Reveal>
 
           <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
-            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">Chapter Directors</h3>
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">{t.about.team.chapterDirectorsHeading}</h3>
             <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
-              Each chapter is run by its own Chapter Director.
+              {t.about.team.chapterDirectorsBody}
             </p>
             <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
               {chapterDirectors.map((person) => (
@@ -369,6 +315,7 @@ export default function AboutPage() {
                   image={person.image}
                   width="w-[140px] sm:w-[158px]"
                   sizes="(min-width: 640px) 158px, 140px"
+                  locale={locale}
                 />
               ))}
             </ul>
@@ -376,17 +323,16 @@ export default function AboutPage() {
 
           <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
             <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">
-              Advised by people already in the field.
+              {t.about.team.advisoryHeading}
             </h3>
             <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
-              An advisory board of experts in the Dutch AI safety landscape provides strategic
-              guidance.
+              {t.about.team.advisoryBody}
             </p>
 
             <div className="mt-10 flex flex-col gap-10">
               {advisoryGroups.map((group) => (
                 <div key={group.label}>
-                  <h4 className="kicker text-kicker-sm text-navy/60">{group.label}</h4>
+                  <h4 className="kicker text-kicker-sm text-navy/60">{t.about.team.advisoryGroups[group.label]}</h4>
                   <ul role="list" className="mt-5 flex flex-wrap gap-x-6 gap-y-8">
                     {group.members.map((member) => (
                       <Portrait
@@ -397,6 +343,7 @@ export default function AboutPage() {
                         image={member.image}
                         width="w-[132px] sm:w-[146px]"
                         sizes="(min-width: 640px) 146px, 132px"
+                        locale={locale}
                       />
                     ))}
                   </ul>
@@ -406,9 +353,9 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
-            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">Board</h3>
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">{t.about.team.boardHeading}</h3>
             <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
-              The board of Stichting Safe AI Netherlands.
+              {t.about.team.boardBody}
             </p>
             <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
               {board.map((person) => (
@@ -420,6 +367,7 @@ export default function AboutPage() {
                   image={person.image}
                   width="w-[140px] sm:w-[158px]"
                   sizes="(min-width: 640px) 158px, 140px"
+                  locale={locale}
                 />
               ))}
             </ul>
@@ -442,14 +390,10 @@ export default function AboutPage() {
               id="documents-heading"
               className="max-w-[620px] font-serif text-heading text-navy"
             >
-              The rules we hold ourselves to are public.
+              {t.about.documents.heading}
             </h2>
             <p className="mt-5 max-w-[760px] font-sans text-body text-navy/72">
-              SAIN is a Dutch foundation, a stichting, the standard nonprofit legal form. The
-              foundation holds the brand, the legal entity and the finances, so a local chapter
-              never has to build those from scratch; chapters run their own courses, events and
-              communities. Every programme is free. Three documents define how the whole thing
-              works, and anyone can read them.
+              {t.about.documents.body}
             </p>
           </Reveal>
 
@@ -468,17 +412,17 @@ export default function AboutPage() {
                   >
                     <span className="block min-w-0">
                       <span className="kicker block text-kicker-sm text-navy/60">
-                        {document.eyebrow}
+                        {t.documents[document.key].eyebrow}
                       </span>
                       <span className="mt-1.5 block font-serif text-title-sm text-navy underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 group-hover:decoration-navy group-focus-visible:decoration-navy">
-                        {document.title}
+                        {t.documents[document.key].title}
                       </span>
                       <span className="mt-2 block max-w-[620px] font-sans text-kicker-sm text-navy/74">
-                        {document.description}
+                        {t.documents[document.key].description}
                       </span>
                     </span>
                     <span className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 group-hover:decoration-navy group-focus-visible:decoration-navy">
-                      Read document
+                      {t.about.documents.readDocument}
                       <ArrowRight size={16} weight="regular" aria-hidden="true" />
                     </span>
                   </Link>
@@ -490,26 +434,25 @@ export default function AboutPage() {
           <Reveal delay={0.05} className="flex flex-col">
             <div className="flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
               <p className="max-w-[620px] font-sans text-body text-navy/72">
-                Role addresses and chapter contacts live on one page, so they stay accurate.
+                {t.about.documents.contactLine}
               </p>
               <Link
                 href="/contact"
                 className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Contact SAIN
+                {t.about.documents.contactLink}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
             <div className="flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
               <p className="max-w-[620px] font-sans text-body text-navy/72">
-                Want to bring SAIN to your city? Chapters adopt the brand, the legal umbrella and
-                ready-made curricula instead of starting from scratch.
+                {t.about.documents.chapterLine}
               </p>
               <Link
                 href="/community#start-chapter"
                 className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Start a chapter
+                {t.about.documents.chapterLink}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
@@ -522,10 +465,10 @@ export default function AboutPage() {
         <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
           <div className="min-w-0">
             <h2 id="involved-heading" className="max-w-[620px] font-serif text-closing text-white">
-              The work is already happening. Join it, or help run it.
+              {t.about.close.heading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/75">
-              Every programme is free, and all of it runs on people who show up.
+              {t.about.close.body}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
@@ -534,10 +477,10 @@ export default function AboutPage() {
                 it carries the page label, the way the chapter pages say
                 "Visit the Project hub". */}
             <Link href="/community" className="btn-accent">
-              Visit the community
+              {t.about.close.visitTheCommunity}
             </Link>
             <Link href="/get-involved" className="btn-ghost-inverse">
-              Volunteer
+              {t.common.volunteer}
             </Link>
           </div>
         </div>

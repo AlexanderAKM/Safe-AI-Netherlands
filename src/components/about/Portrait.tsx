@@ -15,6 +15,7 @@
  */
 
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { getDictionary, type Locale } from "@/i18n";
 
 /* The rungs `npm run images` writes for these portraits. These and the widths
    in scripts/generate-responsive-images.mjs have to agree. Every rung is JPEG,
@@ -30,6 +31,7 @@ export default function Portrait({
   image,
   width = "w-[140px]",
   sizes,
+  locale,
 }: {
   name: string;
   /** Role or affiliation, set in footnote tone under the name. */
@@ -42,7 +44,9 @@ export default function Portrait({
   width?: string;
   /** The CSS width of the tile at each breakpoint, for the srcSet to pick from. */
   sizes: string;
+  locale: Locale;
 }) {
+  const t = getDictionary(locale);
   return (
     <li className={width}>
       <a
@@ -91,7 +95,9 @@ export default function Portrait({
         <p className="mt-1.5 font-sans text-footnote leading-5 text-navy/70">{meta}</p>
         {/* The whole tile is the link, so the destination is named for anyone
             who cannot see the hover state. */}
-        <span className="sr-only">Profile (opens in a new tab)</span>
+        <span className="sr-only">
+          {t.portrait.profile} {t.common.opensInNewTab}
+        </span>
       </a>
     </li>
   );

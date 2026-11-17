@@ -165,5 +165,192 @@
     },
     "researchAgenda": "Research agenda",
     "readPaper": "Read paper"
+  },
+  "portrait": {
+    "profile": "Profile"
+  },
+  "funnel": {
+    "course": "Take a free course, open to anyone",
+    "community": "Participate in SAIN's community",
+    "research": "Contribute and collaborate on research or projects",
+    "fellowship": "Undertake a fellowship or internship in AI safety",
+    "fullTime": "Work full-time in AI safety"
+  },
+  "about": {
+    "meta": {
+      "title": "About",
+      "description": "Stichting Safe AI Netherlands develops the talent the Netherlands needs to address the risks of transformative AI. The talent pipeline, the foundation documents, and the people who run it."
+    },
+    "hero": {
+      "mission": [
+        "Develop the talent the Netherlands needs.",
+        "Address the risks of transformative AI.",
+        "Make a first real contribution possible."
+      ],
+      "body": "That is the mission of Stichting Safe AI Netherlands. Transformative AI could reshape the economy, science, and society on the scale of a major historical revolution; whether that goes well is not decided yet. We are a national talent pipeline: local chapters on shared infrastructure, from first contact through courses and the Project Hub, with a handoff into the wider field. This page shows that path, what we have written down, and the people who run it."
+    },
+    "path": {
+      "heading": "The Netherlands has the talent. It lacked the path.",
+      "paragraphs": [
+        "On the current trajectory, AI systems may soon do most economically and strategically important cognitive work, including AI research itself. The critical question is not only what AI will become, but whether enough people are ready to shape what happens next. Right now, far too few are working on that problem.",
+        "Nobody can name the exact timeline, and we will not pretend to. Readiness is not something the Netherlands has by default. It is something people build, while European institutions are staffing their AI safety functions in the next few years.",
+        "The Netherlands has world-class universities, ASML at the centre of the global semiconductor supply chain, proximity to Brussels, and emerging AI safety groups. What it lacked was a unified civil-society voice and a clear path from interest to capability to meaningful contribution. SAIN was created to close that gap. We develop the people; the field puts them to work."
+      ]
+    },
+    "pipeline": {
+      "heading": "Anyone can start. The path narrows as you grow.",
+      "paragraphs": [
+        "The Funnel Diagram is the whole organisation. The wide end is a free course anyone can join, no technical background required. The narrow end is full-time work on AI safety, in policy, research, industry or civil society. Between them sit the community, the Project Hub, and fellowships. Progress through it is visible, to us and to the person making it, and SAIN’s job is to make each next step reachable, so that every step someone takes compounds into a more effective mission.",
+        "We are open about where our effort goes. SAIN builds the wide end: getting people in, teaching foundations, and scaffolding a first real contribution such as a supervised research project. At the narrow end we mainly connect and refer, with introductions and referral letters.",
+        "We designed the pipeline with many good endings. Someone who takes one course and returns to law, medicine or public administration carries that knowledge into their profession, and a society fluent in AI risk is an outcome we actively want."
+      ],
+      "record": "So far the pipeline has produced more than 100 course graduates across nine-plus cohorts, currently around 60 a year, and peer-reviewed research at NeurIPS and ICLR. The aim for mid-2027 is 250 or more graduates a year, reached by running the same standardised course in more cities."
+    },
+    "record": {
+      "heading": "From one student group to a national foundation in three years.",
+      "years": {
+        "2023": {
+          "title": "AISIG founded.",
+          "line": "The AI Safety Initiative Groningen starts as a student-led group teaching AI safety."
+        },
+        "2024": {
+          "title": "Beyond students.",
+          "line": "AISIG opens to professionals, runs multiple course cohorts, and hosts hackathons with Apart Research."
+        },
+        "2025": {
+          "title": "Research at top venues.",
+          "line": "Publications at NeurIPS and ICLR; the Project Hub launches, matching emerging researchers with PhD-level supervisors."
+        },
+        "2026": {
+          "title": "Safe AI Netherlands.",
+          "line": "With Alexander as founder and Ana, Andreea, Tarteel, and Riccardo as co-founders, Safe AI Netherlands is born and becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure."
+        }
+      }
+    },
+    "team": {
+      "kicker": "The people behind it",
+      "heading": "A small leadership, close to the work.",
+      "body": "SAIN is led by its national director and the heads of growth, operations and projects. The leadership takes the strategic decisions; the chapters run the courses, events and communities.",
+      "chapterDirectorsHeading": "Chapter Directors",
+      "chapterDirectorsBody": "Each chapter is run by its own Chapter Director.",
+      "advisoryHeading": "Advised by people already in the field.",
+      "advisoryBody": "An advisory board of experts in the Dutch AI safety landscape provides strategic guidance.",
+      "advisoryGroups": {
+        "technical": "Technical AI safety",
+        "governance": "AI governance and policy",
+        "strategy": "Strategy and operations"
+      },
+      "boardHeading": "Board",
+      "boardBody": "The board of Stichting Safe AI Netherlands."
+    },
+    "documents": {
+      "heading": "The rules we hold ourselves to are public.",
+      "body": "SAIN is a Dutch foundation, a stichting, the standard nonprofit legal form. The foundation holds the brand, the legal entity and the finances, so a local chapter never has to build those from scratch; chapters run their own courses, events and communities. Every programme is free. Three documents define how the whole thing works, and anyone can read them.",
+      "readDocument": "Read document",
+      "contactLine": "Role addresses and chapter contacts live on one page, so they stay accurate.",
+      "contactLink": "Contact SAIN",
+      "chapterLine": "Want to bring SAIN to your city? Chapters adopt the brand, the legal umbrella and ready-made curricula instead of starting from scratch.",
+      "chapterLink": "Start a chapter"
+    },
+    "close": {
+      "heading": "The work is already happening. Join it, or help run it.",
+      "body": "Every programme is free, and all of it runs on people who show up.",
+      "visitTheCommunity": "Visit the community"
+    }
+  },
+  "documents": {
+    "backToAbout": "About SAIN",
+    "othersHeading": "The rest of what SAIN has written down.",
+    "vision": {
+      "title": "Vision",
+      "eyebrow": "Where SAIN is going",
+      "description": "SAIN's mission, national role, strategic pillars, and long-term ambition for AI safety in the Netherlands."
+    },
+    "theoryOfChange": {
+      "title": "Theory of Change",
+      "eyebrow": "How change happens",
+      "description": "Why we believe our work prepares the Netherlands for transformative AI: our causal argument, what we measure, and the assumptions we track."
+    },
+    "codeOfConduct": {
+      "title": "Code of Conduct",
+      "eyebrow": "How we work together",
+      "description": "Behavioral standards for everyone who takes part in SAIN activities, and how concerns are reported and handled."
+    }
+  },
+  "team": {
+    "meta": {
+      "title": "Team",
+      "description": "The board and advisory board of Stichting Safe AI Netherlands, on the about page."
+    },
+    "heading": "The team now lives on the about page.",
+    "body": "The board and the advisory board are listed there, with the mission and the talent pipeline around them.",
+    "link": "The people running SAIN"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Every address SAIN uses: national role addresses, the chapter addresses in Groningen, Amsterdam and Utrecht, and the people who run them."
+    },
+    "hero": {
+      "heading": "Write to the address that fits the question.",
+      "body": "Every SAIN inbox is on this page: the national role addresses, the addresses each chapter keeps, and the people behind them."
+    },
+    "national": {
+      "heading": "Start with a role address.",
+      "body": "Use these when you know the topic but not the person who should read it.",
+      "addresses": {
+        "formal": {
+          "label": "Formal",
+          "detail": "General formal inquiries"
+        },
+        "media": {
+          "label": "Media and outreach",
+          "detail": "Press, public outreach, and partnerships"
+        },
+        "research": {
+          "label": "Research",
+          "detail": "Project Hub, supervisors, and collaborations"
+        },
+        "substack": {
+          "label": "Substack",
+          "detail": "Writing, editing, and newsletter work"
+        },
+        "conduct": {
+          "label": "Conduct",
+          "detail": "Code of Conduct breaches or general concerns"
+        }
+      }
+    },
+    "chapters": {
+      "heading": "Or write to a city.",
+      "body": "Each chapter keeps its own addresses for collaboration, community, education, events and outreach.",
+      "roles": {
+        "formalCollaboration": "Formal collaboration",
+        "communityManager": "Community manager",
+        "education": "Education",
+        "research": "Research",
+        "events": "Events",
+        "substack": "Substack",
+        "publicOutreach": "Public outreach"
+      },
+      "viewChapter": "View chapter",
+      "joinInstead": "If you would rather join than write, you do not need an address. The community page is the way in, and it is the same way in for all three chapters.",
+      "visitTheCommunity": "Visit the community"
+    },
+    "leads": {
+      "heading": "The people behind those addresses.",
+      "body": "The national director, the chapter directors and the head of operations, each with the address only they read.",
+      "alsoAnswersFormal": "Also answers the formal role address above.",
+      "alsoAnswersChapter": "Also answers the {chapter} chapter address above.",
+      "profile": "Profile"
+    },
+    "elsewhere": {
+      "heading": "Where else to find SAIN.",
+      "registeredAddress": "Registered address",
+      "country": "The Netherlands",
+      "online": "Online",
+      "substack": "Writing on AI Safety",
+      "linkedin": "Updates and open positions"
+    }
   }
 }

@@ -7,6 +7,10 @@ import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 import MarkdownDocument from "@/components/MarkdownDocument";
 import { getSainDocument, sainDocuments } from "@/data/sainDocuments";
+import { getDictionary, type Locale } from "@/i18n";
+
+const locale: Locale = "en";
+const t = getDictionary(locale);
 
 type DocumentPageProps = {
   params: {
@@ -14,8 +18,11 @@ type DocumentPageProps = {
   };
 };
 
-async function readDocumentMarkdown(fileName: string) {
-  return readFile(path.join(process.cwd(), "docs", fileName), "utf8");
+/* The English documents live in docs/ itself, where the design briefs cite
+   them; a translation of one sits under docs/<locale>/ with the same name. */
+async function readDocumentMarkdown(locale: Locale, fileName: string) {
+  const folder = locale === "en" ? "docs" : path.join("docs", locale);
+  return readFile(path.join(process.cwd(), folder, fileName), "utf8");
 }
 
 export function generateStaticParams() {
@@ -32,8 +39,8 @@ export function generateMetadata({ params }: DocumentPageProps): Metadata {
   }
 
   return {
-    title: document.title,
-    description: document.description,
+    title: t.documents[document.key].title,
+    description: t.documents[document.key].description,
   };
 }
 
@@ -44,7 +51,8 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
     notFound();
   }
 
-  const markdown = await readDocumentMarkdown(document.fileName);
+  const words = t.documents[document.key];
+  const markdown = await readDocumentMarkdown(locale, document.fileName);
   const others = sainDocuments.filter((entry) => entry.slug !== document.slug);
 
   return (
@@ -62,19 +70,19 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
             className="inline-flex w-fit items-center gap-1.5 font-sans text-label text-navy/65 underline decoration-navy/20 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:text-navy"
           >
             <ArrowLeft size={16} weight="regular" aria-hidden="true" />
-            About SAIN
+            {t.documents.backToAbout}
           </Link>
 
           <div className="flex flex-col gap-4">
-            <p className="kicker text-kicker text-navy/65">{document.eyebrow}</p>
+            <p className="kicker text-kicker text-navy/65">{words.eyebrow}</p>
             <h1
               id="document-heading"
               className="max-w-[720px] font-serif text-display text-navy"
             >
-              {document.title}
+              {words.title}
             </h1>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/72">
-              {document.description}
+              {words.description}
             </p>
           </div>
         </div>
@@ -101,7 +109,7 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
             id="other-documents-heading"
             className="font-serif text-heading-sm text-navy"
           >
-            The rest of what SAIN has written down.
+            {t.documents.othersHeading}
           </h2>
           <ul className="flex flex-wrap gap-4">
             {others.map((entry) => (
@@ -112,10 +120,10 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
                 >
                   <span className="flex min-w-0 flex-col gap-1">
                     <span className="font-sans text-footnote font-medium text-orange-ink">
-                      {entry.eyebrow}
+                      {t.documents[entry.key].eyebrow}
                     </span>
                     <span className="font-serif text-[15px] leading-5 text-navy">
-                      {entry.title}
+                      {t.documents[entry.key].title}
                     </span>
                   </span>
                   <ArrowRight
