@@ -1018,6 +1018,42 @@ export const ROLES: Record<string, Role> = {
     formRoleValue: OPEN_POSITION_FORM_VALUE,
   },
 
+  "education-facilitator-governance": {
+    id: "education-facilitator-governance",
+    title: "Education Course Facilitator: AI Governance",
+    team: "education",
+    scope: "chapter",
+    reportsTo: "Education Lead",
+    timeCommitment:
+      "About 4 to 6 hours per week during iterations (one session plus preparation, homework review and discussion groups), one quarter (3 months) at a time",
+    mission:
+      "Facilitate the AI Governance course at SAIN Utrecht. Teach participants how AI is governed in Europe, the Netherlands and the rest of the world, help them check claims against primary sources, and prepare the strongest participants for fellowships and the Governance pipeline. The Governance Coordinator role builds on this one and adds partnership work.",
+    responsibilities: [
+      "Prepare and deliver the four lectures: Introduction to AI governance and AI safety, AI geopolitics, The tools of the policymaker, and Governance in Europe and the Netherlands.",
+      "Read the primary sources ahead of each session and point participants to them, so they can check information independently.",
+      "Build the course slides in Canva and save a view-only PDF copy in Slides for participants; participants never get access to the original slides.",
+      "Keep the course outline, schedule and resources in the SAIN Education Playbook up to date, and get the participant outline approved before sharing it.",
+      "Support the optional weekly discussion groups (scheduled on Luma) and answer participant questions on Discord.",
+      "Run and help assess the final project and weekly homework.",
+      "Guide the side project on fellowship applications and give feedback on participants' answers.",
+      "Track attendance and share the feedback form at the end of each lecture.",
+      "Log course expenses in the cost table with a link to the receipt, so they can be reimbursed.",
+      "Attend regular facilitator check-ins with the Education Lead. Report on cohort progress and flag strong participants for fellowships and the Governance pipeline.",
+    ],
+    preferredBackground: {
+      field:
+        "AI governance, including the EU AI Act, the EU AI Office, Dutch AI supervisors, and US and Chinese AI strategy.",
+      experience:
+        "Completion of an AI governance course, or equivalent study or work in AI policy, law or international relations.",
+      softSkills:
+        "Explaining policy topics clearly to a mixed audience, giving direct feedback on written work, and preparing sessions reliably and on time.",
+    },
+    collaborations:
+      "Education Lead, Governance Coordinator, fellow AI Governance facilitators, Event Lead (challenges after the course).",
+    formRoleValue: OPEN_POSITION_FORM_VALUE,
+    specialisationOf: "Education Course Facilitator",
+  },
+
   "social-media-copywriter": {
     id: "social-media-copywriter",
     title: "Social Media Copywriter",
@@ -1229,10 +1265,9 @@ export const chapterPositions: ChapterPosting[] = [
       { roleId: "education-facilitator-cybersec" },
       { roleId: "education-facilitator-biosecurity" },
       { roleId: "education-facilitator-embodied" },
-      { roleId: "research-ops-repository-steward" },
+      { roleId: "education-facilitator-governance" },
       { roleId: "sain-ambassador" },
       { roleId: "events-team-member-facilitator" },
-      { roleId: "governance-coordinator" },
       { roleId: "graphic-designer" },
       { roleId: "photographer" },
       { roleId: "social-media-copywriter" },
