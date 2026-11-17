@@ -11,6 +11,28 @@ piece of text on the site, in English. Please send back the same files in Dutch.
 | `content.en.json` | Open positions, the call for new chapters' starting teams, course application notes, paper summaries | `content.nl.json` |
 | `documents/*.md` | The three documents under About: vision, theory of change, code of conduct | the same file names, in Dutch |
 
+## What is not in this folder
+
+Some text on the site is left out on purpose and stays in English on the Dutch
+pages. You don't need to translate it:
+
+- **Event listings.** The past and upcoming events of Amsterdam and Utrecht (from
+  Luma) and the Groningen events archive are the announcements as they went out.
+- **The Project Hub's project list.** It comes from SAIN's project database
+  (Airtable) and stays English. So do the backup project cards shown when that
+  list cannot load.
+- **Papers.** Paper titles, authors, venues and the PDFs themselves.
+- **Names and titles.** People's names, role titles, the job titles of board
+  members, advisors and supervisors, and course and track names (see "Keep in
+  English" below).
+- **Roles that are not advertised now.** Only open positions are included. When a
+  new role opens, or a closed one reopens, its text comes to you in a later update.
+- **Course application notes that have expired.** Only the notes the site shows
+  today are included.
+
+If you come across English text in the Dutch version, now or later, that is not on
+this list, please tell us. It may have been missed.
+
 ## How to edit the JSON files
 
 The JSON files are lists of `"key": "text"` pairs. Translate **only the text on

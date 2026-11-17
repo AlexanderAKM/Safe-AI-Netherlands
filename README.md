@@ -99,6 +99,9 @@ and the `/nl` pages and the language switch arrive with it.
 - `npm run i18n:changes` lists what has been added, changed or removed since then and
   writes `translation/changes/` with only the new and changed texts. After sending it,
   `npm run i18n:changes -- --sent` records them as sent.
+- Everything left out of the package, and so English on the Dutch pages, is listed
+  under "What is not in this folder" in `scripts/i18n/TRANSLATOR.md`. Keep that list
+  current when you leave something else untranslated.
 - The Project Hub's fallback project cards (`src/data/projects.ts`) are not in the
   package: they stand in only when the Airtable list cannot load, and that list stays
   English.
