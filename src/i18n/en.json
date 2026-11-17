@@ -356,6 +356,15 @@
       "linkedin": "Updates and open positions"
     }
   },
+  "notFound": {
+    "meta": {
+      "title": "Page not found"
+    },
+    "heading": "This page doesn’t exist",
+    "body": "The link may be old, or the page may have moved. The homepage has everything the site offers.",
+    "home": "Go to the homepage",
+    "contact": "Tell us about a broken link"
+  },
   "getInvolved": {
     "meta": {
       "title": "Volunteer",
