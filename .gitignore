@@ -33,6 +33,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# the folder npm run i18n:package builds for the translator
+/translation/
+
 # private context
 context_info/
 working_docs/

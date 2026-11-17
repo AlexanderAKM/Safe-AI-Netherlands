@@ -12,7 +12,9 @@
     "images": "node --use-system-ca scripts/generate-responsive-images.mjs",
     "fetch-luma-events-amsterdam": "node --use-system-ca scripts/fetch-luma-events-amsterdam.mjs",
     "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs",
-    "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs"
+    "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs",
+    "i18n:package": "node --use-system-ca scripts/i18n/package.mjs",
+    "i18n:changes": "node --use-system-ca scripts/i18n/changes.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

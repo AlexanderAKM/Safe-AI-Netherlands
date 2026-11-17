@@ -57,7 +57,8 @@ The site is being made bilingual (English and Dutch). The text is moving out of 
 components into `src/i18n/en.json`, page by page; the pages already moved are the
 layout, navbar, footer, homepage, about (with its documents), team, contact, volunteer,
 open positions, courses, community, the three chapter pages (with the Groningen events
-archive), new chapters, and the Project Hub (with its handbook, apply page and papers). The Dutch version, `nl.json`, comes back from a translator,
+archive), new chapters, the Project Hub (with its handbook, apply page and papers), and the
+"page not found" page. The Dutch version, `nl.json`, comes back from a translator,
 and the `/nl` pages and the language switch arrive with it.
 
 - Exceptions: `src/data/openPositions.ts`, `src/data/newChapters.ts`,
@@ -86,6 +87,21 @@ and the `/nl` pages and the language switch arrive with it.
   the browser bundle.
 - To check that a change moved text without altering it: build before and after, run
   `node scripts/i18n-text-snapshot.mjs out <folder>` each time, and diff the two folders.
+
+### Sending text to the translator
+
+- `npm run i18n:package` builds `translation/` (not committed): `en.json`,
+  `content.en.json` (the text the data files above keep, as the site shows it today),
+  the About documents and `TRANSLATOR.md`, the translator's guide with the list of
+  names that stay English. The guide's text is `scripts/i18n/TRANSLATOR.md`; the role
+  titles and course names at its end are read from the data files. The command also
+  records what was sent in `src/i18n/sent.json`; commit it.
+- `npm run i18n:changes` lists what has been added, changed or removed since then and
+  writes `translation/changes/` with only the new and changed texts. After sending it,
+  `npm run i18n:changes -- --sent` records them as sent.
+- The Project Hub's fallback project cards (`src/data/projects.ts`) are not in the
+  package: they stand in only when the Airtable list cannot load, and that list stays
+  English.
 
 ## Brand
 
