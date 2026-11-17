@@ -58,8 +58,8 @@ components into `src/i18n/en.json`, page by page; the pages already moved are th
 layout, navbar, footer, homepage, about (with its documents), team, contact, volunteer,
 open positions, courses, community, the three chapter pages (with the Groningen events
 archive), new chapters, the Project Hub (with its handbook, apply page and papers), and the
-"page not found" page. The Dutch version, `nl.json`, comes back from a translator,
-and the `/nl` pages and the language switch arrive with it.
+"page not found" page. The Dutch version, `nl.json`, is an AI draft under review by a
+Dutch speaker, and the `/nl` pages and the language switch arrive after that review.
 
 - Exceptions: `src/data/openPositions.ts`, `src/data/newChapters.ts`,
   `src/data/courseApplications.ts`, `src/data/research.ts` and `src/data/projects.ts`
@@ -88,17 +88,27 @@ and the `/nl` pages and the language switch arrive with it.
 - To check that a change moved text without altering it: build before and after, run
   `node scripts/i18n-text-snapshot.mjs out <folder>` each time, and diff the two folders.
 
-### Sending text to the translator
+### The Dutch text and its review
 
-- `npm run i18n:package` builds `translation/` (not committed): `en.json`,
-  `content.en.json` (the text the data files above keep, as the site shows it today),
-  the About documents and `TRANSLATOR.md`, the translator's guide with the list of
-  names that stay English. The guide's text is `scripts/i18n/TRANSLATOR.md`; the role
-  titles and course names at its end are read from the data files. The command also
-  records what was sent in `src/i18n/sent.json`; commit it.
+- The Dutch is an AI-made draft that a Dutch speaker reviews: `src/i18n/nl.json`,
+  `src/i18n/content.nl.json` (the Dutch of the data files' text, keyed like
+  `content.en.json` below) and `docs/nl/`. The draft's open questions are in
+  `src/i18n/nl.notes.md`. The site does not use these files until the `/nl` pages exist.
+- `npm run i18n:check` checks the Dutch against the English: the same keys, lists of
+  the same length, the same `<tag>`s and `{placeholders}`, and documents with the same
+  headings and links.
+- `npm run i18n:package` builds `translation/` (not committed) for the reviewer: the
+  English (`en.json`, `content.en.json` with the text the data files above keep, as
+  the site shows it today, and the About documents), the Dutch draft beside it, the
+  notes as `NOTES.md`, `review.csv` with every text side by side, and `TRANSLATOR.md`,
+  the reviewer's guide with the list of names that stay English. The guide's text is
+  `scripts/i18n/TRANSLATOR.md`; the role titles and course names at its end are read
+  from the data files. The command also records what was sent in
+  `src/i18n/sent.json`; commit it.
 - `npm run i18n:changes` lists what has been added, changed or removed since then and
-  writes `translation/changes/` with only the new and changed texts. After sending it,
-  `npm run i18n:changes -- --sent` records them as sent.
+  writes `translation/changes/` with only the new and changed English texts. Draft
+  their Dutch in the same way as the first draft, update the files above, and after
+  sending them for review run `npm run i18n:changes -- --sent` to record them as sent.
 - Everything left out of the package, and so English on the Dutch pages, is listed
   under "What is not in this folder" in `scripts/i18n/TRANSLATOR.md`. Keep that list
   current when you leave something else untranslated.

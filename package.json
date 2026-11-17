@@ -14,7 +14,8 @@
     "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs",
     "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs",
     "i18n:package": "node --use-system-ca scripts/i18n/package.mjs",
-    "i18n:changes": "node --use-system-ca scripts/i18n/changes.mjs"
+    "i18n:changes": "node --use-system-ca scripts/i18n/changes.mjs",
+    "i18n:check": "node --use-system-ca scripts/i18n/check.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

@@ -1,0 +1,1854 @@
+{
+  "common": {
+    "opensInNewTab": "(opent in een nieuw tabblad)",
+    "joinTheCommunity": "Word lid van de community",
+    "volunteer": "Vrijwilliger worden",
+    "joinAFreeCourse": "Doe mee aan een gratis cursus",
+    "startWithAFreeCourse": "Begin met een gratis cursus",
+    "visitTheProjectHub": "Bezoek de Project Hub",
+    "or": "of"
+  },
+  "site": {
+    "description": "SAIN biedt de community, cursussen en middelen waarmee studenten en professionals in Nederland aan de slag kunnen in het vakgebied AI safety. Elk programma is gratis.",
+    "logoImageAlt": "Logo van Safe AI Netherlands",
+    "skipToContent": "Naar de inhoud"
+  },
+  "testimonial": {
+    "context": "Stage · Existential Risk Observatory",
+    "quote": "Zonder deze community was ik vrijwel zeker niet geweest waar ik nu ben.",
+    "project": "Onderzoek naar alignmenttechnieken en overheidsinterventies voor AI in kaart brengen"
+  },
+  "nav": {
+    "homeLinkLabel": "Safe AI Netherlands, startpagina",
+    "primaryLabel": "Hoofdmenu",
+    "mobileLabel": "Mobiel menu",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "items": {
+      "courses": "Cursussen",
+      "community": "Community",
+      "newChapters": "Nieuwe chapters",
+      "projectHub": "Project Hub",
+      "about": "Over ons"
+    },
+    "hiringKicker": "We zoeken mensen",
+    "startingTeamsShort": "Betaalde startteams gezocht in drie nieuwe steden",
+    "startingTeamsLong": "Betaalde startteams gezocht in Eindhoven, Delft en Den Haag",
+    "startingTeamsDeadline": ", solliciteer uiterlijk {deadline}",
+    "allOpenPositions": "Alle vacatures",
+    "seeOpenPositions": "Bekijk de vacatures"
+  },
+  "footer": {
+    "columns": {
+      "community": "Community",
+      "programmes": "Programma’s",
+      "organisation": "Organisatie"
+    },
+    "links": {
+      "community": "Community",
+      "joinTheCommunity": "Word lid van de community",
+      "courses": "Cursussen",
+      "projectHub": "Project Hub",
+      "projectHubHandbook": "Handboek van de Project Hub",
+      "volunteer": "Vrijwilliger worden",
+      "about": "Over ons",
+      "team": "Team",
+      "openPositions": "Vacatures",
+      "contact": "Contact",
+      "newsletter": "Nieuwsbrief",
+      "vision": "Visie",
+      "theoryOfChange": "Theory of Change",
+      "codeOfConduct": "Gedragscode"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Je carrière in AI safety begint hier.",
+      "body": "Kennis van AI safety is nooit belangrijker geweest dan nu. SAIN biedt de community, cursussen en middelen waarmee studenten en professionals aan de slag kunnen in het vakgebied AI safety. We bieden een helder pad via onderwijs, community en praktische projecten, en brengen sterke deelnemers daarna in contact met de organisaties, programma’s en functies waar ze de volgende stap kunnen zetten.",
+      "hiring": "<strong>We zoeken betaalde startteams</strong> voor nieuwe chapters in Eindhoven, Delft en Den Haag. Solliciteer uiterlijk {deadline}.",
+      "seeTheRoles": "Bekijk de functies"
+    },
+    "mission": {
+      "heading": "Waarom SAIN bestaat",
+      "body": "Een gratis pad, gedragen door vrijwilligers, van nieuwsgierigheid naar een eigen bijdrage: via cursussen, evenementen, onderzoek en lokale chapters.",
+      "link": "Waarom SAIN bestaat"
+    },
+    "community": {
+      "heading": "Doe mee in de community",
+      "body": "<strong>Discussiegroepen</strong>, <strong>hackathons</strong>, <strong>lezingen</strong> en de avonden daarna. Mensen vinden hier <strong>vrienden en samenwerkingspartners</strong>, en vaak ook hun <strong>volgende stap in AI safety</strong>.",
+      "chapters": "Onze Discord-community richt zich nu op onze chapters SAIN Amsterdam, Utrecht en Groningen.",
+      "nextCities": "Eindhoven, Delft en Den Haag zijn de volgende: <link>we zoeken er startteams</link>.",
+      "moreCities": "Meer steden volgen."
+    },
+    "courses": {
+      "body": "Kies een track. Elk programma is gratis en wordt op locatie gegeven. Wat je kunt volgen en hoe het verloopt, verschilt per chapter.",
+      "applyNow": "Je kunt je nu aanmelden in {cities}."
+    },
+    "research": {
+      "heading": "De SAIN Project Hub",
+      "body": "Zet je academische expertise in voor AI safety. Kom in contact met onderzoekers, werk een afgebakend project uit en breng je werk verder met steun van SAIN.",
+      "closing": "Je kunt je altijd aanmelden. Per project bepaal je zelf hoeveel tijd je erin steekt. Meedoen op afstand is welkom."
+    },
+    "careers": {
+      "heading": "Bouw een carrière in AI safety",
+      "body": "De meeste mensen die uiteindelijk aan AI safety werken, hadden dat niet zo gepland. Wij maken die weg korter met mentorschap, advies over financiering en introducties bij de labs, instituten en ministeries die op dit moment in Europa mensen aannemen.",
+      "tracks": [
+        "Technisch onderzoek",
+        "Governance en beleid",
+        "Het vakgebied opbouwen",
+        "Beveiliging en compute"
+      ]
+    },
+    "involved": {
+      "heading": "Het komende decennium wordt nu beslist",
+      "body": "Je hebt geen achtergrond in AI nodig om hier van waarde te zijn. Elk SAIN-programma is gratis, wordt gedragen door vrijwilligers en brengt je van nieuwsgierig naar zelf bijdragen. Kies er dus een en begin."
+    }
+  },
+  "landing": {
+    "heroChartAlt": "Een steeds snellere AI-ontwikkeling begint als curve in de oorsprong. Twee mensen leren en oefenen terwijl een derde omhoog wijst naar het kantelpunt, waar de curve splitst in een steil oranje pad en een vlakker grijs pad.",
+    "affiliationsHeading": "Netwerk en institutionele banden",
+    "missionStatement": "<muted>Te weinig mensen weten hoe ze aan AI safety kunnen werken, in onderzoek, in beleid of in het publieke debat.</muted> SAIN <verb>traint</verb> er meer, <verb>verbindt</verb> ze met elkaar en helpt ze <verb>op weg</verb>.",
+    "chapterPrintsLabel": "Chapters",
+    "communityPrints": {
+      "label": "Foto’s van SAIN-evenementen",
+      "previous": "Vorige foto’s",
+      "next": "Volgende foto’s",
+      "alt": {
+        "graduationAmsterdam": "Deelnemers van SAIN Amsterdam vieren buiten met ballonnen en bloemen dat ze hun cursus hebben afgerond",
+        "closingGroningen": "Een slotavond van SAIN Groningen op een dakterras bij zonsondergang",
+        "lecture": "Een lezing van SAIN in een volle collegezaal",
+        "cafeAmsterdam": "Leden van SAIN Amsterdam rond een cafétafel met SAIN-mokken",
+        "technicalGraduates": "Deelnemers die Technical AI Safety hebben afgerond, naast de banner van SAIN Amsterdam",
+        "circle": "Een community-bijeenkomst buiten, in een kring",
+        "indoor": "Een groepssessie van SAIN binnen"
+      }
+    },
+    "courseTracks": {
+      "whereItRuns": "Waar het gegeven wordt",
+      "notOffered": "(niet aangeboden)",
+      "seeAllCourses": "Bekijk alle cursussen"
+    },
+    "researchIllustrationLabel": "Twee onderzoekers bekijken samen bewijsmateriaal aan een gedeelde werkbank",
+    "researchOffer": {
+      "matching": {
+        "title": "Matching met begeleiders",
+        "description": "Kom in contact met begeleiders op PhD-niveau of hoger voor gestructureerd onderzoek naar AI safety, met begeleiding."
+      },
+      "compute": {
+        "title": "Compute en ondersteuning",
+        "description": "Krijg toegang tot compute en logistieke ondersteuning voor je project of een open samenwerking."
+      },
+      "network": {
+        "title": "Landelijk netwerk",
+        "description": "Werk samen met onderzoekers, adviseurs en mensen uit de praktijk in alle Nederlandse chapters van SAIN."
+      },
+      "publication": {
+        "title": "Publicatietraject",
+        "description": "Bouw aan je trackrecord in onderzoek, in een community met werk op NeurIPS, ICLR en andere toonaangevende conferenties."
+      }
+    },
+    "researchSteps": {
+      "label": "Jouw onderzoekstraject",
+      "project": {
+        "title": "Kies een onderzoeksproject",
+        "body": "Sluit je aan bij een project of kom met je eigen vraag. Zet je academische expertise in voor AI safety, met de mensen en middelen om er verder mee te komen.",
+        "link": "Lees het onderzoekshandboek"
+      },
+      "support": {
+        "title": "Werk met ondersteuning",
+        "body": "SAIN helpt onderzoek te coördineren en regelt compute op basis van wat een project nodig heeft. Ontwikkel je werk met feedback van een begeleider of met zelfstandige samenwerkingspartners.",
+        "agendas": "Bekijk de onderzoeksagenda’s van onze begeleiders",
+        "becomeSupervisor": "Word begeleider"
+      },
+      "publish": {
+        "title": "Publiceer je resultaten",
+        "body": "Maak van je resultaten een paper, beleidsnotitie of onderzoekstool. Krijg feedback op je concepten, mogelijk met ondersteuning voor reizen naar conferenties.",
+        "link": "Bekijk alle publicaties"
+      }
+    },
+    "researchAgenda": "Onderzoeksagenda",
+    "readPaper": "Lees de paper"
+  },
+  "portrait": {
+    "profile": "Profiel"
+  },
+  "funnel": {
+    "course": "Volg een gratis cursus, open voor iedereen",
+    "community": "Doe mee in de community van SAIN",
+    "research": "Draag bij aan onderzoek of projecten en werk samen",
+    "fellowship": "Doe een fellowship of stage in AI safety",
+    "fullTime": "Werk fulltime in AI safety"
+  },
+  "about": {
+    "meta": {
+      "title": "Over ons",
+      "description": "Stichting Safe AI Netherlands ontwikkelt het talent dat Nederland nodig heeft om de risico’s van transformatieve AI aan te pakken. De talentpijplijn, de documenten van de stichting en de mensen die het geheel draaiende houden."
+    },
+    "hero": {
+      "mission": [
+        "Het talent ontwikkelen dat Nederland nodig heeft.",
+        "De risico’s van transformatieve AI aanpakken.",
+        "Een eerste echte bijdrage mogelijk maken."
+      ],
+      "body": "Dat is de missie van Stichting Safe AI Netherlands. Transformatieve AI kan de economie, de wetenschap en de samenleving veranderen op de schaal van een grote historische revolutie; of dat goed afloopt, is nog niet beslist. Wij zijn een landelijke talentpijplijn: lokale chapters op een gedeelde infrastructuur, van de eerste kennismaking via cursussen en de Project Hub tot de overstap naar het bredere vakgebied. Deze pagina laat dat pad zien, wat we op papier hebben gezet en de mensen die het geheel draaiende houden."
+    },
+    "path": {
+      "heading": "Nederland heeft het talent. Het pad ontbrak.",
+      "paragraphs": [
+        "Als de huidige ontwikkeling doorzet, doen AI-systemen misschien binnenkort het meeste economisch en strategisch belangrijke denkwerk, inclusief AI-onderzoek zelf. De kernvraag is niet alleen wat AI wordt, maar ook of genoeg mensen klaar zijn om vorm te geven aan wat daarna komt. Op dit moment werken veel te weinig mensen aan dat probleem.",
+        "Niemand kan de precieze tijdlijn noemen, en wij doen ook niet alsof. Nederland is niet vanzelf voorbereid. Daar moeten mensen aan bouwen, terwijl Europese instellingen de komende jaren hun teams voor AI safety bemensen.",
+        "Nederland heeft universiteiten van wereldklasse, ASML in het hart van de wereldwijde halfgeleiderketen, de nabijheid van Brussel en opkomende groepen rond AI safety. Wat ontbrak, was een gezamenlijke stem vanuit het maatschappelijk middenveld en een helder pad van interesse via kunde naar een betekenisvolle bijdrage. SAIN is opgericht om dat gat te dichten. Wij ontwikkelen de mensen; het vakgebied zet ze aan het werk."
+      ]
+    },
+    "pipeline": {
+      "heading": "Iedereen kan beginnen. Hoe verder je komt, hoe smaller het pad.",
+      "paragraphs": [
+        "Het trechterdiagram is de hele organisatie. Aan de brede kant staat een gratis cursus waar iedereen aan mee kan doen, zonder technische achtergrond. Aan de smalle kant staat fulltime werk in AI safety, in beleid, onderzoek, het bedrijfsleven of het maatschappelijk middenveld. Daartussen zitten de community, de Project Hub en fellowships. De voortgang is zichtbaar, voor ons en voor wie de stappen zet, en het is de taak van SAIN om elke volgende stap bereikbaar te maken, zodat elke stap die iemand zet zich opstapelt tot een steeds effectievere missie.",
+        "We zijn open over waar onze inzet naartoe gaat. SAIN bouwt de brede kant: mensen binnenhalen, de basis bijbrengen en een eerste echte bijdrage ondersteunen, zoals een begeleid onderzoeksproject. Aan de smalle kant brengen we vooral mensen in contact en verwijzen we door, met introducties en aanbevelingsbrieven.",
+        "We hebben de pijplijn ontworpen met veel goede eindpunten. Wie één cursus volgt en terugkeert naar de juridische wereld, de geneeskunde of het openbaar bestuur, neemt die kennis mee in het eigen vak, en een samenleving die AI-risico’s goed begrijpt, is een uitkomst die we actief nastreven."
+      ],
+      "record": "Tot nu toe hebben via de pijplijn meer dan 100 mensen een cursus afgerond, in negen of meer cohorten en op dit moment zo’n 60 per jaar, en is er peer-reviewed onderzoek verschenen op NeurIPS en ICLR. Het doel voor medio 2027 is 250 of meer mensen per jaar die een cursus afronden, door dezelfde gestandaardiseerde cursus in meer steden te geven."
+    },
+    "record": {
+      "heading": "Van één studentengroep naar een landelijke stichting in drie jaar.",
+      "years": {
+        "2023": {
+          "title": "AISIG opgericht.",
+          "line": "Het AI Safety Initiative Groningen begint als studentengroep die door studenten wordt geleid en lesgeeft over AI safety."
+        },
+        "2024": {
+          "title": "Meer dan studenten.",
+          "line": "AISIG gaat open voor professionals, draait meerdere cursuscohorten en organiseert hackathons met Apart Research."
+        },
+        "2025": {
+          "title": "Onderzoek op topconferenties.",
+          "line": "Publicaties op NeurIPS en ICLR; de Project Hub gaat van start en koppelt beginnende onderzoekers aan begeleiders op PhD-niveau."
+        },
+        "2026": {
+          "title": "Safe AI Netherlands.",
+          "line": "Met Alexander als oprichter en Ana, Andreea, Tarteel en Riccardo als medeoprichters ontstaat Safe AI Netherlands. Het wordt een landelijke stichting, met chapters in Groningen, Amsterdam en Utrecht en één gedeelde infrastructuur."
+        }
+      }
+    },
+    "team": {
+      "kicker": "De mensen erachter",
+      "heading": "Een kleine leiding, dicht op het werk.",
+      "body": "SAIN wordt geleid door de nationale Director en de hoofden van groei, operations en projecten. De leiding neemt de strategische beslissingen; de chapters organiseren de cursussen, evenementen en community’s.",
+      "chapterDirectorsHeading": "Chapter Directors",
+      "chapterDirectorsBody": "Elke chapter wordt geleid door een eigen Chapter Director.",
+      "advisoryHeading": "Met advies van mensen die al in het vakgebied werken.",
+      "advisoryBody": "Een adviesraad van experts op het gebied van AI safety in Nederland geeft strategisch advies.",
+      "advisoryGroups": {
+        "technical": "Technische AI safety",
+        "governance": "AI-governance en beleid",
+        "strategy": "Strategie en operations"
+      },
+      "boardHeading": "Bestuur",
+      "boardBody": "Het bestuur van Stichting Safe AI Netherlands."
+    },
+    "documents": {
+      "heading": "De regels waar we ons aan houden, zijn openbaar.",
+      "body": "SAIN is een Nederlandse stichting, de gangbare rechtsvorm zonder winstoogmerk. De stichting beheert het merk, de rechtspersoon en de financiën, zodat een lokale chapter die nooit zelf vanaf nul hoeft op te bouwen; chapters organiseren hun eigen cursussen, evenementen en community’s. Elk programma is gratis. Drie documenten leggen vast hoe het geheel werkt, en iedereen kan ze lezen.",
+      "readDocument": "Lees het document",
+      "contactLine": "Functieadressen en contactgegevens van de chapters staan op één pagina, zodat ze kloppen.",
+      "contactLink": "Neem contact op met SAIN",
+      "chapterLine": "Wil je SAIN naar jouw stad halen? Chapters nemen het merk, de juridische paraplu en kant-en-klare lesprogramma’s over, zodat ze niet vanaf nul hoeven te beginnen.",
+      "chapterLink": "Start een chapter"
+    },
+    "close": {
+      "heading": "Het werk is al begonnen. Doe mee, of help het te organiseren.",
+      "body": "Elk programma is gratis, en alles draait op mensen die komen opdagen.",
+      "visitTheCommunity": "Bezoek de community"
+    }
+  },
+  "documents": {
+    "backToAbout": "Over SAIN",
+    "othersHeading": "Wat SAIN verder op papier heeft gezet.",
+    "vision": {
+      "title": "Visie",
+      "eyebrow": "Waar SAIN naartoe gaat",
+      "description": "De missie van SAIN, de landelijke rol, de strategische pijlers en de ambitie op lange termijn voor AI safety in Nederland."
+    },
+    "theoryOfChange": {
+      "title": "Theory of Change",
+      "eyebrow": "Hoe verandering ontstaat",
+      "description": "Waarom we geloven dat ons werk Nederland voorbereidt op transformatieve AI: onze causale redenering, wat we meten en de aannames die we in de gaten houden."
+    },
+    "codeOfConduct": {
+      "title": "Gedragscode",
+      "eyebrow": "Hoe we samenwerken",
+      "description": "Gedragsnormen voor iedereen die meedoet aan activiteiten van SAIN, en hoe zorgen worden gemeld en afgehandeld."
+    }
+  },
+  "team": {
+    "meta": {
+      "title": "Team",
+      "description": "Het bestuur en de adviesraad van Stichting Safe AI Netherlands, op de pagina Over ons."
+    },
+    "heading": "Het team staat nu op de pagina Over ons.",
+    "body": "Daar staan het bestuur en de adviesraad, samen met de missie en de talentpijplijn.",
+    "link": "De mensen achter SAIN"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Elk adres dat SAIN gebruikt: de landelijke functieadressen, de adressen van de chapters in Groningen, Amsterdam en Utrecht, en de mensen die ze leiden."
+    },
+    "hero": {
+      "heading": "Schrijf naar het adres dat bij je vraag past.",
+      "body": "Elke inbox van SAIN staat op deze pagina: de landelijke functieadressen, de adressen van elke chapter en de mensen erachter."
+    },
+    "national": {
+      "heading": "Begin bij een functieadres.",
+      "body": "Gebruik deze als je het onderwerp weet, maar niet wie je bericht moet lezen.",
+      "addresses": {
+        "formal": {
+          "label": "Formeel",
+          "detail": "Algemene formele vragen"
+        },
+        "media": {
+          "label": "Media en outreach",
+          "detail": "Pers, publieksbereik en partnerschappen"
+        },
+        "research": {
+          "label": "Onderzoek",
+          "detail": "Project Hub, begeleiders en samenwerkingen"
+        },
+        "substack": {
+          "label": "Substack",
+          "detail": "Schrijven, redigeren en werk aan de nieuwsbrief"
+        },
+        "conduct": {
+          "label": "Gedrag",
+          "detail": "Schendingen van de gedragscode of algemene zorgen"
+        }
+      }
+    },
+    "chapters": {
+      "heading": "Of schrijf naar een stad.",
+      "body": "Elke chapter heeft eigen adressen voor samenwerking, community, educatie, evenementen en outreach.",
+      "roles": {
+        "formalCollaboration": "Formele samenwerking",
+        "communityManager": "Community manager",
+        "education": "Educatie",
+        "research": "Onderzoek",
+        "events": "Evenementen",
+        "substack": "Substack",
+        "publicOutreach": "Publieksbereik"
+      },
+      "viewChapter": "Bekijk de chapter",
+      "joinInstead": "Wil je liever meedoen dan schrijven? Dan heb je geen adres nodig. Via de communitypagina kom je binnen, en dat is voor alle drie de chapters dezelfde ingang.",
+      "visitTheCommunity": "Bezoek de community"
+    },
+    "leads": {
+      "heading": "De mensen achter die adressen.",
+      "body": "De nationale Director, de Chapter Directors en het hoofd operations, elk met een adres dat alleen zij lezen.",
+      "alsoAnswersFormal": "Beantwoordt ook het formele functieadres hierboven.",
+      "alsoAnswersChapter": "Beantwoordt ook het chapteradres van {chapter} hierboven.",
+      "profile": "Profiel"
+    },
+    "elsewhere": {
+      "heading": "Waar je SAIN verder vindt.",
+      "registeredAddress": "Statutair adres",
+      "country": "Nederland",
+      "online": "Online",
+      "substack": "Artikelen over AI safety",
+      "linkedin": "Updates en vacatures"
+    }
+  },
+  "notFound": {
+    "meta": {
+      "title": "Pagina niet gevonden"
+    },
+    "heading": "Deze pagina bestaat niet",
+    "body": "De link is misschien oud, of de pagina is verplaatst. Op de homepage vind je alles wat de site te bieden heeft.",
+    "home": "Naar de homepage",
+    "contact": "Meld een link die niet werkt"
+  },
+  "getInvolved": {
+    "meta": {
+      "title": "Vrijwilliger worden",
+      "description": "SAIN draait op vrijwilligers. Zes teams in Amsterdam, Utrecht en Groningen, drie tot tien uur per week, één korte sollicitatie die we meteen bij binnenkomst bekijken."
+    },
+    "hero": {
+      "heading": "SAIN draait op vrijwilligers",
+      "body": "Elk programma is gratis omdat mensen er elke week een paar uur in steken. Op deze pagina lees je wat het werk is, wat het je oplevert en hoe je instapt.",
+      "photoAlt": "Mensen die tijdens een hackathon samen aan een tafel werken"
+    },
+    "seeOpenPositions": "Bekijk de vacatures",
+    "work": {
+      "kicker": "Het werk",
+      "heading": "Zes teams, drie tot tien uur per week",
+      "body": "Amsterdam, Utrecht en Groningen hebben elk dezelfde teams. Teamleiders dragen een team en rapporteren aan de Chapter Director van hun chapter; teamleden nemen een deel van het werk op zich. De meeste rollen kosten drie tot vijf uur per week, voor teamleiders is dat zes tot tien.",
+      "teams": {
+        "education": {
+          "name": "Education",
+          "description": "Organiseer cursuscohorten en discussiegroepen. Begeleid de wekelijkse sessies, ondersteun deelnemers en houd de kwaliteit hoog, editie na editie.",
+          "hours": "3 tot 10 uur per week"
+        },
+        "events": {
+          "name": "Events",
+          "description": "Plan en verzorg de agenda van de chapter. Hackathons, lezingen door experts, borrels en de logistiek erachter.",
+          "hours": "3 tot 10 uur per week"
+        },
+        "communications": {
+          "name": "Communications",
+          "description": "Schrijven, vormgeving, fotografie, video en de website. Maak het werk van de chapter zichtbaar, in de huisstijl van SAIN.",
+          "hours": "3 tot 10 uur per week"
+        },
+        "community": {
+          "name": "Community",
+          "description": "Verwelkom nieuwe leden, wees het eerste aanspreekpunt en help mensen hun weg te vinden naar een grotere rol.",
+          "hours": "4 tot 6 uur per week"
+        },
+        "outreach": {
+          "name": "Outreach",
+          "description": "Wees het gezicht van SAIN op de campus. Met een kraampje staan, flyeren en studenten uitnodigen voor komende evenementen.",
+          "hours": "3 tot 5 uur per week"
+        },
+        "research": {
+          "name": "Research operations",
+          "description": "Houd de Project Hub dagelijks draaiende. Wijs onderzoekers en begeleiders de weg, houd projecten bij en los knelpunten op.",
+          "hours": "2 tot 8 uur per week"
+        }
+      },
+      "paidNote": "Als een rol daarom vraagt, neemt SAIN ook een klein aantal betaalde landelijke medewerkers aan. Die functies staan bij de vacatures."
+    },
+    "returns": {
+      "heading": "Je gaat weg met werk dat je kunt laten zien",
+      "body": "Als vrijwilliger bij SAIN krijg je al vroeg echte verantwoordelijkheid. Teamleiders rapporteren rechtstreeks aan de Chapter Directors, en teamleden organiseren cohorten, evenementen en kanalen die echt doorgaan. Je werkt samen met mensen in Utrecht, Groningen en Amsterdam die zelf ook het vakgebied in stappen, en veel contacten die later belangrijk blijken, beginnen hier.",
+      "items": [
+        "Ervaring met echte verantwoordelijkheid, niet alleen meelopen",
+        "Een netwerk in drie chapter-steden",
+        "Een staat van dienst in het vakgebied: cohorten gegeven, evenementen georganiseerd, werk gepubliceerd"
+      ]
+    },
+    "apply": {
+      "heading": "Eén korte sollicitatie, bekeken zodra hij binnenkomt",
+      "body": "Alle sollicitaties voor de chapters lopen via hetzelfde korte formulier: naam, cv en een motivatiebrief van één pagina. We bekijken sollicitaties doorlopend, dus solliciteer wanneer jij er klaar voor bent.",
+      "steps": [
+        {
+          "title": "Solliciteer.",
+          "body": "Kies de chapter en de rol, voeg je cv toe en schrijf een korte motivatiebrief. Eén pagina is ruim genoeg."
+        },
+        {
+          "title": "Reactie.",
+          "body": "We lezen sollicitaties zodra ze binnenkomen. Binnen 2 tot 3 weken hoor je voor het eerst van ons."
+        },
+        {
+          "title": "Gesprek.",
+          "body": "Een gesprek van 30 tot 45 minuten over de rol, je motivatie en een kleine opdracht of situatieschets die bij het team past."
+        },
+        {
+          "title": "Start.",
+          "body": "Gaat dat goed, dan begint je onboarding bij de volgende ronde. Op een ander moment instappen kan ook."
+        }
+      ],
+      "noRoleFits": "Geen rol die bij je past? Solliciteer toch. Vertel in je motivatiebrief wat je wilt doen, dan zoeken we samen uit wat goed bij je past.",
+      "getInTouch": "Of neem eerst contact op"
+    },
+    "foundChapter": {
+      "heading": "SAIN ook in jouw stad?",
+      "body": "Een chapter oprichten is een eigen traject, met eigen playbooks en mentoring, en valt onder het community-team.",
+      "link": "Start een chapter"
+    },
+    "close": {
+      "heading": "Achter elk gratis programma zitten vrijwilligers",
+      "body": "Een paar uur per week, een team in jouw stad en sollicitaties die we doorlopend bekijken. De volgende ronde cursussen, evenementen en onderzoeksbegeleiding wordt gedragen door wie nu instapt."
+    }
+  },
+  "openPositions": {
+    "meta": {
+      "titleOpen": "Vacatures",
+      "titleClosed": "Doe mee met SAIN",
+      "descriptionOpen": "Vrijwillige en betaalde functies bij de chapters van SAIN en in het landelijke team. Solliciteer met je cv en een korte motivatiebrief.",
+      "descriptionClosed": "Wil je je als vrijwilliger inzetten voor Safe AI Netherlands? Een open sollicitatie kan altijd. Neem contact op."
+    },
+    "joinEmailSubject": "Joining SAIN",
+    "emailUs": "Mail naar {email}",
+    "count": {
+      "numbers": [
+        "nul",
+        "één",
+        "twee",
+        "drie",
+        "vier",
+        "vijf",
+        "zes",
+        "zeven",
+        "acht",
+        "negen",
+        "tien",
+        "elf",
+        "twaalf"
+      ],
+      "role": {
+        "one": "vacature",
+        "other": "vacatures"
+      },
+      "chapter": {
+        "one": "chapter",
+        "other": "chapters"
+      },
+      "lead": {
+        "one": "Er staat nu {count} vacature open",
+        "other": "Er staan nu {count} vacatures open"
+      },
+      "chapterClause": "{count} {role} bij de {chapter} in {cities}",
+      "nationalClause": "{count} betaalde fulltime {role} in het landelijke team",
+      "bothClauses": "{chapters} en {national}",
+      "withBody": "{lead}: {body}.",
+      "withoutBody": "{lead}.",
+      "and": "en"
+    },
+    "standing": {
+      "heading": "Een open sollicitatie kan altijd",
+      "body": "SAIN is een vrijwilligersorganisatie, gedragen door mensen in Amsterdam, Utrecht en Groningen die willen dat de ontwikkeling en inpassing van AI goed verloopt, in Nederland en daarbuiten. We hebben op dit moment geen specifieke rollen open, maar als je echt wilt bijdragen, horen we graag van je.",
+      "sendHeading": "Stuur ons drie dingen",
+      "sendItems": [
+        "Een korte introductie: wie je bent en wat je graag zou doen.",
+        "Je cv.",
+        "Een korte motivatiebrief waarin je noemt bij welke chapter je interesse hebt en wat je aantrekt in SAIN."
+      ],
+      "weRead": "We lezen alles wat binnenkomt en reageren zo snel als we kunnen.",
+      "closeHeading": "Geen vacature betekent niet geen plek.",
+      "closeBody": "De chapters groeien rond de mensen die zich melden. Vertel ons waar je aan wilt werken."
+    },
+    "hero": {
+      "heading": "SAIN zoekt versterking.",
+      "openForm": "Open het sollicitatieformulier",
+      "startingSomethingNew": "Iets nieuws opzetten?",
+      "startingTeams": "Betaalde startteams gezocht in Eindhoven, Delft en Den Haag"
+    },
+    "volunteers": {
+      "heading": "SAIN draait op vrijwilligers",
+      "body": "De meeste rollen op deze pagina zijn vrijwilligersrollen, ingevuld door mensen die willen dat AI goed uitpakt en daar naast hun studie of baan drie tot tien uur per week voor hebben. Je organiseert een cursus, de evenementen van een chapter of de communicatie ervan, met een team om je heen en een chapter die op je rekent. Veel mensen die zo zijn begonnen, werken nu aan AI safety bij labs, instituten en ministeries, en een rol hier is vaak de eerste regel op dat cv.",
+      "jumpLabel": "Ga naar een team"
+    },
+    "howToApply": {
+      "heading": "Eén kort formulier voor elke rol bij een chapter",
+      "body": "Sollicitaties voor de chapters lopen via hetzelfde formulier, welke stad en rol je ook kiest. Je kiest de chapter en de rol, voegt je cv toe en schrijft een korte motivatiebrief; één pagina is ruim genoeg.",
+      "nationalForms": "Landelijke functies hebben hun eigen formulier; de link staat bij elke functie hieronder.",
+      "formAsksHeading": "Wat het formulier vraagt",
+      "formFields": [
+        "Naam en e-mailadres",
+        "Chapter (Amsterdam, Utrecht, Groningen)",
+        "De rol(len) waarop je solliciteert",
+        "Cv (pdf)",
+        "Korte motivatiebrief (pdf of tekst)",
+        "Optioneel: link naar je LinkedIn of portfolio"
+      ],
+      "afterHeading": "Wat er gebeurt nadat je hebt gesolliciteerd",
+      "getInTouch": "Of neem eerst contact op"
+    },
+    "rolesLabel": "Open rollen, per team",
+    "national": {
+      "questions": "Vragen over deze functie?",
+      "emailSubject": "National open positions at SAIN"
+    },
+    "chapter": {
+      "noRoleFitsHeading": "Geen rol die bij je past? Solliciteer toch.",
+      "noRoleFitsBody": "Wil je bij {chapter} aan de slag maar past geen van de rollen hierboven echt bij je, dan horen we nog steeds graag van je. Vertel in je motivatiebrief over jezelf en wat je aantrekt in SAIN, dan zoeken we samen uit waar je past.",
+      "applyFor": "Solliciteer bij SAIN {chapter}",
+      "questionsFirst": "Eerst vragen?",
+      "emailSubject": "Open positions {chapter}",
+      "futureEmailSubject": "Future openings at SAIN {chapter}"
+    },
+    "close": {
+      "heading": "SAIN draait op mensen die besloten om op te komen dagen.",
+      "body": "Stuur je cv en een korte motivatiebrief. We reageren binnen twee tot drie weken, wanneer je ook solliciteert."
+    },
+    "roleCard": {
+      "summary": "{timeCommitment}. Rapporteert aan de {reportsTo}.",
+      "whatYouWouldDo": "Wat je gaat doen",
+      "goodFitIf": "Deze rol past misschien bij je als je",
+      "alsoStrong": "Sterke kandidaten hebben daarnaast misschien",
+      "preferredBackground": "Gewenste achtergrond",
+      "background": {
+        "field": "Vakgebied",
+        "level": "Niveau",
+        "experience": "Ervaring",
+        "softSkills": "Soft skills"
+      },
+      "terms": "Voorwaarden",
+      "termLabels": {
+        "salary": "Salaris",
+        "contract": "Contract",
+        "location": "Locatie",
+        "startDate": "Startdatum"
+      },
+      "offers": "Wat SAIN biedt",
+      "workWith": "Met wie je samenwerkt",
+      "howFilled": "Hoe deze rol wordt ingevuld",
+      "apply": "Solliciteer op deze rol",
+      "formNoOption": "Het formulier heeft nog geen optie voor deze rol. Kies daar “{option}” en noem “{title}” in je motivatiebrief.",
+      "formSpecialisation": "Solliciteren gaat via de optie “{option}” in het formulier. Noem “{title}” in je motivatiebrief.",
+      "formShared": "Opent het gedeelde sollicitatieformulier. Kies daar “{title}”."
+    }
+  },
+  "tracks": {
+    "fundamentals": {
+      "tagline": "De basis. Stap elke week in.",
+      "whoItSuits": "Voor nieuwkomers. Zo opgezet dat je bij elk thema kunt instappen, zonder voorkennis.",
+      "summary": "Een wekelijkse reeks over risico’s, technische veiligheid en governance, zo opgezet dat nieuwkomers kunnen instappen. Drie edities in Utrecht hebben samen meer dan 100 studenten, onderzoekers, engineers en mensen uit de publieke sector bereikt.",
+      "outlineTitle": "Wekelijkse thema’s",
+      "outline": [
+        "Introductie: capaciteiten, risico’s en soorten oplossingen",
+        "Risico’s en incidenten: maatschappelijke schade, misbruik, controleverlies",
+        "Technical AI Safety: toezicht, evaluations, interpretability",
+        "Regelgeving en governance: EU AI Act, audits, GPAI-verplichtingen",
+        "Waarom veiligheid moeilijk is: prikkels, financieringstekorten, wedloopdynamiek",
+        "Loopbaanpaden: scriptie, fellowship, daarna een fulltime baan"
+      ],
+      "cities": {
+        "Utrecht": "Wekelijks, modulair. Stap in bij elk thema. Ca. 60 min."
+      },
+      "photoAlt": "Cohort van SAIN Utrecht bij de afsluiting",
+      "caption": "Afsluiting van een cohort · SAIN Utrecht"
+    },
+    "technical": {
+      "tagline": "ARENA of BlueDot, per stad.",
+      "whoItSuits": "Voor wie wil bouwen: interpretability, RLHF en de alignment-pipeline, hands-on.",
+      "summary": "Elke chapter heeft een technische track, met een eigen lesprogramma. Utrecht behandelt evaluations, embodied AI en de beveiliging van AI-agents, met opdrachten uit ARENA. Groningen en Amsterdam gebruiken BlueDot.",
+      "outlineTitle": "Utrecht Technical AI Safety",
+      "outline": [
+        "Introductie tot AI safety-evaluations",
+        "AI safety-evaluations bouwen en beoordelen",
+        "Veiligheid van embodied AI",
+        "AI-agents beveiligen"
+      ],
+      "cities": {
+        "Utrecht": "Technical AI Safety. 4 weken, colleges van 1,5 uur, workshops op zaterdag. Programmeerervaring vereist.",
+        "Groningen": "BlueDot Technical AI Safety. 6 weken, op locatie, deelname na aanmelding en selectie.",
+        "Amsterdam": "BlueDot Technical AI Safety. 6 weken, op locatie, deelname na aanmelding en selectie."
+      },
+      "photoAlt": "Een workshop over technische alignment in volle gang",
+      "caption": "Week 1 · Transformers en interpretability"
+    },
+    "policy": {
+      "tagline": "BlueDot of SAIN Utrecht, per stad.",
+      "whoItSuits": "Voor wie richting beleid wil: de EU AI Act, audits en de Nederlandse uitvoering.",
+      "summary": "Amsterdam en Groningen geven BlueDot Frontier AI Governance, en Groningen voegt daar materiaal over het Europese perspectief aan toe. Utrecht geeft een vierweekse cursus AI Governance die ook kijkt naar de plek van Europa en andere middenmachten. Onder de facilitators zijn onderzoekers, risicoadviseurs en mensen uit de publieke sector.",
+      "outlineTitle": "Cursussen van zes weken (Groningen en Amsterdam)",
+      "outline": [
+        "De EU AI Act: verplichtingen gedurende de hele levenscyclus",
+        "Nederlandse uitvoering: ministeries, toezichthouders, normen",
+        "Verantwoording: audits, bewijs, GPAI-verplichtingen",
+        "Risicobeheer: NIST en evaluatie van frontier AI",
+        "Casestudy’s: ongelukken, misbruik, institutionele achterstand",
+        "Loopbaanpaden: beleidsfellowships, ministeries, normalisatie-instellingen"
+      ],
+      "cities": {
+        "Utrecht": "AI Governance. 4 weken, colleges van 1,5 uur. Geen voorkennis nodig.",
+        "Groningen": "BlueDot Frontier AI Governance, met materiaal over de EU. Op locatie, deelname na aanmelding en selectie.",
+        "Amsterdam": "BlueDot Frontier AI Governance. Op locatie, deelname na aanmelding en selectie."
+      },
+      "photoAlt": "Discussiegroep over governance en beleid rond een tafel",
+      "caption": "Discussiegroep · Utrecht"
+    }
+  },
+  "courseTabs": {
+    "label": "Cursustracks",
+    "whereYouCanAttend": "Waar je kunt meedoen"
+  },
+  "applications": {
+    "applyBy": "Meld je uiterlijk {date} aan",
+    "facilitatorsBy": "Facilitators uiterlijk {date}",
+    "closedWithNote": "Aanmelden is gesloten. {note}"
+  },
+  "coursePopup": {
+    "heading": "Gratis cursussen over AI safety, op locatie.",
+    "inCities": "In {cities}.",
+    "body": "Een paar weken lezen en discussiëren met mensen die het vakgebied in stappen, gegeven door de chapters van SAIN. Je hebt geen voorkennis nodig, en elk programma is gratis.",
+    "close": "Sluiten",
+    "pickYourCity": "Kies je stad",
+    "maybeLater": "Misschien later"
+  },
+  "courses": {
+    "meta": {
+      "title": "Doe mee met een gratis cursus",
+      "description": "Drie tracks, op locatie in Utrecht, Groningen en Amsterdam. Elk programma van SAIN is gratis. Kies een track, kies je stad en meld je aan."
+    },
+    "hero": {
+      "heading": "Doe mee met een gratis cursus",
+      "body": "Elk programma is gratis en vindt plaats op locatie. Kies een track, kies je stad en meld je aan. Wat je volgt en hoe het loopt, hangt af van de chapter.",
+      "applyNow": "Je kunt je nu aanmelden in {cities}.",
+      "applyInYourCity": "Meld je aan in jouw stad"
+    },
+    "tracks": {
+      "heading": "Kies een track",
+      "body": "Drie tracks, dezelfde in de agenda van elke chapter. Per track zie je wat er in elke stad loopt."
+    },
+    "cadence": {
+      "heading": "Hoe cohorten lopen",
+      "body": "Weet je niet welke chapter bij je past? Op de pagina van elke stad staan de eigen programma’s uitgebreid beschreven.",
+      "rows": [
+        "Cohorten lopen per chapter. Groningen en Amsterdam geven les in blokken van zes weken, en Groningen draait drie tot vier cohorten per jaar. De blokken Technical AI Safety en AI Governance in Utrecht duren vier weken.",
+        "De cursussen van zes weken combineren wekelijkse leesstof met een discussiesessie op locatie.",
+        "AI Safety Fundamentals in Utrecht is wekelijks en modulair. Stap in bij elk thema, ongeveer 60 minuten.",
+        "Voor sommige programma’s meld je je aan en word je geselecteerd, met een deadline per cohort. De BlueDot-tracks in Amsterdam zijn daar een voorbeeld van.",
+        "Deelnemers en facilitators gebruiken hetzelfde formulier. De deadline voor facilitators valt een paar dagen eerder."
+      ]
+    },
+    "apply": {
+      "heading": "Meld je aan in jouw stad",
+      "perChapter": "Aanmelden opent en sluit per chapter.",
+      "allClosed": "Op dit moment is aanmelden overal gesloten; de aanmelding voor het volgende cohort opent binnenkort.",
+      "open": "Aanmelden is open.",
+      "closed": "Aanmelden is gesloten.",
+      "deadlines": "Meld je uiterlijk {participants} aan (als facilitator uiterlijk {facilitators}).",
+      "applyIn": "Meld je aan in {chapter}",
+      "viewChapter": "Bekijk de chapter",
+      "walkthrough": "Op de pagina van je chapter lees je stap voor stap hoe het formulier werkt. Heb je vóór je aanmelding vragen, dan ben je welkom. <link>Of neem eerst contact op</link>"
+    }
+  },
+  "atlas": {
+    "utrecht": {
+      "origin": "Universiteit Utrecht en daarbuiten",
+      "summary": "Een gratis cursus over AI safety, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Gedragen door vrijwilligers, open voor iedereen in de stad.",
+      "photoAlt": "De Domtoren boven de daken van Utrecht",
+      "facts": [
+        {
+          "label": "Onder leiding van",
+          "value": "Riccardo Campanella"
+        },
+        {
+          "label": "Community",
+          "value": "Meer dan 240 leden, multidisciplinair"
+        },
+        {
+          "label": "Dit jaar",
+          "value": "Win4AISafety, een volledige technische cursus op basis van ARENA, en een onderzoekslezing door een onderzoeker van Anthropic voor meer dan 60 mensen"
+        }
+      ]
+    },
+    "groningen": {
+      "origin": "Sinds 2023, eerst als AISIG",
+      "summary": "Gratis cursussen, hackathons en gepubliceerd onderzoek. Het begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen.",
+      "photoAlt": "Grachtenpanden en aangemeerde boten in Groningen",
+      "facts": [
+        {
+          "label": "Onder leiding van",
+          "value": "Tarteel Mohamed"
+        },
+        {
+          "label": "Sinds oktober 2023",
+          "value": "30 evenementen: hackathons, afsluitingen van cohorten, lezingen, pubquizzen"
+        },
+        {
+          "label": "Onderzoek",
+          "value": "Leden publiceerden op workshops van NeurIPS en ICLR"
+        }
+      ]
+    },
+    "amsterdam": {
+      "origin": "UvA, VU en de techscene van de stad",
+      "summary": "Gratis cursussen en een wekelijkse discussiegroep, van bachelorstudenten tot werkende professionals, met steun van de ELLIS Unit Amsterdam.",
+      "photoAlt": "Grachtenpanden die over het water hellen in het centrum van Amsterdam",
+      "facts": [
+        {
+          "label": "Onder leiding van",
+          "value": "Ana Paula Castillo Rodriguez"
+        },
+        {
+          "label": "Cursussen",
+          "value": "Tot nu toe meer dan 120 aanmeldingen"
+        },
+        {
+          "label": "Op het podium",
+          "value": "De AI020 Conference en TEDxUniversiteit van Amsterdam"
+        }
+      ]
+    }
+  },
+  "chapterAtlas": {
+    "label": "De chapters",
+    "freeCourse": "De gratis cursus",
+    "deadlines": "Deelnemers uiterlijk {participants}. Facilitators uiterlijk {facilitators}.",
+    "applyToCourse": "Meld je aan voor de gratis cursus",
+    "everythingOn": "Alles over SAIN {city}",
+    "comingUpIn": "Binnenkort in {city}",
+    "calendarTitle": "Komende evenementen van SAIN {city}",
+    "fullCalendar": "De volledige agenda van {city} op Luma",
+    "walkIn": "Je kunt zonder aanmelding binnenlopen, tenzij de evenementpagina iets anders zegt. Vragen? Elke chapter vermeldt op de eigen pagina wie je over evenementen kunt benaderen."
+  },
+  "eventPrints": {
+    "label": "Foto’s van evenementen van de SAIN-chapters",
+    "previous": "Vorige foto’s",
+    "next": "Volgende foto’s",
+    "prints": {
+      "forecastingHackathon": {
+        "alt": "Aankondiging van de AISIG-hackathon over AI-voorspellingen en tijdlijnmodellen in Groningen",
+        "caption": "Hackathon over AI-voorspellingen · SAIN Groningen"
+      },
+      "tedxBroerstraat": {
+        "alt": "Een spreker van SAIN Groningen op het podium van TEDxBroerstraat",
+        "caption": "TEDxBroerstraat · SAIN Groningen"
+      },
+      "utrechtGraduation": {
+        "alt": "Een cohort van AI Safety Fundamentals bij de afsluitende ceremonie in Utrecht",
+        "caption": "Afsluiting van de cursus · SAIN Utrecht"
+      },
+      "pubQuiz": {
+        "alt": "Een pubquiz van SAIN Groningen op een avond",
+        "caption": "Pubquiz · SAIN Groningen"
+      },
+      "europe2031": {
+        "alt": "Een discussiegroep in Utrecht die een scenario voor Europa in 2031 doorwerkt",
+        "caption": "Discussie over het scenario Europe 2031 · SAIN Utrecht"
+      }
+    }
+  },
+  "community": {
+    "meta": {
+      "title": "Community",
+      "description": "SAIN bestaat uit drie lokale chapters, in Utrecht, Groningen en Amsterdam: wekelijkse discussiegroepen, gratis cursussen, hackathons en lezingen. Vind je chapter en kijk wat er te doen is."
+    },
+    "hero": {
+      "heading": "Eén community, in drie steden.",
+      "body": "SAIN, dat zijn de chapters. Utrecht, Groningen en Amsterdam organiseren elk hun eigen discussiegroepen, gratis cursussen en avonden, met een gedeeld curriculum en onder één landelijke organisatie. Kies de chapter die het dichtst bij je is en loop gewoon binnen.",
+      "findYourChapter": "Vind je chapter",
+      "discordNote": "Onze Discord-community richt zich op dit moment op onze chapters SAIN Amsterdam, Utrecht en Groningen. Meer steden volgen.",
+      "printsLabel": "De drie chapters"
+    },
+    "chapters": {
+      "heading": "Drie chapters, elk met een eigen plek.",
+      "body": "Hetzelfde curriculum, dezelfde landelijke ondersteuning, een ander karakter.",
+      "bodySecondLine": "Kies een stad om te zien wie de chapter leidt, welke cursussen er zijn en wat er deze maand te doen is."
+    },
+    "rhythm": {
+      "heading": "Hackathons, lezingen, certificaatuitreikingen en pubquizzen",
+      "archive": "De Groningse chapter houdt <link>een volledig archief</link> bij van alle evenementen sinds 2023."
+    },
+    "startChapter": {
+      "printsLabel": "De chapters tot nu toe, en de volgende",
+      "yourCity": "Jouw stad?",
+      "heading": "De volgende chapter begint met één meetup.",
+      "body": "Nog geen chapter in jouw stad? De drie bestaande chapters zijn allemaal op dezelfde manier begonnen: een paar mensen die een lokale community rond AI safety wilden en bereid waren de eerste meetup te organiseren. De leiding van SAIN begeleidt oprichters door het hele proces, en nieuwe chapters vallen onder de landelijke stichting, dus een aparte rechtspersoon is niet nodig.",
+      "startingTeams": "Zit je in Eindhoven, Delft of Den Haag? Daar zoeken we nu betaalde startteams.",
+      "seeStartingRoles": "Bekijk de rollen in de startteams",
+      "emailSubject": "Starting a SAIN chapter",
+      "propose": "Stel een chapter voor",
+      "proposeNote": "Stuur ons een e-mail met je stad en iets over jezelf.",
+      "handsOverHeading": "Wat SAIN je meegeeft",
+      "handsOver": [
+        "Het SAIN-merk en landelijke erkenning",
+        "Operationele playbooks en handboeken",
+        "Het cursuscurriculum en handleidingen voor facilitators",
+        "Google Workspace en digitale infrastructuur",
+        "Persoonlijke begeleiding door ervaren organisatoren",
+        "Sjablonen voor outreach en hulp bij media",
+        "Aansluiting bij het landelijke netwerk"
+      ],
+      "founderHeading": "Wat een oprichter doet",
+      "founderSteps": [
+        "Schrijf ons over jouw stad.",
+        "Doorloop het oprichtingsproces samen met de leiding van SAIN.",
+        "Zet je lokale kanalen op en maak de pagina van je chapter op deze website.",
+        "Doe de eerste outreach en organiseer de eerste meetup.",
+        "Ben je er klaar voor, organiseer dan een eerste cursus; het curriculum en de handleidingen zitten in het pakket."
+      ]
+    },
+    "close": {
+      "heading": "Ook de mensen op deze foto’s kenden de eerste keer niemand.",
+      "body": "Kom naar één bijeenkomst in de stad die het dichtst bij je is. Wil je meer doen dan alleen langskomen? Bij elke chapter ligt vrijwilligerswerk op je te wachten."
+    }
+  },
+  "chapter": {
+    "hero": {
+      "whatsOn": "Bekijk wat er deze week te doen is"
+    },
+    "showUp": {
+      "heading": "Kom deze week langs",
+      "body": "Alles in de agenda is gratis en vrij toegankelijk. Je hoeft geen lid te zijn en je hoeft de cursus niet gevolgd te hebben. Details en aanmelding vind je hieronder in de Luma-agenda van de chapter.",
+      "calendarTitle": "Evenementenagenda van SAIN {city}",
+      "fullCalendar": "Bekijk de volledige agenda op Luma",
+      "questions": "Vragen over een evenement:"
+    },
+    "course": {
+      "openLead": "De aanmelding is geopend.",
+      "deadlines": "{openLead} Deelnemers melden zich uiterlijk {participants} aan, facilitators uiterlijk {facilitators}.",
+      "apply": "Meld je aan voor de gratis cursus",
+      "closed": "De aanmelding is gesloten. {note} <link>Word lid van de community</link>, dan hoor je het zodra de aanmelding weer opengaat.",
+      "label": "Cursussen van deze chapter",
+      "weeklyOutline": "Wat je elke week leert",
+      "questions": "Vragen: {email}.",
+      "findDiscussionGroup": "Vind de volgende discussiegroep op <link>de Luma-pagina van SAIN {city}</link>"
+    },
+    "team": {
+      "kicker": "Georganiseerd door vrijwilligers",
+      "heading": "De mensen die je ontmoet",
+      "linkedinProfile": ", profiel op LinkedIn",
+      "recruiting": "De chapter zoekt versterking.",
+      "seeOpenPositions": "Bekijk de vacatures"
+    },
+    "pastEvents": {
+      "none": "Hier staan nog geen eerdere evenementen."
+    },
+    "photos": {
+      "previous": "Vorige foto’s",
+      "next": "Volgende foto’s"
+    },
+    "close": {
+      "heading": "Alles wat SAIN in {city} organiseert is gratis. Je hoeft alleen maar langs te komen.",
+      "body": "Vul het onboardingformulier in, dan zoekt de chapter een eerste bijeenkomst voor je uit.",
+      "events": "Evenementen:",
+      "courses": "Cursussen:",
+      "everythingElse": "Overige vragen:",
+      "allLinks": "Alle links van SAIN {city}"
+    }
+  },
+  "bluedot": {
+    "technicalWeeks": [
+      "De technische uitdaging van AI",
+      "Veiligere modellen trainen",
+      "Gevaar opsporen",
+      "AI begrijpen",
+      "Schade beperken",
+      "Plan je loopbaan in AI safety"
+    ],
+    "governanceWeeks": [
+      "Het bewijs over frontier AI beoordelen",
+      "Instellingen en machtsverhoudingen in kaart brengen",
+      "Governancestrategieën vergelijken",
+      "Voorstellen onder druk testen",
+      "Een standpunt verdedigen",
+      "Plan je loopbaan in AI safety"
+    ]
+  },
+  "chapters": {
+    "amsterdam": {
+      "meta": {
+        "title": "Chapter Amsterdam",
+        "description": "Gratis cursussen en een wekelijkse discussiegroep rond de UvA, de VU Amsterdam en de Amsterdamse techscene, met steun van ELLIS Unit Amsterdam."
+      },
+      "hero": {
+        "subheading": "Gratis cursussen en een wekelijkse discussiegroep rond de UvA, de VU Amsterdam en de Amsterdamse techscene, met steun van ELLIS Unit Amsterdam.",
+        "photoAlt": "Grachtenpanden die over het water hellen in het centrum van Amsterdam",
+        "caption": "Amsterdam, waar de cursussen op locatie plaatsvinden",
+        "supportedBy": "Met steun van"
+      },
+      "courses": {
+        "heading": "Twee gratis cursussen in Amsterdam",
+        "note": "De cursussen worden zelfstandig georganiseerd door SAIN Amsterdam en zijn niet verbonden aan de UvA of de VU. Het certificaat voor het afronden van de cursus wordt uitgereikt door SAIN Amsterdam, niet door BlueDot Impact.",
+        "technical": [
+          "Benieuwd waar jouw technische vaardigheden het meeste verschil kunnen maken voor AI safety?",
+          "SAIN Amsterdam organiseert de cursus <course>Technical AI Safety</course> van <bluedot>BlueDot Impact</bluedot> voor mensen die willen helpen de kloof te dichten tussen hoe snel de capaciteiten van AI toenemen en hoe goed we AI veilig kunnen maken. In zes weken ontdek je waarom het technisch zo moeilijk is om veilige AI te bouwen, beoordeel je de huidige veiligheidstechnieken (wat werkt, wat niet en waar de gaten zitten) en breng je in kaart hoe verdedigingen kunnen bezwijken door je eigen “kill chain” op te stellen. Je gaat naar huis met een financierbaar actieplan voor waar jouw vaardigheden het meeste verschil kunnen maken. SAIN Amsterdam helpt ambitieuze studenten hun volgende stap te vinden in een loopbaan in AI safety.",
+          "Technische kennis is ideaal, maar geen vereiste. Dit is een basiscursus over de grondbeginselen van de technische kant van AI safety."
+        ],
+        "governance": [
+          "Wat is er nodig om technologie te besturen die zich sneller ontwikkelt dan de regels die haar in goede banen moeten leiden?",
+          "SAIN Amsterdam organiseert de cursus <course>Frontier AI Governance</course> van <bluedot>BlueDot Impact</bluedot>. Die helpt je het oordeelsvermogen te ontwikkelen om mee te bepalen hoe frontier AI wordt bestuurd. In zes weken beoordeel je het bewijs, vergelijk je concurrerende strategieën en test je je ideeën in praktische oefeningen en groepsdiscussies. Je gaat naar huis met een concreet plan voor hoe jij kunt bijdragen. Omdat de cursus sterk leunt op Amerikaanse en Chinese perspectieven, worden onze facilitators aangemoedigd om ook Europees en Nederlands materiaal in te brengen. Wat je achtergrond ook is, Safe AI Netherlands helpt je graag bij je volgende stap richting een loopbaan in AI safety.",
+          "Je hebt geen achtergrond in governance nodig. Dit is een basiscursus die de kernideeën van AI governance stap voor stap opbouwt."
+        ],
+        "discussionGroup": "In een wekelijkse discussiegroep over de technische kant van AI safety lees en bespreek je actueel onderzoek: ongeveer twee uur per bijeenkomst, onder begeleiding van ervaren mentoren.",
+        "research": "Leden doen ook onderzoeksprojecten, op dit moment onder meer naar de manieren waarop multi-agent debate kan falen."
+      },
+      "teamBody": "SAIN Amsterdam wordt geleid door Ana Paula Castillo Rodriguez, met een team voor onderzoek, educatie, evenementen en pr. De chapter heette eerder AI Safety Amsterdam (AISA) en trekt mensen van bachelorstudenten tot professionals bij bedrijven als Deloitte en Shell, en van onafhankelijke onderzoekers tot assistant professors bij ELLIS.",
+      "evidence": {
+        "heading": "Dit is in Amsterdam al gebeurd",
+        "body": "De cursussen van de chapter kregen meer dan 120 aanmeldingen. De chapter organiseerde ook een seizoen met wekelijkse discussiegroepen en gaf presentaties op de AI020 Conference en TEDxUniversiteit van Amsterdam.",
+        "photosLabel": "Foto’s van evenementen van SAIN Amsterdam"
+      },
+      "prints": [
+        {
+          "alt": "Deelnemers die Frontier AI Governance hebben afgerond, met hun certificaat",
+          "caption": "Certificaatuitreiking governancecursus · SAIN Amsterdam"
+        },
+        {
+          "alt": "Deelnemers brengen mechanismen voor AI governance in kaart op een whiteboard vol post-its",
+          "caption": "Bijeenkomst Frontier AI Governance"
+        },
+        {
+          "alt": "Een discussiegroep rond een cafétafel, sommigen met een mok van SAIN Amsterdam",
+          "caption": "Discussiegroep · SAIN Amsterdam"
+        },
+        {
+          "alt": "Twee organisatoren presenteren de plannen van de chapter aan een volle zaal",
+          "caption": "Bijeenkomst van de chapter"
+        }
+      ]
+    },
+    "utrecht": {
+      "meta": {
+        "title": "Chapter Utrecht",
+        "description": "Een gratis cursus over AI safety, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Georganiseerd door vrijwilligers en open voor iedereen in de stad."
+      },
+      "hero": {
+        "subheading": "Een gratis cursus over AI safety, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Georganiseerd door vrijwilligers en open voor iedereen in de stad.",
+        "photoAlt": "De Domtoren boven de huizen van de Utrechtse binnenstad",
+        "caption": "De Utrechtse binnenstad, waar de cursus plaatsvindt"
+      },
+      "courses": {
+        "heading": "Drie gratis cursussen in Utrecht",
+        "openLead": "De aanmelding voor AI Governance en Technical AI Safety is geopend.",
+        "note": "Deze cursussen worden zelfstandig georganiseerd door SAIN Utrecht en zijn niet verbonden aan de Universiteit Utrecht. Vragen: {email}.",
+        "sessionsTitle": "Bijeenkomsten, najaar 2026",
+        "fundamentals": {
+          "summary": "AI Safety Fundamentals is drie keer gegeven in Utrecht en bereikte meer dan 100 deelnemers: bachelor- en masterstudenten, onderzoekers, engineers en medewerkers uit de publieke sector. Vier weken, met elke week een uur leeswerk en een college van een uur, aan de Universiteit Utrecht in de binnenstad. In week vier kies je een technisch pad, een governancepad of allebei. Je krijgt een certificaat als je alle bijeenkomsten bijwoont; voorkennis is niet nodig.",
+          "sessions": [
+            {
+              "title": "Introductie",
+              "meta": "wo 23 sep · 18:00-19:00 · Janskerkhof 2-3, lokaal 0.19",
+              "detail": "Overzicht op hoofdlijnen van AI safety: waarom het nu belangrijk is, capaciteiten en verspreiding van AI, soorten risico’s, en oplossingsstrategieën, zowel technisch als op het gebied van governance."
+            },
+            {
+              "title": "Soorten risico’s en incidenten",
+              "meta": "wo 30 sep · 18:00-19:00 · Janskerkhof 2-3, lokaal 0.19",
+              "detail": "Maatschappelijke schade, risico’s van frontier AI, misbruik, verlies van controle; praktijkvoorbeelden en hoe onderzoek achterloopt op de inzet van AI."
+            },
+            {
+              "title": "Waarom AI safety moeilijk is",
+              "meta": "wo 7 okt · 18:00-19:00 · Janskerkhof 15A, lokaal 101",
+              "detail": "Prikkels in de industrie, tekorten aan financiering, onenigheid onder experts, trage regelgeving tegenover snelle AI-labs, een geopolitieke wedloop."
+            },
+            {
+              "title": "Specialisatie per pad",
+              "detail": "De vierde week splitst zich in tweeën. Kies één pad, of allebei.",
+              "paths": [
+                {
+                  "title": "Technische AI safety",
+                  "meta": "wo 14 okt · 18:00-19:00 · Janskerkhof 2-3, lokaal 0.19",
+                  "detail": "Jailbreaking, het probleem van scalable oversight, RLHF en beloningssignalen."
+                },
+                {
+                  "title": "Governance",
+                  "meta": "do 15 okt · 18:00-19:00 · Drift 23, lokaal 103",
+                  "detail": "Overzicht van de EU AI Act, verantwoording bij AI-systemen, internationale actoren in AI safety."
+                }
+              ]
+            }
+          ]
+        },
+        "technical": {
+          "summary": "Technical AI Safety is een cursus van vier weken op locatie bij SAIN Utrecht, voor mensen die kunnen programmeren en de basis van AI kennen. Het is aan te raden dat je weet hoe transformers werken. Elke week behandelt één deelgebied: de eerste twee weken gaan over hoe evaluatoren AI-modellen op veiligheid testen, week drie gaat over veiligheid bij robots en andere fysieke systemen, en week vier over het beveiligen van AI-agents. De wekelijkse opdrachten gebruiken materiaal van ARENA, een gevestigd trainingsprogramma voor AI safety. Bijzonder sterke uitwerkingen sturen we ter beoordeling naar ARENA, en die kunnen aan hun repository worden toegevoegd. Elke zaterdag van 13:00 tot 15:00 is er een workshop die je helpt de opdrachten af te maken. Na de cursus starten we een onderzoekschallenge waarin onze mentoren je helpen je eigen ideeën uit te werken. Elke week heeft ongeveer een uur leeswerk, één tot drie uur opdrachten en een college van 1,5 uur.",
+          "sessions": [
+            {
+              "title": "Introductie tot evaluations in AI safety",
+              "meta": "do 19 nov · 18:00-19:30 · Locatie volgt",
+              "detail": "Wat evaluations zijn en waarom we ze nodig hebben, het verschil tussen capability- en alignment-evaluations, en hoe je er zelf een ontwerpt: dreigingsmodellen, datasets en scoring."
+            },
+            {
+              "title": "Evaluations in AI safety uitvoeren en beoordelen",
+              "meta": "do 26 nov · 18:00-19:30 · Locatie volgt",
+              "detail": "Evaluations in de praktijk uitvoeren met tools, de veelvoorkomende problemen begrijpen die resultaten onbetrouwbaar maken, en hoe resultaten aan beleidsmakers worden gecommuniceerd."
+            },
+            {
+              "title": "Veiligheid van embodied AI",
+              "meta": "do 3 dec · 18:00-19:30 · Locatie volgt",
+              "detail": "De veiligheidsrisico’s van robots en andere fysieke AI-systemen, veiligheidsfilters, vision-language-modellen inzetten om onveilige acties te herkennen, en onzekerheid meten."
+            },
+            {
+              "title": "AI-agents beveiligen",
+              "meta": "do 10 dec · 18:00-19:30 · Locatie volgt",
+              "detail": "Hoe agents worden aangevallen via prompt injection en via hun tools, waarom verdediging op modelniveau tekortschiet, veilig ontwerp en AI Control, en hoe AI ook als verdediger kan optreden."
+            }
+          ]
+        },
+        "governance": {
+          "summary": "AI Governance is een nieuwe cursus van vier weken bij SAIN Utrecht, open voor iedereen, zonder dat je voorkennis nodig hebt. De meeste cursussen over AI governance richten zich op de VS en China. In deze cursus kijken we ook naar hun visies en ambities, en naar de plek van middenmachten zoals de EU. We besteden bovendien een heel college aan hoe Europa en Nederland AI reguleren. Tijdens de cursus lezen en bespreken we primaire bronnen, zoals overheidsstrategieën, wetten en documenten van AI-labs. Zo krijg je de middelen om ontwikkelingen in AI-regelgeving en geopolitiek zelfstandig te volgen. Elke week heeft ongeveer één tot twee uur leeswerk en een college van 1,5 uur.",
+          "sessions": [
+            {
+              "title": "Introductie tot AI governance en AI safety",
+              "meta": "wo 18 nov · 18:00-19:30 · Locatie volgt",
+              "detail": "Wat AI governance is, hoe het verschilt van de technische kant van AI safety, waarom het nu belangrijk is, en de belangrijkste risico’s: misbruik, verlies van controle en machtsconcentratie."
+            },
+            {
+              "title": "Geopolitiek van AI",
+              "meta": "wo 25 nov · 18:00-19:30 · Locatie volgt",
+              "detail": "De belangrijkste actoren (overheden, AI-labs, veiligheidsorganisaties, de VN), de visies en ambities van de VS en China, en de plek van middenmachten."
+            },
+            {
+              "title": "De instrumenten van beleidsmakers",
+              "meta": "wo 2 dec · 18:00-19:30 · Locatie volgt",
+              "detail": "Analyse van eerdere incidenten zoals de Hugging Face-zaak, system cards en toekomstscenario’s."
+            },
+            {
+              "title": "Governance in Europa en Nederland",
+              "meta": "wo 9 dec · 18:00-19:30 · Locatie volgt",
+              "detail": "De EU AI Act en de gaten erin, het EU AI Office en de GPAI Code of Practice, het Nederlandse AI-landschap."
+            }
+          ]
+        },
+        "discussionGroups": "Tussen de cohorten door komen twee discussiegroepen bijeen: een over de technische kant van AI safety, op dit moment een leesgroep over mechanistic interpretability, en een over AI governance en beleid.",
+        "research": "De chapter bouwt aan een onderzoekstrack: red-teaming van taalmodellen, safety evaluations, interpretability en het gedrag van agents. De Project Hub gaat in oktober 2026 van start."
+      },
+      "teamBody": "SAIN Utrecht wordt geleid door Riccardo Campanella. Het team groeit op vier gebieden: educatie, evenementen, communicatie en onderzoek. Het werk van de chapter wordt gefinancierd door BERI, met mentorschap van Pathfinder.",
+      "evidence": {
+        "heading": "Dit is in Utrecht al gebeurd",
+        "body": "Het afgelopen jaar organiseerde de chapter de Win4AISafety, een open onderzoekschallenge in de zomer, een volledige technische cursus met een afsluitend diner, discussiegroepen, waaronder een scenariosessie over Europe 2031, en lezingen over onderzoek, onder meer van een onderzoeker van Anthropic voor meer dan 60 mensen.",
+        "photosLabel": "Foto’s van evenementen van SAIN Utrecht",
+        "devpost": "Bekijk de inzendingen op Devpost",
+        "recaps": "Verslagen op LinkedIn",
+        "contributed": "Leden van SAIN Utrecht hebben bijgedragen aan dit onderzoek."
+      },
+      "prints": [
+        {
+          "alt": "Het cohort van AI Safety Fundamentals samen bij de certificaatuitreiking",
+          "caption": "Certificaatuitreiking · SAIN Utrecht"
+        },
+        {
+          "alt": "Het winnende team van de onderzoekschallenge Win4AISafety",
+          "caption": "Winnaars Win4AISafety · SAIN Utrecht"
+        },
+        {
+          "alt": "Een discussiegroep rond een tafel in Utrecht",
+          "caption": "Scenariodiscussie Europe 2031"
+        },
+        {
+          "alt": "Een college in week twee van de technische cursus over AI safety",
+          "caption": "Technische cursus, week 2"
+        }
+      ]
+    },
+    "groningen": {
+      "meta": {
+        "title": "Chapter Groningen",
+        "description": "Gratis cursussen, hackathons en gepubliceerd onderzoek, sinds 2023 in Groningen. De chapter begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen."
+      },
+      "hero": {
+        "subheading": "Gratis cursussen, hackathons en gepubliceerd onderzoek, sinds 2023 in Groningen. De chapter begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen.",
+        "photoAlt": "Een gracht in Groningen met de toren van de Der Aa-kerk achter de huizen",
+        "caption": "Groningen, thuisbasis van de chapter sinds 2023"
+      },
+      "courses": {
+        "heading": "Doe mee met een van onze gratis cursussen!",
+        "note": "De cursussen worden zelfstandig georganiseerd door SAIN Groningen en zijn niet verbonden aan de Rijksuniversiteit Groningen (RUG). Het certificaat voor het afronden van de cursus wordt uitgereikt door SAIN Groningen, niet door BlueDot Impact. Vragen: {email}.",
+        "technical": [
+          "Benieuwd naar de technische benaderingen van AI safety?",
+          "SAIN Groningen organiseert de cursus <course>Technical AI Safety</course> van <bluedot>BlueDot Impact</bluedot> voor mensen die meer willen weten over de open problemen aan de technische kant van AI safety en de technieken om ze aan te pakken. De cursus duurt zes weken, met elke week ongeveer drie uur leeswerk en een discussiebijeenkomst van twee uur. De discussiebijeenkomsten worden begeleid door een facilitator: de perfecte plek om de stof te bespreken en in contact te komen met anderen die ook graag aan AI safety willen werken."
+        ],
+        "governance": [
+          "Benieuwd naar de governancevraagstukken rond AI safety?",
+          "SAIN Groningen organiseert de cursus <course>Frontier AI Governance</course> van <bluedot>BlueDot Impact</bluedot>. Die helpt je het oordeelsvermogen te ontwikkelen om mee te bepalen hoe frontier AI wordt bestuurd. Omdat de BlueDot-cursus vooral de dynamiek tussen de VS en China behandelt, hebben we het curriculum aangevuld met zorgvuldig gekozen materiaal over AI safety vanuit het perspectief van de EU. De cursus duurt zes weken, met elke week ongeveer drie uur leeswerk en een discussiebijeenkomst van twee uur. De discussiebijeenkomsten worden begeleid door een facilitator: de perfecte plek om de stof grondig te bespreken en in contact te komen met anderen die ook graag aan AI safety willen werken."
+        ],
+        "discussionGroups": "Het hele jaar door komen twee discussiegroepen bijeen, elk met minstens één ervaren mentor: technische AI alignment (scalable oversight, evaluations en red-teaming, preference learning, robuustheid, risico’s bij de inzet van AI) en AI governance en privacy (beleid, regelgeving, verantwoording, transparantie en eerlijkheid)."
+      },
+      "teamBody": "SAIN Groningen wordt geleid door Tarteel Mohamed, en het werk is verdeeld over vier teams: educatie, evenementen, communicatie en research operations; een structuur die andere chapters overnemen nu ze op gang komen. De chapter is voortgekomen uit het AI Safety Initiative Groningen (AISIG), dat sinds 2023 bestaat.",
+      "evidence": {
+        "heading": "30 evenementen, en de teller loopt",
+        "body": "Sinds oktober 2023 heeft de chapter 30 evenementen georganiseerd: hackathons, certificaatuitreikingen, lezingen over onderzoek, pubquizzen en borrels; eerst als AISIG en sinds 30 april 2026 als SAIN Groningen. Onderzoek van leden is gepubliceerd op workshops van NeurIPS en ICLR.",
+        "photosLabel": "Foto’s van evenementen van SAIN Groningen",
+        "browseArchive": "Blader door het evenementenarchief"
+      },
+      "prints": [
+        {
+          "alt": "Een spreker voor de dia van de certificaatuitreiking tijdens een ceremonie in Groningen",
+          "caption": "Certificaatuitreiking · maart 2026"
+        },
+        {
+          "alt": "Twee deelnemers presenteren hun eindproject aan de zaal",
+          "caption": "Certificaatuitreiking · november 2025"
+        },
+        {
+          "alt": "Organisatoren presenteren voor een zittend publiek tijdens een avond in Groningen",
+          "caption": "Pubquiz · oktober 2025"
+        },
+        {
+          "alt": "Een volle zaal studenten bij de introductieborrel aan het begin van het studiejaar",
+          "caption": "Introductieborrel · september 2025"
+        }
+      ]
+    }
+  },
+  "groningenArchive": {
+    "meta": {
+      "title": "Evenementenarchief Groningen",
+      "description": "Elk evenement dat de Groningse chapter sinds oktober 2023 heeft georganiseerd, eerst als AISIG en daarna als SAIN Groningen."
+    },
+    "heading": "Elk evenement dat de chapter heeft georganiseerd",
+    "body": "Alles vóór 30 april 2026 werd georganiseerd als het AI Safety Initiative Groningen (AISIG); alles daarna valt onder SAIN Groningen. Bij elk evenement staat de oorspronkelijke aankondiging van de chapter, dus de tekst is precies zoals die destijds werd verstuurd.",
+    "count": {
+      "one": "{count} evenement",
+      "other": "{count} evenementen"
+    },
+    "fromAnnouncement": "Uit de aankondiging van destijds",
+    "close": "Elk van deze evenementen was gratis, en je kon gewoon binnenlopen."
+  },
+  "newChapters": {
+    "meta": {
+      "title": "Start een chapter in Eindhoven, Delft of Den Haag",
+      "description": "SAIN start chapters in Eindhoven, Delft en Den Haag. Elke stad krijgt een betaald parttime startteam van vier: een Chapter Director en teamleiders voor educatie, evenementen en communicatie."
+    },
+    "applyButton": "Solliciteer voor een startteam",
+    "hero": {
+      "heading": "Start SAIN in Eindhoven, Delft of Den Haag.",
+      "body": "SAIN heeft chapters in Groningen, Amsterdam en Utrecht. Deze winter starten we er nog drie: Eindhoven, Delft en Den Haag. Elke stad krijgt een startteam van vier mensen: een Chapter Director, een Education Lead, een Events Lead en een Communications Lead. Alle vier de rollen zijn betaald en parttime.",
+      "readRoles": "Lees de vier rollen",
+      "deadline": "Streefdeadline {deadline}. We beoordelen sollicitaties doorlopend, en wie vroeg solliciteert, krijgt voorrang."
+    },
+    "building": {
+      "heading": "Je sluit je niet aan bij een chapter, je bouwt er een op.",
+      "body": "Jij bent degene die in jouw stad een SAIN-chapter opbouwt, en jij bent verantwoordelijk voor het opzetten van alles. Maar je staat er niet alleen voor: je hebt een gefinancierde landelijke organisatie achter je, en een netwerk van adviseurs, onderzoekers en partnerorganisaties die niets liever willen dan dat jouw chapter slaagt.",
+      "alreadyBehind": "Staat al achter je"
+    },
+    "cities": {
+      "heading": "Drie steden met het meeste potentieel.",
+      "body": "Dit zijn volgens ons de drie steden met het meeste potentieel om naar uit te breiden. Hier lees je heel kort waarom.",
+      "applyIn": "Solliciteer in {city}",
+      "inTouch": "We hebben al contact met mensen die in deze steden met AI safety bezig zijn. Waar mensen al activiteiten organiseren, kunnen we daarop voortbouwen en veel ambitieuzer zijn. Organiseer je daar al iets en heb je nog niets van ons gehoord? <link>Neem contact met ons op</link>, zodat we kunnen samenwerken in plaats van dubbel werk te doen."
+    },
+    "incubation": {
+      "heading": "Zes maanden van startteam tot SAIN-chapter.",
+      "paragraphs": [
+        "Nieuwe chapters beginnen als chapter in incubatie. Van medio december 2026 tot juni 2027 werkt het startteam met de chapter toe naar een paar concrete mijlpalen. Belangrijk: hoewel deze fase bij de incubatie hoort, behandelen we je intern vanaf het begin als SAIN-chapter.",
+        "We hebben hier grote ambities mee. In sommige van deze steden geven mensen al cursussen over AI safety, en daar willen we op voortbouwen en veel verder gaan: cursussen met tientallen deelnemers, evenementen die honderden nieuwe mensen kennis laten maken met AI safety, een community van honderden mensen in elke stad, en mensen die doorstromen naar echte projecten.",
+        "De precieze mijlpalen voor juni 2027 stellen we in je eerste weken samen met je vast; hoe je ze bereikt, bepaal je zelf. Samen zorgen we ervoor dat je je volledige potentieel bereikt. In juni 2027 kijken we in een eindevaluatie terug op hoe het is gegaan. Chapters die de mijlpalen halen, worden officiële SAIN-chapters, en de rollen van director en leads blijven betaalde parttimefuncties."
+      ],
+      "aimingFor": "Waar we naartoe werken"
+    },
+    "community": {
+      "heading": "Dit is wat je zou starten.",
+      "body": "<strong>Discussiegroepen</strong>, <strong>hackathons</strong>, <strong>lezingen</strong>, en de avonden erna. In Groningen, Amsterdam en Utrecht vinden mensen bij SAIN <strong>vrienden en mensen om mee samen te werken</strong>, en vaak ook <strong>hun volgende stap in AI safety</strong>. Solliciteer nu, en over een jaar heeft jouw stad een community als deze, door jou opgebouwd."
+    },
+    "offer": {
+      "heading": "Je doet het niet alleen.",
+      "body": "Alles wat de drie bestaande chapters met vallen en opstaan hebben geleerd, is opgeschreven, opgezet en vanaf dag één van jou."
+    },
+    "roles": {
+      "heading": "Vier rollen in elke stad.",
+      "body": "Elk startteam heeft dezelfde vier rollen. Klap er een open voor de volledige beschrijving. Je kunt op meer dan één rol solliciteren, en in het formulier geef je aan in welke stad je woont."
+    },
+    "apply": {
+      "heading": "Eén formulier, en een besluit vóór medio december.",
+      "body": "We beoordelen sollicitaties doorlopend, en wie vroeg solliciteert, krijgt voorrang. De streefdeadline is {deadline}.",
+      "hearBackHeading": "Iedereen die solliciteert, hoort van ons.",
+      "hearBackBody": "Kom je niet in het startteam, dan ben je nog steeds het begin van de community van de chapter! We sturen je alles wat je nodig hebt om lid te worden van de online community van SAIN, zodat je als een van de eersten hoort over nieuwe activiteiten en kansen in jouw stad.",
+      "strongTeamHeading": "We starten een chapter alleen als het team sterk genoeg is.",
+      "strongTeamBody": "Als we in een bepaalde stad niet genoeg sterke sollicitaties hebben om met de incubatie te beginnen, openen we later een tweede ronde.",
+      "aboutHeading": "Over SAIN",
+      "aboutBody": "Safe AI Netherlands (SAIN) is een Nederlandse non-profitorganisatie die het talent ontwikkelt dat Nederland nodig heeft om de risico’s van transformatieve AI aan te pakken. We bouwen de landelijke talentpijplijn voor AI safety, die mensen van hun eerste kennismaking naar hun eerste echte bijdrage brengt. Daarna brengen we ze in contact met de instellingen en organisaties die hen nodig hebben.",
+      "visas": "We sponsoren geen visa. Ben je in Nederland met een verblijfsvergunning voor studie, dan kun je toch solliciteren.",
+      "getInTouch": "Of neem eerst contact op"
+    },
+    "close": {
+      "heading": "Drie nieuwe chapters. Twaalf mensen om ze te starten.",
+      "body": "Solliciteer vóór {deadline}. We lezen de sollicitaties elke week, dus wie vroeg solliciteert, hoort ook vroeg van ons."
+    },
+    "map": {
+      "title": "De chapters van SAIN in Nederland",
+      "description": "Er zijn chapters in Groningen, Amsterdam en Utrecht. In Eindhoven, Delft en Den Haag zoeken we startteams.",
+      "running": "Actief chapter",
+      "wanted": "Startteam gezocht"
+    },
+    "roleCard": {
+      "badge": "Betaald · Parttime",
+      "firstMonths": "In je eerste maanden ga je",
+      "responsibilities": "Verantwoordelijkheden",
+      "goodFitIf": "Deze rol past misschien bij je als je",
+      "alsoStrong": "Sterke kandidaten hebben daarnaast misschien",
+      "logistics": "Praktische zaken",
+      "applyAs": "Solliciteer als {role}",
+      "oneForm": "Eén formulier voor alle vier de rollen en alle drie de steden. Je kunt op meer dan één rol solliciteren."
+    }
+  },
+  "availability": {
+    "limitedWithNote": "Beperkt: {note}",
+    "limited": "Beperkt aantal plekken",
+    "full": "Voorlopig vol",
+    "unconfirmed": "Beschikbaarheid nog niet bevestigd"
+  },
+  "research": {
+    "meta": {
+      "title": "Project Hub",
+      "description": "De SAIN Project Hub koppelt je aan een ervaren begeleider, regelt compute en brengt een project van open vraag tot gepubliceerd resultaat. Vrijwillig, ook op afstand te doen, en je kunt je altijd aanmelden."
+    },
+    "projectsEmailSubject": "Project Hub: question",
+    "applyForProject": "Meld je aan voor een project",
+    "browseOpenProjects": "Bekijk de open projecten",
+    "readHandbookLink": "Lees het handboek van de Project Hub",
+    "hero": {
+      "heading": "Lever een eerste echte bijdrage aan AI Safety",
+      "body": "De SAIN Project Hub koppelt je aan een ervaren begeleider, regelt compute en brengt een project van open vraag tot gepubliceerd resultaat. Deelname is vrijwillig, kan ook op afstand, en je kunt je altijd aanmelden.",
+      "readHandbook": "Lees het handboek",
+      "illustrationLabel": "Een puntenwolk van waarnemingen in een grafiek. Twee onderzoekers, de een zittend en de ander staand en wijzend, trekken er één lijn doorheen; de gefitte lijn steekt in oranje boven de puntenwolk uit en loopt door op een vastgeprikte, geprinte pagina, waarvan de figuur dezelfde lijn herhaalt."
+    },
+    "facts": {
+      "openProjects": "{count} open projecten",
+      "supervisors": "{count} begeleiders",
+      "publications": "{count} publicaties",
+      "rolling": "doorlopend aanmelden"
+    },
+    "projects": {
+      "heading": "Vind een project en doe mee",
+      "body": "Alle projecten die begeleiders van SAIN aanbieden, actueel gehouden door het projectteam. Eén aanmeldformulier geldt voor allemaal: noem daarin maximaal drie projecten, en het projectteam brengt je binnen een werkweek in contact met de begeleiders. Een scriptie aan de VU of UvA telt mee voor een opleiding daar en is dus voor studenten van die universiteit; elk ander project staat open voor iedereen met de juiste achtergrond."
+    },
+    "eligibility": {
+      "heading": "Je hebt geen aanstelling aan een universiteit nodig voor dit werk",
+      "offer": "Het aanbod van SAIN past in één zin: breng je expertise naar AI Safety, en de community, begeleiding en ondersteuning staan klaar om je verder te helpen. De rest van deze pagina laat zien hoe dat werkt: hoe een project wordt gekozen, hoe de ondersteuning er week na week uitziet en waar het werk terechtkomt.",
+      "openTo": "De hub staat open voor iedereen met voldoende achtergrond:",
+      "who": [
+        "Bachelor-, master- en promotiestudenten",
+        "Onderzoekers, en mensen die in het bedrijfsleven werken",
+        "Beleidsprofessionals",
+        "Mensen zonder formele affiliatie"
+      ],
+      "remote": "Deelnemen op afstand kan prima. Aanmelden kan doorlopend, dus je meldt je aan wanneer je er klaar voor bent, en voor begeleide projecten hoor je binnen een werkweek van ons.",
+      "notAJob": "Eén ding is de hub niet: een baan. SAIN betaalt geen stipendium of salaris; deelname is vrijwillig en bedoeld om van te leren. Wat SAIN wel biedt, is begeleiding, compute, coördinatie en, binnen redelijke grenzen, hulp bij reizen naar conferenties."
+    },
+    "process": {
+      "heading": "Van open vraag tot gepubliceerd resultaat",
+      "body": "Elk project in de hub doorloopt dezelfde drie stappen. Het handboek beschrijft ze allemaal uitgebreid; hier zie je de grote lijnen.",
+      "label": "De drie stappen van een project",
+      "choose": {
+        "title": "Kies een project",
+        "intro": "Er zijn drie manieren om in te stappen, en alle drie zijn heel gewoon.",
+        "routes": [
+          {
+            "lead": "Doe mee aan het project van een begeleider.",
+            "body": "Elk project dat een begeleider van SAIN heeft aangeboden, staat bovenaan deze pagina. Zoek er een dat bij je achtergrond past en laat weten dat je interesse hebt; het projectteam brengt je in contact met de begeleider."
+          },
+          {
+            "lead": "Doe mee aan een open samenwerking.",
+            "body": "Sommige projecten lopen zonder formele begeleiding. Eén persoon leidt het project, meestal degene die het heeft opgezet, en SAIN brengt medewerkers samen en ondersteunt het werk."
+          },
+          {
+            "lead": "Kom met je eigen idee.",
+            "body": "Schrijf een kort voorstel: de vraag, waarom die belangrijk is, hoe je die zou testen en wat je nodig hebt. Het projectteam van SAIN beoordeelt het voorstel en kan je helpen het verder uit te werken als het nog niet helemaal af is."
+          }
+        ],
+        "criteria": "Niet elke waardevolle bijdrage is een wetenschappelijk artikel: het werk kan technisch zijn, of over governance, beleid of concepten gaan. Bij het kiezen van projecten let het team op drie dingen: relevantie voor Nederland en Europa, relevantie voor transformatieve AI, en of het project met een klein budget kan slagen. Twijfel je of een onderwerp onder AI Safety valt? Dan is het antwoord in principe ja, zolang je een aannemelijke route kunt schetsen van het werk naar minder risico van transformatieve AI."
+      },
+      "support": {
+        "title": "Werk met ondersteuning",
+        "paragraphs": [
+          "Vul het aanmeldformulier in; voor begeleide projecten hoor je binnen een werkweek van ons. Als het past, wordt er formeel een begeleider aan je toegewezen en krijgt het project een eigen kanaal in de community.",
+          "Begeleiding is een werkrelatie, geen college. Jij stuurt het dagelijkse werk aan; je begeleider helpt het project realistisch af te bakenen, kijkt naar experimenten en conceptversies, en grijpt in als een richting niets meer oplevert. Jullie spreken wekelijks of tweewekelijks af, en per project spreek je vooraf af hoeveel tijd je erin steekt, of dat nu vijf tot tien uur per week naast je studie is of iets wat dichter bij fulltime ligt.",
+          "Begeleiders komen van universiteiten, uit het bedrijfsleven en van de overheid. In de academische wereld zijn ze meestal minimaal promovendus; daarbuiten hebben ze meerdere jaren ervaring in een relevante senior functie. Compute wordt per project aan het begin geregeld, en projecten die weinig rekenkracht vragen, worden aangemoedigd. Deelnemen op afstand kan gedurende het hele project."
+        ],
+        "meetSupervisors": "Maak kennis met de begeleiders"
+      },
+      "publish": {
+        "title": "Publiceer je resultaten",
+        "paragraphs": [
+          "Een project is af wanneer de hoofdvraag voldoende is beantwoord, ook als het antwoord negatief is, en het resultaat in presentabele vorm is gepubliceerd: als wetenschappelijk artikel, beleidsnotitie, eval of open-sourcetool, of als blogpost op de Substack van SAIN of op LessWrong. Je krijgt feedback op je conceptversies, en SAIN kan binnen redelijke grenzen helpen bij reizen naar conferenties.",
+          "Dat is geen theorie. Werk uit deze community is geaccepteerd op workshops bij NeurIPS en ICLR, en daar komen de meeste eerste bijdragen in dit vakgebied terecht."
+        ],
+        "allPublicationsLabel": "Alle publicaties uit de SAIN-community"
+      }
+    },
+    "supervisors": {
+      "heading": "De mensen met wie je zou werken",
+      "body": "Elke begeleider houdt een openbare agenda bij van de projecten die hij of zij graag zou begeleiden. Lees die voordat je je aanmeldt: de sterkste aanmeldingen gaan in op een vraag die een begeleider al heeft gesteld.",
+      "superviseHeading": "Begeleid het volgende project",
+      "superviseBody": "Heb je ruime ervaring in een relevant vakgebied, meestal op promotieniveau of hoger in de academische wereld of meerdere jaren in een senior functie in het bedrijfsleven of in beleid, en lijkt het werk hierboven iets wat je zou kunnen begeleiden? Meer begeleiders betekent meer projecten. Je hoeft nog geen expert in AI Safety te zijn. Begeleiden kan ook op afstand, jullie spreken af in een ritme dat je per project afspreekt, en het projectteam regelt de coördinatie om je heen. Vul het formulier voor begeleiders in, dan nemen we contact met je op over de volgende stappen.",
+      "become": "Word begeleider"
+    },
+    "close": {
+      "heading": "Meld je aan wanneer je er klaar voor bent",
+      "body": "Aanmelden kan doorlopend, en voor begeleide projecten hoor je binnen een werkweek van ons. Vul het aanmeldformulier in, of mail het projectteam als je niet zeker weet waar je past, dan helpen we je op weg.",
+      "emailTeam": "Mail het projectteam",
+      "handbookNote": "Het hele proces, de verwachtingen en de afspraken staan op papier. <link>Lees het handboek van de Project Hub</link>"
+    },
+    "apply": {
+      "meta": {
+        "title": "Meld je aan voor een project",
+        "description": "Meld je met één formulier aan bij de SAIN Project Hub: doe mee aan een project, stel je eigen project voor of bied aan om te begeleiden."
+      },
+      "breadcrumbLabel": "Kruimelpad",
+      "projectHub": "Project Hub",
+      "apply": "Aanmelden",
+      "heading": "Meld je aan voor een project",
+      "body": "Eén formulier voor de Project Hub. Kies of je mee wilt doen aan een project (noem er maximaal drie uit de <link>open projecten</link>), je eigen project wilt voorstellen of wilt begeleiden. Het projectteam neemt binnen een werkweek contact met je op.",
+      "thesisNote": "Een scriptie aan de VU of UvA is voor studenten van die universiteit; elk ander project staat open voor iedereen. Eerst vragen? Mail naar {email}.",
+      "formLabel": "Aanmeldformulier",
+      "applyingFor": "Je meldt je aan voor",
+      "selectIt": "Zorg dat het geselecteerd is wanneer het formulier vraagt aan welke projecten je mee wilt doen. Je kunt er nog maximaal twee toevoegen.",
+      "formTitle": "Aanmeldformulier SAIN Project Hub",
+      "formNotShowing": "Zie je het formulier niet?",
+      "openInNewTab": "Open het in een nieuw tabblad"
+    },
+    "paper": {
+      "publications": "Publicaties",
+      "readThePaper": "Lees het artikel",
+      "downloadPdf": "Download pdf",
+      "viewOn": "Bekijk op {source}",
+      "readOn": "Lees op {source}",
+      "fromCommunity": "Uit de SAIN-community.",
+      "sharedUnder": "Hier gedeeld onder {license}; het origineel staat op {source}.",
+      "originalOn": "Het origineel staat op {source}.",
+      "notHosted": "Het artikel is gepubliceerd op {source} en staat niet op deze website.",
+      "sectionLabel": "Het artikel",
+      "nextHeading": "Schrijf het volgende",
+      "nextBody": "Voor werk als dit is de Project Hub er. Die koppelt je aan een begeleider, regelt compute en brengt een project van open vraag tot gepubliceerd resultaat.",
+      "projectPage": "de projectpagina"
+    },
+    "reader": {
+      "label": "Artikellezer",
+      "pageOf": "Pagina {page} van {count}",
+      "loading": "Laden…",
+      "zoomOut": "Uitzoomen",
+      "zoomReset": "Zoom {percent} procent, terugzetten naar passend",
+      "zoomIn": "Inzoomen",
+      "download": "Download pdf",
+      "openInTab": "Open de pdf in een nieuw tabblad",
+      "backToTop": "Terug naar boven",
+      "top": "Boven",
+      "failed": "Dit artikel kan hier niet worden geopend.",
+      "downloadInstead": "Download de pdf",
+      "loadingPaper": "Artikel laden…"
+    }
+  },
+  "projects": {
+    "searchLabel": "Projecten zoeken",
+    "searchPlaceholder": "Onderwerp, persoon of universiteit",
+    "clearSearch": "Zoekopdracht wissen",
+    "filters": "Filters",
+    "chosen": "gekozen",
+    "supervisor": "Begeleider",
+    "topic": "Onderwerp",
+    "allTopics": "Alle onderwerpen",
+    "thesis": "Scriptie",
+    "location": "Locatie",
+    "locationGroup": "Waar de begeleider zit",
+    "anywhere": "Overal",
+    "remote": "Op afstand",
+    "whoCanApply": "Wie kan zich aanmelden",
+    "allProjects": "Alle projecten",
+    "openToEveryone": "Open voor iedereen",
+    "studentsOnly": "Alleen voor {university}-studenten",
+    "resetFilters": "Filters resetten",
+    "show": {
+      "one": "{count} project tonen",
+      "other": "{count} projecten tonen"
+    },
+    "removeFilter": "Filter verwijderen: {label}",
+    "count": {
+      "one": "{count} project",
+      "other": "{count} projecten"
+    },
+    "fromSupervisors": {
+      "one": " van {count} begeleider",
+      "other": " van {count} begeleiders"
+    },
+    "clauses": {
+      "inTopics": "over {list}",
+      "asThesis": "aangeboden als scriptie",
+      "basedIn": "met een begeleider in {list}",
+      "remotely": "met begeleiding op afstand",
+      "openToEveryone": "open voor iedereen",
+      "forStudents": "alleen voor studenten van {list}",
+      "matching": "die overeenkomen met “{query}”"
+    },
+    "clearFilters": "Filters wissen",
+    "showFewer": "Minder projecten tonen",
+    "showAll": "Alle {count} projecten tonen",
+    "noMatch": "Geen enkel project past bij deze filters.",
+    "ownIdea": "Heb je een eigen idee? Mail naar {email}.",
+    "ownIdeaSubject": "Project Hub: my own project idea",
+    "greyed": {
+      "both": "Grijs weergegeven begeleiders zitten voorlopig vol, of hebben hun beschikbaarheid voor deze ronde nog niet bevestigd.",
+      "full": "Grijs weergegeven begeleiders zitten voorlopig vol.",
+      "unconfirmed": "Grijs weergegeven begeleiders hebben hun beschikbaarheid voor deze ronde nog niet bevestigd."
+    },
+    "card": {
+      "agenda": "Agenda",
+      "fullNote": "<strong>Voorlopig vol.</strong> Neemt op dit moment geen nieuwe studenten aan.",
+      "lookingFor": "Zoekt",
+      "supervision": "Begeleiding"
+    },
+    "eligibility": {
+      "thesisTag": "{university}-scriptie · {level}",
+      "thesisTagNoLevel": "{university}-scriptie",
+      "thesisLine": "{university}-scriptie ({level}): alleen voor {university}-studenten",
+      "thesisLineNoLevel": "{university}-scriptie: alleen voor {university}-studenten"
+    },
+    "tracker": {
+      "any": "Alle",
+      "status": "Status",
+      "all": "Alle",
+      "notAThesis": "Geen scriptie",
+      "fullForNow": "Voorlopig vol",
+      "apply": "Aanmelden",
+      "updated": "Bijgewerkt op {date}",
+      "statuses": {
+        "open": "Open",
+        "in-progress": "Bezig",
+        "completed": "Afgerond",
+        "full": "Vol"
+      }
+    }
+  },
+  "handbook": {
+    "meta": {
+      "title": "Handboek van de Project Hub",
+      "description": "Hoe de SAIN Project Hub werkt, van eerste aanmelding tot gepubliceerd resultaat: wie mee kan doen, matching, tijdsinvestering, normen en wat je doet als er iets misgaat."
+    },
+    "breadcrumb": "Handboek",
+    "kicker": "Project Hub",
+    "heading": "Het handboek van de SAIN Project Hub",
+    "intro": "Hoe de Project Hub werkt, van eerste aanmelding tot gepubliceerd resultaat. Het beschrijft wat deelnemers, begeleiders en het Project Team van elkaar mogen verwachten.",
+    "version": "Versie 3.0 · 14 oktober 2026 · {email}",
+    "buildsOn": "Bouwt voort op versie 1.0 van Alexander Müller (Director), Thomas Brcic (voormalig Co-Director van SAIN Groningen) en Ilija Lichkovski (Research Lead).",
+    "tocLabel": "Op deze pagina",
+    "contents": {
+      "purpose": "Waar de Project Hub voor is",
+      "before-you-apply": "Voordat je je aanmeldt",
+      "getting-started": "Van aanmelding tot lopend project",
+      "during-the-project": "Tijdens het project",
+      "publishing": "Afronden en publiceren",
+      "escalation": "Als er iets misgaat",
+      "supervisors": "Als je begeleider bent"
+    },
+    "shortVersion": {
+      "label": "In het kort",
+      "items": [
+        "Iedereen met voldoende achtergrond kan meedoen: bachelor- en masterstudenten, promovendi, onderzoekers, mensen uit het bedrijfsleven, beleidsprofessionals en mensen zonder formele affiliatie. Meedoen op afstand kan ook.",
+        "Je kunt je doorlopend aanmelden. Meld je wanneer je wilt aan, en binnen een werkweek hoor je van iemand van SAIN; het koppelen aan begeleiders gebeurt in rondes.",
+        "Meedoen is vrijwillig en bedoeld om van te leren. SAIN betaalt geen vergoedingen of salarissen, maar ondersteunt projecten met compute, introducties en, binnen redelijke grenzen, conferentie- en reiskosten.",
+        "Eén adres voor alles: {email}. Zet het in de cc bij elke e-mail over een project."
+      ]
+    },
+    "contentsHeading": "Vind het deel dat voor jou geldt",
+    "contentsBody": "Het handboek volgt de levensloop van een project. Begin waar jij nu staat.",
+    "purpose": {
+      "intro": [
+        "SAIN (Safe AI Netherlands) bestaat om Nederland voor te bereiden op de risico’s van transformatieve AI: AI die de economie, wetenschap, samenleving of mondiale veiligheid kan veranderen op de schaal van een grote historische revolutie. Elk jaar volgen honderden mensen een cursus van SAIN of komen ze naar een van onze evenementen. In de Project Hub leveren zij, en iedereen anders met de juiste achtergrond, hun eerste echte bijdrage, met een begeleider of een projectteam achter zich.",
+        "Dit handboek geldt voor deelnemers aan een project van de Project Hub, begeleiders die aan SAIN verbonden zijn, projectleiders en medewerkers aan open projecten, en iedereen buiten SAIN die wil begrijpen hoe de hub werkt. Deelnemers kunnen studenten, onderzoekers, mensen uit het bedrijfsleven, beleidsprofessionals of mensen zonder formele affiliatie zijn; begeleiders komen zowel van universiteiten als uit het bedrijfsleven en de overheid."
+      ],
+      "nameLabel": "Over de naam",
+      "name": "De Project Hub heette vroeger de Research Hub. We hebben de naam veranderd omdat veel waardevol werk op het gebied van AI safety geen onderzoekspaper is. Een beleidsnotitie voor een ministerie, een evaluatie van een model in het Nederlands, een opensourcetool of een heldere Nederlandstalige uitleg kan net zo belangrijk zijn. Academisch onderzoek is nog steeds van harte welkom, en vormt nog steeds de kern van de hub.",
+      "criteriaTurn": "Drie dingen bepalen welke projecten we aannemen",
+      "criteriaIntro": "We verwelkomen elk project dat een betekenisvolle bijdrage levert aan AI safety, of het nu technisch, gericht op governance of beleid, of conceptueel is. Als we beslissen welke projecten en begeleiders we aannemen, kijken we naar drie dingen.",
+      "criteria": [
+        "Relevantie voor Nederland, en voor Europa of andere middelgrote mogendheden. Veel projecten zouden hier direct bruikbaar moeten zijn: voor Nederlandse beleidsmakers, toezichthouders, bedrijven of het Nederlandse publiek. Algemener werk, zoals een project over interpretability, is net zo welkom, maar lokale relevantie helpt een project op te vallen.",
+        "Relevantie voor transformatieve AI. Het project moet gaan over risico’s van steeds capabelere AI-systemen, of die risico’s zich nu al voordoen of in de toekomst aannemelijk zijn.",
+        "Haalbaarheid met een klein budget. SAIN draait grotendeels op vrijwilligers, dus een project mag geen grote hoeveelheden compute of geld nodig hebben om te slagen."
+      ],
+      "topicsTurn": "Bijna elk onderwerp telt, als het risico’s van transformatieve AI verkleint",
+      "topicsIntro": "Twijfel je of een onderwerp onder AI safety valt? Dan is het antwoord standaard ja, zolang je een aannemelijk pad kunt schetsen van jouw werk naar minder risico van transformatieve AI. Om de reikwijdte concreet te maken, moedigt de hub vooral werk op de volgende gebieden aan, zonder zich daartoe te beperken.",
+      "topics": [
+        {
+          "title": "Technische alignment en interpretability",
+          "items": [
+            "Mechanistic interpretability",
+            "Representation learning en feature sparsity voor veiligere aansturing",
+            "Sturing en bestuurbaarheid van LLM’s en andere foundation models",
+            "Adversariële robuustheid en red-teaming van modellen",
+            "Opsporen en beperken van misleidend of niet-aligned gedrag",
+            "Scalable oversight, debate, constitutional AI en verwante methoden",
+            "Robuustheid van RL-agents en multi-agent systemen",
+            "Safety-benchmarks en evaluatiemetrieken, waaronder evaluaties in het Nederlands",
+            "Agent foundations",
+            "Alignment geïnspireerd door de neurowetenschap"
+          ]
+        },
+        {
+          "title": "Hardware, compute en beveiliging",
+          "items": [
+            "Compute governance en verificatiemechanismen in hardware",
+            "Toeleveringsketens van halfgeleiders, exportbeperkingen en hun rol in AI-governance",
+            "Beveiliging van modelgewichten en AI-infrastructuur"
+          ]
+        },
+        {
+          "title": "Maatschappelijke impact, governance en beleid",
+          "items": [
+            "AI-governance, regelgeving en standaarden, met nadruk op de Europese en Nederlandse context",
+            "AI en democratische processen: desinformatie, polarisatie, integriteit van informatie",
+            "AI en werk: verdringing van banen, economische en sociale gevolgen",
+            "Privacy, surveillance en gegevensbescherming bij de inzet van AI",
+            "Risicobeoordeling voor domeinen waar veel op het spel staat, zoals CBRN, cybersecurity en vitale infrastructuur"
+          ]
+        },
+        {
+          "title": "Meta- en fundamentele onderwerpen",
+          "items": [
+            "Onderzoeksmethodologie en evaluatie binnen AI safety",
+            "Benchmarks voor het doorzettingsvermogen, de overtuigingskracht of de autonomie van AI-systemen",
+            "Forecasting en scenarioanalyse voor transformatieve AI",
+            "Epistemiek, infohazards en verantwoorde communicatie binnen AI safety",
+            "Nederlandstalige bronnen en onderwijs over AI safety"
+          ]
+        }
+      ],
+      "principlesTurn": "Vijf principes gelden voor elk project",
+      "principles": [
+        "Intellectuele eerlijkheid. Communiceer altijd nauwkeurig wat bekend, onbekend en onzeker is.",
+        "Denk uit jezelf na over schade op korte en lange termijn, en over dual-use: manieren waarop hetzelfde werk zowel kan beschermen als schade kan aanrichten. <s4>Hoofdstuk 4</s4> gaat hier uitgebreid op in.",
+        "Zorg voor een ondersteunende omgeving, over disciplines, sectoren en senioriteitsniveaus heen. Er is geen enkele ruimte voor schadelijk gezagsmisbruik.",
+        "Feedback, kritiek en review zijn essentiële hulpmiddelen, geen persoonlijke aanvallen. Krijg je feedback, bedenk dan dat die over het werk gaat. Geef je feedback, bekritiseer dan de ideeën, niet de persoon.",
+        "Respecteer vertrouwelijkheid. Veel deelnemers en begeleiders werken bij een bedrijf, universiteit of ministerie. Vraag nooit iemand om informatie te delen die diegene niet mag delen, en deel zulke informatie zelf ook niet."
+      ],
+      "principlesNote": "Let extra goed op deze principes als deadlines naderen. Iedereen maakt fouten, en als het loslaten van een principe het verschil is tussen wel of niet publiceren, dan is vasthouden aan het principe belangrijker dan de publicatie."
+    },
+    "beforeYouApply": {
+      "modesTurn": "Er zijn twee manieren om mee te doen",
+      "modesIntro": "De hub werkt op dit moment op twee manieren. Alles wat verderop in dit handboek staat, geldt voor allebei, tenzij anders vermeld.",
+      "modes": [
+        {
+          "name": "Begeleide projecten.",
+          "body": "Studenten, onderzoekers aan het begin van hun loopbaan en professionals melden zich aan voor een begeleid project met mentorschap van een van de begeleiders van SAIN. Begeleiders publiceren hun agenda, de projecten die ze graag willen begeleiden, op onze website, en wij koppelen hen aan geschikte kandidaten (in <s3>hoofdstuk 3</s3> lees je hoe). SAIN biedt logistieke en, waar mogelijk, financiële ondersteuning, zoals compute. Projecten werken toe naar een gepubliceerd resultaat: een paper, een beleidsnotitie, een tool of iets vergelijkbaars."
+        },
+        {
+          "name": "Open samenwerking.",
+          "body": "Niet elk project heeft formele begeleiding nodig. SAIN brengt mensen rechtstreeks met elkaar in contact en ondersteunt het werk met compute, zichtbaarheid en introducties. Wil je een project voorstellen, dien het dan in via het formulier op onze website; wil je bij een project aansluiten, geef dat dan aan in hetzelfde formulier of neem contact op met de contactpersoon van dat project. Bij deze projecten is er geen begeleider, maar één persoon leidt het project, meestal degene die het heeft opgezet."
+        }
+      ],
+      "after": [
+        "Professionals kunnen ook een open project starten rond een vraag waar ze in hun eigen werk tegenaan lopen: een beleidsadviseur die wil weten hoe een bepaald AI-risico gemonitord kan worden, of een engineer die een evaluatietool wil bouwen. Zorg er wel voor dat het een vraag is die je openbaar kunt delen (zie vertrouwelijkheid in <s4>hoofdstuk 4</s4>).",
+        "Nog niet klaar voor een project? Helemaal prima. Wil je vooral leren, zeg dat dan in het formulier, dan wijzen we je op een van de cursussen of leesgroepen van SAIN. Veel deelnemers beginnen daar."
+      ],
+      "eligibilityTurn": "Iedereen met voldoende achtergrond kan meedoen",
+      "eligibility": [
+        "Beide vormen staan open voor iedereen met voldoende achtergrond: bachelor- en masterstudenten, promovendi, onderzoekers, mensen uit het bedrijfsleven, beleidsprofessionals en mensen zonder formele affiliatie.",
+        "Meedoen op afstand kan ook.",
+        "Om te begeleiden heb je ruime ervaring nodig in een relevant vakgebied. In de academische wereld betekent dat meestal gepromoveerd of hoger. Buiten de academische wereld telt een aantal jaar senior ervaring in een relevante functie net zo zwaar, bijvoorbeeld als machine learning- of hardware-engineer, beveiligingsspecialist of beleidsadviseur op het gebied van AI of digitaal beleid. In uitzonderlijke gevallen kan hiervan worden afgeweken.",
+        "Begeleiders hoeven nog geen experts in AI safety te zijn. Diepgaande kennis van je eigen vakgebied en oprechte interesse in AI safety zijn vaak precies wat een project nodig heeft."
+      ],
+      "signUpTurn": "Je kunt je altijd aanmelden",
+      "signUp": [
+        "Je kunt je doorlopend aanmelden. Meld je aan zodra je er klaar voor bent, en binnen een werkweek hoor je van iemand van SAIN.",
+        "Het koppelen aan begeleiders gebeurt in rondes (<s3>hoofdstuk 3</s3>).",
+        "Meld je je aan voor een begeleid project, dan vertel je ons over je achtergrond en ervaring, in welke begeleiders of projecten je interesse hebt (maximaal drie), waar je graag aan wilt werken en hoeveel uur per week je realistisch gezien kunt investeren.",
+        "Begeleiders hoeven ons alleen de basisgegevens te geven: naam, e-mailadres, organisatie, de projecten die ze graag willen begeleiden, en een korte bio en foto voor de website. Een Discord-account of een lang document is niet nodig, al is de Discord de beste manier om de community te leren kennen.",
+        "Wil je een open samenwerking starten, dan zien we graag een volledig uitgewerkt voorstel voordat je contact met ons opneemt, maar als het nodig is, kunnen we helpen het vorm te geven."
+      ],
+      "timeLabel": "Tijdsinvestering",
+      "time": [
+        "Tijdsinvestering is het allerbelangrijkst. Bij vergelijkbare programma’s mislukken projecten het vaakst doordat deelnemers niet de tijd kunnen steken die ze hoopten. Geef bij je aanmelding het aantal uur per week op waarvan je minstens 80% zeker weet dat je het kunt volhouden, ook tijdens tentamenperiodes, drukke weken op je werk of vakanties. Een realistische 6 uur is beter dan een optimistische 10.",
+        "Het aantal uur en hoe vaak je afspreekt, worden vervolgens per project vastgelegd tijdens de kick-off. Projecten variëren van ongeveer 5 tot 10 uur per week tot bijna fulltime."
+      ]
+    },
+    "gettingStarted": {
+      "roundsTurn": "Begeleide projecten worden in rondes gekoppeld",
+      "roundsIntro": "Zo worden begeleiders en deelnemers aan elkaar gekoppeld. We werken eraan om delen hiervan te automatiseren, maar de stappen blijven grofweg hetzelfde.",
+      "rounds": [
+        "Begeleiders melden zich aan met hun agenda: een of meer projecten die ze graag willen begeleiden, de achtergrond die ze zoeken en hoeveel mensen ze kunnen aannemen. Wij maken daar een profiel van op onze website en promoten het via onze chapters, cursussen en ons netwerk.",
+        "Kandidaten melden zich aan en kiezen maximaal drie begeleiders of projecten. Past geen van de agenda’s, beschrijf dan waar je wel aan zou willen werken, dan proberen we daar een begeleider voor te vinden.",
+        "Elke ronde heeft een deadline, die we op onze website publiceren. Daarna doet het Project Team een lichte controle van de aanmeldingen (is het formulier volledig, past de achtergrond bij het project?) en groepeert ze per begeleider.",
+        "Binnen een week na de deadline ontvangt elke begeleider de kandidaten die voor hem of haar hebben gekozen, beslist met wie hij of zij wil praten, en heeft meestal een kort gesprek van 15 tot 30 minuten met hen voordat de beslissing valt.",
+        "Zodra beide kanten ja zeggen, sturen we een introductiemail, altijd met {email} in de cc, en gaat het project van start."
+      ],
+      "roundsNotes": [
+        "Scriptiestudenten: deadlines van de universiteit wachten niet op onze rondes. Zoek je een scriptiebegeleider of een extern scriptieproject, vermeld dat dan bij je aanmelding; waar mogelijk behandelen we je aanmelding dan buiten de reguliere rondes.",
+        "Deze ronde geen match? Dan laten we je dat weten en stellen we vervolgstappen voor: de volgende ronde, een open samenwerking of een cursus om relevante vaardigheden op te bouwen. Met jouw toestemming blijft je aanmelding in ons systeem, zodat je niet alles opnieuw hoeft in te vullen.",
+        "Jouw gegevens: we delen je aanmelding alleen met de begeleiders die je hebt gekozen of, als je ons vraagt een match voor je te zoeken, met begeleiders die volgens ons goed bij je passen."
+      ],
+      "applicationTurn": "Begeleide projecten beginnen met een aanmelding",
+      "application": "Voor een begeleid project, of om aan te sluiten bij een bestaande open samenwerking, vul je het aanmeldformulier in of mail je naar {email}.",
+      "proposalTurn": "Open samenwerkingen beginnen met een projectvoorstel",
+      "proposalIntro": "Voordat een project wordt goedgekeurd als open samenwerking van de Project Hub, schrijft de projectleider een projectvoorstel. De volledige opzet hieronder is wat we verwachten als het doel een volledige paper en samenwerking is; laat voor andere resultaten weg wat je overbodig vindt. Een tool voor mechanistic interpretability heeft bijvoorbeeld geen titel en abstract nodig, en bij een beleidsnotitie zijn de beleidsvraag en de beoogde doelgroep belangrijker dan hypothesen.",
+      "proposal": [
+        "Titel, probleemstelling en motivatie",
+        "Achtergrond en eerder werk",
+        "Onderzoeks- of beleidsvragen, en hypothesen indien van toepassing",
+        "Beoogde doelgroep: wie dit moet lezen of gebruiken, bijvoorbeeld onderzoekers, een ministerie, een toezichthouder of ontwikkelaars",
+        "Voorgestelde methode",
+        "Veiligheid en risico’s: dual-use, misbruik en infohazards, oftewel informatie die schade kan aanrichten als die breed wordt gedeeld",
+        "Benodigde middelen: mogelijke datasets, een schatting van de benodigde compute, en hoeveel medewerkers voor hoeveel tijd",
+        "Tijdlijn en mijlpalen",
+        "Verwachte resultaten"
+      ],
+      "proposalReview": "Het Project Team van SAIN beoordeelt het voorstel en keurt het goed als project van de Project Hub, met of zonder aanpassingen, of wijst het af.",
+      "onboardingTurn": "Onboarding begint met één formulier",
+      "onboarding": "Elke nieuwe deelnemer krijgt een globaal overzicht van de huidige projecten, groepen en begeleiders, uitleg over dit handboek en waar je het vindt, en, als dat relevant is, toegang tot compute of andere ondersteuning. Word lid van onze Discord door het onboardingformulier in te vullen; de uitnodiging en de informatie hierboven volgen vanzelf. Begeleiders zijn ook van harte welkom op de Discord, maar het hoeft niet: e-mail werkt prima.",
+      "onboardingLink": "Vul het onboardingformulier in",
+      "matchedTurn": "Wat er gebeurt als je gekoppeld of goedgekeurd bent",
+      "matched": [
+        "Je wordt in contact gebracht met de juiste mensen. Bij een begeleid project wordt er formeel een begeleider toegewezen, sturen we een introductiemail en wordt er een projectkanaal aangemaakt in de Discord. Sluit je aan bij een bestaand open project, dan word je officieel aan het project en het bijbehorende Discord-kanaal toegevoegd. Bij een nieuw open project zetten we het op onze website, voegen we je toe aan de Discord en promoten we het project zodat anderen kunnen aansluiten.",
+        "In een kick-offmeeting spreek je de tijdsinvestering af (bijvoorbeeld 5 tot 10 uur per week, of bijna fulltime), hoe vaak je afspreekt en wat het beoogde resultaat is. We raden aan om via de Discord te communiceren; als je dat liever hebt, kun je andere kanalen afspreken.",
+        "Het project wordt intern geregistreerd en bijgehouden terwijl het loopt.",
+        "Waar dat van toepassing is, zet het Project Team een GitHub-repository op onder de SAIN-organisatie en geeft het de projectleden toegang."
+      ]
+    },
+    "during": {
+      "rolesTurn": "Deelnemers doen het werk, begeleiders sturen bij",
+      "rolesIntro": "De Project Hub wordt geleid door de Head of Projects, die er fulltime aan werkt en er van begin tot eind verantwoordelijk voor is, samen met de mensen van Project Operations in de chapters van SAIN, die hun lokale universiteiten, bedrijven en organisaties het best kennen. Samen vormen zij het Project Team. Bij open samenwerkingen leidt de projectleider het project en coördineert die het team. Elke rol is de andere iets concreets verschuldigd.",
+      "roles": [
+        {
+          "title": "Van deelnemers wordt verwacht dat ze",
+          "items": [
+            "De hoofdverantwoordelijkheid nemen voor de dagelijkse voortgang van het project.",
+            "De uren maken die ze hebben toegezegd, en hun begeleider of projectleider tijdig laten weten als dat verandert.",
+            "Goed voorbereid naar overleggen met hun begeleider komen, met een duidelijke agenda, resultaten of concrete vragen.",
+            "Het wekelijkse check-informulier invullen.",
+            "Tijdig laten weten als ze vastlopen of persoonlijke beperkingen hebben.",
+            "De kernprincipes van SAIN volgen (<s1>hoofdstuk 1</s1>)."
+          ]
+        },
+        {
+          "title": "Van begeleiders wordt verwacht dat ze",
+          "items": [
+            "Regelmatig begeleiding en mentorschap bieden, richting geven aan het project op hoofdlijnen en ingrijpen waar nodig.",
+            "Helpen zorgen dat het project goed afgebakend en realistisch is.",
+            "Afspreken met de afgesproken frequentie, meestal wekelijks of tweewekelijks, en goed voorbereid komen.",
+            "Tijdig feedback geven op concepten en de richting van het project.",
+            "Alert zijn op projecten die vastzitten in een onproductieve richting, en op problemen met het welzijn van deelnemers, zoals stress of burn-out.",
+            "Zorgen aankaarten bij de Head of Projects of het Project Team waar dat gepast is."
+          ]
+        },
+        {
+          "title": "Het Project Team is verantwoordelijk voor",
+          "items": [
+            "Het actueel houden van de documentatie, waaronder dit handboek.",
+            "Het werven van begeleiders en hen koppelen aan deelnemers.",
+            "De onboarding van nieuwe deelnemers en begeleiders.",
+            "Het bijhouden van de projecten en resultaten van de Project Hub.",
+            "Het aanspreekpunt zijn, via {email} of de <discord>Discord</discord>."
+          ]
+        }
+      ],
+      "rhythmTurn": "Het ritme is wekelijks",
+      "rhythmIntro": "Tijdens een project ziet het standaardpatroon er zo uit, al bepalen je team of begeleider de details:",
+      "rhythm": [
+        "Wekelijkse of tweewekelijkse meetings: recente voortgang en knelpunten bespreken, richting en afbakening aanscherpen, experimenten, resultaten en concepten doornemen.",
+        "Wekelijkse of tweewekelijkse check-ins: een kort formulier voor deelnemers en begeleiders waarin ze noteren wat er geprobeerd is, wat de voortgang is en wat de volgende stappen zijn. Zo houdt iedereen zich aan de afspraken, ziet het Project Team hoe projecten ervoor staan en kan het bijspringen waar dat helpt.",
+        "Contact met het Project Team wanneer dat nodig is, via {email} of de Discord."
+      ],
+      "deadlinesLabel": "Deadlines",
+      "deadlines": [
+        "Deelnemers: vul elke zondag het <weekly>wekelijkse check-informulier</weekly> in.",
+        "Begeleiders: vul om de zondag het <biweekly>tweewekelijkse check-informulier</biweekly> in."
+      ],
+      "communicateTurn": "Communiceer tijdig, precies en vriendelijk",
+      "communicate": [
+        "Gebruik voor communicatie over het project de afgesproken kanalen, het liefst de Discord.",
+        "Zet {email} in de cc bij e-mailwisselingen over projecten van de Project Hub.",
+        "Reageer binnen een redelijke termijn: 2 tot 3 werkdagen voor zaken zonder haast.",
+        "Bij een begeleid project is de deelnemer verantwoordelijk voor de meetings: zorg voor een eenvoudige agenda, begin met een korte update sinds de vorige keer (de wekelijkse check-in helpt je dat bij te houden) en sluit af met concrete volgende stappen.",
+        "Wees duidelijk over je beschikbaarheid: reizen, tijd met familie, tentamenperiodes, drukke periodes op je werk.",
+        "Communiceer standaard vriendelijk, precies en eerlijk."
+      ],
+      "milestonesTurn": "Spreek vooraf mijlpalen af",
+      "milestonesIntro": "Elk project legt tussentijdse mijlpalen vast. Een voorbeeld, geen vaste regel:",
+      "milestones": [
+        "Week 1 tot 3: elkaar en het project leren kennen, literatuuronderzoek.",
+        "Week 4 tot 8: een eerste proof of concept, zoals een eerste experiment of een eerste opzet van de beleidsnotitie.",
+        "Week 8 tot 10: interne bespreking van het project, de eerste resultaten en wat er beter kan.",
+        "Week 10 tot 12: werken aan de gevonden zwakke punten, nieuwe resultaten.",
+        "Week 12 tot 14: het eindresultaat uitschrijven en indienen."
+      ],
+      "supportTurn": "SAIN ondersteunt het werk, maar betaalt er niet voor",
+      "supportIntro": "Dit geldt vooral voor technische projecten.",
+      "support": [
+        "SAIN geeft geen vergoedingen of salarissen. Meedoen is vrijwillig en bedoeld om van te leren.",
+        "Is er geld nodig voor conferentiereizen, inschrijvingen voor workshops of reiskosten, dan kunnen we misschien binnen redelijke grenzen helpen.",
+        "Zodra een project is uitgewerkt, probeert het Project Team het eenvoudig toegang te geven tot compute en andere middelen. Hoeveel compute SAIN kan bieden, hangt af van het project en wordt aan het begin afgesproken.",
+        "We moedigen projecten aan die waar mogelijk weinig rekenkracht vragen.",
+        "Waar het project er baat bij heeft, brengen we je in contact met relevante mensen: onderzoekers, mensen uit het bedrijfsleven of beleidsmakers die iets aan je werk kunnen hebben."
+      ],
+      "integrityTurn": "Integriteit, AI-tools, vertrouwelijkheid en dual-use",
+      "integrity": {
+        "title": "Integriteit",
+        "items": [
+          "Verwijs correct naar bronnen, nadat je hebt gecontroleerd wat ze echt zeggen, en voorkom plagiaat.",
+          "Wees eerlijk over experimentele resultaten, beperkingen en negatieve bevindingen.",
+          "Documenteer genoeg dat anderen je werk grofweg kunnen reproduceren."
+        ]
+      },
+      "aiTools": {
+        "title": "Verantwoord gebruik van AI-tools",
+        "intro": "We zijn niet tegen het gebruik van AI-tools zoals LLM’s voor programmeren of schrijven. Als een deelnemer er goed over heeft nagedacht en het duidelijk helpt, moedigen we het aan. Wel geldt:",
+        "items": [
+          "Controleer de uitvoer altijd zorgvuldig. Vertrouw gegenereerde inhoud niet blind.",
+          "Voer geen gevoelige of vertrouwelijke gegevens in tools in, tenzij je er zeker van bent dat ze verantwoord met gegevens omgaan.",
+          "Vermeld, waar relevant, dat je AI-tools hebt gebruikt."
+        ]
+      },
+      "confidentiality": {
+        "title": "Vertrouwelijkheid en belangenverstrengeling",
+        "intro": "Veel deelnemers en begeleiders combineren een project met een baan bij een bedrijf, universiteit of overheidsorganisatie. Om dit voor iedereen zuiver te houden:",
+        "items": [
+          "Breng nooit vertrouwelijke informatie van je werkgever, of van wie dan ook, in een project in, en vraag anderen dat ook nooit. Projecten moeten gebaseerd zijn op informatie die openbaar gedeeld kan worden.",
+          "Bekijk voordat je begint de regels van je werkgever over nevenwerkzaamheden, intellectueel eigendom en publicaties. Ambtenaren moeten bijvoorbeeld vaak nevenwerkzaamheden melden, en mensen in het bedrijfsleven zitten vaak vast aan afspraken over geheimhouding en intellectueel eigendom.",
+          "Wees open over mogelijke belangenverstrengeling, bijvoorbeeld als een project een product of beleid van je eigen werkgever evalueert. Meld het aan je begeleider en het Project Team, en waar relevant in het eindresultaat.",
+          "Tenzij je uitdrukkelijk iets anders met je werkgever hebt afgesproken, doe je op persoonlijke titel mee aan de Project Hub."
+        ]
+      },
+      "dualUse": {
+        "title": "Dual-use en infohazards",
+        "intro": "Werk aan AI safety kan paradoxale effecten hebben: het kan AI-systemen, het AI-ecosysteem of de mensen daarin juist minder veilig maken. Die effecten kunnen op complexe manieren uitpakken die onmogelijk volledig te voorzien zijn. Neem op zijn minst de tijd om na te denken over de vraag of je werk de capabilities of het risico op misbruik aanzienlijk zou kunnen vergroten als het breed wordt gedeeld.",
+        "items": [
+          "Twijfel je, bespreek het dan met je begeleider en/of de Head of Projects van SAIN voordat je het openbaar maakt.",
+          "Mogelijke maatregelen: gevoelige details weglaten, rapporten die alleen intern of beperkt toegankelijk zijn, of publicatie uitstellen tot de risico’s beter worden begrepen."
+        ]
+      },
+      "wellbeingTurn": "Begrijpen is belangrijker dan publiceren",
+      "wellbeingIntro": "De Project Hub moet een plek zijn waar persoonlijk welzijn serieus wordt genomen en waar steun is voor iedereen die dat nodig heeft. Werk aan AI safety kan, zoals elk onderzoek, intellectueel en emotioneel veeleisend zijn, zeker onder de publish-or-perish-druk die helaas veel te vaak voorkomt. Een project combineren met een veeleisende baan of studie kan daar nog bij komen.",
+      "wellbeing": [
+        "Wees eerlijk tegen je begeleider over je werkdruk en stressniveau, en begeleiders tegen hun deelnemers.",
+        "Neem regelmatig pauze en houd werk en rust gescheiden.",
+        "Onthoud dat het er vooral om gaat AI safety beter te begrijpen, niet of je publiceert.",
+        "Praat met het SAIN-team als er conflicten of problemen ontstaan."
+      ]
+    },
+    "publishing": {
+      "completeTurn": "Een project is af als de vraag beantwoord is",
+      "complete": [
+        "De hoofdvraag is voldoende beantwoord, ook als de resultaten negatief of nul zijn, en het werk is ergens in presentabele vorm gepubliceerd.",
+        "Waar relevant zijn infohazards en dual-use op een passende manier behandeld."
+      ],
+      "deliverablesTurn": "Het eindresultaat kan verschillende vormen hebben",
+      "deliverablesIntro": "Elk project legt een of meer eindresultaten vast. Bijvoorbeeld:",
+      "deliverables": [
+        "Een onderzoekspaper op een conferentie, in een tijdschrift of op een workshop.",
+        "Een blogpost op <substack>de Substack van SAIN</substack> en/of LessWrong.",
+        "Een beleidsnotitie of consultatiereactie, het liefst gedeeld met de mensen die er iets mee kunnen, zoals een ministerie, een toezichthouder of een parlementaire commissie.",
+        "Een evaluatie, benchmark, dataset of opensourcetool.",
+        "Een Nederlandstalige uitleg of onderwijsmateriaal.",
+        "Een bachelor- of masterscriptie, het liefst gevolgd door een kortere openbare samenvatting."
+      ],
+      "authorshipTurn": "Auteurschap weerspiegelt de bijdrage",
+      "authorship": [
+        "Auteurschap hoort een wezenlijke intellectuele en uitvoerende bijdrage te weerspiegelen.",
+        "De volgorde van auteurs wordt intern binnen het projectteam geregeld.",
+        "SAIN en de Project Hub worden in publicaties vermeld.",
+        "SAIN mag je werk promoten als iets dat mogelijk is gemaakt door de Project Hub.",
+        "Heb je een werkgever, ga dan na of die een publicatie moet goedkeuren, en of je affiliatie wel of juist niet vermeld moet worden."
+      ],
+      "afterTurn": "Na het project",
+      "after": [
+        "Stuur het eindresultaat als pdf naar {email}, met een link als het elders is gepubliceerd. We zetten de pdf op onze website, zodat hij beschikbaar blijft, ook als andere links niet meer werken.",
+        "Resultaten en andere relevante materialen, zoals data, code, aantekeningen en concepten, worden opgeslagen in <archive>het projectarchief van SAIN</archive>.",
+        "We delen het resultaat met de buitenwereld, bijvoorbeeld in een post op de Substack van SAIN en op sociale media, en werken de cijfers van de Project Hub op onze website bij. We leggen de tekst altijd eerst aan je voor voordat er iets naar buiten gaat.",
+        "Schrijf een korte terugblik op wat goed ging en wat beter had gekund, het liefst gedeeld met de SAIN-community.",
+        "Het project kan een vervolg krijgen."
+      ]
+    },
+    "escalation": {
+      "intro": "We hopen dat je dit hoofdstuk nooit nodig hebt, maar het is belangrijk dat de route op papier staat voordat iemand hem nodig heeft.",
+      "whenTurn": "Wanneer je iemand inschakelt",
+      "when": [
+        "De relatie tussen begeleider en deelnemer loopt stuk, bijvoorbeeld door aanhoudende onbereikbaarheid of een onopgelost conflict.",
+        "Er is een vermoeden van wangedrag, zoals het vervalsen van data, intimidatie waaronder seksuele intimidatie, of plagiaat.",
+        "Er zijn ernstige twijfels of de richting van het project nog wel aansluit bij AI safety.",
+        "De afbakening, verwachtingen of tijdsinvestering van het project lopen niet meer gelijk op."
+      ],
+      "pathTurn": "De route loopt van direct naar de leiding",
+      "path": [
+        "Deelnemer en begeleider of projectleider: probeer het eerst samen op te lossen.",
+        "De Head of Projects van SAIN, of iemand van het Project Team.",
+        "De Director van SAIN, als het conflict de Head of Projects of het Project Team betreft."
+      ],
+      "skipLabel": "Je mag stappen overslaan",
+      "skip": "Voel je je in welke fase dan ook onveilig, of word je geïntimideerd en voel je je niet op je gemak om dat bij de betrokken persoon aan te kaarten, sla dan stappen over en neem rechtstreeks contact op met de leiding van SAIN.",
+      "remediesTurn": "Mogelijke maatregelen en sancties",
+      "remediesIntro": "Afhankelijk van de ernst en de aard van het probleem zijn onder meer deze maatregelen mogelijk:",
+      "remedies": [
+        "Verwachtingen verduidelijken en mijlpalen aanpassen.",
+        "De begeleider of deelnemer overplaatsen naar een ander project.",
+        "Het project opnieuw afbakenen of pauzeren.",
+        "In ernstige gevallen verwijdering uit de Project Hub, of uit rollen binnen SAIN."
+      ],
+      "contactLabel": "Met wie je contact opneemt",
+      "contact": "Voor alles in dit handboek, aanmeldingen, vragen over projecten en zorgen: {email}. Dat adres komt terecht bij de Head of Projects en het Project Team."
+    },
+    "supervise": {
+      "intro": "Wat we van begeleiders verwachten, staat in <s4>hoofdstuk 4</s4>. Voor een begeleid project gaat het zo:",
+      "procedure": [
+        "Je meldt je aan via het formulier voor begeleiders, en wij publiceren je agenda op onze website.",
+        "Na elke deadline van een ronde ontvang je de kandidaten die voor jou hebben gekozen, praat je met de kandidaten die je interessant vindt en laat je ons weten met wie je wilt samenwerken (<s3>hoofdstuk 3</s3>).",
+        "Samen met je team stel je een kort projectplan op (een lichtere versie van het projectvoorstel in <s3>hoofdstuk 3</s3> is prima) en stuur je het, met de lijst van mensen in het project, naar {email}. Vermeld daarbij minimaal de contactgegevens en, waar van toepassing, ieders Discord- en GitHub-gebruikersnaam.",
+        "Waar van toepassing wordt er een repository aangemaakt in de GitHub-organisatie van SAIN, en krijgen deelnemers en begeleiders toegang als collaborator.",
+        "Elke zondag vullen deelnemers het wekelijkse check-informulier in; om de zondag vult de begeleider het tweewekelijkse check-informulier in. Beide formulieren staan onder Deadlines in <s4>hoofdstuk 4</s4>.",
+        "Zet {email} in de cc bij e-mails over het project, zodat we weten wat er speelt en kunnen helpen als dat nodig is."
+      ],
+      "interested": "Wil je via SAIN begeleider worden? Je hebt ruime ervaring nodig in een relevant vakgebied: meestal gepromoveerd of hoger in de academische wereld, of een aantal jaar in een senior functie in het bedrijfsleven of beleid. Je hoeft nog geen expert in AI safety te zijn, en elke discipline is welkom."
+    },
+    "close": {
+      "heading": "De hub staat doorlopend open.",
+      "body": "Meld je aan zodra je er klaar voor bent. Binnen een werkweek hoor je van iemand van SAIN."
+    }
+  }
+}
