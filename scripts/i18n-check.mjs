@@ -14,7 +14,8 @@
  *   4. every message parses as ICU, and a translation keeps the English
  *      message's {placeholders}, its plural/select options and its <tags>,
  *      so a translator cannot drop "{date}" or break a link;
- *   5. src/app/(en) matches src/app/[locale] (scripts/i18n-english-routes.mjs).
+ *   5. every literal key the code reads (t("hero.title")) exists in English;
+ *   6. src/app/(en) matches src/app/[locale] (scripts/i18n-english-routes.mjs).
  *
  * At runtime a missing translation falls back to English (src/i18n/messages.ts),
  * so this check is about keeping the Dutch complete, not about keeping the
@@ -188,6 +189,70 @@ for (const locale of locales.filter((l) => l !== SOURCE)) {
   }
 }
 
+// Keys used in the code must exist in English. The build already fails on a
+// missing key in anything it renders; this also covers text that only
+// appears after a click or in the browser (a closed tab, an error state),
+// which would otherwise render empty. It reads each translator's namespace
+// from its declaration (`const t = useTranslations("ns")`, or
+// getTranslations with a namespace) and checks the literal keys it is called
+// with: t("key"), t.rich("key"), t.raw("key"), t.markup("key"). Keys built at
+// runtime (t(`items.${id}`)) are not checked here.
+const englishMessages = {};
+for (const file of sourceFiles) {
+  englishMessages[file.replace(/\.json$/, "")] = readJson(join(messagesDir, SOURCE, file));
+}
+
+function lookup(path) {
+  let node = englishMessages;
+  for (const part of path.split(".")) {
+    if (node === null || typeof node !== "object" || !(part in node)) return undefined;
+    node = node[part];
+  }
+  return node;
+}
+
+function sourceFilesUnder(dir) {
+  const found = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...sourceFilesUnder(path));
+    else if (/\.(tsx?|jsx?)$/.test(entry.name)) found.push(path);
+  }
+  return found;
+}
+
+let usedKeys = 0;
+for (const file of sourceFilesUnder(join(root, "src"))) {
+  const code = readFileSync(file, "utf8");
+  const declarations = [];
+  const declaration =
+    /(?:const|let)\s+(\w+)\s*=\s*(?:await\s+)?(useTranslations|getTranslations)\(\s*(?:"([^"]*)"|'([^']*)'|\{[^}]*?namespace:\s*(?:"([^"]*)"|'([^']*)')[^}]*\}|\{[^}]*\}|)\s*\)/g;
+  for (const match of code.matchAll(declaration)) {
+    declarations.push({
+      name: match[1],
+      namespace: match[3] ?? match[4] ?? match[5] ?? match[6] ?? "",
+      index: match.index,
+    });
+  }
+  for (const name of new Set(declarations.map((d) => d.name))) {
+    const call = new RegExp(`\\b${name}(?:\\.(?:rich|raw|markup))?\\(\\s*(?:"([^"]+)"|'([^']+)')`, "g");
+    for (const match of code.matchAll(call)) {
+      const key = match[1] ?? match[2];
+      // The nearest declaration of this name above the call is its scope.
+      const scope = declarations
+        .filter((d) => d.name === name && d.index < match.index)
+        .sort((a, b) => b.index - a.index)[0];
+      if (!scope) continue;
+      usedKeys += 1;
+      const full = scope.namespace ? `${scope.namespace}.${key}` : key;
+      if (lookup(full) === undefined) {
+        const line = code.slice(0, match.index).split("\n").length;
+        report(`${file.replace(`${root}/`, "")}:${line}`, "", `uses "${full}", which messages/${SOURCE} does not have`);
+      }
+    }
+  }
+}
+
 // The English route tree.
 let routesOk = true;
 try {
@@ -212,5 +277,5 @@ if (problems.length) {
 console.log(
   `i18n:check: ${sourceFiles.length} namespaces, ${keyCount} English messages, all present in ${locales
     .filter((l) => l !== SOURCE)
-    .join(", ")}${routesOk ? "; English routes in step" : ""}.`,
+    .join(", ")}; ${usedKeys} keys used in the code, all defined${routesOk ? "; English routes in step" : ""}.`,
 );
