@@ -16,6 +16,7 @@ import {
   type FoundingRole,
   type FoundingRoleTeam,
 } from "@/data/newChapters";
+import { format, getDictionary, type Locale } from "@/i18n";
 
 /* The career row from design.md, grown to carry a full posting: the summary
    row is the same hairline, orange stroke icon and serif title as
@@ -33,8 +34,18 @@ function PanelLabel({ children }: { children: ReactNode }) {
   return <h4 className="kicker mb-3 text-kicker-sm text-navy/65">{children}</h4>;
 }
 
-export default function FoundingRoleDisclosure({ role }: { role: FoundingRole }) {
+/* The card's own words come from en.json (newChapters.roleCard); the role's
+   are in src/data/newChapters.ts. */
+export default function FoundingRoleDisclosure({
+  role,
+  locale,
+}: {
+  role: FoundingRole;
+  locale: Locale;
+}) {
   const TeamIcon = TEAM_ICON[role.team];
+  const dictionary = getDictionary(locale);
+  const t = dictionary.newChapters.roleCard;
 
   return (
     <details id={role.id} className="group scroll-mt-36 border-t border-navy/10">
@@ -49,7 +60,7 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
             <h3 className="font-serif text-title text-navy">{role.title}</h3>
             <span className="border border-navy/16 px-2 py-[3px] font-sans text-footnote text-orange-ink">
-              Paid · Part-time
+              {t.badge}
             </span>
           </div>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
@@ -76,26 +87,26 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-14">
           <div className="flex flex-col gap-8">
             <div>
-              <PanelLabel>In your first months you will</PanelLabel>
+              <PanelLabel>{t.firstMonths}</PanelLabel>
               <OutlineRows items={role.firstMonths} />
             </div>
             <div>
-              <PanelLabel>Responsibilities</PanelLabel>
+              <PanelLabel>{t.responsibilities}</PanelLabel>
               <RuleList items={role.responsibilities} />
             </div>
             <div>
-              <PanelLabel>You may be a good fit if you</PanelLabel>
+              <PanelLabel>{t.goodFitIf}</PanelLabel>
               <RuleList items={role.goodFitIf} />
             </div>
             <div>
-              <PanelLabel>Strong candidates may also have</PanelLabel>
+              <PanelLabel>{t.alsoStrong}</PanelLabel>
               <RuleList items={role.alsoStrong} />
             </div>
           </div>
 
           {/* The terms stay in view while the long left column scrolls past. */}
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <PanelLabel>Logistics</PanelLabel>
+            <PanelLabel>{t.logistics}</PanelLabel>
             <dl className="flex flex-col">
               {role.logistics.map(([term, value]) => (
                 <div key={term} className="border-t border-navy/10 py-3 last:border-b">
@@ -116,13 +127,12 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
             rel="noopener noreferrer"
             className="btn-accent gap-2"
           >
-            Apply as {role.formValue}
+            {format(t.applyAs, { role: role.formValue })}
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {dictionary.common.opensInNewTab}</span>
           </a>
           <p className="max-w-[420px] font-sans text-footnote text-navy/65">
-            One form for all four roles and all three cities. You can apply for
-            more than one role.
+            {t.oneForm}
           </p>
         </div>
       </div>

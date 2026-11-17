@@ -34,15 +34,19 @@ import {
   buildFoundingApplicationUrl,
   type OfferIcon,
 } from "@/data/newChapters";
-import { getDictionary } from "@/i18n";
+import { format, getDictionary, rich } from "@/i18n";
 
 const locale = "en";
 const t = getDictionary(locale);
 
+/* The call itself (cities, roles, offer, incubation, steps) stays in
+   src/data/newChapters.ts in English, like openPositions.ts; this page's own
+   words are in en.json under newChapters. */
+const n = t.newChapters;
+
 export const metadata: Metadata = {
-  title: "Start a chapter in Eindhoven, Delft or The Hague",
-  description:
-    "SAIN is starting chapters in Eindhoven, Delft and The Hague. Each city gets a paid, part-time starting team of four: a Chapter Director and leads for education, events and communications.",
+  title: n.meta.title,
+  description: n.meta.description,
 };
 
 const OFFER_ICON: Record<OfferIcon, Icon> = {
@@ -59,7 +63,8 @@ const OFFER_ICON: Record<OfferIcon, Icon> = {
 /* The word in each aim that carries its ambition, set in full white while
    the rest of the line steps back. Keyed by the aim's text so the emphasis
    follows the aim if INCUBATION_MILESTONES is reordered; an aim with no
-   entry is simply printed whole. */
+   entry is simply printed whole. A translated aim needs its own entry here,
+   or it prints whole. */
 const MILESTONE_EMPHASIS: Record<string, string> = {
   "A strong team": "strong",
   "Courses with dozens of participants": "dozens",
@@ -82,7 +87,7 @@ function Milestone({ text }: { text: string }) {
   );
 }
 
-function ApplyButton({ label = "Apply to a starting team" }: { label?: string }) {
+function ApplyButton({ label = n.applyButton }: { label?: string }) {
   return (
     <a
       href={buildFoundingApplicationUrl()}
@@ -92,7 +97,7 @@ function ApplyButton({ label = "Apply to a starting team" }: { label?: string })
     >
       {label}
       <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-      <span className="sr-only"> (opens in a new tab)</span>
+      <span className="sr-only"> {t.common.opensInNewTab}</span>
     </a>
   );
 }
@@ -116,29 +121,24 @@ export default function NewChaptersPage() {
         <div className="shell band-hero grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] xl:grid-cols-[minmax(0,700px)_minmax(0,1fr)]">
           <Reveal hero className="flex min-w-0 flex-col gap-6">
             <h1 id="new-chapters-heading" className="font-serif text-display text-navy">
-              Start SAIN in Eindhoven, Delft or The Hague.
+              {n.hero.heading}
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              SAIN has chapters in Groningen, Amsterdam and Utrecht. This winter we
-              are starting three more: Eindhoven, Delft and The Hague. Each city gets
-              a starting team of four people: a Chapter Director, an Education Lead,
-              an Events Lead and a Communications Lead. All four roles are paid and
-              part-time.
+              {n.hero.body}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <ApplyButton />
               <a href="#roles" className="btn-outline-ink gap-2">
-                Read the four roles
+                {n.hero.readRoles}
                 <ArrowDown size={16} weight="regular" aria-hidden="true" />
               </a>
             </div>
             <p className="font-sans text-caption text-navy/65">
-              Soft deadline {SOFT_DEADLINE}. Applications are reviewed on a rolling
-              basis, with priority to early applicants.
+              {format(n.hero.deadline, { deadline: SOFT_DEADLINE })}
             </p>
           </Reveal>
           <Reveal hero delay={0.08} className="flex min-w-0 justify-center lg:justify-end">
-            <ChapterMap className="w-full max-w-[520px]" />
+            <ChapterMap className="w-full max-w-[520px]" t={n.map} />
           </Reveal>
         </div>
       </section>
@@ -152,18 +152,14 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="building-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              You would be building a chapter, not joining one.
+              {n.building.heading}
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              You would be the person building a SAIN chapter in your city, and you
-              will be in charge of setting up everything. However, you&rsquo;ll have
-              support: a funded national organisation behind you, and a network of
-              advisors, researchers and partner organisations who want nothing more
-              than your chapter to succeed.
+              {n.building.body}
             </p>
 
             <div className="mt-10 max-w-[620px]">
-              <p className="kicker text-kicker-sm text-navy/60">Already behind you</p>
+              <p className="kicker text-kicker-sm text-navy/60">{n.building.alreadyBehind}</p>
               <ul role="list" className="mt-4">
                 {ALREADY_THERE.map((item) => (
                   <li
@@ -186,11 +182,10 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="cities-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              Three cities with the most potential.
+              {n.cities.heading}
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              We have identified these three cities as the highest-potential ones for
-              us to expand to. Here is, very briefly, why we think so.
+              {n.cities.body}
             </p>
             <div className="mt-10 grid gap-y-10 md:grid-cols-3">
               {FOUNDING_CITIES.map((city) => (
@@ -214,26 +209,25 @@ export default function NewChaptersPage() {
                     rel="noopener noreferrer"
                     className="mt-6 inline-flex items-center gap-2 self-start font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy md:mt-auto md:pt-6"
                   >
-                    Apply in {city.name}
+                    {format(n.cities.applyIn, { city: city.name })}
                     <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                    <span className="sr-only"> (opens in a new tab)</span>
+                    <span className="sr-only"> {t.common.opensInNewTab}</span>
                   </a>
                 </article>
               ))}
             </div>
             <p className="mt-10 max-w-[1000px] font-sans text-caption leading-[20px] text-navy/74">
               <span>
-                We are already in touch with people working on AI safety in these
-                cities. Where people have already been running things, we can build
-                on top of that and be much more ambitious. Already running something
-                there and not heard from us yet?{" "}
-                <Link
-                  href="/contact"
-                  className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-                >
-                  Please get in touch
-                </Link>
-                , so we can work together instead of duplicating efforts.
+                {rich(n.cities.inTouch, {
+                  link: (chunk) => (
+                    <Link
+                      href="/contact"
+                      className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {chunk}
+                    </Link>
+                  ),
+                })}
               </span>
             </p>
           </Reveal>
@@ -249,31 +243,12 @@ export default function NewChaptersPage() {
               id="incubation-heading"
               className="max-w-[720px] font-serif text-heading text-white"
             >
-              Six months from starting team to SAIN chapter.
+              {n.incubation.heading}
             </h2>
             <div className="mt-5 flex max-w-[760px] flex-col gap-4 font-sans text-body text-white/75">
-              <p>
-                New chapters start as incubating chapters. From mid-December 2026 to
-                June 2027, the starting team will develop the chapter towards a few
-                concrete milestones. Importantly, although this phase is part of the
-                incubation, internally we&rsquo;ll treat you as a SAIN chapter from
-                the start.
-              </p>
-              <p>
-                We&rsquo;re ambitious about this. In some of these cities, people
-                already run AI safety courses, and we want to build on that and go much
-                further: courses with dozens of participants, events that bring
-                hundreds of new people into AI safety, a community of hundreds in every
-                city, and people moving on into real projects.
-              </p>
-              <p>
-                The exact milestones for June 2027 we&rsquo;ll set together with you
-                in your first weeks; how you get there is up to you. We&rsquo;ll work together to make sure you reach
-                your fullest potential. In June 2027 we will do a final review of how
-                things have gone. Chapters that get there become official SAIN
-                chapters, and the director and lead roles stay paid part-time
-                positions.
-              </p>
+              {n.incubation.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </Reveal>
 
@@ -322,7 +297,7 @@ export default function NewChaptersPage() {
           <Reveal delay={0.1}>
             <div className="mt-14 grid gap-6 border-t border-white/15 pt-10 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)] lg:gap-12">
               <p className="kicker text-kicker-sm text-white/55">
-                What we&rsquo;re aiming for
+                {n.incubation.aimingFor}
               </p>
               <ul role="list" className="grid gap-x-12 sm:grid-cols-2">
                 {INCUBATION_MILESTONES.map((milestone) => (
@@ -350,15 +325,10 @@ export default function NewChaptersPage() {
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-24">
             <Reveal className="flex flex-col items-start gap-5">
               <h2 id="community-heading" className="font-serif text-heading text-navy">
-                This is what you would be starting.
+                {n.community.heading}
               </h2>
               <p className="font-sans text-body text-navy/74 [&_strong]:font-semibold [&_strong]:text-navy">
-                <strong>Discussion groups</strong>, <strong>hackathons</strong>,{" "}
-                <strong>talks</strong>, and the evenings after. In Groningen,
-                Amsterdam and Utrecht, people meet{" "}
-                <strong>friends and collaborators</strong> at SAIN, and often find
-                their <strong>next step in AI safety</strong>. Apply now, and a
-                year from now your city has a community like this, built by you.
+                {rich(n.community.body, { strong: (chunk) => <strong>{chunk}</strong> })}
               </p>
               <ApplyButton />
             </Reveal>
@@ -382,11 +352,10 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="offer-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              You won&rsquo;t be doing it alone.
+              {n.offer.heading}
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              Everything the three existing chapters learned the hard way is written
-              down, set up, and yours from day one.
+              {n.offer.body}
             </p>
             <ul
               role="list"
@@ -425,16 +394,14 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="roles-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              Four roles in every city.
+              {n.roles.heading}
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              Every starting team has the same four roles. Open one for the full
-              description. You can apply for more than one, and the form asks which
-              city you are based in.
+              {n.roles.body}
             </p>
             <div className="mt-10 border-b border-navy/10">
               {FOUNDING_ROLES.map((role) => (
-                <FoundingRoleDisclosure key={role.id} role={role} />
+                <FoundingRoleDisclosure key={role.id} role={role} locale={locale} />
               ))}
             </div>
           </Reveal>
@@ -450,11 +417,10 @@ export default function NewChaptersPage() {
         <div className="shell band-section">
           <Reveal>
             <h2 id="apply-heading" className="max-w-[720px] font-serif text-heading text-navy">
-              One form, and a decision by mid-December.
+              {n.apply.heading}
             </h2>
             <p className="mt-4 max-w-[760px] font-sans text-body text-navy/74">
-              Applications are reviewed on a rolling basis, with priority to early
-              applicants. The soft deadline is {SOFT_DEADLINE}.
+              {format(n.apply.body, { deadline: SOFT_DEADLINE })}
             </p>
 
             <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
@@ -463,43 +429,33 @@ export default function NewChaptersPage() {
               <div className="flex flex-col gap-8">
                 <div className="border-t border-navy/14 pt-6">
                   <h3 className="font-serif text-title-sm text-navy">
-                    Everyone who applies hears back from us.
+                    {n.apply.hearBackHeading}
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
-                    If you are not in the starting team, you are still the start of the
-                    chapter&rsquo;s community! We will send you what you need to join
-                    SAIN&rsquo;s online community, so you are among the first to hear
-                    about new activities and opportunities in your city.
+                    {n.apply.hearBackBody}
                   </p>
                 </div>
                 <div className="border-t border-navy/14 pt-6">
                   <h3 className="font-serif text-title-sm text-navy">
-                    We only start a chapter when the team is strong enough.
+                    {n.apply.strongTeamHeading}
                   </h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
-                    If we do not have strong enough applications to start the
-                    incubation in a particular city, we will open a second round later
-                    on.
+                    {n.apply.strongTeamBody}
                   </p>
                 </div>
                 <div className="border-t border-navy/14 pt-6">
-                  <h3 className="font-serif text-title-sm text-navy">About SAIN</h3>
+                  <h3 className="font-serif text-title-sm text-navy">{n.apply.aboutHeading}</h3>
                   <p className="mt-2 font-sans text-body text-navy/74">
-                    Safe AI Netherlands (SAIN) is a Dutch non-profit developing the
-                    talent the Netherlands needs to address the risks of transformative
-                    AI. We build the national AI safety talent pipeline to get people
-                    from first contact to first real contribution. Then we connect them
-                    to the institutions and organisations that need them.
+                    {n.apply.aboutBody}
                   </p>
                   <p className="mt-3 font-sans text-caption text-navy/65">
-                    We do not sponsor visas. If you are in the Netherlands on a student
-                    residence permit, you can still apply.
+                    {n.apply.visas}
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">
                   <ApplyButton />
                   <Link href="/contact" className="btn-outline-ink">
-                    Or get in touch first
+                    {n.apply.getInTouch}
                   </Link>
                 </div>
               </div>
@@ -516,17 +472,16 @@ export default function NewChaptersPage() {
               id="new-chapters-close-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              Three new chapters. Twelve people to start them.
+              {n.close.heading}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              Apply by {SOFT_DEADLINE}. We read applications every week, so applying
-              early means hearing back early.
+              {format(n.close.body, { deadline: SOFT_DEADLINE })}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
             <ApplyButton />
             <Link href="/contact" className="btn-ghost-inverse">
-              Or get in touch first
+              {n.apply.getInTouch}
             </Link>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import type { Dictionary } from "@/i18n";
+
 /* The Netherlands with SAIN's six cities, as the /new-chapters hero drawing.
 
    The geometry is the claim: three chapters already run (navy), three are
@@ -45,7 +47,13 @@ const CITIES: City[] = [
   { name: "Eindhoven", x: 199.5, y: 327.0, lx: 216, ly: 331, anchor: "start", founding: true },
 ];
 
-export default function ChapterMap({ className }: { className?: string }) {
+export default function ChapterMap({
+  className,
+  t,
+}: {
+  className?: string;
+  t: Dictionary["newChapters"]["map"];
+}) {
   let ring = 0;
   return (
     <figure className={className}>
@@ -55,11 +63,8 @@ export default function ChapterMap({ className }: { className?: string }) {
         aria-labelledby="chapter-map-title chapter-map-desc"
         className="h-auto w-full overflow-visible"
       >
-        <title id="chapter-map-title">SAIN&rsquo;s chapters in the Netherlands</title>
-        <desc id="chapter-map-desc">
-          Chapters run in Groningen, Amsterdam and Utrecht. Starting teams are
-          wanted in Eindhoven, Delft and The Hague.
-        </desc>
+        <title id="chapter-map-title">{t.title}</title>
+        <desc id="chapter-map-desc">{t.description}</desc>
 
         <g strokeLinejoin="round">
           <path d={LAND} className="fill-navy/[0.035] stroke-navy/30" strokeWidth={1} />
@@ -107,7 +112,7 @@ export default function ChapterMap({ className }: { className?: string }) {
       <figcaption className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-caption text-navy/65">
         <span className="inline-flex items-center gap-2">
           <span className="size-[8px] rounded-full bg-navy" aria-hidden="true" />
-          Chapter running
+          {t.running}
         </span>
         <span className="inline-flex items-center gap-2">
           <span
@@ -116,7 +121,7 @@ export default function ChapterMap({ className }: { className?: string }) {
           >
             <span className="block size-full rounded-full bg-orange" />
           </span>
-          Starting team wanted
+          {t.wanted}
         </span>
       </figcaption>
     </figure>

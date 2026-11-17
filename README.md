@@ -55,15 +55,18 @@ scripts/                  # Responsive image generation, Luma event fetches
 
 The site is being made bilingual (English and Dutch). The text is moving out of the
 components into `src/i18n/en.json`, page by page; the pages already moved are the
-layout, navbar, footer, homepage, about (with its documents), team, contact, volunteer
-and open positions. The Dutch version, `nl.json`, comes back from a translator, and the
-`/nl` pages and the language switch arrive with it.
+layout, navbar, footer, homepage, about (with its documents), team, contact, volunteer,
+open positions, courses, community, the three chapter pages (with the Groningen events
+archive) and new chapters. The Dutch version, `nl.json`, comes back from a translator,
+and the `/nl` pages and the language switch arrive with it.
 
-- Exception: `src/data/openPositions.ts` keeps its text (roles, team labels, chapter
-  headings, the application timeline) in the file, so roles are edited exactly as
-  before. The translation package copies that text out for the translator, and the
-  Dutch comes back as a separate section. The open-positions page's own words are
-  in `en.json`.
+- Exceptions: `src/data/openPositions.ts`, `src/data/newChapters.ts` and
+  `src/data/courseApplications.ts` keep their text in the file, so roles, the
+  starting-team call and cohort notes are edited exactly as before. The translation
+  package copies that text out for the translator, and the Dutch comes back as a
+  separate section. The pages' own words are in `en.json`.
+- The Groningen events archive (`src/data/groningenEventsArchive.ts`) and the Luma
+  event lists are the announcements as they went out, and stay in English.
 
 - The documents under /about are markdown: English in `docs/`, a translation in
   `docs/<locale>/` under the same file name.

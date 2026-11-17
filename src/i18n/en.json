@@ -1155,5 +1155,82 @@
     },
     "fromAnnouncement": "From the announcement at the time",
     "close": "Every one of these was free and open to walk into."
+  },
+  "newChapters": {
+    "meta": {
+      "title": "Start a chapter in Eindhoven, Delft or The Hague",
+      "description": "SAIN is starting chapters in Eindhoven, Delft and The Hague. Each city gets a paid, part-time starting team of four: a Chapter Director and leads for education, events and communications."
+    },
+    "applyButton": "Apply to a starting team",
+    "hero": {
+      "heading": "Start SAIN in Eindhoven, Delft or The Hague.",
+      "body": "SAIN has chapters in Groningen, Amsterdam and Utrecht. This winter we are starting three more: Eindhoven, Delft and The Hague. Each city gets a starting team of four people: a Chapter Director, an Education Lead, an Events Lead and a Communications Lead. All four roles are paid and part-time.",
+      "readRoles": "Read the four roles",
+      "deadline": "Soft deadline {deadline}. Applications are reviewed on a rolling basis, with priority to early applicants."
+    },
+    "building": {
+      "heading": "You would be building a chapter, not joining one.",
+      "body": "You would be the person building a SAIN chapter in your city, and you will be in charge of setting up everything. However, you’ll have support: a funded national organisation behind you, and a network of advisors, researchers and partner organisations who want nothing more than your chapter to succeed.",
+      "alreadyBehind": "Already behind you"
+    },
+    "cities": {
+      "heading": "Three cities with the most potential.",
+      "body": "We have identified these three cities as the highest-potential ones for us to expand to. Here is, very briefly, why we think so.",
+      "applyIn": "Apply in {city}",
+      "inTouch": "We are already in touch with people working on AI safety in these cities. Where people have already been running things, we can build on top of that and be much more ambitious. Already running something there and not heard from us yet? <link>Please get in touch</link>, so we can work together instead of duplicating efforts."
+    },
+    "incubation": {
+      "heading": "Six months from starting team to SAIN chapter.",
+      "paragraphs": [
+        "New chapters start as incubating chapters. From mid-December 2026 to June 2027, the starting team will develop the chapter towards a few concrete milestones. Importantly, although this phase is part of the incubation, internally we’ll treat you as a SAIN chapter from the start.",
+        "We’re ambitious about this. In some of these cities, people already run AI safety courses, and we want to build on that and go much further: courses with dozens of participants, events that bring hundreds of new people into AI safety, a community of hundreds in every city, and people moving on into real projects.",
+        "The exact milestones for June 2027 we’ll set together with you in your first weeks; how you get there is up to you. We’ll work together to make sure you reach your fullest potential. In June 2027 we will do a final review of how things have gone. Chapters that get there become official SAIN chapters, and the director and lead roles stay paid part-time positions."
+      ],
+      "aimingFor": "What we’re aiming for"
+    },
+    "community": {
+      "heading": "This is what you would be starting.",
+      "body": "<strong>Discussion groups</strong>, <strong>hackathons</strong>, <strong>talks</strong>, and the evenings after. In Groningen, Amsterdam and Utrecht, people meet <strong>friends and collaborators</strong> at SAIN, and often find their <strong>next step in AI safety</strong>. Apply now, and a year from now your city has a community like this, built by you."
+    },
+    "offer": {
+      "heading": "You won’t be doing it alone.",
+      "body": "Everything the three existing chapters learned the hard way is written down, set up, and yours from day one."
+    },
+    "roles": {
+      "heading": "Four roles in every city.",
+      "body": "Every starting team has the same four roles. Open one for the full description. You can apply for more than one, and the form asks which city you are based in."
+    },
+    "apply": {
+      "heading": "One form, and a decision by mid-December.",
+      "body": "Applications are reviewed on a rolling basis, with priority to early applicants. The soft deadline is {deadline}.",
+      "hearBackHeading": "Everyone who applies hears back from us.",
+      "hearBackBody": "If you are not in the starting team, you are still the start of the chapter’s community! We will send you what you need to join SAIN’s online community, so you are among the first to hear about new activities and opportunities in your city.",
+      "strongTeamHeading": "We only start a chapter when the team is strong enough.",
+      "strongTeamBody": "If we do not have strong enough applications to start the incubation in a particular city, we will open a second round later on.",
+      "aboutHeading": "About SAIN",
+      "aboutBody": "Safe AI Netherlands (SAIN) is a Dutch non-profit developing the talent the Netherlands needs to address the risks of transformative AI. We build the national AI safety talent pipeline to get people from first contact to first real contribution. Then we connect them to the institutions and organisations that need them.",
+      "visas": "We do not sponsor visas. If you are in the Netherlands on a student residence permit, you can still apply.",
+      "getInTouch": "Or get in touch first"
+    },
+    "close": {
+      "heading": "Three new chapters. Twelve people to start them.",
+      "body": "Apply by {deadline}. We read applications every week, so applying early means hearing back early."
+    },
+    "map": {
+      "title": "SAIN’s chapters in the Netherlands",
+      "description": "Chapters run in Groningen, Amsterdam and Utrecht. Starting teams are wanted in Eindhoven, Delft and The Hague.",
+      "running": "Chapter running",
+      "wanted": "Starting team wanted"
+    },
+    "roleCard": {
+      "badge": "Paid · Part-time",
+      "firstMonths": "In your first months you will",
+      "responsibilities": "Responsibilities",
+      "goodFitIf": "You may be a good fit if you",
+      "alsoStrong": "Strong candidates may also have",
+      "logistics": "Logistics",
+      "applyAs": "Apply as {role}",
+      "oneForm": "One form for all four roles and all three cities. You can apply for more than one role."
+    }
   }
 }
