@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import Link from "next/link";
 
+import EnglishOnlyNote from "@/components/EnglishOnlyNote";
 import HandbookToc, { type TocItem } from "@/components/handbook/HandbookToc";
 import Reveal from "@/components/landing/Reveal";
 import {
@@ -32,10 +34,10 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "projectHub.handbook.metadata" });
   return {
-    title: "Project Hub handbook",
-    description:
-      "How the SAIN Project Hub works, from first application to published output: eligibility, matching, time commitment, standards, and the escalation path.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/research/handbook", englishOnly: true }),
   };
 }
@@ -55,7 +57,13 @@ export async function generateMetadata({
    deadline appears here once, which is why the cross-references below are
    links rather than repetitions. Where v3 was still under discussion (the
    societal topics, how often matching rounds run, the two-week project plan,
-   the new single form), the page keeps what v1.0 said or leaves it out. */
+   the new single form), the page keeps what v1.0 said or leaves it out.
+
+   The handbook itself is English in every language, until it is translated:
+   its title page and body carry lang="en", and a Dutch reader gets a note
+   under the title page saying so. Only what frames it follows the reader's
+   language (projectHub.handbook): the metadata, the breadcrumb, the
+   landmarks' names and the closing band. */
 
 const ONBOARDING_FORM_URL = "https://sainonboard.fillout.com/new";
 const DISCORD_URL = "https://discord.gg/MYQcfWfgzB";
@@ -229,6 +237,8 @@ export default function ProjectHubHandbookPage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("projectHub");
+  const tA11y = useTranslations("common.a11y");
   return (
     <>
       {/* The imprint band. Cream, thin, and no illustration: this is the
@@ -240,33 +250,34 @@ export default function ProjectHubHandbookPage({
       >
         <div className="shell band-index">
           <div className="max-w-copy-wide">
-            <nav aria-label="Breadcrumb" className="font-sans text-label text-navy/65">
+            <nav aria-label={t("breadcrumb.label")} className="font-sans text-label text-navy/65">
               <Link
                 href="/research"
                 className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Project hub
+                {t("breadcrumb.projectHub")}
               </Link>
               <span aria-hidden="true" className="px-2 text-navy/35">
                 /
               </span>
-              <span aria-current="page">Handbook</span>
+              <span aria-current="page">{t("handbook.breadcrumb")}</span>
             </nav>
 
-            <p className="kicker mt-6 text-kicker text-navy/60">Project Hub</p>
+            <p lang="en" className="kicker mt-6 text-kicker text-navy/60">Project Hub</p>
             <h1
               id="handbook-heading"
+              lang="en"
               className="mt-3 font-serif text-display text-navy"
             >
               The SAIN Project Hub handbook
             </h1>
-            <p className="mt-5 max-w-copy font-sans text-body text-navy/72">
+            <p lang="en" className="mt-5 max-w-copy font-sans text-body text-navy/72">
               How the Project Hub works, from first application to published
               output. It sets out what participants, supervisors, and the
               Project Team can expect from each other.
             </p>
 
-            <div className="mt-7 flex flex-col gap-1 border-t border-navy/10 pt-4 font-sans text-footnote text-navy/60">
+            <div lang="en" className="mt-7 flex flex-col gap-1 border-t border-navy/10 pt-4 font-sans text-footnote text-navy/60">
               <p>
                 Version 3.0 · 14 October 2026 ·{" "}
                 <a
@@ -282,6 +293,8 @@ export default function ProjectHubHandbookPage({
                 (Research Lead).
               </p>
             </div>
+
+            <EnglishOnlyNote locale={locale} className="mt-6" />
           </div>
         </div>
       </section>
@@ -293,9 +306,9 @@ export default function ProjectHubHandbookPage({
               appears in the margin beside it, which is why the side columns
               are equal fractions rather than the copy being pushed across. */}
           <div className="mx-auto grid max-w-copy xl:max-w-none xl:grid-cols-[minmax(0,1fr)_minmax(0,720px)_minmax(0,1fr)] xl:gap-10 2xl:gap-16">
-            <HandbookToc items={contents} />
+            <HandbookToc items={contents} label={t("handbook.toc")} />
 
-            <div className="flex min-w-0 flex-col gap-14">
+            <div lang="en" className="flex min-w-0 flex-col gap-14">
               {/* What the reader needs if they read nothing else, then where
                   their own section is. Both are the answer to "do I have to
                   read all of this?", which is the first judgement this page
@@ -1066,16 +1079,15 @@ export default function ProjectHubHandbookPage({
               id="handbook-close-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              The hub is open on a rolling basis.
+              {t("handbook.close.heading")}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/75">
-              Sign up whenever you are ready. Someone from SAIN gets back to you
-              within a working week.
+              {t("handbook.close.body")}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
             <Link href={APPLY_PATH} className="btn-accent gap-2">
-              Apply for a project
+              {t("actions.applyForProject")}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
             <a
@@ -1084,9 +1096,9 @@ export default function ProjectHubHandbookPage({
               rel="noopener noreferrer"
               className="btn-ghost-inverse gap-2"
             >
-              Become a supervisor
+              {t("actions.becomeSupervisor")}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {tA11y("opensInNewTab")}</span>
             </a>
           </div>
         </div>

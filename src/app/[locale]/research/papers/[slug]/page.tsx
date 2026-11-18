@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import ClientMessages from "@/i18n/ClientMessages";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowDownIcon,
@@ -27,7 +29,12 @@ import {
    writing the next one. Only papers with a `reader` entry in
    src/data/research.ts get a page; the rest still link to their source. A
    page whose entry has no `pdf` keeps the imprint and the close, and sends
-   the reader on to the source. */
+   the reader on to the source.
+
+   The paper is English in every language: its title, authors, venue and
+   summary say so with lang="en", and the metadata is the paper's own. The
+   page around it (projectHub.paper, and projectHub.reader for the reader's
+   toolbar) is in the reader's language. */
 
 type Params = { slug: string };
 type LocaleParams = Params & { locale: Locale };
@@ -65,10 +72,13 @@ export function generateMetadata({ params }: { params: LocaleParams }): Metadata
 export default function PaperPage({ params }: { params: LocaleParams }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("projectHub");
+  const tA11y = useTranslations("common.a11y");
   const paper = findPaper(params.slug);
   if (!paper) notFound();
-  const source = paperSourceName(paper);
+  const source = paperSourceName(paper, t("paper.projectPage"));
   const pdf = paper.reader.pdf;
+  const license = paper.reader.license;
 
   return (
     <>
@@ -77,28 +87,28 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
             short screen the reader below can sit entirely out of sight, so the
             first action is the one that takes you to it. */}
         <div className="shell band-index">
-          <nav aria-label="Breadcrumb" className="font-sans text-label text-navy/65">
+          <nav aria-label={t("breadcrumb.label")} className="font-sans text-label text-navy/65">
             <Link
               href="/research#publications"
               className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Project hub
+              {t("breadcrumb.projectHub")}
             </Link>
             <span aria-hidden="true" className="px-2 text-navy/35">
               /
             </span>
-            <span aria-current="page">Publications</span>
+            <span aria-current="page">{t("paper.breadcrumb")}</span>
           </nav>
 
-          <p className="mt-6 font-sans text-footnote text-orange-ink lg:mt-8">
+          <p lang="en" className="mt-6 font-sans text-footnote text-orange-ink lg:mt-8">
             {paper.featured?.venueLabel ?? paper.venue}
           </p>
-          <h1 id="paper-heading" className="mt-3 font-serif text-heading text-navy">
+          <h1 id="paper-heading" lang="en" className="mt-3 font-serif text-heading text-navy">
             {paper.title}
           </h1>
-          <p className="mt-5 max-w-copy-wide font-sans text-body text-navy/72">{paper.authors}</p>
+          <p lang="en" className="mt-5 max-w-copy-wide font-sans text-body text-navy/72">{paper.authors}</p>
           {paper.featured ? (
-            <p className="mt-3 max-w-copy font-sans text-body text-navy/74">
+            <p lang="en" className="mt-3 max-w-copy font-sans text-body text-navy/74">
               {paper.featured.summary}
             </p>
           ) : null}
@@ -108,7 +118,7 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
           {pdf ? (
             <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
               <a href="#paper" className="btn-accent gap-2">
-                Read the paper
+                {t("paper.readPaper")}
                 <ArrowDownIcon size={16} weight="regular" aria-hidden="true" />
               </a>
               <a
@@ -116,7 +126,7 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
                 download
                 className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Download PDF
+                {t("paper.downloadPdf")}
                 <DownloadSimpleIcon size={16} weight="regular" aria-hidden="true" />
               </a>
               <a
@@ -125,9 +135,9 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                View on {source}
+                {t("paper.viewOn", { source })}
                 <ArrowUpRightIcon size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
             </div>
           ) : (
@@ -138,18 +148,19 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
                 rel="noopener noreferrer"
                 className="btn-accent gap-2"
               >
-                Read on {source}
+                {t("paper.readOn", { source })}
                 <ArrowUpRightIcon size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
             </div>
           )}
 
           <p className="mt-7 max-w-copy-wide border-t border-navy/10 pt-4 font-sans text-footnote text-navy/60">
-            From the SAIN community.{" "}
             {pdf
-              ? `${paper.reader.license ? `Shared here under ${paper.reader.license}; the` : "The"} original is on ${source}.`
-              : `The paper is published on ${source} and is not hosted here.`}
+              ? license
+                ? t("paper.credit.licensed", { license, source })
+                : t("paper.credit.unlicensed", { source })
+              : t("paper.credit.notHosted", { source })}
           </p>
         </div>
       </section>
@@ -157,9 +168,11 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
       {pdf ? (
         /* scroll-mt clears the 74px navbar, so "Read the paper" lands with the
            reader's toolbar in view rather than under the bar. */
-        <section id="paper" aria-label="The paper" className="scroll-mt-[74px] bg-navy text-white">
+        <section id="paper" aria-label={t("paper.readerLabel")} className="scroll-mt-[74px] bg-navy text-white">
           <div className="shell pb-16 pt-8 md:pb-24 md:pt-10">
-            <PaperReader src={pdf} title={paper.chipTitle} />
+            <ClientMessages namespaces={["projectHub.reader"]}>
+              <PaperReader src={pdf} title={paper.chipTitle} />
+            </ClientMessages>
           </div>
         </section>
       ) : null}
@@ -168,23 +181,22 @@ export default function PaperPage({ params }: { params: LocaleParams }) {
         <div className="shell band-section flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="max-w-[620px]">
             <h2 id="paper-next-heading" className="font-serif text-heading-sm text-navy">
-              Write the next one
+              {t("paper.next.heading")}
             </h2>
             <p className="mt-4 font-sans text-body text-navy/74">
-              Work like this is what the Project Hub is for. It matches you with a supervisor,
-              arranges compute, and takes a project from open question to published finding.
+              {t("paper.next.body")}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:shrink-0">
             <Link href={APPLY_PATH} className="btn-accent gap-2">
-              Apply for a project
+              {t("actions.applyForProject")}
               <ArrowRightIcon size={16} weight="regular" aria-hidden="true" />
             </Link>
             <Link
               href="/research#projects"
               className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              Browse open projects
+              {t("actions.browseProjects")}
               <ArrowRightIcon size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>

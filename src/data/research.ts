@@ -246,8 +246,10 @@ export type Supervisor = {
   /** How much room they have this round; "open" when left out. See
       `Availability`. A single project can override it (src/data/projects.ts). */
   availability?: Availability;
-  /** The limit in a few words, shown after "Limited:" for a limited
-      supervisor, e.g. "1 place left across his projects". */
+  /** For a limited supervisor, the key of the limit in a few words, shown
+      after "Limited:". The words are text, so they live in
+      messages/<locale>/projectHub.json under `availability.notes.<key>`:
+      "faustoCarcassi" reads "1 place left across his projects". */
   availabilityNote?: string;
 };
 
@@ -357,7 +359,8 @@ export const supervisors: Supervisor[] = [
   {
     name: "Fausto Carcassi",
     availability: "limited",
-    availabilityNote: "1 place left across his projects",
+    // "1 place left across his projects"
+    availabilityNote: "faustoCarcassi",
     position: "Assistant Professor, ILLC, University of Amsterdam",
     positionShort: "Assistant Professor, University of Amsterdam",
     image: "/photos/supervisors/Fausto_Carcassi-800.jpg",
@@ -423,12 +426,22 @@ export function isGreyedOut(availability: Availability = "open") {
   return availability === "full" || availability === "unconfirmed";
 }
 
+/** A translator for the `projectHub.availability` messages:
+    useTranslations("projectHub.availability") in a component. */
+export type AvailabilityTranslator = (key: string, values?: Record<string, string>) => string;
+
 /** The words that say a status, wherever a portrait or card shows it; none
-    for open. */
-export function availabilityLine(availability: Availability = "open", note?: string) {
-  if (availability === "limited") return note ? `Limited: ${note}` : "Limited places";
-  if (availability === "full") return "Full for now";
-  if (availability === "unconfirmed") return "Availability to be confirmed";
+    for open. `note` is an `availabilityNote` key. */
+export function availabilityLine(
+  t: AvailabilityTranslator,
+  availability: Availability = "open",
+  note?: string,
+) {
+  if (availability === "limited") {
+    return note ? t("limited", { note: t(`notes.${note}`) }) : t("limitedPlaces");
+  }
+  if (availability === "full") return t("full");
+  if (availability === "unconfirmed") return t("unconfirmed");
   return null;
 }
 
@@ -438,14 +451,16 @@ export function paperHref(paper: Publication) {
   return paper.reader ? `/research/papers/${paper.reader.slug}` : paper.link;
 }
 
-/* How the reader page names the paper's source: "View on arXiv". */
-export function paperSourceName(paper: Publication) {
+/* How the reader page names the paper's source: "View on arXiv". A paper on
+   its own project page has no name to give, so the page passes the words for
+   one in the reader's language ("the project page"). */
+export function paperSourceName(paper: Publication, projectPage: string) {
   const host = new URL(paper.link).hostname;
   if (host.endsWith("arxiv.org")) return "arXiv";
   if (host.endsWith("openreview.net")) return "OpenReview";
   if (host.endsWith("apartresearch.com")) return "Apart Research";
   if (host.endsWith("drive.google.com")) return "Google Drive";
-  if (host.endsWith("github.io")) return "the project page";
+  if (host.endsWith("github.io")) return projectPage;
   return host.replace(/^www\./, "");
 }
 

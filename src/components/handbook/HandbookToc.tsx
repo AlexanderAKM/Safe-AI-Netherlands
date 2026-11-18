@@ -11,8 +11,11 @@ export type TocItem = { id: string; title: string };
    narrow band near the top of the viewport (never a scroll listener), and the
    active link simply comes up to full ink. Reduced motion needs no special
    case here: nothing animates, only a colour transition that globals.css
-   already collapses. */
-export default function HandbookToc({ items }: { items: TocItem[] }) {
+   already collapses.
+
+   `label` names the rail for screen readers, in the reader's language; the
+   chapter titles are the handbook's own, in English. */
+export default function HandbookToc({ items, label }: { items: TocItem[]; label: string }) {
   const [active, setActive] = useState<string>("");
 
   useEffect(() => {
@@ -37,10 +40,10 @@ export default function HandbookToc({ items }: { items: TocItem[] }) {
 
   return (
     <nav
-      aria-label="On this page"
+      aria-label={label}
       className="hidden xl:block xl:justify-self-end"
     >
-      <ol className="sticky top-28 flex max-w-[200px] flex-col gap-2.5">
+      <ol lang="en" className="sticky top-28 flex max-w-[200px] flex-col gap-2.5">
         {items.map((item) => {
           const isActive = active === item.id;
           return (
