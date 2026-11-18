@@ -641,6 +641,30 @@
       },
       "collaborations": "Education Lead, Research Lead, andere technische facilitators, Events Lead (voor de hackathonpijplijn), externe partners die werken aan de veiligheid van fysieke AI."
     },
+    "education-facilitator-governance": {
+      "title": "Education Course Facilitator: AI Governance",
+      "reportsTo": "Education Lead",
+      "timeCommitment": "Ongeveer 4 tot 6 uur per week tijdens een cursusronde (één bijeenkomst plus voorbereiding, huiswerk nakijken en discussiegroepen), telkens voor één kwartaal (3 maanden)",
+      "mission": "Geef de cursus AI Governance bij SAIN Utrecht. Leer deelnemers hoe AI wordt bestuurd in Europa, Nederland en de rest van de wereld, help ze beweringen te toetsen aan primaire bronnen, en bereid de sterkste deelnemers voor op fellowships en de Governance-pijplijn. De rol van Governance Coordinator bouwt hierop voort en voegt werk aan partnerschappen toe.",
+      "responsibilities": [
+        "De vier colleges voorbereiden en geven: Introduction to AI governance and AI safety, AI geopolitics, The tools of the policymaker, en Governance in Europe and the Netherlands.",
+        "De primaire bronnen voor elke sessie lezen en deelnemers ernaar verwijzen, zodat ze informatie zelf kunnen controleren.",
+        "De cursusslides maken in Canva en een pdf-kopie (alleen lezen) in Slides zetten voor deelnemers; deelnemers krijgen nooit toegang tot de originele slides.",
+        "De cursusopzet, planning en bronnen in het SAIN Education Playbook actueel houden, en de opzet voor deelnemers laten goedkeuren voordat je die deelt.",
+        "De optionele wekelijkse discussiegroepen ondersteunen (gepland via Luma) en vragen van deelnemers beantwoorden op Discord.",
+        "Het eindproject en het wekelijkse huiswerk organiseren en helpen beoordelen.",
+        "Het zijproject over sollicitaties voor fellowships begeleiden en feedback geven op de antwoorden van deelnemers.",
+        "De aanwezigheid bijhouden en aan het eind van elk college het feedbackformulier delen.",
+        "Cursusuitgaven vastleggen in de kostentabel met een link naar het bonnetje, zodat ze kunnen worden vergoed.",
+        "Regelmatig de check-ins voor facilitators met de Education Lead bijwonen. Rapporteren over de voortgang van de groep en sterke deelnemers aandragen voor fellowships en de Governance-pijplijn."
+      ],
+      "background": {
+        "field": "AI-governance, waaronder de AI-verordening, het EU AI Office, Nederlandse AI-toezichthouders en de AI-strategieën van de VS en China.",
+        "experience": "Een afgeronde cursus over AI-governance, of vergelijkbare studie of werkervaring in AI-beleid, recht of internationale betrekkingen.",
+        "softSkills": "Beleidsonderwerpen helder uitleggen aan een gemengd publiek, directe feedback geven op geschreven werk, en sessies betrouwbaar en op tijd voorbereiden."
+      },
+      "collaborations": "Education Lead, Governance Coordinator, andere facilitators van AI Governance, Event Lead (challenges na de cursus)."
+    },
     "sain-ambassador": {
       "title": "SAIN Ambassador",
       "reportsTo": "de Events Lead",
