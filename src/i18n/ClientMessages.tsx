@@ -3,6 +3,7 @@ import { getLocale, getMessages, getTimeZone } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import IntlClientProvider from "./IntlClientProvider";
+import type { Locale } from "./routing";
 
 /* Hands a Client Component the dictionaries it reads, and only those.
 
@@ -25,15 +26,20 @@ import IntlClientProvider from "./IntlClientProvider";
    so no page has to know which dictionaries it reads. */
 export default async function ClientMessages({
   namespaces,
+  locale: explicitLocale,
   children,
 }: {
   namespaces: string[];
+  /** Pages leave this out and get the page's language. The site shell
+   *  passes its own, because the 404 element it also renders sits inside
+   *  every page. */
+  locale?: Locale;
   children: ReactNode;
 }) {
   const [locale, messages, timeZone] = await Promise.all([
-    getLocale(),
-    getMessages(),
-    getTimeZone(),
+    explicitLocale ?? getLocale(),
+    getMessages(explicitLocale ? { locale: explicitLocale } : undefined),
+    getTimeZone(explicitLocale ? { locale: explicitLocale } : undefined),
   ]);
 
   return (

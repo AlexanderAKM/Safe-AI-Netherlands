@@ -1,7 +1,8 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
-import { Link } from "@/i18n/navigation";
+import { localizePath, type Locale } from "@/i18n/routing";
+import Link from "next/link";
 
 /* Inverse navy close. Poppins italic for the stichting line and the
    column titles, Poppins for the links. One bottom rule, then the legal line
@@ -73,13 +74,18 @@ const documents: FooterLink[] = [
 
 function FooterAnchor({
   link,
+  label,
+  newTab,
+  locale,
   iconSize = 16,
 }: {
   link: FooterLink;
+  label: string;
+  /** "(opens in a new tab)", for the screen-reader hint on external links. */
+  newTab: string;
+  locale: Locale;
   iconSize?: 14 | 16;
 }) {
-  const t = useTranslations("common");
-  const label = link.key ? t(`footer.links.${link.key}`) : link.name;
   const className =
     "font-sans text-sm leading-5 text-white/78 transition-colors hover:text-white focus-visible:text-white";
 
@@ -93,20 +99,26 @@ function FooterAnchor({
       >
         {label}
         <ArrowUpRight size={iconSize} weight="regular" aria-hidden="true" />
-        <span className="sr-only"> {t("a11y.opensInNewTab")}</span>
+        <span className="sr-only"> {newTab}</span>
       </a>
     );
   }
 
   return (
-    <Link href={link.href} className={className}>
+    <Link href={localizePath(link.href, locale)} className={className}>
       {label}
     </Link>
   );
 }
 
-export default function Footer() {
-  const t = useTranslations("common.footer");
+/* The footer takes its language as a prop rather than from the request, like
+   everything in SiteShell (see there), so its links are written with
+   localizePath and next/link instead of the locale-aware Link. */
+export default async function Footer({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "common.footer" });
+  const tA11y = await getTranslations({ locale, namespace: "common.a11y" });
+  const label = (link: FooterLink) =>
+    link.key ? t(`links.${link.key}`) : (link.name ?? "");
 
   return (
     <footer className="border-t border-white/16 bg-navy">
@@ -133,7 +145,13 @@ export default function Footer() {
             <ul role="list" className="flex flex-wrap gap-x-5 gap-y-1">
               {socials.map((social) => (
                 <li key={social.href}>
-                  <FooterAnchor link={social} iconSize={14} />
+                  <FooterAnchor
+                    link={social}
+                    label={label(social)}
+                    newTab={tA11y("opensInNewTab")}
+                    locale={locale}
+                    iconSize={14}
+                  />
                 </li>
               ))}
             </ul>
@@ -146,7 +164,13 @@ export default function Footer() {
                   {t(`columns.${column.key}`)}
                 </p>
                 {column.links.map((link) => (
-                  <FooterAnchor key={link.href} link={link} />
+                  <FooterAnchor
+                    key={link.href}
+                    link={link}
+                    label={label(link)}
+                    newTab={tA11y("opensInNewTab")}
+                    locale={locale}
+                  />
                 ))}
               </div>
             ))}
@@ -161,7 +185,7 @@ export default function Footer() {
             {documents.map((document) => (
               <Link
                 key={document.href}
-                href={document.href}
+                href={localizePath(document.href, locale)}
                 className="font-sans text-footnote text-white/60 transition-colors hover:text-white focus-visible:text-white"
               >
                 {t(`links.${document.key}`)}

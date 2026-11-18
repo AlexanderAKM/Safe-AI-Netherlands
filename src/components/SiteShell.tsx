@@ -22,7 +22,13 @@ import {
 /* The root of every page, in every language: <html lang>, the fonts, the
    site-wide metadata, the header, the footer and the course popup. The two
    root layouts render it, app/(en)/layout.tsx for English at the root and
-   app/[locale]/layout.tsx for the prefixed languages. */
+   app/[locale]/layout.tsx for the prefixed languages, and so does the 404
+   page (app/not-found.tsx).
+
+   Everything here reads its language from the `locale` prop, never from the
+   request: Next renders the 404 element (English) inside every page, so a
+   shell that asked the request for its language could come out in the
+   wrong one. */
 
 /* League Spartan for headings and editorial lines, as on the original site. */
 const leagueSpartan = League_Spartan({
@@ -172,6 +178,7 @@ export default async function SiteShell({
           {t("skipToContent")}
         </a>
         <ClientMessages
+          locale={locale}
           namespaces={[
             "common.a11y",
             "common.nav",
@@ -185,7 +192,7 @@ export default async function SiteShell({
           <main id="main" className="flex-1">
             {children}
           </main>
-          <Footer />
+          <Footer locale={locale} />
           {/* Renders nothing unless a chapter is taking applications, or the URL
               carries ?preview-popup. */}
           <CoursePopup />
