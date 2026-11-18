@@ -17,6 +17,8 @@ When you add a term, add it here in the same pull request.
 - **No em dashes** (—), as in the English (`design/design.md`). Use a comma,
   a colon or two sentences.
 - **Quotes**: keep the quote marks the English uses (‘ ’ “ ”).
+- **Apostrophes** are typographic, as in the English copy: *foto’s*,
+  *programma’s*, *zo’n* (never a straight ').
 - **Dates** come from the data and are formatted by the site: "16 november
   2026", "wo 18 nov". Write a date by hand only inside a sentence that has no
   `{date}` placeholder, and then in the same form.
@@ -74,12 +76,18 @@ English either way. Switching to option 2 is a search-and-replace in
 | application | aanmelding (course, Project Hub), sollicitatie (job) | |
 | applications are open / closed | de aanmelding is open / gesloten | |
 | board | bestuur | |
+| breadcrumb | kruimelpad | |
+| chapter director | afdelingsdirecteur | role titles: **Question** |
+| director | directeur | role titles: **Question** |
+| head of …, … lead | hoofd … (*Hoofd evenementen*) | role titles: **Question** |
 | advisory board | raad van advies | |
 | chapter | afdeling | **Question** |
 | cohort | groep | **Question**: "cohort" is also used in Dutch education |
 | community | community | |
 | compute | rekenkracht | |
 | course | cursus | |
+| course round, iteration | cursusronde | |
+| EU AI Act | AI-verordening | **Question**: or *EU AI Act* |
 | deadline | deadline | |
 | soft deadline | streefdatum | **Question** |
 | discussion group | discussiegroep | |
@@ -89,23 +97,33 @@ English either way. Switching to option 2 is a search-and-replace in
 | field (of AI Safety) | vakgebied | |
 | field building | field building | **Question**: or *het veld opbouwen* |
 | free | gratis | |
+| graduation (end of a course) | afsluiting, *cursusafsluiting* | participants get a certificate, not a diploma |
 | funding | financiering | |
 | hackathon | hackathon | |
 | handbook | handboek; *Project Hub-handboek* as a title | |
 | in person | op locatie | |
+| lecture | college | |
+| meetup, session | bijeenkomst | |
 | join the community | word lid van de community | the button label everywhere |
 | mentorship | begeleiding | |
 | newsletter | nieuwsbrief | |
 | open positions | vacatures | |
+| outreach, PR | publiciteit (inboxes), promotie (team) | **Question** |
 | paper | paper | |
 | policy | beleid | |
+| policy brief | beleidsnotitie | |
 | programme | programma | |
 | project | project | |
+| projects team, Project Team | projectteam | **Question**: keep *Project Team* as a name? |
+| registered address | vestigingsadres | **Question** |
 | research | onderzoek | |
 | researcher | onderzoeker | |
+| rolling (applications, review) | doorlopend | |
+| social (event) | borrel | |
 | starting team | startteam | |
 | new chapters | nieuwe afdelingen | follows *chapter* |
 | supervisor | begeleider | as in *scriptiebegeleider* |
+| talent pipeline | talentpijplijn | |
 | talk | lezing | |
 | thesis | scriptie (*masterscriptie*, *bachelorscriptie*) | |
 | track (course) | track | **Question**: or *leerlijn* |
@@ -114,6 +132,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | volunteering | vrijwilligerswerk | |
 | vision | visie | |
 | code of conduct | gedragscode | |
+| working week | werkweek | |
 | workshop | workshop | |
 
 ## Questions for Tjebbe

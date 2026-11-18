@@ -49,7 +49,7 @@
         "facts": {
           "sinceOctober2023": {
             "label": "Sinds oktober 2023",
-            "value": "30 evenementen: hackathons, diploma-uitreikingen, lezingen, pubquizzen"
+            "value": "30 evenementen: hackathons, cursusafsluitingen, lezingen, pubquizzen"
           },
           "research": {
             "label": "Onderzoek",
@@ -75,7 +75,7 @@
     }
   },
   "rhythm": {
-    "heading": "Hackathons, lezingen, diploma-uitreikingen en pubquizzen",
+    "heading": "Hackathons, lezingen, cursusafsluitingen en pubquizzen",
     "archive": "Groningen houdt <link>een volledig archief</link> bij van alle evenementen sinds 2023."
   },
   "eventPrints": {
@@ -92,7 +92,7 @@
         "caption": "TEDxBroerstraat · SAIN Groningen"
       },
       "graduation": {
-        "alt": "Een groep van AI Safety Fundamentals bij de diploma-uitreiking in Utrecht",
+        "alt": "Een groep van AI Safety Fundamentals bij de afsluiting van de cursus in Utrecht",
         "caption": "Diploma-uitreiking · SAIN Utrecht"
       },
       "pubQuiz": {

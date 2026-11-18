@@ -4,7 +4,7 @@
   },
   "hero": {
     "heading": "Je carrière in AI-veiligheid begint hier.",
-    "intro": "Expertise in AI-veiligheid is belangrijker dan ooit. SAIN biedt de community, cursussen en middelen waarmee studenten en professionals hun weg vinden in AI-veiligheid. We bieden een duidelijk pad via onderwijs, community en praktijkprojecten, en brengen sterke deelnemers daarna in contact met de organisaties, programma's en functies waar ze de volgende stap kunnen zetten.",
+    "intro": "Expertise in AI-veiligheid is belangrijker dan ooit. SAIN biedt de community, cursussen en middelen waarmee studenten en professionals hun weg vinden in AI-veiligheid. We bieden een duidelijk pad via onderwijs, community en praktijkprojecten, en brengen sterke deelnemers daarna in contact met de organisaties, programma’s en functies waar ze de volgende stap kunnen zetten.",
     "hiring": "<strong>We zoeken betaalde startteams</strong> voor nieuwe afdelingen in Eindhoven, Delft en Den Haag. Solliciteer uiterlijk {date}. <roles>Bekijk de rollen</roles>",
     "chartAlt": "Een steeds steiler stijgende AI-curve begint in de oorsprong. Twee mensen leren en oefenen, terwijl een derde omhoog wijst naar het kantelpunt, waar de curve zich splitst in een steil oranje pad en een vlakker grijs pad."
   },
@@ -25,9 +25,9 @@
     "moreCities": "Er komen meer steden bij."
   },
   "communityPrints": {
-    "label": "Foto's van SAIN-evenementen",
-    "previous": "Vorige foto's",
-    "next": "Volgende foto's",
+    "label": "Foto’s van SAIN-evenementen",
+    "previous": "Vorige foto’s",
+    "next": "Volgende foto’s",
     "photos": {
       "graduationAmsterdam": "Cursisten van SAIN Amsterdam vieren buiten de afronding van hun cursus, met ballonnen en bloemen",
       "closingGroningen": "Een slotavond van SAIN Groningen op een dakterras bij zonsondergang",
@@ -80,7 +80,7 @@
       "support": {
         "title": "Werk met ondersteuning",
         "body": "SAIN helpt het onderzoek te coördineren en regelt rekenkracht naar wat het project nodig heeft. Ontwikkel je werk met feedback van een begeleider of met onafhankelijke medeonderzoekers.",
-        "agendas": "Bekijk de onderzoeksagenda's van onze begeleiders",
+        "agendas": "Bekijk de onderzoeksagenda’s van onze begeleiders",
         "becomeSupervisor": "Word begeleider"
       },
       "publish": {

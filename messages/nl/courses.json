@@ -36,11 +36,11 @@
       "title": "AI Safety Fundamentals",
       "tagline": "De grondbeginselen. Instappen kan elke week.",
       "whoItSuits": "Voor nieuwkomers. Je kunt bij elk thema instappen, zonder voorkennis.",
-      "summary": "Een wekelijkse reeks over risico's, technische veiligheid en governance, zo opgezet dat nieuwkomers kunnen instappen. Drie edities in Utrecht bereikten samen meer dan 100 studenten, onderzoekers, engineers en mensen uit de publieke sector.",
-      "outlineTitle": "Thema's per week",
+      "summary": "Een wekelijkse reeks over risico’s, technische veiligheid en governance, zo opgezet dat nieuwkomers kunnen instappen. Drie edities in Utrecht bereikten samen meer dan 100 studenten, onderzoekers, engineers en mensen uit de publieke sector.",
+      "outlineTitle": "Thema’s per week",
       "outline": [
-        "Introductie: capaciteiten, risico's en soorten oplossingen",
-        "Risico's en incidenten: maatschappelijke schade, misbruik, controleverlies",
+        "Introductie: capaciteiten, risico’s en soorten oplossingen",
+        "Risico’s en incidenten: maatschappelijke schade, misbruik, controleverlies",
         "Technische AI-veiligheid: toezicht, evaluaties, interpretability",
         "Regelgeving en governance: AI-verordening, audits, GPAI-verplichtingen",
         "Waarom veiligheid moeilijk is: prikkels, financieringstekorten, wedloopdynamiek",
@@ -83,7 +83,7 @@
         "Invoering in Nederland: ministeries, toezichthouders, normen",
         "Verantwoording: audits, bewijs, GPAI-verplichtingen",
         "Risicobeheer: NIST en evaluatie van frontier AI",
-        "Casestudy's: ongelukken, misbruik, achterblijvende instituties",
+        "Casestudy’s: ongelukken, misbruik, achterblijvende instituties",
         "Loopbaanpaden: beleidsfellowships, ministeries, normalisatie-instellingen"
       ],
       "cities": {
@@ -97,12 +97,12 @@
   },
   "cadence": {
     "heading": "Hoe de groepen verlopen",
-    "intro": "Weet je niet welke afdeling bij je past? Elke stad heeft een eigen pagina waarop alle programma's uitgebreid staan beschreven.",
+    "intro": "Weet je niet welke afdeling bij je past? Elke stad heeft een eigen pagina waarop alle programma’s uitgebreid staan beschreven.",
     "items": [
       "Groepen lopen per afdeling. Groningen en Amsterdam geven les in blokken van zes weken, en Groningen start drie tot vier groepen per jaar. In Utrecht duren de blokken Technical AI Safety en AI Governance vier weken.",
       "De cursussen van zes weken combineren wekelijkse leesstof met een discussiesessie op locatie.",
       "AI Safety Fundamentals in Utrecht is wekelijks en modulair. Stap in bij elk thema, ongeveer 60 minuten.",
-      "Sommige programma's werken met aanmelding en selectie, en sluiten per groep. De BlueDot-tracks in Amsterdam zijn daar een voorbeeld van.",
+      "Sommige programma’s werken met aanmelding en selectie, en sluiten per groep. De BlueDot-tracks in Amsterdam zijn daar een voorbeeld van.",
       "Eén formulier voor deelnemers en facilitators. De deadline voor facilitators valt een paar dagen eerder."
     ]
   },
