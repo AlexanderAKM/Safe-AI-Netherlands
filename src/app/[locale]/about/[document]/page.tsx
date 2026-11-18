@@ -1,13 +1,13 @@
-import { readFile } from "fs/promises";
-import path from "path";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { hasDocumentIn, readDocument } from "@/i18n/documents";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
+import EnglishOnlyNote from "@/components/EnglishOnlyNote";
 import MarkdownDocument from "@/components/MarkdownDocument";
 import { getSainDocument, sainDocuments } from "@/data/sainDocuments";
 
@@ -18,30 +18,36 @@ type DocumentPageProps = {
   };
 };
 
-async function readDocumentMarkdown(fileName: string) {
-  return readFile(path.join(process.cwd(), "docs", fileName), "utf8");
-}
-
 export function generateStaticParams() {
   return sainDocuments.map((document) => ({
     document: document.slug,
   }));
 }
 
-export function generateMetadata({ params }: DocumentPageProps): Metadata {
+export async function generateMetadata({
+  params,
+}: DocumentPageProps): Promise<Metadata> {
   const document = getSainDocument(params.document);
 
   if (!document) {
     return {};
   }
 
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: `about.documents.items.${document.key}`,
+  });
+
   return {
-    title: document.title,
-    description: document.description,
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({
       locale: params.locale,
       path: `/about/${document.slug}`,
-      englishOnly: true,
+      /* Until docs/nl/<file> exists, the Dutch page is the English text: it
+         names the English page as canonical, and neither page claims a Dutch
+         alternate. */
+      englishOnly: !hasDocumentIn(document.fileName, "nl"),
     }),
   };
 }
@@ -49,13 +55,25 @@ export function generateMetadata({ params }: DocumentPageProps): Metadata {
 export default async function DocumentPage({ params }: DocumentPageProps) {
   const { locale } = params;
   setRequestLocale(locale);
+  /* The first read without an explicit locale fixes the locale of the whole
+     render, header and footer included. It happens here, before anything is
+     awaited, as the sync pages' useTranslations does it: the root not-found
+     element, which every page renders, calls setRequestLocale("en"), and a
+     later first read would put this page's shell and links in English. */
+  const t = await getTranslations("about");
   const document = getSainDocument(params.document);
 
   if (!document) {
     notFound();
   }
 
-  const markdown = await readDocumentMarkdown(document.fileName);
+  /* The document in the reader's language, or the English one while no
+     translation exists; `documentLocale` says which came back. */
+  const { markdown, locale: documentLocale } = await readDocument(
+    document.fileName,
+    locale,
+  );
+  const untranslated = documentLocale !== locale;
   const others = sainDocuments.filter((entry) => entry.slug !== document.slug);
 
   return (
@@ -73,21 +91,24 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
             className="inline-flex w-fit items-center gap-1.5 font-sans text-label text-navy/65 underline decoration-navy/20 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:text-navy"
           >
             <ArrowLeft size={16} weight="regular" aria-hidden="true" />
-            About SAIN
+            {t("document.back")}
           </Link>
 
           <div className="flex flex-col gap-4">
-            <p className="kicker text-kicker text-navy/65">{document.eyebrow}</p>
+            <p className="kicker text-kicker text-navy/65">{t(`documents.items.${document.key}.eyebrow`)}</p>
             <h1
               id="document-heading"
               className="max-w-[720px] font-serif text-display text-navy"
             >
-              {document.title}
+              {t(`documents.items.${document.key}.title`)}
             </h1>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/72">
-              {document.description}
+              {t(`documents.items.${document.key}.description`)}
             </p>
           </div>
+
+          {/* A Dutch reader is told before the English starts. */}
+          {untranslated ? <EnglishOnlyNote locale={locale} /> : null}
         </div>
       </section>
 
@@ -95,8 +116,11 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
           the document is the band. */}
       <section className="bg-white">
         <div className="shell band-section">
-          <div className="max-w-[var(--container-copy)]">
-            <MarkdownDocument markdown={markdown} />
+          <div
+            className="max-w-[var(--container-copy)]"
+            lang={untranslated ? documentLocale : undefined}
+          >
+            <MarkdownDocument markdown={markdown} locale={documentLocale} />
           </div>
         </div>
       </section>
@@ -112,7 +136,7 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
             id="other-documents-heading"
             className="font-serif text-heading-sm text-navy"
           >
-            The rest of what SAIN has written down.
+            {t("document.others")}
           </h2>
           <ul className="flex flex-wrap gap-4">
             {others.map((entry) => (
@@ -123,10 +147,10 @@ export default async function DocumentPage({ params }: DocumentPageProps) {
                 >
                   <span className="flex min-w-0 flex-col gap-1">
                     <span className="font-sans text-footnote font-medium text-orange-ink">
-                      {entry.eyebrow}
+                      {t(`documents.items.${entry.key}.eyebrow`)}
                     </span>
                     <span className="font-serif text-[15px] leading-5 text-navy">
-                      {entry.title}
+                      {t(`documents.items.${entry.key}.title`)}
                     </span>
                   </span>
                   <ArrowRight

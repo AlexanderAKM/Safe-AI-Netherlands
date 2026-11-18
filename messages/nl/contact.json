@@ -1,1 +1,91 @@
-{}
+{
+  "metadata": {
+    "title": "Contact",
+    "description": "Alle adressen die SAIN gebruikt: de landelijke functieadressen, de afdelingsadressen in Groningen, Amsterdam en Utrecht, en de mensen die ze beheren."
+  },
+  "hero": {
+    "heading": "Schrijf naar het adres dat bij je vraag past.",
+    "intro": "Elke inbox van SAIN staat op deze pagina: de landelijke functieadressen, de adressen van elke afdeling en de mensen erachter."
+  },
+  "national": {
+    "heading": "Begin bij een functieadres.",
+    "intro": "Gebruik deze als je het onderwerp weet, maar niet wie het moet lezen.",
+    "inboxes": {
+      "formal": {
+        "label": "Formeel",
+        "detail": "Algemene formele vragen"
+      },
+      "media": {
+        "label": "Media en publiciteit",
+        "detail": "Pers, publiciteit en partnerschappen"
+      },
+      "research": {
+        "label": "Onderzoek",
+        "detail": "Project Hub, begeleiders en samenwerkingen"
+      },
+      "substack": {
+        "label": "Substack",
+        "detail": "Schrijven, redigeren en werk aan de nieuwsbrief"
+      },
+      "conduct": {
+        "label": "Gedrag",
+        "detail": "Schendingen van de gedragscode of algemene zorgen"
+      }
+    }
+  },
+  "chapters": {
+    "heading": "Of schrijf naar een stad.",
+    "intro": "Elke afdeling heeft eigen adressen voor samenwerking, community, onderwijs, evenementen en publiciteit.",
+    "roles": {
+      "formal": "Formele samenwerking",
+      "communityManager": "Communitymanager",
+      "education": "Onderwijs",
+      "research": "Onderzoek",
+      "events": "Evenementen",
+      "substack": "Substack",
+      "outreach": "Publiciteit"
+    },
+    "view": "Bekijk de afdeling",
+    "join": "Wil je liever meedoen dan schrijven? Dan heb je geen adres nodig. De communitypagina is de ingang, en dat is dezelfde ingang voor alle drie de afdelingen.",
+    "visitCommunity": "Naar de community"
+  },
+  "leads": {
+    "heading": "De mensen achter die adressen.",
+    "intro": "De landelijke directeur, de afdelingsdirecteuren en het hoofd bedrijfsvoering, elk met het adres dat alleen zij lezen.",
+    "people": {
+      "alexander": {
+        "role": "Directeur SAIN",
+        "alsoAnswers": "Beantwoordt ook het formele functieadres hierboven."
+      },
+      "tarteel": {
+        "role": "Directeur SAIN Groningen",
+        "alsoAnswers": "Beantwoordt ook het afdelingsadres van SAIN Groningen hierboven."
+      },
+      "ana": {
+        "role": "Directeur SAIN Amsterdam en hoofd groei SAIN",
+        "alsoAnswers": "Beantwoordt ook het afdelingsadres van SAIN Amsterdam hierboven."
+      },
+      "riccardo": {
+        "role": "Directeur SAIN Utrecht",
+        "alsoAnswers": "Beantwoordt ook het afdelingsadres van SAIN Utrecht hierboven."
+      },
+      "marta": {
+        "role": "Hoofd bedrijfsvoering SAIN"
+      },
+      "tjebbe": {
+        "role": "Hoofd projecten SAIN"
+      }
+    },
+    "profile": "Profiel"
+  },
+  "elsewhere": {
+    "heading": "Waar je SAIN verder vindt.",
+    "addressLabel": "Vestigingsadres",
+    "country": "Nederland",
+    "onlineLabel": "Online",
+    "online": {
+      "substack": "Teksten over AI-veiligheid",
+      "linkedin": "Nieuws en vacatures"
+    }
+  }
+}

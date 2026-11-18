@@ -1,8 +1,10 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localeAlternates } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 import Reveal from "@/components/landing/Reveal";
@@ -11,6 +13,7 @@ import {
   chapterRoleEmails,
   leadershipContacts,
   nationalContacts,
+  registeredAddress,
 } from "@/data/siteContact";
 
 export async function generateMetadata({
@@ -19,26 +22,27 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "contact.metadata" });
   return {
-    title: "Contact",
-    description:
-      "Every address SAIN uses: national role addresses, the chapter addresses in Groningen, Amsterdam and Utrecht, and the people who run them.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/contact" }),
   };
 }
 
 /* The two places SAIN publishes, both linked from the site's structured data
-   already. Nothing else belongs on a contact page. */
+   already. Nothing else belongs on a contact page. What each one carries is
+   under contact.elsewhere.online.<id>. */
 const online = [
   {
+    id: "substack",
     name: "Substack",
     href: "https://safeainetherlands.substack.com/",
-    detail: "Writing on AI Safety",
   },
   {
+    id: "linkedin",
     name: "LinkedIn",
     href: "https://www.linkedin.com/company/safe-ai-netherlands/",
-    detail: "Updates and open positions",
   },
 ];
 
@@ -52,6 +56,8 @@ export default function ContactPage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("contact");
+  const tCommon = useTranslations("common");
   return (
     <>
       {/* A directory, not a pitch: the hero says which question this page
@@ -67,11 +73,10 @@ export default function ContactPage({
             id="contact-heading"
             className="max-w-[760px] font-serif text-display text-navy"
           >
-            Write to the address that fits the question.
+            {t("hero.heading")}
           </h1>
           <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/72">
-            Every SAIN inbox is on this page: the national role addresses, the
-            addresses each chapter keeps, and the people behind them.
+            {t("hero.intro")}
           </p>
         </div>
       </section>
@@ -88,11 +93,10 @@ export default function ContactPage({
               id="national-heading"
               className="font-serif text-heading text-navy"
             >
-              Start with a role address.
+              {t("national.heading")}
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              Use these when you know the topic but not the person who should
-              read it.
+              {t("national.intro")}
             </p>
           </div>
 
@@ -103,10 +107,10 @@ export default function ContactPage({
                 className="grid items-baseline gap-x-8 gap-y-1.5 border-t border-navy/10 py-5 md:grid-cols-[minmax(0,210px)_minmax(0,1fr)_minmax(0,auto)]"
               >
                 <h3 className="font-serif text-title-sm text-navy">
-                  {contact.label}
+                  {t(`national.inboxes.${contact.id}.label`)}
                 </h3>
                 <p className="font-sans text-body text-navy/72">
-                  {contact.detail}
+                  {t(`national.inboxes.${contact.id}.detail`)}
                 </p>
                 <a href={`mailto:${contact.email}`} className={emailLinkClass}>
                   {contact.email}
@@ -128,11 +132,10 @@ export default function ContactPage({
               id="chapters-heading"
               className="font-serif text-heading-sm text-navy"
             >
-              Or write to a city.
+              {t("chapters.heading")}
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              Each chapter keeps its own addresses for collaboration, community,
-              education, events and outreach.
+              {t("chapters.intro")}
             </p>
           </div>
 
@@ -145,11 +148,11 @@ export default function ContactPage({
                 <ul className="flex flex-col">
                   {chapter.roles.map((role) => (
                     <li
-                      key={`${chapter.chapter}-${role.label}`}
+                      key={`${chapter.chapter}-${role.id}`}
                       className="flex flex-col gap-1 border-t border-navy/10 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
                     >
                       <span className="font-sans text-caption text-navy/65">
-                        {role.label}
+                        {t(`chapters.roles.${role.id}`)}
                       </span>
                       <a
                         href={`mailto:${role.email}`}
@@ -164,7 +167,7 @@ export default function ContactPage({
                   href={chapter.href}
                   className="inline-flex w-fit items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/20 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
                 >
-                  View chapter
+                  {t("chapters.view")}
                   <ArrowRight size={16} weight="regular" aria-hidden="true" />
                 </Link>
               </article>
@@ -176,14 +179,12 @@ export default function ContactPage({
               this is the second. */}
           <div className="flex flex-col gap-4 border-t border-navy/14 pt-7">
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              If you would rather join than write, you do not need an address.
-              The community page is the way in, and it is the same way in for
-              all three chapters.
+              {t("chapters.join")}
             </p>
             {/* "Join the community" is reserved site-wide for the onboarding
                 form; this is the community page, so it says so. */}
             <Link href="/community" className="btn-accent w-fit">
-              Visit the community
+              {t("chapters.visitCommunity")}
             </Link>
           </div>
         </Reveal>
@@ -200,11 +201,10 @@ export default function ContactPage({
         <Reveal className="shell band-section flex flex-col gap-8">
           <div className="flex flex-col gap-2.5">
             <h2 id="leads-heading" className="font-serif text-heading-sm text-navy">
-              The people behind those addresses.
+              {t("leads.heading")}
             </h2>
             <p className="max-w-[var(--container-copy)] font-sans text-body text-navy/74">
-              The national director, the chapter directors and the head of
-              operations, each with the address only they read.
+              {t("leads.intro")}
             </p>
           </div>
 
@@ -219,7 +219,7 @@ export default function ContactPage({
                     {person.names}
                   </h3>
                   <p className="mt-0.5 font-sans text-footnote text-navy/65">
-                    {person.role}
+                    {t(`leads.people.${person.id}.role`)}
                   </p>
                 </div>
                 <div className="flex flex-col gap-1">
@@ -231,7 +231,7 @@ export default function ContactPage({
                   </a>
                   {person.alsoAnswers ? (
                     <p className="font-sans text-footnote text-navy/60">
-                      {person.alsoAnswers}
+                      {t(`leads.people.${person.id}.alsoAnswers`)}
                     </p>
                   ) : null}
                 </div>
@@ -242,9 +242,9 @@ export default function ContactPage({
                     rel="noopener noreferrer"
                     className="inline-flex w-fit items-center gap-1.5 font-sans text-label text-navy/72 underline decoration-navy/20 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:text-navy"
                   >
-                    Profile
+                    {t("leads.profile")}
                     <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                    <span className="sr-only"> (opens in a new tab)</span>
+                    <span className="sr-only"> {tCommon("a11y.opensInNewTab")}</span>
                   </a>
                 ) : null}
               </li>
@@ -264,28 +264,28 @@ export default function ContactPage({
             id="elsewhere-heading"
             className="font-serif text-heading-sm text-navy"
           >
-            Where else to find SAIN.
+            {t("elsewhere.heading")}
           </h2>
           <div className="grid gap-8 border-t border-navy/14 pt-6 md:grid-cols-2 md:gap-16">
             <div className="flex flex-col gap-2">
               {/* Column labels, not section names: the kicker is reserved for
                   the latter, and this band already has its heading. */}
               <p className="font-sans text-caption text-navy/65">
-                Registered address
+                {t("elsewhere.addressLabel")}
               </p>
               <address className="font-sans text-body not-italic text-navy/74">
-                Stichting Safe AI Netherlands
-                <br />
-                Hereplein 4
-                <br />
-                9711 GA Groningen
-                <br />
-                The Netherlands
+                {registeredAddress.map((line) => (
+                  <Fragment key={line}>
+                    {line}
+                    <br />
+                  </Fragment>
+                ))}
+                {t("elsewhere.country")}
               </address>
             </div>
 
             <div className="flex flex-col gap-2">
-              <p className="font-sans text-caption text-navy/65">Online</p>
+              <p className="font-sans text-caption text-navy/65">{t("elsewhere.onlineLabel")}</p>
               <ul className="flex flex-col gap-2">
                 {online.map((channel) => (
                   <li key={channel.name} className="flex flex-wrap items-baseline gap-x-3">
@@ -297,10 +297,10 @@ export default function ContactPage({
                     >
                       {channel.name}
                       <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                      <span className="sr-only"> (opens in a new tab)</span>
+                      <span className="sr-only"> {tCommon("a11y.opensInNewTab")}</span>
                     </a>
                     <span className="font-sans text-caption text-navy/65">
-                      {channel.detail}
+                      {t(`elsewhere.online.${channel.id}`)}
                     </span>
                   </li>
                 ))}

@@ -1,1 +1,136 @@
-{}
+{
+  "metadata": {
+    "title": "About",
+    "description": "Stichting Safe AI Netherlands develops the talent the Netherlands needs to address the risks of transformative AI. The talent pipeline, the foundation documents, and the people who run it."
+  },
+  "hero": {
+    "mission": {
+      "talent": "Develop the talent the Netherlands needs.",
+      "risks": "Address the risks of transformative AI.",
+      "contribution": "Make a first real contribution possible."
+    },
+    "intro": "That is the mission of Stichting Safe AI Netherlands. Transformative AI could reshape the economy, science, and society on the scale of a major historical revolution; whether that goes well is not decided yet. We are a national talent pipeline: local chapters on shared infrastructure, from first contact through courses and the Project Hub, with a handoff into the wider field. This page shows that path, what we have written down, and the people who run it."
+  },
+  "path": {
+    "heading": "The Netherlands has the talent. It lacked the path.",
+    "trajectory": "On the current trajectory, AI systems may soon do most economically and strategically important cognitive work, including AI research itself. The critical question is not only what AI will become, but whether enough people are ready to shape what happens next. Right now, far too few are working on that problem.",
+    "readiness": "Nobody can name the exact timeline, and we will not pretend to. Readiness is not something the Netherlands has by default. It is something people build, while European institutions are staffing their AI safety functions in the next few years.",
+    "gap": "The Netherlands has world-class universities, ASML at the centre of the global semiconductor supply chain, proximity to Brussels, and emerging AI safety groups. What it lacked was a unified civil-society voice and a clear path from interest to capability to meaningful contribution. SAIN was created to close that gap. We develop the people; the field puts them to work."
+  },
+  "pipeline": {
+    "heading": "Anyone can start. The path narrows as you grow.",
+    "whole": "The Funnel Diagram is the whole organisation. The wide end is a free course anyone can join, no technical background required. The narrow end is full-time work on AI safety, in policy, research, industry or civil society. Between them sit the community, the Project Hub, and fellowships. Progress through it is visible, to us and to the person making it, and SAIN’s job is to make each next step reachable, so that every step someone takes compounds into a more effective mission.",
+    "effort": "We are open about where our effort goes. SAIN builds the wide end: getting people in, teaching foundations, and scaffolding a first real contribution such as a supervised research project. At the narrow end we mainly connect and refer, with introductions and referral letters.",
+    "endings": "We designed the pipeline with many good endings. Someone who takes one course and returns to law, medicine or public administration carries that knowledge into their profession, and a society fluent in AI risk is an outcome we actively want.",
+    "soFar": "So far the pipeline has produced more than 100 course graduates across nine-plus cohorts, currently around 60 a year, and peer-reviewed research at NeurIPS and ICLR. The aim for mid-2027 is 250 or more graduates a year, reached by running the same standardised course in more cities.",
+    "cta": "Start with a free course",
+    "funnel": {
+      "course": "Take a free course, open to anyone",
+      "community": "Participate in SAIN's community",
+      "research": "Contribute and collaborate on research or projects",
+      "fellowship": "Undertake a fellowship or internship in AI safety",
+      "fullTime": "Work full-time in AI safety"
+    }
+  },
+  "record": {
+    "heading": "From one student group to a national foundation in three years.",
+    "entries": {
+      "founded": {
+        "title": "AISIG founded.",
+        "line": "The AI Safety Initiative Groningen starts as a student-led group teaching AI safety."
+      },
+      "beyondStudents": {
+        "title": "Beyond students.",
+        "line": "AISIG opens to professionals, runs multiple course cohorts, and hosts hackathons with Apart Research."
+      },
+      "topVenues": {
+        "title": "Research at top venues.",
+        "line": "Publications at NeurIPS and ICLR; the Project Hub launches, matching emerging researchers with PhD-level supervisors."
+      },
+      "national": {
+        "title": "Safe AI Netherlands.",
+        "line": "With Alexander as founder and Ana, Andreea, Tarteel, and Riccardo as co-founders, Safe AI Netherlands is born and becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure."
+      }
+    }
+  },
+  "team": {
+    "kicker": "The people behind it",
+    "heading": "A small leadership, close to the work.",
+    "intro": "SAIN is led by its national director and the heads of growth, operations and projects. The leadership takes the strategic decisions; the chapters run the courses, events and communities.",
+    "roles": {
+      "director": "Director SAIN",
+      "headOfGrowth": "Head of Growth SAIN",
+      "headOfOperations": "Head of Operations SAIN",
+      "headOfProjects": "Head of Projects SAIN",
+      "chapterDirectorGroningen": "Chapter Director, Groningen",
+      "chapterDirectorAmsterdam": "Chapter Director, Amsterdam",
+      "chapterDirectorUtrecht": "Chapter Director, Utrecht",
+      "entrepreneurialEcosystemDirector": "Director, The Entrepreneurial Ecosystem",
+      "aisigCofounder": "AI Researcher & Developer; Co-founder, AISIG"
+    },
+    "directors": {
+      "heading": "Chapter Directors",
+      "intro": "Each chapter is run by its own Chapter Director."
+    },
+    "advisory": {
+      "heading": "Advised by people already in the field.",
+      "intro": "An advisory board of experts in the Dutch AI safety landscape provides strategic guidance.",
+      "groups": {
+        "technical": "Technical AI safety",
+        "governance": "AI governance and policy",
+        "strategy": "Strategy and operations"
+      },
+      "affiliations": {
+        "teunVanDerWeij": "Research Scientist, Apollo Research; Co-founder, ENAIS",
+        "jesseHoogland": "Co-founder and Director, Resolution",
+        "nandiSchoots": "FLI Postdoctoral Fellow, University of Oxford",
+        "jelleDonders": "Strategic Advisor AI, Dutch Government",
+        "lisaGotoh": "Senior Policy Officer AI, Dutch Ministry of Foreign Affairs",
+        "robertPraas": "Data Scientist, CEPS",
+        "charbelSegerie": "Executive Director, CeSIA",
+        "jesselitJimenez": "Global Director Strategy and Transformation",
+        "stephenCorlett": "Brand Marketing Leader and Consultant"
+      }
+    },
+    "board": {
+      "heading": "Board",
+      "intro": "The board of Stichting Safe AI Netherlands."
+    },
+    "profile": "Profile (opens in a new tab)"
+  },
+  "documents": {
+    "heading": "The rules we hold ourselves to are public.",
+    "intro": "SAIN is a Dutch foundation, a stichting, the standard nonprofit legal form. The foundation holds the brand, the legal entity and the finances, so a local chapter never has to build those from scratch; chapters run their own courses, events and communities. Every programme is free. Three documents define how the whole thing works, and anyone can read them.",
+    "items": {
+      "vision": {
+        "eyebrow": "Where SAIN is going",
+        "title": "Vision",
+        "description": "SAIN's mission, national role, strategic pillars, and long-term ambition for AI safety in the Netherlands."
+      },
+      "theoryOfChange": {
+        "eyebrow": "How change happens",
+        "title": "Theory of Change",
+        "description": "Why we believe our work prepares the Netherlands for transformative AI: our causal argument, what we measure, and the assumptions we track."
+      },
+      "codeOfConduct": {
+        "eyebrow": "How we work together",
+        "title": "Code of Conduct",
+        "description": "Behavioral standards for everyone who takes part in SAIN activities, and how concerns are reported and handled."
+      }
+    },
+    "read": "Read document",
+    "contactNote": "Role addresses and chapter contacts live on one page, so they stay accurate.",
+    "contactLink": "Contact SAIN",
+    "chapterNote": "Want to bring SAIN to your city? Chapters adopt the brand, the legal umbrella and ready-made curricula instead of starting from scratch.",
+    "chapterLink": "Start a chapter"
+  },
+  "close": {
+    "heading": "The work is already happening. Join it, or help run it.",
+    "body": "Every programme is free, and all of it runs on people who show up.",
+    "community": "Visit the community"
+  },
+  "document": {
+    "back": "About SAIN",
+    "others": "The rest of what SAIN has written down."
+  }
+}
