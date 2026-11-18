@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 /**
  * The research hero drawing: fitting the curve.
  *
@@ -20,12 +22,13 @@
  * network of dots.
  */
 export default function FittingTheCurve() {
+  const t = useTranslations("projectHub.hero");
   return (
     <svg
       viewBox="0 0 720 500"
       fill="none"
       role="img"
-      aria-label="A scatter of observations on a plot. Two researchers, one seated and one standing and pointing, fit a single line through it; the fitted line rises clear of the scatter in orange and runs onto a pinned printed page, whose figure repeats the same line."
+      aria-label={t("illustration")}
       className="h-auto w-full max-w-[560px]"
     >
       {/* Axes and ticks. Faint: the plot is the ground the work happens on. */}

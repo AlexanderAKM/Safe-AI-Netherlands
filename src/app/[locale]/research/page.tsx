@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import ClientMessages from "@/i18n/ClientMessages";
 import { localeAlternates } from "@/i18n/metadata";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen } from "@phosphor-icons/react/dist/ssr";
 
 import Reveal from "@/components/landing/Reveal";
@@ -27,41 +29,27 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "projectHub.metadata" });
   return {
-    title: "Project hub",
-    description:
-      "The SAIN Project Hub matches you with an experienced supervisor, arranges compute, and takes a project from open question to published finding. Voluntary, remote-friendly, and open for applications at any time.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/research" }),
   };
 }
 
+/* The subject stays English in every language: it is what the projects
+   team's inbox sees, not page text. */
 const PROJECTS_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
   "Project Hub: question",
 )}`;
 
 /* The three doors into a project. All three are normal, so all three are set
-   the same way: no track is styled as the real one. */
-const projectRoutes = [
-  {
-    lead: "Join a supervisor's project.",
-    body: "Every project a SAIN supervisor has offered is listed at the top of this page. Find one that fits your background and register your interest; the projects team introduces you to the supervisor.",
-  },
-  {
-    lead: "Join an open collaboration.",
-    body: "Some projects run without formal supervision. One person leads, usually whoever designed the project, and SAIN connects collaborators and supports the work.",
-  },
-  {
-    lead: "Bring your own idea.",
-    body: "Write a short proposal: the question, why it matters, how you would test it, and what you need. SAIN's Project Team reviews it, and can help you shape it if it is not fully formed yet.",
-  },
-];
+   the same way: no track is styled as the real one. Their words are under
+   process.choose.routes in messages/<locale>/projectHub.json. */
+const projectRoutes = ["supervisor", "open", "own"] as const;
 
-const eligibility = [
-  "Students at Bachelor, Master, or PhD level",
-  "Researchers, and people working in industry",
-  "Policy professionals",
-  "People with no formal affiliation",
-];
+/* Who the hub is open to, under eligibility.groups. */
+const eligibility = ["students", "researchers", "policy", "unaffiliated"] as const;
 
 function InverseLink({ href, children, external = false }: {
   href: string;
@@ -122,6 +110,8 @@ export default function ResearchPage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("projectHub");
+  const tA11y = useTranslations("common.a11y");
   return (
     <>
       {/* Hero. The claim on the left, the argument of the page drawn on the
@@ -163,12 +153,10 @@ export default function ResearchPage({
         <div className="shell band-hero grid min-h-[60dvh] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] xl:grid-cols-[minmax(0,700px)_minmax(0,1fr)]">
           <Reveal hero className="flex min-w-0 flex-col gap-6">
             <h1 id="research-hero-heading" className="font-serif text-display text-navy">
-              Make a first real contribution to AI Safety
+              {t("hero.heading")}
             </h1>
             <p className="max-w-[620px] font-sans text-body text-navy/72">
-              The SAIN Project Hub matches you with an experienced supervisor, arranges compute,
-              and takes a project from open question to published finding. It is voluntary,
-              remote-friendly, and open for applications at any time.
+              {t("hero.intro")}
             </p>
             {/* Three ways on, in order of weight: apply (the one orange
                 button), read how the hub works (an outline button, so the
@@ -176,23 +164,25 @@ export default function ResearchPage({
                 link down to the projects. */}
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-1">
               <Link href={APPLY_PATH} className="btn-accent gap-2">
-                Apply for a project
+                {t("actions.applyForProject")}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
               <Link href="/research/handbook" className="btn-outline-ink gap-2">
                 <BookOpen size={18} weight="regular" aria-hidden="true" />
-                Read the handbook
+                {t("hero.readHandbook")}
               </Link>
               <Link
                 href="#projects"
                 className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Browse open projects
+                {t("actions.browseProjects")}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
 
-            <HeroFacts />
+            <ClientMessages namespaces={["projectHub.facts"]}>
+              <HeroFacts />
+            </ClientMessages>
           </Reveal>
 
           <Reveal hero delay={0.08} className="flex min-w-0 items-center justify-center lg:justify-end">
@@ -214,23 +204,30 @@ export default function ResearchPage({
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             <div className="flex max-w-[760px] flex-col gap-4">
               <h2 id="projects-heading" className="font-serif text-heading text-navy">
-                Find a project, then join it
+                {t("projects.heading")}
               </h2>
               <p className="font-sans text-body text-navy/74">
-                Every project SAIN supervisors have on offer, kept up to date by the projects team.
-                One application form covers all of them: name up to three projects in it,
-                and the projects team will introduce you to the supervisors within a working week.
-                A VU or UvA thesis counts towards a degree there, so it is for that
-                university&rsquo;s students; every other project is open to anyone with the right
-                background.
+                {t("projects.intro")}
               </p>
             </div>
             <Link href={APPLY_PATH} className="btn-accent shrink-0 gap-2 self-start lg:self-center">
-              Apply for a project
+              {t("actions.applyForProject")}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
           </div>
-          <ProjectFinder />
+          {/* Both lists are here, as either can show: the tracker, or the
+              hand-kept cards when it cannot be loaded. */}
+          <ClientMessages
+            namespaces={[
+              "projectHub.finder",
+              "projectHub.tracker",
+              "projectHub.browser",
+              "projectHub.availability",
+              "common.a11y",
+            ]}
+          >
+            <ProjectFinder />
+          </ClientMessages>
         </div>
       </section>
 
@@ -247,42 +244,36 @@ export default function ResearchPage({
             id="eligibility-heading"
             className="max-w-[420px] font-serif text-heading-sm text-navy lg:w-[360px] lg:shrink-0"
           >
-            You do not need a university post to do this work
+            {t("eligibility.heading")}
           </h2>
 
           <div className="flex min-w-0 max-w-[720px] flex-col gap-5">
             <p className="font-sans text-body text-navy/74">
-              SAIN&rsquo;s offer is one line: bring your expertise to AI Safety, and the community,
-              supervision, and support are here to take it further. The rest of this page is the
-              mechanism behind that line: how a project is chosen, what support looks like week to
-              week, and where the work ends up.
+              {t("eligibility.offer")}
             </p>
 
             <div>
               <p className="font-sans text-body text-navy/74">
-                The hub is open to anyone with sufficient background:
+                {t("eligibility.openTo")}
               </p>
               {/* The landing's dash list rather than hairline rows: four
                   short items do not need a table, and the rules were reading
                   as a form inside a reading column. */}
               <ul role="list" className="mt-4 flex flex-col gap-2.5">
-                {eligibility.map((item) => (
-                  <li key={item} className="flex items-center gap-3 font-sans text-kicker-sm leading-[22px] text-navy">
+                {eligibility.map((group) => (
+                  <li key={group} className="flex items-center gap-3 font-sans text-kicker-sm leading-[22px] text-navy">
                     <span className="h-px w-4 shrink-0 bg-navy/30" aria-hidden="true" />
-                    {item}
+                    {t(`eligibility.groups.${group}`)}
                   </li>
                 ))}
               </ul>
             </div>
 
             <p className="font-sans text-body text-navy/74">
-              Remote participation works. Applications are rolling, so you can apply whenever you
-              are ready, and for supervised projects you hear back within a working week.
+              {t("eligibility.remote")}
             </p>
             <p className="font-sans text-body text-navy/74">
-              One thing the hub is not: a job. SAIN does not pay stipends or salaries;
-              participation is voluntary and educational. What SAIN does provide is supervision,
-              compute, coordination, and, within reason, help with conference travel.
+              {t("eligibility.notAJob")}
             </p>
           </div>
         </div>
@@ -294,24 +285,23 @@ export default function ResearchPage({
         <div className="shell band-research">
           <Reveal className="max-w-[760px]">
             <h2 id="process-heading" className="font-serif text-heading">
-              From open question to published finding
+              {t("process.heading")}
             </h2>
             <p className="mt-4 text-body text-white/75">
-              Every project in the hub moves through the same three steps. The handbook spells each
-              one out in full; this is the shape of it.
+              {t("process.intro")}
             </p>
           </Reveal>
 
           <Reveal delay={0.05}>
-          <ol role="list" aria-label="The three steps of a project" className="mt-12 md:mt-16">
-            <Step step="01" id="choose" title="Choose a project">
+          <ol role="list" aria-label={t("process.stepsLabel")} className="mt-12 md:mt-16">
+            <Step step="01" id="choose" title={t("process.choose.title")}>
               <p className="mt-5 max-w-[760px] text-body text-white/75">
-                There are three ways in, and all three are normal.
+                {t("process.choose.intro")}
               </p>
 
               <ol role="list" className="mt-6 max-w-[760px]">
                 {projectRoutes.map((route, i) => (
-                  <li key={route.lead} className="flex gap-3 border-t border-white/10 py-3.5">
+                  <li key={route} className="flex gap-3 border-t border-white/10 py-3.5">
                     <span
                       aria-hidden="true"
                       className="w-[22px] shrink-0 pt-1 font-sans text-footnote text-orange"
@@ -319,78 +309,62 @@ export default function ResearchPage({
                       {i + 1}
                     </span>
                     <p className="min-w-0 text-body text-white/75">
-                      <span className="font-serif text-title-sm text-white">{route.lead}</span>{" "}
-                      {route.body}
+                      {t.rich(`process.choose.routes.${route}`, {
+                        lead: (chunks) => (
+                          <span className="font-serif text-title-sm text-white">{chunks}</span>
+                        ),
+                      })}
                     </p>
                   </li>
                 ))}
               </ol>
 
               <p className="mt-7 max-w-[760px] text-body text-white/75">
-                Not every valuable contribution is a research paper: the work can be technical,
-                governance, policy, or conceptual. When choosing projects, the team looks at three
-                things: relevance to the Netherlands and Europe, relevance to transformative AI, and
-                whether it can succeed on a small budget. If you are unsure whether a topic counts as
-                AI Safety, the default answer is yes, provided you can articulate a plausible pathway
-                from the work to reducing risk from transformative AI.
+                {t("process.choose.criteria")}
               </p>
 
               <div className="mt-6">
-                <InverseLink href="/research/handbook">Read the Project Hub handbook</InverseLink>
+                <InverseLink href="/research/handbook">{t("actions.readProjectHubHandbook")}</InverseLink>
               </div>
             </Step>
 
-            <Step step="02" id="support" title="Work with support">
+            <Step step="02" id="support" title={t("process.support.title")}>
               <div className="mt-5 flex max-w-[760px] flex-col gap-4">
                 <p className="text-body text-white/75">
-                  Fill in the application form and, for supervised projects, you hear back within
-                  a working week. If there is a fit, a supervisor is formally assigned and the project
-                  gets its own channel in the community.
+                  {t("process.support.apply")}
                 </p>
                 <p className="text-body text-white/75">
-                  Supervision is a working relationship, not a lecture. You drive the day-to-day
-                  work; your supervisor helps scope the project realistically, reviews
-                  experiments and drafts, and steps in when a direction stops being productive.
-                  Meetings run weekly or biweekly, and you agree your commitment per project up
-                  front, whether that is five to ten hours a week alongside a degree or something
-                  closer to full time.
+                  {t("process.support.relationship")}
                 </p>
                 <p className="text-body text-white/75">
-                  Supervisors come from universities, industry, and government. In academia they
-                  are usually at PhD level or more senior; outside it, they have several years of
-                  senior experience in a relevant role. Compute is arranged per project at the start, and computationally inexpensive
-                  projects are encouraged. Remote participation works throughout.
+                  {t("process.support.supervisors")}
                 </p>
               </div>
 
               <div className="mt-6">
-                <InverseLink href="#supervisors">Meet the supervisors</InverseLink>
+                <InverseLink href="#supervisors">{t("process.support.meetSupervisors")}</InverseLink>
               </div>
             </Step>
 
-            <Step step="03" id="publish" title="Publish your findings">
+            <Step step="03" id="publish" title={t("process.publish.title")}>
               <div className="mt-5 flex max-w-[760px] flex-col gap-4">
                 <p className="text-body text-white/75">
-                  A project is complete when its main question is adequately answered, including
-                  when the answer is negative, and the result is published in a presentable form: a
-                  paper, a policy brief, an evaluation or open-source tool, or a blog post on
-                  SAIN&rsquo;s Substack or LessWrong. You get feedback on drafts, and SAIN may help with conference travel
-                  within reason.
+                  {t("process.publish.complete")}
                 </p>
                 <p className="text-body text-white/75">
-                  That is not hypothetical. Work from this community has been accepted at workshops
-                  at NeurIPS and ICLR, which is where most first contributions in this field land.
+                  {t("process.publish.proof")}
                 </p>
               </div>
 
               <FeaturedPublications />
 
               {/* The full record. The landing and the handbook both deep-link
-                  to #publications, so the id belongs on the list itself. */}
+                  to #publications, so the id belongs on the list itself.
+                  Venues and titles are the papers' own, in English. */}
               <ul
                 role="list"
                 id="publications"
-                aria-label="All publications from the SAIN community"
+                aria-label={t("process.publish.allPublications")}
                 className="research-publications mt-10 grid scroll-mt-36 gap-3 sm:grid-cols-2 xl:grid-cols-3"
               >
                 {publications.map((paper) => {
@@ -398,11 +372,11 @@ export default function ResearchPage({
                      paper without a PDF here still goes to its source. */
                   const chip = (
                     <>
-                      <span className="w-[118px] shrink-0 font-sans text-footnote font-medium text-orange md:w-[136px]">
+                      <span lang="en" className="w-[118px] shrink-0 font-sans text-footnote font-medium text-orange md:w-[136px]">
                         {paper.venueShort}
                       </span>
                       <span className="min-w-0 font-serif text-kicker-sm text-white">
-                        {paper.chipTitle}
+                        <span lang="en">{paper.chipTitle}</span>
                         {paper.reader ? (
                           <ArrowRight
                             size={14}
@@ -418,7 +392,7 @@ export default function ResearchPage({
                               aria-hidden="true"
                               className="ml-1 inline-block shrink-0 align-[-2px] text-white/70"
                             />
-                            <span className="sr-only"> (opens in a new tab)</span>
+                            <span className="sr-only"> {tA11y("opensInNewTab")}</span>
                           </>
                         )}
                       </span>
@@ -462,12 +436,10 @@ export default function ResearchPage({
           <Reveal className="flex flex-col gap-10">
             <div className="flex flex-col gap-4">
               <h2 id="supervisors-heading" className="max-w-[620px] font-serif text-heading-sm text-navy">
-                The people you would work with
+                {t("supervisors.heading")}
               </h2>
               <p className="max-w-[720px] font-sans text-body text-navy/74">
-                Every supervisor keeps a public agenda of the projects they would like to supervise.
-                Read it before you apply: the strongest expressions of interest respond to a
-                question a supervisor has already posed.
+                {t("supervisors.intro")}
               </p>
             </div>
 
@@ -479,15 +451,9 @@ export default function ResearchPage({
                 sentence that argues for it. The eligibility band already runs
                 the heading-left, copy-right split, and the page uses it once. */}
             <div className="flex max-w-[720px] flex-col items-start gap-5 border-t border-navy/14 pt-8">
-              <h3 className="font-serif text-title text-navy">Supervise the next project</h3>
+              <h3 className="font-serif text-title text-navy">{t("supervisors.supervise.heading")}</h3>
               <p className="font-sans text-body text-navy/74">
-                If you have substantial experience in a relevant field, usually PhD level or above in
-                academia or several years in a senior role in industry or policy, and the work above
-                looks like something you could guide, more supervisors means more projects. You do
-                not need to be an AI Safety expert already. Supervision is remote-friendly, meetings
-                run at a cadence you agree per project, and the Project Team handles the
-                coordination around you. Fill in the
-                supervisor form and we will follow up with next steps.
+                {t("supervisors.supervise.body")}
               </p>
               <a
                 href={SUPERVISOR_INTEREST_FORM_URL}
@@ -495,9 +461,9 @@ export default function ResearchPage({
                 rel="noopener noreferrer"
                 className="btn-outline-ink mt-1 gap-2"
               >
-                Become a supervisor
+                {t("actions.becomeSupervisor")}
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                <span className="sr-only"> (opens in a new tab)</span>
+                <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
             </div>
           </Reveal>
@@ -510,33 +476,34 @@ export default function ResearchPage({
         <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
           <div className="min-w-0">
             <h2 id="apply-heading" className="max-w-[620px] font-serif text-closing text-white">
-              Apply whenever you are ready
+              {t("close.heading")}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              Applications are rolling, and for supervised projects you hear back within a working
-              week. Fill in the application form, or email the projects team if you are not sure
-              where you fit and we will help route you.
+              {t("close.body")}
             </p>
           </div>
 
           <div className="flex flex-col gap-5 lg:shrink-0">
             <div className="flex flex-wrap gap-3">
               <Link href={APPLY_PATH} className="btn-accent gap-2">
-                Apply for a project
+                {t("actions.applyForProject")}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
               <a href={PROJECTS_MAILTO} className="btn-ghost-inverse">
-                Email the projects team
+                {t("actions.emailProjectsTeam")}
               </a>
             </div>
             <p className="max-w-[420px] font-sans text-footnote leading-[19px] text-white/60">
-              The full process, expectations, and norms are written down.{" "}
-              <Link
-                href="/research/handbook"
-                className="text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white"
-              >
-                Read the Project Hub handbook
-              </Link>
+              {t.rich("close.handbookNote", {
+                link: (chunks) => (
+                  <Link
+                    href="/research/handbook"
+                    className="text-white/80 underline decoration-white/35 underline-offset-4 hover:text-white focus-visible:text-white"
+                  >
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
           </div>
         </div>

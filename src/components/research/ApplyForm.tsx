@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { useLiveTracker } from "@/components/research/useLiveTracker";
 import { RESEARCH_INTEREST_FORM_URL } from "@/data/research";
@@ -16,11 +17,16 @@ import { RESEARCH_INTEREST_FORM_URL } from "@/data/research";
    knows what to pick.
 
    The page is static, so the parameter is read in the browser, and the frame
-   reloads once with it. */
+   reloads once with it.
+
+   Its words are projectHub.applyForm, which the page hands it through
+   <ClientMessages>. The project's title is Airtable's, in English; the form
+   is Fillout's, in English too. */
 
 const RECORD_ID = /^rec[A-Za-z0-9]{14}$/;
 
 export default function ApplyForm({ linkClass }: { linkClass: string }) {
+  const t = useTranslations("projectHub.applyForm");
   const [projectId, setProjectId] = useState<string>();
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("project") ?? "";
@@ -34,33 +40,35 @@ export default function ApplyForm({ linkClass }: { linkClass: string }) {
     <>
       {project && (
         <div className="mb-6 border-l-2 border-orange bg-cream px-5 py-4 md:px-6">
-          <p className="font-sans text-footnote text-navy/60">Applying for</p>
-          <p className="mt-1 font-serif text-title-sm text-navy">{project.title}</p>
+          <p className="font-sans text-footnote text-navy/60">{t("applyingFor")}</p>
+          <p lang="en" className="mt-1 font-serif text-title-sm text-navy">{project.title}</p>
           {project.supervisor && <p className="mt-1 text-caption text-navy/65">{project.supervisor}</p>}
           <p className="mt-3 max-w-copy font-sans text-footnote leading-[19px] text-navy/70">
-            Make sure it is selected when the form asks which projects you would like to join. You can
-            add up to two more.
+            {t("selectHint")}
           </p>
         </div>
       )}
       <div className="border border-navy/12">
         <iframe
           src={formUrl}
-          title="SAIN Project Hub application form"
+          title={t("frameTitle")}
           className="block h-[calc(100dvh-140px)] min-h-[640px] w-full bg-white"
         />
       </div>
       <p className="mt-4 font-sans text-footnote text-navy/60">
-        Form not showing?{" "}
-        <a
-          href={formUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`inline-flex items-baseline gap-1 ${linkClass}`}
-        >
-          Open it in a new tab
-          <ArrowUpRight size={13} weight="regular" aria-hidden="true" className="translate-y-[1px]" />
-        </a>
+        {t.rich("notShowing", {
+          link: (chunks) => (
+            <a
+              href={formUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-baseline gap-1 ${linkClass}`}
+            >
+              {chunks}
+              <ArrowUpRight size={13} weight="regular" aria-hidden="true" className="translate-y-[1px]" />
+            </a>
+          ),
+        })}
       </p>
     </>
   );
