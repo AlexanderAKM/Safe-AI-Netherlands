@@ -223,8 +223,10 @@ export default function RoleDisclosure({
               than promising what the form will already have done for them: the
               pre-fill entry ids in openPositions.ts are still unverified, and
               Google drops entry keys it does not recognise without a word. The
-              option it names is the form's own (English) text in every
-              language; the role is named as the card names it. */}
+              form is in English, so the option it names is English in every
+              language: the catch-all option, the broader role's option, or the
+              role's own title, which matches the form while job titles stay
+              in English (messages/GLOSSARY.md). */}
           {applyUrlOverride ? null : (
             <p className="max-w-[400px] font-sans text-footnote text-navy/65">
               {role.formRoleValue === OPEN_POSITION_FORM_VALUE
@@ -237,7 +239,7 @@ export default function RoleDisclosure({
                       option: role.specialisationOf,
                       title,
                     })
-                  : t("hints.shared", { option: role.formRoleValue })}
+                  : t("hints.shared", { option: title })}
             </p>
           )}
         </div>
