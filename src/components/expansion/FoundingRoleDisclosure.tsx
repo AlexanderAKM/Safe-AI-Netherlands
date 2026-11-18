@@ -1,3 +1,4 @@
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowUpRight,
   CalendarBlank,
@@ -13,9 +14,11 @@ import RuleList from "@/components/careers/RuleList";
 import OutlineRows from "@/components/careers/OutlineRows";
 import {
   buildFoundingApplicationUrl,
+  FOUNDING_LOGISTICS,
   type FoundingRole,
   type FoundingRoleTeam,
 } from "@/data/newChapters";
+import { localizePath, type Locale } from "@/i18n/routing";
 
 /* The career row from design.md, grown to carry a full posting: the summary
    row is the same hairline, orange stroke icon and serif title as
@@ -34,7 +37,13 @@ function PanelLabel({ children }: { children: ReactNode }) {
 }
 
 export default function FoundingRoleDisclosure({ role }: { role: FoundingRole }) {
+  const t = useTranslations("newChapters.roleCard");
+  const tRole = useTranslations(`newChapters.foundingRoles.${role.id}`);
+  const tA11y = useTranslations("common.a11y");
+  const locale = useLocale() as Locale;
   const TeamIcon = TEAM_ICON[role.team];
+  const title = tRole("title");
+  const tList = (key: string) => tRole.raw(key) as string[];
 
   return (
     <details id={role.id} className="group scroll-mt-36 border-t border-navy/10">
@@ -47,13 +56,13 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
         />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-            <h3 className="font-serif text-title text-navy">{role.title}</h3>
+            <h3 className="font-serif text-title text-navy">{title}</h3>
             <span className="border border-navy/16 px-2 py-[3px] font-sans text-footnote text-orange-ink">
-              Paid · Part-time
+              {t("badge")}
             </span>
           </div>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
-            {role.summary} {role.hours}.
+            {tRole("summary")} {tRole("hours", { term: t("term") })}
           </p>
         </div>
         <CaretDown
@@ -66,7 +75,7 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
 
       <div className="pb-10 sm:pl-[46px]">
         <div className="flex max-w-[760px] flex-col gap-4">
-          {role.about.map((paragraph) => (
+          {tList("about").map((paragraph) => (
             <p key={paragraph.slice(0, 32)} className="font-sans text-body text-navy/74">
               {paragraph}
             </p>
@@ -76,32 +85,38 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-14">
           <div className="flex flex-col gap-8">
             <div>
-              <PanelLabel>In your first months you will</PanelLabel>
-              <OutlineRows items={role.firstMonths} />
+              <PanelLabel>{t("panels.firstMonths")}</PanelLabel>
+              <OutlineRows items={tList("firstMonths")} />
             </div>
             <div>
-              <PanelLabel>Responsibilities</PanelLabel>
-              <RuleList items={role.responsibilities} />
+              <PanelLabel>{t("panels.responsibilities")}</PanelLabel>
+              <RuleList items={tList("responsibilities")} />
             </div>
             <div>
-              <PanelLabel>You may be a good fit if you</PanelLabel>
-              <RuleList items={role.goodFitIf} />
+              <PanelLabel>{t("panels.goodFitIf")}</PanelLabel>
+              <RuleList items={tList("goodFitIf")} />
             </div>
             <div>
-              <PanelLabel>Strong candidates may also have</PanelLabel>
-              <RuleList items={role.alsoStrong} />
+              <PanelLabel>{t("panels.alsoStrong")}</PanelLabel>
+              <RuleList items={tList("alsoStrong")} />
             </div>
           </div>
 
           {/* The terms stay in view while the long left column scrolls past. */}
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <PanelLabel>Logistics</PanelLabel>
+            <PanelLabel>{t("panels.logistics")}</PanelLabel>
             <dl className="flex flex-col">
-              {role.logistics.map(([term, value]) => (
-                <div key={term} className="border-t border-navy/10 py-3 last:border-b">
-                  <dt className="font-sans text-label text-navy">{term}</dt>
+              {FOUNDING_LOGISTICS.map(({ id, shared }) => (
+                <div key={id} className="border-t border-navy/10 py-3 last:border-b">
+                  <dt className="font-sans text-label text-navy">
+                    {t(`logistics.terms.${id}`)}
+                  </dt>
                   <dd className="mt-0.5 font-sans text-caption leading-[20px] text-navy/72">
-                    {value}
+                    {shared
+                      ? t(`logistics.${id}`)
+                      : tRole(`logistics.${id}`, {
+                          flexible: t("logistics.flexible"),
+                        })}
                   </dd>
                 </div>
               ))}
@@ -111,18 +126,20 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
 
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
           <a
-            href={buildFoundingApplicationUrl({ role: role.formValue })}
+            href={localizePath(
+              buildFoundingApplicationUrl({ role: role.formValue }),
+              locale,
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-accent gap-2"
           >
-            Apply as {role.formValue}
+            {t("applyAs", { role: title })}
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {tA11y("opensInNewTab")}</span>
           </a>
           <p className="max-w-[420px] font-sans text-footnote text-navy/65">
-            One form for all four roles and all three cities. You can apply for
-            more than one role.
+            {t("oneForm")}
           </p>
         </div>
       </div>
