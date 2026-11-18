@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   ArrowUpRight,
   CalendarBlank,
@@ -37,6 +38,12 @@ const TEAM_ICON: Record<Team, Icon> = {
   research: Flask,
 };
 
+/* The rows a role's background and terms can have, in card order. The words
+   are the role's messages (openPositions.roles.<id>); a background row the
+   role leaves out is left off the card. */
+const BACKGROUND_ROWS = ["field", "level", "experience", "softSkills"] as const;
+const TERMS = ["salary", "contract", "location", "startDate"] as const;
+
 function PanelLabel({ children }: { children: ReactNode }) {
   return (
     <h4 className="kicker mb-3 text-kicker-sm text-navy/65">{children}</h4>
@@ -54,24 +61,26 @@ export default function RoleDisclosure({
   chapterSlug?: string;
   applyUrl?: string;
 }) {
+  const t = useTranslations("openPositions.roleCard");
+  const tRole = useTranslations(`openPositions.roles.${role.id}`);
+  const tA11y = useTranslations("common.a11y");
   const applyUrl =
     applyUrlOverride ??
     buildApplicationUrl({
       chapter: chapterSlug,
-      role: role.formRoleValue ?? role.title,
+      role: role.formRoleValue,
     });
   const TeamIcon = TEAM_ICON[role.team];
-  const background = role.preferredBackground;
-  const backgroundRows: Array<[string, string]> = background
-    ? (
-        [
-          ["Field", background.field],
-          ["Level", background.level],
-          ["Experience", background.experience],
-          ["Soft skills", background.softSkills],
-        ] as Array<[string, string | undefined]>
-      ).filter((row): row is [string, string] => Boolean(row[1]))
-    : [];
+  const title = tRole("title");
+  /** One of the role's lists, or none if its messages leave it out. */
+  const tList = (key: string): string[] =>
+    tRole.has(key) ? (tRole.raw(key) as string[]) : [];
+  const goodFitIf = tList("goodFitIf");
+  const alsoStrong = tList("alsoStrong");
+  const applicationProcess = tList("applicationProcess");
+  const backgroundRows = BACKGROUND_ROWS.filter((row) =>
+    tRole.has(`background.${row}`),
+  );
 
   return (
     <details className="group border-t border-navy/10">
@@ -84,20 +93,23 @@ export default function RoleDisclosure({
         />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-            <h3 className="font-serif text-title-sm text-navy">{role.title}</h3>
+            <h3 className="font-serif text-title-sm text-navy">{title}</h3>
             {role.employment ? (
               <span className="border border-navy/16 px-2 py-[3px] font-sans text-footnote text-orange-ink">
-                {role.employment.badge}
+                {t(`badges.${role.employment.badge}`)}
               </span>
             ) : null}
             {role.commitmentBadge ? (
               <span className="border border-navy/16 px-2 py-[3px] font-sans text-footnote text-navy/70">
-                {role.commitmentBadge}
+                {t(`badges.${role.commitmentBadge}`)}
               </span>
             ) : null}
           </div>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
-            {role.timeCommitment}. Reports to the {role.reportsTo}.
+            {t("summary", {
+              time: tRole("timeCommitment"),
+              reportsTo: tRole("reportsTo"),
+            })}
           </p>
         </div>
         <CaretDown
@@ -110,7 +122,7 @@ export default function RoleDisclosure({
 
       <div className="pb-9 sm:pl-[46px]">
         <p className="max-w-[760px] font-sans text-body text-navy/74">
-          {role.mission}
+          {tRole("mission")}
         </p>
         {note ? (
           <p className="mt-3 max-w-[760px] font-sans text-caption text-navy/65">
@@ -121,19 +133,19 @@ export default function RoleDisclosure({
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12">
           <div className="flex flex-col gap-7">
             <div>
-              <PanelLabel>What you would do</PanelLabel>
-              <RuleList items={role.responsibilities} />
+              <PanelLabel>{t("panels.responsibilities")}</PanelLabel>
+              <RuleList items={tList("responsibilities")} />
             </div>
-            {role.goodFitIf?.length ? (
+            {goodFitIf.length ? (
               <div>
-                <PanelLabel>You may be a good fit if you</PanelLabel>
-                <RuleList items={role.goodFitIf} />
+                <PanelLabel>{t("panels.goodFitIf")}</PanelLabel>
+                <RuleList items={goodFitIf} />
               </div>
             ) : null}
-            {role.alsoStrong?.length ? (
+            {alsoStrong.length ? (
               <div>
-                <PanelLabel>Strong candidates may also have</PanelLabel>
-                <RuleList items={role.alsoStrong} />
+                <PanelLabel>{t("panels.alsoStrong")}</PanelLabel>
+                <RuleList items={alsoStrong} />
               </div>
             ) : null}
           </div>
@@ -141,13 +153,15 @@ export default function RoleDisclosure({
           <div className="flex flex-col gap-7">
             {backgroundRows.length ? (
               <div>
-                <PanelLabel>Preferred background</PanelLabel>
+                <PanelLabel>{t("panels.background")}</PanelLabel>
                 <dl className="flex flex-col gap-3">
-                  {backgroundRows.map(([term, value]) => (
-                    <div key={term}>
-                      <dt className="font-sans text-label text-navy">{term}</dt>
+                  {backgroundRows.map((row) => (
+                    <div key={row}>
+                      <dt className="font-sans text-label text-navy">
+                        {t(`background.${row}`)}
+                      </dt>
                       <dd className="mt-0.5 font-sans text-caption leading-[20px] text-navy/72">
-                        {value}
+                        {tRole(`background.${row}`)}
                       </dd>
                     </div>
                   ))}
@@ -156,32 +170,29 @@ export default function RoleDisclosure({
             ) : null}
             {role.employment ? (
               <div>
-                <PanelLabel>Terms</PanelLabel>
+                <PanelLabel>{t("panels.terms")}</PanelLabel>
                 <dl className="flex flex-col gap-3">
-                  {[
-                    ["Salary", role.employment.salary],
-                    ["Contract", role.employment.contract],
-                    ["Location", role.employment.location],
-                    ["Start date", role.employment.startDate],
-                  ].map(([term, value]) => (
+                  {TERMS.map((term) => (
                     <div key={term}>
-                      <dt className="font-sans text-label text-navy">{term}</dt>
+                      <dt className="font-sans text-label text-navy">
+                        {t(`terms.${term}`)}
+                      </dt>
                       <dd className="mt-0.5 font-sans text-caption leading-[20px] text-navy/72">
-                        {value}
+                        {tRole(`employment.${term}`)}
                       </dd>
                     </div>
                   ))}
                 </dl>
                 <div className="mt-6">
-                  <PanelLabel>What SAIN offers</PanelLabel>
-                  <RuleList items={role.employment.benefits} />
+                  <PanelLabel>{t("panels.benefits")}</PanelLabel>
+                  <RuleList items={tList("employment.benefits")} />
                 </div>
               </div>
             ) : null}
             <div>
-              <PanelLabel>Who you would work with</PanelLabel>
+              <PanelLabel>{t("panels.collaborations")}</PanelLabel>
               <p className="font-sans text-caption leading-[20px] text-navy/72">
-                {role.collaborations}
+                {tRole("collaborations")}
               </p>
             </div>
           </div>
@@ -190,10 +201,10 @@ export default function RoleDisclosure({
         {/* One rule above the stages, none between them: the numbers carry the
             order, and the rule marks where the role ends and the process
             starts. */}
-        {role.applicationProcess?.length ? (
+        {applicationProcess.length ? (
           <div className="mt-8 max-w-[760px] border-t border-navy/14 pt-7">
-            <PanelLabel>How this role is filled</PanelLabel>
-            <OutlineRows items={role.applicationProcess} rules={false} />
+            <PanelLabel>{t("panels.applicationProcess")}</PanelLabel>
+            <OutlineRows items={applicationProcess} rules={false} />
           </div>
         ) : null}
 
@@ -204,21 +215,31 @@ export default function RoleDisclosure({
             rel="noopener noreferrer"
             className="btn-accent gap-2"
           >
-            Apply for this role
+            {t("apply")}
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {tA11y("opensInNewTab")}</span>
           </a>
           {/* The footnote tells the applicant what to do in the form rather
               than promising what the form will already have done for them: the
               pre-fill entry ids in openPositions.ts are still unverified, and
-              Google drops entry keys it does not recognise without a word. */}
+              Google drops entry keys it does not recognise without a word. The
+              form is in English, so the option it names is English in every
+              language: the catch-all option, the broader role's option, or the
+              role's own title, which matches the form while job titles stay
+              in English (messages/GLOSSARY.md). */}
           {applyUrlOverride ? null : (
             <p className="max-w-[400px] font-sans text-footnote text-navy/65">
               {role.formRoleValue === OPEN_POSITION_FORM_VALUE
-                ? `The form has no option for this role yet. Choose "${OPEN_POSITION_FORM_VALUE}" there and name "${role.title}" in your motivation letter.`
+                ? t("hints.openPosition", {
+                    option: OPEN_POSITION_FORM_VALUE,
+                    title,
+                  })
                 : role.specialisationOf
-                  ? `Applies through the form's "${role.specialisationOf}" option. Mention "${role.title}" in your motivation letter.`
-                  : `Opens the shared application form. Choose "${role.title}" there.`}
+                  ? t("hints.specialisation", {
+                      option: role.specialisationOf,
+                      title,
+                    })
+                  : t("hints.shared", { option: title })}
             </p>
           )}
         </div>
