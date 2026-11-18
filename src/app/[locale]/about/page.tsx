@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localeAlternates } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 import Portrait from "@/components/about/Portrait";
@@ -18,10 +19,10 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const { locale } = params;
+  const t = await getTranslations({ locale, namespace: "about.metadata" });
   return {
-    title: "About",
-    description:
-      "Stichting Safe AI Netherlands develops the talent the Netherlands needs to address the risks of transformative AI. The talent pipeline, the foundation documents, and the people who run it.",
+    title: t("title"),
+    description: t("description"),
     alternates: localeAlternates({ locale, path: "/about" }),
   };
 }
@@ -29,72 +30,74 @@ export async function generateMetadata({
 /* The advisory board is not in src/data yet, so it stays here, where the page
    that prints it can be read alongside it. Affiliations are printed exactly as
    given: no gloss on what Resolution or CeSIA are, because nothing in the
-   sources says. */
+   sources says. The group names and the affiliations are text, so they are in
+   messages/<locale>/about.json, under team.advisory.groups.<id> and
+   team.advisory.affiliations.<id>. */
 const advisoryGroups = [
   {
-    label: "Technical AI safety",
+    id: "technical",
     members: [
       {
+        id: "teunVanDerWeij",
         name: "Teun van der Weij",
-        affiliation: "Research Scientist, Apollo Research; Co-founder, ENAIS",
         link: "https://teunvanderweij.com/",
         image: "/photos/advisory_board/Teun.jpg",
       },
       {
+        id: "jesseHoogland",
         name: "Jesse Hoogland",
-        affiliation: "Co-founder and Director, Resolution",
         link: "https://www.jessehoogland.com/",
         image: "/photos/advisory_board/Jesse.jpg",
       },
       {
+        id: "nandiSchoots",
         name: "Nandi Schoots",
-        affiliation: "FLI Postdoctoral Fellow, University of Oxford",
         link: "https://nandischoots.com/",
         image: "/photos/advisory_board/nandi.jpg",
       },
     ],
   },
   {
-    label: "AI governance and policy",
+    id: "governance",
     members: [
       {
+        id: "jelleDonders",
         name: "Jelle Donders",
-        affiliation: "Strategic Advisor AI, Dutch Government",
         link: "https://www.linkedin.com/in/jelle-donders/",
         image: "/photos/advisory_board/Jelle.jpeg",
       },
       {
+        id: "lisaGotoh",
         name: "Lisa Gotoh",
-        affiliation: "Senior Policy Officer AI, Dutch Ministry of Foreign Affairs",
         link: "https://www.linkedin.com/in/lisa-gotoh/",
         image: "/photos/advisory_board/lisa_gotoh_revised.jpeg",
       },
       {
+        id: "robertPraas",
         name: "Robert Praas",
-        affiliation: "Data Scientist, CEPS",
         link: "https://www.ceps.eu/ceps-staff/robert-praas/",
         image: "/photos/advisory_board/Robert_Praasjpeg.jpeg",
       },
       {
+        id: "charbelSegerie",
         name: "Charbel-Raphaël Segerie",
-        affiliation: "Executive Director, CeSIA",
         link: "https://crsegerie.com/",
         image: "/photos/advisory_board/charbel.png",
       },
     ],
   },
   {
-    label: "Strategy and operations",
+    id: "strategy",
     members: [
       {
+        id: "jesselitJimenez",
         name: "Jesselit Jimenez",
-        affiliation: "Global Director Strategy and Transformation",
         link: "https://www.linkedin.com/in/jesselit-jimenez-65b0b891/",
         image: "/photos/advisory_board/Video_Jesselit_039_close-up.jpg",
       },
       {
+        id: "stephenCorlett",
         name: "Stephen Corlett",
-        affiliation: "Brand Marketing Leader and Consultant",
         link: "https://www.linkedin.com/in/stephen-corlett-8b361731/",
         image: "/photos/advisory_board/Stephen_Corlett.jpg",
       },
@@ -103,28 +106,13 @@ const advisoryGroups = [
 ];
 
 /* The record, as claims rather than labels. "Rapid growth" and "National
-   recognition" named the shape of a year without saying what happened in it. */
+   recognition" named the shape of a year without saying what happened in it.
+   Each year's title and line are under record.entries.<id>. */
 const record = [
-  {
-    year: "2023",
-    title: "AISIG founded.",
-    line: "The AI Safety Initiative Groningen starts as a student-led group teaching AI safety.",
-  },
-  {
-    year: "2024",
-    title: "Beyond students.",
-    line: "AISIG opens to professionals, runs multiple course cohorts, and hosts hackathons with Apart Research.",
-  },
-  {
-    year: "2025",
-    title: "Research at top venues.",
-    line: "Publications at NeurIPS and ICLR; the Project Hub launches, matching emerging researchers with PhD-level supervisors.",
-  },
-  {
-    year: "2026",
-    title: "Safe AI Netherlands.",
-    line: "With Alexander as founder and Ana, Andreea, Tarteel, and Riccardo as co-founders, Safe AI Netherlands is born and becomes a national foundation, with chapters in Groningen, Amsterdam and Utrecht and one shared infrastructure.",
-  },
+  { year: "2023", id: "founded" },
+  { year: "2024", id: "beyondStudents" },
+  { year: "2025", id: "topVenues" },
+  { year: "2026", id: "national" },
 ];
 
 export default function AboutPage({
@@ -134,6 +122,8 @@ export default function AboutPage({
 }) {
   const { locale } = params;
   setRequestLocale(locale);
+  const t = useTranslations("about");
+  const tCommon = useTranslations("common");
   return (
     <>
       {/* The mission moment. No photograph, no second heading, no CTA: the
@@ -180,20 +170,15 @@ export default function AboutPage({
             {/* One clause per line, because the mission is three commitments
                 and not a paragraph. */}
             <h1 id="mission-heading" className="mt-5 max-w-[900px] font-serif text-display text-navy">
-              <span className="block">Develop the talent the Netherlands needs.</span>
-              <span className="block">Address the risks of transformative AI.</span>
-              <span className="block">Make a first real contribution possible.</span>
+              <span className="block">{t("hero.mission.talent")}</span>
+              <span className="block">{t("hero.mission.risks")}</span>
+              <span className="block">{t("hero.mission.contribution")}</span>
             </h1>
 
             <span className="mt-9 block h-px w-full max-w-[900px] bg-navy/14" aria-hidden="true" />
 
             <p className="mt-6 max-w-[760px] font-sans text-body text-navy/72">
-              That is the mission of Stichting Safe AI Netherlands. Transformative AI could reshape
-              the economy, science, and society on the scale of a major historical revolution;
-              whether that goes well is not decided yet. We are a national talent pipeline: local
-              chapters on shared infrastructure, from first contact through courses and the Project
-              Hub, with a handoff into the wider field. This page shows that path, what we have
-              written down, and the people who run it.
+              {t("hero.intro")}
             </p>
           </Reveal>
         </div>
@@ -214,27 +199,12 @@ export default function AboutPage({
         <div className="shell band-section">
           <Reveal className="flex flex-col">
             <h2 id="path-heading" className="max-w-[620px] font-serif text-heading text-navy">
-              The Netherlands has the talent. It lacked the path.
+              {t("path.heading")}
             </h2>
             <div className="mt-6 flex max-w-[720px] flex-col gap-5 font-sans text-body text-navy/72">
-              <p>
-                On the current trajectory, AI systems may soon do most economically and strategically
-                important cognitive work, including AI research itself. The critical question is not
-                only what AI will become, but whether enough people are ready to shape what happens
-                next. Right now, far too few are working on that problem.
-              </p>
-              <p>
-                Nobody can name the exact timeline, and we will not pretend to. Readiness is not
-                something the Netherlands has by default. It is something people build, while
-                European institutions are staffing their AI safety functions in the next few years.
-              </p>
-              <p>
-                The Netherlands has world-class universities, ASML at the centre of the global
-                semiconductor supply chain, proximity to Brussels, and emerging AI safety groups.
-                What it lacked was a unified civil-society voice and a clear path from interest to
-                capability to meaningful contribution. SAIN was created to close that gap. We develop
-                the people; the field puts them to work.
-              </p>
+              <p>{t("path.trajectory")}</p>
+              <p>{t("path.readiness")}</p>
+              <p>{t("path.gap")}</p>
             </div>
           </Reveal>
         </div>
@@ -251,43 +221,23 @@ export default function AboutPage({
         <div className="shell band-section grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,436px)] lg:gap-16">
           <Reveal className="flex min-w-0 flex-col">
             <h2 id="pipeline-heading" className="max-w-[620px] font-serif text-heading text-navy">
-              Anyone can start. The path narrows as you grow.
+              {t("pipeline.heading")}
             </h2>
             <div className="mt-6 flex max-w-[640px] flex-col gap-5 font-sans text-body text-navy/72">
-              <p>
-                The Funnel Diagram is the whole organisation. The wide end is a free
-                course anyone can join, no technical background required. The narrow end is
-                full-time work on AI safety, in policy, research, industry or civil society. Between
-                them sit the community, the Project Hub, and fellowships. Progress through it is
-                visible, to us and to the person making it, and SAIN&rsquo;s job is to make each
-                next step reachable, so that every step someone takes compounds into a more
-                effective mission.
-              </p>
-              <p>
-                We are open about where our effort goes. SAIN builds the wide end: getting people
-                in, teaching foundations, and scaffolding a first real contribution such as a
-                supervised research project. At the narrow end we mainly connect and refer, with
-                introductions and referral letters.
-              </p>
-              <p>
-                We designed the pipeline with many good endings. Someone who takes one course and
-                returns to law, medicine or public administration carries that knowledge into their
-                profession, and a society fluent in AI risk is an outcome we actively want.
-              </p>
+              <p>{t("pipeline.whole")}</p>
+              <p>{t("pipeline.effort")}</p>
+              <p>{t("pipeline.endings")}</p>
             </div>
 
             {/* The record of the pipeline, on its own rule: it is evidence for
                 the three paragraphs above, not a fourth paragraph of them. */}
             <p className="mt-7 max-w-[640px] border-t border-navy/14 pt-6 font-sans text-body text-navy/74">
-              So far the pipeline has produced more than 100 course graduates across nine-plus
-              cohorts, currently around 60 a year, and peer-reviewed research at NeurIPS and ICLR.
-              The aim for mid-2027 is 250 or more graduates a year, reached by running the same
-              standardised course in more cities.
+              {t("pipeline.soFar")}
             </p>
 
             <div className="pt-7">
               <Link href="/courses" className="btn-accent">
-                Start with a free course
+                {t("pipeline.cta")}
               </Link>
             </div>
           </Reveal>
@@ -308,7 +258,7 @@ export default function AboutPage({
         <div className="shell band-index flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
           <Reveal className="lg:w-[320px] lg:shrink-0">
             <h2 id="record-heading" className="max-w-[420px] font-serif text-heading-sm text-navy">
-              From one student group to a national foundation in three years.
+              {t("record.heading")}
             </h2>
           </Reveal>
           <Reveal delay={0.05} className="min-w-0 flex-1">
@@ -322,9 +272,9 @@ export default function AboutPage({
                     {entry.year}
                   </span>
                   <div className="min-w-0">
-                    <h3 className="font-serif text-title-sm text-navy">{entry.title}</h3>
+                    <h3 className="font-serif text-title-sm text-navy">{t(`record.entries.${entry.id}.title`)}</h3>
                     <p className="mt-1.5 max-w-[620px] font-sans text-body text-navy/72">
-                      {entry.line}
+                      {t(`record.entries.${entry.id}.line`)}
                     </p>
                   </div>
                 </li>
@@ -344,14 +294,12 @@ export default function AboutPage({
         <SectionOrbits className="-bottom-24 -left-20 h-[500px] w-[375px] rotate-[-20deg] md:-left-12" />
         <div className="shell band-section">
           <Reveal className="flex flex-col">
-            <p className="kicker text-kicker text-navy/65">The people behind it</p>
+            <p className="kicker text-kicker text-navy/65">{t("team.kicker")}</p>
             <h2 id="team-heading" className="mt-4 max-w-[620px] font-serif text-heading text-navy">
-              A small leadership, close to the work.
+              {t("team.heading")}
             </h2>
             <p className="mt-5 max-w-[720px] font-sans text-body text-navy/72">
-              SAIN is led by its national director and the heads of growth, operations and
-              projects. The leadership takes the strategic decisions; the chapters run the
-              courses, events and communities.
+              {t("team.intro")}
             </p>
           </Reveal>
 
@@ -361,7 +309,7 @@ export default function AboutPage({
                 <Portrait
                   key={person.name}
                   name={person.name}
-                  meta={person.role}
+                  meta={t(`team.roles.${person.roleKey}`)}
                   href={person.linkedin}
                   image={person.image}
                   width="w-[140px] sm:w-[158px]"
@@ -372,16 +320,16 @@ export default function AboutPage({
           </Reveal>
 
           <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
-            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">Chapter Directors</h3>
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">{t("team.directors.heading")}</h3>
             <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
-              Each chapter is run by its own Chapter Director.
+              {t("team.directors.intro")}
             </p>
             <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
               {chapterDirectors.map((person) => (
                 <Portrait
                   key={person.name}
                   name={person.name}
-                  meta={person.role}
+                  meta={t(`team.roles.${person.roleKey}`)}
                   href={person.linkedin}
                   image={person.image}
                   width="w-[140px] sm:w-[158px]"
@@ -393,23 +341,22 @@ export default function AboutPage({
 
           <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
             <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">
-              Advised by people already in the field.
+              {t("team.advisory.heading")}
             </h3>
             <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
-              An advisory board of experts in the Dutch AI safety landscape provides strategic
-              guidance.
+              {t("team.advisory.intro")}
             </p>
 
             <div className="mt-10 flex flex-col gap-10">
               {advisoryGroups.map((group) => (
-                <div key={group.label}>
-                  <h4 className="kicker text-kicker-sm text-navy/60">{group.label}</h4>
+                <div key={group.id}>
+                  <h4 className="kicker text-kicker-sm text-navy/60">{t(`team.advisory.groups.${group.id}`)}</h4>
                   <ul role="list" className="mt-5 flex flex-wrap gap-x-6 gap-y-8">
                     {group.members.map((member) => (
                       <Portrait
                         key={member.name}
                         name={member.name}
-                        meta={member.affiliation}
+                        meta={t(`team.advisory.affiliations.${member.id}`)}
                         href={member.link}
                         image={member.image}
                         width="w-[132px] sm:w-[146px]"
@@ -423,16 +370,16 @@ export default function AboutPage({
           </Reveal>
 
           <Reveal delay={0.05} className="mt-14 border-t border-navy/14 pt-10 md:mt-16">
-            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">Board</h3>
+            <h3 className="max-w-[560px] font-serif text-heading-sm text-navy">{t("team.board.heading")}</h3>
             <p className="mt-4 max-w-[720px] font-sans text-body text-navy/72">
-              The board of Stichting Safe AI Netherlands.
+              {t("team.board.intro")}
             </p>
             <ul role="list" className="mt-10 flex flex-wrap gap-x-7 gap-y-9">
               {board.map((person) => (
                 <Portrait
                   key={person.name}
                   name={person.name}
-                  meta={person.role}
+                  meta={t(`team.roles.${person.roleKey}`)}
                   href={person.linkedin}
                   image={person.image}
                   width="w-[140px] sm:w-[158px]"
@@ -459,14 +406,10 @@ export default function AboutPage({
               id="documents-heading"
               className="max-w-[620px] font-serif text-heading text-navy"
             >
-              The rules we hold ourselves to are public.
+              {t("documents.heading")}
             </h2>
             <p className="mt-5 max-w-[760px] font-sans text-body text-navy/72">
-              SAIN is a Dutch foundation, a stichting, the standard nonprofit legal form. The
-              foundation holds the brand, the legal entity and the finances, so a local chapter
-              never has to build those from scratch; chapters run their own courses, events and
-              communities. Every programme is free. Three documents define how the whole thing
-              works, and anyone can read them.
+              {t("documents.intro")}
             </p>
           </Reveal>
 
@@ -485,17 +428,17 @@ export default function AboutPage({
                   >
                     <span className="block min-w-0">
                       <span className="kicker block text-kicker-sm text-navy/60">
-                        {document.eyebrow}
+                        {t(`documents.items.${document.key}.eyebrow`)}
                       </span>
                       <span className="mt-1.5 block font-serif text-title-sm text-navy underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 group-hover:decoration-navy group-focus-visible:decoration-navy">
-                        {document.title}
+                        {t(`documents.items.${document.key}.title`)}
                       </span>
                       <span className="mt-2 block max-w-[620px] font-sans text-kicker-sm text-navy/74">
-                        {document.description}
+                        {t(`documents.items.${document.key}.description`)}
                       </span>
                     </span>
                     <span className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 group-hover:decoration-navy group-focus-visible:decoration-navy">
-                      Read document
+                      {t("documents.read")}
                       <ArrowRight size={16} weight="regular" aria-hidden="true" />
                     </span>
                   </Link>
@@ -507,26 +450,25 @@ export default function AboutPage({
           <Reveal delay={0.05} className="flex flex-col">
             <div className="flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
               <p className="max-w-[620px] font-sans text-body text-navy/72">
-                Role addresses and chapter contacts live on one page, so they stay accurate.
+                {t("documents.contactNote")}
               </p>
               <Link
                 href="/contact"
                 className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Contact SAIN
+                {t("documents.contactLink")}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
             <div className="flex flex-col gap-3 border-t border-navy/14 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
               <p className="max-w-[620px] font-sans text-body text-navy/72">
-                Want to bring SAIN to your city? Chapters adopt the brand, the legal umbrella and
-                ready-made curricula instead of starting from scratch.
+                {t("documents.chapterNote")}
               </p>
               <Link
                 href="/community#start-chapter"
                 className="inline-flex shrink-0 items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
               >
-                Start a chapter
+                {t("documents.chapterLink")}
                 <ArrowRight size={16} weight="regular" aria-hidden="true" />
               </Link>
             </div>
@@ -539,10 +481,10 @@ export default function AboutPage({
         <div className="shell band-close grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
           <div className="min-w-0">
             <h2 id="involved-heading" className="max-w-[620px] font-serif text-closing text-white">
-              The work is already happening. Join it, or help run it.
+              {t("close.heading")}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/75">
-              Every programme is free, and all of it runs on people who show up.
+              {t("close.body")}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
@@ -551,10 +493,10 @@ export default function AboutPage({
                 it carries the page label, the way the chapter pages say
                 "Visit the Project hub". */}
             <Link href="/community" className="btn-accent">
-              Visit the community
+              {t("close.community")}
             </Link>
             <Link href="/get-involved" className="btn-ghost-inverse">
-              Volunteer
+              {tCommon("actions.volunteer")}
             </Link>
           </div>
         </div>

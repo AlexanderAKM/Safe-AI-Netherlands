@@ -14,6 +14,7 @@
  * the full-size original, and these originals run to 1.6MB each.
  */
 
+import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
 /* The rungs `npm run images` writes for these portraits. These and the widths
@@ -43,6 +44,7 @@ export default function Portrait({
   /** The CSS width of the tile at each breakpoint, for the srcSet to pick from. */
   sizes: string;
 }) {
+  const t = useTranslations("about.team");
   return (
     <li className={width}>
       <a
@@ -91,7 +93,7 @@ export default function Portrait({
         <p className="mt-1.5 font-sans text-footnote leading-5 text-navy/70">{meta}</p>
         {/* The whole tile is the link, so the destination is named for anyone
             who cannot see the hover state. */}
-        <span className="sr-only">Profile (opens in a new tab)</span>
+        <span className="sr-only">{t("profile")}</span>
       </a>
     </li>
   );

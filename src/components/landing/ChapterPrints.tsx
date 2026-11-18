@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 import { ATLAS } from "@/data/chapterAtlas";
+import { Link } from "@/i18n/navigation";
 
 /**
  * The running chapters as prints: each is the photograph its chapter page
@@ -10,10 +11,15 @@ import { ATLAS } from "@/data/chapterAtlas";
  *
  * A snap strip below sm, the next print past the edge as the affordance;
  * three across from sm.
+ *
+ * A Server Component: it reads its words (community.chapterPrints, and each
+ * chapter's origin from community.atlas) on the server, so the pages that
+ * render it need no <ClientMessages>.
  */
 export default function ChapterPrints({ id }: { id?: string }) {
+  const t = useTranslations("community");
   return (
-    <nav id={id} aria-label="Chapters" className="scroll-mt-36">
+    <nav id={id} aria-label={t("chapterPrints.label")} className="scroll-mt-36">
       <ul
         role="list"
         className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-3 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible sm:px-0 lg:gap-7"
@@ -45,7 +51,9 @@ export default function ChapterPrints({ id }: { id?: string }) {
                 </span>
               </span>
               <span className="mt-4 flex items-start justify-between gap-3 px-1">
-                <span className="kicker text-kicker-sm text-navy/65">{chapter.origin}</span>
+                <span className="kicker text-kicker-sm text-navy/65">
+                  {t(`atlas.chapters.${chapter.id}.origin`)}
+                </span>
                 <ArrowRight
                   size={16}
                   weight="regular"

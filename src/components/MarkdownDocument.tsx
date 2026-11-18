@@ -1,5 +1,7 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 
 /* The renderer behind /about/vision, /about/theory-of-change,
    /about/code-of-conduct and /research/handbook.
@@ -11,7 +13,14 @@ import type { ReactNode } from "react";
    normalised on the way in: the escapes GitHub's exporter leaves behind, the
    em dashes design.md forbids in copy, the American spellings the rest of the
    site does not use, and the document's own H1, which the page already prints
-   as its title. */
+   as its title.
+
+   The dashes and the spelling are the English site's house style, so they are
+   normalised in an English document only. A translation (docs/<locale>/*.md,
+   see src/i18n/documents.ts) is printed as its translator wrote it: the
+   `english` flag below is threaded through every step that would change the
+   words. Internal links use the locale-aware Link, so /community in a document
+   stays in the reader's language. */
 
 type Block =
   | { type: "heading"; level: number; text: string; id: string }
@@ -69,14 +78,14 @@ function normaliseSpelling(text: string) {
     .replace(/\b([Cc])enter\b/g, "$1entre");
 }
 
-function cleanInline(text: string) {
-  return normaliseSpelling(
-    normaliseDashes(text.replace(/\\([\\.*+\-[\](){}#|>_~!`])/g, "$1")),
-  ).replace(/\s{2,}$/g, "");
+function cleanInline(text: string, english: boolean) {
+  const unescaped = text.replace(/\\([\\.*+\-[\](){}#|>_~!`])/g, "$1");
+  const styled = english ? normaliseSpelling(normaliseDashes(unescaped)) : unescaped;
+  return styled.replace(/\s{2,}$/g, "");
 }
 
-function stripFormatting(text: string) {
-  return cleanInline(normalisePairedDashes(text))
+function stripFormatting(text: string, english: boolean) {
+  return cleanInline(english ? normalisePairedDashes(text) : text, english)
     .replace(/\*\*(.*?)\*\*/g, "$1")
     .replace(/\*(.*?)\*/g, "$1");
 }
@@ -88,7 +97,7 @@ function slugify(text: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-function renderFormatted(text: string, keyPrefix: string): ReactNode[] {
+function renderFormatted(text: string, keyPrefix: string, english: boolean): ReactNode[] {
   const nodes: ReactNode[] = [];
   const boldPattern = /\*\*(.*?)\*\*/g;
   let lastIndex = 0;
@@ -96,7 +105,7 @@ function renderFormatted(text: string, keyPrefix: string): ReactNode[] {
 
   while ((match = boldPattern.exec(text)) !== null) {
     if (match.index > lastIndex) {
-      nodes.push(cleanInline(text.slice(lastIndex, match.index)));
+      nodes.push(cleanInline(text.slice(lastIndex, match.index), english));
     }
 
     nodes.push(
@@ -104,14 +113,14 @@ function renderFormatted(text: string, keyPrefix: string): ReactNode[] {
         key={`${keyPrefix}-bold-${match.index}`}
         className="font-medium text-navy"
       >
-        {cleanInline(match[1])}
+        {cleanInline(match[1], english)}
       </strong>,
     );
     lastIndex = match.index + match[0].length;
   }
 
   if (lastIndex < text.length) {
-    nodes.push(cleanInline(text.slice(lastIndex)));
+    nodes.push(cleanInline(text.slice(lastIndex), english));
   }
 
   return nodes.flatMap((node, index) => {
@@ -124,19 +133,19 @@ function renderFormatted(text: string, keyPrefix: string): ReactNode[] {
 
     while ((italicMatch = italicPattern.exec(node)) !== null) {
       if (italicMatch.index > italicLastIndex) {
-        italicNodes.push(cleanInline(node.slice(italicLastIndex, italicMatch.index)));
+        italicNodes.push(cleanInline(node.slice(italicLastIndex, italicMatch.index), english));
       }
 
       italicNodes.push(
         <em key={`${keyPrefix}-italic-${index}-${italicMatch.index}`}>
-          {cleanInline(italicMatch[1])}
+          {cleanInline(italicMatch[1], english)}
         </em>,
       );
       italicLastIndex = italicMatch.index + italicMatch[0].length;
     }
 
     if (italicLastIndex < node.length) {
-      italicNodes.push(cleanInline(node.slice(italicLastIndex)));
+      italicNodes.push(cleanInline(node.slice(italicLastIndex), english));
     }
 
     return italicNodes;
@@ -149,10 +158,10 @@ function renderFormatted(text: string, keyPrefix: string): ReactNode[] {
 const linkClass =
   "text-navy underline decoration-navy/25 underline-offset-4 transition-[text-decoration-color] hover:decoration-navy focus-visible:decoration-navy";
 
-function renderInline(source: string, keyPrefix: string): ReactNode[] {
+function renderInline(source: string, keyPrefix: string, english: boolean): ReactNode[] {
   /* Whole-block first, so a dash pair is still a pair when it wraps a bold
      phrase and the split below would otherwise cut it in two. */
-  const text = normalisePairedDashes(source);
+  const text = english ? normalisePairedDashes(source) : source;
   const nodes: ReactNode[] = [];
   const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
@@ -164,6 +173,7 @@ function renderInline(source: string, keyPrefix: string): ReactNode[] {
         ...renderFormatted(
           text.slice(lastIndex, match.index),
           `${keyPrefix}-text-${match.index}`,
+          english,
         ),
       );
     }
@@ -181,11 +191,11 @@ function renderInline(source: string, keyPrefix: string): ReactNode[] {
             : {})}
           className={linkClass}
         >
-          {renderFormatted(label, `${keyPrefix}-link-label-${match.index}`)}
+          {renderFormatted(label, `${keyPrefix}-link-label-${match.index}`, english)}
         </a>
       ) : (
         <Link key={`${keyPrefix}-link-${match.index}`} href={href} className={linkClass}>
-          {renderFormatted(label, `${keyPrefix}-link-label-${match.index}`)}
+          {renderFormatted(label, `${keyPrefix}-link-label-${match.index}`, english)}
         </Link>
       ),
     );
@@ -194,7 +204,7 @@ function renderInline(source: string, keyPrefix: string): ReactNode[] {
   }
 
   if (lastIndex < text.length) {
-    nodes.push(...renderFormatted(text.slice(lastIndex), `${keyPrefix}-tail`));
+    nodes.push(...renderFormatted(text.slice(lastIndex), `${keyPrefix}-tail`, english));
   }
 
   return nodes;
@@ -213,7 +223,7 @@ function isTableSeparator(line: string) {
   return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line.trim());
 }
 
-function parseMarkdown(markdown: string): Block[] {
+function parseMarkdown(markdown: string, english: boolean): Block[] {
   const lines = markdown.replace(/\r\n/g, "\n").split("\n");
   const blocks: Block[] = [];
   let index = 0;
@@ -234,7 +244,7 @@ function parseMarkdown(markdown: string): Block[] {
 
     const headingMatch = /^(#{1,6})\s+(.+?)(?:\s+\{#([^}]+)\})?$/.exec(line);
     if (headingMatch) {
-      const text = stripFormatting(headingMatch[2]);
+      const text = stripFormatting(headingMatch[2], english);
       blocks.push({
         type: "heading",
         level: headingMatch[1].length,
@@ -329,8 +339,17 @@ const headingStyles = [
   },
 ];
 
-export default function MarkdownDocument({ markdown }: { markdown: string }) {
-  const parsed = parseMarkdown(markdown);
+export default function MarkdownDocument({
+  markdown,
+  locale,
+}: {
+  markdown: string;
+  /** The language the markdown is written in, which is not always the
+   *  page's: only an English document gets the house style on the way in. */
+  locale: Locale;
+}) {
+  const english = locale === "en";
+  const parsed = parseMarkdown(markdown, english);
 
   /* The page prints the document's title in its own h1. Carrying the file's
      H1 through as well would give the page two, so the leading one is
@@ -380,7 +399,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
         if (block.type === "paragraph") {
           return (
             <p key={index} className="mt-5">
-              {renderInline(block.text, `paragraph-${index}`)}
+              {renderInline(block.text, `paragraph-${index}`, english)}
             </p>
           );
         }
@@ -397,7 +416,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
                     aria-hidden="true"
                   />
                   <span className="min-w-0">
-                    {renderInline(item, `list-${index}-${itemIndex}`)}
+                    {renderInline(item, `list-${index}-${itemIndex}`, english)}
                   </span>
                 </li>
               ))}
@@ -424,7 +443,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
                     {itemIndex + 1}
                   </span>
                   <span className="min-w-0">
-                    {renderInline(item, `list-${index}-${itemIndex}`)}
+                    {renderInline(item, `list-${index}-${itemIndex}`, english)}
                   </span>
                 </li>
               ))}
@@ -446,7 +465,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
                       scope="col"
                       className="border-b border-navy/14 px-4 py-3 align-bottom font-sans text-footnote font-medium text-navy/70"
                     >
-                      {renderInline(header, `table-${index}-header-${header}`)}
+                      {renderInline(header, `table-${index}-header-${header}`, english)}
                     </th>
                   ))}
                 </tr>
@@ -459,7 +478,7 @@ export default function MarkdownDocument({ markdown }: { markdown: string }) {
                         key={cellIndex}
                         className="px-4 py-3 align-top font-sans text-caption leading-[21px] text-navy/78"
                       >
-                        {renderInline(cell, `table-${index}-${rowIndex}-${cellIndex}`)}
+                        {renderInline(cell, `table-${index}-${rowIndex}-${cellIndex}`, english)}
                       </td>
                     ))}
                   </tr>
