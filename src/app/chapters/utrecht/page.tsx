@@ -38,6 +38,11 @@ const LINKTREE_URL = "https://linktr.ee/sainutrecht";
 const LINKEDIN_POSTS_URL = "https://www.linkedin.com/company/sain-utrecht/posts/";
 const DEVPOST_URL =
   "https://win4aisafety-sain-utrecht.devpost.com/project-gallery";
+/* The autumn 2026 Technical AI Safety curriculum, week by week. The plain
+   /d/<id>/ link, so the doc opens in whatever view suits the reader's
+   device rather than the mobile one it was shared as. */
+const TECHNICAL_CURRICULUM_URL =
+  "https://docs.google.com/document/d/1ycd9NJtLUWyyIQW9g6HnKEwz96iGelOTQR_QXxJsGB4/";
 
 const courses: Course[] = [
   {
@@ -119,6 +124,10 @@ const courses: Course[] = [
           "How agents are attacked through prompt injection and their tools, why model-level defences fail, secure design and AI Control, and how AI can also act as a defender.",
       },
     ],
+    curriculum: {
+      label: "Read the full week-by-week curriculum",
+      href: TECHNICAL_CURRICULUM_URL,
+    },
   },
   {
     id: "governance",
