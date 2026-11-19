@@ -11,6 +11,7 @@ import {
 } from "@/data/courseApplications";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The chapter's course, and whether you can apply to it today.
@@ -91,6 +92,7 @@ export default function CourseBand({
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
                 <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
+              <FormLanguageNote className="mt-2" />
             </>
           ) : (
             <p className="mt-3 font-sans text-body text-navy/74">
@@ -109,6 +111,7 @@ export default function CourseBand({
                   </a>
                 ),
               })}
+              <FormLanguageNote inline />
             </p>
           )}
         </div>

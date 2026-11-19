@@ -209,7 +209,8 @@ export default function VolunteerPage({
             <p className="kicker text-base leading-[22px] text-navy/65">
               {t("whatYouGet.quote.context")}
             </p>
-            <p className="font-serif text-title font-light leading-[31px] text-navy">
+            {/* His own words, in English in every language. */}
+            <p lang="en" className="font-serif text-title font-light leading-[31px] text-navy">
               {t("whatYouGet.quote.text")}
             </p>
             <footer className="border-t border-navy/14 pt-3">

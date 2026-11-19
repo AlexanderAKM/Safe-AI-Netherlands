@@ -23,7 +23,7 @@
     "items": {
       "courses": "Cursussen",
       "community": "Community",
-      "newChapters": "Nieuwe afdelingen",
+      "newChapters": "Nieuwe chapters",
       "projectHub": "Project hub",
       "about": "Over ons"
     },
@@ -73,7 +73,7 @@
   "coursePopup": {
     "title": "Gratis cursussen over AI-veiligheid, op locatie.",
     "cities": "In {cities}.",
-    "description": "Een paar weken lezen en discussiëren met mensen die net het vakgebied in stappen, gegeven door de afdelingen van SAIN. Je hebt geen voorkennis nodig en elk programma is gratis.",
+    "description": "Een paar weken lezen en discussiëren met mensen die net het vakgebied in stappen, gegeven door de chapters van SAIN. Je hebt geen voorkennis nodig en elk programma is gratis.",
     "close": "Sluiten",
     "pickCity": "Kies je stad",
     "applyBy": "Aanmelden uiterlijk {date}",
@@ -91,5 +91,8 @@
     "volunteer": "Word vrijwilliger",
     "visitProjectHub": "Naar de Project hub",
     "applyFreeCourse": "Meld je aan voor de gratis cursus"
+  },
+  "forms": {
+    "inEnglish": "Het formulier is in het Engels."
   }
 }

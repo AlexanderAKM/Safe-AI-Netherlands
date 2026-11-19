@@ -18,6 +18,7 @@ import {
   type CourseApplication,
 } from "@/data/courseApplications";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 export async function generateMetadata({
   params,
@@ -116,16 +117,19 @@ export default function CoursesPage({
               ) : (
                 /* Nothing to apply to is not nothing to do, and the community
                    is the door that is always open. */
-                <a
-                  href={COMMUNITY_JOIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accent gap-2 self-start"
-                >
-                  {tActions("joinCommunity")}
-                  <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-                  <span className="sr-only"> {tA11y("opensInNewTab")}</span>
-                </a>
+                <>
+                  <a
+                    href={COMMUNITY_JOIN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-accent gap-2 self-start"
+                  >
+                    {tActions("joinCommunity")}
+                    <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                    <span className="sr-only"> {tA11y("opensInNewTab")}</span>
+                  </a>
+                  <FormLanguageNote />
+                </>
               )}
             </div>
           </Reveal>
@@ -311,6 +315,7 @@ export default function CoursesPage({
               <span className="sr-only"> {tA11y("opensInNewTab")}</span>
             </a>
           </div>
+          <FormLanguageNote tone="inverse" className="mt-3" />
         </div>
       </section>
     </>

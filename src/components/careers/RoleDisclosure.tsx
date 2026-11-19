@@ -21,6 +21,7 @@ import {
   type Role,
   type Team,
 } from "@/data/openPositions";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /* The career row from design.md: a full-width row on a hairline with a 26px
    orange stroke icon, never an icon in a coloured tile. The glyph names the
@@ -227,7 +228,9 @@ export default function RoleDisclosure({
               language: the catch-all option, the broader role's option, or the
               role's own title, which matches the form while job titles stay
               in English (messages/GLOSSARY.md). */}
-          {applyUrlOverride ? null : (
+          {applyUrlOverride ? (
+            <FormLanguageNote className="basis-full" />
+          ) : (
             <p className="max-w-[400px] font-sans text-footnote text-navy/65">
               {role.formRoleValue === OPEN_POSITION_FORM_VALUE
                 ? t("hints.openPosition", {
@@ -240,6 +243,7 @@ export default function RoleDisclosure({
                       title,
                     })
                   : t("hints.shared", { option: title })}
+              <FormLanguageNote inline />
             </p>
           )}
         </div>

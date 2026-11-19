@@ -185,6 +185,7 @@ export default async function SiteShell({
             "common.hiringBar",
             "common.languageSwitcher",
             "common.coursePopup",
+            "common.forms",
             "courses.applications",
           ]}
         >

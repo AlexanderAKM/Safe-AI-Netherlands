@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { Link } from "@/i18n/navigation";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The close. Inverse navy, because this band asks for a decision.
@@ -71,6 +72,7 @@ export default function ChapterClose({
             <Link href="/get-involved" className="btn-ghost-inverse">
               {tActions("volunteer")}
             </Link>
+            <FormLanguageNote tone="inverse" className="basis-full" />
           </div>
         </div>
 

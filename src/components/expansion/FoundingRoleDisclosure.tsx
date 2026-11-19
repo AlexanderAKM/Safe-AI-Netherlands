@@ -19,6 +19,7 @@ import {
   type FoundingRoleTeam,
 } from "@/data/newChapters";
 import { localizePath, type Locale } from "@/i18n/routing";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /* The career row from design.md, grown to carry a full posting: the summary
    row is the same hairline, orange stroke icon and serif title as
@@ -140,6 +141,7 @@ export default function FoundingRoleDisclosure({ role }: { role: FoundingRole })
           </a>
           <p className="max-w-[420px] font-sans text-footnote text-navy/65">
             {t("oneForm")}
+            <FormLanguageNote inline />
           </p>
         </div>
       </div>

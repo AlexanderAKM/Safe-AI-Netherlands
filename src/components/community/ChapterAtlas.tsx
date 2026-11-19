@@ -14,6 +14,7 @@ import {
   type ChapterName,
 } from "@/data/courseApplications";
 import { ATLAS } from "@/data/chapterAtlas";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The chapters as an atlas: the three cities set as a vertical index on the
@@ -72,6 +73,7 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
             <span className="sr-only"> {tCommon("a11y.opensInNewTab")}</span>
           </a>
+          <FormLanguageNote className="mt-2" />
         </>
       ) : (
         <p className="mt-1.5 font-sans text-caption text-navy/65">

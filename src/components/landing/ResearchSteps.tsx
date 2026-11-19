@@ -5,6 +5,7 @@ import ResearchPeople from "./ResearchPeople";
 import FeaturedPublications from "./FeaturedPublications";
 import { SUPERVISOR_INTEREST_FORM_URL } from "@/data/research";
 import { Link } from "@/i18n/navigation";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 // Copy follows docs/research_hub_handbook.md: scope, programme modes,
 // applications, assignment, deliverables, and project-specific resources.
@@ -62,6 +63,7 @@ export default function ResearchSteps() {
             {t("support.becomeSupervisor")} <ArrowUpRight size={16} aria-hidden="true" />
             <span className="sr-only"> {tA11y("opensInNewTab")}</span>
           </a>
+          <FormLanguageNote tone="inverse" className="mt-2" />
         </div>
       </ResearchStep>
 

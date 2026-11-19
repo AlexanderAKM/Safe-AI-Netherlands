@@ -1,8 +1,9 @@
 # Glossary: English → Dutch
 
 How SAIN's words are translated on the Dutch site (`/nl`). It applies to every
-file in `messages/nl/`. The Dutch is a first draft: anything marked
-**Decision** or **Question** is open until Tjebbe signs it off.
+file in `messages/nl/`. The Dutch is a first draft. Tjebbe decided the
+site-wide terms on 19 November 2026 (marked **Decided**); anything marked
+**Question** is still open until he signs it off.
 
 When you add a term, add it here in the same pull request.
 
@@ -43,11 +44,16 @@ When you add a term, add it here in the same pull request.
 | BlueDot, BlueDot Impact, ARENA, AISIG, MATS, ERA, Existential Risk Observatory | Names |
 | Course titles: *AI Safety Fundamentals*, *Technical AI Safety*, *AI Governance*, *Frontier AI Governance*, … | Names of the courses |
 | alignment, interpretability, red-teaming, evals, reward hacking, frontier AI | Technical terms; Dutch researchers use the English |
-| Theory of Change | Name of the document (see Questions) |
+| chapter, chapters | **Decided**: kept as the word for SAIN's local groups (see Terms) |
+| cohort | **Decided**: Dutch *cohort* (see Terms) |
+| facilitator, track (and the track names as drafted) | **Decided** |
+| Theory of Change, field building, Soft skills, brand kit | **Decided**: names and established terms |
+| EU AI Act, EU AI Office, GPAI Code of Practice | **Decided**: the names, not *AI-verordening* |
 | People's names, paper titles, venue names | Names |
-| Job titles in postings (*Chapter Director*, *Video Editor (Short-Form)*) | They match the English application forms (see Questions) |
+| Job titles in postings (*Chapter Director*, *Video Editor (Short-Form)*) | **Decided**: they match the English application forms. People's role titles on /about, /contact and the chapter pages are translated (*Directeur*, *Hoofd evenementen*, *Chapterdirecteur*) |
+| Quotes from people (Stefano Zuffi's testimonial) | **Decided**: their own words, marked `lang="en"` |
 
-## Decision for Tjebbe: "AI Safety"
+## Decided: "AI Safety" is *AI-veiligheid*
 
 The English site writes *AI Safety* as the name of the field ("Your AI Safety
 career starts here"). Two options for Dutch:
@@ -57,8 +63,8 @@ career starts here"). Two options for Dutch:
 2. **AI safety**: the field's own name, as the community says it.
    "Je carrière in AI safety begint hier."
 
-**The draft uses option 1, AI-veiligheid**, everywhere the English means
-the field. Compounds follow Dutch rules: *AI-veiligheidsonderzoek*,
+**Decided: option 1, AI-veiligheid**, everywhere the English means the
+field. Compounds follow Dutch rules: *AI-veiligheidsonderzoek*,
 *cursussen over AI-veiligheid*. Course titles that contain "AI Safety" stay
 English either way. Switching to option 2 is a search-and-replace in
 `messages/nl/` plus a check of the compounds.
@@ -68,7 +74,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | English | Dutch (draft) | Note |
 | --- | --- | --- |
 | AI governance | AI-governance | *governance* is common in Dutch policy writing |
-| AI Safety (the field) | AI-veiligheid | **Decision**, see above |
+| AI Safety (the field) | AI-veiligheid | **Decided**, see above |
 | apply (course) | aanmelden, je aanmelden | |
 | apply (job, role) | solliciteren | |
 | apply (Project Hub) | je aanmelden | |
@@ -77,25 +83,25 @@ English either way. Switching to option 2 is a search-and-replace in
 | applications are open / closed | de aanmelding is open / gesloten | |
 | board | bestuur | |
 | breadcrumb | kruimelpad | |
-| chapter director | afdelingsdirecteur | role titles: **Question** |
-| director | directeur | role titles: **Question** |
-| head of …, … lead | hoofd … (*Hoofd evenementen*) | role titles: **Question** |
+| chapter director (a person's role) | chapterdirecteur | **Decided** (job title in a posting: *Chapter Director*) |
+| director (a person's role) | directeur | **Decided** |
+| head of …, … lead (a person's role) | hoofd … (*Hoofd evenementen*) | **Decided** |
 | advisory board | raad van advies | |
-| chapter | afdeling | **Question** |
-| cohort | groep | **Question**: "cohort" is also used in Dutch education |
+| chapter | chapter: *het chapter*, *de chapters*; *dit*, *elk*, *ons chapter*; compounds *chapterdirecteur*, *chapteradres*, *chapterbijeenkomst* | **Decided** |
+| cohort | cohort: *het cohort*, *de cohorten* (*het volgende cohort*, *cursuscohorten*) | **Decided**. A course *iteration* stays *cursusronde* |
 | community | community | |
 | compute | rekenkracht | |
 | course | cursus | |
 | course round, iteration | cursusronde | |
-| EU AI Act | AI-verordening | **Question**: or *EU AI Act* |
+| EU AI Act | EU AI Act (*de EU AI Act*) | **Decided**; also *EU AI Office*, *GPAI Code of Practice* |
 | deadline | deadline | |
 | soft deadline | streefdatum | **Question** |
 | discussion group | discussiegroep | |
 | reading group | leesgroep | |
 | event | evenement; *activiteit* in lists of what a chapter does | |
-| facilitator | facilitator | **Question**: or *gespreksleider* / *begeleider* |
+| facilitator | facilitator | **Decided** |
 | field (of AI Safety) | vakgebied | |
-| field building | field building | **Question**: or *het veld opbouwen* |
+| field building | field building | **Decided** |
 | free | gratis | |
 | graduation (end of a course) | afsluiting, *cursusafsluiting* | participants get a certificate, not a diploma |
 | funding | financiering | |
@@ -121,12 +127,12 @@ English either way. Switching to option 2 is a search-and-replace in
 | rolling (applications, review) | doorlopend | |
 | social (event) | borrel | |
 | starting team | startteam | |
-| new chapters | nieuwe afdelingen | follows *chapter* |
+| new chapters | nieuwe chapters | **Decided** |
 | supervisor | begeleider | as in *scriptiebegeleider* |
 | talent pipeline | talentpijplijn | |
 | talk | lezing | |
 | thesis | scriptie (*masterscriptie*, *bachelorscriptie*) | |
-| track (course) | track | **Question**: or *leerlijn* |
+| track (course) | track; track names *Technische alignment*, *Governance en beleid* | **Decided** |
 | volunteer (noun) | vrijwilliger | |
 | volunteer (button) | word vrijwilliger | |
 | volunteering | vrijwilligerswerk | |
@@ -135,17 +141,26 @@ English either way. Switching to option 2 is a search-and-replace in
 | working week | werkweek | |
 | workshop | workshop | |
 
-## Questions for Tjebbe
+## Forms
 
-The same list is in the pull request. Answer there or edit this file.
+The forms SAIN links to (Fillout, Google Forms, Airtable) are English. On a
+Dutch page, every button, link or embed that opens one carries the line
+*Het formulier is in het Engels.* (`common.forms.inEnglish`, rendered by
+`src/components/FormLanguageNote.tsx`), or the same sentence added to a
+footnote that already talks about the form. **Decided.**
 
-1. **AI Safety**: *AI-veiligheid* (the draft) or *AI safety*?
-2. **chapter**: *afdeling* (the draft), or keep *chapter*?
-3. **facilitator**: keep *facilitator* (the draft), or *gespreksleider*?
-4. **cohort**: *groep* (the draft) or *cohort*?
-5. **track**: keep *track* (the draft) or *leerlijn*?
-6. **soft deadline**: *streefdatum* (the draft) or *zachte deadline*?
-7. **field building**: keep the English (the draft) or describe it?
-8. **Theory of Change**: keep the English name (the draft) or *veranderingstheorie*?
-9. **Job titles** in the vacancies: keep English (the draft, they match the
-   English forms) or translate the visible titles only?
+## Decided and open questions
+
+Decided by Tjebbe on 19 November 2026: AI-veiligheid; *chapter*;
+*facilitator*; *cohort*; *track* and the track names; job titles English and
+role titles translated; quotes in the speaker's own English; *EU AI Act*;
+*Theory of Change*, *field building*, *Soft skills* and *brand kit* in
+English; BlueDot week titles translated; the note under every form.
+
+Still open (the pull request lists them with context):
+
+1. **soft deadline**: *streefdatum* (the draft) or *zachte deadline*?
+2. The wording questions in the pull request: the mission statement, the
+   Project Hub hero, "application-based", event words, contact labels,
+   *de/het paper*, the Project Hub labels, Airtable's tags, the vacancy
+   wording, and how to write times.

@@ -39,6 +39,7 @@ import {
   buildFoundingApplicationUrl,
   type OfferIcon,
 } from "@/data/newChapters";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 export async function generateMetadata({
   params,
@@ -139,6 +140,7 @@ export default function NewChaptersPage({
                 {t("hero.readRoles")}
                 <ArrowDown size={16} weight="regular" aria-hidden="true" />
               </a>
+              <FormLanguageNote className="basis-full" />
             </div>
             <p className="font-sans text-caption text-navy/65">
               {t("hero.deadline", { date: deadline })}
@@ -229,6 +231,7 @@ export default function NewChaptersPage({
                     <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
                     <span className="sr-only"> {tA11y("opensInNewTab")}</span>
                   </a>
+                  <FormLanguageNote className="mt-2" />
                 </article>
               ))}
             </div>
@@ -351,6 +354,7 @@ export default function NewChaptersPage({
                 })}
               </p>
               <ApplyButton locale={locale} />
+              <FormLanguageNote />
             </Reveal>
             <Reveal delay={0.06} className="min-w-0">
               <ChapterPrints />
@@ -481,6 +485,7 @@ export default function NewChaptersPage({
                   <Link href="/contact" className="btn-outline-ink">
                     {t("contactFirst")}
                   </Link>
+                  <FormLanguageNote className="basis-full" />
                 </div>
               </div>
             </div>
@@ -507,6 +512,7 @@ export default function NewChaptersPage({
             <Link href="/contact" className="btn-ghost-inverse">
               {t("contactFirst")}
             </Link>
+            <FormLanguageNote tone="inverse" className="basis-full" />
           </div>
         </div>
       </section>

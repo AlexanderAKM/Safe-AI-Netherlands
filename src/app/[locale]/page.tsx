@@ -29,6 +29,7 @@ import {
   openCourseApplications,
 } from "@/data/courseApplications";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /* No `title` here on purpose: the landing falls through to the root layout's
    `title.default`, so the tab reads "Safe AI Netherlands" and nothing more.
@@ -128,6 +129,7 @@ export default function Home({
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
                 <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
+              <FormLanguageNote className="mt-2" />
             </div>
             {/* The hire of the season, said once above the fold. It reads the
                 same switch as the announcement bar and the nav item. */}
@@ -222,6 +224,7 @@ export default function Home({
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
               <span className="sr-only"> {tA11y("opensInNewTab")}</span>
             </a>
+            <FormLanguageNote />
             <p className="font-sans text-footnote text-navy/65">
               {t("community.discord")}{" "}
               {STARTING_TEAMS_RECRUITING
@@ -380,7 +383,8 @@ export default function Home({
             <p className="kicker text-base leading-[22px] text-navy/65">
               {t("careers.quote.context")}
             </p>
-            <p className="font-serif text-heading-sm font-light text-navy">
+            {/* His own words, in English in every language. */}
+            <p lang="en" className="font-serif text-heading-sm font-light text-navy">
               <span
                 aria-hidden="true"
                 className="block h-[34px] select-none font-serif text-[72px] leading-[0.9] text-navy/[0.14]"

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import Reveal from "@/components/landing/Reveal";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The chapter hero. Same split the landing runs: the claim on the left, the
@@ -91,6 +92,7 @@ export default function ChapterHero({
               {t("seeWhatsOn")}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </a>
+            <FormLanguageNote className="basis-full" />
           </div>
           {belowCta}
         </Reveal>

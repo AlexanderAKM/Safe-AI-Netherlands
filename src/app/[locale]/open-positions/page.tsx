@@ -30,6 +30,7 @@ import {
   openNationalPostings,
   recruitingChapters,
 } from "@/data/openPositions";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 const INFO_EMAIL = "info@safeainetherlands.org";
 const JOIN_MAILTO = `mailto:${INFO_EMAIL}?subject=Joining SAIN`;
@@ -236,6 +237,7 @@ function ChapterSection({ chapter }: { chapter: ChapterPosting }) {
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
                 <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
+              <FormLanguageNote className="basis-full" />
               <p className="font-sans text-label text-navy/65">
                 {t.rich("questionsFirst", {
                   email: chapter.inboxEmail,
@@ -406,6 +408,7 @@ export default function CareersPage({
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
                 <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
+              <FormLanguageNote className="mt-2" />
             </div>
             {/* The starting-team call has its own page and its own form. */}
             <p className="font-sans text-label text-navy/72">
@@ -529,6 +532,7 @@ export default function CareersPage({
               <Link href="/contact" className="btn-outline-ink">
                 {t("actions.contactFirst")}
               </Link>
+              <FormLanguageNote className="basis-full" />
             </div>
           </Reveal>
         </div>
@@ -627,6 +631,7 @@ export default function CareersPage({
             <Link href="/contact" className="btn-ghost-inverse">
               {t("actions.contactFirst")}
             </Link>
+            <FormLanguageNote tone="inverse" className="basis-full" />
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@
   },
   "showUp": {
     "heading": "Kom deze week langs",
-    "body": "Alles op de kalender is gratis en voor iedereen toegankelijk. Je hoeft geen lid te zijn en je hoeft de cursus niet gevolgd te hebben. Details en aanmelden vind je in de Luma-kalender van de afdeling hieronder.",
+    "body": "Alles op de kalender is gratis en voor iedereen toegankelijk. Je hoeft geen lid te zijn en je hoeft de cursus niet gevolgd te hebben. Details en aanmelden vind je in de Luma-kalender van het chapter hieronder.",
     "calendarTitle": "Evenementenkalender van SAIN {city}",
     "fullCalendar": "Bekijk de volledige kalender op Luma",
     "questions": "Vragen over een evenement: <link>{email}</link>"
@@ -17,7 +17,7 @@
     "findDiscussionGroup": "De volgende discussiegroep vind je op <link>de Luma-pagina van SAIN {city}</link>"
   },
   "courseDisclosure": {
-    "label": "Cursussen van deze afdeling"
+    "label": "Cursussen van dit chapter"
   },
   "bluedot": {
     "outlineTitle": "Wat je elke week leert",
@@ -60,7 +60,7 @@
       "advisor": "Adviseur",
       "advisoryBoard": "Raad van advies"
     },
-    "recruiting": "De afdeling zoekt versterking.",
+    "recruiting": "Het chapter zoekt versterking.",
     "seeOpenPositions": "Bekijk de vacatures"
   },
   "printStrip": {
@@ -76,7 +76,7 @@
   },
   "close": {
     "heading": "Alles wat SAIN in {city} organiseert is gratis. Je hoeft alleen maar langs te komen.",
-    "body": "Vul het aanmeldformulier in, dan zoekt de afdeling een eerste bijeenkomst voor je uit.",
+    "body": "Vul het aanmeldformulier in, dan zoekt het chapter een eerste bijeenkomst voor je uit.",
     "events": "Evenementen: <link>{email}</link>",
     "courses": "Cursussen: <link>{email}</link>",
     "everythingElse": "Overige vragen: <link>{email}</link>",
@@ -84,7 +84,7 @@
   },
   "amsterdam": {
     "metadata": {
-      "title": "Afdeling Amsterdam",
+      "title": "Chapter Amsterdam",
       "description": "Gratis cursussen en een wekelijkse discussiegroep voor de UvA, de VU en de Amsterdamse techscene, met steun van ELLIS Unit Amsterdam."
     },
     "hero": {
@@ -112,11 +112,11 @@
       "research": "Leden doen ook onderzoeksprojecten, op dit moment onder meer naar de manieren waarop multi-agent debate kan falen."
     },
     "team": {
-      "body": "SAIN Amsterdam wordt geleid door Ana Paula Castillo Rodriguez, met een team voor onderzoek, onderwijs, evenementen en pr. De afdeling heette eerder AI Safety Amsterdam (AISA) en trekt mensen van bachelorstudenten tot professionals bij bedrijven als Deloitte en Shell, en van onafhankelijke onderzoekers tot universitair docenten bij ELLIS."
+      "body": "SAIN Amsterdam wordt geleid door Ana Paula Castillo Rodriguez, met een team voor onderzoek, onderwijs, evenementen en pr. Het chapter heette eerder AI Safety Amsterdam (AISA) en trekt mensen van bachelorstudenten tot professionals bij bedrijven als Deloitte en Shell, en van onafhankelijke onderzoekers tot universitair docenten bij ELLIS."
     },
     "record": {
       "heading": "Dit is al gebeurd in Amsterdam",
-      "body": "De cursussen van de afdeling trokken meer dan 120 aanmeldingen. Daarnaast organiseerde de afdeling een seizoen wekelijkse discussiegroepen en gaf ze presentaties op de AI020 Conference en TEDxUniversiteit van Amsterdam.",
+      "body": "De cursussen van het chapter trokken meer dan 120 aanmeldingen. Daarnaast organiseerde het chapter een seizoen wekelijkse discussiegroepen en gaf ze presentaties op de AI020 Conference en TEDxUniversiteit van Amsterdam.",
       "prints": {
         "governanceGraduation": {
           "alt": "Deelnemers die Frontier AI Governance hebben afgerond, met hun certificaat in de hand",
@@ -131,21 +131,21 @@
           "caption": "Discussiegroep · SAIN Amsterdam"
         },
         "chapterMeeting": {
-          "alt": "Twee organisatoren presenteren de plannen van de afdeling aan een volle zaal",
-          "caption": "Afdelingsbijeenkomst"
+          "alt": "Twee organisatoren presenteren de plannen van het chapter aan een volle zaal",
+          "caption": "Chapterbijeenkomst"
         }
       }
     }
   },
   "groningen": {
     "metadata": {
-      "title": "Afdeling Groningen",
+      "title": "Chapter Groningen",
       "description": "Gratis cursussen, hackathons en gepubliceerd onderzoek, sinds 2023 in Groningen. Het begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen."
     },
     "hero": {
       "subheading": "Gratis cursussen, hackathons en gepubliceerd onderzoek, sinds 2023 in Groningen. Het begon als het AI Safety Initiative Groningen (AISIG) en gaat verder als SAIN Groningen.",
       "photoAlt": "Een gracht in Groningen met de toren van de Der Aa-kerk achter de huizen",
-      "caption": "Groningen, thuisbasis van de afdeling sinds 2023"
+      "caption": "Groningen, thuisbasis van het chapter sinds 2023"
     },
     "programs": {
       "heading": "Doe mee aan een van onze gratis cursussen!",
@@ -163,11 +163,11 @@
       "discussionGroups": "Het hele jaar door komen twee discussiegroepen samen, elk met minstens één ervaren mentor: technische AI-alignment (scalable oversight, evaluatie en red-teaming, preference learning, robuustheid, risico’s bij de inzet van AI) en AI-governance en privacy (beleid, regelgeving, verantwoording, transparantie en eerlijkheid)."
     },
     "team": {
-      "body": "SAIN Groningen wordt geleid door Tarteel Mohamed. Het werk is verdeeld over vier teams: onderwijs, evenementen, communicatie en onderzoekscoördinatie; een opzet die andere afdelingen overnemen nu ze van start gaan. De afdeling is voortgekomen uit het AI Safety Initiative Groningen (AISIG), dat sinds 2023 bestaat."
+      "body": "SAIN Groningen wordt geleid door Tarteel Mohamed. Het werk is verdeeld over vier teams: onderwijs, evenementen, communicatie en onderzoekscoördinatie; een opzet die andere chapters overnemen nu ze van start gaan. Het chapter is voortgekomen uit het AI Safety Initiative Groningen (AISIG), dat sinds 2023 bestaat."
     },
     "record": {
       "heading": "30 evenementen en de teller loopt",
-      "body": "Sinds oktober 2023 heeft de afdeling 30 evenementen georganiseerd: hackathons, cursusafsluitingen, onderzoekslezingen, pubquizzen en borrels; eerst als AISIG en sinds 30 april 2026 als SAIN Groningen. Onderzoek van leden is gepubliceerd op workshops van NeurIPS en ICLR.",
+      "body": "Sinds oktober 2023 heeft het chapter 30 evenementen georganiseerd: hackathons, cursusafsluitingen, onderzoekslezingen, pubquizzen en borrels; eerst als AISIG en sinds 30 april 2026 als SAIN Groningen. Onderzoek van leden is gepubliceerd op workshops van NeurIPS en ICLR.",
       "prints": {
         "graduationMarch2026": {
           "alt": "Een spreker voor de dia van de cursusafsluiting, tijdens een ceremonie in Groningen",
@@ -192,11 +192,11 @@
   "groningenEvents": {
     "metadata": {
       "title": "Evenementenarchief Groningen",
-      "description": "Alle evenementen die de afdeling Groningen sinds oktober 2023 heeft georganiseerd, eerst als AISIG en daarna als SAIN Groningen."
+      "description": "Alle evenementen die het chapter Groningen sinds oktober 2023 heeft georganiseerd, eerst als AISIG en daarna als SAIN Groningen."
     },
     "hero": {
-      "heading": "Alle evenementen van de afdeling",
-      "intro": "Alles vóór 30 april 2026 werd georganiseerd als het AI Safety Initiative Groningen (AISIG); alles daarna valt onder SAIN Groningen. Bij elk evenement staat de aankondiging van de afdeling uit die tijd, in het Engels en precies zoals die toen werd verstuurd."
+      "heading": "Alle evenementen van het chapter",
+      "intro": "Alles vóór 30 april 2026 werd georganiseerd als het AI Safety Initiative Groningen (AISIG); alles daarna valt onder SAIN Groningen. Bij elk evenement staat de aankondiging van het chapter uit die tijd, in het Engels en precies zoals die toen werd verstuurd."
     },
     "year": {
       "count": "{count, plural, one {# evenement} other {# evenementen}}"
@@ -217,7 +217,7 @@
   },
   "utrecht": {
     "metadata": {
-      "title": "Afdeling Utrecht",
+      "title": "Chapter Utrecht",
       "description": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Gerund door vrijwilligers, open voor iedereen in de stad."
     },
     "hero": {
@@ -259,7 +259,7 @@
               "governance": {
                 "title": "Governance",
                 "meta": "do 15 okt · 18.00-19.00 uur · Drift 23, zaal 103",
-                "detail": "Overzicht van de AI-verordening, verantwoording bij AI-systemen, internationale spelers in AI-veiligheid."
+                "detail": "Overzicht van de EU AI Act, verantwoording bij AI-systemen, internationale spelers in AI-veiligheid."
               }
             }
           }
@@ -310,24 +310,24 @@
             "europe": {
               "title": "Governance in Europa en Nederland",
               "meta": "wo 9 dec · 18.00-19.30 uur · locatie volgt",
-              "detail": "De AI-verordening en de hiaten erin, het EU AI Office en de GPAI Code of Practice, het Nederlandse AI-landschap."
+              "detail": "De EU AI Act en de hiaten erin, het EU AI Office en de GPAI Code of Practice, het Nederlandse AI-landschap."
             }
           }
         }
       },
       "footnote": "Deze cursussen worden zelfstandig georganiseerd door SAIN Utrecht en zijn niet verbonden aan de Universiteit Utrecht.",
-      "discussionGroups": "Tussen de cursusrondes door blijven twee discussiegroepen samenkomen: een over technische AI-veiligheid, op dit moment een leesgroep over mechanistic interpretability, en een over AI-governance en beleid.",
-      "research": "De afdeling bouwt aan een onderzoekstrack: red-teaming van taalmodellen, veiligheidsevaluatie, interpretability en het gedrag van agents. De Project Hub gaat in oktober 2026 van start."
+      "discussionGroups": "Tussen de cohorten door blijven twee discussiegroepen samenkomen: een over technische AI-veiligheid, op dit moment een leesgroep over mechanistic interpretability, en een over AI-governance en beleid.",
+      "research": "Het chapter bouwt aan een onderzoekstrack: red-teaming van taalmodellen, veiligheidsevaluatie, interpretability en het gedrag van agents. De Project Hub gaat in oktober 2026 van start."
     },
     "team": {
-      "body": "SAIN Utrecht wordt geleid door Riccardo Campanella. Het team groeit op vier gebieden: onderwijs, evenementen, communicatie en onderzoek. Het werk van de afdeling wordt gefinancierd door BERI, met begeleiding van Pathfinder."
+      "body": "SAIN Utrecht wordt geleid door Riccardo Campanella. Het team groeit op vier gebieden: onderwijs, evenementen, communicatie en onderzoek. Het werk van het chapter wordt gefinancierd door BERI, met begeleiding van Pathfinder."
     },
     "record": {
       "heading": "Dit is al gebeurd in Utrecht",
-      "body": "Het afgelopen jaar organiseerde de afdeling Win4AISafety, een open onderzoeksuitdaging in de zomer, een volledige technische cursus met een afsluitend diner, discussiegroepen, waaronder een scenariosessie over Europa in 2031, en onderzoekslezingen, onder meer van een onderzoeker van Anthropic voor meer dan 60 mensen.",
+      "body": "Het afgelopen jaar organiseerde het chapter Win4AISafety, een open onderzoeksuitdaging in de zomer, een volledige technische cursus met een afsluitend diner, discussiegroepen, waaronder een scenariosessie over Europa in 2031, en onderzoekslezingen, onder meer van een onderzoeker van Anthropic voor meer dan 60 mensen.",
       "prints": {
         "graduation": {
-          "alt": "De groep van AI Safety Fundamentals samen bij hun afsluiting",
+          "alt": "Het cohort van AI Safety Fundamentals samen bij de afsluiting",
           "caption": "Afsluiting van het programma · SAIN Utrecht"
         },
         "win4AISafety": {

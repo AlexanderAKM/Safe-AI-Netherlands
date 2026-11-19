@@ -22,6 +22,7 @@ import {
   PROJECTS_EMAIL,
   SUPERVISOR_INTEREST_FORM_URL,
 } from "@/data/research";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 export async function generateMetadata({
   params,
@@ -465,6 +466,7 @@ export default function ResearchPage({
                 <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
                 <span className="sr-only"> {tA11y("opensInNewTab")}</span>
               </a>
+              <FormLanguageNote />
             </div>
           </Reveal>
         </div>

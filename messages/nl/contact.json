@@ -1,11 +1,11 @@
 {
   "metadata": {
     "title": "Contact",
-    "description": "Alle adressen die SAIN gebruikt: de landelijke functieadressen, de afdelingsadressen in Groningen, Amsterdam en Utrecht, en de mensen die ze beheren."
+    "description": "Alle adressen die SAIN gebruikt: de landelijke functieadressen, de chapteradressen in Groningen, Amsterdam en Utrecht, en de mensen die ze beheren."
   },
   "hero": {
     "heading": "Schrijf naar het adres dat bij je vraag past.",
-    "intro": "Elke inbox van SAIN staat op deze pagina: de landelijke functieadressen, de adressen van elke afdeling en de mensen erachter."
+    "intro": "Elke inbox van SAIN staat op deze pagina: de landelijke functieadressen, de adressen van elk chapter en de mensen erachter."
   },
   "national": {
     "heading": "Begin bij een functieadres.",
@@ -35,7 +35,7 @@
   },
   "chapters": {
     "heading": "Of schrijf naar een stad.",
-    "intro": "Elke afdeling heeft eigen adressen voor samenwerking, community, onderwijs, evenementen en publiciteit.",
+    "intro": "Elk chapter heeft eigen adressen voor samenwerking, community, onderwijs, evenementen en publiciteit.",
     "roles": {
       "formal": "Formele samenwerking",
       "communityManager": "Communitymanager",
@@ -45,13 +45,13 @@
       "substack": "Substack",
       "outreach": "Publiciteit"
     },
-    "view": "Bekijk de afdeling",
-    "join": "Wil je liever meedoen dan schrijven? Dan heb je geen adres nodig. De communitypagina is de ingang, en dat is dezelfde ingang voor alle drie de afdelingen.",
+    "view": "Bekijk het chapter",
+    "join": "Wil je liever meedoen dan schrijven? Dan heb je geen adres nodig. De communitypagina is de ingang, en dat is dezelfde ingang voor alle drie de chapters.",
     "visitCommunity": "Naar de community"
   },
   "leads": {
     "heading": "De mensen achter die adressen.",
-    "intro": "De landelijke directeur, de afdelingsdirecteuren en het hoofd bedrijfsvoering, elk met het adres dat alleen zij lezen.",
+    "intro": "De landelijke directeur, de chapterdirecteuren en het hoofd bedrijfsvoering, elk met het adres dat alleen zij lezen.",
     "people": {
       "alexander": {
         "role": "Directeur SAIN",
@@ -59,15 +59,15 @@
       },
       "tarteel": {
         "role": "Directeur SAIN Groningen",
-        "alsoAnswers": "Beantwoordt ook het afdelingsadres van SAIN Groningen hierboven."
+        "alsoAnswers": "Beantwoordt ook het chapteradres van SAIN Groningen hierboven."
       },
       "ana": {
         "role": "Directeur SAIN Amsterdam en hoofd groei SAIN",
-        "alsoAnswers": "Beantwoordt ook het afdelingsadres van SAIN Amsterdam hierboven."
+        "alsoAnswers": "Beantwoordt ook het chapteradres van SAIN Amsterdam hierboven."
       },
       "riccardo": {
         "role": "Directeur SAIN Utrecht",
-        "alsoAnswers": "Beantwoordt ook het afdelingsadres van SAIN Utrecht hierboven."
+        "alsoAnswers": "Beantwoordt ook het chapteradres van SAIN Utrecht hierboven."
       },
       "marta": {
         "role": "Hoofd bedrijfsvoering SAIN"

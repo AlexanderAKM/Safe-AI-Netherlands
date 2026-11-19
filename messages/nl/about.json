@@ -9,7 +9,7 @@
       "risks": "De risico’s van transformatieve AI aanpakken.",
       "contribution": "Een eerste echte bijdrage mogelijk maken."
     },
-    "intro": "Dat is de missie van Stichting Safe AI Netherlands. Transformatieve AI kan de economie, de wetenschap en de samenleving veranderen op de schaal van een grote historische omwenteling; of dat goed afloopt, staat nog niet vast. Wij zijn een landelijke talentpijplijn: lokale afdelingen op een gedeelde infrastructuur, van het eerste contact via cursussen en de Project Hub tot de overstap naar het bredere vakgebied. Deze pagina laat dat pad zien, wat we op papier hebben gezet en de mensen die het draaiende houden."
+    "intro": "Dat is de missie van Stichting Safe AI Netherlands. Transformatieve AI kan de economie, de wetenschap en de samenleving veranderen op de schaal van een grote historische omwenteling; of dat goed afloopt, staat nog niet vast. Wij zijn een landelijke talentpijplijn: lokale chapters op een gedeelde infrastructuur, van het eerste contact via cursussen en de Project Hub tot de overstap naar het bredere vakgebied. Deze pagina laat dat pad zien, wat we op papier hebben gezet en de mensen die het draaiende houden."
   },
   "path": {
     "heading": "Nederland heeft het talent. Wat ontbrak, was het pad.",
@@ -22,7 +22,7 @@
     "whole": "Het trechterdiagram is de hele organisatie. Aan de brede kant staat een gratis cursus waar iedereen aan mee kan doen, zonder technische achtergrond. Aan de smalle kant staat fulltime werk aan AI-veiligheid, in beleid, onderzoek, het bedrijfsleven of het maatschappelijk middenveld. Daartussen zitten de community, de Project Hub en fellowships. Je voortgang is zichtbaar, voor jou en voor ons, en het is de taak van SAIN om elke volgende stap bereikbaar te maken, zodat elke stap die iemand zet, optelt tot een effectievere missie.",
     "effort": "We zijn open over waar onze inzet naartoe gaat. SAIN bouwt de brede kant: mensen binnenhalen, de basis bijbrengen en een eerste echte bijdrage ondersteunen, zoals een begeleid onderzoeksproject. Aan de smalle kant verbinden en verwijzen we vooral, met introducties en aanbevelingsbrieven.",
     "endings": "We hebben de pijplijn ontworpen met veel goede eindpunten. Wie één cursus volgt en daarna teruggaat naar de juridische wereld, de geneeskunde of het openbaar bestuur, neemt die kennis mee in het eigen vak, en een samenleving die thuis is in de risico’s van AI, is een uitkomst die we actief nastreven.",
-    "soFar": "Tot nu toe heeft de pijplijn meer dan 100 mensen opgeleverd die een cursus hebben afgerond, verspreid over meer dan negen groepen, nu zo’n 60 per jaar, en peer-reviewed onderzoek op NeurIPS en ICLR. Het doel voor medio 2027 is 250 of meer cursisten per jaar die de cursus afronden, door dezelfde gestandaardiseerde cursus in meer steden te geven.",
+    "soFar": "Tot nu toe heeft de pijplijn meer dan 100 mensen opgeleverd die een cursus hebben afgerond, verspreid over meer dan negen cohorten, nu zo’n 60 per jaar, en peer-reviewed onderzoek op NeurIPS en ICLR. Het doel voor medio 2027 is 250 of meer cursisten per jaar die de cursus afronden, door dezelfde gestandaardiseerde cursus in meer steden te geven.",
     "cta": "Begin met een gratis cursus",
     "funnel": {
       "course": "Volg een gratis cursus, open voor iedereen",
@@ -41,7 +41,7 @@
       },
       "beyondStudents": {
         "title": "Meer dan studenten.",
-        "line": "AISIG gaat open voor professionals, draait meerdere cursusgroepen en organiseert hackathons met Apart Research."
+        "line": "AISIG gaat open voor professionals, draait meerdere cursuscohorten en organiseert hackathons met Apart Research."
       },
       "topVenues": {
         "title": "Onderzoek op topconferenties.",
@@ -49,28 +49,28 @@
       },
       "national": {
         "title": "Safe AI Netherlands.",
-        "line": "Met Alexander als oprichter en Ana, Andreea, Tarteel en Riccardo als medeoprichters ontstaat Safe AI Netherlands, dat een landelijke stichting wordt met afdelingen in Groningen, Amsterdam en Utrecht en één gedeelde infrastructuur."
+        "line": "Met Alexander als oprichter en Ana, Andreea, Tarteel en Riccardo als medeoprichters ontstaat Safe AI Netherlands, dat een landelijke stichting wordt met chapters in Groningen, Amsterdam en Utrecht en één gedeelde infrastructuur."
       }
     }
   },
   "team": {
     "kicker": "De mensen erachter",
     "heading": "Een kleine leiding, dicht op het werk.",
-    "intro": "SAIN wordt geleid door de landelijke directeur en de hoofden groei, bedrijfsvoering en projecten. De leiding neemt de strategische beslissingen; de afdelingen organiseren de cursussen, evenementen en community’s.",
+    "intro": "SAIN wordt geleid door de landelijke directeur en de hoofden groei, bedrijfsvoering en projecten. De leiding neemt de strategische beslissingen; de chapters organiseren de cursussen, evenementen en community’s.",
     "roles": {
       "director": "Directeur SAIN",
       "headOfGrowth": "Hoofd groei SAIN",
       "headOfOperations": "Hoofd bedrijfsvoering SAIN",
       "headOfProjects": "Hoofd projecten SAIN",
-      "chapterDirectorGroningen": "Afdelingsdirecteur, Groningen",
-      "chapterDirectorAmsterdam": "Afdelingsdirecteur, Amsterdam",
-      "chapterDirectorUtrecht": "Afdelingsdirecteur, Utrecht",
+      "chapterDirectorGroningen": "Chapterdirecteur, Groningen",
+      "chapterDirectorAmsterdam": "Chapterdirecteur, Amsterdam",
+      "chapterDirectorUtrecht": "Chapterdirecteur, Utrecht",
       "entrepreneurialEcosystemDirector": "Directeur, The Entrepreneurial Ecosystem",
       "aisigCofounder": "AI-onderzoeker en -ontwikkelaar; medeoprichter, AISIG"
     },
     "directors": {
-      "heading": "Afdelingsdirecteuren",
-      "intro": "Elke afdeling wordt geleid door een eigen afdelingsdirecteur."
+      "heading": "Chapterdirecteuren",
+      "intro": "Elk chapter wordt geleid door een eigen chapterdirecteur."
     },
     "advisory": {
       "heading": "Met advies van mensen die al in het vakgebied werken.",
@@ -100,7 +100,7 @@
   },
   "documents": {
     "heading": "De regels waar we ons aan houden, zijn openbaar.",
-    "intro": "SAIN is een stichting, de gebruikelijke rechtsvorm voor een organisatie zonder winstoogmerk. De stichting beheert het merk, de rechtspersoon en de financiën, zodat een lokale afdeling die nooit zelf hoeft op te bouwen; de afdelingen organiseren hun eigen cursussen, evenementen en community’s. Elk programma is gratis. Drie documenten leggen vast hoe het geheel werkt, en iedereen kan ze lezen.",
+    "intro": "SAIN is een stichting, de gebruikelijke rechtsvorm voor een organisatie zonder winstoogmerk. De stichting beheert het merk, de rechtspersoon en de financiën, zodat een lokaal chapter die nooit zelf hoeft op te bouwen; de chapters organiseren hun eigen cursussen, evenementen en community’s. Elk programma is gratis. Drie documenten leggen vast hoe het geheel werkt, en iedereen kan ze lezen.",
     "items": {
       "vision": {
         "eyebrow": "Waar SAIN naartoe gaat",
@@ -119,10 +119,10 @@
       }
     },
     "read": "Lees het document",
-    "contactNote": "Functieadressen en contactgegevens van de afdelingen staan op één pagina, zodat ze kloppen.",
+    "contactNote": "Functieadressen en contactgegevens van de chapters staan op één pagina, zodat ze kloppen.",
     "contactLink": "Neem contact op met SAIN",
-    "chapterNote": "Wil je SAIN naar jouw stad halen? Afdelingen nemen het merk, de juridische paraplu en kant-en-klare curricula over, in plaats van vanaf nul te beginnen.",
-    "chapterLink": "Start een afdeling"
+    "chapterNote": "Wil je SAIN naar jouw stad halen? Chapters nemen het merk, de juridische paraplu en kant-en-klare curricula over, in plaats van vanaf nul te beginnen.",
+    "chapterLink": "Start een chapter"
   },
   "close": {
     "heading": "Het werk gebeurt al. Doe mee, of help het te organiseren.",

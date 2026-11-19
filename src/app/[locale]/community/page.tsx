@@ -13,6 +13,7 @@ import { ATLAS } from "@/data/chapterAtlas";
 import EventPrints from "@/components/community/EventPrints";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 export async function generateMetadata({
   params,
@@ -108,6 +109,7 @@ export default function CommunityPage({
                 {t("hero.findChapter")}
                 <ArrowDown size={16} weight="regular" aria-hidden="true" />
               </a>
+              <FormLanguageNote className="basis-full" />
             </div>
             <p className="max-w-[560px] font-sans text-footnote text-navy/65">
               {t("hero.discordNote")}
@@ -174,6 +176,7 @@ export default function CommunityPage({
                 "community.atlas",
                 "courses.applications",
                 "common.a11y",
+                "common.forms",
                 "common.actions",
               ]}
             >
@@ -367,6 +370,7 @@ export default function CommunityPage({
               {tCommon("actions.volunteer")}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </Link>
+            <FormLanguageNote tone="inverse" className="basis-full" />
           </div>
         </div>
       </section>

@@ -8,6 +8,7 @@ import type { Locale } from "@/i18n/routing";
 
 import ApplyForm from "@/components/research/ApplyForm";
 import { PROJECTS_EMAIL } from "@/data/research";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 export async function generateMetadata({
   params,
@@ -94,6 +95,7 @@ export default function ApplyPage({
 
       <section aria-label={t("applyPage.formLabel")} className="bg-white">
         <div className="shell py-6 md:py-10">
+          <FormLanguageNote className="mb-4" />
           <ClientMessages namespaces={["projectHub.applyForm"]}>
             <ApplyForm linkClass={linkClass} />
           </ClientMessages>

@@ -5,7 +5,7 @@
   "hero": {
     "heading": "Je carrière in AI-veiligheid begint hier.",
     "intro": "Expertise in AI-veiligheid is belangrijker dan ooit. SAIN biedt de community, cursussen en middelen waarmee studenten en professionals hun weg vinden in AI-veiligheid. We bieden een duidelijk pad via onderwijs, community en praktijkprojecten, en brengen sterke deelnemers daarna in contact met de organisaties, programma’s en functies waar ze de volgende stap kunnen zetten.",
-    "hiring": "<strong>We zoeken betaalde startteams</strong> voor nieuwe afdelingen in Eindhoven, Delft en Den Haag. Solliciteer uiterlijk {date}. <roles>Bekijk de rollen</roles>",
+    "hiring": "<strong>We zoeken betaalde startteams</strong> voor nieuwe chapters in Eindhoven, Delft en Den Haag. Solliciteer uiterlijk {date}. <roles>Bekijk de rollen</roles>",
     "chartAlt": "Een steeds steiler stijgende AI-curve begint in de oorsprong. Twee mensen leren en oefenen, terwijl een derde omhoog wijst naar het kantelpunt, waar de curve zich splitst in een steil oranje pad en een vlakker grijs pad."
   },
   "affiliations": {
@@ -14,13 +14,13 @@
   "mission": {
     "heading": "Waarom SAIN bestaat",
     "statement": "<muted>Te weinig mensen weten hoe ze aan AI-veiligheid kunnen werken, in onderzoek, in beleid of in het publieke debat.</muted> SAIN <verb1>traint</verb1> er meer, <verb2>verbindt</verb2> ze en helpt ze <verb3>op weg</verb3>.",
-    "intro": "Een gratis pad, gerund door vrijwilligers, van nieuwsgierigheid naar een eigen bijdrage: via cursussen, evenementen, onderzoek en lokale afdelingen.",
+    "intro": "Een gratis pad, gerund door vrijwilligers, van nieuwsgierigheid naar een eigen bijdrage: via cursussen, evenementen, onderzoek en lokale chapters.",
     "aboutLink": "Waarom SAIN bestaat"
   },
   "community": {
     "heading": "Doe mee met de community",
     "intro": "<strong>Discussiegroepen</strong>, <strong>hackathons</strong>, <strong>lezingen</strong> en de avonden erna. Mensen vinden hier <strong>vrienden en samenwerkingspartners</strong>, en vaak ook hun <strong>volgende stap in AI-veiligheid</strong>.",
-    "discord": "Onze Discord-community richt zich nu op onze afdelingen SAIN Amsterdam, Utrecht en Groningen.",
+    "discord": "Onze Discord-community richt zich nu op onze chapters SAIN Amsterdam, Utrecht en Groningen.",
     "nextCities": "Eindhoven, Delft en Den Haag zijn de volgende: <link>we zoeken hun startteams</link>.",
     "moreCities": "Er komen meer steden bij."
   },
@@ -40,7 +40,7 @@
   },
   "courses": {
     "heading": "Begin met een gratis cursus",
-    "intro": "Kies een track. Elk programma is gratis en wordt op locatie gegeven. Wat je volgt en hoe het loopt, hangt af van de afdeling.",
+    "intro": "Kies een track. Elk programma is gratis en wordt op locatie gegeven. Wat je volgt en hoe het loopt, hangt af van het chapter.",
     "applyNow": "Je kunt je nu aanmelden in {cities}."
   },
   "courseTracks": {
@@ -63,7 +63,7 @@
       },
       "network": {
         "title": "Landelijk netwerk",
-        "description": "Werk samen met onderzoekers, adviseurs en mensen uit de praktijk, bij alle Nederlandse afdelingen van SAIN."
+        "description": "Werk samen met onderzoekers, adviseurs en mensen uit de praktijk, bij alle Nederlandse chapters van SAIN."
       },
       "publication": {
         "title": "Publicatietraject",
@@ -109,7 +109,7 @@
     },
     "quote": {
       "context": "Stage · Existential Risk Observatory",
-      "text": "Zonder deze community was ik vrijwel zeker niet gekomen waar ik nu ben.",
+      "text": "Without this community I almost certainly wouldn’t be where I am.",
       "project": "Onderzoek naar AI-alignmenttechnieken en overheidsmaatregelen in kaart brengen"
     }
   },

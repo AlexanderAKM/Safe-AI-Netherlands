@@ -15,21 +15,21 @@
   "work": {
     "kicker": "Het werk",
     "heading": "Zes teams, drie tot tien uur per week",
-    "intro": "Amsterdam, Utrecht en Groningen hebben elk dezelfde teams. Een teamleider is verantwoordelijk voor een team en rapporteert aan de directeur van de afdeling; teamleden nemen een deel van het werk op zich. De meeste rollen kosten drie tot vijf uur per week, teamleiders zes tot tien.",
+    "intro": "Amsterdam, Utrecht en Groningen hebben elk dezelfde teams. Een teamleider is verantwoordelijk voor een team en rapporteert aan de directeur van het chapter; teamleden nemen een deel van het werk op zich. De meeste rollen kosten drie tot vijf uur per week, teamleiders zes tot tien.",
     "teams": {
       "education": {
         "name": "Onderwijs",
-        "description": "Organiseer cursusgroepen en discussiegroepen. Begeleid wekelijkse sessies, ondersteun deelnemers en houd de kwaliteit hoog, ronde na ronde.",
+        "description": "Organiseer cursuscohorten en discussiegroepen. Begeleid wekelijkse sessies, ondersteun deelnemers en houd de kwaliteit hoog, ronde na ronde.",
         "hours": "3 tot 10 uur per week"
       },
       "events": {
         "name": "Evenementen",
-        "description": "Plan en verzorg de agenda van de afdeling. Hackathons, lezingen van experts, borrels en de logistiek erachter.",
+        "description": "Plan en verzorg de agenda van het chapter. Hackathons, lezingen van experts, borrels en de logistiek erachter.",
         "hours": "3 tot 10 uur per week"
       },
       "communications": {
         "name": "Communicatie",
-        "description": "Schrijven, vormgeving, fotografie, video en de website. Maak het werk van de afdeling zichtbaar, in de huisstijl van SAIN.",
+        "description": "Schrijven, vormgeving, fotografie, video en de website. Maak het werk van het chapter zichtbaar, in de huisstijl van SAIN.",
         "hours": "3 tot 10 uur per week"
       },
       "community": {
@@ -52,25 +52,25 @@
   },
   "whatYouGet": {
     "heading": "Je bouwt werk op dat je kunt laten zien",
-    "intro": "Bij SAIN krijg je als vrijwilliger al vroeg echte verantwoordelijkheid. Teamleiders rapporteren direct aan de afdelingsdirecteuren, en teamleden organiseren groepen, evenementen en kanalen die ook echt doorgaan. Je werkt samen met mensen in Utrecht, Groningen en Amsterdam die zelf het vakgebied in stappen, en veel van de contacten die later belangrijk blijken, beginnen hier.",
+    "intro": "Bij SAIN krijg je als vrijwilliger al vroeg echte verantwoordelijkheid. Teamleiders rapporteren direct aan de chapterdirecteuren, en teamleden organiseren cohorten, evenementen en kanalen die ook echt doorgaan. Je werkt samen met mensen in Utrecht, Groningen en Amsterdam die zelf het vakgebied in stappen, en veel van de contacten die later belangrijk blijken, beginnen hier.",
     "returns": [
       "Ervaring met echte verantwoordelijkheid, niet alleen meekijken",
-      "Een netwerk in drie steden met een afdeling",
-      "Aantoonbaar werk in het vakgebied: groepen begeleid, evenementen georganiseerd, werk gepubliceerd"
+      "Een netwerk in drie steden met een chapter",
+      "Aantoonbaar werk in het vakgebied: cohorten begeleid, evenementen georganiseerd, werk gepubliceerd"
     ],
     "quote": {
       "context": "Stage · Existential Risk Observatory",
-      "text": "“Zonder deze community was ik vrijwel zeker niet geweest waar ik nu ben.”",
+      "text": "“Without this community I almost certainly wouldn’t be where I am.”",
       "project": "Onderzoek naar technieken voor AI alignment en overheidsingrijpen in kaart brengen"
     }
   },
   "howToApply": {
     "heading": "Eén korte sollicitatie, beoordeeld zodra die binnenkomt",
-    "intro": "Alle sollicitaties bij de afdelingen gaan via hetzelfde korte formulier: naam, cv en een motivatiebrief van één pagina. We beoordelen sollicitaties doorlopend, dus solliciteer wanneer je er klaar voor bent.",
+    "intro": "Alle sollicitaties bij de chapters gaan via hetzelfde korte formulier: naam, cv en een motivatiebrief van één pagina. We beoordelen sollicitaties doorlopend, dus solliciteer wanneer je er klaar voor bent.",
     "steps": {
       "apply": {
         "title": "Sollicitatie.",
-        "body": "Kies de afdeling en de rol, voeg je cv toe en schrijf een korte motivatiebrief. Eén pagina is genoeg."
+        "body": "Kies het chapter en de rol, voeg je cv toe en schrijf een korte motivatiebrief. Eén pagina is genoeg."
       },
       "hearBack": {
         "title": "Reactie.",
@@ -89,8 +89,8 @@
   },
   "foundChapter": {
     "heading": "SAIN in jouw stad?",
-    "intro": "Een afdeling oprichten is een eigen pad, met eigen draaiboeken en begeleiding, en het hoort bij de community.",
-    "link": "Start een afdeling"
+    "intro": "Een chapter oprichten is een eigen pad, met eigen draaiboeken en begeleiding, en het hoort bij de community.",
+    "link": "Start een chapter"
   },
   "close": {
     "heading": "Achter elk gratis programma staan vrijwilligers",

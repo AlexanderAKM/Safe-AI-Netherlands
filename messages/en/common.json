@@ -91,5 +91,8 @@
     "volunteer": "Volunteer",
     "visitProjectHub": "Visit the Project hub",
     "applyFreeCourse": "Apply to the free course"
+  },
+  "forms": {
+    "inEnglish": "The form is in English."
   }
 }

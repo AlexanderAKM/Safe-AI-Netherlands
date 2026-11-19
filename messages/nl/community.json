@@ -1,22 +1,22 @@
 {
   "metadata": {
     "title": "Community",
-    "description": "SAIN bestaat uit drie lokale afdelingen, in Utrecht, Groningen en Amsterdam: wekelijkse discussiegroepen, gratis cursussen, hackathons en lezingen. Vind jouw afdeling en kijk wat er op het programma staat."
+    "description": "SAIN bestaat uit drie lokale chapters, in Utrecht, Groningen en Amsterdam: wekelijkse discussiegroepen, gratis cursussen, hackathons en lezingen. Vind jouw chapter en kijk wat er op het programma staat."
   },
   "hero": {
     "heading": "Eén community, in drie steden.",
-    "intro": "SAIN, dat zijn de afdelingen. Utrecht, Groningen en Amsterdam organiseren elk hun eigen discussiegroepen, gratis cursussen en avonden, met een gedeeld curriculum en onder één landelijke organisatie. Kies de afdeling bij jou in de buurt en loop gewoon eens binnen.",
-    "findChapter": "Vind jouw afdeling",
-    "discordNote": "Onze Discord-community richt zich nu op onze afdelingen SAIN Amsterdam, Utrecht en Groningen. Meer steden volgen.",
-    "printsLabel": "De drie afdelingen"
+    "intro": "SAIN, dat zijn de chapters. Utrecht, Groningen en Amsterdam organiseren elk hun eigen discussiegroepen, gratis cursussen en avonden, met een gedeeld curriculum en onder één landelijke organisatie. Kies het chapter bij jou in de buurt en loop gewoon eens binnen.",
+    "findChapter": "Vind jouw chapter",
+    "discordNote": "Onze Discord-community richt zich nu op onze chapters SAIN Amsterdam, Utrecht en Groningen. Meer steden volgen.",
+    "printsLabel": "De drie chapters"
   },
   "chapters": {
-    "heading": "Drie afdelingen, elk een eigen plek.",
+    "heading": "Drie chapters, elk een eigen plek.",
     "intro": "Hetzelfde curriculum, dezelfde landelijke steun, elk een eigen karakter.",
-    "choose": "Kies een stad om te zien wie de afdeling leidt, welke cursussen er zijn en wat er deze maand op het programma staat."
+    "choose": "Kies een stad om te zien wie het chapter leidt, welke cursussen er zijn en wat er deze maand op het programma staat."
   },
   "atlas": {
-    "label": "De afdelingen",
+    "label": "De chapters",
     "directedBy": "Geleid door",
     "freeCourse": "De gratis cursus",
     "deadlines": "Deelnemers uiterlijk {participants}. Facilitators uiterlijk {facilitators}.",
@@ -25,7 +25,7 @@
     "comingUp": "Binnenkort in {city}",
     "calendarTitle": "Komende evenementen van SAIN {city}",
     "fullCalendar": "De volledige agenda van {city} op Luma",
-    "walkIn": "Bij evenementen kun je gewoon binnenlopen, tenzij de evenementpagina iets anders zegt. Vragen? Elke afdeling noemt op haar eigen pagina een contactpersoon voor evenementen.",
+    "walkIn": "Bij evenementen kun je gewoon binnenlopen, tenzij de evenementpagina iets anders zegt. Vragen? Elk chapter noemt op zijn eigen pagina een contactpersoon voor evenementen.",
     "chapters": {
       "utrecht": {
         "origin": "Universiteit Utrecht en daarbuiten",
@@ -79,7 +79,7 @@
     "archive": "Groningen houdt <link>een volledig archief</link> bij van alle evenementen sinds 2023."
   },
   "eventPrints": {
-    "label": "Foto’s van evenementen van de SAIN-afdelingen",
+    "label": "Foto’s van evenementen van de SAIN-chapters",
     "previous": "Vorige foto’s",
     "next": "Volgende foto’s",
     "prints": {
@@ -92,7 +92,7 @@
         "caption": "TEDxBroerstraat · SAIN Groningen"
       },
       "graduation": {
-        "alt": "Een groep van AI Safety Fundamentals bij de afsluiting van de cursus in Utrecht",
+        "alt": "Een cohort van AI Safety Fundamentals bij de afsluiting van de cursus in Utrecht",
         "caption": "Diploma-uitreiking · SAIN Utrecht"
       },
       "pubQuiz": {
@@ -106,12 +106,12 @@
     }
   },
   "startChapter": {
-    "printsLabel": "De afdelingen tot nu toe, en de volgende die eraan komt",
+    "printsLabel": "De chapters tot nu toe, en het volgende dat eraan komt",
     "yourCity": "Jouw stad?",
-    "heading": "De volgende afdeling begint met één bijeenkomst.",
-    "intro": "Nog geen afdeling in jouw stad? De drie die er zijn, begonnen allemaal op dezelfde manier: een paar mensen die een lokale community rond AI-veiligheid wilden en bereid waren de eerste bijeenkomst te organiseren. De leiding van SAIN begeleidt oprichters door het hele proces, en nieuwe afdelingen vallen onder de landelijke stichting, dus een aparte rechtspersoon is niet nodig.",
+    "heading": "Het volgende chapter begint met één bijeenkomst.",
+    "intro": "Nog geen chapter in jouw stad? De drie die er zijn, begonnen allemaal op dezelfde manier: een paar mensen die een lokale community rond AI-veiligheid wilden en bereid waren de eerste bijeenkomst te organiseren. De leiding van SAIN begeleidt oprichters door het hele proces, en nieuwe chapters vallen onder de landelijke stichting, dus een aparte rechtspersoon is niet nodig.",
     "newCities": "Zit je in Eindhoven, Delft of Den Haag? Daar zoeken we nu betaalde startteams. <link>Bekijk de vacatures voor de startteams</link>",
-    "propose": "Stel een afdeling voor",
+    "propose": "Stel een chapter voor",
     "proposeNote": "Stuur ons een e-mail met je stad en een paar dingen over jezelf.",
     "providesHeading": "Wat je van SAIN krijgt",
     "provides": [
@@ -127,16 +127,16 @@
     "steps": [
       "Schrijf ons over jouw stad.",
       "Doorloop het oprichtingsproces samen met de leiding van SAIN.",
-      "Zet je lokale kanalen op, en de pagina van je afdeling op deze site.",
+      "Zet je lokale kanalen op, en de pagina van je chapter op deze site.",
       "Doe de eerste promotie en organiseer de eerste bijeenkomst.",
       "Organiseer een eerste cursus zodra je er klaar voor bent; het curriculum en de handleidingen horen bij het pakket."
     ]
   },
   "close": {
     "heading": "Ook de mensen op deze foto’s kenden de eerste keer niemand.",
-    "body": "Kom eens naar een bijeenkomst in de stad bij jou in de buurt. Wil je meer doen dan alleen meedoen? Bij elke afdeling ligt vrijwilligerswerk klaar."
+    "body": "Kom eens naar een bijeenkomst in de stad bij jou in de buurt. Wil je meer doen dan alleen meedoen? Bij elk chapter ligt vrijwilligerswerk klaar."
   },
   "chapterPrints": {
-    "label": "Afdelingen"
+    "label": "Chapters"
   }
 }
