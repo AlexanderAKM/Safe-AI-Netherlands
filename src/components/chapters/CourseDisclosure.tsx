@@ -59,6 +59,9 @@ export type Course = {
   summary: ReactNode;
   outlineTitle: string;
   outline: OutlineItem[];
+  /** The full week-by-week curriculum, kept outside the site; linked under
+   *  the outline, which only summarises each week. */
+  curriculum?: { label: string; href: string };
   /** Small print under the outline, read with this course only. */
   note?: ReactNode;
 };
@@ -296,6 +299,20 @@ export default function CourseDisclosure({ courses }: { courses: Course[] }) {
                     );
                   })}
                 </ol>
+                {course.curriculum ? (
+                  <p className="border-t border-navy/10 pt-3 font-sans text-ui">
+                    <a
+                      href={course.curriculum.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {course.curriculum.label}
+                      <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </p>
+                ) : null}
               </div>
 
               {course.note ? (
