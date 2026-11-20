@@ -56,6 +56,11 @@ const LINKTREE_URL = "https://linktr.ee/sainutrecht";
 const LINKEDIN_POSTS_URL = "https://www.linkedin.com/company/sain-utrecht/posts/";
 const DEVPOST_URL =
   "https://win4aisafety-sain-utrecht.devpost.com/project-gallery";
+/* The autumn 2026 Technical AI Safety curriculum, week by week. The plain
+   /d/<id>/ link, so the doc opens in whatever view suits the reader's
+   device rather than the mobile one it was shared as. */
+const TECHNICAL_CURRICULUM_URL =
+  "https://docs.google.com/document/d/1ycd9NJtLUWyyIQW9g6HnKEwz96iGelOTQR_QXxJsGB4/";
 
 /* Role titles are under team.roles in the messages. */
 const team: readonly TeamMember[] = [
@@ -243,6 +248,10 @@ export default function UtrechtPage({
         session("technical.sessions.embodied"),
         session("technical.sessions.agents"),
       ],
+      curriculum: {
+        label: t("programs.courses.technical.curriculum"),
+        href: TECHNICAL_CURRICULUM_URL,
+      },
     },
     {
       id: "governance",

@@ -62,6 +62,9 @@ export type Course = {
   summary: ReactNode;
   outlineTitle: string;
   outline: OutlineItem[];
+  /** The full week-by-week curriculum, kept outside the site; linked under
+   *  the outline, which only summarises each week. */
+  curriculum?: { label: string; href: string };
   /** Small print under the outline, read with this course only. */
   note?: ReactNode;
 };
@@ -91,7 +94,7 @@ export default function CourseDisclosure({
   courses: Course[];
   /** The group's accessible name: "Courses in this chapter". */
   label: string;
-  /** Read after an outline link: "(opens in a new tab)". */
+  /** Read after an outline or curriculum link: "(opens in a new tab)". */
   newTabLabel: string;
 }) {
   const [activeId, setActiveId] = useState<string | null>(courses[0].id);
@@ -309,6 +312,20 @@ export default function CourseDisclosure({
                     );
                   })}
                 </ol>
+                {course.curriculum ? (
+                  <p className="border-t border-navy/10 pt-3 font-sans text-ui">
+                    <a
+                      href={course.curriculum.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                    >
+                      {course.curriculum.label}
+                      <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
+                      <span className="sr-only"> {newTabLabel}</span>
+                    </a>
+                  </p>
+                ) : null}
               </div>
 
               {course.note ? (

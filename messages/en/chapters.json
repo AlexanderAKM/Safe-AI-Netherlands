@@ -287,7 +287,8 @@
               "meta": "Thu 10 Dec · 18:00-19:30 · Location TBD",
               "detail": "How agents are attacked through prompt injection and their tools, why model-level defences fail, secure design and AI Control, and how AI can also act as a defender."
             }
-          }
+          },
+          "curriculum": "Read the full week-by-week curriculum"
         },
         "governance": {
           "summary": "AI Governance is a new four-week course at SAIN Utrecht, open to everyone, with no previous background needed. Most AI governance courses focus on the US and China. In this course, we also look at their visions and ambitions and at where middle powers like the EU fit in. We also dedicate an entire lecture to how Europe and the Netherlands are regulating AI. Throughout the course, we read and discuss primary sources, such as government strategies, laws, and documents from AI labs, giving you the tools to follow developments in AI regulation and geopolitics independently. Each week has about one to two hours of reading and a 1.5-hour lecture.",
