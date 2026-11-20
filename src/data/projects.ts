@@ -66,11 +66,16 @@ export const projectCategories: ProjectCategory[] = [
 export const projectBases = ["Amsterdam", "Groningen", "Remote"] as const;
 export type ProjectBase = (typeof projectBases)[number];
 
+/** A link's label: `key` names a generic one under browser.links in
+    messages/<locale>/projectHub.json ("Website"); a lab or a site with a
+    name of its own carries that `name` instead. */
+export type ProjectLink = { key?: "website" | "code" | "theoryPaper"; name?: string; href: string };
+
 export type ProjectSupervisor = Supervisor & {
   /** Where the supervisor is based, for the location filter. */
   base: ProjectBase;
   /** Besides the agenda, which every supervisor has. */
-  links: { label: string; href: string }[];
+  links: ProjectLink[];
 };
 
 export type ThesisUniversity = "VU" | "UvA";
@@ -97,15 +102,19 @@ export type Project = {
   commitment?: string;
   /** Only to differ from the supervisor's own availability. */
   availability?: Availability;
-  /** With a project-level `availability`: the limit in a few words. */
+  /** With a project-level `availability`: the key of the limit in a few
+      words, as a supervisor's `availabilityNote` (src/data/research.ts). */
   availabilityNote?: string;
 };
 
+/** A translator for the `projectHub.browser.eligibility` messages. */
+export type EligibilityTranslator = (key: string, values?: Record<string, string>) => string;
+
 /** A thesis project's label: "VU thesis", or "UvA thesis · MSc AI". */
-export function thesisLabel(project: Project) {
+export function thesisLabel(project: Project, t: EligibilityTranslator) {
   if (!project.thesis) return null;
   const { university, level } = project.thesis;
-  return level ? `${university} thesis · ${level}` : `${university} thesis`;
+  return level ? t("thesisAtLevel", { university, level }) : t("thesis", { university });
 }
 
 export function eligibilityOf(project: Project): Eligibility {
@@ -114,10 +123,10 @@ export function eligibilityOf(project: Project): Eligibility {
 
 /** The line under every card's title: "VU thesis (MSc): VU students only",
     or "Open to everyone". */
-export function eligibilityLabel(project: Project) {
-  if (!project.thesis) return "Open to everyone";
+export function eligibilityLabel(project: Project, t: EligibilityTranslator) {
+  if (!project.thesis) return t("everyone");
   const { university, level } = project.thesis;
-  return `${university} thesis${level ? ` (${level})` : ""}: ${university} students only`;
+  return level ? t("lineAtLevel", { university, level }) : t("line", { university });
 }
 
 /** The project's own availability, else its supervisor's, else open. */
@@ -148,36 +157,36 @@ function byName(
 }
 
 const filip = byName("Filip Ilievski", "Amsterdam", [
-  { label: "Website", href: "https://www.ilievski.info/" },
+  { key: "website", href: "https://www.ilievski.info/" },
 ]);
 const satchit = byName("Satchit Chatterji", "Amsterdam");
 const sandro = byName("Sandro Pezzelle", "Amsterdam", [
-  { label: "Website", href: "https://sandropezzelle.github.io/" },
-  { label: "Mulini Lab", href: "https://projects.illc.uva.nl/mulinilab/" },
+  { key: "website", href: "https://sandropezzelle.github.io/" },
+  { name: "Mulini Lab", href: "https://projects.illc.uva.nl/mulinilab/" },
 ]);
 const fausto = byName("Fausto Carcassi", "Amsterdam", [
-  { label: "Website", href: "https://faustocarcassi.com/" },
+  { key: "website", href: "https://faustocarcassi.com/" },
 ]);
 const leon = byName("Leon Eshuijs", "Amsterdam", [
-  { label: "Website", href: "https://watermeleon.github.io/" },
+  { key: "website", href: "https://watermeleon.github.io/" },
 ]);
 const ana = byName("Ana Lucic", "Amsterdam", [
-  { label: "Website", href: "https://a-lucic.github.io" },
+  { key: "website", href: "https://a-lucic.github.io" },
 ]);
 const fatih = byName("Fatih Turkmen", "Groningen", [
-  { label: "Website", href: "https://www.cs.rug.nl/~turkmen/" },
+  { key: "website", href: "https://www.cs.rug.nl/~turkmen/" },
 ]);
 const guillaume = byName("Guillaume Pourcel", "Groningen");
 const jobst = byName("Jobst Heitzig", "Remote", [
-  { label: "Theory paper", href: "https://arxiv.org/abs/2508.00159v2" },
-  { label: "Code", href: "https://github.com/pik-gane/empo" },
+  { key: "theoryPaper", href: "https://arxiv.org/abs/2508.00159v2" },
+  { key: "code", href: "https://github.com/pik-gane/empo" },
 ]);
 const emile = byName("Emile van Krieken", "Amsterdam");
 const peter = byName("Peter Bloem", "Amsterdam", [
-  { label: "AIXI labs", href: "http://aixi-labs.github.io/" },
+  { name: "AIXI labs", href: "http://aixi-labs.github.io/" },
 ]);
 const steven = byName("Steven Abreu", "Remote", [
-  { label: "Website", href: "https://stevenabreu.com/" },
+  { key: "website", href: "https://stevenabreu.com/" },
 ]);
 
 const SANDRO_ANGLE = "Every project in Sandro's lab can take an AI safety angle.";

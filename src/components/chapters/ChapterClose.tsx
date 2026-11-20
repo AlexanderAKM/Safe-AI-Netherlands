@@ -1,7 +1,10 @@
-import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { useTranslations } from "next-intl";
+import type { ReactNode } from "react";
 
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import { Link } from "@/i18n/navigation";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The close. Inverse navy, because this band asks for a decision.
@@ -26,6 +29,15 @@ export default function ChapterClose({
 }) {
   const mailto =
     "underline decoration-white/35 underline-offset-4 hover:decoration-white focus-visible:decoration-white";
+  const t = useTranslations("chapters.close");
+  const tActions = useTranslations("common.actions");
+  const tA11y = useTranslations("common.a11y");
+  /* The address in "Events: <address>", as a mail link. */
+  const mailLink = (email: string, chunks: ReactNode) => (
+    <a href={`mailto:${email}`} className={mailto}>
+      {chunks}
+    </a>
+  );
 
   return (
     <section
@@ -40,12 +52,10 @@ export default function ChapterClose({
               id="join-heading"
               className="max-w-[620px] font-serif text-closing text-white"
             >
-              Everything SAIN runs in {city} is free. The only step is showing
-              up.
+              {t("heading", { city })}
             </h2>
             <p className="mt-4 max-w-[560px] font-sans text-body text-white/78">
-              Fill in the onboarding form and the chapter will find you a first
-              session.
+              {t("body")}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 lg:shrink-0">
@@ -55,40 +65,41 @@ export default function ChapterClose({
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Join the community
+              {tActions("joinCommunity")}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {tA11y("opensInNewTab")}</span>
             </a>
             <Link href="/get-involved" className="btn-ghost-inverse">
-              Volunteer
+              {tActions("volunteer")}
             </Link>
+            <FormLanguageNote tone="inverse" className="basis-full" />
           </div>
         </div>
 
         <p className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-white/16 pt-5 font-sans text-footnote text-white/60">
           <span>
-            Events:{" "}
-            <a href={`mailto:${eventsEmail}`} className={mailto}>
-              {eventsEmail}
-            </a>
+            {t.rich("events", {
+              email: eventsEmail,
+              link: (chunks) => mailLink(eventsEmail, chunks),
+            })}
           </span>
           <span aria-hidden="true" className="text-white/30">
             ·
           </span>
           <span>
-            Courses:{" "}
-            <a href={`mailto:${eduEmail}`} className={mailto}>
-              {eduEmail}
-            </a>
+            {t.rich("courses", {
+              email: eduEmail,
+              link: (chunks) => mailLink(eduEmail, chunks),
+            })}
           </span>
           <span aria-hidden="true" className="text-white/30">
             ·
           </span>
           <span>
-            Everything else:{" "}
-            <a href={`mailto:${infoEmail}`} className={mailto}>
-              {infoEmail}
-            </a>
+            {t.rich("everythingElse", {
+              email: infoEmail,
+              link: (chunks) => mailLink(infoEmail, chunks),
+            })}
           </span>
           <span aria-hidden="true" className="hidden text-white/30 sm:inline">
             ·
@@ -99,9 +110,9 @@ export default function ChapterClose({
             rel="noopener noreferrer"
             className={`inline-flex items-center gap-1.5 ${mailto}`}
           >
-            All {city} links
+            {t("allLinks", { city })}
             <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {tA11y("opensInNewTab")}</span>
           </a>
         </p>
       </div>

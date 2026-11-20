@@ -1,4 +1,8 @@
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { useLocale, useTranslations } from "next-intl";
+
+import { formatDate } from "@/i18n/format";
+import type { Locale } from "@/i18n/routing";
 
 /**
  * What the chapter has already run this academic year, pulled from the Luma
@@ -9,6 +13,9 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
  * Utrecht's rows link to whichever platform the recap actually lives on, which
  * is Luma for some events and LinkedIn for others: the row sends you to the
  * write-up, not to a particular website.
+ *
+ * The titles are Luma's, in English, so they carry lang="en"; the month in
+ * front of each is printed in the reader's language.
  */
 
 export type RawPastEvent = { name: string; url: string; startAt: string };
@@ -56,10 +63,14 @@ export default function PastEvents({
   recapsUrl?: string;
   recapsLabel?: string;
 }) {
+  const t = useTranslations("chapters.pastEvents");
+  const tA11y = useTranslations("common.a11y");
+  const locale = useLocale() as Locale;
+
   if (events.length === 0) {
     return (
       <p className="max-w-[var(--container-copy)] border-t border-navy/10 pt-4 font-sans text-body text-navy/65">
-        No past events are listed here yet.
+        {t("empty")}
       </p>
     );
   }
@@ -76,12 +87,11 @@ export default function PastEvents({
               className="flex items-baseline gap-4 border-t border-navy/10 py-3 transition-colors duration-200 hover:bg-navy/5 focus-visible:bg-navy/5"
             >
               <span className="w-[76px] shrink-0 font-sans text-footnote text-navy/65">
-                {event.startAt.toLocaleDateString("en-GB", {
-                  month: "short",
-                  year: "numeric",
-                })}
+                {/* The events ran in the Netherlands, so their month is read
+                    there, whatever the build machine's time zone. */}
+                {formatDate(event.startAt, locale, "monthYear", "Europe/Amsterdam")}
               </span>
-              <span className="flex-1 font-sans text-ui text-navy">
+              <span lang="en" className="flex-1 font-sans text-ui text-navy">
                 {withoutDashes(event.name)}
               </span>
               <ArrowUpRight
@@ -90,7 +100,7 @@ export default function PastEvents({
                 aria-hidden="true"
                 className="shrink-0 self-center text-navy/45"
               />
-              <span className="sr-only">(opens in a new tab)</span>
+              <span className="sr-only">{tA11y("opensInNewTab")}</span>
             </a>
           </li>
         ))}
@@ -105,7 +115,7 @@ export default function PastEvents({
           >
             {recapsLabel}
             <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {tA11y("opensInNewTab")}</span>
           </a>
         </p>
       )}

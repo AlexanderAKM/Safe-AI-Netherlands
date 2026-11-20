@@ -1,26 +1,22 @@
+/* SAIN's governing documents, at /about/<slug>. The markdown is
+   docs/<fileName>, and its translations docs/<locale>/<fileName>
+   (src/i18n/documents.ts). Each one's eyebrow, title and description are
+   text, so `key` names them under documents.items in
+   messages/<locale>/about.json. */
 export const sainDocuments = [
   {
     slug: "vision",
-    title: "Vision",
-    eyebrow: "Where SAIN is going",
-    description:
-      "SAIN's mission, national role, strategic pillars, and long-term ambition for AI safety in the Netherlands.",
+    key: "vision",
     fileName: "vision.md",
   },
   {
     slug: "theory-of-change",
-    title: "Theory of Change",
-    eyebrow: "How change happens",
-    description:
-      "Why we believe our work prepares the Netherlands for transformative AI: our causal argument, what we measure, and the assumptions we track.",
+    key: "theoryOfChange",
     fileName: "theory_of_change.md",
   },
   {
     slug: "code-of-conduct",
-    title: "Code of Conduct",
-    eyebrow: "How we work together",
-    description:
-      "Behavioral standards for everyone who takes part in SAIN activities, and how concerns are reported and handled.",
+    key: "codeOfConduct",
     fileName: "code_of_conduct.md",
   },
 ] as const;

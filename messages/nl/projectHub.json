@@ -1,0 +1,249 @@
+{
+  "metadata": {
+    "title": "Project hub",
+    "description": "De Project Hub van SAIN koppelt je aan een ervaren begeleider, regelt rekenkracht en brengt een project van open vraag tot gepubliceerd resultaat. Vrijwillig, goed op afstand te doen en altijd open voor aanmeldingen."
+  },
+  "actions": {
+    "applyForProject": "Meld je aan voor een project",
+    "browseProjects": "Bekijk de open projecten",
+    "readProjectHubHandbook": "Lees het Project Hub-handboek",
+    "becomeSupervisor": "Word begeleider",
+    "emailProjectsTeam": "Mail het projectteam"
+  },
+  "breadcrumb": {
+    "label": "Kruimelpad",
+    "projectHub": "Project hub"
+  },
+  "hero": {
+    "heading": "Lever je eerste echte bijdrage aan AI-veiligheid",
+    "intro": "De Project Hub van SAIN koppelt je aan een ervaren begeleider, regelt rekenkracht en brengt een project van open vraag tot gepubliceerd resultaat. Meedoen is vrijwillig, kan goed op afstand en je kunt je altijd aanmelden.",
+    "readHandbook": "Lees het handboek",
+    "illustration": "Een puntenwolk van waarnemingen in een grafiek. Twee onderzoekers, de een zittend, de ander staand en wijzend, trekken er één lijn doorheen; die lijn stijgt in oranje boven de punten uit en loopt door naar een vastgeprikte, gedrukte pagina, waarvan de figuur dezelfde lijn herhaalt."
+  },
+  "facts": {
+    "openProjects": "{count, plural, one {# open project} other {# open projecten}}",
+    "supervisors": "{count, plural, one {# begeleider} other {# begeleiders}}",
+    "publications": "{count, plural, one {# publicatie} other {# publicaties}}",
+    "rolling": "doorlopend aanmelden"
+  },
+  "projects": {
+    "heading": "Vind een project en doe mee",
+    "intro": "Alle projecten die begeleiders van SAIN aanbieden, bijgehouden door het projectteam. Eén aanmeldformulier geldt voor allemaal: noem daarin maximaal drie projecten, en het projectteam brengt je binnen een werkweek in contact met de begeleiders. Een scriptie aan de VU of UvA telt daar mee voor je opleiding en is dus voor studenten van die universiteit; elk ander project staat open voor iedereen met de juiste achtergrond."
+  },
+  "eligibility": {
+    "heading": "Je hoeft niet aan een universiteit te werken om dit werk te doen",
+    "offer": "Het aanbod van SAIN past in één zin: breng je expertise in bij AI-veiligheid, en de community, begeleiding en ondersteuning staan klaar om je verder te helpen. De rest van deze pagina laat zien hoe dat in de praktijk werkt: hoe een project wordt gekozen, hoe de ondersteuning er week na week uitziet en waar het werk terechtkomt.",
+    "openTo": "De hub staat open voor iedereen met voldoende achtergrond:",
+    "groups": {
+      "students": "Studenten op bachelor-, master- of PhD-niveau",
+      "researchers": "Onderzoekers en mensen die in het bedrijfsleven werken",
+      "policy": "Beleidsprofessionals",
+      "unaffiliated": "Mensen die nergens formeel aan verbonden zijn"
+    },
+    "remote": "Op afstand meedoen kan prima. Je kunt je doorlopend aanmelden, dus wanneer je er klaar voor bent, en bij begeleide projecten hoor je binnen een werkweek van ons.",
+    "notAJob": "Eén ding is de hub niet: een baan. SAIN betaalt geen vergoedingen of salarissen; meedoen is vrijwillig en bedoeld om van te leren. Wat SAIN wel biedt, is begeleiding, rekenkracht, coördinatie en, binnen redelijke grenzen, hulp bij reizen naar conferenties."
+  },
+  "process": {
+    "heading": "Van open vraag tot gepubliceerd resultaat",
+    "intro": "Elk project in de hub doorloopt dezelfde drie stappen. Het handboek beschrijft ze uitgebreid; dit is de grote lijn.",
+    "stepsLabel": "De drie stappen van een project",
+    "choose": {
+      "title": "Kies een project",
+      "intro": "Er zijn drie manieren om in te stappen, en alle drie zijn heel gewoon.",
+      "routes": {
+        "supervisor": "<lead>Doe mee aan het project van een begeleider.</lead> Elk project dat een begeleider van SAIN aanbiedt, staat bovenaan deze pagina. Kies er een dat bij je achtergrond past en geef je interesse door; het projectteam brengt je in contact met de begeleider.",
+        "open": "<lead>Doe mee aan een open samenwerking.</lead> Sommige projecten lopen zonder formele begeleiding. Eén persoon leidt het project, meestal degene die het heeft opgezet, en SAIN brengt deelnemers bij elkaar en ondersteunt het werk.",
+        "own": "<lead>Kom met je eigen idee.</lead> Schrijf een kort voorstel: de vraag, waarom die ertoe doet, hoe je die zou onderzoeken en wat je nodig hebt. Het projectteam van SAIN beoordeelt het voorstel en kan je helpen het verder uit te werken als het nog niet helemaal af is."
+      },
+      "criteria": "Niet elke waardevolle bijdrage is een onderzoekspaper: het werk kan technisch zijn, over governance of beleid gaan, of conceptueel zijn. Bij het kiezen van projecten let het team op drie dingen: relevantie voor Nederland en Europa, relevantie voor transformatieve AI, en of het project met een klein budget kan slagen. Twijfel je of een onderwerp onder AI-veiligheid valt? Dan is het antwoord in principe ja, zolang je aannemelijk kunt maken hoe het werk de risico’s van transformatieve AI kleiner maakt."
+    },
+    "support": {
+      "title": "Werk met ondersteuning",
+      "apply": "Vul het aanmeldformulier in; bij begeleide projecten hoor je binnen een werkweek van ons. Is er een match, dan krijg je officieel een begeleider toegewezen en krijgt het project een eigen kanaal in de community.",
+      "relationship": "Begeleiding is samenwerken, geen college. Jij stuurt het dagelijkse werk; je begeleider helpt het project realistisch af te bakenen, bekijkt experimenten en concepten en grijpt in als een richting niets meer oplevert. Jullie zien elkaar wekelijks of om de week, en per project spreek je vooraf af hoeveel tijd je erin steekt: vijf tot tien uur per week naast je studie, of iets wat dichter bij fulltime ligt.",
+      "supervisors": "Begeleiders komen van universiteiten, uit het bedrijfsleven en van de overheid. In de wetenschap zijn het meestal promovendi of mensen met een hogere functie; daarbuiten hebben ze een aantal jaar ervaring in een relevante seniorfunctie. Rekenkracht wordt aan het begin per project geregeld, en projecten die weinig rekenkracht vragen worden aangemoedigd. Op afstand meedoen kan het hele project door.",
+      "meetSupervisors": "Maak kennis met de begeleiders"
+    },
+    "publish": {
+      "title": "Publiceer je resultaten",
+      "complete": "Een project is af als de hoofdvraag goed genoeg is beantwoord, ook als het antwoord negatief is, en het resultaat in een presentabele vorm is gepubliceerd: als paper, beleidsnotitie, evaluatie of opensourcetool, of als blogpost op de Substack van SAIN of op LessWrong. Je krijgt feedback op je concepten, en SAIN kan binnen redelijke grenzen helpen bij reizen naar conferenties.",
+      "proof": "Dat is geen theorie. Werk uit deze community is geaccepteerd op workshops van NeurIPS en ICLR, en daar komen de meeste eerste bijdragen in dit vakgebied terecht.",
+      "allPublications": "Alle publicaties uit de SAIN-community"
+    }
+  },
+  "publications": {
+    "readPaper": "Lees de paper"
+  },
+  "supervisors": {
+    "heading": "De mensen met wie je zou werken",
+    "intro": "Alle begeleiders houden een openbare agenda bij van de projecten die ze graag willen begeleiden. Lees die voordat je je aanmeldt: de sterkste aanmeldingen gaan in op een vraag die een begeleider al heeft gesteld.",
+    "agendaLink": "Onderzoeksagenda (opent in een nieuw tabblad)",
+    "supervise": {
+      "heading": "Begeleid het volgende project",
+      "body": "Heb je ruime ervaring in een relevant vakgebied, meestal als promovendus of hoger in de wetenschap of een aantal jaar in een seniorfunctie in het bedrijfsleven of het beleid, en lijkt het werk hierboven iets wat jij zou kunnen begeleiden? Meer begeleiders betekent meer projecten. Je hoeft nog geen expert in AI-veiligheid te zijn. Begeleiden kan goed op afstand, hoe vaak je afspreekt bepaal je per project, en het projectteam regelt de coördinatie om je heen. Vul het begeleidersformulier in, dan nemen we contact met je op over de volgende stappen."
+    }
+  },
+  "availability": {
+    "limited": "Beperkt: {note}",
+    "limitedPlaces": "Beperkt aantal plekken",
+    "full": "Voorlopig vol",
+    "unconfirmed": "Beschikbaarheid nog niet bevestigd",
+    "notes": {
+      "faustoCarcassi": "nog 1 plek, voor al zijn projecten samen"
+    }
+  },
+  "close": {
+    "heading": "Meld je aan wanneer je er klaar voor bent",
+    "body": "Je kunt je doorlopend aanmelden, en bij begeleide projecten hoor je binnen een werkweek van ons. Vul het aanmeldformulier in, of mail het projectteam als je niet zeker weet waar je past; dan helpen we je verder.",
+    "handbookNote": "Het hele proces, de verwachtingen en de afspraken staan op papier. <link>Lees het Project Hub-handboek</link>"
+  },
+  "finder": {
+    "searchLabel": "Projecten zoeken",
+    "searchPlaceholder": "Onderwerp, persoon of universiteit",
+    "clearSearch": "Zoekopdracht wissen",
+    "topic": "Onderwerp",
+    "allTopics": "Alle onderwerpen",
+    "thesis": "Scriptie",
+    "who": {
+      "label": "Wie kan zich aanmelden",
+      "all": "Alle projecten",
+      "everyone": "Open voor iedereen",
+      "studentsOnly": "Alleen studenten van de {universities}"
+    },
+    "count": "{count, plural, one {# project} other {# projecten}}",
+    "matching": "voor \"{query}\"",
+    "clearFilters": "Alle filters wissen",
+    "showAll": "Toon alle {count} projecten",
+    "showFewer": "Toon minder projecten",
+    "noMatch": "Geen project past bij deze filters.",
+    "ownIdea": "Heb je een eigen idee? Mail naar <email>{address}</email>."
+  },
+  "browser": {
+    "filters": "Filters",
+    "chosen": "gekozen",
+    "supervisor": "Begeleider",
+    "greyedNote": {
+      "fullOrUnconfirmed": "Begeleiders in grijs zitten voorlopig vol, of hebben hun beschikbaarheid voor deze ronde nog niet bevestigd.",
+      "full": "Begeleiders in grijs zitten voorlopig vol.",
+      "unconfirmed": "Begeleiders in grijs hebben hun beschikbaarheid voor deze ronde nog niet bevestigd."
+    },
+    "location": {
+      "label": "Locatie",
+      "groupLabel": "Waar de begeleider zit",
+      "anywhere": "Overal",
+      "remote": "Op afstand"
+    },
+    "resetFilters": "Filters wissen",
+    "showProjects": "Toon {count, plural, one {# project} other {# projecten}}",
+    "removeFilter": "Filter verwijderen: {label}",
+    "summary": {
+      "projects": "{projects, plural, one {# project} other {# projecten}} van {supervisors, plural, one {# begeleider} other {# begeleiders}}",
+      "inTopics": "over {topics}",
+      "thesis": "als scriptie",
+      "basedIn": "in {cities}",
+      "remote": "op afstand",
+      "everyone": "open voor iedereen",
+      "studentsOnly": "alleen voor studenten van de {universities}"
+    },
+    "card": {
+      "fullNote": "<status>Voorlopig vol.</status> Neemt op dit moment geen nieuwe studenten aan.",
+      "lookingFor": "Op zoek naar",
+      "supervision": "Begeleiding"
+    },
+    "links": {
+      "agenda": "Onderzoeksagenda",
+      "website": "Website",
+      "code": "Code",
+      "theoryPaper": "Theoriepaper"
+    },
+    "eligibility": {
+      "everyone": "Open voor iedereen",
+      "thesis": "{university}-scriptie",
+      "thesisAtLevel": "{university}-scriptie · {level}",
+      "line": "{university}-scriptie: alleen studenten van de {university}",
+      "lineAtLevel": "{university}-scriptie ({level}): alleen studenten van de {university}"
+    }
+  },
+  "tracker": {
+    "status": "Status",
+    "anyThesis": "Alle",
+    "allStatuses": "Alle",
+    "statuses": {
+      "open": "Open",
+      "inProgress": "Lopend",
+      "completed": "Afgerond",
+      "full": "Vol"
+    },
+    "fullForNow": "Voorlopig vol",
+    "theses": {
+      "none": "Geen scriptie",
+      "masters": "Masterscriptie",
+      "bachelors": "Bachelorscriptie",
+      "levelOpen": "Scriptie (niveau open)"
+    },
+    "apply": "Aanmelden",
+    "updated": "Bijgewerkt op {date} om {hour}.{minute} uur"
+  },
+  "applyPage": {
+    "metadata": {
+      "title": "Aanmelden voor een project",
+      "description": "Meld je met één formulier aan bij de Project Hub van SAIN: doe mee aan een project, stel je eigen project voor of bied aan om te begeleiden."
+    },
+    "breadcrumb": "Aanmelden",
+    "heading": "Meld je aan voor een project",
+    "intro": "Eén formulier voor de Project Hub. Kies of je mee wilt doen aan een project (noem er maximaal drie uit de <link>open projecten</link>), je eigen project wilt voorstellen of wilt begeleiden. Het projectteam reageert binnen een werkweek.",
+    "note": "Een scriptie aan de VU of UvA is voor studenten van die universiteit; elk ander project staat open voor iedereen. Eerst een vraag? Mail naar <email>{address}</email>.",
+    "formLabel": "Aanmeldformulier"
+  },
+  "applyForm": {
+    "applyingFor": "Je meldt je aan voor",
+    "selectHint": "Zorg dat dit project is aangevinkt als het formulier vraagt aan welke projecten je mee wilt doen. Je kunt er nog maximaal twee bij kiezen.",
+    "frameTitle": "Aanmeldformulier van de SAIN Project Hub",
+    "notShowing": "Zie je het formulier niet? <link>Open het in een nieuw tabblad</link>"
+  },
+  "handbook": {
+    "metadata": {
+      "title": "Project Hub-handboek",
+      "description": "Hoe de Project Hub van SAIN werkt, van eerste aanmelding tot gepubliceerd resultaat: wie mee kan doen, matching, tijdsinvestering, standaarden en wat je doet als er iets misgaat."
+    },
+    "breadcrumb": "Handboek",
+    "toc": "Op deze pagina",
+    "close": {
+      "heading": "De hub staat doorlopend open.",
+      "body": "Meld je aan wanneer je er klaar voor bent. Iemand van SAIN reageert binnen een werkweek."
+    }
+  },
+  "paper": {
+    "breadcrumb": "Publicaties",
+    "readPaper": "Lees de paper",
+    "downloadPdf": "Download de PDF",
+    "viewOn": "Bekijk op {source}",
+    "readOn": "Lees de paper op {source}",
+    "projectPage": "de projectpagina",
+    "credit": {
+      "licensed": "Uit de SAIN-community. Hier gedeeld onder {license}; het origineel staat op {source}.",
+      "unlicensed": "Uit de SAIN-community. Het origineel staat op {source}.",
+      "notHosted": "Uit de SAIN-community. De paper is gepubliceerd op {source} en staat niet op deze site."
+    },
+    "readerLabel": "De paper",
+    "next": {
+      "heading": "Schrijf de volgende",
+      "body": "Voor dit soort werk is de Project Hub er. De hub koppelt je aan een begeleider, regelt rekenkracht en brengt een project van open vraag tot gepubliceerd resultaat."
+    }
+  },
+  "reader": {
+    "toolbar": "Paperlezer",
+    "page": "Pagina {current} van {total}",
+    "loading": "Laden…",
+    "zoomOut": "Uitzoomen",
+    "zoomIn": "Inzoomen",
+    "zoomLevel": "Zoom {percent} procent, terug naar passende breedte",
+    "downloadPdf": "Download de PDF",
+    "openPdf": "Open de PDF in een nieuw tabblad",
+    "backToTop": "Terug naar boven",
+    "top": "Naar boven",
+    "failed": "De lezer kon deze paper hier niet openen.",
+    "downloadThePdf": "Download de PDF",
+    "loadingPaper": "De paper wordt geladen…"
+  }
+}

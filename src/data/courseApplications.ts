@@ -1,3 +1,6 @@
+import { formatDate, formatList } from "@/i18n/format";
+import type { Locale } from "@/i18n/routing";
+
 /**
  * Course application status, per chapter.
  *
@@ -6,7 +9,9 @@
  * closed in another.
  *
  * To open or close a cohort: flip `open` for that chapter and edit its
- * deadlines.
+ * deadlines. The notes shown with each state are text, so they live in
+ * messages/<locale>/courses.json under `applications.<chapter id>`; the flags
+ * below say which of them a chapter has.
  *
  * An open entry also carries `closesAfter`, the later deadline as an ISO date.
  * Every read of this file goes through `resolve` below, which reports the entry
@@ -16,12 +21,13 @@
  * rebuild is what retires a lapsed cohort.
  *
  * A chapter that takes applications all year, placing each applicant in its
- * next cohort, is open with `rolling: true` and a `rollingNote` instead of
- * deadlines. It has no date to lapse on, so it stays open until someone closes
- * it here. It may also carry a `chapterNote`, a cohort-specific line (a nominal
- * deadline, a start date) shown only on its own chapter page, in place of the
- * rolling note. That note is dated by `chapterNoteUntil` and drops out once the
- * date passes, leaving the rolling note, so a stale deadline never lingers.
+ * next cohort, is open with `rolling: true` and a `rollingNote` message instead
+ * of deadlines. It has no date to lapse on, so it stays open until someone
+ * closes it here. It may also carry a `chapterNote` message, a cohort-specific
+ * line (a nominal deadline, a start date) shown only on its own chapter page,
+ * in place of the rolling note. That note is dated by `chapterNoteUntil` and
+ * drops out once the date passes, leaving the rolling note, so a stale
+ * deadline never lingers.
  */
 
 /** Shared intake form for participants and facilitators, all chapters. */
@@ -30,42 +36,47 @@ export const COURSE_APPLICATION_URL =
 
 export type ChapterName = "Amsterdam" | "Groningen" | "Utrecht";
 
+/** The chapter's key in the messages: courses.applications.<id>. */
+export type ChapterId = "amsterdam" | "groningen" | "utrecht";
+
 export type CourseApplication = {
   chapter: ChapterName;
+  id: ChapterId;
   /** Anchor into the chapter page's Programs section. */
   href: string;
 } & (
   | {
       open: true;
       rolling?: false;
-      /** Written out the way they appear on the page, with the year, e.g.
-       *  "18 September 2026". The year is not decoration: a date without one
-       *  reads as ambiguous rather than expired once it has passed. */
+      /** ISO `YYYY-MM-DD`. Printed with the year, e.g. "18 September 2026"
+       *  ("18 september 2026" in Dutch): a date without one reads as
+       *  ambiguous rather than expired once it has passed. */
       deadlines: { participants: string; facilitators: string };
       /** The later of the two deadlines, ISO `YYYY-MM-DD`, for the guard. */
       closesAfter: string;
-      /** Stands in for `closedNote` once the deadlines above have passed. */
-      lapsedNote?: string;
+      /** Has an `applications.<id>.lapsedNote` message, which stands in for
+       *  the closed note once the deadlines above have passed. */
+      hasLapsedNote?: boolean;
     }
   | {
       open: true;
-      /** Applications are always open; each one joins the next cohort. */
+      /** Applications are always open; each one joins the next cohort. Its
+       *  `applications.<id>.rollingNote` message stands in for deadlines. */
       rolling: true;
-      /** Stands in for the deadlines, e.g. "Apply any time ...". */
-      rollingNote: string;
-      /** Replaces `rollingNote` on the chapter's own page only. */
-      chapterNote?: string;
-      /** ISO `YYYY-MM-DD`; `chapterNote` is dropped after this date. */
+      /** Has an `applications.<id>.chapterNote` message, which replaces the
+       *  rolling note on the chapter's own page only. */
+      hasChapterNote?: boolean;
+      /** ISO `YYYY-MM-DD`; the chapter note is dropped after this date. */
       chapterNoteUntil?: string;
     }
   | {
       open: false;
-      /** Shown in place of the sign-up CTA while applications are closed. */
-      closedNote: string;
+      /** The message shown in place of the sign-up CTA while applications are
+       *  closed, under `applications.`: "<id>.closedNote", "<id>.lapsedNote"
+       *  or "defaultLapsedNote". */
+      closedNoteKey: string;
     }
 );
-
-const DEFAULT_LAPSED_NOTE = "Sign ups for the next cohort will open soon.";
 
 /** True once the whole of an ISO date has passed; false if missing or malformed. */
 function hasPassed(isoDate: string | undefined): boolean {
@@ -80,56 +91,57 @@ function hasPassed(isoDate: string | undefined): boolean {
 function resolve(entry: CourseApplication): CourseApplication {
   if (!entry.open) return entry;
   if (entry.rolling) {
-    if (!entry.chapterNote || !hasPassed(entry.chapterNoteUntil)) return entry;
-    const { chapterNote: _note, chapterNoteUntil: _until, ...rest } = entry;
+    if (!entry.hasChapterNote || !hasPassed(entry.chapterNoteUntil)) return entry;
+    const { hasChapterNote: _note, chapterNoteUntil: _until, ...rest } = entry;
     return rest;
   }
   if (!hasPassed(entry.closesAfter)) return entry;
   return {
     chapter: entry.chapter,
+    id: entry.id,
     href: entry.href,
     open: false,
-    closedNote: entry.lapsedNote ?? DEFAULT_LAPSED_NOTE,
+    closedNoteKey: entry.hasLapsedNote ? `${entry.id}.lapsedNote` : "defaultLapsedNote",
   };
 }
 
 const cohorts: CourseApplication[] = [
   {
     chapter: "Amsterdam",
+    id: "amsterdam",
     href: "/chapters/amsterdam#programs",
     open: true,
     rolling: true,
-    rollingNote:
-      "Applications are always open, and you will join the next cohort that starts.",
-    chapterNote:
-      "Applications are open. Apply by 23 October 2026; the courses start in the first week of November.",
+    // chapterNote: apply by 23 October 2026, courses from early November.
+    hasChapterNote: true,
     chapterNoteUntil: "2026-10-23",
   },
   {
     chapter: "Groningen",
+    id: "groningen",
     href: "/chapters/groningen#programs",
     /* Registration stays open for every future cohort: an applicant is
        placed in the next one that starts. */
     open: true,
     rolling: true,
-    rollingNote: "Applications for the next course iteration are open.",
     /* Undated: the chapter page names both of its tracks. */
-    chapterNote:
-      "Applications for the next course iterations for both tracks are open.",
+    hasChapterNote: true,
   },
   {
     chapter: "Utrecht",
+    id: "utrecht",
     href: "/chapters/utrecht#programs",
     /* AI Governance and Technical AI Safety, autumn 2026, on one set of
        deadlines. The courses run from 18 and 19 November; see the session
        dates on the Utrecht page. */
     open: true,
     deadlines: {
-      participants: "15 November 2026",
-      facilitators: "1 November 2026",
+      participants: "2026-11-15",
+      facilitators: "2026-11-01",
     },
     closesAfter: "2026-11-15",
-    lapsedNote: "Sign ups for the next cohort will open next semester.",
+    // lapsedNote: sign ups for the next cohort open next semester.
+    hasLapsedNote: true,
   },
 ];
 
@@ -139,6 +151,46 @@ export function courseApplicationFor(chapter: ChapterName): CourseApplication {
   const entry = courseApplications.find((c) => c.chapter === chapter);
   if (!entry) throw new Error(`No course application entry for ${chapter}`);
   return entry;
+}
+
+/** A translator for the `courses.applications` messages. */
+type ApplicationsTranslator = (key: string) => string;
+
+export type ApplicationText = {
+  /** A rolling chapter's standing note. */
+  rollingNote?: string;
+  /** A rolling chapter's cohort note, for its own chapter page. */
+  chapterNote?: string;
+  /** What a closed chapter says in place of the sign-up button. */
+  closedNote?: string;
+  /** The deadlines as printed: "15 November 2026" / "15 november 2026". */
+  deadlines?: { participants: string; facilitators: string };
+};
+
+/**
+ * The words that go with an entry, in the reader's language. `t` reads
+ * `courses.applications`: useTranslations("courses.applications") in a
+ * component, getTranslations({ locale, namespace: "courses.applications" })
+ * on the server.
+ */
+export function applicationText(
+  entry: CourseApplication,
+  t: ApplicationsTranslator,
+  locale: Locale,
+): ApplicationText {
+  if (!entry.open) return { closedNote: t(entry.closedNoteKey) };
+  if (entry.rolling) {
+    return {
+      rollingNote: t(`${entry.id}.rollingNote`),
+      chapterNote: entry.hasChapterNote ? t(`${entry.id}.chapterNote`) : undefined,
+    };
+  }
+  return {
+    deadlines: {
+      participants: formatDate(entry.deadlines.participants, locale),
+      facilitators: formatDate(entry.deadlines.facilitators, locale),
+    },
+  };
 }
 
 /* The chapter course tab each national track lands on, where the chapter has
@@ -175,9 +227,15 @@ export const openCourseApplications = courseApplications.filter(
   (c): c is OpenCourseApplication => c.open,
 );
 
-/** "Utrecht", "Utrecht or Groningen", "A, B or C", for prose. */
-export function formatCityList(chapters: readonly { chapter: string }[]): string {
-  const names = chapters.map((c) => c.chapter);
-  if (names.length <= 1) return names.join("");
-  return `${names.slice(0, -1).join(", ")} or ${names[names.length - 1]}`;
+/** "Utrecht", "Utrecht or Groningen", "A, B or C" for prose; in Dutch
+ *  "Utrecht of Groningen", "A, B of C". */
+export function formatCityList(
+  chapters: readonly { chapter: string }[],
+  locale: Locale,
+): string {
+  return formatList(
+    chapters.map((c) => c.chapter),
+    locale,
+    "disjunction",
+  );
 }

@@ -16,6 +16,8 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
  * Plain <img> rather than next/image: `output: "export"` ships images
  * unoptimized, so the wrapper would emit no srcset and the `sizes` below would
  * be inert. Rungs are the `-{w}.webp` siblings of each source.
+ *
+ * A client component, so every label arrives translated from the page.
  */
 
 export type Print = {
@@ -41,9 +43,14 @@ const ARROW =
 export default function PrintStrip({
   prints,
   label,
+  previousLabel,
+  nextLabel,
 }: {
   prints: Print[];
   label: string;
+  /** The arrows' names: "Previous photographs", "Next photographs". */
+  previousLabel: string;
+  nextLabel: string;
 }) {
   const strip = useRef<HTMLDivElement>(null);
   const [reach, setReach] = useState({ back: false, forward: false });
@@ -138,7 +145,7 @@ export default function PrintStrip({
         type="button"
         onClick={() => push(-1)}
         disabled={!reach.back}
-        aria-label="Previous photographs"
+        aria-label={previousLabel}
         className={`${ARROW} left-0 hover:-translate-x-0.5 focus-visible:-translate-x-0.5`}
       >
         <CaretLeft size={18} weight="bold" aria-hidden="true" />
@@ -147,7 +154,7 @@ export default function PrintStrip({
         type="button"
         onClick={() => push(1)}
         disabled={!reach.forward}
-        aria-label="Next photographs"
+        aria-label={nextLabel}
         className={`${ARROW} right-0 hover:translate-x-0.5 focus-visible:translate-x-0.5`}
       >
         <CaretRight size={18} weight="bold" aria-hidden="true" />

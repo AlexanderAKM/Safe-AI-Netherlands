@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "title": "Contact",
+    "description": "Every address SAIN uses: national role addresses, the chapter addresses in Groningen, Amsterdam and Utrecht, and the people who run them."
+  },
+  "hero": {
+    "heading": "Write to the address that fits the question.",
+    "intro": "Every SAIN inbox is on this page: the national role addresses, the addresses each chapter keeps, and the people behind them."
+  },
+  "national": {
+    "heading": "Start with a role address.",
+    "intro": "Use these when you know the topic but not the person who should read it.",
+    "inboxes": {
+      "formal": {
+        "label": "Formal",
+        "detail": "General formal inquiries"
+      },
+      "media": {
+        "label": "Media and outreach",
+        "detail": "Press, public outreach, and partnerships"
+      },
+      "research": {
+        "label": "Research",
+        "detail": "Project Hub, supervisors, and collaborations"
+      },
+      "substack": {
+        "label": "Substack",
+        "detail": "Writing, editing, and newsletter work"
+      },
+      "conduct": {
+        "label": "Conduct",
+        "detail": "Code of Conduct breaches or general concerns"
+      }
+    }
+  },
+  "chapters": {
+    "heading": "Or write to a city.",
+    "intro": "Each chapter keeps its own addresses for collaboration, community, education, events and outreach.",
+    "roles": {
+      "formal": "Formal collaboration",
+      "communityManager": "Community manager",
+      "education": "Education",
+      "research": "Research",
+      "events": "Events",
+      "substack": "Substack",
+      "outreach": "Public outreach"
+    },
+    "view": "View chapter",
+    "join": "If you would rather join than write, you do not need an address. The community page is the way in, and it is the same way in for all three chapters.",
+    "visitCommunity": "Visit the community"
+  },
+  "leads": {
+    "heading": "The people behind those addresses.",
+    "intro": "The national director, the chapter directors and the head of operations, each with the address only they read.",
+    "people": {
+      "alexander": {
+        "role": "Director SAIN",
+        "alsoAnswers": "Also answers the formal role address above."
+      },
+      "tarteel": {
+        "role": "Director SAIN Groningen",
+        "alsoAnswers": "Also answers the SAIN Groningen chapter address above."
+      },
+      "ana": {
+        "role": "Director SAIN Amsterdam and Head of Growth SAIN",
+        "alsoAnswers": "Also answers the SAIN Amsterdam chapter address above."
+      },
+      "riccardo": {
+        "role": "Director SAIN Utrecht",
+        "alsoAnswers": "Also answers the SAIN Utrecht chapter address above."
+      },
+      "marta": {
+        "role": "Head of Operations SAIN"
+      },
+      "tjebbe": {
+        "role": "Head of Projects SAIN"
+      }
+    },
+    "profile": "Profile"
+  },
+  "elsewhere": {
+    "heading": "Where else to find SAIN.",
+    "addressLabel": "Registered address",
+    "country": "The Netherlands",
+    "onlineLabel": "Online",
+    "online": {
+      "substack": "Writing on AI Safety",
+      "linkedin": "Updates and open positions"
+    }
+  }
+}

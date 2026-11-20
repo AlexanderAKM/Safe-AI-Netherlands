@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 /**
  * What SAIN is for, said once, before the landing starts offering doors.
@@ -17,6 +18,9 @@ import { motion, useReducedMotion } from "motion/react";
  * readable (faint, never hidden) for anyone the animation never reaches.
  * Reduced motion shows the end state. Set on the navy mission band, so the
  * rest is white.
+ *
+ * The words are home.mission.statement: <muted> is the problem, and
+ * <verb1> to <verb3> are the three verbs, inked in that order.
  */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -37,17 +41,17 @@ function Verb({ step, children }: { step: number; children: React.ReactNode }) {
 }
 
 export default function MissionStatement() {
+  const t = useTranslations("home.mission");
   return (
     /* Set above the heading role on purpose: this is the landing's one
        statement band, and it has to carry the band on its own. */
     <p className="mx-auto max-w-[1000px] text-balance text-center font-serif text-[clamp(1.75rem,1.6vw+1.35rem,2.625rem)] leading-[1.3] tracking-[-0.018em] text-white">
-      <span className="text-white/50">
-        Too few people know how to work on AI safety, in research, in policy, or
-        in public debate.
-      </span>{" "}
-      SAIN <Verb step={0}>trains</Verb> more of them,{" "}
-      <Verb step={1}>connects</Verb> them, and gets them{" "}
-      <Verb step={2}>started</Verb>.
+      {t.rich("statement", {
+        muted: (chunks) => <span className="text-white/50">{chunks}</span>,
+        verb1: (chunks) => <Verb step={0}>{chunks}</Verb>,
+        verb2: (chunks) => <Verb step={1}>{chunks}</Verb>,
+        verb3: (chunks) => <Verb step={2}>{chunks}</Verb>,
+      })}
     </p>
   );
 }

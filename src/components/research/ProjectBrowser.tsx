@@ -1,7 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from "react";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowUpRightIcon,
   CaretDownIcon,
@@ -32,6 +42,8 @@ import {
   type ProjectBase,
   type ProjectCategory,
 } from "@/data/projects";
+import { formatList } from "@/i18n/format";
+import type { Locale } from "@/i18n/routing";
 
 /* The open projects, findable four ways at once: a search across everything,
    where the supervisor is based, the topic, and the supervisor themselves.
@@ -52,12 +64,25 @@ import {
    The list is dealt out one supervisor at a time, so those first six come
    from six different people rather than from whoever has the most entries.
    Projects whose availability is to be confirmed come after the others, and
-   full ones last, greyed out but still there to read. */
+   full ones last, greyed out but still there to read.
+
+   Its words are projectHub.finder, projectHub.browser and
+   projectHub.availability, which the page hands it through <ClientMessages>.
+   The projects themselves (src/data/projects.ts) stay in English. */
 
 /* "Thesis" sits with the topics but reads each project's `thesis` field, so it
    picks every project offered as a thesis, at whatever level, and nothing
    else. */
 type Topic = ProjectCategory | "Thesis";
+
+/* The first answer of the topic and "who can apply" filters, and of the
+   location filter, which covers everything else. */
+const ALL = "All";
+const ANYWHERE = "Anywhere";
+
+/* The topic filter's answers, and the "who can apply" filter's after "All". */
+const TOPICS = [ALL, ...projectCategories, "Thesis"] as const;
+const WHO = ["everyone", "VU", "UvA"] as const;
 
 /* Every filter takes any number of answers, and a project needs to match only
    one of them ("Amsterdam or Remote"); across filters it must match each. An
@@ -82,24 +107,18 @@ function toggle<T>(list: T[], value: T) {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 }
 
-/* "a", "a or b", "a, b or c". */
-function joinOr(items: string[]) {
-  return items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items[items.length - 1]}`;
-}
-
 /* One filter's part of the results line: ", in Evaluations or offered as a
    thesis", or nothing when the filter is on its first option. */
-function summaryClause(parts: string[]) {
+function summaryClause(parts: string[], locale: Locale) {
   const said = parts.filter(Boolean);
-  return said.length > 0 ? `, ${said.join(" or ")}` : "";
+  return said.length > 0 ? `, ${formatList(said, locale, "disjunction")}` : "";
 }
 
-const WHO_LABELS: Record<Eligibility | "All", string> = {
-  All: "All projects",
-  everyone: "Open to everyone",
-  VU: "VU students only",
-  UvA: "UvA students only",
-};
+/* The empty state's mail link. The subject stays English in every language:
+   it is what the projects team's inbox sees, not page text. */
+export const OWN_IDEA_MAILTO = `mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent(
+  "Project Hub: my own project idea",
+)}`;
 
 /* Universities by the names people search for. A position spells out
    "Vrije Universiteit Amsterdam"; a student types "VU". */
@@ -109,9 +128,14 @@ const UNIVERSITY_NAMES: [RegExp, string][] = [
   [/university of groningen|\brug\b/i, "RUG"],
 ];
 
-function matchesQuery(project: Project, query: string) {
+/* What a card says about a project in the reader's language, which the
+   search reads as well: its thesis label, who can apply, its availability. */
+type ProjectLabels = (project: Project) => { thesis: string; eligibility: string; availability: string };
+
+function matchesQuery(project: Project, query: string, labelsOf: ProjectLabels) {
   if (!query) return true;
   const position = project.supervisor.position;
+  const labels = labelsOf(project);
   const haystack = [
     project.title,
     project.summary,
@@ -121,9 +145,9 @@ function matchesQuery(project: Project, query: string) {
     ...UNIVERSITY_NAMES.filter(([pattern]) => pattern.test(position)).map(([, name]) => name),
     project.categories.join(" "),
     project.format ?? "",
-    thesisLabel(project) ?? "",
-    eligibilityLabel(project),
-    availabilityLine(projectAvailability(project), projectAvailabilityNote(project)) ?? "",
+    labels.thesis,
+    labels.eligibility,
+    labels.availability,
     project.lookingFor ?? "",
   ]
     .join(" ")
@@ -143,10 +167,10 @@ function matchesQuery(project: Project, query: string) {
 
 /* Every filter but one, so a filter's own count says what choosing it would
    leave rather than what it already shows. */
-function filterExcept(filters: Filters, skip: keyof Filters | null) {
+function filterExcept(filters: Filters, skip: keyof Filters | null, labelsOf: ProjectLabels) {
   return projects.filter(
     (project) =>
-      (skip === "query" || matchesQuery(project, filters.query)) &&
+      (skip === "query" || matchesQuery(project, filters.query, labelsOf)) &&
       (skip === "bases" || filters.bases.length === 0 || filters.bases.includes(project.supervisor.base)) &&
       (skip === "topics" ||
         filters.topics.length === 0 ||
@@ -197,16 +221,16 @@ const projectSupervisors: Supervisor[] = byAvailability(
 );
 
 /* The line under the supervisor chips, naming whichever greyed-out states
-   are present; none once nobody is greyed out. */
+   are present (browser.greyedNote); none once nobody is greyed out. */
 const anyFull = projectSupervisors.some((person) => person.availability === "full");
 const anyUnconfirmed = projectSupervisors.some((person) => person.availability === "unconfirmed");
-const greyedNote =
+const greyedNoteKey =
   anyFull && anyUnconfirmed
-    ? "Greyed-out supervisors are full for now, or have not confirmed their availability for this round yet."
+    ? "fullOrUnconfirmed"
     : anyFull
-      ? "Greyed-out supervisors are full for now."
+      ? "full"
       : anyUnconfirmed
-        ? "Greyed-out supervisors have not confirmed their availability for this round yet."
+        ? "unconfirmed"
         : undefined;
 
 export function chipClass(active: boolean) {
@@ -334,17 +358,29 @@ function useRestRowHeights(gridRef: RefObject<HTMLUListElement>, shown: Project[
    1fr, which reaches the content's real height without measuring it. They
    stay mounted while closed, hidden (visibility) once folded so nothing
    inside can be tabbed to or read out. `showing` outlives `open` until the closing slide ends, so the
-   grid keeps its rows still while a card folds back up. */
+   grid keeps its rows still while a card folds back up.
+
+   The project's own words (title, topics, summary, details) are English in
+   every language, and say so with lang="en"; the labels around them are the
+   reader's. */
 function ProjectCard({ project }: { project: Project }) {
+  const t = useTranslations("projectHub.browser");
+  const tEligibility = useTranslations("projectHub.browser.eligibility");
+  const tAvailability = useTranslations("projectHub.availability");
+  const tA11y = useTranslations("common.a11y");
   const [open, setOpen] = useState(false);
   const [showing, setShowing] = useState(false);
   const person = project.supervisor;
   const titleId = `project-${project.id}-title`;
   const detailsId = `project-${project.id}-details`;
-  const links = [...(person.agenda ? [{ label: "Agenda", href: person.agenda }] : []), ...person.links];
+  /* `key` names a label under browser.links; a named site carries its name. */
+  const links: { key?: string; name?: string; href: string }[] = [
+    ...(person.agenda ? [{ key: "agenda", href: person.agenda }] : []),
+    ...person.links,
+  ];
   const availability = projectAvailability(project);
   const full = availability === "full";
-  const statusLine = availabilityLine(availability, projectAvailabilityNote(project));
+  const statusLine = availabilityLine(tAvailability, availability, projectAvailabilityNote(project));
 
   const toggle = () => {
     if (!open) setShowing(true);
@@ -366,7 +402,7 @@ function ProjectCard({ project }: { project: Project }) {
               so they still clear 4.5:1 once eased back. It still opens. */}
           <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
           <div className="flex items-start justify-between gap-4">
-            <h3 id={titleId} className="font-serif text-title-sm text-navy">
+            <h3 id={titleId} lang="en" className="font-serif text-title-sm text-navy">
               <button
                 type="button"
                 onClick={toggle}
@@ -396,10 +432,10 @@ function ProjectCard({ project }: { project: Project }) {
               project.thesis ? "font-medium text-orange-ink" : full ? "text-navy/75" : "text-navy/60"
             }`}
           >
-            {eligibilityLabel(project)}
+            {eligibilityLabel(project, tEligibility)}
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div lang="en" className="mt-3 flex flex-wrap gap-1.5">
             {project.categories.map((category) => (
               <span
                 key={category}
@@ -417,7 +453,7 @@ function ProjectCard({ project }: { project: Project }) {
 
           <p className="mt-4 text-caption leading-[18px]">
             <span className="block font-medium text-navy">{person.name}</span>
-            <span className={`block ${full ? "text-navy/75" : "text-navy/60"}`}>{person.positionShort}</span>
+            <span lang="en" className={`block ${full ? "text-navy/75" : "text-navy/60"}`}>{person.positionShort}</span>
             {/* Words, not a fade: fading is how a full card reads. Same italic
                 line as the supervisor row and the filter's note; a limited
                 one in orange, since it is the one a student should act on. A
@@ -431,7 +467,7 @@ function ProjectCard({ project }: { project: Project }) {
             )}
           </p>
 
-          <p className="mt-4 text-[15px] leading-6 text-navy/78">{project.summary}</p>
+          <p lang="en" className="mt-4 text-[15px] leading-6 text-navy/78">{project.summary}</p>
           </div>
 
           {/* Pinned to the card's foot (mt-auto) so closed notes line up
@@ -441,8 +477,9 @@ function ProjectCard({ project }: { project: Project }) {
           {full && (
             <div className="mt-auto pt-5">
               <p className="border-t border-navy/12 pt-3.5 text-caption leading-[18px] text-navy/70">
-                <span className="font-medium text-navy">Full for now.</span> Not taking new
-                students at the moment.
+                {t.rich("card.fullNote", {
+                  status: (chunks) => <span className="font-medium text-navy">{chunks}</span>,
+                })}
               </p>
             </div>
           )}
@@ -462,7 +499,7 @@ function ProjectCard({ project }: { project: Project }) {
           <div className="min-h-0 overflow-hidden">
             <div className="mx-5 flex flex-col gap-3 border-t border-navy/10 pb-5 pt-4 md:mx-6 md:pb-6">
               {project.details.map((line) => (
-                <p key={line} className="text-[14.5px] leading-[23px] text-navy/74">
+                <p key={line} lang="en" className="text-[14.5px] leading-[23px] text-navy/74">
                   {line}
                 </p>
               ))}
@@ -470,14 +507,14 @@ function ProjectCard({ project }: { project: Project }) {
                 <dl className="grid gap-2">
                   {project.lookingFor && (
                     <div>
-                      <dt className="text-footnote text-navy/60">Looking for</dt>
-                      <dd className="text-[14.5px] leading-[22px] text-navy">{project.lookingFor}</dd>
+                      <dt className="text-footnote text-navy/60">{t("card.lookingFor")}</dt>
+                      <dd lang="en" className="text-[14.5px] leading-[22px] text-navy">{project.lookingFor}</dd>
                     </div>
                   )}
                   {project.commitment && (
                     <div>
-                      <dt className="text-footnote text-navy/60">Supervision</dt>
-                      <dd className="text-[14.5px] leading-[22px] text-navy">{project.commitment}</dd>
+                      <dt className="text-footnote text-navy/60">{t("card.supervision")}</dt>
+                      <dd lang="en" className="text-[14.5px] leading-[22px] text-navy">{project.commitment}</dd>
                     </div>
                   )}
                 </dl>
@@ -491,9 +528,9 @@ function ProjectCard({ project }: { project: Project }) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
                     >
-                      {link.label}
+                      {link.key ? t(`links.${link.key}`) : link.name}
                       <ArrowUpRightIcon size={14} aria-hidden="true" />
-                      <span className="sr-only"> (opens in a new tab)</span>
+                      <span className="sr-only"> {tA11y("opensInNewTab")}</span>
                     </a>
                   </li>
                 ))}
@@ -507,19 +544,34 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function ProjectBrowser() {
+  const t = useTranslations("projectHub.browser");
+  const tFinder = useTranslations("projectHub.finder");
+  const tEligibility = useTranslations("projectHub.browser.eligibility");
+  const tAvailability = useTranslations("projectHub.availability");
+  const locale = useLocale() as Locale;
   const [filters, setFilters] = useState<Filters>(NO_FILTERS);
   const set = (patch: Partial<Filters>) => setFilters((current) => ({ ...current, ...patch }));
 
-  const shown = useMemo(() => gridOrder(filterExcept(filters, null)), [filters]);
+  const labelsOf = useCallback<ProjectLabels>(
+    (project) => ({
+      thesis: thesisLabel(project, tEligibility) ?? "",
+      eligibility: eligibilityLabel(project, tEligibility),
+      availability:
+        availabilityLine(tAvailability, projectAvailability(project), projectAvailabilityNote(project)) ?? "",
+    }),
+    [tEligibility, tAvailability],
+  );
+
+  const shown = useMemo(() => gridOrder(filterExcept(filters, null, labelsOf)), [filters, labelsOf]);
   /* Once opened, the grid stays open across filters until it is closed. */
   const [expanded, setExpanded] = useState(false);
   const visible = expanded ? shown : shown.slice(0, PREVIEW_COUNT);
   const gridRef = useRef<HTMLUListElement>(null);
   useRestRowHeights(gridRef, visible);
-  const forTopics = useMemo(() => filterExcept(filters, "topics"), [filters]);
-  const forSupervisors = useMemo(() => filterExcept(filters, "supervisors"), [filters]);
-  const forBases = useMemo(() => filterExcept(filters, "bases"), [filters]);
-  const forWho = useMemo(() => filterExcept(filters, "who"), [filters]);
+  const forTopics = useMemo(() => filterExcept(filters, "topics", labelsOf), [filters, labelsOf]);
+  const forSupervisors = useMemo(() => filterExcept(filters, "supervisors", labelsOf), [filters, labelsOf]);
+  const forBases = useMemo(() => filterExcept(filters, "bases", labelsOf), [filters, labelsOf]);
+  const forWho = useMemo(() => filterExcept(filters, "who", labelsOf), [filters, labelsOf]);
 
   const active =
     filters.query !== "" ||
@@ -528,6 +580,18 @@ export default function ProjectBrowser() {
     filters.who.length > 0 ||
     filters.supervisors.length > 0;
   const supervisorCount = new Set(shown.map((project) => project.supervisor.name)).size;
+
+  /* What the chips and pills call each answer. The categories stay English,
+     as on the cards; city names are names; "Remote" is a word. */
+  const topicName = (topic: Topic | typeof ALL) =>
+    topic === ALL ? tFinder("allTopics") : topic === "Thesis" ? tFinder("thesis") : topic;
+  const baseName = (base: ProjectBase) => (base === "Remote" ? t("location.remote") : base);
+  const whoName = (who: Eligibility | typeof ALL) =>
+    who === ALL
+      ? tFinder("who.all")
+      : who === "everyone"
+        ? tFinder("who.everyone")
+        : tFinder("who.studentsOnly", { universities: who });
 
   /* The filters open as a popover over the projects; a click anywhere outside
      it, or Escape, puts it away again. The pills under the search say what is
@@ -611,18 +675,50 @@ export default function ProjectBrowser() {
       clear: { supervisors: filters.supervisors.filter((item) => item !== name) },
     })),
     ...filters.topics.map((topic) => ({
-      label: topic,
+      label: topicName(topic),
       clear: { topics: filters.topics.filter((item) => item !== topic) },
     })),
     ...filters.bases.map((base) => ({
-      label: base,
+      label: baseName(base),
       clear: { bases: filters.bases.filter((item) => item !== base) },
     })),
     ...filters.who.map((who) => ({
-      label: WHO_LABELS[who],
+      label: whoName(who),
       clear: { who: filters.who.filter((item) => item !== who) },
     })),
   ];
+
+  /* The results line: the count, then a clause for each filter that is not
+     on its first answer, then the search. */
+  const areas = filters.topics.filter((topic) => topic !== "Thesis");
+  const cities = filters.bases.filter((base) => base !== "Remote");
+  const universities = filters.who.filter((who) => who !== "everyone");
+  const anyOf = (items: string[]) => formatList(items, locale, "disjunction");
+  const summary = [
+    t("summary.projects", { projects: shown.length, supervisors: supervisorCount }),
+    summaryClause(
+      [
+        areas.length > 0 ? t("summary.inTopics", { topics: anyOf(areas) }) : "",
+        filters.topics.includes("Thesis") ? t("summary.thesis") : "",
+      ],
+      locale,
+    ),
+    summaryClause(
+      [
+        cities.length > 0 ? t("summary.basedIn", { cities: anyOf(cities) }) : "",
+        filters.bases.includes("Remote") ? t("summary.remote") : "",
+      ],
+      locale,
+    ),
+    summaryClause(
+      [
+        filters.who.includes("everyone") ? t("summary.everyone") : "",
+        universities.length > 0 ? t("summary.studentsOnly", { universities: anyOf(universities) }) : "",
+      ],
+      locale,
+    ),
+    filters.query ? ` ${tFinder("matching", { query: filters.query })}` : "",
+  ].join("");
 
   return (
     <div className="flex flex-col gap-6">
@@ -637,7 +733,7 @@ export default function ProjectBrowser() {
         <div className="flex flex-col gap-3 px-4 md:px-6">
           <div className="relative flex gap-2">
             <label className="relative block min-w-0 flex-1">
-              <span className="sr-only">Search projects</span>
+              <span className="sr-only">{tFinder("searchLabel")}</span>
               <MagnifyingGlassIcon
                 size={18}
                 aria-hidden="true"
@@ -647,7 +743,7 @@ export default function ProjectBrowser() {
                 type="search"
                 value={filters.query}
                 onChange={(event) => set({ query: event.target.value })}
-                placeholder="Topic, person or university"
+                placeholder={tFinder("searchPlaceholder")}
                 className="h-12 w-full appearance-none border border-navy/18 bg-white pl-10 pr-11 text-[15px] text-navy placeholder:text-navy/45 focus:border-navy focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none"
               />
               {/* Our own clear button in place of the browser's blue one; the
@@ -656,7 +752,7 @@ export default function ProjectBrowser() {
                 <button
                   type="button"
                   onClick={() => set({ query: "" })}
-                  aria-label="Clear search"
+                  aria-label={tFinder("clearSearch")}
                   className="absolute right-1 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center text-navy/45 hover:text-navy focus-visible:outline-offset-0"
                 >
                   <XIcon size={16} aria-hidden="true" />
@@ -676,7 +772,7 @@ export default function ProjectBrowser() {
               }`}
             >
               <FunnelSimpleIcon size={18} aria-hidden="true" />
-              <span className="max-sm:sr-only">Filters</span>
+              <span className="max-sm:sr-only">{t("filters")}</span>
               {chosen.length > 0 && (
                 <span
                   className={`inline-flex size-5 items-center justify-center text-[12px] tabular-nums ${
@@ -684,7 +780,7 @@ export default function ProjectBrowser() {
                   }`}
                 >
                   {chosen.length}
-                  <span className="sr-only"> chosen</span>
+                  <span className="sr-only"> {t("chosen")}</span>
                 </span>
               )}
             </button>
@@ -697,10 +793,14 @@ export default function ProjectBrowser() {
                 <div className="flex flex-col gap-6 overflow-y-auto py-5 md:py-6">
                   {/* The fade alone would leave a reader guessing, so a line under
                       the chips says what it means. It goes once nobody is greyed out. */}
-                  <ChipRow label="Supervisor" note={greyedNote}>
+                  <ChipRow
+                    label={t("supervisor")}
+                    note={greyedNoteKey ? t(`greyedNote.${greyedNoteKey}`) : undefined}
+                  >
                     {projectSupervisors.map((person) => {
                       const on = filters.supervisors.includes(person.name);
                       const n = forSupervisors.filter((project) => project.supervisor.name === person.name).length;
+                      const status = availabilityLine(tAvailability, person.availability, person.availabilityNote);
                       return (
                         <button
                           key={person.name}
@@ -717,20 +817,18 @@ export default function ProjectBrowser() {
                             className={`size-[28px] shrink-0 object-cover ${isGreyedOut(person.availability) ? "opacity-50 grayscale" : ""}`}
                           />
                           {person.name}
-                          {availabilityLine(person.availability, person.availabilityNote) && (
-                            <span className="sr-only"> ({availabilityLine(person.availability, person.availabilityNote)})</span>
-                          )}
+                          {status && <span className="sr-only"> ({status})</span>}
                           <Count n={n} active={on} />
                         </button>
                       );
                     })}
                   </ChipRow>
 
-                  <ChipRow label="Topic">
-                    {(["All", ...projectCategories, "Thesis"] as const).map((value) => {
-                      const on = value === "All" ? filters.topics.length === 0 : filters.topics.includes(value);
+                  <ChipRow label={tFinder("topic")}>
+                    {TOPICS.map((value) => {
+                      const on = value === ALL ? filters.topics.length === 0 : filters.topics.includes(value);
                       const n =
-                        value === "All"
+                        value === ALL
                           ? forTopics.length
                           : forTopics.filter((project) => matchesTopic(project, value)).length;
                       return (
@@ -738,10 +836,10 @@ export default function ProjectBrowser() {
                           key={value}
                           type="button"
                           aria-pressed={on}
-                          onClick={() => set({ topics: value === "All" ? [] : toggle(filters.topics, value) })}
+                          onClick={() => set({ topics: value === ALL ? [] : toggle(filters.topics, value) })}
                           className={chipClass(on)}
                         >
-                          {value === "All" ? "All topics" : value}
+                          {topicName(value)}
                           <Count n={n} active={on} />
                         </button>
                       );
@@ -750,19 +848,19 @@ export default function ProjectBrowser() {
 
                   <div className="flex flex-col gap-6 px-4 md:px-6">
                     <Segmented
-                      label="Location"
-                      groupLabel="Where the supervisor is based"
+                      label={t("location.label")}
+                      groupLabel={t("location.groupLabel")}
                       options={[
                         {
-                          value: "Anywhere",
-                          label: "Anywhere",
+                          value: ANYWHERE,
+                          label: t("location.anywhere"),
                           n: forBases.length,
                           on: filters.bases.length === 0,
                           onClick: () => set({ bases: [] }),
                         },
                         ...projectBases.map((value) => ({
                           value,
-                          label: value,
+                          label: baseName(value),
                           n: forBases.filter((project) => project.supervisor.base === value).length,
                           on: filters.bases.includes(value),
                           onClick: () => set({ bases: toggle(filters.bases, value) }),
@@ -770,19 +868,19 @@ export default function ProjectBrowser() {
                       ]}
                     />
                     <Segmented
-                      label="Who can apply"
-                      groupLabel="Who can apply"
+                      label={tFinder("who.label")}
+                      groupLabel={tFinder("who.label")}
                       options={[
                         {
-                          value: "All",
-                          label: WHO_LABELS.All,
+                          value: ALL,
+                          label: whoName(ALL),
                           n: forWho.length,
                           on: filters.who.length === 0,
                           onClick: () => set({ who: [] }),
                         },
-                        ...(["everyone", "VU", "UvA"] as const).map((value) => ({
+                        ...WHO.map((value) => ({
                           value,
-                          label: WHO_LABELS[value],
+                          label: whoName(value),
                           n: forWho.filter((project) => eligibilityOf(project) === value).length,
                           on: filters.who.includes(value),
                           onClick: () => set({ who: toggle(filters.who, value) }),
@@ -798,7 +896,7 @@ export default function ProjectBrowser() {
                       onClick={() => setFilters({ ...NO_FILTERS, query: filters.query })}
                       className="text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
                     >
-                      Reset filters
+                      {t("resetFilters")}
                     </button>
                   ) : (
                     <span />
@@ -817,7 +915,7 @@ export default function ProjectBrowser() {
                     }}
                     className="btn-ink"
                   >
-                    Show {shown.length} {shown.length === 1 ? "project" : "projects"}
+                    {t("showProjects", { count: shown.length })}
                   </button>
                 </div>
               </div>
@@ -833,7 +931,7 @@ export default function ProjectBrowser() {
                   <button
                     type="button"
                     onClick={() => set(item.clear)}
-                    aria-label={`Remove filter: ${item.label}`}
+                    aria-label={t("removeFilter", { label: item.label })}
                     className="inline-flex min-h-[32px] items-center gap-1.5 border border-navy bg-navy pl-3 pr-2 text-[13px] text-white hover:bg-navy/85"
                   >
                     {item.label}
@@ -848,30 +946,7 @@ export default function ProjectBrowser() {
 
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
         <p className="text-caption text-navy/65" aria-live="polite">
-          {shown.length} {shown.length === 1 ? "project" : "projects"} from {supervisorCount}{" "}
-          {supervisorCount === 1 ? "supervisor" : "supervisors"}
-          {summaryClause([
-            (() => {
-              const areas = filters.topics.filter((topic) => topic !== "Thesis");
-              return areas.length > 0 ? `in ${joinOr(areas)}` : "";
-            })(),
-            filters.topics.includes("Thesis") ? "offered as a thesis" : "",
-          ])}
-          {summaryClause([
-            (() => {
-              const cities = filters.bases.filter((base) => base !== "Remote");
-              return cities.length > 0 ? `based in ${joinOr(cities)}` : "";
-            })(),
-            filters.bases.includes("Remote") ? "supervised remotely" : "",
-          ])}
-          {summaryClause([
-            filters.who.includes("everyone") ? "open to everyone" : "",
-            (() => {
-              const universities = filters.who.filter((who) => who !== "everyone");
-              return universities.length > 0 ? `for ${joinOr(universities)} students only` : "";
-            })(),
-          ])}
-          {filters.query ? ` matching "${filters.query}"` : ""}
+          {summary}
         </p>
         {active && (
           <button
@@ -880,7 +955,7 @@ export default function ProjectBrowser() {
             className="inline-flex items-center gap-1.5 text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
           >
             <XIcon size={14} aria-hidden="true" />
-            Clear filters
+            {tFinder("clearFilters")}
           </button>
         )}
       </div>
@@ -913,7 +988,7 @@ export default function ProjectBrowser() {
               }}
               className="btn-outline-ink gap-2"
             >
-              {expanded ? "Show fewer projects" : `Show all ${shown.length} projects`}
+              {expanded ? tFinder("showFewer") : tFinder("showAll", { count: shown.length })}
               <CaretDownIcon
                 size={14}
                 weight="bold"
@@ -925,23 +1000,23 @@ export default function ProjectBrowser() {
         </div>
       ) : (
         <div className="flex flex-col items-center gap-3 border border-dashed border-navy/20 bg-white px-6 py-10 text-center">
-          <p className="text-body text-navy/74">No project matches these filters.</p>
+          <p className="text-body text-navy/74">{tFinder("noMatch")}</p>
           <button
             type="button"
             onClick={() => setFilters(NO_FILTERS)}
             className="text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
           >
-            Clear filters
+            {tFinder("clearFilters")}
           </button>
           <p className="text-caption text-navy/60">
-            Have your own idea? Email{" "}
-            <a
-              href={`mailto:${PROJECTS_EMAIL}?subject=${encodeURIComponent("Project Hub: my own project idea")}`}
-              className="underline decoration-navy/25 underline-offset-4 hover:decoration-navy"
-            >
-              {PROJECTS_EMAIL}
-            </a>
-            .
+            {tFinder.rich("ownIdea", {
+              address: PROJECTS_EMAIL,
+              email: (chunks) => (
+                <a href={OWN_IDEA_MAILTO} className="underline decoration-navy/25 underline-offset-4 hover:decoration-navy">
+                  {chunks}
+                </a>
+              ),
+            })}
           </p>
         </div>
       )}

@@ -1,16 +1,20 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowUpRight, CaretDown } from "@phosphor-icons/react/dist/ssr";
 
 import {
   COURSE_APPLICATION_URL,
+  applicationText,
   courseApplicationFor,
   type ChapterName,
 } from "@/data/courseApplications";
 import { ATLAS } from "@/data/chapterAtlas";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The chapters as an atlas: the three cities set as a vertical index on the
@@ -22,6 +26,10 @@ import { ATLAS } from "@/data/chapterAtlas";
  * Every fact here is one the chapter's own page already states; the chapter
  * pages are the source, this is the digest. Course state comes from
  * courseApplications.ts so a cohort can never be open here and closed there.
+ *
+ * Its words are in community.atlas, with the course notes in
+ * courses.applications; the page wraps it in a <ClientMessages> that carries
+ * those, plus common.a11y and common.actions.
  *
  * Markup interleaves header, panel, header, panel, so below lg each chapter
  * opens under its own name (the course tabs' reasoning). From lg the grid
@@ -36,21 +44,24 @@ const PANEL_CELL = "lg:col-start-2 lg:row-start-1 lg:row-end-5";
 
 function CourseLine({ city, course }: { city: ChapterName; course: string }) {
   const entry = courseApplicationFor(city);
+  const locale = useLocale() as Locale;
+  const text = applicationText(entry, useTranslations("courses.applications"), locale);
+  const t = useTranslations("community.atlas");
+  const tCommon = useTranslations("common");
   return (
     <div className="border-t border-navy/10 pt-4">
-      <p className="kicker text-kicker-sm text-navy/65">The free course</p>
-      <p className="mt-1.5 font-serif text-title-sm text-navy">{course}</p>
+      <p className="kicker text-kicker-sm text-navy/65">{t("freeCourse")}</p>
+      {/* Course titles are names, English in every language. */}
+      <p lang="en" className="mt-1.5 font-serif text-title-sm text-navy">{course}</p>
       {entry.open ? (
         <>
           <p className="mt-1.5 font-sans text-caption text-navy/65">
-            {entry.rolling ? (
-              entry.rollingNote
-            ) : (
-              <>
-                Participants by {entry.deadlines.participants}. Facilitators by{" "}
-                {entry.deadlines.facilitators}.
-              </>
-            )}
+            {entry.rolling
+              ? text.rollingNote
+              : t("deadlines", {
+                  participants: text.deadlines?.participants ?? "",
+                  facilitators: text.deadlines?.facilitators ?? "",
+                })}
           </p>
           <a
             href={COURSE_APPLICATION_URL}
@@ -58,14 +69,15 @@ function CourseLine({ city, course }: { city: ChapterName; course: string }) {
             rel="noopener noreferrer"
             className="btn-accent mt-4 gap-2"
           >
-            Apply to the free course
+            {tCommon("actions.applyFreeCourse")}
             <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-            <span className="sr-only"> (opens in a new tab)</span>
+            <span className="sr-only"> {tCommon("a11y.opensInNewTab")}</span>
           </a>
+          <FormLanguageNote className="mt-2" />
         </>
       ) : (
         <p className="mt-1.5 font-sans text-caption text-navy/65">
-          Applications are closed. {entry.closedNote}
+          {t("closed", { note: text.closedNote ?? "" })}
         </p>
       )}
     </div>
@@ -77,6 +89,8 @@ export default function ChapterAtlas() {
   const [visited, setVisited] = useState<string[]>([ATLAS[0].id]);
   const headRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const reduce = useReducedMotion();
+  const t = useTranslations("community.atlas");
+  const tCommon = useTranslations("common");
 
   const open = (id: string) => {
     setActiveId(id);
@@ -118,7 +132,7 @@ export default function ChapterAtlas() {
   return (
     <div
       role="group"
-      aria-label="The chapters"
+      aria-label={t("label")}
       className="lg:grid lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-14 xl:grid-cols-[minmax(0,380px)_minmax(0,1fr)] xl:gap-x-20"
     >
       {ATLAS.map((chapter, i) => {
@@ -162,7 +176,7 @@ export default function ChapterAtlas() {
                     on ? "text-navy/65" : "text-navy/45"
                   }`}
                 >
-                  {chapter.origin}
+                  {t(`chapters.${chapter.id}.origin`)}
                 </span>
               </span>
               <CaretDown
@@ -195,7 +209,7 @@ export default function ChapterAtlas() {
                       src={`${chapter.photo}-960.webp`}
                       srcSet={`${chapter.photo}-640.webp 640w, ${chapter.photo}-960.webp 960w, ${chapter.photo}-1280.webp 1280w`}
                       sizes="(min-width: 1440px) 880px, (min-width: 1024px) 64vw, 100vw"
-                      alt={chapter.photoAlt}
+                      alt={t(`chapters.${chapter.id}.photoAlt`)}
                       className="absolute inset-0 size-full object-cover"
                     />
                     <figcaption className="kicker absolute bottom-0 left-0 bg-navy/88 px-5 py-2.5 text-kicker-sm text-white">
@@ -205,11 +219,19 @@ export default function ChapterAtlas() {
 
                   <div className="grid gap-10 pt-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:gap-12">
                     <div className="flex flex-col gap-6">
-                      <p className="font-sans text-body text-navy/78">{chapter.summary}</p>
+                      <p className="font-sans text-body text-navy/78">{t(`chapters.${chapter.id}.summary`)}</p>
                       <dl className="flex flex-col">
-                        {chapter.facts.map((fact) => (
+                        {/* The director first, then the chapter's own facts. */}
+                        {[
+                          { key: "director", label: t("directedBy"), value: chapter.director },
+                          ...chapter.facts.map((fact) => ({
+                            key: fact,
+                            label: t(`chapters.${chapter.id}.facts.${fact}.label`),
+                            value: t(`chapters.${chapter.id}.facts.${fact}.value`),
+                          })),
+                        ].map((fact) => (
                           <div
-                            key={fact.label}
+                            key={fact.key}
                             className="grid gap-1 border-t border-navy/10 py-3 sm:grid-cols-[132px_minmax(0,1fr)] sm:gap-4"
                           >
                             <dt className="kicker text-kicker-sm text-navy/60">{fact.label}</dt>
@@ -222,7 +244,7 @@ export default function ChapterAtlas() {
                         href={chapter.href}
                         className="group/link inline-flex items-center gap-2 self-start font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
                       >
-                        Everything on SAIN {chapter.city}
+                        {t("everythingOn", { city: chapter.city })}
                         <ArrowRight
                           size={16}
                           weight="regular"
@@ -234,7 +256,7 @@ export default function ChapterAtlas() {
 
                     <div className="flex flex-col">
                       <p className="kicker pb-3 text-kicker-sm text-navy/65">
-                        Coming up in {chapter.city}
+                        {t("comingUp", { city: chapter.city })}
                       </p>
                       {/* A third-party document does not get to decide how
                           tall this band is: fixed height, its own scrollport,
@@ -242,7 +264,7 @@ export default function ChapterAtlas() {
                       <div className="h-[460px] overflow-auto border border-navy/10 bg-white">
                         <iframe
                           src={`https://luma.com/embed/calendar/${chapter.calendar}/events?lt=light`}
-                          title={`Upcoming SAIN ${chapter.city} events`}
+                          title={t("calendarTitle", { city: chapter.city })}
                           loading="lazy"
                           className="h-full w-full border-0"
                           allowFullScreen
@@ -254,9 +276,9 @@ export default function ChapterAtlas() {
                         rel="noopener noreferrer"
                         className="mt-3 inline-flex items-center gap-1.5 self-start font-sans text-caption text-navy/72 underline decoration-navy/20 underline-offset-4 hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
                       >
-                        The full {chapter.city} calendar on Luma
+                        {t("fullCalendar", { city: chapter.city })}
                         <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
-                        <span className="sr-only"> (opens in a new tab)</span>
+                        <span className="sr-only"> {tCommon("a11y.opensInNewTab")}</span>
                       </a>
                     </div>
                   </div>
@@ -270,8 +292,7 @@ export default function ChapterAtlas() {
       {/* Under the index, from lg: the one note every calendar shares. */}
       <div className="hidden lg:col-start-1 lg:row-start-4 lg:block lg:self-end">
         <p className="pt-8 font-sans text-caption text-navy/60">
-          Events are walk-in unless the event page says otherwise. Questions? Each
-          chapter lists its events contact on its own page.
+          {t("walkIn")}
         </p>
       </div>
     </div>

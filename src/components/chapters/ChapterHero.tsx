@@ -1,8 +1,10 @@
 import type { ReactNode } from "react";
+import { useTranslations } from "next-intl";
 
 import Reveal from "@/components/landing/Reveal";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import FormLanguageNote from "@/components/FormLanguageNote";
 
 /**
  * The chapter hero. Same split the landing runs: the claim on the left, the
@@ -36,6 +38,9 @@ export default function ChapterHero({
   belowCta?: ReactNode;
 }) {
   const rung = (w: number) => photo.replace(/\.jpg$/, `-${w}.webp`);
+  const t = useTranslations("chapters.hero");
+  const tActions = useTranslations("common.actions");
+  const tA11y = useTranslations("common.a11y");
 
   return (
     <section
@@ -76,17 +81,18 @@ export default function ChapterHero({
               rel="noopener noreferrer"
               className="btn-accent gap-2"
             >
-              Join the community
+              {tActions("joinCommunity")}
               <ArrowUpRight size={16} weight="regular" aria-hidden="true" />
-              <span className="sr-only"> (opens in a new tab)</span>
+              <span className="sr-only"> {tA11y("opensInNewTab")}</span>
             </a>
             <a
               href="#events"
               className="inline-flex items-center gap-2 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
-              See what&rsquo;s on this week
+              {t("seeWhatsOn")}
               <ArrowRight size={16} weight="regular" aria-hidden="true" />
             </a>
+            <FormLanguageNote className="basis-full" />
           </div>
           {belowCta}
         </Reveal>

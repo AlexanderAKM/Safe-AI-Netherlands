@@ -1,6 +1,8 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
+import { localizePath, type Locale } from "@/i18n/routing";
+import Link from "next/link";
 
 /* Inverse navy close. Poppins italic for the stichting line and the
    column titles, Poppins for the links. One bottom rule, then the legal line
@@ -10,35 +12,37 @@ import { COMMUNITY_JOIN_URL } from "@/data/siteContact";
    map: the community and its city doors, every programme, and the
    organisation pages the nav no longer names. */
 
-type FooterLink = { name: string; href: string; external?: boolean };
+/* `key` names the link's label under common.footer.links; city names and
+   channel names are the same in every language, so they carry a `name`. */
+type FooterLink = { key?: string; name?: string; href: string; external?: boolean };
 
-const columns: { title: string; links: FooterLink[] }[] = [
+const columns: { key: string; links: FooterLink[] }[] = [
   {
-    title: "Community",
+    key: "community",
     links: [
-      { name: "Community", href: "/community" },
+      { key: "community", href: "/community" },
       { name: "Utrecht", href: "/chapters/utrecht" },
       { name: "Groningen", href: "/chapters/groningen" },
       { name: "Amsterdam", href: "/chapters/amsterdam" },
-      { name: "Join the community", href: COMMUNITY_JOIN_URL, external: true },
+      { key: "joinCommunity", href: COMMUNITY_JOIN_URL, external: true },
     ],
   },
   {
-    title: "Programmes",
+    key: "programmes",
     links: [
-      { name: "Courses", href: "/courses" },
-      { name: "Project hub", href: "/research" },
-      { name: "Project Hub handbook", href: "/research/handbook" },
-      { name: "Volunteer", href: "/get-involved" },
+      { key: "courses", href: "/courses" },
+      { key: "projectHub", href: "/research" },
+      { key: "handbook", href: "/research/handbook" },
+      { key: "volunteer", href: "/get-involved" },
     ],
   },
   {
-    title: "Organisation",
+    key: "organisation",
     links: [
-      { name: "About", href: "/about" },
-      { name: "Team", href: "/team" },
-      { name: "Open positions", href: "/open-positions" },
-      { name: "Contact", href: "/contact" },
+      { key: "about", href: "/about" },
+      { key: "team", href: "/team" },
+      { key: "openPositions", href: "/open-positions" },
+      { key: "contact", href: "/contact" },
     ],
   },
 ];
@@ -56,23 +60,30 @@ const socials: FooterLink[] = [
     external: true,
   },
   {
-    name: "Newsletter",
+    key: "newsletter",
     href: "https://safeainetherlands.substack.com/",
     external: true,
   },
 ];
 
 const documents: FooterLink[] = [
-  { name: "Vision", href: "/about/vision" },
-  { name: "Theory of Change", href: "/about/theory-of-change" },
-  { name: "Code of Conduct", href: "/about/code-of-conduct" },
+  { key: "vision", href: "/about/vision" },
+  { key: "theoryOfChange", href: "/about/theory-of-change" },
+  { key: "codeOfConduct", href: "/about/code-of-conduct" },
 ];
 
 function FooterAnchor({
   link,
+  label,
+  newTab,
+  locale,
   iconSize = 16,
 }: {
   link: FooterLink;
+  label: string;
+  /** "(opens in a new tab)", for the screen-reader hint on external links. */
+  newTab: string;
+  locale: Locale;
   iconSize?: 14 | 16;
 }) {
   const className =
@@ -86,21 +97,29 @@ function FooterAnchor({
         rel="noopener noreferrer"
         className={`inline-flex items-center gap-1.5 ${className}`}
       >
-        {link.name}
+        {label}
         <ArrowUpRight size={iconSize} weight="regular" aria-hidden="true" />
-        <span className="sr-only"> (opens in a new tab)</span>
+        <span className="sr-only"> {newTab}</span>
       </a>
     );
   }
 
   return (
-    <Link href={link.href} className={className}>
-      {link.name}
+    <Link href={localizePath(link.href, locale)} className={className}>
+      {label}
     </Link>
   );
 }
 
-export default function Footer() {
+/* The footer takes its language as a prop rather than from the request, like
+   everything in SiteShell (see there), so its links are written with
+   localizePath and next/link instead of the locale-aware Link. */
+export default async function Footer({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "common.footer" });
+  const tA11y = await getTranslations({ locale, namespace: "common.a11y" });
+  const label = (link: FooterLink) =>
+    link.key ? t(`links.${link.key}`) : (link.name ?? "");
+
   return (
     <footer className="border-t border-white/16 bg-navy">
       <div className="shell pb-10 pt-[52px]">
@@ -125,8 +144,14 @@ export default function Footer() {
             </a>
             <ul role="list" className="flex flex-wrap gap-x-5 gap-y-1">
               {socials.map((social) => (
-                <li key={social.name}>
-                  <FooterAnchor link={social} iconSize={14} />
+                <li key={social.href}>
+                  <FooterAnchor
+                    link={social}
+                    label={label(social)}
+                    newTab={tA11y("opensInNewTab")}
+                    locale={locale}
+                    iconSize={14}
+                  />
                 </li>
               ))}
             </ul>
@@ -134,10 +159,18 @@ export default function Footer() {
 
           <div className="grid flex-1 gap-8 sm:grid-cols-3 lg:grid-cols-[repeat(3,max-content)] lg:justify-end lg:gap-x-28 xl:gap-x-40">
             {columns.map((column) => (
-              <div key={column.title} className="flex flex-col gap-[11px]">
-                <p className="kicker text-kicker-sm text-white/50">{column.title}</p>
+              <div key={column.key} className="flex flex-col gap-[11px]">
+                <p className="kicker text-kicker-sm text-white/50">
+                  {t(`columns.${column.key}`)}
+                </p>
                 {column.links.map((link) => (
-                  <FooterAnchor key={link.name} link={link} />
+                  <FooterAnchor
+                    key={link.href}
+                    link={link}
+                    label={label(link)}
+                    newTab={tA11y("opensInNewTab")}
+                    locale={locale}
+                  />
                 ))}
               </div>
             ))}
@@ -151,11 +184,11 @@ export default function Footer() {
           <div className="flex flex-wrap gap-5">
             {documents.map((document) => (
               <Link
-                key={document.name}
-                href={document.href}
+                key={document.href}
+                href={localizePath(document.href, locale)}
                 className="font-sans text-footnote text-white/60 transition-colors hover:text-white focus-visible:text-white"
               >
-                {document.name}
+                {t(`links.${document.key}`)}
               </Link>
             ))}
           </div>

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "description": "SAIN biedt de community, cursussen en middelen waarmee studenten en professionals in Nederland hun weg vinden in AI-veiligheid. Elk programma is gratis."
+  },
+  "hero": {
+    "heading": "Je carrière in AI-veiligheid begint hier.",
+    "intro": "Expertise in AI-veiligheid is belangrijker dan ooit. SAIN biedt de community, cursussen en middelen waarmee studenten en professionals hun weg vinden in AI-veiligheid. We bieden een duidelijk pad via onderwijs, community en praktijkprojecten, en brengen sterke deelnemers daarna in contact met de organisaties, programma’s en functies waar ze de volgende stap kunnen zetten.",
+    "hiring": "<strong>We zoeken betaalde startteams</strong> voor nieuwe chapters in Eindhoven, Delft en Den Haag. Solliciteer uiterlijk {date}. <roles>Bekijk de rollen</roles>",
+    "chartAlt": "Een steeds steiler stijgende AI-curve begint in de oorsprong. Twee mensen leren en oefenen, terwijl een derde omhoog wijst naar het kantelpunt, waar de curve zich splitst in een steil oranje pad en een vlakker grijs pad."
+  },
+  "affiliations": {
+    "heading": "Netwerk en institutionele banden"
+  },
+  "mission": {
+    "heading": "Waarom SAIN bestaat",
+    "statement": "<muted>Te weinig mensen weten hoe ze aan AI-veiligheid kunnen werken, in onderzoek, in beleid of in het publieke debat.</muted> SAIN <verb1>traint</verb1> nieuwe mensen, <verb2>verbindt</verb2> ze met elkaar en helpt ze <verb3>op weg</verb3>.",
+    "intro": "Een gratis pad, gerund door vrijwilligers, van nieuwsgierigheid naar een eigen bijdrage: via cursussen, evenementen, onderzoek en lokale chapters.",
+    "aboutLink": "Waarom SAIN bestaat"
+  },
+  "community": {
+    "heading": "Doe mee met de community",
+    "intro": "<strong>Discussiegroepen</strong>, <strong>hackathons</strong>, <strong>lezingen</strong> en de avonden erna. Mensen vinden hier <strong>vrienden en samenwerkingspartners</strong>, en vaak ook hun <strong>volgende stap in AI-veiligheid</strong>.",
+    "discord": "Onze Discord-community richt zich nu op onze chapters SAIN Amsterdam, Utrecht en Groningen.",
+    "nextCities": "Eindhoven, Delft en Den Haag zijn de volgende: <link>we zoeken hun startteams</link>.",
+    "moreCities": "Er komen meer steden bij."
+  },
+  "communityPrints": {
+    "label": "Foto’s van SAIN-evenementen",
+    "previous": "Vorige foto’s",
+    "next": "Volgende foto’s",
+    "photos": {
+      "graduationAmsterdam": "Cursisten van SAIN Amsterdam vieren buiten de afronding van hun cursus, met ballonnen en bloemen",
+      "closingGroningen": "Een slotavond van SAIN Groningen op een dakterras bij zonsondergang",
+      "lecture": "Een lezing van SAIN in een volle collegezaal",
+      "cafeAmsterdam": "Leden van SAIN Amsterdam rond een cafétafel met SAIN-mokken",
+      "technicalGraduates": "Cursisten die Technical AI Safety hebben afgerond, naast de banner van SAIN Amsterdam",
+      "circle": "Een community-bijeenkomst buiten, in een kring",
+      "indoor": "Een groepssessie van SAIN, binnen"
+    }
+  },
+  "courses": {
+    "heading": "Begin met een gratis cursus",
+    "intro": "Kies een track. Elk programma is gratis en wordt op locatie gegeven. Wat je volgt en hoe het loopt, hangt af van het chapter.",
+    "applyNow": "Je kunt je nu aanmelden in {cities}."
+  },
+  "courseTracks": {
+    "whereItRuns": "Waar de track wordt gegeven",
+    "notOffered": "(niet aangeboden)",
+    "seeAll": "Bekijk alle cursussen"
+  },
+  "research": {
+    "heading": "De SAIN Project Hub",
+    "intro": "Zet je academische expertise in voor AI-veiligheid. Leg contact met onderzoekers, werk een gericht project uit en breng je werk verder met steun van SAIN.",
+    "illustrationLabel": "Twee onderzoekers bekijken samen bewijsmateriaal aan een gedeelde werktafel",
+    "offer": {
+      "matching": {
+        "title": "Matching met begeleiders",
+        "description": "Doe gestructureerd onderzoek naar AI-veiligheid, onder persoonlijke begeleiding van iemand met minimaal een PhD."
+      },
+      "compute": {
+        "title": "Rekenkracht en ondersteuning",
+        "description": "Krijg toegang tot rekenkracht en logistieke ondersteuning voor je project of een open samenwerking."
+      },
+      "network": {
+        "title": "Landelijk netwerk",
+        "description": "Werk samen met onderzoekers, adviseurs en mensen uit de praktijk, bij alle Nederlandse chapters van SAIN."
+      },
+      "publication": {
+        "title": "Publicatietraject",
+        "description": "Bouw aan je trackrecord als onderzoeker, in een community met werk op NeurIPS, ICLR en andere toonaangevende conferenties."
+      }
+    },
+    "steps": {
+      "label": "Jouw onderzoekstraject",
+      "project": {
+        "title": "Kies een onderzoeksproject",
+        "body": "Sluit je aan bij een project of kom met je eigen vraag. Zet je academische expertise in voor AI-veiligheid, met de mensen en middelen om verder te komen.",
+        "handbook": "Lees het onderzoekshandboek"
+      },
+      "support": {
+        "title": "Werk met ondersteuning",
+        "body": "SAIN helpt het onderzoek te coördineren en regelt rekenkracht naar wat het project nodig heeft. Ontwikkel je werk met feedback van een begeleider of met onafhankelijke medeonderzoekers.",
+        "agendas": "Bekijk de onderzoeksagenda’s van onze begeleiders",
+        "becomeSupervisor": "Word begeleider"
+      },
+      "publish": {
+        "title": "Publiceer je bevindingen",
+        "body": "Maak van je bevindingen een paper, beleidsnotitie of onderzoekstool. Krijg feedback op conceptversies, en mogelijk steun voor reizen naar conferenties.",
+        "allPublications": "Bekijk alle publicaties"
+      }
+    },
+    "people": {
+      "agenda": "Onderzoeksagenda (opent in een nieuw tabblad)"
+    },
+    "publications": {
+      "readPaper": "Lees de paper",
+      "externalLabel": "{title} (opent in een nieuw tabblad)"
+    },
+    "close": "Meld je op elk moment aan. Bepaal per project hoeveel tijd je erin steekt. Meedoen op afstand is welkom."
+  },
+  "careers": {
+    "heading": "Bouw een carrière in AI-veiligheid",
+    "intro": "De meeste mensen die in AI-veiligheid terechtkomen, hadden dat niet gepland. Wij maken die weg korter met begeleiding, advies over financiering en introducties bij de labs, instituten en ministeries die nu in Europa mensen aannemen.",
+    "tracks": {
+      "technicalResearch": "Technisch onderzoek",
+      "governance": "Governance en beleid",
+      "fieldBuilding": "Field building",
+      "security": "Beveiliging en rekenkracht"
+    },
+    "quote": {
+      "context": "Stage · Existential Risk Observatory",
+      "text": "Without this community I almost certainly wouldn’t be where I am.",
+      "project": "Onderzoek naar AI-alignmenttechnieken en overheidsmaatregelen in kaart brengen"
+    }
+  },
+  "involved": {
+    "heading": "Het komende decennium wordt nu beslist",
+    "intro": "Je hebt geen achtergrond in AI nodig om hier van waarde te zijn. Elk programma van SAIN is gratis, wordt gerund door vrijwilligers en brengt je van nieuwsgierig naar actief bijdragen. Kies er dus een en begin.",
+    "startCourse": "Begin met een gratis cursus"
+  }
+}

@@ -1,4 +1,7 @@
 import type { CSSProperties } from "react";
+import { useLocale, useTranslations } from "next-intl";
+
+import { localizePath, type Locale } from "@/i18n/routing";
 
 /**
  * The SAIN Talent Pipeline. Every band points at the landing section that
@@ -16,6 +19,8 @@ import type { CSSProperties } from "react";
  * a course is open to anyone, a full-time role is not. The last band is solid
  * orange because that is the destination, and the photographs inside the bands
  * are texture, evidence that each step is a room that exists, not hero crops.
+ *
+ * The labels are in messages/<locale>/about.json, under pipeline.funnel.<id>.
  */
 
 type Band = {
@@ -27,7 +32,8 @@ type Band = {
   inset: number;
   /** The section of this page that describes the step. */
   href: string;
-  label: string;
+  /** Its label's key, under about.pipeline.funnel. */
+  id: string;
   labelClass: string;
   photo: string;
   objectPosition: string;
@@ -47,7 +53,7 @@ const BANDS: Band[] = [
     /* Not "Start with a free course": that label belongs to the accent CTA
        beside this diagram, which goes to /courses, while this band goes to the
        landing's courses section. One label per destination. */
-    label: "Take a free course, open to anyone",
+    id: "course",
     labelCqw: 3.7,
     labelClass: "max-w-[78%] text-center leading-[1.25]",
     photo: "/landing/funnel-01.jpg",
@@ -62,7 +68,7 @@ const BANDS: Band[] = [
     width: 356,
     inset: 9,
     href: "/#community",
-    label: "Participate in SAIN's community",
+    id: "community",
     labelCqw: 3.47,
     labelClass: "max-w-[78%] text-center leading-[1.27]",
     photo: "/landing/funnel-02.jpg",
@@ -77,7 +83,7 @@ const BANDS: Band[] = [
     width: 292,
     inset: 8.9,
     href: "/#research",
-    label: "Contribute and collaborate on research or projects",
+    id: "research",
     labelCqw: 3.24,
     labelClass: "max-w-[78%] text-center leading-[1.29]",
     photo: "/landing/funnel-03.jpg",
@@ -92,7 +98,7 @@ const BANDS: Band[] = [
     width: 240,
     inset: 9.2,
     href: "/#careers",
-    label: "Undertake a fellowship or internship in AI safety",
+    id: "fellowship",
     labelCqw: 3.01,
     labelClass: "max-w-[78%] text-center leading-[1.31]",
     photo: "/landing/funnel-04.jpg",
@@ -107,7 +113,7 @@ const BANDS: Band[] = [
     width: 196,
     inset: 10.2,
     href: "/#careers",
-    label: "Work full-time in AI safety",
+    id: "fullTime",
     labelCqw: 3.24,
     labelClass: "max-w-[78%] text-center leading-[1.29]",
     photo: "/landing/funnel-05.jpg",
@@ -167,6 +173,8 @@ const TERMINUS =
 
 export default function TalentFunnel({ tone = "paper" }: { tone?: "paper" | "inverse" }) {
   const inverse = tone === "inverse";
+  const t = useTranslations("about.pipeline.funnel");
+  const locale = useLocale() as Locale;
   return (
     <div
       className={`flex w-full max-w-[436px] flex-col items-center overflow-visible ${
@@ -193,8 +201,8 @@ export default function TalentFunnel({ tone = "paper" }: { tone?: "paper" | "inv
 
           return (
             <a
-              key={band.label}
-              href={band.href}
+              key={band.id}
+              href={localizePath(band.href, locale)}
               /* 86 of the 432 canvas. The height has to scale with the width
                  or the funnel stops being the shape the outline draws over. */
               className={`group relative mx-auto flex h-[19.907cqw] items-center justify-center outline-offset-2 focus-visible:outline-2 ${
@@ -266,7 +274,7 @@ export default function TalentFunnel({ tone = "paper" }: { tone?: "paper" | "inv
                   fontSize: `clamp(11px, ${band.labelCqw}cqw, ${((band.labelCqw / 100) * WIDEST).toFixed(1)}px)`,
                 }}
               >
-                {band.label}
+                {t(band.id)}
               </p>
             </a>
           );

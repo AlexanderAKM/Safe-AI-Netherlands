@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { Link } from "@/i18n/navigation";
 
 /* The handbook's reading furniture.
 
@@ -185,8 +185,9 @@ export function OutLink({
 }
 
 /** A plain inline link that stays on the site. Same-page anchors stay a plain
-    anchor; a route on the site routes through next/link, so a cross-page
-    reference is a client navigation and not a fresh document load. */
+    anchor; a route on the site routes through the locale-aware Link, so a
+    cross-page reference is a client navigation and not a fresh document load,
+    and stays in the reader's language. */
 export function InLink({
   href,
   children,

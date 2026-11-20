@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { supervisors } from "@/data/research";
 
@@ -25,8 +26,12 @@ import { supervisors } from "@/data/research";
  * `@media (hover: hover)`, so none of it fires from a tap; every cue repeats on
  * `group-focus-visible:` because a keyboard never fires `:hover`, and the two
  * transforms sit behind `motion-safe:`.
+ *
+ * Names and positions come from src/data/research.ts and stay in English, so
+ * they carry lang="en"; the link's label around them is translated.
  */
 export default function ResearchPeople() {
+  const t = useTranslations("home.research.people");
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
       {supervisors.map((person) => {
@@ -51,7 +56,7 @@ export default function ResearchPeople() {
                 />
               </span>
 
-              <h4 className="mt-3.5 font-serif text-title-sm leading-6 text-white">
+              <h4 lang="en" className="mt-3.5 font-serif text-title-sm leading-6 text-white">
                 {/* inline-block so the rule hugs the name rather than the column. */}
                 <span className="relative inline-block">
                   {person.name}
@@ -70,12 +75,12 @@ export default function ResearchPeople() {
                 </span>
               </h4>
 
-              <p className="mt-1.5 text-footnote leading-5 text-white/70">
+              <p lang="en" className="mt-1.5 text-footnote leading-5 text-white/70">
                 {person.positionShort}
               </p>
               {/* The whole supervisor is the link, so the destination has to be
                   named for anyone who cannot see the hover state. */}
-              {person.agenda && <span className="sr-only">Research agenda (opens in a new tab)</span>}
+              {person.agenda && <span className="sr-only">{t("agenda")}</span>}
             </Card>
           </li>
         );
