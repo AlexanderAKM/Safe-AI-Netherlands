@@ -182,7 +182,7 @@
       "levelOpen": "Thesis (level open)"
     },
     "apply": "Apply",
-    "updated": "Updated {date}"
+    "updated": "Updated {date} at {hour}:{minute}"
   },
   "applyPage": {
     "metadata": {

@@ -182,7 +182,7 @@
       "levelOpen": "Scriptie (niveau open)"
     },
     "apply": "Aanmelden",
-    "updated": "Bijgewerkt op {date}"
+    "updated": "Bijgewerkt op {date} om {hour}.{minute} uur"
   },
   "applyPage": {
     "metadata": {

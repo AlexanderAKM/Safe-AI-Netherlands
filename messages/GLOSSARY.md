@@ -2,8 +2,8 @@
 
 How SAIN's words are translated on the Dutch site (`/nl`). It applies to every
 file in `messages/nl/`. The Dutch is a first draft. Tjebbe decided the
-site-wide terms on 19 November 2026 (marked **Decided**); anything marked
-**Question** is still open until he signs it off.
+site-wide terms on 19 November 2026 and the wording on 20 November (marked
+**Decided**). Only the mission statement is still open (see the end).
 
 When you add a term, add it here in the same pull request.
 
@@ -23,7 +23,11 @@ When you add a term, add it here in the same pull request.
 - **Dates** come from the data and are formatted by the site: "16 november
   2026", "wo 18 nov". Write a date by hand only inside a sentence that has no
   `{date}` placeholder, and then in the same form.
-- **Times**: 18.30 uur. **Numbers**: 1.000, 2,5. **Percentages**: 20%.
+- **Times** (**Decided**): two-digit hours, a full stop and *uur*: 05.00 uur,
+  18.30 uur, 18.00-19.30 uur. Times the site prints from data follow it too
+  (the Groningen archive, the Project Hub tracker's "om 14.24 uur").
+- **Numbers**: 1.000, 2,5. **Percentages**: 20%. **Salaries** written out:
+  €42.000 tot €50.000 per jaar.
 - **Placeholders and tags** stay exactly as in the English: `{date}`,
   `{count, plural, ...}`, `<link>…</link>`. `npm run i18n:check` fails
   otherwise.
@@ -52,6 +56,7 @@ When you add a term, add it here in the same pull request.
 | People's names, paper titles, venue names | Names |
 | Job titles in postings (*Chapter Director*, *Video Editor (Short-Form)*) | **Decided**: they match the English application forms. People's role titles on /about, /contact and the chapter pages are translated (*Directeur*, *Hoofd evenementen*, *Chapterdirecteur*) |
 | Quotes from people (Stefano Zuffi's testimonial) | **Decided**: their own words, marked `lang="en"` |
+| Airtable's project topics (*Alignment and RL*) | **Decided**: as Airtable writes them. The thesis tags are translated (*Masterscriptie*, *Scriptie (niveau open)*) |
 
 ## Decided: "AI Safety" is *AI-veiligheid*
 
@@ -80,6 +85,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | apply (Project Hub) | je aanmelden | |
 | apply by {date} | uiterlijk {date} aanmelden / solliciteren | "uiterlijk" keeps the date inclusive |
 | application | aanmelding (course, Project Hub), sollicitatie (job) | |
+| application-based | met aanmelding en selectie | **Decided** |
 | applications are open / closed | de aanmelding is open / gesloten | |
 | board | bestuur | |
 | breadcrumb | kruimelpad | |
@@ -95,7 +101,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | course round, iteration | cursusronde | |
 | EU AI Act | EU AI Act (*de EU AI Act*) | **Decided**; also *EU AI Office*, *GPAI Code of Practice* |
 | deadline | deadline | |
-| soft deadline | streefdatum | **Question** |
+| soft deadline | streefdatum | **Decided** |
 | discussion group | discussiegroep | |
 | reading group | leesgroep | |
 | event | evenement; *activiteit* in lists of what a chapter does | |
@@ -103,29 +109,33 @@ English either way. Switching to option 2 is a search-and-replace in
 | field (of AI Safety) | vakgebied | |
 | field building | field building | **Decided** |
 | free | gratis | |
-| graduation (end of a course) | afsluiting, *cursusafsluiting* | participants get a certificate, not a diploma |
+| graduation (end of a course) | afsluiting, *cursusafsluiting* | **Decided**; participants get a certificate, not a diploma |
 | funding | financiering | |
 | hackathon | hackathon | |
 | handbook | handboek; *Project Hub-handboek* as a title | |
 | in person | op locatie | |
-| lecture | college | |
-| meetup, session | bijeenkomst | |
+| incubating (a new chapter) | in een incubatiefase | **Decided** |
+| lecture | college | **Decided** |
+| meetup, session | bijeenkomst | **Decided** |
 | join the community | word lid van de community | the button label everywhere |
 | mentorship | begeleiding | |
 | newsletter | nieuwsbrief | |
-| open positions | vacatures | |
-| outreach, PR | publiciteit (inboxes), promotie (team) | **Question** |
-| paper | paper | |
+| open positions | vacatures ("Er staan nu 15 vacatures open"); one of them is a *rol* | **Decided** |
+| outreach, PR | publiciteit (inboxes), promotie (team) | **Decided** |
+| paper | paper: *de paper*, *de papers*; the reader is the *Paperlezer* | **Decided** |
+| part-time, full-time | parttime, fulltime | **Decided** |
+| PDF | PDF, *PDF-kopie* (capitals, as in the English) | **Decided** |
+| PhD level or above | promovendi of mensen met een hogere functie | **Decided** |
 | policy | beleid | |
 | policy brief | beleidsnotitie | |
 | programme | programma | |
 | project | project | |
-| projects team, Project Team | projectteam | **Question**: keep *Project Team* as a name? |
-| registered address | vestigingsadres | **Question** |
+| projects team, Project Team | projectteam | **Decided** |
+| registered address | vestigingsadres | **Decided** |
 | research | onderzoek | |
 | researcher | onderzoeker | |
-| rolling (applications, review) | doorlopend | |
-| social (event) | borrel | |
+| rolling (applications, review) | doorlopend | **Decided** |
+| social (event) | borrel | **Decided** |
 | starting team | startteam | |
 | new chapters | nieuwe chapters | **Decided** |
 | supervisor | begeleider | as in *scriptiebegeleider* |
@@ -138,6 +148,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | volunteering | vrijwilligerswerk | |
 | vision | visie | |
 | code of conduct | gedragscode | |
+| Conduct (the contact inbox) | Gedrag | **Decided** |
 | working week | werkweek | |
 | workshop | workshop | |
 
@@ -157,10 +168,12 @@ role titles translated; quotes in the speaker's own English; *EU AI Act*;
 *Theory of Change*, *field building*, *Soft skills* and *brand kit* in
 English; BlueDot week titles translated; the note under every form.
 
-Still open (the pull request lists them with context):
+Decided on 20 November, as drafted unless noted: the Project Hub hero and
+buttons; "met aanmelding en selectie"; *streefdatum* and *doorlopend*; the
+event words; the contact labels; *de paper*, with *PDF* in capitals; the
+Project Hub labels; Airtable's tags (thesis tags translated, topics
+English); the vacancy wording; "AI-veiligheid daar op de kaart te zetten"
+on the new-chapters page; two-digit hours (*05.00 uur*).
 
-1. **soft deadline**: *streefdatum* (the draft) or *zachte deadline*?
-2. The wording questions in the pull request: the mission statement, the
-   Project Hub hero, "application-based", event words, contact labels,
-   *de/het paper*, the Project Hub labels, Airtable's tags, the vacancy
-   wording, and how to write times.
+Still open: the **mission statement** on the home page, "SAIN *traint* er
+meer, *verbindt* ze en helpt ze *op weg*." (the three highlighted words).

@@ -41,14 +41,27 @@ import { intlLocale, type Locale } from "@/i18n/routing";
 
 const PREVIEW_COUNT = 6;
 
-/* Fixed to Amsterdam time, so the build and the browser write the same
-   words: "2 November 2026 at 14:24", "2 november 2026 om 14:24". */
+/* When the tracker was last updated, fixed to Amsterdam time so the build and
+   the browser write the same words. The message tracker.updated puts the
+   date and the clock together, because each language writes the time its
+   own way: "Updated 2 November 2026 at 14:24", "Bijgewerkt op 2 november
+   2026 om 14.24 uur". */
 function updatedOn(iso: string, locale: Locale) {
-  return new Intl.DateTimeFormat(intlLocale[locale], {
+  const when = new Date(iso);
+  const timeZone = "Europe/Amsterdam";
+  const date = new Intl.DateTimeFormat(intlLocale[locale], {
     dateStyle: "long",
-    timeStyle: "short",
-    timeZone: "Europe/Amsterdam",
-  }).format(new Date(iso));
+    timeZone,
+  }).format(when);
+  const clock = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+    timeZone,
+  }).formatToParts(when);
+  const part = (type: Intl.DateTimeFormatPartTypes) =>
+    clock.find((piece) => piece.type === type)?.value ?? "";
+  return { date, hour: part("hour"), minute: part("minute") };
 }
 
 /* A project with no "... Only" tag is open to everyone; one with no thesis
@@ -449,7 +462,7 @@ export default function ProjectTracker({ tracker }: { tracker: Tracker }) {
           {tFinder("count", { count: shown.length })}
           {filters.query ? ` ${tFinder("matching", { query: filters.query })}` : ""}
           <span className="text-navy/45"> · </span>
-          {t("updated", { date: updatedOn(tracker.updatedAt, locale) })}
+          {t("updated", updatedOn(tracker.updatedAt, locale))}
         </p>
         {active && (
           <button
