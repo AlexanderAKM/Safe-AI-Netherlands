@@ -3,7 +3,7 @@
 How SAIN's words are translated on the Dutch site (`/nl`). It applies to every
 file in `messages/nl/`. The Dutch is a first draft. Tjebbe decided the
 site-wide terms on 19 November 2026 and the wording on 20 November (marked
-**Decided**). Only the mission statement is still open (see the end).
+**Decided**); no question is open.
 
 When you add a term, add it here in the same pull request.
 
@@ -160,7 +160,7 @@ Dutch page, every button, link or embed that opens one carries the line
 `src/components/FormLanguageNote.tsx`), or the same sentence added to a
 footnote that already talks about the form. **Decided.**
 
-## Decided and open questions
+## Decisions
 
 Decided by Tjebbe on 19 November 2026: AI-veiligheid; *chapter*;
 *facilitator*; *cohort*; *track* and the track names; job titles English and
@@ -175,5 +175,9 @@ Project Hub labels; Airtable's tags (thesis tags translated, topics
 English); the vacancy wording; "AI-veiligheid daar op de kaart te zetten"
 on the new-chapters page; two-digit hours (*05.00 uur*).
 
-Still open: the **mission statement** on the home page, "SAIN *traint* er
-meer, *verbindt* ze en helpt ze *op weg*." (the three highlighted words).
+The **mission statement** on the home page, also on 20 November: "SAIN
+*traint* nieuwe mensen, *verbindt* ze met elkaar en helpt ze *op weg*." (the
+three highlighted words).
+
+A new question goes in the pull request that raises it, and its answer goes
+here.
