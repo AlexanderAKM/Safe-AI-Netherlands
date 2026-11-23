@@ -548,6 +548,7 @@ export const ROLES: Record<string, Role> = {
     scope: "chapter",
     reportsTo: "Chapter Director",
     timeCommitment: "4 to 6 hours per week",
+    commitmentBadge: "Paid - Part-time",
     mission:
       "Welcome people into the chapter community and funnel them into deeper involvement. Be the friendly face and first point of contact.",
     responsibilities: [
