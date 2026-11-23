@@ -25,11 +25,12 @@ export default function FormLanguageNote({
   const locale = useLocale();
   const t = useTranslations("common.forms");
   if (locale === "en") return null;
-  if (inline) return <> {t("inEnglish")}</>;
+  // In italics, like every note about the language (EnglishOnlyNote).
+  if (inline) return <> <span className="italic">{t("inEnglish")}</span></>;
 
   return (
     <p
-      className={`font-sans text-footnote ${
+      className={`font-sans text-footnote italic ${
         tone === "inverse" ? "text-white/60" : "text-navy/60"
       } ${className}`}
     >
