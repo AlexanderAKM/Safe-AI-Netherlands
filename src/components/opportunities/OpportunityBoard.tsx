@@ -163,7 +163,7 @@ function OpportunityCard({ item, today, className = "" }: { item: Opportunity; t
     <li className={`flex min-w-0 ${className}`}>
       <article
         aria-labelledby={titleId}
-        className="group relative flex w-full flex-col border border-navy/12 bg-white p-5 transition-colors duration-200 before:absolute before:-inset-x-px before:-top-px before:h-[2px] before:origin-left before:scale-x-0 before:bg-orange before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-navy/30 hover:before:scale-x-100 focus-within:border-navy/30 focus-within:before:scale-x-100 md:p-6"
+        className="group relative flex w-full flex-col border border-navy/12 bg-white p-5 transition-colors duration-200 hover:border-navy/30 focus-within:border-navy/30 md:p-6"
       >
         <div className="flex items-center justify-between gap-4">
           {sain ? (
@@ -239,7 +239,17 @@ function OpportunityCard({ item, today, className = "" }: { item: Opportunity; t
         <div className="mt-auto pt-5">
           <div className="flex items-baseline justify-between gap-4 border-t border-navy/10 pt-3.5">
             <Deadline item={item} today={today} />
-            {sain && <p className="shrink-0 text-caption font-medium text-navy">{t("sain.apply")}</p>}
+            {sain && (
+              /* The line draws in from the left, as under a supervisor's name
+                 on the Project Hub; without motion it simply appears. */
+              <p className="relative shrink-0 text-caption font-medium text-navy">
+                {t("sain.apply")}
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-navy ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-x-100 group-focus-within:scale-x-100"
+                />
+              </p>
+            )}
           </div>
         </div>
       </article>

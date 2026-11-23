@@ -22,8 +22,8 @@ import type { Locale } from "@/i18n/routing";
 
    One item opens: Project hub, which has the opportunities board under it
    (/research/opportunities). The item itself stays a link to /research; its
-   two pages show in a small panel under it for a pointer or a keyboard, and
-   as an indented row in the mobile sheet. */
+   two pages show in a small panel under it for a pointer or a keyboard. In
+   the mobile sheet the item is a heading with both pages indented under it. */
 
 type NavItem = {
   /** Its label, under common.nav.items. */
@@ -271,11 +271,13 @@ export default function Navbar() {
                               <Link
                                 href={page.href}
                                 aria-current={current ? "page" : undefined}
-                                className={`flex flex-col gap-0.5 border-l-2 px-5 py-3.5 transition-colors hover:bg-cream focus-visible:bg-cream focus-visible:-outline-offset-2 ${
-                                  current ? "border-orange" : "border-transparent"
-                                }`}
+                                className="flex flex-col gap-0.5 px-5 py-3.5 transition-colors hover:bg-cream focus-visible:bg-cream focus-visible:-outline-offset-2"
                               >
-                                <span className="font-sans text-sm leading-5 text-navy">
+                                <span
+                                  className={`self-start font-sans text-sm leading-5 text-navy ${
+                                    current ? "underline decoration-navy underline-offset-4" : ""
+                                  }`}
+                                >
                                   {t(`${menu.name}.${page.key}.title`)}
                                 </span>
                                 <span className="font-sans text-footnote text-navy/60">
@@ -331,30 +333,45 @@ export default function Navbar() {
             <div className="shell flex flex-col gap-1 py-4">
               {navigation.map((item) => (
                 <Fragment key={item.key}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    aria-current={item.isActive(pathname) ? "page" : undefined}
-                    className="flex min-h-[44px] items-center gap-2.5 font-sans text-sm leading-5 text-navy"
-                  >
-                    {item.flagged && <FlagSquare />}
-                    {t(`items.${item.key}`)}
-                  </Link>
-                  {/* The item's own page is the row above, so only the pages
-                      under it are listed, set in from a hairline. */}
-                  {item.menu?.pages
-                    .filter((page) => page.href !== item.href)
-                    .map((page) => (
-                      <Link
-                        key={page.key}
-                        href={page.href}
-                        onClick={() => setMobileOpen(false)}
-                        aria-current={page.isActive(pathname) ? "page" : undefined}
-                        className="ml-1 flex min-h-[44px] items-center border-l border-navy/14 pl-4 font-sans text-sm leading-5 text-navy/80"
-                      >
-                        {t(`${item.menu?.name}.${page.key}.title`)}
-                      </Link>
-                    ))}
+                  {/* An item with a menu is a heading here, with all its pages
+                      under it set in from a hairline, as in the desktop panel. */}
+                  {item.menu ? (
+                    <span className="flex min-h-[44px] items-center gap-2.5 font-sans text-sm leading-5 text-navy">
+                      {t(`items.${item.key}`)}
+                    </span>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={item.isActive(pathname) ? "page" : undefined}
+                      className="flex min-h-[44px] items-center gap-2.5 font-sans text-sm leading-5 text-navy"
+                    >
+                      {item.flagged && <FlagSquare />}
+                      {t(`items.${item.key}`)}
+                    </Link>
+                  )}
+                  {item.menu && (
+                    <div className="mb-1 ml-1 flex flex-col border-l border-navy/14">
+                      {item.menu.pages.map((page) => {
+                        const current = page.isActive(pathname);
+                        return (
+                          <Link
+                            key={page.key}
+                            href={page.href}
+                            onClick={() => setMobileOpen(false)}
+                            aria-current={current ? "page" : undefined}
+                            className={`flex min-h-[34px] items-center pl-4 font-sans text-sm leading-5 ${
+                              current
+                                ? "text-navy underline decoration-navy underline-offset-4"
+                                : "text-navy/80"
+                            }`}
+                          >
+                            {t(`${item.menu?.name}.${page.key}.title`)}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
                 </Fragment>
               ))}
               {/* Under the links, above the calls to action: "EN | NL". */}
