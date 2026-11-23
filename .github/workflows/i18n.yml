@@ -1,7 +1,8 @@
 name: Check text and translations
 
-# On every pull request, and on main: the English and Dutch dictionaries
-# must have the same keys and placeholders (npm run i18n:check), no new
+# On every pull request, and on main: the Dutch dictionary must match the
+# English one's keys and placeholders (npm run i18n:check; a text not yet
+# translated is only a warning on the pull request, as it shows in English), no new
 # hard-coded text may reach the components (the no-literal-string lint rule
 # in .eslintrc.json), and the static export must still build, which also
 # fails on a message key that does not exist. It deploys nothing.

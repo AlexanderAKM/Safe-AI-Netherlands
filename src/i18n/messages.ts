@@ -88,6 +88,20 @@ function withFallback(base: unknown, override: unknown): unknown {
   return override;
 }
 
+/* The keys withFallback fills in from English: missing from the translation,
+   or left empty. Lists count as translated when present, as above. */
+function untranslatedKeys(base: unknown, override: unknown, path = ""): string[] {
+  if (override === undefined || override === null || override === "") {
+    return base === "" ? [] : [path];
+  }
+  if (isPlainObject(base) && isPlainObject(override)) {
+    return Object.keys(base).flatMap((key) =>
+      untranslatedKeys(base[key], override[key], path ? `${path}.${key}` : key),
+    );
+  }
+  return [];
+}
+
 const cache = new Map<Locale, Messages>();
 
 export function loadMessages(locale: Locale): Messages {
@@ -95,6 +109,17 @@ export function loadMessages(locale: Locale): Messages {
   if (cached) return cached;
   const messages =
     locale === "en" ? en : (withFallback(en, byLocale[locale]) as Messages);
+  // In development, say once per language which texts show in English
+  // because they are not translated yet. `npm run i18n:check` lists the same.
+  if (locale !== "en" && process.env.NODE_ENV === "development") {
+    const gaps = untranslatedKeys(en, byLocale[locale]);
+    if (gaps.length) {
+      console.warn(
+        `[i18n] ${gaps.length} text${gaps.length === 1 ? "" : "s"} not translated into "${locale}" yet, shown in English:\n` +
+          gaps.map((key) => `  ${key}`).join("\n"),
+      );
+    }
+  }
   cache.set(locale, messages);
   return messages;
 }

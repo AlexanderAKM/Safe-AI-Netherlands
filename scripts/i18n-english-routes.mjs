@@ -116,7 +116,10 @@ for (const page of existing) {
 }
 for (const [page, content] of expected) {
   if (!existsSync(page)) problems.push({ kind: "missing", page, content });
-  else if (readFileSync(page, "utf8") !== content) problems.push({ kind: "outdated", page, content });
+  // Line endings aside: a Windows checkout (core.autocrlf) has CRLF.
+  else if (readFileSync(page, "utf8").replace(/\r\n/g, "\n") !== content.replace(/\r\n/g, "\n")) {
+    problems.push({ kind: "outdated", page, content });
+  }
 }
 
 if (check) {

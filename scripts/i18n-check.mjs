@@ -2,10 +2,7 @@
 /**
  * npm run i18n:check
  *
- * Fails (exit 1) when the dictionaries drift apart, so CI catches a new
- * English string that nobody translated, or a translation left behind after
- * its English was removed. It checks, for every language against English
- * (messages/en, the source):
+ * Checks every language against English (messages/en, the source):
  *
  *   1. the same namespace files exist;
  *   2. the same keys exist, with the same shape (text, list, or group), and
@@ -17,9 +14,15 @@
  *   5. every literal key the code reads (t("hero.title")) exists in English;
  *   6. src/app/(en) matches src/app/[locale] (scripts/i18n-english-routes.mjs).
  *
- * At runtime a missing translation falls back to English (src/i18n/messages.ts),
- * so this check is about keeping the Dutch complete, not about keeping the
- * site up.
+ * A text that is not translated yet (a key missing from the translation, or
+ * left empty) is a warning, not a failure: the page shows the English for it
+ * (src/i18n/messages.ts), so new English copy can ship before its Dutch. The
+ * warnings list what is left to translate, and on GitHub they show on the
+ * pull request. Inside a list that fallback does not apply (a list is
+ * translated as a whole), so a gap there still fails, as does everything
+ * else above: those break a page or a link rather than leaving it in English.
+ *
+ * --strict turns the warnings into failures too.
  */
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -31,8 +34,18 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const messagesDir = join(root, "messages");
 const SOURCE = "en";
 
+const strict = process.argv.includes("--strict");
+
 const problems = [];
 const report = (file, key, message) => problems.push(`${file}${key ? ` ${key}` : ""}: ${message}`);
+
+/* Not translated yet: English shows in its place. Only outside lists, where
+   the key-by-key fallback in src/i18n/messages.ts reaches. */
+const untranslated = [];
+const reportUntranslated = (file, key, message) => {
+  if (key.includes("[")) report(file, key, `${message} (inside a list, so there is no English fallback)`);
+  else untranslated.push({ file, key, message });
+};
 
 function shapeOf(value) {
   if (Array.isArray(value)) return "list";
@@ -84,8 +97,8 @@ function skeleton(message) {
 function compare(file, en, other, path = "") {
   const enShape = shapeOf(en);
   const otherShape = shapeOf(other);
-  if (other === undefined) {
-    report(file, path, "missing (in English, not translated)");
+  if (other === undefined || other === null) {
+    reportUntranslated(file, path, "not translated yet");
     return;
   }
   if (enShape !== otherShape) {
@@ -110,7 +123,7 @@ function compare(file, en, other, path = "") {
   }
   if (enShape === "text") {
     if (other.trim() === "" && en.trim() !== "") {
-      report(file, path, "is empty");
+      reportUntranslated(file, path, "is empty");
       return;
     }
     let enParts;
@@ -278,18 +291,40 @@ try {
   problems.push(`src/app/(en): ${String(error.stderr || error.message).trim()}`);
 }
 
-if (problems.length) {
-  console.error(`i18n:check found ${problems.length} problem${problems.length === 1 ? "" : "s"}:\n`);
-  for (const p of problems) console.error(`  ${p}`);
+if (untranslated.length) {
+  const count = untranslated.length;
+  console.warn(
+    `i18n:check: ${count} text${count === 1 ? "" : "s"} not translated yet; the site shows the English for ${
+      count === 1 ? "it" : "them"
+    }:\n`,
+  );
+  for (const { file, key, message } of untranslated) {
+    console.warn(`  ${file} ${key}: ${message}`);
+    // On GitHub Actions, also a warning annotation on the pull request.
+    if (process.env.GITHUB_ACTIONS) {
+      console.log(`::warning file=messages/${file},title=Not translated yet::${key}: ${message}`);
+    }
+  }
+  console.warn("");
+}
+
+const failures = strict
+  ? [...problems, ...untranslated.map(({ file, key, message }) => `${file} ${key}: ${message}`)]
+  : problems;
+
+if (failures.length) {
+  console.error(`i18n:check found ${failures.length} problem${failures.length === 1 ? "" : "s"}:\n`);
+  for (const p of failures) console.error(`  ${p}`);
   console.error(
-    "\nEnglish (messages/en) is the source. Add the missing translations, remove the left-over keys," +
+    "\nEnglish (messages/en) is the source. Remove the left-over keys, keep lists the same length," +
       "\nor keep the {placeholders} and <tags> the English message has. See README.md, \"Languages\".",
   );
   process.exit(1);
 }
 
+const others = locales.filter((l) => l !== SOURCE).join(", ");
 console.log(
-  `i18n:check: ${sourceFiles.length} namespaces, ${keyCount} English messages, all present in ${locales
-    .filter((l) => l !== SOURCE)
-    .join(", ")}; ${usedKeys} keys used in the code, all defined${routesOk ? "; English routes in step" : ""}.`,
+  `i18n:check: ${sourceFiles.length} namespaces, ${keyCount} English messages, ${
+    untranslated.length ? `${untranslated.length} not yet translated in ${others}` : `all present in ${others}`
+  }; ${usedKeys} keys used in the code, all defined${routesOk ? "; English routes in step" : ""}.`,
 );

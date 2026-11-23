@@ -75,10 +75,13 @@ alt text, aria-labels and button labels, lives in `messages/en/`, and
    Keys are named after what the text is (`hero.heading`, `apply.button`),
    never after the words.
 2. Make the same change in `messages/nl/<namespace>.json`. If you cannot
-   write the Dutch, copy the English in and say so in the pull request: the
-   reviewer for that file (`.github/CODEOWNERS`) will translate it. A key that
-   is missing in Dutch shows in English rather than breaking the page, but CI
-   fails until both files have it.
+   write the Dutch, leave the key out of the Dutch file: the Dutch page shows
+   the English for it, `npm run i18n:check` and CI list it as a warning ("not
+   translated yet", also shown on the pull request), and `npm run dev` lists
+   it in the terminal. The reviewer for that file (`.github/CODEOWNERS`) will
+   translate it. Inside a list there is no such fallback, so a list must have
+   all its items in Dutch. `npm run i18n:check -- --strict` fails on the
+   untranslated texts too.
 3. In a component, read the text with `useTranslations("namespace.section")`
    (or `await getTranslations({ locale, namespace })` in async code and in
    `generateMetadata`). Inline links and bold text use `t.rich`:
@@ -94,7 +97,9 @@ Rules that the checks enforce:
   Tailwind classes are allowed. Data files in `src/data` hold ids, links,
   flags and dates; their text goes in the messages too, keyed by the item's id.
 - **Same keys in every language**, with the same `{placeholders}`, plural
-  options and `<tags>`: `npm run i18n:check`.
+  options and `<tags>`: `npm run i18n:check`. A key not yet translated is a
+  warning; a left-over key, a list of a different length or a dropped
+  placeholder or tag fails.
 - **One message per sentence**, with placeholders (`"Apply by {date}."`), never
   sentences glued together from pieces: Dutch word order is different.
 - **Dates** are ISO in `src/data` (`"2026-11-16"`) and printed with
