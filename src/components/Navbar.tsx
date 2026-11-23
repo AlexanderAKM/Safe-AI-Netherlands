@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { hasOpenPositions } from "@/data/openPositions";
 import {
   SOFT_DEADLINE,
   STARTING_TEAMS_RECRUITING,
 } from "@/data/newChapters";
-import { ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
+import { CaretDownIcon, ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { formatDate } from "@/i18n/format";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -15,11 +15,15 @@ import type { Locale } from "@/i18n/routing";
 
 /* The authorship shell: a civic broadcast strip, then the header. The strip
    scrolls away once read; the header pins to the top for the rest of the page.
-   Nav is a flat row of routes. No filled active pill, no desktop hamburger,
-   no nav dropdowns: the /community page hands out the city doors, so
-   Community is a plain link like the others. The one dropdown is the
-   language choice (LanguageSwitcher), which moves into the burger menu below
-   lg. */
+   Nav is a flat row of routes. No filled active pill, no desktop hamburger:
+   the /community page hands out the city doors, so Community is a plain link
+   like the others. The language choice (LanguageSwitcher) is a dropdown of
+   its own, which moves into the burger menu below lg.
+
+   One item opens: Project hub, which has the opportunities board under it
+   (/research/opportunities). The item itself stays a link to /research; its
+   two pages show in a small panel under it for a pointer or a keyboard, and
+   as an indented row in the mobile sheet. */
 
 type NavItem = {
   /** Its label, under common.nav.items. */
@@ -28,6 +32,9 @@ type NavItem = {
   isActive: (path: string) => boolean;
   /** Carries the 7×7 orange kicker square: a time-bound door. */
   flagged?: boolean;
+  /** The pages under this item, the item's own page first. `key` names each
+   *  one's title and description under common.nav.<menu>. */
+  menu?: { name: string; pages: { key: string; href: string; isActive: (path: string) => boolean }[] };
 };
 
 /* While the starting teams are being hired, /new-chapters is a nav item of
@@ -60,6 +67,21 @@ const baseNavigation: NavItem[] = [
     key: "projectHub",
     href: "/research",
     isActive: (p) => p.startsWith("/research"),
+    menu: {
+      name: "projectHubMenu",
+      pages: [
+        {
+          key: "hub",
+          href: "/research",
+          isActive: (p) => p.startsWith("/research") && !p.startsWith("/research/opportunities"),
+        },
+        {
+          key: "opportunities",
+          href: "/research/opportunities",
+          isActive: (p) => p.startsWith("/research/opportunities"),
+        },
+      ],
+    },
   },
   {
     key: "about",
@@ -86,8 +108,18 @@ export default function Navbar() {
   const t = useTranslations("common.nav");
   const tHiring = useTranslations("common.hiringBar");
 
+  /* An item's panel is open while the pointer or the focus is in it, which
+     is CSS alone. Following one of its links leaves the focus inside, so the
+     panel is put away by hand on arrival, and on Escape. */
+  const navRef = useRef<HTMLElement>(null);
+  const closeMenus = () => {
+    const focused = document.activeElement;
+    if (focused instanceof HTMLElement && navRef.current?.contains(focused)) focused.blur();
+  };
+
   useEffect(() => {
     setMobileOpen(false);
+    closeMenus();
   }, [pathname]);
 
   const announceStartingTeams =
@@ -185,16 +217,19 @@ export default function Navbar() {
             </Link>
 
             <nav
+              ref={navRef}
               className="hidden items-center gap-[22px] lg:flex xl:gap-[30px]"
               aria-label={t("primaryLabel")}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") closeMenus();
+              }}
             >
               {navigation.map((item) => {
                 const active = item.isActive(pathname);
                 const underline = active
                   ? "border-navy"
                   : "border-transparent hover:border-navy/40 focus-visible:border-navy/40";
-
-                return (
+                const link = (
                   <Link
                     key={item.key}
                     href={item.href}
@@ -203,7 +238,56 @@ export default function Navbar() {
                   >
                     {item.flagged && <FlagSquare />}
                     {t(`items.${item.key}`)}
+                    {item.menu && (
+                      <CaretDownIcon
+                        size={11}
+                        weight="bold"
+                        aria-hidden="true"
+                        className="-ml-0.5 text-navy/50 transition-transform duration-200 group-focus-within/menu:rotate-180 group-hover/menu:rotate-180"
+                      />
+                    )}
                   </Link>
+                );
+                if (!item.menu) return link;
+
+                const menu = item.menu;
+                return (
+                  <div key={item.key} className="group/menu relative">
+                    {link}
+                    {/* The panel hangs from the header's bottom edge; the
+                        padding above it is the bridge the pointer crosses
+                        without leaving the item. Hidden with `invisible`, so
+                        its links are out of the tab order until it shows. */}
+                    <div className="invisible absolute left-1/2 top-full z-50 w-[320px] -translate-x-1/2 pt-[23px] opacity-0 transition-[opacity,visibility] duration-150 group-focus-within/menu:visible group-focus-within/menu:opacity-100 group-hover/menu:visible group-hover/menu:opacity-100">
+                      <ul
+                        role="list"
+                        aria-label={t(`${menu.name}.label`)}
+                        className="border border-t-0 border-navy/12 bg-white shadow-[0_18px_40px_-12px_#021C4D38]"
+                      >
+                        {menu.pages.map((page) => {
+                          const current = page.isActive(pathname);
+                          return (
+                            <li key={page.key} className="border-t border-navy/10 first:border-t-0">
+                              <Link
+                                href={page.href}
+                                aria-current={current ? "page" : undefined}
+                                className={`flex flex-col gap-0.5 border-l-2 px-5 py-3.5 transition-colors hover:bg-cream focus-visible:bg-cream focus-visible:-outline-offset-2 ${
+                                  current ? "border-orange" : "border-transparent"
+                                }`}
+                              >
+                                <span className="font-sans text-sm leading-5 text-navy">
+                                  {t(`${menu.name}.${page.key}.title`)}
+                                </span>
+                                <span className="font-sans text-footnote text-navy/60">
+                                  {t(`${menu.name}.${page.key}.description`)}
+                                </span>
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
                 );
               })}
             </nav>
@@ -246,16 +330,32 @@ export default function Navbar() {
           >
             <div className="shell flex flex-col gap-1 py-4">
               {navigation.map((item) => (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  aria-current={item.isActive(pathname) ? "page" : undefined}
-                  className="flex min-h-[44px] items-center gap-2.5 font-sans text-sm leading-5 text-navy"
-                >
-                  {item.flagged && <FlagSquare />}
-                  {t(`items.${item.key}`)}
-                </Link>
+                <Fragment key={item.key}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    aria-current={item.isActive(pathname) ? "page" : undefined}
+                    className="flex min-h-[44px] items-center gap-2.5 font-sans text-sm leading-5 text-navy"
+                  >
+                    {item.flagged && <FlagSquare />}
+                    {t(`items.${item.key}`)}
+                  </Link>
+                  {/* The item's own page is the row above, so only the pages
+                      under it are listed, set in from a hairline. */}
+                  {item.menu?.pages
+                    .filter((page) => page.href !== item.href)
+                    .map((page) => (
+                      <Link
+                        key={page.key}
+                        href={page.href}
+                        onClick={() => setMobileOpen(false)}
+                        aria-current={page.isActive(pathname) ? "page" : undefined}
+                        className="ml-1 flex min-h-[44px] items-center border-l border-navy/14 pl-4 font-sans text-sm leading-5 text-navy/80"
+                      >
+                        {t(`${item.menu?.name}.${page.key}.title`)}
+                      </Link>
+                    ))}
+                </Fragment>
               ))}
               {/* Under the links, above the calls to action: "EN | NL". */}
               <LanguageSwitcher variant="inline" className="-ml-1" />

@@ -37,6 +37,9 @@ jobs:
       - name: Dictionaries in step (English and Dutch)
         run: npm run i18n:check
 
+      - name: The opportunities board's listing rules
+        run: npm run test:opportunities
+
       - name: Lint, including no hard-coded strings
         run: npm run lint
 

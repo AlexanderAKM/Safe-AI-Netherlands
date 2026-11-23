@@ -27,6 +27,17 @@
       "projectHub": "Project hub",
       "about": "Over ons"
     },
+    "projectHubMenu": {
+      "label": "Pagina’s van de Project hub",
+      "hub": {
+        "title": "Project hub",
+        "description": "Onderzoeksprojecten met een begeleider van SAIN"
+      },
+      "opportunities": {
+        "title": "Kansen",
+        "description": "Banen, fellowships en projecten voor wie in Nederland woont"
+      }
+    },
     "volunteer": "Word vrijwilliger",
     "joinCourse": "Volg een gratis cursus",
     "openMenu": "Menu openen",
@@ -58,6 +69,7 @@
       "joinCommunity": "Word lid van de community",
       "courses": "Cursussen",
       "projectHub": "Project hub",
+      "opportunities": "Kansen",
       "handbook": "Project Hub-handboek",
       "volunteer": "Vrijwilligerswerk",
       "about": "Over ons",

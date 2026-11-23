@@ -229,6 +229,20 @@ export default function ResearchPage({
           >
             <ProjectFinder />
           </ClientMessages>
+          {/* The board next door: the same projects, beside jobs and
+              fellowships at other organisations. */}
+          <p className="font-sans text-label text-navy/72">
+            {t.rich("projects.opportunities", {
+              link: (chunks) => (
+                <Link
+                  href="/research/opportunities"
+                  className="text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+                >
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </p>
         </div>
       </section>
 

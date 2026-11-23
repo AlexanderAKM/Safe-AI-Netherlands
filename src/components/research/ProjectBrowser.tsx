@@ -42,6 +42,7 @@ import {
   type ProjectBase,
   type ProjectCategory,
 } from "@/data/projects";
+import { Count, Segmented, chipClass } from "@/components/research/FilterControls";
 import { formatList } from "@/i18n/format";
 import type { Locale } from "@/i18n/routing";
 
@@ -233,67 +234,10 @@ const greyedNoteKey =
         ? "unconfirmed"
         : undefined;
 
-export function chipClass(active: boolean) {
-  return `inline-flex min-h-[38px] shrink-0 items-center gap-2 border px-3 text-[14px] leading-5 transition-colors duration-150 ${
-    active
-      ? "border-navy bg-navy text-white"
-      : "border-navy/18 bg-white text-navy/80 hover:border-navy/45 hover:text-navy"
-  }`;
-}
-
-/* A joined control: one question, its answers side by side, any number of
-   them on. The hairlines between the cells are the navy ground showing
-   through a 1px gap, so they hold whether the cells sit in a row or, on a
-   phone, a two-by-two grid. */
-export function Segmented({
-  label,
-  groupLabel,
-  options,
-}: {
-  label: string;
-  groupLabel: string;
-  options: { value: string; label: string; n: number; on: boolean; onClick: () => void }[];
-}) {
-  return (
-    <div className="min-w-0">
-      <p className="mb-1.5 font-sans text-footnote text-navy/60">{label}</p>
-      <div
-        role="group"
-        aria-label={groupLabel}
-        className="grid w-full grid-cols-2 gap-px border border-navy/18 bg-navy/18 sm:inline-flex sm:w-auto"
-      >
-        {options.map((option) => {
-          const on = option.on;
-          return (
-            <button
-              key={option.value}
-              type="button"
-              aria-pressed={on}
-              onClick={option.onClick}
-              className={`inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-3.5 text-[14px] transition-colors duration-150 ${
-                on
-                  ? /* The ring paints over the light frame, so the chosen
-                       cell fills the control's full height instead of
-                       sitting 1px inside it like a shorter button. */
-                    "relative bg-navy text-white ring-1 ring-navy"
-                  : "bg-white text-navy/80 hover:bg-[#f2f3f6] hover:text-navy"
-              }`}
-            >
-              {option.label}
-              <Count n={option.n} active={on} />
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-export function Count({ n, active }: { n: number; active: boolean }) {
-  return (
-    <span className={`text-[12px] tabular-nums ${active ? "text-white/70" : "text-navy/45"}`}>{n}</span>
-  );
-}
+/* The chip, the count and the joined control are shared with the tracker and
+   the opportunities board, so they live in FilterControls; they are exported
+   from here as well, as before. */
+export { Count, Segmented, chipClass };
 
 /* A row of chips: wrapping from md, a sideways scroll on a phone so ten
    supervisors do not push the projects off the first screen. The scrollbar is

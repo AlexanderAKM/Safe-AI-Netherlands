@@ -32,6 +32,7 @@ const columns: { key: string; links: FooterLink[] }[] = [
     links: [
       { key: "courses", href: "/courses" },
       { key: "projectHub", href: "/research" },
+      { key: "opportunities", href: "/research/opportunities" },
       { key: "handbook", href: "/research/handbook" },
       { key: "volunteer", href: "/get-involved" },
     ],

@@ -9,7 +9,8 @@ import {
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { Count, OWN_IDEA_MAILTO, chipClass } from "@/components/research/ProjectBrowser";
+import { ChipGroup, type FilterOption as Option } from "@/components/research/FilterControls";
+import { OWN_IDEA_MAILTO } from "@/components/research/ProjectBrowser";
 import { APPLY_PATH, PROJECTS_EMAIL } from "@/data/research";
 import {
   trackerStatuses,
@@ -167,39 +168,6 @@ function passes(project: TrackerProject, filters: Filters, labels: Labels, skip?
 
 const toggle = (list: string[], value: string) =>
   list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
-
-/* A filter's answers as chips. The first chip is the filter's "all", which
-   clears the rest; a chip that would leave nothing is faded, not hidden. They
-   wrap from md; on a phone the row scrolls sideways instead, fading at its
-   right edge to say "more this way", so the filters do not push the projects
-   off the first screen. */
-type Option = { value: string; label: string; n: number; on: boolean; onClick: () => void };
-
-function ChipGroup({ label, options }: { label: string; options: Option[] }) {
-  return (
-    <div>
-      <p className="mb-1.5 font-sans text-footnote text-navy/60">{label}</p>
-      <div
-        role="group"
-        aria-label={label}
-        className="-mx-4 flex gap-2 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,black_82%,transparent)] [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:[mask-image:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {options.map((option) => (
-          <button
-            key={option.value}
-            type="button"
-            aria-pressed={option.on}
-            onClick={option.onClick}
-            className={`${chipClass(option.on)} ${option.n === 0 && !option.on ? "opacity-45" : ""}`}
-          >
-            {option.label}
-            <Count n={option.n} active={option.on} />
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 /* Open is navy, in progress orange (taken, for now), completed and full
    eased back: completed with a hollow mark, full with a pale one. */

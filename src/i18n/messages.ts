@@ -10,6 +10,7 @@ import enGetInvolved from "../../messages/en/getInvolved.json";
 import enHome from "../../messages/en/home.json";
 import enNewChapters from "../../messages/en/newChapters.json";
 import enOpenPositions from "../../messages/en/openPositions.json";
+import enOpportunities from "../../messages/en/opportunities.json";
 import enProjectHub from "../../messages/en/projectHub.json";
 import enTeam from "../../messages/en/team.json";
 
@@ -23,6 +24,7 @@ import nlGetInvolved from "../../messages/nl/getInvolved.json";
 import nlHome from "../../messages/nl/home.json";
 import nlNewChapters from "../../messages/nl/newChapters.json";
 import nlOpenPositions from "../../messages/nl/openPositions.json";
+import nlOpportunities from "../../messages/nl/opportunities.json";
 import nlProjectHub from "../../messages/nl/projectHub.json";
 import nlTeam from "../../messages/nl/team.json";
 
@@ -48,6 +50,7 @@ const en: Messages = {
   home: enHome,
   newChapters: enNewChapters,
   openPositions: enOpenPositions,
+  opportunities: enOpportunities,
   projectHub: enProjectHub,
   team: enTeam,
 };
@@ -63,6 +66,7 @@ const nl: Messages = {
   home: nlHome,
   newChapters: nlNewChapters,
   openPositions: nlOpenPositions,
+  opportunities: nlOpportunities,
   projectHub: nlProjectHub,
   team: nlTeam,
 };
