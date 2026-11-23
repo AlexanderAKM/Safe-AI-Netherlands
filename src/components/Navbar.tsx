@@ -16,8 +16,10 @@ import type { Locale } from "@/i18n/routing";
 /* The authorship shell: a civic broadcast strip, then the header. The strip
    scrolls away once read; the header pins to the top for the rest of the page.
    Nav is a flat row of routes. No filled active pill, no desktop hamburger,
-   no dropdowns: the /community page hands out the city doors, so Community is
-   a plain link like the others. */
+   no nav dropdowns: the /community page hands out the city doors, so
+   Community is a plain link like the others. The one dropdown is the
+   language choice (LanguageSwitcher), which moves into the burger menu below
+   lg. */
 
 type NavItem = {
   /** Its label, under common.nav.items. */
@@ -207,7 +209,8 @@ export default function Navbar() {
             </nav>
 
             <div className="ml-auto flex items-center gap-2.5 lg:ml-0">
-              <LanguageSwitcher className="mr-1" />
+              {/* Below lg the language choice is in the burger menu. */}
+              <LanguageSwitcher className="mr-1 hidden lg:block" />
               <div className="hidden items-center gap-2.5 sm:flex">
                 <Link href="/get-involved" className="btn-ghost min-h-[44px] whitespace-nowrap">
                   {t("volunteer")}
@@ -254,6 +257,8 @@ export default function Navbar() {
                   {t(`items.${item.key}`)}
                 </Link>
               ))}
+              {/* Under the links, above the calls to action: "EN | NL". */}
+              <LanguageSwitcher variant="inline" className="-ml-1" />
               {/* The header keeps both calls to action from sm up, so the sheet
                   only carries them on the narrowest screens -- otherwise the
                   same two buttons show twice between sm and lg. */}
