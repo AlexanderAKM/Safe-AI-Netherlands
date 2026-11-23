@@ -294,6 +294,7 @@ export const ROLES: Record<string, Role> = {
     team: "community",
     scope: "chapter",
     formRoleValue: "Community Manager",
+    commitmentBadge: "paidPartTime",
   },
 
   "on-campus-ambassador": {
