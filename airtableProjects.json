@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T18:49:55.038Z",
+  "updatedAt": "2026-11-24T20:23:30.887Z",
   "records": [
     {
       "id": "recu8rx9UYS7rbNg4",
@@ -269,6 +269,14 @@
       "tags": [
         "Governance and Policy"
       ]
+    },
+    {
+      "id": "recULoWYSQE60uidj",
+      "name": "Measuring the Takeoff: Decision-Grade Monitoring of Frontier AI Acceleration",
+      "status": "Project Accepted",
+      "description": "How fast are frontier AI capabilities actually accelerating — and would we notice a trend-break in time to act? Today's best capability tracking (Epoch AI's data, METR's time-horizon measurements) is research-grade: excellent analysis, but not built as infrastructure that regulators, labs, or safety institutes could rely on for consequential decisions. If timelines shorten sharply, the evidence needs to be reproducible, auditable, and hard to fudge — not a chart in a blog post.\n\nThis project applies production MLOps discipline to frontier capability monitoring. The work: (1) define a small set of signals from public sources (e.g. METR time-horizons, benchmark trajectories); (2) build an aggregation layer that flags trend-breaks rather than producing a composite score; (3) prototype the evidence chain — versioned data sourcing, reproducible pipelines, auditable methodology — which is the differentiated gap. The output is a working demo plus a write-up, intended as a contribution to existing efforts (Epoch, METR) rather than a rival, and as a test of whether \"decision-grade monitoring\" is a real bottleneck in the ecosystem.",
+      "tags": [],
+      "website": "https://www.linkedin.com/in/dgontzes/"
     }
   ]
 }
