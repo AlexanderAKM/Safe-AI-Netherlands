@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { useTranslations } from "next-intl";
 
 /**
  * Published work with a chapter's people on it.
@@ -7,6 +8,9 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
  * sheet, a hairline, the venue in orange-ink (#FF6025 as a letterform on a
  * light ground is 3.02:1 and fails), the title in the serif. The whole chip is
  * the link, and it leaves the site, so it leans the arrow the way it sends you.
+ *
+ * Venue, title and authors are the paper's own, in English (lang="en"); the
+ * label and the screen-reader note are in the reader's language.
  */
 
 export type Publication = {
@@ -24,6 +28,9 @@ export default function PublicationChips({
 }: {
   publications: Publication[];
 }) {
+  const t = useTranslations("chapters.publicationChips");
+  const tA11y = useTranslations("common.a11y");
+
   return (
     <ul role="list" className="flex flex-col gap-3">
       {publications.map((paper) => (
@@ -34,10 +41,13 @@ export default function PublicationChips({
             rel="noopener noreferrer"
             className="pub-chip w-full"
           >
-            <span className="w-[128px] shrink-0 font-sans text-footnote font-medium text-orange-ink">
+            <span
+              lang="en"
+              className="w-[128px] shrink-0 font-sans text-footnote font-medium text-orange-ink"
+            >
               {paper.venue}
             </span>
-            <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+            <span lang="en" className="flex min-w-0 flex-1 flex-col gap-0.5">
               <span className="font-serif text-[15px] leading-5 text-navy">
                 {paper.title}
               </span>
@@ -49,7 +59,7 @@ export default function PublicationChips({
             </span>
             {paper.readLabel && (
               <span className="hidden shrink-0 font-sans text-label text-navy sm:inline">
-                Read paper
+                {t("readPaper")}
               </span>
             )}
             <ArrowUpRight
@@ -58,7 +68,7 @@ export default function PublicationChips({
               aria-hidden="true"
               className="shrink-0 text-navy/55"
             />
-            <span className="sr-only">(opens in a new tab)</span>
+            <span className="sr-only">{tA11y("opensInNewTab")}</span>
           </a>
         </li>
       ))}

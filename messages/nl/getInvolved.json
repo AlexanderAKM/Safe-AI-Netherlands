@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "title": "Vrijwilligerswerk",
+    "description": "SAIN draait op vrijwilligers. Zes teams in Amsterdam, Utrecht en Groningen, drie tot tien uur per week, één korte sollicitatie die we beoordelen zodra die binnenkomt."
+  },
+  "actions": {
+    "seeOpenPositions": "Bekijk de vacatures",
+    "getInTouch": "Of neem eerst contact op"
+  },
+  "hero": {
+    "heading": "SAIN draait op vrijwilligers",
+    "intro": "Elk programma is gratis omdat mensen een paar uur per week geven om het te organiseren. Op deze pagina lees je wat het werk is, wat het je oplevert en hoe je instapt.",
+    "photoAlt": "Mensen die samen aan een tafel werken tijdens een hackathon"
+  },
+  "work": {
+    "kicker": "Het werk",
+    "heading": "Zes teams, drie tot tien uur per week",
+    "intro": "Amsterdam, Utrecht en Groningen hebben elk dezelfde teams. Een teamleider is verantwoordelijk voor een team en rapporteert aan de directeur van het chapter; teamleden nemen een deel van het werk op zich. De meeste rollen kosten drie tot vijf uur per week, teamleiders zes tot tien.",
+    "teams": {
+      "education": {
+        "name": "Onderwijs",
+        "description": "Organiseer cursuscohorten en discussiegroepen. Begeleid wekelijkse sessies, ondersteun deelnemers en houd de kwaliteit hoog, ronde na ronde.",
+        "hours": "3 tot 10 uur per week"
+      },
+      "events": {
+        "name": "Evenementen",
+        "description": "Plan en verzorg de agenda van het chapter. Hackathons, lezingen van experts, borrels en de logistiek erachter.",
+        "hours": "3 tot 10 uur per week"
+      },
+      "communications": {
+        "name": "Communicatie",
+        "description": "Schrijven, vormgeving, fotografie, video en de website. Maak het werk van het chapter zichtbaar, in de huisstijl van SAIN.",
+        "hours": "3 tot 10 uur per week"
+      },
+      "community": {
+        "name": "Community",
+        "description": "Verwelkom nieuwe leden, wees het eerste aanspreekpunt en help mensen hun weg te vinden naar meer betrokkenheid.",
+        "hours": "4 tot 6 uur per week"
+      },
+      "outreach": {
+        "name": "Promotie",
+        "description": "Wees het gezicht van SAIN op de campus. Met een kraam staan, flyeren en studenten uitnodigen voor komende evenementen.",
+        "hours": "3 tot 5 uur per week"
+      },
+      "researchOperations": {
+        "name": "Onderzoeksondersteuning",
+        "description": "Houd de Project Hub dagelijks draaiende. Help onderzoekers en begeleiders op weg, volg projecten en los knelpunten op.",
+        "hours": "2 tot 8 uur per week"
+      }
+    },
+    "paidStaff": "SAIN neemt ook een klein aantal betaalde landelijke medewerkers aan als een rol daarom vraagt. Die rollen staan bij de vacatures."
+  },
+  "whatYouGet": {
+    "heading": "Je bouwt werk op dat je kunt laten zien",
+    "intro": "Bij SAIN krijg je als vrijwilliger al vroeg echte verantwoordelijkheid. Teamleiders rapporteren direct aan de chapterdirecteuren, en teamleden organiseren cohorten, evenementen en kanalen die ook echt doorgaan. Je werkt samen met mensen in Utrecht, Groningen en Amsterdam die zelf het vakgebied in stappen, en veel van de contacten die later belangrijk blijken, beginnen hier.",
+    "returns": [
+      "Ervaring met echte verantwoordelijkheid, niet alleen meekijken",
+      "Een netwerk in drie steden met een chapter",
+      "Aantoonbaar werk in het vakgebied: cohorten begeleid, evenementen georganiseerd, werk gepubliceerd"
+    ],
+    "quote": {
+      "context": "Stage · Existential Risk Observatory",
+      "text": "“Without this community I almost certainly wouldn’t be where I am.”",
+      "project": "Onderzoek naar technieken voor AI alignment en overheidsingrijpen in kaart brengen"
+    }
+  },
+  "howToApply": {
+    "heading": "Eén korte sollicitatie, beoordeeld zodra die binnenkomt",
+    "intro": "Alle sollicitaties bij de chapters gaan via hetzelfde korte formulier: naam, cv en een motivatiebrief van één pagina. We beoordelen sollicitaties doorlopend, dus solliciteer wanneer je er klaar voor bent.",
+    "steps": {
+      "apply": {
+        "title": "Sollicitatie.",
+        "body": "Kies het chapter en de rol, voeg je cv toe en schrijf een korte motivatiebrief. Eén pagina is genoeg."
+      },
+      "hearBack": {
+        "title": "Reactie.",
+        "body": "We lezen sollicitaties zodra ze binnenkomen. Binnen 2 tot 3 weken krijg je een eerste reactie."
+      },
+      "talk": {
+        "title": "Gesprek.",
+        "body": "Een gesprek van 30 tot 45 minuten over de rol, je motivatie en een kleine opdracht of casus die bij het team past."
+      },
+      "start": {
+        "title": "Start.",
+        "body": "Gaat dat goed, dan begint je onboarding bij de volgende ronde; instromen op andere momenten kan ook."
+      }
+    },
+    "noFit": "Geen rol die past? Solliciteer toch. Schrijf in je motivatiebrief wat je wilt doen, dan zoeken we samen uit wat goed bij je past."
+  },
+  "foundChapter": {
+    "heading": "SAIN in jouw stad?",
+    "intro": "Een chapter oprichten is een eigen pad, met eigen draaiboeken en begeleiding, en het hoort bij de community.",
+    "link": "Start een chapter"
+  },
+  "close": {
+    "heading": "Achter elk gratis programma staan vrijwilligers",
+    "body": "Een paar uur per week, een team in jouw stad en sollicitaties die doorlopend worden beoordeeld. De volgende ronde cursussen, evenementen en onderzoeksondersteuning wordt gedraaid door wie nu instapt."
+  }
+}

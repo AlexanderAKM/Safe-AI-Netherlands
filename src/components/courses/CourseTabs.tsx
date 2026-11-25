@@ -1,28 +1,25 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 import { CaretDown, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
-import {
-  chapterCourseHref,
-  type ChapterName,
-} from "@/data/courseApplications";
+import { chapterCourseHref } from "@/data/courseApplications";
+import { TRACKS } from "@/data/courseTracks";
+import { Link } from "@/i18n/navigation";
 
 /**
  * The /courses variant of the landing's CourseTabs. Same three tracks, same
  * geometry: three square tabs over one panel, the active tab white with a 3px
  * orange underline that slides between tabs.
  *
- * It exists as its own file for two reasons. Each panel opens with a "who it
- * suits" line the landing does not carry, because the reader here is choosing
- * a track rather than browsing. And the copy is dash-free: the landing
- * component still ships em dashes in its outline rows, which design.md bans;
- * they are written out here with colons and words instead. Everything else --
- * track names, taglines, summaries, outlines, city rows, photographs and
- * captions -- stays canonical with the landing. If a track changes there,
- * change it here in the same commit.
+ * It exists as its own file because each panel opens with a "who it suits"
+ * line the landing does not carry: the reader here is choosing a track rather
+ * than browsing. The tracks themselves are the landing's (src/data/courseTracks.ts),
+ * and so are their words (messages/<locale>/courses.json, `tracks.<id>`):
+ * names, taglines, summaries, outlines, city rows, photographs and captions.
+ * Change a track there and both pages follow.
  *
  * On a phone the markup interleaves header, panel, header, panel, and a track
  * can close to nothing; from md the grid lifts the headers into a 3-up strip
@@ -36,142 +33,6 @@ const TAB_CELL = ["md:col-start-1", "md:col-start-2", "md:col-start-3"];
 
 /* Row two, spanning all three columns: every panel shares this one cell. */
 const PANEL_CELL = "md:col-start-1 md:col-end-4 md:row-start-2";
-
-type Track = {
-  id: string;
-  index: string;
-  title: string;
-  tagline: string;
-  /** One line naming the reader the track is for. /courses only. */
-  whoItSuits: string;
-  summary: string;
-  outlineTitle: string;
-  outline: string[];
-  /* Typed as the chapter name rather than a loose string, so each row can
-     resolve its own route out of courseApplications instead of carrying a
-     second copy of it here. */
-  cities: { city: ChapterName; detail: string }[];
-  photo: string;
-  /** Rungs on disk for `photo`. See scripts/generate-responsive-images.mjs. */
-  photoWidths: number[];
-  photoAlt: string;
-  /** Where the crop sits in the frame; centred unless the photo says otherwise. */
-  photoPosition?: string;
-  caption: string;
-};
-
-const TRACKS: Track[] = [
-  {
-    id: "fundamentals",
-    index: "01",
-    title: "AI Safety Fundamentals",
-    tagline: "First principles. Drop in any week.",
-    whoItSuits:
-      "For newcomers. Taught so you can drop in for any theme, no background needed.",
-    summary:
-      "A weekly series on risks, technical safety and governance, taught so newcomers can drop in. Three editions in Utrecht have reached more than 100 students, researchers, engineers and public-sector people.",
-    outlineTitle: "Weekly themes",
-    outline: [
-      "Introduction: capabilities, risks, and solution families",
-      "Risks and incidents: social harms, misuse, loss of control",
-      "Technical AI Safety: oversight, evaluations, interpretability",
-      "Regulation and governance: EU AI Act, audits, GPAI duties",
-      "Why safety is hard: incentives, funding gaps, race dynamics",
-      "Pathways: thesis, fellowship, then a full-time role",
-    ],
-    cities: [
-      {
-        city: "Utrecht",
-        detail: "Weekly, modular. Drop in for any theme. ~60 min.",
-      },
-    ],
-    photo: "/landing/course-fundamentals.jpg",
-    photoWidths: [640, 960, 1280, 1920],
-    photoAlt: "SAIN Utrecht cohort at graduation",
-    caption: "Cohort graduation · SAIN Utrecht",
-  },
-  {
-    id: "technical",
-    index: "02",
-    title: "Technical Alignment",
-    tagline: "ARENA or BlueDot, by city.",
-    whoItSuits:
-      "For people who want to build: interpretability, RLHF, and the alignment pipeline, hands-on.",
-    summary:
-      "Each chapter runs a technical track, with a different curriculum. Utrecht covers evaluations, embodied AI and agent security, with assignments from ARENA. Groningen and Amsterdam use BlueDot.",
-    outlineTitle: "Utrecht Technical AI Safety",
-    outline: [
-      "Introduction to AI safety evaluations",
-      "Implementing and evaluating AI safety evaluations",
-      "Embodied AI safety",
-      "Securing AI agents",
-    ],
-    cities: [
-      {
-        city: "Utrecht",
-        detail:
-          "Technical AI Safety. 4 weeks, 1.5-hour lectures, Saturday workshops. Programming needed.",
-      },
-      {
-        city: "Groningen",
-        detail:
-          "BlueDot Technical AI Safety. 6 weeks, on-site, application-based.",
-      },
-      {
-        city: "Amsterdam",
-        detail:
-          "BlueDot Technical AI Safety. 6 weeks, on-site, application-based.",
-      },
-    ],
-    photo: "/landing/course-technical.jpg",
-    /* Only these two rungs exist on disk; the source is 960 wide. Listing
-       1280 and 1920 here sent wide viewports to files that were never
-       written, which is why this tab's photograph came up blank. */
-    photoWidths: [640, 960],
-    photoAlt: "Technical alignment workshop in progress",
-    caption: "Week 1 · Transformers and interpretability",
-  },
-  {
-    id: "policy",
-    index: "03",
-    title: "Governance & Policy",
-    tagline: "BlueDot or SAIN Utrecht, by city.",
-    whoItSuits:
-      "For people headed toward policy: the EU AI Act, audits, and Dutch implementation.",
-    summary:
-      "Amsterdam and Groningen run BlueDot Frontier AI Governance, and Groningen adds materials on the EU perspective. Utrecht runs a four-week AI Governance course that also looks at where Europe and other middle powers fit. Facilitators include researchers, risk consultants, and public-sector people.",
-    outlineTitle: "Six-week courses (Groningen and Amsterdam)",
-    outline: [
-      "The EU AI Act: duties across the lifecycle",
-      "Dutch implementation: ministries, regulators, standards",
-      "Accountability: audits, evidence, GPAI obligations",
-      "Risk management: NIST and frontier evaluation",
-      "Case studies: accidents, misuse, institutional lag",
-      "Pathways: policy fellowships, ministries, standards bodies",
-    ],
-    cities: [
-      {
-        city: "Utrecht",
-        detail: "AI Governance. 4 weeks, 1.5-hour lectures. No background needed.",
-      },
-      {
-        city: "Groningen",
-        detail: "BlueDot Frontier AI Governance, with EU materials. On-site, application-based.",
-      },
-      {
-        city: "Amsterdam",
-        detail: "BlueDot Frontier AI Governance. On-site, application-based.",
-      },
-    ],
-    photo: "/landing/course-policy.jpg",
-    photoWidths: [640, 960, 1280],
-    photoAlt: "Governance and policy discussion group around a table",
-    /* Nearly square, so the wide stacked frame shows a band of it. Weighted
-       toward the top, where the faces and the table are. */
-    photoPosition: "50% 30%",
-    caption: "Discussion group · Utrecht",
-  },
-];
 
 const COMPACT = "(max-width: 767.98px)";
 
@@ -196,6 +57,8 @@ function useCompact() {
 }
 
 export default function CourseTabs() {
+  const t = useTranslations("courses.tabs");
+  const tTracks = useTranslations("courses.tracks");
   const [activeId, setActiveId] = useState<string | null>(TRACKS[0].id);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const compact = useCompact();
@@ -248,10 +111,12 @@ export default function CourseTabs() {
     <div
       className="bg-white md:grid md:grid-cols-3"
       role="group"
-      aria-label="Course tracks"
+      aria-label={t("label")}
     >
       {TRACKS.map((active, i) => {
         const on = active.id === activeId;
+        /* The track's words, from courses.json `tracks.<id>`. */
+        const tTrack = (key: string) => tTracks(`${active.id}.${key}`);
         return (
           <Fragment key={active.id}>
             <button
@@ -300,10 +165,10 @@ export default function CourseTabs() {
                 <span
                   className={`font-serif text-xl leading-6 ${on ? "text-navy" : "text-navy/72"}`}
                 >
-                  {active.title}
+                  {tTrack("title")}
                 </span>
                 <span className="font-sans text-caption text-navy/65">
-                  {active.tagline}
+                  {tTrack("tagline")}
                 </span>
               </span>
               <CaretDown
@@ -349,18 +214,18 @@ export default function CourseTabs() {
                     choosing rather than browsing. Full ink against the
                     summary's 78%, so the two read as answer then evidence. */}
                 <p className="max-w-[640px] font-sans text-[15.5px] leading-[25px] text-navy">
-                  {active.whoItSuits}
+                  {tTrack("whoItSuits")}
                 </p>
                 <p className="max-w-[640px] font-sans text-[15.5px] leading-[25px] text-navy/78">
-                  {active.summary}
+                  {tTrack("summary")}
                 </p>
 
                 <div>
                   <p className="kicker pb-2 text-kicker-sm text-navy/65">
-                    {active.outlineTitle}
+                    {tTrack("outlineTitle")}
                   </p>
                   <ol className="font-sans text-ui text-navy">
-                    {active.outline.map((item, i) => (
+                    {(tTracks.raw(`${active.id}.outline`) as string[]).map((item, i) => (
                       <li
                         key={item}
                         className="flex items-baseline gap-3 border-t border-navy/10 py-[7px]"
@@ -376,21 +241,21 @@ export default function CourseTabs() {
 
                 <div>
                   <p className="kicker pb-2 text-kicker-sm text-navy/65">
-                    Where you can attend
+                    {t("whereYouCanAttend")}
                   </p>
                   {/* The row is the route, to this track's own course tab
                       on the chapter page where it has one. Destination comes
                       from courseApplications, so this cannot drift from the
                       chapter pages. */}
-                  {active.cities.map((entry) => (
+                  {active.cities.map((city) => (
                     <Link
-                      key={entry.city}
-                      href={chapterCourseHref(entry.city, active.id)}
+                      key={city}
+                      href={chapterCourseHref(city, active.id)}
                       className="group/city flex flex-col gap-1 border-t border-navy/10 py-2.5 transition-colors duration-200 hover:bg-navy/5 focus-visible:bg-navy/5 sm:flex-row sm:items-baseline sm:gap-4"
                     >
                       <span className="flex w-[112px] shrink-0 items-center gap-1.5 font-serif text-base leading-[22px] text-navy">
                         <span className="underline decoration-navy/25 underline-offset-4 transition-colors duration-200 group-hover/city:decoration-navy group-focus-visible/city:decoration-navy">
-                          {entry.city}
+                          {city}
                         </span>
                         {/* Regular at 16: the smallest size where Phosphor's
                             shaft is a full pixel and cannot dissolve on
@@ -403,7 +268,7 @@ export default function CourseTabs() {
                         />
                       </span>
                       <span className="font-sans text-ui leading-[22px] text-navy/72">
-                        {entry.detail}
+                        {tTrack(`cities.${city.toLowerCase()}`)}
                       </span>
                     </Link>
                   ))}
@@ -427,14 +292,14 @@ export default function CourseTabs() {
                      column once it splits at xl, capped at 624 in the 1440
                      canvas. */
                   sizes="(min-width: 1440px) 624px, (min-width: 1280px) calc(100vw - 816px), 100vw"
-                  alt={active.photoAlt}
+                  alt={tTrack("photoAlt")}
                   loading="lazy"
                   decoding="async"
                   className="absolute inset-0 size-full object-cover"
                   style={{ objectPosition: active.photoPosition ?? "50% 50%" }}
                 />
                 <p className="kicker absolute inset-x-0 bottom-0 bg-navy/88 px-5 py-2.5 text-kicker-sm text-white">
-                  {active.caption}
+                  {tTrack("caption")}
                 </p>
               </motion.div>
             </motion.div>

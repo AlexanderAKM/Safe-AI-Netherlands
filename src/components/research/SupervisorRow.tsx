@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { availabilityLine, byAvailability, isGreyedOut, supervisors } from "@/data/research";
 
@@ -21,12 +22,17 @@ import { availabilityLine, byAvailability, isGreyedOut, supervisors } from "@/da
  * towards the end of the row, their portrait greyed and eased back, and a line
  * under the position says why, so the fade is never the only signal. A limited
  * supervisor keeps their portrait and gets the line in orange.
+ *
+ * The position is the supervisor's own, in English in every language.
  */
 export default function SupervisorRow() {
+  const t = useTranslations("projectHub.supervisors");
+  const tAvailability = useTranslations("projectHub.availability");
   return (
     <ul role="list" className="flex flex-wrap gap-x-8 gap-y-9 md:gap-x-10">
       {byAvailability(supervisors).map((person) => {
         const Card = person.agenda ? "a" : "div";
+        const status = availabilityLine(tAvailability, person.availability, person.availabilityNote);
         return (
           <li key={person.name} className="w-[140px]">
             {/* A supervisor without an agenda yet gets the same card, but not
@@ -68,21 +74,21 @@ export default function SupervisorRow() {
                 </span>
               </h3>
 
-              <p className="mt-1.5 text-footnote leading-5 text-navy/65">
+              <p lang="en" className="mt-1.5 text-footnote leading-5 text-navy/65">
                 {person.position}
               </p>
-              {availabilityLine(person.availability, person.availabilityNote) && (
+              {status && (
                 <p
                   className={`mt-1.5 text-footnote italic leading-5 ${
                     person.availability === "limited" ? "text-orange-ink" : "text-navy/55"
                   }`}
                 >
-                  {availabilityLine(person.availability, person.availabilityNote)}
+                  {status}
                 </p>
               )}
               {/* The whole portrait is the link, so the destination has to be
                   named for anyone who cannot see the hover state. */}
-              {person.agenda && <span className="sr-only">Research agenda (opens in a new tab)</span>}
+              {person.agenda && <span className="sr-only">{t("agendaLink")}</span>}
             </Card>
           </li>
         );

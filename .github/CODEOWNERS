@@ -1,0 +1,47 @@
+# Who reviews copy changes, per dictionary: messages/<language>/<namespace>.json.
+# GitHub asks the owner for a review when a pull request changes the file, so
+# every new or changed text, in English or in Dutch, reaches someone who knows
+# that part of the site. See README.md, "Languages".
+#
+# Owners still to be picked are commented out: replace @TBD with a GitHub
+# handle or team and remove the "#". (An unknown handle on a live line is an
+# error in GitHub's CODEOWNERS check, hence the comments.)
+
+# Project Hub: /research, /research/apply, /research/handbook, the paper pages.
+/messages/*/projectHub.json @TjebbeHB
+
+# Header, footer, shared buttons, the course popup.
+# /messages/*/common.json @TBD
+
+# The landing page.
+# /messages/*/home.json @TBD
+
+# /courses, and the course application notes every page shows.
+# /messages/*/courses.json @TBD
+
+# /community.
+# /messages/*/community.json @TBD
+
+# /chapters/amsterdam, /chapters/groningen, /chapters/utrecht.
+# /messages/*/chapters.json @TBD
+
+# /about and the governing documents' pages.
+# /messages/*/about.json @TBD
+
+# /get-involved.
+# /messages/*/getInvolved.json @TBD
+
+# /team.
+# /messages/*/team.json @TBD
+
+# /contact.
+# /messages/*/contact.json @TBD
+
+# /open-positions.
+# /messages/*/openPositions.json @TBD
+
+# /new-chapters.
+# /messages/*/newChapters.json @TBD
+
+# The Dutch terms every translation follows.
+# /messages/GLOSSARY.md @TBD

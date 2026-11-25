@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "title": "Community",
+    "description": "SAIN is three local chapters, in Utrecht, Groningen and Amsterdam: weekly discussion groups, free courses, hackathons and talks. Find your chapter and see what is on."
+  },
+  "hero": {
+    "heading": "One community, in three cities.",
+    "intro": "SAIN is its chapters. Utrecht, Groningen and Amsterdam each run their own discussion groups, free courses and evenings, on a shared curriculum and under one national organisation. Pick the one nearest you and walk in.",
+    "findChapter": "Find your chapter",
+    "discordNote": "Our Discord community currently focuses on our SAIN Amsterdam, Utrecht and Groningen chapters. More cities to come.",
+    "printsLabel": "The three chapters"
+  },
+  "chapters": {
+    "heading": "Three chapters, each its own room.",
+    "intro": "Same curriculum, same national support, different characters.",
+    "choose": "Choose a city to see who runs it, the courses and what is on this month."
+  },
+  "atlas": {
+    "label": "The chapters",
+    "directedBy": "Directed by",
+    "freeCourse": "The free course",
+    "deadlines": "Participants by {participants}. Facilitators by {facilitators}.",
+    "closed": "Applications are closed. {note}",
+    "everythingOn": "Everything on SAIN {city}",
+    "comingUp": "Coming up in {city}",
+    "calendarTitle": "Upcoming SAIN {city} events",
+    "fullCalendar": "The full {city} calendar on Luma",
+    "walkIn": "Events are walk-in unless the event page says otherwise. Questions? Each chapter lists its events contact on its own page.",
+    "chapters": {
+      "utrecht": {
+        "origin": "Utrecht University and beyond",
+        "summary": "A free AI safety course, two discussion groups, and a growing research track at Utrecht University. Run by volunteers, open to anyone in the city.",
+        "photoAlt": "The Dom tower over the rooftops of Utrecht",
+        "facts": {
+          "community": {
+            "label": "Community",
+            "value": "240+ members, multidisciplinary"
+          },
+          "thisYear": {
+            "label": "This year",
+            "value": "Win4AISafety, a full ARENA-based technical course, and a research talk by an Anthropic researcher to more than 60 people"
+          }
+        }
+      },
+      "groningen": {
+        "origin": "Since 2023, first as AISIG",
+        "summary": "Free courses, hackathons, and published research. It began as the AI Safety Initiative Groningen (AISIG) and continues as SAIN Groningen.",
+        "photoAlt": "Canal-side houses and moored boats in Groningen",
+        "facts": {
+          "sinceOctober2023": {
+            "label": "Since October 2023",
+            "value": "30 events: hackathons, graduations, talks, pub quizzes"
+          },
+          "research": {
+            "label": "Research",
+            "value": "Members published at NeurIPS and ICLR workshops"
+          }
+        }
+      },
+      "amsterdam": {
+        "origin": "UvA, VU and the city's tech scene",
+        "summary": "Free courses and a weekly discussion group, from BSc students to working professionals, supported by the ELLIS Unit Amsterdam.",
+        "photoAlt": "Canal houses leaning over the water in central Amsterdam",
+        "facts": {
+          "courses": {
+            "label": "Courses",
+            "value": "More than 120 applicants so far"
+          },
+          "onStage": {
+            "label": "On stage",
+            "value": "The AI020 Conference and TEDxUniversiteit van Amsterdam"
+          }
+        }
+      }
+    }
+  },
+  "rhythm": {
+    "heading": "Hackathons, talks, graduations and pub quizzes",
+    "archive": "Groningen keeps <link>a full archive</link> of its events back to 2023."
+  },
+  "eventPrints": {
+    "label": "Photographs from SAIN chapter events",
+    "previous": "Previous photographs",
+    "next": "Next photographs",
+    "prints": {
+      "forecastingHackathon": {
+        "alt": "Announcement for the AISIG AI forecasting and timeline models hackathon in Groningen",
+        "caption": "AI forecasting hackathon · SAIN Groningen"
+      },
+      "tedx": {
+        "alt": "A SAIN Groningen speaker on the TEDxBroerstraat stage",
+        "caption": "TEDxBroerstraat · SAIN Groningen"
+      },
+      "graduation": {
+        "alt": "An AI Safety Fundamentals cohort at its graduation ceremony in Utrecht",
+        "caption": "Course graduation · SAIN Utrecht"
+      },
+      "pubQuiz": {
+        "alt": "A SAIN Groningen pub quiz in the evening",
+        "caption": "Pub quiz · SAIN Groningen"
+      },
+      "scenarioDiscussion": {
+        "alt": "A discussion group in Utrecht working through a Europe 2031 scenario",
+        "caption": "Europe 2031 scenario discussion · SAIN Utrecht"
+      }
+    }
+  },
+  "startChapter": {
+    "printsLabel": "The chapters so far, and the next to come",
+    "yourCity": "Your city?",
+    "heading": "The next chapter starts with one meetup.",
+    "intro": "No chapter in your city yet? The three that exist all started the same way: a few people who wanted a local AI safety community and were willing to host the first meetup. SAIN’s leadership guides founders through the whole process, and new chapters operate under the national stichting, so no separate legal entity is needed.",
+    "newCities": "In Eindhoven, Delft or The Hague? We are looking for paid starting teams there right now. <link>See the starting roles</link>",
+    "propose": "Propose a chapter",
+    "proposeNote": "Send us an email with your city and a few things about you.",
+    "providesHeading": "What SAIN hands over",
+    "provides": [
+      "The SAIN brand and national recognition",
+      "Operational playbooks and handbooks",
+      "Course curriculum and facilitation guides",
+      "Google Workspace and digital infrastructure",
+      "One-on-one mentorship from experienced organisers",
+      "Outreach templates and media support",
+      "Connection to the national network"
+    ],
+    "stepsHeading": "What a founder does",
+    "steps": [
+      "Write to us about your city.",
+      "Work through the founding process with SAIN's leadership.",
+      "Set up your local channels and your chapter page on this site.",
+      "Do the first outreach and run the first meetup.",
+      "When you are ready, run a first course; the curriculum and guides are part of the kit."
+    ]
+  },
+  "close": {
+    "heading": "Nobody in these photographs knew anyone the first time either.",
+    "body": "Come to one session in the city nearest you. If you want to do more than attend, every chapter has volunteer work waiting."
+  },
+  "chapterPrints": {
+    "label": "Chapters"
+  }
+}

@@ -1,16 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, X as XIcon } from "@phosphor-icons/react/dist/ssr";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
+  applicationText,
   courseApplications,
   formatCityList,
   openCourseApplications,
 } from "@/data/courseApplications";
+import { formatDate } from "@/i18n/format";
+import { Link } from "@/i18n/navigation";
+import { unlocalizePath, type Locale } from "@/i18n/routing";
 
 /**
  * The course announcement, shown once per cohort.
@@ -37,9 +41,14 @@ const OPEN_DELAY_MS = 1500;
 const PREVIEW_PARAM = "preview-popup";
 
 /* One key per cohort: the open chapters and their participant deadlines. A
-   rolling chapter has no cohort date, so its part of the key never changes. */
+   rolling chapter has no cohort date, so its part of the key never changes.
+   The deadline is written as it always was ("15 November 2026"), so a
+   dismissal made before the site had languages still counts, in either. */
 const DISMISS_KEY = `sain:course-popup-dismissed:${openCourseApplications
-  .map((c) => `${c.chapter}:${c.rolling ? "rolling" : c.deadlines.participants}`)
+  .map(
+    (c) =>
+      `${c.chapter}:${c.rolling ? "rolling" : formatDate(c.deadlines.participants, "en")}`,
+  )
   .join("|")}`;
 
 export default function CoursePopup() {
@@ -48,6 +57,9 @@ export default function CoursePopup() {
   const dialogRef = useRef<HTMLDivElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const reduce = useReducedMotion();
+  const locale = useLocale() as Locale;
+  const t = useTranslations("common.coursePopup");
+  const tApplications = useTranslations("courses.applications");
 
   useEffect(() => {
     const forced = new URLSearchParams(window.location.search).has(PREVIEW_PARAM);
@@ -60,7 +72,7 @@ export default function CoursePopup() {
     /* A recruitment page is where people arrive from a personal message
        about a role; a course offer over the hero would answer a question
        they did not ask. */
-    if (window.location.pathname.startsWith("/new-chapters")) return;
+    if (unlocalizePath(window.location.pathname).startsWith("/new-chapters")) return;
 
     let dismissed = false;
     try {
@@ -129,7 +141,7 @@ export default function CoursePopup() {
     ? [...courseApplications].sort((a, b) => Number(b.open) - Number(a.open))
     : openCourseApplications;
   const open = listed.filter((c) => c.open);
-  const cities = formatCityList(open.length ? open : listed);
+  const cities = formatCityList(open.length ? open : listed, locale);
 
   return createPortal(
     <AnimatePresence>
@@ -186,18 +198,16 @@ export default function CoursePopup() {
                 id="course-popup-title"
                 className="relative font-serif text-heading text-white"
               >
-                Free AI Safety courses, in person.
+                {t("title")}
               </h2>
               <p className="relative mt-3 font-serif text-title-sm text-white/75">
-                In {cities}.
+                {t("cities", { cities })}
               </p>
               <p
                 id="course-popup-description"
                 className="relative mt-6 max-w-[400px] font-sans text-caption leading-[22px] text-white/72"
               >
-                A few weeks of reading and discussion with people entering the
-                field, taught by SAIN&rsquo;s chapters. No previous background
-                is needed, and every programme is free.
+                {t("description")}
               </p>
             </div>
 
@@ -206,17 +216,19 @@ export default function CoursePopup() {
               <button
                 type="button"
                 onClick={close}
-                aria-label="Close"
+                aria-label={t("close")}
                 className="absolute right-3 top-3 inline-flex size-10 items-center justify-center text-navy/55 transition-colors hover:text-navy focus-visible:text-navy"
               >
                 <XIcon size={18} weight="light" aria-hidden="true" />
               </button>
 
               <p className="kicker pr-10 text-kicker-sm text-navy/65">
-                Pick your city
+                {t("pickCity")}
               </p>
               <ul role="list" className="mt-4 border-b border-navy/12">
-                {listed.map((course) => (
+                {listed.map((course) => {
+                  const text = applicationText(course, tApplications, locale);
+                  return (
                   <li key={course.chapter}>
                     <Link
                       href={course.href}
@@ -229,20 +241,20 @@ export default function CoursePopup() {
                         </span>
                         {course.open && course.rolling ? (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
-                            {course.rollingNote}
+                            {text.rollingNote}
                           </span>
                         ) : course.open ? (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
                             <span className="block">
-                              Apply by {course.deadlines.participants}
+                              {t("applyBy", { date: text.deadlines?.participants ?? "" })}
                             </span>
                             <span className="block">
-                              Facilitators by {course.deadlines.facilitators}
+                              {t("facilitatorsBy", { date: text.deadlines?.facilitators ?? "" })}
                             </span>
                           </span>
                         ) : (
                           <span className="mt-1 block font-sans text-footnote text-navy/65">
-                            Applications are closed. {course.closedNote}
+                            {t("closed")} {text.closedNote}
                           </span>
                         )}
                       </span>
@@ -254,19 +266,20 @@ export default function CoursePopup() {
                       />
                     </Link>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
 
               <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <Link href="/courses" onClick={close} className="btn-accent">
-                  Join a free course
+                  {t("joinCourse")}
                 </Link>
                 <button
                   type="button"
                   onClick={close}
                   className="font-sans text-label text-navy/65 underline decoration-navy/25 underline-offset-4 transition-colors hover:text-navy hover:decoration-navy focus-visible:decoration-navy"
                 >
-                  Maybe later
+                  {t("maybeLater")}
                 </button>
               </div>
             </div>

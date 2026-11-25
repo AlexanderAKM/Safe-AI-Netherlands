@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type { Icon } from "@phosphor-icons/react";
 import { ArrowRight, BookOpenText, Code, Scales } from "@phosphor-icons/react/dist/ssr";
 
@@ -8,6 +8,7 @@ import {
   type ChapterName,
 } from "@/data/courseApplications";
 import { TRACKS } from "@/data/courseTracks";
+import { Link } from "@/i18n/navigation";
 
 /**
  * The landing's three course tracks, named rather than taught. Each column is a small
@@ -30,6 +31,8 @@ const GLYPH: Record<string, Icon> = {
 };
 
 export default function CourseTracks() {
+  const t = useTranslations("home.courseTracks");
+  const tTracks = useTranslations("courses.tracks");
   return (
     <div>
       <ul role="list" className="grid gap-px bg-navy/12 md:grid-cols-3 border-y border-navy/12">
@@ -47,21 +50,21 @@ export default function CourseTracks() {
                   href={courseTrackHref(track.id)}
                   className="after:absolute after:inset-0 focus-visible:underline"
                 >
-                  {track.title}
+                  {tTracks(`${track.id}.title`)}
                 </Link>
               </h3>
-              <p className="mt-2 font-sans text-ui text-navy/72">{track.tagline}</p>
+              <p className="mt-2 font-sans text-ui text-navy/72">{tTracks(`${track.id}.tagline`)}</p>
 
               <div className="mt-auto pt-8">
-                <ul role="list" aria-label="Where it runs" className="grid grid-cols-3 border-t border-navy/12">
+                <ul role="list" aria-label={t("whereItRuns")} className="grid grid-cols-3 border-t border-navy/12">
                   {CITIES.map((city) => {
-                    const entry = track.cities.find((c) => c.city === city);
+                    const runs = track.cities.includes(city);
                     return (
                       <li key={city} className="border-l border-navy/12 pl-3 first:border-l-0 first:pl-0">
-                        {entry ? (
+                        {runs ? (
                           <Link
                             href={chapterCourseHref(city, track.id)}
-                            title={entry.detail}
+                            title={tTracks(`${track.id}.cities.${city.toLowerCase()}`)}
                             className="relative z-10 flex flex-col gap-2 py-3"
                           >
                             <span aria-hidden="true" className="h-2 w-2 bg-navy" />
@@ -74,7 +77,7 @@ export default function CourseTracks() {
                             <span aria-hidden="true" className="h-2 w-2 border border-navy/25" />
                             <span className="font-sans text-caption text-navy/35">
                               {city}
-                              <span className="sr-only"> (not offered)</span>
+                              <span className="sr-only"> {t("notOffered")}</span>
                             </span>
                           </span>
                         )}
@@ -99,7 +102,7 @@ export default function CourseTracks() {
           href="/courses"
           className="inline-flex items-center gap-1.5 font-sans text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
         >
-          See all courses
+          {t("seeAll")}
           <ArrowRight size={16} weight="regular" aria-hidden="true" />
         </Link>
       </div>

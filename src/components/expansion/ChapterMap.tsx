@@ -10,6 +10,8 @@
    per degree of latitude. Re-run the projection rather than nudging a point
    by hand if a city ever moves. */
 
+import { useTranslations } from "next-intl";
+
 const LAND =
   "M5.5 337.5 L21.1 349.5 L46.0 361.5 L69.0 357.0 L86.4 340.5 L103.9 339.0 L114.9 328.5 L135.1 321.0 L160.9 322.5 L178.4 346.5 L202.3 349.5 L218.8 364.5 L233.5 378.0 L228.9 400.5 L219.7 423.0 L239.0 430.5 L250.1 430.5 L255.6 408.0 L241.8 388.5 L263.9 366.0 L255.6 352.5 L268.5 333.0 L257.4 303.0 L245.5 282.0 L257.4 264.0 L285.0 268.5 L317.2 255.0 L324.5 232.5 L345.7 207.0 L342.9 186.0 L335.6 177.0 L312.6 169.5 L317.2 147.0 L346.6 145.5 L344.8 115.5 L359.5 66.0 L358.6 57.0 L340.2 48.0 L333.7 43.5 L324.5 25.5 L294.2 28.5 L266.6 31.5 L243.6 33.0 L216.0 46.5 L194.0 67.5 L192.1 81.0 L159.0 103.5 L151.7 102.0 L134.2 99.0 L128.7 111.0 L122.3 138.0 L117.7 171.0 L112.2 189.0 L101.1 210.0 L88.3 228.0 L75.4 244.5 L62.5 247.5 L67.1 261.0 L50.6 268.5 L35.9 285.0 L46.0 294.0 L34.9 303.0 L13.8 312.0 L24.8 327.0 L23.0 333.0 Z";
 
@@ -25,7 +27,9 @@ const ISLANDS = [
 ];
 
 type City = {
-  name: string;
+  /** The label's key under newChapters.cityNames: "The Hague" is "Den Haag"
+      in Dutch. */
+  id: string;
   x: number;
   y: number;
   /** Label position and anchor, placed by hand so Delft and The Hague,
@@ -37,15 +41,16 @@ type City = {
 };
 
 const CITIES: City[] = [
-  { name: "Groningen", x: 300.6, y: 60.0, lx: 300.6, ly: 84, anchor: "end", founding: false },
-  { name: "Amsterdam", x: 147.1, y: 187.5, lx: 139, ly: 176, anchor: "end", founding: false },
-  { name: "Utrecht", x: 167.3, y: 229.5, lx: 177, ly: 233.5, anchor: "start", founding: false },
-  { name: "The Hague", x: 91.9, y: 231.0, lx: 77, ly: 222, anchor: "end", founding: true },
-  { name: "Delft", x: 97.5, y: 241.5, lx: 83, ly: 262, anchor: "end", founding: true },
-  { name: "Eindhoven", x: 199.5, y: 327.0, lx: 216, ly: 331, anchor: "start", founding: true },
+  { id: "groningen", x: 300.6, y: 60.0, lx: 300.6, ly: 84, anchor: "end", founding: false },
+  { id: "amsterdam", x: 147.1, y: 187.5, lx: 139, ly: 176, anchor: "end", founding: false },
+  { id: "utrecht", x: 167.3, y: 229.5, lx: 177, ly: 233.5, anchor: "start", founding: false },
+  { id: "the-hague", x: 91.9, y: 231.0, lx: 77, ly: 222, anchor: "end", founding: true },
+  { id: "delft", x: 97.5, y: 241.5, lx: 83, ly: 262, anchor: "end", founding: true },
+  { id: "eindhoven", x: 199.5, y: 327.0, lx: 216, ly: 331, anchor: "start", founding: true },
 ];
 
 export default function ChapterMap({ className }: { className?: string }) {
+  const t = useTranslations("newChapters");
   let ring = 0;
   return (
     <figure className={className}>
@@ -55,11 +60,8 @@ export default function ChapterMap({ className }: { className?: string }) {
         aria-labelledby="chapter-map-title chapter-map-desc"
         className="h-auto w-full overflow-visible"
       >
-        <title id="chapter-map-title">SAIN&rsquo;s chapters in the Netherlands</title>
-        <desc id="chapter-map-desc">
-          Chapters run in Groningen, Amsterdam and Utrecht. Starting teams are
-          wanted in Eindhoven, Delft and The Hague.
-        </desc>
+        <title id="chapter-map-title">{t("map.title")}</title>
+        <desc id="chapter-map-desc">{t("map.description")}</desc>
 
         <g strokeLinejoin="round">
           <path d={LAND} className="fill-navy/[0.035] stroke-navy/30" strokeWidth={1} />
@@ -70,7 +72,7 @@ export default function ChapterMap({ className }: { className?: string }) {
         </g>
 
         {CITIES.map((city) => (
-          <g key={city.name}>
+          <g key={city.id}>
             {city.founding ? (
               <>
                 <circle
@@ -98,7 +100,7 @@ export default function ChapterMap({ className }: { className?: string }) {
                   : "fill-navy/60 font-sans text-[12px]"
               }
             >
-              {city.name}
+              {t(`cityNames.${city.id}`)}
             </text>
           </g>
         ))}
@@ -107,7 +109,7 @@ export default function ChapterMap({ className }: { className?: string }) {
       <figcaption className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-caption text-navy/65">
         <span className="inline-flex items-center gap-2">
           <span className="size-[8px] rounded-full bg-navy" aria-hidden="true" />
-          Chapter running
+          {t("map.running")}
         </span>
         <span className="inline-flex items-center gap-2">
           <span
@@ -116,7 +118,7 @@ export default function ChapterMap({ className }: { className?: string }) {
           >
             <span className="block size-full rounded-full bg-orange" />
           </span>
-          Starting team wanted
+          {t("map.wanted")}
         </span>
       </figcaption>
     </figure>

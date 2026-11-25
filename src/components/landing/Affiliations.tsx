@@ -20,6 +20,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 const AFFILIATIONS = [
   {
@@ -71,6 +72,7 @@ const ROW_WIDTH =
 const SPEED = 40;
 
 function Logos({ copy }: { copy?: boolean }) {
+  const t = useTranslations("common.a11y");
   return AFFILIATIONS.map((org) => (
     <li key={org.name} className="shrink-0">
       <a
@@ -83,6 +85,7 @@ function Logos({ copy }: { copy?: boolean }) {
         <span
           role="img"
           aria-label={org.name}
+          lang="en"
           className="block bg-navy/55 transition-colors duration-200 group-hover:bg-navy group-focus-visible:bg-navy"
           style={{
             height: org.height,
@@ -97,13 +100,14 @@ function Logos({ copy }: { copy?: boolean }) {
             WebkitMaskPosition: "center",
           }}
         />
-        <span className="sr-only"> (opens in a new tab)</span>
+        <span className="sr-only"> {t("opensInNewTab")}</span>
       </a>
     </li>
   ));
 }
 
 export default function Affiliations() {
+  const t = useTranslations("home.affiliations");
   const viewport = useRef<HTMLDivElement>(null);
   const [fits, setFits] = useState(true);
   const reduce = useReducedMotion();
@@ -127,7 +131,7 @@ export default function Affiliations() {
           id="affiliations-heading"
           className="shrink-0 font-sans text-label text-navy/75 lg:max-w-[190px]"
         >
-          Network and institutional affiliations
+          {t("heading")}
         </h2>
         <div
           ref={viewport}

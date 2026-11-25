@@ -2,7 +2,9 @@ import type { OutlineItem } from "@/components/chapters/CourseDisclosure";
 
 /* The two BlueDot Impact courses Amsterdam and Groningen both facilitate. The
    week-by-week outlines are BlueDot's, each week linking to its unit, kept
-   here once so the two chapter pages cannot drift apart. */
+   here once so the two chapter pages cannot drift apart. The week titles are
+   text, so they live in messages/<locale>/chapters.json under
+   `bluedot.<course>.<week id>`; the units they link to are BlueDot's own. */
 
 export const BLUEDOT_URL = "https://bluedot.org/";
 
@@ -12,56 +14,81 @@ export const TECHNICAL_AI_SAFETY_URL =
 export const FRONTIER_AI_GOVERNANCE_URL =
   "https://bluedot.org/courses/ai-governance#curriculum";
 
-export const TECHNICAL_AI_SAFETY_WEEKS: OutlineItem[] = [
+/** The course's key in the messages: chapters.bluedot.<course>. */
+export type BlueDotCourse = "technicalAiSafety" | "frontierAiGovernance";
+
+/** One week: its title's key under chapters.bluedot.<course>, and its unit. */
+export type BlueDotWeek = { id: string; href: string };
+
+export const TECHNICAL_AI_SAFETY_WEEKS: BlueDotWeek[] = [
   {
-    title: "The technical challenge with AI",
+    id: "technicalChallenge",
     href: "https://bluedot.org/courses/technical-ai-safety/1/1",
   },
   {
-    title: "Training safer models",
+    id: "saferModels",
     href: "https://bluedot.org/courses/technical-ai-safety/2/1",
   },
   {
-    title: "Detecting danger",
+    id: "detectingDanger",
     href: "https://bluedot.org/courses/technical-ai-safety/3/1",
   },
   {
-    title: "Understanding AI",
+    id: "understandingAi",
     href: "https://bluedot.org/courses/technical-ai-safety/4/1",
   },
   {
-    title: "Minimising harm",
+    id: "minimisingHarm",
     href: "https://bluedot.org/courses/technical-ai-safety/5/1",
   },
   {
-    title: "Plan your AI safety career",
+    id: "career",
     href: "https://bluedot.org/courses/technical-ai-safety/6/1",
   },
 ];
 
-export const FRONTIER_AI_GOVERNANCE_WEEKS: OutlineItem[] = [
+export const FRONTIER_AI_GOVERNANCE_WEEKS: BlueDotWeek[] = [
   {
-    title: "Assess frontier AI evidence",
+    id: "evidence",
     href: "https://bluedot.org/courses/ai-governance/1/1",
   },
   {
-    title: "Map institutions and power",
+    id: "institutions",
     href: "https://bluedot.org/courses/ai-governance/2/1",
   },
   {
-    title: "Compare governance strategies",
+    id: "strategies",
     href: "https://bluedot.org/courses/ai-governance/3/1",
   },
   {
-    title: "Test proposals under pressure",
+    id: "proposals",
     href: "https://bluedot.org/courses/ai-governance/4/1",
   },
   {
-    title: "Defend a position",
+    id: "position",
     href: "https://bluedot.org/courses/ai-governance/5/1",
   },
   {
-    title: "Plan your AI safety career",
+    id: "career",
     href: "https://bluedot.org/courses/ai-governance/6/1",
   },
 ];
+
+const WEEKS: Record<BlueDotCourse, BlueDotWeek[]> = {
+  technicalAiSafety: TECHNICAL_AI_SAFETY_WEEKS,
+  frontierAiGovernance: FRONTIER_AI_GOVERNANCE_WEEKS,
+};
+
+/**
+ * A course's weeks as a chapter page's outline, titled in the reader's
+ * language. `t` reads `chapters.bluedot`: useTranslations("chapters.bluedot").
+ */
+export function blueDotOutline(
+  course: BlueDotCourse,
+  t: (key: string) => string,
+): OutlineItem[] {
+  return WEEKS[course].map(({ id, href }) => ({
+    title: t(`${course}.${id}`),
+    href,
+  }));
+}

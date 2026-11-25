@@ -55,12 +55,14 @@ const STATUSES: Record<string, TrackerStatus> = {
 };
 
 /* In the order the tracker lists them: what a student can still join first,
-   and full projects last, as on the hand-kept cards. */
-export const trackerStatuses: { value: TrackerStatus; label: string }[] = [
-  { value: "open", label: "Open" },
-  { value: "in-progress", label: "In progress" },
-  { value: "completed", label: "Completed" },
-  { value: "full", label: "Full" },
+   and full projects last, as on the hand-kept cards. `key` names the
+   status's label in messages/<locale>/projectHub.json, under
+   tracker.statuses ("In progress"). */
+export const trackerStatuses: { value: TrackerStatus; key: string }[] = [
+  { value: "open", key: "open" },
+  { value: "in-progress", key: "inProgress" },
+  { value: "completed", key: "completed" },
+  { value: "full", key: "full" },
 ];
 
 const statusRank = (status: TrackerStatus) => trackerStatuses.findIndex((item) => item.value === status);
