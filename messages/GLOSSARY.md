@@ -105,6 +105,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | discussion group | discussiegroep | |
 | reading group | leesgroep | |
 | event | evenement; *activiteit* in lists of what a chapter does | |
+| fellowship | fellowship | on the opportunities board; Dutch researchers use the English |
 | facilitator | facilitator | **Decided** |
 | field (of AI Safety) | vakgebied | |
 | field building | field building | **Decided** |
@@ -114,6 +115,8 @@ English either way. Switching to option 2 is a search-and-replace in
 | hackathon | hackathon | |
 | handbook | handboek; *Project Hub-handboek* as a title | |
 | in person | op locatie | |
+| internship | stage | |
+| job (on the opportunities board) | baan; a listing of one is a *vacature* | SAIN's own openings stay *vacatures*, each one a *rol* |
 | incubating (a new chapter) | in een incubatiefase | **Decided** |
 | lecture | college | **Decided** |
 | meetup, session | bijeenkomst | **Decided** |
@@ -121,6 +124,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | mentorship | begeleiding | |
 | newsletter | nieuwsbrief | |
 | open positions | vacatures ("Er staan nu 15 vacatures open"); one of them is a *rol* | **Decided** |
+| opportunities (the board, /research/opportunities) | kansen; one of them is a *kans* | draft, to be reviewed |
 | outreach, PR | publiciteit (inboxes), promotie (team) | **Decided** |
 | paper | paper: *de paper*, *de papers*; the reader is the *Paperlezer* | **Decided** |
 | part-time, full-time | parttime, fulltime | **Decided** |
@@ -132,6 +136,7 @@ English either way. Switching to option 2 is a search-and-replace in
 | project | project | |
 | projects team, Project Team | projectteam | **Decided** |
 | registered address | vestigingsadres | **Decided** |
+| remote, remote-friendly | op afstand; *kan goed op afstand* | as on the Project Hub |
 | research | onderzoek | |
 | researcher | onderzoeker | |
 | rolling (applications, review) | doorlopend | **Decided** |

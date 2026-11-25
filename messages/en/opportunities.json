@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "title": "Opportunities",
+    "description": "AI Safety jobs, fellowships and research projects open to people in the Netherlands: based here, remote from the EU, or elsewhere in the EU. SAIN’s own projects first, everything else linked to its original posting."
+  },
+  "hero": {
+    "heading": "AI Safety work you can do from the Netherlands",
+    "intro": "Jobs, fellowships and research projects open to people based here: in the Netherlands, remote from the EU, or elsewhere in the EU. SAIN’s own projects come first. Everything else links straight to the original posting."
+  },
+  "facts": {
+    "projects": "{count, plural, one {# SAIN project} other {# SAIN projects}}",
+    "listings": "{count, plural, one {# role at another organisation} other {# roles at other organisations}}",
+    "daily": "Checked every day"
+  },
+  "index": {
+    "kicker": "Three ways a role is open to you",
+    "nl": "Based in the Netherlands",
+    "remote": "Remote from the EU",
+    "eu": "Elsewhere in the EU",
+    "unit": "{count, plural, one {opportunity} other {opportunities}}"
+  },
+  "board": {
+    "filtersLabel": "Search and filter the opportunities",
+    "searchLabel": "Search opportunities",
+    "searchPlaceholder": "Role, organisation or place",
+    "clearSearch": "Clear search",
+    "type": {
+      "label": "Type",
+      "all": "All types",
+      "project": "Research projects",
+      "job": "Jobs",
+      "fellowship": "Fellowships",
+      "internship": "Internships",
+      "course": "Courses and programmes",
+      "funding": "Funding",
+      "other": "Other"
+    },
+    "typeTag": {
+      "project": "Research project",
+      "job": "Job",
+      "fellowship": "Fellowship",
+      "internship": "Internship",
+      "course": "Programme",
+      "funding": "Funding",
+      "other": "Other"
+    },
+    "where": {
+      "label": "Where",
+      "anywhere": "Anywhere",
+      "nl": "Netherlands",
+      "remote": "Remote",
+      "eu": "Elsewhere in the EU"
+    },
+    "org": {
+      "label": "Organisation",
+      "all": "All organisations",
+      "option": "{name} ({count})"
+    },
+    "count": "{count, plural, one {# opportunity} other {# opportunities}}",
+    "matching": "matching \"{query}\"",
+    "clearFilters": "Clear filters",
+    "noMatch": "No opportunity matches these filters.",
+    "sain": {
+      "heading": "SAIN projects",
+      "intro": "Research projects with a SAIN supervisor, through the Project Hub. Voluntary, remote-friendly and open for applications at any time.",
+      "tag": "SAIN project",
+      "org": "SAIN Project Hub",
+      "place": "Netherlands, remote-friendly",
+      "rolling": "Apply at any time",
+      "apply": "Apply",
+      "aboutHub": "How the Project Hub works",
+      "showAll": "Show all {count} SAIN projects",
+      "showFewer": "Show fewer SAIN projects"
+    },
+    "external": {
+      "heading": "Jobs and fellowships at other organisations",
+      "intro": "Collected once a day from the <link>{source} job board</link> and narrowed to roles someone in the Netherlands can take.",
+      "updated": "Listings updated {date}",
+      "via": "via {source}",
+      "showAll": "Show all {count} listings",
+      "showFewer": "Show fewer listings",
+      "empty": "No listings from other organisations right now.",
+      "browse": "Browse the {source} job board",
+      "note": "SAIN does not select or check these listings and plays no part in the applications. Check the posting itself for the deadline, who can apply and any visa requirements."
+    },
+    "deadline": {
+      "applyBy": "Apply by {date}",
+      "closesToday": "Closes today",
+      "closesTomorrow": "Closes tomorrow",
+      "closesIn": "Closes in {days} days, on {date}",
+      "none": "No deadline listed"
+    },
+    "moreLocations": "{places} and {count} more"
+  },
+  "close": {
+    "heading": "Not there yet? Start with a free course.",
+    "body": "SAIN’s courses and the Project Hub are built to give you the background these roles ask for. Every programme is free."
+  }
+}

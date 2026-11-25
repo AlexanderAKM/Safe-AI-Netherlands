@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "title": "Kansen",
+    "description": "Banen, fellowships en onderzoeksprojecten in AI-veiligheid voor wie in Nederland woont: in Nederland, op afstand vanuit de EU of elders in de EU. Eerst de projecten van SAIN zelf, al het andere met een link naar de oorspronkelijke vacature."
+  },
+  "hero": {
+    "heading": "Werk aan AI-veiligheid, vanuit Nederland",
+    "intro": "Banen, fellowships en onderzoeksprojecten voor wie in Nederland woont: in Nederland zelf, op afstand vanuit de EU of elders in de EU. De projecten van SAIN staan bovenaan. Al het andere linkt direct naar de oorspronkelijke vacature."
+  },
+  "facts": {
+    "projects": "{count, plural, one {# SAIN-project} other {# SAIN-projecten}}",
+    "listings": "{count, plural, one {# vacature bij een andere organisatie} other {# vacatures bij andere organisaties}}",
+    "daily": "Elke dag bijgewerkt"
+  },
+  "index": {
+    "kicker": "Drie manieren waarop werk voor jou openstaat",
+    "nl": "In Nederland",
+    "remote": "Op afstand vanuit de EU",
+    "eu": "Elders in de EU",
+    "unit": "{count, plural, one {kans} other {kansen}}"
+  },
+  "board": {
+    "filtersLabel": "Zoek en filter in de kansen",
+    "searchLabel": "Kansen zoeken",
+    "searchPlaceholder": "Rol, organisatie of plaats",
+    "clearSearch": "Zoekopdracht wissen",
+    "type": {
+      "label": "Soort",
+      "all": "Alle soorten",
+      "project": "Onderzoeksprojecten",
+      "job": "Banen",
+      "fellowship": "Fellowships",
+      "internship": "Stages",
+      "course": "Cursussen en programma’s",
+      "funding": "Financiering",
+      "other": "Overig"
+    },
+    "typeTag": {
+      "project": "Onderzoeksproject",
+      "job": "Baan",
+      "fellowship": "Fellowship",
+      "internship": "Stage",
+      "course": "Programma",
+      "funding": "Financiering",
+      "other": "Overig"
+    },
+    "where": {
+      "label": "Waar",
+      "anywhere": "Overal",
+      "nl": "Nederland",
+      "remote": "Op afstand",
+      "eu": "Elders in de EU"
+    },
+    "org": {
+      "label": "Organisatie",
+      "all": "Alle organisaties",
+      "option": "{name} ({count})"
+    },
+    "count": "{count, plural, one {# kans} other {# kansen}}",
+    "matching": "voor \"{query}\"",
+    "clearFilters": "Alle filters wissen",
+    "noMatch": "Geen kans past bij deze filters.",
+    "sain": {
+      "heading": "Projecten van SAIN",
+      "intro": "Onderzoeksprojecten met een begeleider van SAIN, via de Project Hub. Vrijwillig, goed op afstand te doen en altijd open voor aanmeldingen.",
+      "tag": "SAIN-project",
+      "org": "SAIN Project Hub",
+      "place": "Nederland, kan goed op afstand",
+      "rolling": "Doorlopend aanmelden",
+      "apply": "Aanmelden",
+      "aboutHub": "Zo werkt de Project Hub",
+      "showAll": "Toon alle {count} projecten van SAIN",
+      "showFewer": "Toon minder projecten van SAIN"
+    },
+    "external": {
+      "heading": "Banen en fellowships bij andere organisaties",
+      "intro": "Elke dag verzameld van de <link>vacaturebank van {source}</link> en beperkt tot wat je vanuit Nederland kunt doen.",
+      "updated": "Vacatures bijgewerkt op {date}",
+      "via": "via {source}",
+      "showAll": "Toon alle {count} vacatures",
+      "showFewer": "Toon minder vacatures",
+      "empty": "Op dit moment geen vacatures bij andere organisaties.",
+      "browse": "Bekijk de vacaturebank van {source}",
+      "note": "SAIN selecteert en controleert deze vacatures niet en speelt geen rol bij de sollicitaties. Kijk in de vacature zelf voor de deadline, wie zich kan aanmelden en eventuele visumeisen."
+    },
+    "deadline": {
+      "applyBy": "Uiterlijk {date} aanmelden",
+      "closesToday": "Sluit vandaag",
+      "closesTomorrow": "Sluit morgen",
+      "closesIn": "Sluit over {days} dagen, op {date}",
+      "none": "Geen deadline vermeld"
+    },
+    "moreLocations": "{places} en nog {count}"
+  },
+  "close": {
+    "heading": "Nog niet zover? Begin met een gratis cursus.",
+    "body": "De cursussen en de Project Hub van SAIN zijn gemaakt om je de achtergrond te geven die deze rollen vragen. Elk programma is gratis."
+  }
+}

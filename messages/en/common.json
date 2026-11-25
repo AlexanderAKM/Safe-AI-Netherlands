@@ -27,6 +27,17 @@
       "projectHub": "Project hub",
       "about": "About"
     },
+    "projectHubMenu": {
+      "label": "Project hub pages",
+      "hub": {
+        "title": "Research",
+        "description": "Research projects with a SAIN supervisor"
+      },
+      "opportunities": {
+        "title": "Opportunities",
+        "description": "Jobs, fellowships and projects open from the Netherlands"
+      }
+    },
     "volunteer": "Volunteer",
     "joinCourse": "Join a free course",
     "openMenu": "Open menu",
@@ -58,6 +69,7 @@
       "joinCommunity": "Join the community",
       "courses": "Courses",
       "projectHub": "Project hub",
+      "opportunities": "Opportunities",
       "handbook": "Project Hub handbook",
       "volunteer": "Volunteer",
       "about": "About",

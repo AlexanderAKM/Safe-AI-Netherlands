@@ -10,6 +10,9 @@
 # Project Hub: /research, /research/apply, /research/handbook, the paper pages.
 /messages/*/projectHub.json @TjebbeHB
 
+# The opportunities board: /research/opportunities.
+/messages/*/opportunities.json @TjebbeHB
+
 # Header, footer, shared buttons, the course popup.
 # /messages/*/common.json @TBD
 

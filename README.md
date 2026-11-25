@@ -18,6 +18,7 @@ npm run build        # static export to /out
 npm run i18n:check   # English and Dutch dictionaries in step
 npm run i18n:routes  # after adding or removing a page
 npm run images       # regenerate responsive image variants
+npm run test:opportunities  # the rules behind the opportunities board
 ```
 
 ## Project structure
@@ -34,7 +35,7 @@ src/
       about/              # About, plus the vision / theory of change / code of conduct documents
       community/          # Community and chapter overview
       courses/            # Free courses
-      research/           # Project hub, handbook and paper pages
+      research/           # Project hub, handbook, paper pages and the opportunities board
       get-involved/       # Volunteering
       open-positions/     # Careers
       new-chapters/       # Starting teams for new chapters
@@ -57,7 +58,7 @@ public/
 
 docs/                     # SAIN documents rendered on the site (docs/nl/: their Dutch translations)
 design/                   # Design system (design.md, sain-brand.css) and page copy briefs
-scripts/                  # Responsive image generation, Luma event fetches
+scripts/                  # Responsive image generation, Luma event fetches, the Airtable and opportunities fetches
 ```
 
 ## Languages
@@ -123,6 +124,7 @@ Rules that the checks enforce:
 | `team` | `/team` |
 | `contact` | `/contact` |
 | `openPositions` | `/open-positions` |
+| `opportunities` | `/research/opportunities` |
 | `newChapters` | `/new-chapters` |
 
 ### Still in English, on purpose
@@ -158,6 +160,35 @@ browser. Instead:
 
 To add a language: add it to `src/i18n/routing.ts`, add `messages/<locale>/`
 and the imports in `src/i18n/messages.ts`.
+
+## Opportunities board
+
+`/research/opportunities` lists AI Safety work a reader in the Netherlands can
+take: jobs, fellowships and projects based here, remote from the EU, or based
+elsewhere in the EU or EEA. It sits under **Project hub** in the nav.
+
+- **SAIN projects** are pinned first. They are the open projects in the
+  Project Team's tracker, the same Airtable source as the Project Hub
+  (`src/data/tracker.ts`), so nothing about them is kept twice.
+- **Listings from other organisations** come from a JSON file. A daily
+  workflow (`.github/workflows/refresh-opportunities.yml`) runs
+  `scripts/fetch-opportunities.mjs`, commits the result to the
+  `opportunities-data` branch when a listing changed, and asks Vercel for a
+  deploy. The build reads that file (`src/data/opportunitiesFile.ts`); the copy
+  in `src/data/opportunities.json` is the fallback. Nothing is fetched from
+  another site in a reader's browser.
+- A listing keeps only its title, organisation, locations, kind, deadline and
+  the link to the original posting, which every card opens. The rules (who a
+  posting is open to, duplicates, passed deadlines, keeping the last good data
+  when a fetch fails) are in `scripts/lib/opportunities.mjs`, with tests:
+  `npm run test:opportunities`.
+- **The source is the 80,000 Hours job board, and it is off until they have
+  agreed to it.** The board has no public feed; the fetch reads the search
+  index its own pages use. Their robots.txt allows crawling, but their terms
+  of use grant no right to republish, so ask first. Then set the repository
+  secrets named at the top of `scripts/fetch-opportunities.mjs` and do one
+  `npm run fetch-opportunities -- --dry-run` to check the field names. Until
+  then the page shows SAIN's projects and a link to their board.
 
 ## Brand
 

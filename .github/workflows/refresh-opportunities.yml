@@ -1,0 +1,132 @@
+name: Refresh opportunities
+
+# Keeps the external listings on the opportunities board
+# (/research/opportunities) fresh. Once a day it fetches them
+# (scripts/fetch-opportunities.mjs) and, only IF a listing changed, commits
+# the new opportunities.json to the `opportunities-data` branch and asks
+# Vercel for a new deploy. The site reads that file while it is being built
+# (src/data/opportunitiesFile.ts), so nothing is fetched from another site in
+# a reader's browser.
+#
+# It never touches main (main needs a reviewed PR). The `opportunities-data`
+# branch holds this one file and nothing else; the first run creates it.
+#
+# When the source cannot be reached, the listings it gave last time are kept,
+# with any passed deadline dropped, and the run ends red so someone looks.
+#
+# The source is the 80,000 Hours job board, and it stays OFF until they have
+# agreed to it: without the two secrets below a run fetches nothing and
+# changes nothing. Once they have:
+#   EIGHTYK_ALGOLIA_APP_ID, EIGHTYK_ALGOLIA_API_KEY   repository secrets
+#   EIGHTYK_ALGOLIA_INDEX, EIGHTYK_AREA               optional repository variables
+# (see the top of scripts/fetch-opportunities.mjs). VERCEL_DEPLOY_HOOK is the
+# secret the deploy workflow already uses.
+
+on:
+  schedule:
+    # Daily at 04:23 UTC: early morning in the Netherlands, off the hour,
+    # when GitHub's scheduler is least likely to drop the run.
+    - cron: "23 4 * * *"
+  workflow_dispatch: {} # lets you refresh by hand from the Actions tab
+
+# The only permission this job needs: push the opportunities-data branch.
+permissions:
+  contents: write
+
+# Never let two refresh runs overlap.
+concurrency:
+  group: refresh-opportunities
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The rules that decide what is listed, checked before they run.
+      - name: Test the listing rules
+        run: node --test scripts/opportunities.test.mjs
+
+      # The data branch in its own folder: the copy last published, which is
+      # the last good data, or on the first run a new branch with no history.
+      - name: Check out the opportunities-data branch
+        run: |
+          set -euo pipefail
+          if git fetch --depth=1 origin opportunities-data; then
+            git worktree add -B opportunities-data data FETCH_HEAD
+          else
+            git worktree add --orphan -b opportunities-data data
+          fi
+
+      # The fetch script uses only Node built-ins, so no `npm install` needed.
+      # Exit 0: fetched (or the source is not set up). Exit 2: a source
+      # failed and its last listings were kept; the file is still good to
+      # publish. Anything else: nothing was written.
+      - name: Fetch the listings
+        id: fetch
+        env:
+          EIGHTYK_ALGOLIA_APP_ID: ${{ secrets.EIGHTYK_ALGOLIA_APP_ID }}
+          EIGHTYK_ALGOLIA_API_KEY: ${{ secrets.EIGHTYK_ALGOLIA_API_KEY }}
+          EIGHTYK_ALGOLIA_INDEX: ${{ vars.EIGHTYK_ALGOLIA_INDEX }}
+          EIGHTYK_AREA: ${{ vars.EIGHTYK_AREA }}
+        run: |
+          set +e
+          node scripts/fetch-opportunities.mjs data/opportunities.json
+          status=$?
+          set -e
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then
+            exit "$status"
+          fi
+
+      - name: Publish it if it changed (guarded)
+        id: publish
+        working-directory: data
+        run: |
+          set -euo pipefail
+
+          # The ONLY file this workflow is ever allowed to publish.
+          FILE="opportunities.json"
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No change in the listings; nothing to publish."
+            exit 0
+          fi
+
+          # GUARD: if anything other than that one file changed, publish nothing.
+          if [ "$(git status --porcelain --untracked-files=all | awk '{print $2}')" != "$FILE" ]; then
+            echo "::error::Unexpected changes on opportunities-data — aborting, nothing published."
+            git status --porcelain --untracked-files=all
+            exit 1
+          fi
+
+          git config user.name  "sain-opportunities-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$FILE"
+          git commit -q -m "Refresh opportunities"
+          git push origin HEAD:refs/heads/opportunities-data
+          echo "published=true" >> "$GITHUB_OUTPUT"
+          echo "Published the new listings to opportunities-data."
+
+      # The site reads the file at build time, so new listings need a build.
+      - name: Ask Vercel for a new deploy
+        if: steps.publish.outputs.published == 'true'
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK secret not set; the listings will show after the next deploy."
+            exit 0
+          fi
+          curl --fail -s -X POST "$DEPLOY_HOOK"
+
+      - name: Fail the run if a source could not be fetched
+        if: steps.fetch.outputs.status == '2'
+        run: |
+          echo "::error::A source could not be fetched; its last listings were kept. See the fetch step."
+          exit 1

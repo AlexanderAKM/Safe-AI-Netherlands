@@ -32,6 +32,7 @@ const routes: Route[] = [
   { path: "/chapters/amsterdam", translated: true },
   { path: "/research/handbook", translated: false },
   { path: "/research/apply", translated: true },
+  { path: "/research/opportunities", translated: true },
   // The governing documents under /about/[document], read from the same
   // source the pages are generated from, so a new document cannot ship
   // unlisted. Translated once docs/nl/<file> exists.

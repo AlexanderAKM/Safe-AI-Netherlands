@@ -13,6 +13,8 @@
     "fetch-luma-events-amsterdam": "node --use-system-ca scripts/fetch-luma-events-amsterdam.mjs",
     "fetch-luma-events-utrecht": "node --use-system-ca scripts/fetch-luma-events-utrecht.mjs",
     "fetch-airtable-projects": "node --use-system-ca scripts/fetch-airtable-projects.mjs",
+    "fetch-opportunities": "node --use-system-ca scripts/fetch-opportunities.mjs",
+    "test:opportunities": "node --test scripts/opportunities.test.mjs",
     "i18n:check": "node scripts/i18n-check.mjs",
     "i18n:routes": "node scripts/i18n-english-routes.mjs"
   },
