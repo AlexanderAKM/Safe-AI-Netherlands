@@ -33,6 +33,7 @@ const FIELDS = {
   name: "fld40T2OwwaadBkMM", // Name, as "Supervisor: Project title"
   status: "fldEPACfemiZa5se1", // Status
   description: "fldlQMuhfKLPTbJzN", // Research + Work
+  details: "fld4wjCXS09CKBGdy", // Details, one point per line (optional)
   tags: "fld4FTLOCZBzvLyvU", // Project Tags
   website: "fld6heod6zUDn6mND", // LinkedIn or personal website (from Supervisor)
 };
@@ -84,6 +85,7 @@ try {
       name: text(fields[FIELDS.name]),
       status: text(fields[FIELDS.status]),
       description: text(fields[FIELDS.description]),
+      details: text(fields[FIELDS.details]) || undefined,
       tags: (fields[FIELDS.tags] ?? []).map(text).filter(Boolean),
       website: text((fields[FIELDS.website] ?? [])[0]) || undefined,
     }))

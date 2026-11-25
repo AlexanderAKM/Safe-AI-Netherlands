@@ -33,6 +33,9 @@ export type TrackerProject = {
   website?: string;
   status: TrackerStatus;
   summary: string;
+  /* More about the project, shown when its card is opened: Airtable's
+     Details field, one point per line. Left out when the field is empty. */
+  details?: string[];
   /* Whose students may apply ("VU", "UvA"); empty means everyone. */
   universities: string[];
   /* The thesis levels it can count as ("Master's thesis"); empty means none. */
@@ -99,6 +102,17 @@ function sortTags(tags: string[]) {
   return { universities, theses, topics };
 }
 
+/* The Details field as a list: one point per line, blank lines dropped, and
+   any bullet typed in front of a line ("- ", "• ") left to the list's own
+   marker. */
+function detailLines(value: string) {
+  const lines = value
+    .split("\n")
+    .map((line) => line.replace(/^\s*[-•*·]\s+/, "").trim())
+    .filter(Boolean);
+  return lines.length > 0 ? lines : undefined;
+}
+
 /* Web addresses only, given the https:// the field often leaves off; anything
    else (a mailto:, a javascript: link) is dropped. */
 function webHref(value: string) {
@@ -137,6 +151,7 @@ export function readTracker(data: unknown): Tracker | undefined {
           website: webHref(text(record.website)),
           status,
           summary: text(record.description),
+          details: detailLines(text(record.details)),
           ...sortTags(Array.isArray(record.tags) ? record.tags.map(text).filter(Boolean) : []),
         },
       ];

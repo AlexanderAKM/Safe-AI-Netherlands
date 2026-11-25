@@ -13,12 +13,18 @@ import {
 } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
-  ArrowUpRightIcon,
   CaretDownIcon,
   FunnelSimpleIcon,
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import {
+  CardCaret,
+  CardDetails,
+  CardToggle,
+  DetailsLink,
+  useCardDisclosure,
+} from "@/components/research/CardDisclosure";
 import {
   PROJECTS_EMAIL,
   availabilityLine,
@@ -349,16 +355,9 @@ function useRestRowHeights(gridRef: RefObject<HTMLUListElement>, shown: Project[
   }, [gridRef, shown]);
 }
 
-/* A card opens the way the open-positions rows do: the title is the toggle
-   and a caret sits opposite it. The toggle's hit area is stretched over the
-   whole top of the card (title, topics, supervisor, summary), but not over
-   the details, so selecting text or following a link there never closes it.
-
-   The details slide open by animating the row of a one-row grid from 0fr to
-   1fr, which reaches the content's real height without measuring it. They
-   stay mounted while closed, hidden (visibility) once folded so nothing
-   inside can be tabbed to or read out. `showing` outlives `open` until the closing slide ends, so the
-   grid keeps its rows still while a card folds back up.
+/* A card opens to its details the way every project card does
+   (CardDisclosure): the title is the toggle, its hit area stretched over the
+   top of the card, and the details slide open under a hairline.
 
    The project's own words (title, topics, summary, details) are English in
    every language, and say so with lang="en"; the labels around them are the
@@ -367,12 +366,9 @@ function ProjectCard({ project }: { project: Project }) {
   const t = useTranslations("projectHub.browser");
   const tEligibility = useTranslations("projectHub.browser.eligibility");
   const tAvailability = useTranslations("projectHub.availability");
-  const tA11y = useTranslations("common.a11y");
-  const [open, setOpen] = useState(false);
-  const [showing, setShowing] = useState(false);
+  const disclosure = useCardDisclosure(`project-${project.id}-details`);
   const person = project.supervisor;
   const titleId = `project-${project.id}-title`;
-  const detailsId = `project-${project.id}-details`;
   /* `key` names a label under browser.links; a named site carries its name. */
   const links: { key?: string; name?: string; href: string }[] = [
     ...(person.agenda ? [{ key: "agenda", href: person.agenda }] : []),
@@ -381,11 +377,6 @@ function ProjectCard({ project }: { project: Project }) {
   const availability = projectAvailability(project);
   const full = availability === "full";
   const statusLine = availabilityLine(tAvailability, availability, projectAvailabilityNote(project));
-
-  const toggle = () => {
-    if (!open) setShowing(true);
-    setOpen(!open);
-  };
 
   return (
     <li className="flex min-w-0">
@@ -403,24 +394,9 @@ function ProjectCard({ project }: { project: Project }) {
           <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
           <div className="flex items-start justify-between gap-4">
             <h3 id={titleId} lang="en" className="font-serif text-title-sm text-navy">
-              <button
-                type="button"
-                onClick={toggle}
-                aria-expanded={open}
-                aria-controls={detailsId}
-                className="cursor-pointer text-left after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-navy focus-visible:after:[outline-style:solid]"
-              >
-                {project.title}
-              </button>
+              <CardToggle disclosure={disclosure}>{project.title}</CardToggle>
             </h3>
-            <CaretDownIcon
-              size={14}
-              weight="bold"
-              aria-hidden="true"
-              className={`mt-1.5 shrink-0 text-navy/50 transition-transform duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
-                open ? "rotate-180" : ""
-              }`}
-            />
+            <CardCaret open={disclosure.open} />
           </div>
 
           {/* Straight under the title, where a student decides whether a
@@ -485,59 +461,36 @@ function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        <div
-          id={detailsId}
-          data-details
-          onTransitionEnd={(event) => {
-            if (event.target === event.currentTarget && !open) setShowing(false);
-          }}
-          data-showing={showing || undefined}
-          className={`grid transition-[grid-template-rows,opacity] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-opacity ${
-            open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-          } ${showing ? "" : "invisible"}`}
-        >
-          <div className="min-h-0 overflow-hidden">
-            <div className="mx-5 flex flex-col gap-3 border-t border-navy/10 pb-5 pt-4 md:mx-6 md:pb-6">
-              {project.details.map((line) => (
-                <p key={line} lang="en" className="text-[14.5px] leading-[23px] text-navy/74">
-                  {line}
-                </p>
-              ))}
-              {(project.lookingFor || project.commitment) && (
-                <dl className="grid gap-2">
-                  {project.lookingFor && (
-                    <div>
-                      <dt className="text-footnote text-navy/60">{t("card.lookingFor")}</dt>
-                      <dd lang="en" className="text-[14.5px] leading-[22px] text-navy">{project.lookingFor}</dd>
-                    </div>
-                  )}
-                  {project.commitment && (
-                    <div>
-                      <dt className="text-footnote text-navy/60">{t("card.supervision")}</dt>
-                      <dd lang="en" className="text-[14.5px] leading-[22px] text-navy">{project.commitment}</dd>
-                    </div>
-                  )}
-                </dl>
+        <CardDetails disclosure={disclosure}>
+          {project.details.map((line) => (
+            <p key={line} lang="en" className="text-[14.5px] leading-[23px] text-navy/74">
+              {line}
+            </p>
+          ))}
+          {(project.lookingFor || project.commitment) && (
+            <dl className="grid gap-2">
+              {project.lookingFor && (
+                <div>
+                  <dt className="text-footnote text-navy/60">{t("card.lookingFor")}</dt>
+                  <dd lang="en" className="text-[14.5px] leading-[22px] text-navy">{project.lookingFor}</dd>
+                </div>
               )}
-              <ul role="list" className="flex flex-wrap gap-x-4 gap-y-1.5">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-label text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-                    >
-                      {link.key ? t(`links.${link.key}`) : link.name}
-                      <ArrowUpRightIcon size={14} aria-hidden="true" />
-                      <span className="sr-only"> {tA11y("opensInNewTab")}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+              {project.commitment && (
+                <div>
+                  <dt className="text-footnote text-navy/60">{t("card.supervision")}</dt>
+                  <dd lang="en" className="text-[14.5px] leading-[22px] text-navy">{project.commitment}</dd>
+                </div>
+              )}
+            </dl>
+          )}
+          <ul role="list" className="flex flex-wrap gap-x-4 gap-y-1.5">
+            {links.map((link) => (
+              <li key={link.href}>
+                <DetailsLink href={link.href}>{link.key ? t(`links.${link.key}`) : link.name}</DetailsLink>
+              </li>
+            ))}
+          </ul>
+        </CardDetails>
       </article>
     </li>
   );

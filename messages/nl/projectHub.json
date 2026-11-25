@@ -182,6 +182,7 @@
       "levelOpen": "Scriptie (niveau open)"
     },
     "apply": "Aanmelden",
+    "fullAgenda": "Lees de volledige onderzoeksagenda",
     "updated": "Bijgewerkt op {date} om {hour}.{minute} uur"
   },
   "applyPage": {
