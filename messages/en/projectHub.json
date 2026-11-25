@@ -197,7 +197,7 @@
     "formLabel": "Application form"
   },
   "applyForm": {
-    "applyingFor": "Applying for",
+    "studentsOnly": "{universities} students only",
     "selectHint": "Make sure it is selected when the form asks which projects you would like to join. You can add up to two more.",
     "frameTitle": "SAIN Project Hub application form",
     "notShowing": "Form not showing? <link>Open it in a new tab</link>"

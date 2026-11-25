@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { useLiveTracker } from "@/components/research/useLiveTracker";
 import { RESEARCH_INTEREST_FORM_URL } from "@/data/research";
+import { formatList } from "@/i18n/format";
+import type { Locale } from "@/i18n/routing";
 
 /* The application form, and the project the reader came from.
 
@@ -13,8 +15,9 @@ import { RESEARCH_INTEREST_FORM_URL } from "@/data/research";
    parameter of the same name, so once the form uses `project` as the default
    of its project question, the form opens with it chosen (in Fillout: Settings,
    URL parameters, add `project`, then set it as that question's Default
-   value). Either way the page names the project above the form, so the reader
-   knows what to pick.
+   value). Either way the page names the project above the form, as plain
+   lines on the page, so the reader knows what to pick, and whose students it
+   is for if it has a limit.
 
    The page is static, so the parameter is read in the browser, and the frame
    reloads once with it.
@@ -27,6 +30,7 @@ const RECORD_ID = /^rec[A-Za-z0-9]{14}$/;
 
 export default function ApplyForm({ linkClass }: { linkClass: string }) {
   const t = useTranslations("projectHub.applyForm");
+  const locale = useLocale() as Locale;
   const [projectId, setProjectId] = useState<string>();
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("project") ?? "";
@@ -39,10 +43,15 @@ export default function ApplyForm({ linkClass }: { linkClass: string }) {
   return (
     <>
       {project && (
-        <div className="mb-6 border-l-2 border-orange bg-cream px-5 py-4 md:px-6">
-          <p className="font-sans text-footnote text-navy/60">{t("applyingFor")}</p>
-          <p lang="en" className="mt-1 font-serif text-title-sm text-navy">{project.title}</p>
+        <div className="mb-6">
+          <p lang="en" className="font-serif text-title text-navy">{project.title}</p>
           {project.supervisor && <p className="mt-1 text-caption text-navy/65">{project.supervisor}</p>}
+          {/* Whose students may apply, in orange as on the project cards. */}
+          {project.universities.length > 0 && (
+            <p className="mt-2 text-caption font-medium leading-[18px] text-orange-ink">
+              {t("studentsOnly", { universities: formatList(project.universities, locale, "disjunction") })}
+            </p>
+          )}
           <p className="mt-3 max-w-copy font-sans text-footnote leading-[19px] text-navy/70">
             {t("selectHint")}
           </p>

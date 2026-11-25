@@ -197,7 +197,7 @@
     "formLabel": "Aanmeldformulier"
   },
   "applyForm": {
-    "applyingFor": "Je meldt je aan voor",
+    "studentsOnly": "Alleen studenten van de {universities}",
     "selectHint": "Zorg dat dit project is aangevinkt als het formulier vraagt aan welke projecten je mee wilt doen. Je kunt er nog maximaal twee bij kiezen.",
     "frameTitle": "Aanmeldformulier van de SAIN Project Hub",
     "notShowing": "Zie je het formulier niet? <link>Open het in een nieuw tabblad</link>"
