@@ -9,6 +9,7 @@ import {
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import CardApplyLabel from "@/components/research/CardApplyLabel";
 import { ChipGroup, type FilterOption as Option } from "@/components/research/FilterControls";
 import { OWN_IDEA_MAILTO } from "@/components/research/ProjectBrowser";
 import { APPLY_PATH, PROJECTS_EMAIL } from "@/data/research";
@@ -194,39 +195,26 @@ function StatusLabel({ status }: { status: TrackerStatus }) {
    card stands on its own, with the page showing between them.
    It is still there to read.
 
-   The top right says what the reader can do: an open project takes them
-   straight on to the application form with it chosen (src/app/research/apply);
-   any other shows its status instead, since it cannot take anyone now. */
+   The bottom right says what the reader can do, as on the opportunities
+   board: an open project takes them straight on to the application form
+   with it chosen (src/app/research/apply), and the whole card is that link,
+   with the board's hover; any other shows its status instead, since it
+   cannot take anyone now. */
 function TrackerRow({ project }: { project: TrackerProject }) {
   const t = useTranslations("projectHub.tracker");
   const tFinder = useTranslations("projectHub.finder");
   const tA11y = useTranslations("common.a11y");
   const locale = useLocale() as Locale;
   const full = project.status === "full";
+  const open = project.status === "open";
   return (
     <li
-      className={`flex flex-col border border-navy/12 p-5 md:p-6 ${
+      className={`group relative flex flex-col border border-navy/12 p-5 md:p-6 ${
         full ? "bg-[color-mix(in_srgb,var(--color-cream)_60%,white)]" : "bg-white"
-      }`}
+      } ${open ? "transition-colors duration-200 hover:border-navy/30 focus-within:border-navy/30" : ""}`}
     >
       <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
-      <div className="flex items-start justify-between gap-4">
-        <h3 lang="en" className="font-serif text-title-sm text-navy">{project.title}</h3>
-        <div className="mt-1 shrink-0">
-          {project.status === "open" ? (
-            <Link
-              href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
-              className="inline-flex items-center gap-1.5 text-label font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-            >
-              {t("apply")}
-              <ArrowRightIcon size={15} aria-hidden="true" />
-              <span className="sr-only">: <span lang="en">{project.title}</span></span>
-            </Link>
-          ) : (
-            <StatusLabel status={project.status} />
-          )}
-        </div>
-      </div>
+      <h3 lang="en" className="font-serif text-title-sm text-navy">{project.title}</h3>
       {project.theses.length + project.topics.length > 0 && (
         <ul role="list" className="mb-2 mt-1 flex flex-wrap gap-1.5">
           {project.theses.map((thesis) => (
@@ -248,7 +236,8 @@ function TrackerRow({ project }: { project: TrackerProject }) {
               href={project.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              /* Above the card-wide Apply link, so it stays its own link. */
+              className="relative z-10 inline-flex items-center gap-1 font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
               {project.supervisor}
               <ArrowUpRightIcon size={13} aria-hidden="true" />
@@ -259,16 +248,40 @@ function TrackerRow({ project }: { project: TrackerProject }) {
           )}
         </p>
       )}
-      {/* Whose students may apply, in orange as on the hand-kept cards: it
-          is the line that decides whether a project is for the reader. */}
-      {project.universities.length > 0 && (
-        <p className="mt-2 text-caption font-medium leading-[18px] text-orange-ink">
-          {tFinder("who.studentsOnly", {
-            universities: formatList(project.universities, locale, "disjunction"),
-          })}
-        </p>
-      )}
       {project.summary && <p lang="en" className="mt-3 max-w-[820px] text-[15px] leading-6 text-navy/78">{project.summary}</p>}
+      {/* Pinned to the card's foot, so the way in lines up across a row.
+          Whose students may apply sits beside it, in orange as on the
+          hand-kept cards: it is the line that decides whether a project is
+          for the reader, so it is read with the way in. */}
+      <div className="mt-auto pt-5">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-navy/10 pt-3.5">
+          {project.universities.length > 0 ? (
+            <p className="text-caption font-medium leading-[18px] text-orange-ink">
+              {tFinder("who.studentsOnly", {
+                universities: formatList(project.universities, locale, "disjunction"),
+              })}
+            </p>
+          ) : (
+            <span />
+          )}
+          {open ? (
+            <Link
+              href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
+              className="inline-flex items-center gap-1.5 text-label font-medium text-navy after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-navy focus-visible:after:[outline-style:solid]"
+            >
+              <CardApplyLabel>{t("apply")}</CardApplyLabel>
+              <ArrowRightIcon
+                size={15}
+                aria-hidden="true"
+                className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-within:translate-x-0.5"
+              />
+              <span className="sr-only">: <span lang="en">{project.title}</span></span>
+            </Link>
+          ) : (
+            <StatusLabel status={project.status} />
+          )}
+        </div>
+      </div>
       </div>
     </li>
   );

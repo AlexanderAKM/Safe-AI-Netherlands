@@ -10,6 +10,7 @@ import {
   MapPinIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import CardApplyLabel from "@/components/research/CardApplyLabel";
 import { ChipGroup, type FilterOption } from "@/components/research/FilterControls";
 import { REGION_REQUEST } from "@/components/opportunities/OpportunityIndex";
 import { useOpportunities } from "@/components/opportunities/useOpportunities";
@@ -171,20 +172,10 @@ function OpportunityCard({ item, today, className = "" }: { item: Opportunity; t
           ) : (
             <p className="whitespace-nowrap bg-navy/[0.05] px-2 py-1 text-[12px] leading-4 text-navy/70">{t(`typeTag.${item.type}`)}</p>
           )}
-          {/* Where it was found, beside the arrow that takes the reader
-              there: the credit and the way out read as one. */}
-          <p className="flex shrink-0 items-center gap-2 text-footnote text-navy/55">
-            {!sain && source && t("external.via", { source: source.name })}
-            <Arrow
-              size={16}
-              aria-hidden="true"
-              className={`shrink-0 text-navy/40 transition-[color,transform] duration-200 group-hover:text-navy group-focus-within:text-navy ${
-                sain
-                  ? "group-hover:translate-x-0.5 group-focus-within:translate-x-0.5"
-                  : "group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-focus-within:-translate-y-0.5 group-focus-within:translate-x-0.5"
-              }`}
-            />
-          </p>
+          {/* Where it was found; the way there is the arrow at the foot. */}
+          {!sain && source && (
+            <p className="shrink-0 text-footnote text-navy/55">{t("external.via", { source: source.name })}</p>
+          )}
         </div>
 
         <h3 id={titleId} lang="en" className="mt-3 font-serif text-title-sm text-navy">
@@ -235,21 +226,24 @@ function OpportunityCard({ item, today, className = "" }: { item: Opportunity; t
           </p>
         )}
 
-        {/* Pinned to the card's foot, so deadlines line up across a row. */}
+        {/* Pinned to the card's foot, so deadlines line up across a row. The
+            way in sits bottom right: Apply and its arrow on a SAIN project,
+            the arrow alone on a posting elsewhere. */}
         <div className="mt-auto pt-5">
-          <div className="flex items-baseline justify-between gap-4 border-t border-navy/10 pt-3.5">
+          <div className="flex items-center justify-between gap-4 border-t border-navy/10 pt-3.5">
             <Deadline item={item} today={today} />
-            {sain && (
-              /* The line draws in from the left, as under a supervisor's name
-                 on the Project Hub; without motion it simply appears. */
-              <p className="relative shrink-0 text-caption font-medium text-navy">
-                {t("sain.apply")}
-                <span
-                  aria-hidden="true"
-                  className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-navy ease-[cubic-bezier(0.16,1,0.3,1)] motion-safe:transition-transform motion-safe:duration-300 group-hover:scale-x-100 group-focus-within:scale-x-100"
-                />
-              </p>
-            )}
+            <p className="flex shrink-0 items-center gap-1.5 text-caption font-medium text-navy">
+              {sain && <CardApplyLabel>{t("sain.apply")}</CardApplyLabel>}
+              <Arrow
+                size={15}
+                aria-hidden="true"
+                className={`shrink-0 transition-[color,transform] duration-200 ${
+                  sain
+                    ? "text-navy group-hover:translate-x-0.5 group-focus-within:translate-x-0.5"
+                    : "text-navy/40 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-navy group-focus-within:-translate-y-0.5 group-focus-within:translate-x-0.5 group-focus-within:text-navy"
+                }`}
+              />
+            </p>
           </div>
         </div>
       </article>
