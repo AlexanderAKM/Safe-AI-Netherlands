@@ -24,7 +24,7 @@
   },
   "volunteer": {
     "heading": "SAIN draait op vrijwilligers",
-    "body": "De meeste rollen op deze pagina zijn vrijwilligersrollen, voor mensen die willen dat AI goed uitpakt en daar naast hun studie of baan drie tot tien uur per week aan willen besteden. Je verzorgt een cursus, de evenementen of de communicatie van een chapter, met een team om je heen en een chapter die op je rekent. Veel mensen die zo begonnen, werken nu aan AI-veiligheid bij labs, instituten en ministeries, en een rol hier is vaak de eerste regel op dat cv.",
+    "body": "De meeste rollen op deze pagina zijn vrijwilligersrollen, voor mensen die willen dat AI goed uitpakt en daar naast hun studie of baan drie tot tien uur per week aan willen besteden. Je verzorgt een cursus, de evenementen of de communicatie van een chapter, met een team om je heen en een chapter dat op je rekent. Veel mensen die zo begonnen, werken nu aan AI-veiligheid bij labs, instituten en ministeries, en een rol hier is vaak de eerste regel op dat cv.",
     "jumpLabel": "Naar een team"
   },
   "howToApply": {
@@ -76,7 +76,7 @@
   "chapters": {
     "amsterdam": {
       "heading": "SAIN Amsterdam bouwt een kernteam op",
-      "blurb": "Director Ana zoekt teamleiders en teamleden voor alle teams. Wil je helpen een chapter vanaf de grond op te bouwen? Dan is dit het moment."
+      "blurb": "Director Ana zoekt teamleiders en teamleden voor alle teams. Wil je helpen een chapter van de grond af op te bouwen? Dan is dit het moment."
     },
     "utrecht": {
       "heading": "SAIN Utrecht breidt het team uit",
@@ -124,8 +124,8 @@
     },
     "panels": {
       "responsibilities": "Wat je gaat doen",
-      "goodFitIf": "Je past misschien goed als je",
-      "alsoStrong": "Sterke kandidaten hebben misschien ook",
+      "goodFitIf": "Deze rol past bij je als je",
+      "alsoStrong": "Pluspunten",
       "background": "Gewenste achtergrond",
       "terms": "Voorwaarden",
       "benefits": "Wat SAIN biedt",
@@ -167,10 +167,10 @@
         "Met de Communications Lead afstemmen over de promotie van cursussen en discussiegroepen."
       ],
       "background": {
-        "field": "Open. Je moet je thuis voelen bij zowel technische inhoud als governance-inhoud over AI-veiligheid.",
+        "field": "Open. Je moet je thuis voelen bij zowel technische onderwerpen als governance binnen AI-veiligheid.",
         "level": "Bij voorkeur een master. Een sterke bachelor met ervaring als facilitator komt ook in aanmerking.",
         "experience": "Ervaring als facilitator, docent of cursusontwerper heeft de voorkeur. Eerdere deelname aan een cursus over AI-veiligheid heeft sterk de voorkeur (bijvoorbeeld een eerdere ronde van SAIN).",
-        "softSkills": "Schriftelijke communicatie, organisatietalent, je op je gemak voelen bij het begeleiden van leren door discussie."
+        "softSkills": "Schriftelijke communicatie, organisatietalent, plezier in het begeleiden van groepsdiscussies."
       },
       "collaborations": "De Chapter Director, facilitators, Communications Lead, Community Manager."
     },
@@ -196,10 +196,10 @@
     "education-discussion-lead": {
       "title": "Education Discussion Lead",
       "reportsTo": "de Education Lead",
-      "timeCommitment": "Ongeveer 3 uur per week tijdens het blok (een sessie van 1 uur plus zo'n 2 uur voorbereiding, materiaal selecteren en de chat modereren)",
-      "mission": "Leid één discussiegroep over een specifiek thema (technische veiligheid, AI-governance, privacy, enzovoort). Zorg voor een ontspannen sfeer van hoge kwaliteit, waarin 8 tot 10 deelnemers zich serieus bezighouden met het gedeelde materiaal en met elkaar.",
+      "timeCommitment": "Ongeveer 3 uur per week tijdens het blok (een sessie van 1 uur plus zo’n 2 uur voorbereiding, materiaal selecteren en de chat modereren)",
+      "mission": "Leid één discussiegroep over een specifiek thema (technische veiligheid, AI-governance, privacy, enzovoort). Zorg voor een ontspannen sfeer met inhoudelijk sterke gesprekken, waarin 8 tot 10 deelnemers zich serieus bezighouden met het gedeelde materiaal en met elkaar.",
       "responsibilities": [
-        "Minstens een week vooruit thema's kiezen en vragen voorbereiden die passen bij de focus van de groep.",
+        "Minstens een week vooruit thema’s kiezen en vragen voorbereiden die passen bij de focus van de groep.",
         "De Communications Lead informeren voor de promotie: thema, tijd, locatie, beschrijving en manier van aanmelden.",
         "Voor elke sessie leesmateriaal selecteren: papers, artikelen, recente casussen.",
         "De wekelijkse sessie van 1 uur leiden in een informele omgeving (een café, een gehuurde ruimte, het kantoor van het chapter). Sessies mogen 30 minuten uitlopen als de deelnemers dat willen.",
@@ -221,7 +221,7 @@
       "title": "Events Lead",
       "reportsTo": "de Chapter Director",
       "timeCommitment": "6 tot 10 uur per week",
-      "mission": "Plan en organiseer de evenementen van het chapter. Zorg dat het chapter met evenementen zichtbaar blijft, trek sprekers aan en geef het gemeenschapsleven vorm. Zoek kansen om SAIN onder de aandacht te brengen, zodat we nieuwe doelgroepen bereiken, de community versterken en mensen inspireren tot een loopbaan in AI-veiligheid.",
+      "mission": "Plan en organiseer de evenementen van het chapter. Zorg dat het chapter met evenementen zichtbaar blijft, trek sprekers aan en zorg voor een levendige community. Zoek kansen om SAIN onder de aandacht te brengen, zodat we nieuwe doelgroepen bereiken, de community versterken en mensen inspireren tot een loopbaan in AI-veiligheid.",
       "responsibilities": [
         "Een evenwichtige agenda plannen met professionele evenementen, sociale activiteiten voor de community en hackathons. Belangrijke data doorgeven aan de Communications Lead.",
         "Kansen zoeken om bestuursleden en communityleden van SAIN zichtbaar te maken.",
@@ -235,7 +235,7 @@
         "field": "Open. Oprechte interesse in AI-veiligheid is een vereiste.",
         "level": "Niet relevant.",
         "experience": "Ervaring met het organiseren van evenementen (studieverenigingen, congressen, hackathons) heeft sterk de voorkeur.",
-        "softSkills": "Projectmanagement, geen moeite met het koud mailen van sprekers, kalm blijven onder tijdsdruk, sterke sociale vaardigheden."
+        "softSkills": "Projectmanagement, geen moeite met het mailen van sprekers die je niet kent, kalm blijven onder tijdsdruk, sterke sociale vaardigheden."
       },
       "collaborations": "De Chapter Director, Communications Lead, Community Manager, externe sprekers, contactpersonen van locaties."
     },
@@ -266,7 +266,7 @@
       "responsibilities": [
         "De aankondigingen van het chapter op Instagram, LinkedIn en WhatsApp verzorgen volgens de brand kit (vaste templates met de lettertypen en kleuren van SAIN).",
         "Aan het begin van elke maand de contentkalender afstemmen op de bredere doelen van de organisatie en de contentpijlers van SAIN.",
-        "Relevante content zoeken om op sociale media te delen en zo de betrokkenheid vast te houden en te vergroten (adviseurs, bestuursleden, partnerorganisaties).",
+        "Relevante content van adviseurs, bestuursleden en partnerorganisaties zoeken en op sociale media delen, om de betrokkenheid vast te houden en te vergroten.",
         "Ontwerpen voorstellen voor offline materiaal, zoals roll-up banners, mokken en T-shirts.",
         "Best practices uitzoeken en delen met de leden van het communicatieteam.",
         "Taken delegeren met duidelijke verwachtingen en deadlines volgens de contentkalender.",
@@ -290,9 +290,9 @@
       "timeCommitment": "3 tot 5 uur per week",
       "mission": "Versterk de interne en externe communicatie van het chapter. Stem met de Communications Lead af over gedeelde doelen en een consistente huisstijl en toon op alle kanalen.",
       "responsibilities": [
-        "Posts maken volgens de postingkalender van het chapter voor Instagram, LinkedIn of WhatsApp. Ontwerpen, foto's en video's maken die waar relevant ook op andere kanalen gedeeld kunnen worden.",
+        "Posts maken volgens de contentkalender van het chapter voor Instagram, LinkedIn of WhatsApp. Ontwerpen, foto’s en video’s maken die waar relevant ook op andere kanalen gedeeld kunnen worden.",
         "Bijhouden welke content goed werkt, dat herhalen en aanbevelingen delen met teamleden.",
-        "Evenementen live verslaan (realtime stories, foto's, video's).",
+        "Evenementen live verslaan (realtime stories, foto’s, video’s).",
         "Werken aan de lokale en landelijke branding van SAIN.",
         "Het wekelijkse teamoverleg bijwonen.",
         "Ideeën aandragen op basis van de betrokkenheid die je ziet."
@@ -311,9 +311,9 @@
       "timeCommitment": "3 tot 5 uur per week",
       "mission": "Houd de webpresentatie van het chapter verzorgd, actueel en in lijn met de huisstijl van SAIN.",
       "responsibilities": [
-        "Webpagina's van het chapter bouwen en onderhouden, zodat inhoud en ontwerp actueel blijven.",
+        "Webpagina’s van het chapter bouwen en onderhouden, zodat inhoud en ontwerp actueel blijven.",
         "Updates doorvoeren waar de Communications Lead, Events Lead of Education Lead om vraagt.",
-        "Pagina's optimaliseren voor leesbaarheid, mobiel gebruik en laadsnelheid.",
+        "Pagina’s optimaliseren voor leesbaarheid, mobiel gebruik en laadsnelheid.",
         "Zorgen voor visuele consistentie met de brand kit van SAIN in alles wat op het web staat.",
         "Verbeteringen aan lay-out en gebruikersstromen voorstellen en uitwerken in prototypes.",
         "Het wekelijkse overleg van het communicatieteam bijwonen."
@@ -333,7 +333,7 @@
       "mission": "Maak geschreven en multimediale content die het werk, de evenementen en de missie van SAIN overbrengt op interne en externe doelgroepen.",
       "responsibilities": [
         "Teksten schrijven voor posts op sociale media, nieuwsbrieven, aankondigingen van evenementen en de website, in de toon en stijl van SAIN.",
-        "Korte video's of foto's maken voor Instagram en LinkedIn, inclusief live verslag van evenementen (stories, reels, terugblikposts).",
+        "Korte video’s of foto’s maken voor Instagram en LinkedIn, inclusief live verslag van evenementen (stories, reels, terugblikposts).",
         "Content afstemmen op platform en publiek: beknopt en visueel voor Instagram, professioneel en inhoudelijk voor LinkedIn.",
         "De maandelijkse contentkalender van de Communications Lead volgen.",
         "Bijhouden welke content goed werkt en je observaties delen met het team.",
@@ -362,7 +362,7 @@
       ],
       "background": {
         "field": "Open. Grafisch ontwerp, visuele communicatie of mediakunst zijn handig.",
-        "level": "Niet relevant; je portfolio weegt zwaarder dan diploma's.",
+        "level": "Niet relevant; je portfolio weegt zwaarder dan diploma’s.",
         "experience": "Eerdere ervaring met grafisch ontwerp is vereist. Vaardig in Canva, Figma, Adobe Illustrator, Photoshop of vergelijkbare software. Een portfolio heeft sterk de voorkeur.",
         "softSkills": "Gevoel voor beeld, oog voor een consistente huisstijl, openstaan voor feedback, werken met deadlines."
       },
@@ -374,7 +374,7 @@
       "timeCommitment": "3 tot 5 uur per week",
       "mission": "Maak, bewerk en lever beeldmateriaal van hoge kwaliteit dat de activiteiten van SAIN vastlegt, de missie van de organisatie een menselijk gezicht geeft en het verhaal op alle digitale en gedrukte kanalen versterkt.",
       "responsibilities": [
-        "Live evenementen, workshops, panels en sociale bijeenkomsten van het chapter fotograferen.",
+        "Evenementen, workshops, panels en sociale bijeenkomsten van het chapter fotograferen.",
         "Geplande fotoshoots doen voor teamportretten, marketingcampagnes en promotiemateriaal.",
         "Ruwe beelden bewerken en retoucheren voor een professionele, verzorgde uitstraling die past bij de toon van SAIN.",
         "Een gedeelde digitale mediabibliotheek (bijvoorbeeld Google Drive) bijhouden met goed getagde bestanden in hoge resolutie voor het communicatieteam.",
@@ -383,7 +383,7 @@
       ],
       "background": {
         "field": "Open. Fotografie, mediaproductie of beeldende kunst zijn handig.",
-        "level": "Niet relevant; je portfolio en technische vaardigheid wegen zwaarder dan diploma's.",
+        "level": "Niet relevant; je portfolio en technische vaardigheid wegen zwaarder dan diploma’s.",
         "experience": "Eerdere ervaring met fotograferen en fotobewerking is vereist. Ervaring met Adobe Lightroom, Photoshop of vergelijkbare bewerkingssoftware. Toegang tot een professionele of semiprofessionele camera is handig. Een portfolio of galerij van eerder werk heeft sterk de voorkeur.",
         "softSkills": "Een scherp oog voor kadrering en licht, spontane momenten kunnen vastleggen, betrouwbaar in het halen van deadlines voor de nabewerking, en je op je gemak voelen in de omgang met bezoekers van evenementen."
       },
@@ -406,7 +406,7 @@
         "field": "Open.",
         "level": "Niet relevant.",
         "experience": "Ervaring met communitymanagement, een bestuursfunctie bij een studentenvereniging of iets vergelijkbaars is handig.",
-        "softSkills": "Warmte, sociaal vaardig, betrouwbaar, geen moeite met wat licht werk met data."
+        "softSkills": "Warmte, sociaal vaardig, betrouwbaar, geen moeite met wat eenvoudig datawerk."
       },
       "collaborations": "De Chapter Director, alle teamleads, oud-deelnemers van de cursussen, communityleden."
     },
@@ -426,7 +426,7 @@
       "background": {
         "field": "Open. Oprechte interesse in AI-veiligheid is een vereiste.",
         "level": "Niet relevant.",
-        "experience": "Niet vereist. Eerdere ervaring als merkambassadeur, studentvertegenwoordiger of met outreach is mooi meegenomen.",
+        "experience": "Niet vereist. Eerdere ervaring als merkambassadeur, studentvertegenwoordiger of met promotiewerk is mooi meegenomen.",
         "softSkills": "Extravert, toegankelijk, betrouwbaar, geen moeite met het aanspreken van onbekenden."
       },
       "collaborations": "Events Lead, Communications Lead, Community Manager."
@@ -435,7 +435,7 @@
       "title": "Head of Projects",
       "reportsTo": "de Executive Director",
       "timeCommitment": "Fulltime (1,0 fte), 40 uur per week, vijfdaagse werkweek",
-      "mission": "Honderden mensen in Nederland ronden elk jaar een cursus over AI-veiligheid af, en bijna niemand doet er daarna iets mee. De Project Hub bestaat om dat gat te dichten: daar levert wie een of twee cursussen heeft gevolgd een eerste echte bijdrage, of dat nu een paper is, een inbreng in een beleidsconsultatie, een eval, een tool of Nederlandstalig materiaal. Jij leidt beide tracks, begeleide projecten en open samenwerking, en jij bent verantwoordelijk voor hoeveel projecten een afgeronde, waardevolle staat bereiken. Nu heeft de Hub een paar begeleiders, een paar afgeronde projecten en vrijwilligersteams in drie steden met een chapter. Jouw taak is om de Hub tot bloei te brengen. Als vierde persoon in het landelijke team van SAIN ben je eigenaar van de strategie, het budget en de vrijwilligersteams van de Hub. Het werk is projectmanagement en relaties opbouwen: je hoeft niet de slimste onderzoeker in de kamer te zijn, je moet de persoon zijn die zorgt dat vijftig projecten ook echt worden afgerond.",
+      "mission": "Honderden mensen in Nederland ronden elk jaar een cursus over AI-veiligheid af, en bijna niemand doet er daarna iets mee. De Project Hub bestaat om dat gat te dichten: daar levert iedereen die een of twee cursussen heeft gevolgd een eerste echte bijdrage, of dat nu een paper is, een inbreng in een beleidsconsultatie, een eval, een tool of Nederlandstalig materiaal. Jij leidt beide tracks, begeleide projecten en open samenwerking, en jij bent verantwoordelijk voor hoeveel projecten echt worden afgerond en iets opleveren. Nu heeft de Hub een paar begeleiders, een paar afgeronde projecten en vrijwilligersteams in drie steden met een chapter. Jouw taak is om de Hub tot bloei te brengen. Als vierde persoon in het landelijke team van SAIN ben je eigenaar van de strategie, het budget en de vrijwilligersteams van de Hub. Het werk is projectmanagement en relaties opbouwen: je hoeft niet de slimste onderzoeker aan tafel te zijn, je moet degene zijn die vijftig projecten over de eindstreep helpt.",
       "responsibilities": [
         "De strategische koers van de Project Hub bepalen en bewaken, samen met de leiding en de raad van advies.",
         "Proactief begeleiders werven en projecten binnenhalen, op het gebied van onderzoek, beleid en techniek.",
@@ -469,7 +469,7 @@
       },
       "applicationProcess": [
         "Eerste kennismaking: een gesprek van 30 minuten met iemand uit onze leiding.",
-        "Werkopdracht: een thuisopdracht van ongeveer 2 uur die het echte werk weerspiegelt. Ga je door naar de volgende ronde, dan vragen we je toestemming om referenties te benaderen.",
+        "Werkopdracht: een thuisopdracht van ongeveer 2 uur die lijkt op het echte werk. Ga je door naar de volgende ronde, dan vragen we je toestemming om referenties te benaderen.",
         "Eindgesprek: 45 tot 60 minuten met de Director en een van onze technische adviseurs, inclusief een bespreking van je werkopdracht.",
         "Proefperiode: twee betaalde proefdagen in Amsterdam of op afstand, waarin je precies doet wat de baan vraagt."
       ]
@@ -498,14 +498,14 @@
       "title": "Education Lead",
       "reportsTo": "de Chapter Director",
       "timeCommitment": "10 tot 15 uur per week, verspreid over de week, met pieken tijdens cursusrondes en pre-incubatiecycli",
-      "mission": "Wees verantwoordelijk voor de coördinatie en de partnerschappen in de pijplijn van onderwijs naar incubatie van SAIN Utrecht: zorg dat de cursussen goed lopen, dat het facilitatorteam wordt ondersteund, dat veelbelovende deelnemers concrete pre-incubatieprojecten worden en dat de cursussen van SAIN verbonden zijn met het bredere vakgebied AI-veiligheid en met instellingen. De Education Lead is niet verantwoordelijk voor de coderepository; die ligt bij de Research Ops & Repository Steward. Dit is een betaalde functie, geen vrijwilligersrol: de vergoeding weerspiegelt de coördinerende taken en verantwoordelijkheden hieronder.",
+      "mission": "Wees verantwoordelijk voor de coördinatie en de partnerschappen in de pijplijn van onderwijs naar incubatie van SAIN Utrecht: zorg dat de cursussen goed lopen, dat het facilitatorteam wordt ondersteund, dat veelbelovende deelnemers doorstromen naar concrete pre-incubatieprojecten en dat de cursussen van SAIN verbonden zijn met het bredere vakgebied AI-veiligheid en met instellingen. De Education Lead is niet verantwoordelijk voor de coderepository; die ligt bij de Research Ops & Repository Steward. Dit is een betaalde functie, geen vrijwilligersrol: de vergoeding hoort bij de coördinerende taken en verantwoordelijkheden hieronder.",
       "responsibilities": [
         "Cursusrondes plannen en coördineren (Intro, Technical, Governance), inclusief het programma Technical AI Safety (bijvoorbeeld ARENA 2-4) en de modules Agents + CyberSec, Biorisk en Embodied AI Safety: planning, logistiek van de cohorten, communicatie met deelnemers en een actueel curriculum.",
-        "Met Incubation Ops (Research Team) sterke cursusdeelnemers omzetten in projecten in de pre-incubatiefase: Forge-voorstellen afbakenen, deelnemers koppelen aan projecttracks en mentoren, en projecten overdragen aan Incubation Ops met een duidelijke samenvatting van de status.",
+        "Met Incubation Ops (Research Team) sterke cursusdeelnemers laten doorstromen naar projecten in de pre-incubatiefase: Forge-voorstellen afbakenen, deelnemers koppelen aan projecttracks en mentoren, en projecten overdragen aan Incubation Ops met een duidelijke samenvatting van de status.",
         "Met de Research Ops & Repository Steward zorgen dat Forge-voorstellen en projecten in incubatie technisch worden beoordeeld voordat ze doorgaan naar de Project Hub, een Grant (Type 1/2) of een externe mentorpijplijn.",
         "Partnerschappen in het vakgebied AI-veiligheid aangaan en onderhouden (bijvoorbeeld ARENA, Apart Research, SecureBio, Convergent Robotics, BlueDot Impact) die de cursussen, het mentornetwerk en de projectpijplijn van SAIN versterken.",
-        "Partnerschappen met instellingen aangaan en onderhouden (UU-departementen, andere universiteiten, onderzoeksgroepen, bedrijven) voor de cursussen van SAIN: gastdocenten, erkenning van cursussen of studiepunten, gedeelde cohorten en programma's die we samen uitvoeren. Leads waar relevant overdragen aan de Ambassador en de Director.",
-        "Facilitators en TA's werven, trainen en ondersteunen, en regelmatig check-ins met facilitators houden. De voortgang van cohorten volgen en deelnemers signaleren die klaar zijn voor een vroege overdracht.",
+        "Partnerschappen met instellingen aangaan en onderhouden (UU-departementen, andere universiteiten, onderzoeksgroepen, bedrijven) voor de cursussen van SAIN: gastdocenten, erkenning van cursussen of studiepunten, gedeelde cohorten en programma’s die we samen uitvoeren. Contacten waar relevant overdragen aan de Ambassador en de Director.",
+        "Facilitators en TA’s werven, trainen en ondersteunen, en regelmatig check-ins met facilitators houden. De voortgang van cohorten volgen en deelnemers signaleren die klaar zijn voor een vroege overdracht.",
         "Updates van de cursusinhoud coördineren met de Director, het Discussion Team en de agendapunten van de SAIN Project Hub.",
         "Met de Communications Lead afstemmen over de promotie van cursussen, en met de Events Lead over het ontwerp van hackathons en challenges.",
         "Elke week merkbaar aanwezig zijn, niet alleen in het weekend: op doordeweekse dagen de onderwijsinbox en de kanalen van de facilitators checken, berichten van deelnemers en partners snel beantwoorden, en lopende zaken rond pre-incubatie en partnerschappen met regelmatige kleine acties in beweging houden. Een paar korte check-ins door de week zijn meer waard dan één lange sessie in het weekend."
@@ -513,7 +513,7 @@
       "background": {
         "field": "Open. Een technische achtergrond, een achtergrond in governance of iets verwants, met gedegen kennis van AI-veiligheid.",
         "experience": "Een afgeronde cursus over AI-veiligheid of ervaring als facilitator heeft sterk de voorkeur. Ervaring met programmacoördinatie, het opbouwen van partnerschappen of het leiden van een studentenorganisatie of team.",
-        "softSkills": "Sterk in communicatie en opvolging, en geen moeite met het koud benaderen van organisaties en instellingen. Prettig samenwerken met technische bijdragers en op hun beoordeling vertrouwen, zonder zelf de code te hoeven reviewen. Betrouwbaar, met een vast weekritme: je kunt toezeggen dat je op doordeweekse dagen beschikbaar bent."
+        "softSkills": "Sterk in communicatie en opvolging, en geen moeite met het benaderen van organisaties en instellingen die je nog niet kent. Prettig samenwerken met technische bijdragers en op hun beoordeling vertrouwen, zonder zelf de code te hoeven reviewen. Betrouwbaar, met een vast weekritme: je kunt toezeggen dat je op doordeweekse dagen beschikbaar bent."
       },
       "collaborations": "Chapter Director, Research Lead, Research Ops & Repository Steward, Incubation Ops, Events Lead, Communications Lead, facilitators, externe partners en instellingen."
     },
@@ -523,13 +523,13 @@
       "timeCommitment": "~6 tot 8 uur per week, verspreid over de week, met pieken tijdens incubatiecycli en deadlines van externe projecten",
       "mission": "Bouw en beheer de technische ruggengraat van SAIN Utrecht. Zet de SAIN Repository op en onderhoud die, houd code in incubatie aan een hoge technische standaard en werk met externe bedrijven samen aan projecten. Deze rol zorgt dat wat SAIN publiceert, benchmarkt en demonstreert reproduceerbaar en technisch betrouwbaar is.",
       "responsibilities": [
-        "De SAIN Repository opzetten en onderhouden: structuur van de repo, richtlijnen voor bijdragen, PR-reviews en goedkeuring, CI- en testhygiëne, documentatie en de reproduceerbaarheid van benchmarks en demo's.",
+        "De SAIN Repository opzetten en onderhouden: structuur van de repo, richtlijnen voor bijdragen, PR-reviews en goedkeuring, CI- en testhygiëne, documentatie en de reproduceerbaarheid van benchmarks en demo’s.",
         "Met de Education Lead en Incubation Ops Forge-voorstellen en projecten in incubatie technisch beoordelen, en adviseren welke klaar zijn om door te gaan naar de Project Hub, een Grant of een externe mentorpijplijn.",
-        "Met externe bedrijven samenwerken aan projecten: gezamenlijk werk afbakenen, technische deliverables op schema houden en optreden als technisch aanspreekpunt.",
-        "Cursusfacilitators die een modulerepository beheren (bijvoorbeeld Embodied AI Safety) helpen hun repo's af te stemmen op de standaarden van SAIN.",
+        "Met externe bedrijven samenwerken aan projecten: gezamenlijk werk afbakenen, technische resultaten op schema houden en optreden als technisch aanspreekpunt.",
+        "Cursusfacilitators die een modulerepository beheren (bijvoorbeeld Embodied AI Safety) helpen hun repo’s af te stemmen op de standaarden van SAIN.",
         "Helpen praktische projecttracks te ontwerpen (benchmarks voor de beveiliging van agents, sandboxing, beveiliging van MCP en het tool-ecosysteem, de AI×Bio-projectladder, red-teaming van embodied AI), afgestemd op het niveau van de deelnemers.",
         "Technische feedback geven aan projectteams waar deelnemers en mentoren op vertrouwen.",
-        "Verspreid over de week bijdragen in plaats van in losse weekendsessies: PR's op tijd reviewen, CI groen houden en binnen een paar dagen reageren op projectteams en externe partners."
+        "Verspreid over de week bijdragen in plaats van in losse weekendsessies: PR’s op tijd reviewen, CI groen houden en binnen een paar dagen reageren op projectteams en externe partners."
       ],
       "alsoStrong": [
         "Een achtergrond in cybersecurity, robotica, reinforcement learning of interpretability.",
@@ -547,31 +547,31 @@
       "title": "Education Course Facilitator, Science of Evaluation (LLM Evals)",
       "reportsTo": "de Education Lead",
       "timeCommitment": "~4 tot 6 uur per week tijdens cursusrondes (één sessie van 2 uur plus voorbereiding, huiswerk nakijken en afstemming tussen de tracks), met pieken voor evenementen en hackathons",
-      "mission": "Leg de basis om de community van SAIN Utrecht te leren de risico's van transformatieve AI te evalueren. Begeleid de module Science of Evaluation van het programma Technical AI Safety, gericht op LLM's: benchmarking, inzicht in het vakgebied, de ontwikkeling van evaluaties en de capaciteiten van modellen. Naast het lesgeven stem je af met de Education Lead en de andere technische tracks (CyberSec & Agentic AI, Biosecurity & AI, Embodied AI Safety) om evaluatiemethoden om te zetten in evaluatieprojecten per domein, en ontwikkel je demo's van risico's die SAIN kan laten zien bij evenementen en in cursussen.",
+      "mission": "Leer de community van SAIN Utrecht de basis van het evalueren van de risico’s van transformatieve AI. Begeleid de module Science of Evaluation van het programma Technical AI Safety, gericht op LLM’s: benchmarking, inzicht in het vakgebied, de ontwikkeling van evaluaties en de capaciteiten van modellen. Naast het lesgeven stem je af met de Education Lead en de andere technische tracks (CyberSec & Agentic AI, Biosecurity & AI, Embodied AI Safety) om evaluatiemethoden om te zetten in evaluatieprojecten per domein, en ontwikkel je demo’s van risico’s die SAIN kan laten zien bij evenementen en in cursussen.",
       "responsibilities": [
         "Al het opgegeven materiaal lezen voor elke sessie, vooral technisch materiaal van organisaties en bedrijven op het gebied van AI-veiligheid (bijvoorbeeld de evaluatiemodules van ARENA, en evaluatierapporten en -kaders van frontier labs en AI Safety Institutes).",
         "Wekelijkse interactieve sessies leiden over de wetenschap van evaluatie: hoe benchmarks worden ontworpen en waar ze tekortschieten, het meten van capaciteiten en neigingen van modellen, de grenzen van evals (validiteit, contaminatie, sandbagging, elicitatiegaten) en hoe het vakgebied en de evaluatiemethoden zich in de loop der tijd hebben ontwikkeld.",
-        "Deelnemers een gedeelde woordenschat en gereedschapskist geven, van een benchmark kritisch lezen tot een kleine evaluatie ontwerpen en uitvoeren, zodat ze door kunnen naar werk in hun eigen domein.",
+        "Deelnemers een gemeenschappelijke taal en de juiste tools meegeven, van een benchmark kritisch lezen tot een kleine evaluatie ontwerpen en uitvoeren, zodat ze door kunnen naar werk in hun eigen domein.",
         "Met de Education Lead en de facilitators van de andere tracks evaluatieprojecten voor hun domeinen bepalen (bijvoorbeeld benchmarks voor de beveiliging van agents, niet-operationeel ontwerp van AI×Bio-evaluaties, opstellingen voor red-teaming van embodied AI). Adviseren over methodologie en veelbelovende projecten doorgeven aan de pre-incubatiepijplijn.",
-        "Samenwerken met de Research Ops & Repository Steward en voortbouwen op de SAIN Repository: evalcode, cursusnotebooks en demo's afstemmen op de richtlijnen voor bijdragen, en herbruikbare evaltemplates en reproduceerbare baselines bijdragen.",
-        "Demo's van risico's ontwikkelen die SAIN kan laten zien bij evenementen en in cursussen (bijvoorbeeld live demo's van modelgedrag, walkthroughs van evals, interactieve opstellingen rond \"hoe weten we of een model gevaarlijk is?\"). Met de Events Lead het format afstemmen, en met de Communications Lead hoe demo's publiek worden gepresenteerd.",
-        "Demo's verantwoord houden: ze illustreren risico's en evaluatiemethoden zonder operationele uplift of gevaarlijke inhoud te bieden, en gevoelige demo's krijgen goedkeuring van de Education Lead of de Director voordat ze publiek worden gebruikt.",
+        "Samenwerken met de Research Ops & Repository Steward en voortbouwen op de SAIN Repository: evalcode, cursusnotebooks en demo’s afstemmen op de richtlijnen voor bijdragen, en herbruikbare evaltemplates en reproduceerbare baselines bijdragen.",
+        "Demo’s van risico’s ontwikkelen die SAIN kan laten zien bij evenementen en in cursussen (bijvoorbeeld live demo’s van modelgedrag, walkthroughs van evals, interactieve opstellingen rond \"hoe weten we of een model gevaarlijk is?\"). Met de Events Lead het format afstemmen, en met de Communications Lead hoe demo’s publiek worden gepresenteerd.",
+        "Demo’s verantwoord houden: ze illustreren risico’s en evaluatiemethoden zonder operationele uplift of gevaarlijke inhoud te bieden, en gevoelige demo’s krijgen goedkeuring van de Education Lead of de Director voordat ze publiek worden gebruikt.",
         "Huiswerknotebooks en projectcode nakijken, directe technische feedback geven en sterke deelnemers aandragen voor de Forge/Incubation-pijplijn.",
         "De module actueel houden naarmate evaluatiemethoden, benchmarks en modelcapaciteiten veranderen, in overleg met de Education Lead en de agenda van de SAIN Project Hub.",
         "Regelmatig de check-ins voor facilitators met de Education Lead bijwonen en rapporteren over de voortgang van het cohort en wat het curriculum nodig heeft.",
-        "Door de week bijdragen in plaats van alleen in het weekend: korte check-ins op doordeweekse dagen voor vragen van deelnemers, afstemming tussen de tracks en het ontwikkelen van demo's."
+        "Door de week bijdragen in plaats van alleen in het weekend: korte check-ins op doordeweekse dagen voor vragen van deelnemers, afstemming tussen de tracks en het ontwikkelen van demo’s."
       ],
       "alsoStrong": [
         "Bekendheid met frameworks en tooling voor evals, ervaring met red-teaming, of een achtergrond in een van de andere tracks (cybersecurity, biosecurity, robotica/RL).",
-        "Ervaring met het bouwen van demo's of interactieve opstellingen voor een breed publiek."
+        "Ervaring met het bouwen van demo’s of interactieve opstellingen voor een breed publiek."
       ],
       "background": {
-        "field": "AI/ML, informatica of een verwant technisch vakgebied, met praktische ervaring met LLM's.",
+        "field": "AI/ML, informatica of een verwant technisch vakgebied, met praktische ervaring met LLM’s.",
         "level": "Bij voorkeur een master of PhD. Een sterke bachelor met relevante ervaring met evals of onderzoek komt ook in aanmerking.",
         "experience": "Praktisch werk met LLM-evaluaties of benchmarking (evals uitvoeren, taken ontwerpen of modelgedrag analyseren), of een afgeronde technische cursus over AI-veiligheid zoals ARENA (vooral de evaluatiemodules). Aantoonbaar technisch werk: een GitHub-repo, onderzoeksbijdragen of resultaten uit wedstrijden of sprints zoals Apart Research, MATS of SPAR. Je voelt je thuis in een gedeelde codebase (branching, PR-review, reproduceerbaarheid) en met de standaarden van de SAIN Repository.",
         "softSkills": "Evaluatieconcepten toegankelijk kunnen maken voor een cohort met verschillende niveaus, geen moeite met het geven van kritische technische feedback, en een samenwerkingsgerichte houding tegenover de andere tracks."
       },
-      "collaborations": "Education Lead, Research Ops & Repository Steward, Research Lead, andere technische facilitators (CyberSec & Agentic AI, Biosecurity & AI, Embodied AI Safety), Events Lead (demo's, hackathons, challenges), Communications Lead, externe organisaties op het gebied van AI-veiligheid."
+      "collaborations": "Education Lead, Research Ops & Repository Steward, Research Lead, andere technische facilitators (CyberSec & Agentic AI, Biosecurity & AI, Embodied AI Safety), Events Lead (demo’s, hackathons, challenges), Communications Lead, externe organisaties op het gebied van AI-veiligheid."
     },
     "education-facilitator-cybersec": {
       "title": "Education Course Facilitator, CyberSec & Agentic AI Track",
@@ -580,14 +580,14 @@
       "mission": "Begeleid de module Agentic AI + CyberSec van het programma Technical AI Safety. Leid wekelijkse sessies over de aanvalsoppervlakken van agents en de verdediging daartegen (prompt injection, misbruik van tools, memory poisoning, sandboxing, beveiliging van multi-agentsystemen), ondersteun deelnemers bij hun notebooks en projectwerk, en help sterke kandidaten te vinden voor de projectportfolio Agentic AI Security en de Forge/Incubation-pijplijn.",
       "responsibilities": [
         "Al het opgegeven materiaal lezen voor elke sessie (ARENA-modules, literatuur over de beveiliging van agents).",
-        "Wekelijkse interactieve sessies leiden over de beveiliging van agentic AI: taxonomieën van aanvallen, identiteit en rechtenbeheer van agents, risico's van MCP en het tool-ecosysteem, frameworks voor red-teaming.",
+        "Wekelijkse interactieve sessies leiden over de beveiliging van agentic AI: taxonomieën van aanvallen, identiteit en rechtenbeheer van agents, risico’s van MCP en het tool-ecosysteem, frameworks voor red-teaming.",
         "Huiswerknotebooks nakijken en technische feedback geven; deelnemers met sterk werk aandragen voor de Research Hunger Games of de track voor soloprojecten.",
         "Helpen projecten af te bakenen voor deelnemers uit het cohort die doorstromen naar de portfolioprojecten Agentic AI Security Benchmark, Agent Sandbox of Secure-by-Design.",
         "Regelmatig de check-ins voor facilitators met de Education Lead bijwonen; rapporteren over de voortgang van het cohort en deelnemers die klaar zijn voor een vroege overdracht."
       ],
       "background": {
-        "field": "Informatica, cybersecurity of AI/ML met praktische ervaring in beveiliging (red-teaming, pentesten of onderzoek naar de beveiliging van agents en LLM's).",
-        "level": "Bij voorkeur werkend of met een master. Een sterke bachelor met relevante ervaring uit de praktijk of met CTF's en red-teaming komt ook in aanmerking.",
+        "field": "Informatica, cybersecurity of AI/ML met praktische ervaring in beveiliging (red-teaming, pentesten of onderzoek naar de beveiliging van agents en LLM’s).",
+        "level": "Bij voorkeur werkend of met een master. Een sterke bachelor met relevante ervaring uit de praktijk of met CTF’s en red-teaming komt ook in aanmerking.",
         "experience": "Directe praktische ervaring met agentic AI-systemen en/of toegepaste cybersecurity, bijvoorbeeld eerder red-teamwerk, beveiligingsonderzoek of een afgeronde technische cursus over AI-veiligheid zoals ARENA.",
         "softSkills": "Warmte, technische stof toegankelijk kunnen maken voor een cohort met verschillende niveaus, geen moeite met het geven van directe feedback op code en beveiliging."
       },
@@ -597,20 +597,20 @@
       "title": "Education Course Facilitator, Biosecurity & AI (CBRN Risk Focus)",
       "reportsTo": "de Education Lead",
       "timeCommitment": "~4 uur per week tijdens cursusrondes (één sessie van 2 uur plus voorbereiding)",
-      "mission": "Begeleid de module over biosecurity in de programma's Intro, Technical en Governance, met de nadruk op CBRN-risico's door AI: hoe frontier AI-systemen raken aan routes naar biologische risico's, hoe die risico's worden geëvalueerd en bestuurd, en hoe studenten kunnen bijdragen aan niet-operationeel onderzoek gericht op veiligheid (dreigingsmodellering, ontwerp van evaluaties, analyse van governance) zonder ooit operationeel gevoelige inhoud te genereren of ermee te werken.",
+      "mission": "Begeleid de module over biosecurity in de programma’s Intro, Technical en Governance, met de nadruk op CBRN-risico’s door AI: hoe frontier AI-systemen raken aan routes naar biologische risico’s, hoe die risico’s worden geëvalueerd en gereguleerd, en hoe studenten kunnen bijdragen aan niet-operationeel onderzoek gericht op veiligheid (dreigingsmodellering, ontwerp van evaluaties, analyse van governance) zonder ooit operationeel gevoelige inhoud te genereren of ermee te werken.",
       "responsibilities": [
-        "Alle opgegeven literatuur lezen voor de sessies (biorisico-evaluaties van SecureBio, literatuur over dual-use risico's van LLM's, relevant materiaal over governance) en de snelle ontwikkelingen op dit gebied bijhouden.",
-        "Wekelijkse sessies leiden die de risico's van AI×bio introduceren op het juiste niveau voor elke track: een overzicht op hoofdlijnen van de risicoroutes voor Intro, een diepere technische en evaluatiegerichte invalshoek voor Technical, en een invalshoek van beleid of governance voor het programma Governance.",
-        "Deelnemers begeleiden naar veilige, ongevaarlijke projectvormen uit de AI×Bio-projectladder (bijvoorbeeld het risicolandschap in kaart brengen, dreigingsmodellering, taxonomieën van capaciteiten, het ontwerpen van evaluatiebenchmarks, analyses van lacunes in governance), en strikt elk project vermijden dat echte operationele biologische uplift zou kunnen opleveren of vereisen.",
+        "Alle opgegeven literatuur lezen voor de sessies (biorisico-evaluaties van SecureBio, literatuur over dual-use risico’s van LLM’s, relevant materiaal over governance) en de snelle ontwikkelingen op dit gebied bijhouden.",
+        "Wekelijkse sessies leiden die de risico’s van AI×bio introduceren op het juiste niveau voor elke track: een overzicht op hoofdlijnen van de risicoroutes voor Intro, een diepere technische en evaluatiegerichte invalshoek voor Technical, en een invalshoek van beleid of governance voor het programma Governance.",
+        "Deelnemers begeleiden naar veilige projectvormen uit de AI×Bio-projectladder (bijvoorbeeld het risicolandschap in kaart brengen, dreigingsmodellering, taxonomieën van capaciteiten, het ontwerpen van evaluatiebenchmarks, analyses van lacunes in governance), en strikt elk project vermijden dat echte operationele biologische uplift zou kunnen opleveren of vereisen.",
         "Feedback geven op geschreven projectwerk (essays, dreigingsmodellen, beleidsnotities) en sterke kandidaten aandragen voor de Project Hub of de Governance E2I-pijplijn.",
         "Met de Education Lead afstemmen om het curriculum accuraat te houden naarmate richtlijnen en openbaar onderzoek rond CBRN zich ontwikkelen.",
         "Regelmatig de check-ins voor facilitators met de Education Lead bijwonen."
       ],
       "background": {
-        "field": "Biosecurity, biosafety, levenswetenschappen, volksgezondheid, of AI-governance en -beleid met aantoonbare interesse in dual-use biologische risico's. Kandidaten met een technische AI-achtergrond en een sterke kennis van biosecurity zijn ook welkom.",
+        "field": "Biosecurity, biosafety, levenswetenschappen, volksgezondheid, of AI-governance en -beleid met aantoonbare interesse in dual-use biologische risico’s. Kandidaten met een technische AI-achtergrond en een sterke kennis van biosecurity zijn ook welkom.",
         "level": "Bij voorkeur een master of PhD. Professionals met relevante ervaring in biosecurity, biosafety of beleid komen zeker in aanmerking.",
         "experience": "Bekendheid met risicokaders voor biosecurity, normen voor dual-use research of concern (DURC) of literatuur over AI-bio-evaluaties (bijvoorbeeld SecureBio, biorisico-evaluaties van frontier labs). Een afgeronde cursus over AI-veiligheid heeft de voorkeur.",
-        "softSkills": "Het vermogen om CBRN-risico's didactisch en verantwoord te bespreken: risicoroutes en lacunes in governance benoemen zonder ooit operationele details door te nemen. Dit is een harde eis voor de rol. Een gevoelig onderwerp zorgvuldig kunnen begeleiden, intellectuele bescheidenheid, en een discussie kunnen wegleiden van operationele details terwijl die inhoudelijk blijft."
+        "softSkills": "Het vermogen om CBRN-risico’s didactisch en verantwoord te bespreken: risicoroutes en lacunes in governance benoemen zonder ooit operationele details door te nemen. Dit is een harde eis voor de rol. Een gevoelig onderwerp zorgvuldig kunnen begeleiden, intellectuele bescheidenheid, en een discussie kunnen wegsturen van operationele details zonder dat ze aan inhoud verliest."
       },
       "collaborations": "Education Lead, facilitators van de governancetrack, Research Lead, Director (voor inhoud die vanwege de gevoeligheid van het onderwerp goedkeuring nodig heeft)."
     },
@@ -618,14 +618,14 @@
       "title": "Education Course Facilitator, Embodied AI Safety (Physical AI Track)",
       "reportsTo": "de Education Lead",
       "timeCommitment": "~4 tot 5 uur per week tijdens cursusrondes (één sessie van 2 uur plus voorbereiding en huiswerk nakijken)",
-      "mission": "Begeleid de module Embodied AI Safety van het programma Technical AI Safety. Leid wekelijkse sessies over de specifieke risico's van fysieke AI-systemen: sabotage van infrastructuur, verlies van controle door onomkeerbare fysieke handelingen, en de grenzen van het overzetten van veiligheidstools voor digitale AI (RLHF, CoT-monitoring, interpretability) naar multimodale, met RL getrainde VLA- en wereldmodelarchitecturen. Beheer de GitHub-repository voor de code en opdrachten van de module, begeleid het praktische werk van studenten met reinforcement learning voor robotica, en help sterke kandidaten te vinden voor projecten in red-teaming van embodied AI en voor incubatie.",
+      "mission": "Begeleid de module Embodied AI Safety van het programma Technical AI Safety. Leid wekelijkse sessies over de specifieke risico’s van fysieke AI-systemen: sabotage van infrastructuur, verlies van controle door onomkeerbare fysieke handelingen, en de grenzen van het overzetten van veiligheidstools voor digitale AI (RLHF, CoT-monitoring, interpretability) naar multimodale, met RL getrainde VLA- en wereldmodelarchitecturen. Beheer de GitHub-repository voor de code en opdrachten van de module, begeleid het praktische werk van studenten met reinforcement learning voor robotica, en help sterke kandidaten te vinden voor projecten in red-teaming van embodied AI en voor incubatie.",
       "responsibilities": [
-        "Al het opgegeven materiaal lezen voor elke sessie (casestudy's over misalignment van fysieke AI, literatuur over RL voor robotica, papers over de veiligheid van VLA's en wereldmodellen, relevante rapporten over dreigingsmodellering en red-teaming).",
-        "Wekelijkse interactieve sessies leiden over de veiligheid van embodied AI: belichaming en onomkeerbaarheid, fysieke dreigingsmodellering, reward hacking bij RL in robotbesturing, de kloof tussen simulatie en werkelijkheid, en waarom alignmenttechnieken uit het tijdperk van LLM's niet overdraagbaar zijn naar niet-talige systemen die handelen.",
+        "Al het opgegeven materiaal lezen voor elke sessie (casestudy’s over misalignment van fysieke AI, literatuur over RL voor robotica, papers over de veiligheid van VLA’s en wereldmodellen, relevante rapporten over dreigingsmodellering en red-teaming).",
+        "Wekelijkse interactieve sessies leiden over de veiligheid van embodied AI: belichaming en onomkeerbaarheid, fysieke dreigingsmodellering, reward hacking bij RL in robotbesturing, de kloof tussen simulatie en werkelijkheid, en waarom alignmenttechnieken uit het tijdperk van LLM’s niet overdraagbaar zijn naar niet-talige systemen die handelen.",
         "De gedeelde GitHub-repository van de module beheren: startercode en simulatieomgevingen opzetten, richtlijnen voor bijdragen vastleggen, pull requests van studenten reviewen en mergen, en de opdrachten reproduceerbaar houden.",
         "Het technische werk van studenten met reinforcement learning voor robotica begeleiden (policytraining, rewardontwerp, simulatieomgevingen), met de robotica- en RL-bibliotheken van NVIDIA (bijvoorbeeld Isaac Sim, Isaac Lab, Isaac Gym) of vergelijkbare frameworks (bijvoorbeeld MuJoCo, Affine) als technische basis voor opdrachten en projecten.",
         "Feedback geven op huiswerk en projectcode zoals een TA dat doet: RL-trainingsruns debuggen, het ontwerp van omgevingen en rewards reviewen, en directe technische feedback geven waar studenten en mentoren op vertrouwen.",
-        "Helpen studentprojecten af te bakenen en te begeleiden die passen bij de projectladder van Embodied AI Safety (bijvoorbeeld red-teaming van een gesimuleerde robotpolicy, casestudy's over dreigingsmodellen, prototypes voor monitoring en controle van fysieke agents), met gebruik van werk van partners zoals de agenda van Convergent Robotics voor dreigingsmodellering en red-teaming.",
+        "Helpen studentprojecten af te bakenen en te begeleiden die passen bij de projectladder van Embodied AI Safety (bijvoorbeeld red-teaming van een gesimuleerde robotpolicy, casestudy’s over dreigingsmodellen, prototypes voor monitoring en controle van fysieke agents), met gebruik van werk van partners zoals de agenda van Convergent Robotics voor dreigingsmodellering en red-teaming.",
         "Het curriculum van de cursus Embodied AI Safety opstellen en verbeteren (sessieplannen, literatuur, projecttracks) in overleg met de Education Lead, en het actueel houden naarmate de capaciteiten van fysieke AI en incidenten zich ontwikkelen.",
         "Deelnemers met sterk werk aandragen voor de Forge/Incubation-pijplijn of voor introducties bij externe partners die werken aan de veiligheid van fysieke AI.",
         "Regelmatig de check-ins voor facilitators met de Education Lead bijwonen; rapporteren over de voortgang van het cohort en wat het curriculum nodig heeft."
@@ -636,8 +636,8 @@
       "background": {
         "field": "Robotica, informatica, AI/ML of een verwant technisch vakgebied, met praktische ervaring met reinforcement learning en/of robotica.",
         "level": "Bij voorkeur een master of PhD. Een sterke bachelor met relevant onderzoek, een RL- of roboticaproject of ervaring uit de praktijk komt ook in aanmerking.",
-        "experience": "Direct praktisch werk met RL voor robotica en bekendheid met gangbare simulatie- en trainingsstacks (NVIDIA Isaac Sim/Isaac Lab/Isaac Gym, MuJoCo, Affine of vergelijkbaar). Je voelt je op je gemak als eigenaar en beheerder van een gedeelde codebase (branching, PR-review, reproduceerbaarheid), niet alleen van je eigen onderzoekscode. Aantoonbaar technisch werk in robotica/RL of AI-veiligheid: repo's, studieopdrachten, wedstrijdresultaten of onderzoeksbijdragen. Een afgeronde technische cursus over AI-veiligheid (bijvoorbeeld ARENA) heeft sterk de voorkeur.",
-        "softSkills": "RL- en roboticaconcepten toegankelijk kunnen maken voor een cohort met verschillende niveaus, geen moeite met het geven van directe feedback op code, en zorgvuldigheid bij het verantwoord bespreken van fysieke risicoscenario's."
+        "experience": "Direct praktisch werk met RL voor robotica en bekendheid met gangbare simulatie- en trainingsstacks (NVIDIA Isaac Sim/Isaac Lab/Isaac Gym, MuJoCo, Affine of vergelijkbaar). Je voelt je op je gemak als eigenaar en beheerder van een gedeelde codebase (branching, PR-review, reproduceerbaarheid), niet alleen van je eigen onderzoekscode. Aantoonbaar technisch werk in robotica/RL of AI-veiligheid: repo’s, studieopdrachten, wedstrijdresultaten of onderzoeksbijdragen. Een afgeronde technische cursus over AI-veiligheid (bijvoorbeeld ARENA) heeft sterk de voorkeur.",
+        "softSkills": "RL- en roboticaconcepten toegankelijk kunnen maken voor een cohort met verschillende niveaus, geen moeite met het geven van directe feedback op code, en zorgvuldigheid bij het verantwoord bespreken van fysieke risicoscenario’s."
       },
       "collaborations": "Education Lead, Research Lead, andere technische facilitators, Events Lead (voor de hackathonpijplijn), externe partners die werken aan de veiligheid van fysieke AI."
     },
@@ -669,23 +669,23 @@
       "title": "SAIN Ambassador",
       "reportsTo": "de Events Lead",
       "timeCommitment": "~4 tot 6 uur per week, met pieken rond het congresseizoen, de introductieweek en grote universitaire evenementen",
-      "mission": "Wees het gezicht van SAIN Utrecht naar buiten, op de campus en daarbuiten: breng het chapter in ruimtes waar het nog niet is. Help SAIN Utrecht te vertegenwoordigen met infostands, pitches, workshops, lezingen en congressen, met speciale aandacht voor het opzetten en onderhouden van samenwerkingen met UU-departementen. Deze rol bestaat om te zorgen dat SAIN Utrecht zichtbaar en geloofwaardig is en actief relaties opbouwt binnen de hele universiteit, en niet alleen een eigen programma draait.",
+      "mission": "Wees het gezicht van SAIN Utrecht naar buiten, op de campus en daarbuiten: breng het chapter op plekken waar het nog niet komt. Vertegenwoordig SAIN Utrecht met infostands, pitches, workshops, lezingen en congressen, met speciale aandacht voor het opzetten en onderhouden van samenwerkingen met UU-departementen. Deze rol bestaat om te zorgen dat SAIN Utrecht zichtbaar en geloofwaardig is en actief relaties opbouwt binnen de hele universiteit, en niet alleen een eigen programma draait.",
       "responsibilities": [
         "SAIN Utrecht vertegenwoordigen met een stand op evenementen (introductiemarkten, open dagen van departementen, verenigingsmarkten) om interesse te wekken en het chapter bekender te maken.",
-        "SAIN Utrecht, de missie, programma's en pijplijn pitchen bij universiteitsdepartementen, studieverenigingen, hoogleraren en mogelijke partners, en de pitch afstemmen op elk publiek.",
+        "SAIN Utrecht en zijn missie, programma’s en pijplijn pitchen bij universiteitsdepartementen, studieverenigingen, hoogleraren en mogelijke partners, en de pitch afstemmen op elk publiek.",
         "Kansen op congressen vinden en benutten (bezoeken, een stand bemannen of spreken) die het profiel van SAIN Utrecht versterken en nieuwe samenwerkingspartners of deelnemers opleveren.",
         "Proactief relaties opbouwen en onderhouden met UU-departementen (bijvoorbeeld Informatica, Wijsbegeerte, Ethiek en andere relevante faculteiten) om de deur te openen voor gastcolleges, gezamenlijke workshops, integratie in cursussen of samenwerking in onderzoek.",
-        "Breder nieuwe samenwerkingskansen verkennen en openen (andere studentenverenigingen, externe organisaties, academische groepen) en veelbelovende leads overdragen aan de juiste persoon binnen SAIN: de Education Lead, Research/Incubation Ops of de Director.",
-        "Nauw afstemmen met de Communications Lead, zodat evenementen goed worden gepromoot (evenementpagina's, posts op sociale media, universitaire kanalen) en de boodschap consistent blijft in pitches en materiaal.",
-        "Nauw afstemmen met de Events Lead over de evenementenkalender, prioriteiten en middelen, zodat het werk als ambassadeur de bredere evenementenstrategie van het chapter versterkt in plaats van overlapt.",
-        "Bijhouden hoe outreach en samenwerkingen ervoor staan (gelegde contacten, gegeven pitches, georganiseerde evenementen, gestarte samenwerkingen) en regelmatig rapporteren aan de Events Lead."
+        "Ook daarbuiten nieuwe samenwerkingen verkennen en aangaan (andere studentenverenigingen, externe organisaties, academische groepen) en veelbelovende contacten overdragen aan de juiste persoon binnen SAIN: de Education Lead, Research/Incubation Ops of de Director.",
+        "Nauw afstemmen met de Communications Lead, zodat evenementen goed worden gepromoot (evenementpagina’s, posts op sociale media, universitaire kanalen) en de boodschap consistent blijft in pitches en materiaal.",
+        "Nauw afstemmen met de Events Lead over de evenementenkalender, prioriteiten en middelen, zodat het werk als ambassadeur de bredere evenementenstrategie van het chapter aanvult in plaats van overlapt.",
+        "Bijhouden hoe de promotie en de samenwerkingen ervoor staan (gelegde contacten, gegeven pitches, georganiseerde evenementen, gestarte samenwerkingen) en regelmatig rapporteren aan de Events Lead."
       ],
       "alsoStrong": [
         "Een bestaand netwerk in of bekendheid met UU-departementen, studieverenigingen of de bredere congres- en evenementenwereld in Utrecht."
       ],
       "background": {
         "field": "Open. Dit is een rol in relaties en vertegenwoordiging, geen technische rol, al is bekendheid met concepten uit AI-veiligheid belangrijk om geloofwaardig te kunnen pitchen.",
-        "experience": "Eerdere ervaring met outreach, community-opbouw, het organiseren van evenementen of het publiekelijk vertegenwoordigen van een organisatie. Ervaring in het bestuur van een studentenvereniging, als ambassadeur of vertegenwoordiger, en in sales of partnerships komt allemaal goed van pas.",
+        "experience": "Eerdere ervaring met promotie, community-opbouw, het organiseren van evenementen of het publiekelijk vertegenwoordigen van een organisatie. Ervaring in het bestuur van een studentenvereniging, als ambassadeur of vertegenwoordiger, en in sales of partnerships komt allemaal goed van pas.",
         "softSkills": "Geen moeite met koude acquisitie: je durft departementen, hoogleraren en organisaties te benaderen zonder warme introductie, en je volgt vasthoudend op. Een sterke communicator, zelfverzekerd en flexibel als je pitcht voor verschillende doelgroepen, van studenten aan een stand tot docenten in een vergadering. Betrouwbaar onder de druk van evenementlogistiek, georganiseerd, en met de discretie om SAIN Utrecht geloofwaardig te vertegenwoordigen bij externe partijen."
       },
       "collaborations": "Events Lead, Communications Lead, Chapter Director, UU-departementen, externe studentenorganisaties en congresorganisatoren."
@@ -735,7 +735,7 @@
         "Onderzoekskansen bij partners signaleren en veelbelovende deelnemers en projecten naar hen doorverwijzen.",
         "De partnerschapsstrategie van de Lead uitvoeren en elk partnerschap draaiende houden.",
         "De facilitators die aan governancepartnerschappen werken begeleiden en ondersteunen.",
-        "De Lead op de hoogte houden van de status van elk partnerschap en risico's vroeg melden, zodat de Lead de status kan vastleggen en waar nodig kan bijsturen."
+        "De Lead op de hoogte houden van de status van elk partnerschap en risico’s vroeg melden, zodat de Lead de status kan vastleggen en waar nodig kan bijsturen."
       ],
       "background": {
         "field": "AI-governance, met minstens de kennis die van een facilitator AI Governance wordt verwacht (de EU AI Act, het EU AI Office, de Nederlandse toezichthouders op AI, de AI-strategie van de VS en China).",
@@ -750,17 +750,17 @@
       "timeCommitment": "3 tot 5 uur per week",
       "mission": "Schrijf, redigeer en publiceer de geschreven content van SAIN op sociale media. Vertaal de activiteiten, ideeën en missie van het chapter naar heldere, pakkende teksten die het publiek laten groeien en met één consistente stem spreken.",
       "responsibilities": [
-        "Regelmatig LinkedIn-nieuwsbrieven en langere thought-leadershipartikelen schrijven, redigeren en publiceren over thema's die het communicatieteam bepaalt.",
+        "Regelmatig LinkedIn-nieuwsbrieven en langere thought-leadershipartikelen schrijven, redigeren en publiceren over thema’s die het communicatieteam bepaalt.",
         "Heldere, pakkende bijschriften schrijven voor dagelijkse en wekelijkse updates, aankondigingen van evenementen en persberichten.",
         "Alle geschreven content in de tone of voice van SAIN houden, zodat de toon op alle platforms en in alle formats consistent blijft.",
-        "Posts zo opbouwen dat ze makkelijk te lezen zijn en meer mensen bereiken: sterke openingszinnen, korte alinea's, opsommingstekens en best practices van LinkedIn voor organisch bereik.",
+        "Posts zo opbouwen dat ze makkelijk te lezen zijn en meer mensen bereiken: sterke openingszinnen, korte alinea’s, opsommingstekens en best practices van LinkedIn voor organisch bereik.",
         "Geschreven materiaal proeflezen en redigeren, zodat het foutloos en helder is en past bij de doelen van SAIN.",
         "Feedback van de Communications Lead op toon, boodschap en prioriteiten verwerken.",
         "Het wekelijkse overleg van het communicatieteam bijwonen."
       ],
       "background": {
         "field": "Open. Communicatie, journalistiek, marketing of taalwetenschap zijn handig; bekendheid met AI of AI-veiligheid is een pluspunt.",
-        "level": "Niet relevant. Schrijfvoorbeelden en een sterke beheersing van het Engels tellen zwaarder dan diploma's.",
+        "level": "Niet relevant. Schrijfvoorbeelden en een sterke beheersing van het Engels tellen zwaarder dan diploma’s.",
         "experience": "Eerdere ervaring met copywriting, contentschrijven of redactiewerk is vereist, liefst ook met schrijven voor LinkedIn of andere sociale media. Een portfolio of eerdere schrijfvoorbeelden hebben sterk de voorkeur.",
         "softSkills": "Oog voor detail, je toon aanpassen aan verschillende doelgroepen, ingewikkelde onderwerpen in begrijpelijke taal uitleggen, publicatiedeadlines betrouwbaar halen, en openstaan voor feedback."
       },
@@ -770,11 +770,11 @@
       "title": "Video Editor (Short-Form)",
       "reportsTo": "de Communications Lead",
       "timeCommitment": "3 tot 5 uur per week",
-      "mission": "Film, monteer en publiceer korte video's van hoge kwaliteit die de activiteiten van SAIN vastleggen, de missie van de organisatie een menselijk gezicht geven en ons verhaal tot leven brengen op Instagram Reels, TikTok en YouTube Shorts.",
+      "mission": "Film, monteer en publiceer korte video’s van hoge kwaliteit die de activiteiten van SAIN vastleggen, de missie van de organisatie een menselijk gezicht geven en ons verhaal tot leven brengen op Instagram Reels, TikTok en YouTube Shorts.",
       "responsibilities": [
-        "Live evenementen, workshops, panels en sociale bijeenkomsten van het chapter filmen, met de montage al in je achterhoofd.",
+        "Evenementen, workshops, panels en sociale bijeenkomsten van het chapter filmen, met de montage al in je achterhoofd.",
         "Geplande opnames doen voor portretten van het team, verhalen van leden, marketingcampagnes en promotiecontent.",
-        "Beelden monteren tot verzorgde, verticale korte video's (Instagram Reels, TikToks, Shorts) met sterke openingen, tempo, ondertitels en geluid die passen bij de eigen stijl van elk platform.",
+        "Beelden monteren tot verzorgde, verticale korte video’s (Instagram Reels, TikToks, Shorts) met sterke openingen, tempo, ondertitels en geluid die passen bij de eigen stijl van elk platform.",
         "Content aanpassen en hergebruiken voor verschillende platforms, bijvoorbeeld door langere opnames op te knippen in meerdere korte clips.",
         "Een gedeelde digitale mediabibliotheek (bijvoorbeeld Google Drive) bijhouden met geordend, getagd ruw materiaal en de definitieve exports voor het communicatieteam.",
         "Feedback van de Communications Lead op beeldstijl, storytelling en selectie verwerken.",
@@ -782,9 +782,9 @@
       ],
       "background": {
         "field": "Open. Videoproductie, film, media of beeldende kunst zijn handig.",
-        "level": "Niet relevant; je portfolio en technische vaardigheid wegen zwaarder dan diploma's.",
-        "experience": "Eerdere ervaring met filmen en videomontage is vereist, liefst met korte video's. Ervaring met Adobe Premiere Pro, DaVinci Resolve, Final Cut Pro, CapCut of vergelijkbare montagesoftware. Toegang tot een professionele of semiprofessionele camera (of een goede smartphone met stabilisatie en goede audioapparatuur) is handig. Een portfolio of showreel van eerder werk heeft sterk de voorkeur.",
-        "softSkills": "Een scherp oog voor kadrering, licht en tempo; gevoel voor wat een opening op sociale media laat werken; spontane momenten kunnen vastleggen; betrouwbaar in het halen van deadlines voor de nabewerking; en je op je gemak voelen bij het filmen van bezoekers van evenementen."
+        "level": "Niet relevant; je portfolio en technische vaardigheid wegen zwaarder dan diploma’s.",
+        "experience": "Eerdere ervaring met filmen en videomontage is vereist, liefst met korte video’s. Ervaring met Adobe Premiere Pro, DaVinci Resolve, Final Cut Pro, CapCut of vergelijkbare montagesoftware. Toegang tot een professionele of semiprofessionele camera (of een goede smartphone met stabilisatie en goede audioapparatuur) is handig. Een portfolio of showreel van eerder werk heeft sterk de voorkeur.",
+        "softSkills": "Een scherp oog voor kadrering, licht en tempo; gevoel voor een opening die op sociale media direct pakt; spontane momenten kunnen vastleggen; betrouwbaar in het halen van deadlines voor de nabewerking; en je op je gemak voelen bij het filmen van bezoekers van evenementen."
       },
       "collaborations": "Communications Lead, Content Creator, Events Lead (voor content bij evenementen)."
     },
@@ -792,10 +792,10 @@
       "title": "Communications Lead",
       "reportsTo": "de Chapter Director",
       "timeCommitment": "8 tot 10 uur per week",
-      "mission": "SAIN Groningen is het Groningse chapter van Safe AI Netherlands, een landelijke stichting die het talent ontwikkelt dat nodig is om de risico's van transformatieve AI in Nederland aan te pakken. We organiseren lezingen, sociale activiteiten, cursussen en onderzoeksprojecten voor studenten en jonge professionals. Het chapter bestaat sinds 2023, eerst als AI Safety Initiative Groningen. Sindsdien hebben we veel evenementen georganiseerd, volgen elk jaar zo'n 60 mensen onze gratis cursus over AI-veiligheid, en hebben onze leden onderzoek gepubliceerd op workshops van NeurIPS en ICLR. Maar heel weinig studenten en professionals in Groningen weten dat al, en daar kom jij in beeld. Als Communications Lead bepaal je hoe het chapter online en in de stad naar buiten treedt. Je beheert onze kanalen, werkt nauw samen met de teams voor evenementen, onderwijs en onderzoek, en bouwt je eigen kleine team van communicatievrijwilligers op.",
+      "mission": "SAIN Groningen is het Groningse chapter van Safe AI Netherlands, een landelijke stichting die het talent ontwikkelt dat nodig is om de risico’s van transformatieve AI in Nederland aan te pakken. We organiseren lezingen, sociale activiteiten, cursussen en onderzoeksprojecten voor studenten en jonge professionals. Het chapter bestaat sinds 2023, eerst als AI Safety Initiative Groningen. Sindsdien hebben we veel evenementen georganiseerd, volgen elk jaar zo’n 60 mensen onze gratis cursus over AI-veiligheid, en hebben onze leden onderzoek gepubliceerd op workshops van NeurIPS en ICLR. Maar heel weinig studenten en professionals in Groningen weten dat al, en daar kom jij in beeld. Als Communications Lead bepaal je hoe het chapter online en in de stad naar buiten treedt. Je beheert onze kanalen, werkt nauw samen met de teams voor evenementen, onderwijs en onderzoek, en bouwt je eigen kleine team van communicatievrijwilligers op.",
       "responsibilities": [
         "Onze aankondigingen op Instagram, LinkedIn en Discord verzorgen met de brand kit van SAIN (lettertypen, kleuren en templates).",
-        "Een maandelijkse contentkalender maken die past bij onze bredere doelen en contentthema's.",
+        "Een maandelijkse contentkalender maken die past bij onze bredere doelen en contentthema’s.",
         "Evenementen promoten met de Events Lead: voorpret creëren, aanmeldingen binnenhalen en achteraf terugblikken posten.",
         "Bij de Education Lead en Research Operations navragen welke cursussen en projecten promotie verdienen.",
         "De Groningse pagina van de SAIN-website actueel houden door updates naar onze websiteontwikkelaars te sturen. Zij voeren de wijzigingen door, dus je hoeft de site nooit zelf te bewerken of in GitHub te werken.",
@@ -806,7 +806,7 @@
         "Relevante content van onze adviseurs, bestuursleden en partnerorganisaties delen."
       ],
       "goodFitIf": [
-        "De risico's van geavanceerde AI belangrijk vindt en ze beter wilt begrijpen. Je hebt geen voorkennis of achtergrond in AI nodig; we helpen je op weg. Ken je het vakgebied al, dan is dat mooi meegenomen.",
+        "De risico’s van geavanceerde AI belangrijk vindt en ze beter wilt begrijpen. Je hebt geen voorkennis of achtergrond in AI nodig; we helpen je op weg. Ken je het vakgebied al, dan is dat mooi meegenomen.",
         "Het belangrijk vindt waar AI naartoe gaat, en wilt dat meer mensen zich er serieus mee bezighouden."
       ],
       "background": {
@@ -824,7 +824,7 @@
       "mission": "We bouwen het communicatieteam van SAIN Groningen op en zoeken vrijwilligers die al wat ervaring hebben met design of content en die willen inzetten. Jij maakt de posts, visuals en verhalen die studenten naar onze evenementen en cursussen trekken. Je kunt je richten op waar je het best in bent, of dat nu design, schrijven, fotografie of video is. In ruil daarvoor krijg je gepubliceerd werk voor je portfolio, gemaakt voor een groeiende landelijke organisatie; creatieve inbreng en feedback van de Communications Lead; een plek in de community van SAIN, met onze evenementen, sociale activiteiten, cursussen en discussiegroepen; een landelijk netwerk van studenten, onderzoekers en professionals die werken aan AI-veiligheid; ruimte om door te groeien naar rollen met meer verantwoordelijkheid in het chapter; en op verzoek een referentie of een bewijs van je inzet.",
       "responsibilities": [
         "Posts, stories en graphics maken voor Instagram en LinkedIn met de brand kit van SAIN.",
-        "Helpen evenementen te promoten, en ze vastleggen met foto's, video en terugblikken.",
+        "Helpen evenementen te promoten, en ze vastleggen met foto’s, video en terugblikken.",
         "Korte teksten schrijven, zoals bijschriften, aankondigingen en verslagen van evenementen.",
         "Ideeën aandragen voor de maandelijkse contentkalender.",
         "Helpen met het ontwerp van offline materiaal, zoals posters, banners en merchandise.",

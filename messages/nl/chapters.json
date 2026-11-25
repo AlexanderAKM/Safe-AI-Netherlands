@@ -39,7 +39,7 @@
     }
   },
   "team": {
-    "kicker": "Gerund door vrijwilligers",
+    "kicker": "Door vrijwilligers",
     "heading": "De mensen die je ontmoet",
     "linkedin": ", profiel op LinkedIn (opent in een nieuw tabblad)",
     "roles": {
@@ -218,10 +218,10 @@
   "utrecht": {
     "metadata": {
       "title": "Chapter Utrecht",
-      "description": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Gerund door vrijwilligers, open voor iedereen in de stad."
+      "description": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Door vrijwilligers georganiseerd, open voor iedereen in de stad."
     },
     "hero": {
-      "subheading": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Gerund door vrijwilligers, open voor iedereen in de stad.",
+      "subheading": "Een gratis cursus over AI-veiligheid, twee discussiegroepen en een groeiende onderzoekstrack aan de Universiteit Utrecht. Door vrijwilligers georganiseerd, open voor iedereen in de stad.",
       "photoAlt": "De Domtoren boven de huizen van de Utrechtse binnenstad",
       "caption": "De Utrechtse binnenstad, waar de cursus samenkomt"
     },

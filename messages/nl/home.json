@@ -14,7 +14,7 @@
   "mission": {
     "heading": "Waarom SAIN bestaat",
     "statement": "<muted>Te weinig mensen weten hoe ze aan AI-veiligheid kunnen werken, in onderzoek, in beleid of in het publieke debat.</muted> SAIN <verb1>traint</verb1> nieuwe mensen, <verb2>verbindt</verb2> ze met elkaar en helpt ze <verb3>op weg</verb3>.",
-    "intro": "Een gratis pad, gerund door vrijwilligers, van nieuwsgierigheid naar een eigen bijdrage: via cursussen, evenementen, onderzoek en lokale chapters.",
+    "intro": "Een gratis pad, door vrijwilligers georganiseerd, van nieuwsgierigheid naar een eigen bijdrage: via cursussen, evenementen, onderzoek en lokale chapters.",
     "aboutLink": "Waarom SAIN bestaat"
   },
   "community": {
@@ -115,7 +115,7 @@
   },
   "involved": {
     "heading": "Het komende decennium wordt nu beslist",
-    "intro": "Je hebt geen achtergrond in AI nodig om hier van waarde te zijn. Elk programma van SAIN is gratis, wordt gerund door vrijwilligers en brengt je van nieuwsgierig naar actief bijdragen. Kies er dus een en begin.",
+    "intro": "Je hebt geen achtergrond in AI nodig om hier van waarde te zijn. Elk programma van SAIN is gratis, wordt door vrijwilligers georganiseerd en brengt je van nieuwsgierig naar actief bijdragen. Kies er dus een en begin.",
     "startCourse": "Begin met een gratis cursus"
   }
 }

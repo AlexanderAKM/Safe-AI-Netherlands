@@ -27,7 +27,7 @@
   },
   "building": {
     "heading": "Je sluit je niet aan bij een chapter, je bouwt er een op.",
-    "body": "Jij bent degene die in jouw stad een SAIN-chapter opbouwt, en jij zet alles op. Maar je staat er niet alleen voor: je hebt een gefinancierde landelijke organisatie achter je, en een netwerk van adviseurs, onderzoekers en partnerorganisaties die niets liever willen dan dat jouw chapter slaagt.",
+    "body": "Jij bouwt het SAIN-chapter in jouw stad op en zet alles zelf op poten. Maar je staat er niet alleen voor: je hebt een gefinancierde landelijke organisatie achter je, en een netwerk van adviseurs, onderzoekers en partnerorganisaties die niets liever willen dan dat jouw chapter slaagt.",
     "alreadyBehind": "Wat al achter je staat",
     "alreadyThere": [
       "Een gefinancierde landelijke organisatie",
@@ -39,7 +39,7 @@
   },
   "cities": {
     "heading": "Drie steden met het meeste potentieel.",
-    "intro": "Dit zijn volgens ons de drie steden met het meeste potentieel om naar uit te breiden. Hier leggen we heel kort uit waarom.",
+    "intro": "Naar deze drie steden kunnen we volgens ons het best uitbreiden. Hieronder in het kort waarom.",
     "items": {
       "eindhoven": {
         "origin": "TU/e, het Center for Safe AI en de regio Brainport",
@@ -48,7 +48,7 @@
       },
       "delft": {
         "origin": "TU Delft",
-        "why": "De grootste technische universiteit van Nederland, met grote kracht in robotica en embodied AI. De ELLIS-unit van TU Delft coördineert thema's als Verification & Safe and Responsible AI, Multiagent Systems & Robust and Adversarial ML, en Sequential Decision Making.",
+        "why": "De grootste technische universiteit van Nederland, met grote kracht in robotica en embodied AI. De ELLIS-unit van TU Delft coördineert thema’s als Verification & Safe and Responsible AI, Multiagent Systems & Robust and Adversarial ML, en Sequential Decision Making.",
         "profile": "Waarschijnlijk ook een sterk technisch chapter, mogelijk met meer nadruk op de veiligheid van embodied AI."
       },
       "the-hague": {
@@ -63,9 +63,9 @@
   "incubation": {
     "heading": "Zes maanden van startteam naar SAIN-chapter.",
     "paragraphs": [
-      "Nieuwe chapters beginnen in een incubatiefase. Van half december 2026 tot juni 2027 werkt het startteam met het chapter toe naar een paar concrete mijlpalen. Belangrijk: al hoort deze fase bij de incubatie, intern behandelen we je vanaf het begin als SAIN-chapter.",
+      "Nieuwe chapters beginnen in een incubatiefase. Van half december 2026 tot juni 2027 werkt het startteam met het chapter toe naar een paar concrete mijlpalen. Belangrijk: ook al is dit nog de incubatiefase, intern behandelen we je vanaf het begin als SAIN-chapter.",
       "We zijn hier ambitieus over. In sommige van deze steden geven mensen al cursussen over AI-veiligheid. Daar willen we op voortbouwen en veel verder gaan: cursussen met tientallen deelnemers, evenementen die honderden nieuwe mensen kennis laten maken met AI-veiligheid, een community van honderden mensen in elke stad, en mensen die doorstromen naar echte projecten.",
-      "De precieze mijlpalen voor juni 2027 stellen we in je eerste weken samen met je vast; hoe je ze bereikt, bepaal je zelf. We werken samen om te zorgen dat je je volledige potentieel bereikt. In juni 2027 kijken we in een eindevaluatie terug op hoe het is gegaan. Chapters die het halen, worden officiële SAIN-chapters, en de rollen van director en leads blijven betaalde parttimefuncties."
+      "De precieze mijlpalen voor juni 2027 stellen we in je eerste weken samen met je vast; hoe je ze bereikt, bepaal je zelf. We werken samen, zodat je er het maximale uit haalt. In juni 2027 kijken we in een eindevaluatie terug op hoe het is gegaan. Chapters die het halen, worden officiële SAIN-chapters, en de rollen van director en leads blijven betaalde parttimefuncties."
     ],
     "stops": {
       "teamsBegin": {
@@ -101,11 +101,11 @@
   },
   "community": {
     "heading": "Dit is wat je zou opzetten.",
-    "body": "<strong>Discussiegroepen</strong>, <strong>hackathons</strong>, <strong>lezingen</strong> en de avonden daarna. In Groningen, Amsterdam en Utrecht vinden mensen bij SAIN <strong>vrienden en samenwerkingspartners</strong>, en vaak hun <strong>volgende stap in AI-veiligheid</strong>. Solliciteer nu, en over een jaar heeft jouw stad zo'n community, door jou opgebouwd."
+    "body": "<strong>Discussiegroepen</strong>, <strong>hackathons</strong>, <strong>lezingen</strong> en de avonden daarna. In Groningen, Amsterdam en Utrecht vinden mensen bij SAIN <strong>vrienden en samenwerkingspartners</strong>, en vaak hun <strong>volgende stap in AI-veiligheid</strong>. Solliciteer nu, en over een jaar heeft jouw stad zo’n community, door jou opgebouwd."
   },
   "offer": {
     "heading": "Je doet het niet alleen.",
-    "intro": "Alles wat de drie bestaande chapters met vallen en opstaan hebben geleerd, is opgeschreven, ingericht en vanaf dag één van jou.",
+    "intro": "Alles wat de drie bestaande chapters met vallen en opstaan hebben geleerd, is opgeschreven, staat klaar en is vanaf dag één van jou.",
     "items": {
       "role": {
         "title": "Een rol in het startteam",
@@ -133,7 +133,7 @@
       },
       "development": {
         "title": "Persoonlijke ontwikkeling",
-        "detail": "Een pakket om je professioneel te ontwikkelen in AI-veiligheid, dat we elk teamlid van SAIN proberen te bieden."
+        "detail": "We proberen elk teamlid van SAIN een pakket te bieden om zich professioneel te ontwikkelen in AI-veiligheid."
       },
       "chapter": {
         "title": "Een chapter dat blijft",
@@ -151,8 +151,8 @@
     "panels": {
       "firstMonths": "In je eerste maanden ga je",
       "responsibilities": "Verantwoordelijkheden",
-      "goodFitIf": "Je past misschien goed als je",
-      "alsoStrong": "Sterke kandidaten hebben misschien ook",
+      "goodFitIf": "Deze rol past bij je als je",
+      "alsoStrong": "Pluspunten",
       "logistics": "Praktische zaken"
     },
     "logistics": {
@@ -164,7 +164,7 @@
         "reportsTo": "Rapporteert aan",
         "start": "Start"
       },
-      "flexible": "al kan dat flink variëren en werkt de baan alleen als je flexibel bent.",
+      "flexible": "al kan dat flink schommelen, dus je moet flexibel zijn.",
       "holiday": "8% bovenop je brutosalaris.",
       "location": "Eindhoven, Delft of Den Haag (de stad waar je woont), met af en toe een reis naar Amsterdam en de andere chapters.",
       "start": "Half december 2026, met een gezamenlijke kick-off voor alle drie de startteams."
@@ -178,15 +178,15 @@
       "summary": "Leidt het startteam en opent de deuren in de stad.",
       "hours": "12 uur per week, afhankelijk van voorkeur en beschikbaarheid, {term}.",
       "about": [
-        "Elk chapter van SAIN begon met één persoon die een visie had en die waarmaakte. In Groningen, Amsterdam en Utrecht kostte dat jaren van vallen en opstaan. In Eindhoven, Delft en Den Haag willen we dat het zes maanden duurt, omdat de director deze keer alle middelen van SAIN heeft om te beginnen.",
-        "Als Director ben jij degene die alles in jouw stad leidt. Je bouwt het team op (en zit, als het kan, zelfs bij de laatste gesprekken voor de andere rollen in het startteam in jouw stad) en je opent de deuren naar samenwerking: aan de universiteit of hogescholen, met lokale organisaties, en in Den Haag met de ministeries en instellingen. In juni moet er een chapter staan die in feite zelfstandig draait. Je werkt rechtstreeks met het landelijke team van SAIN, en je bent verantwoordelijk voor de vraag of jouw stad haar mijlpalen haalt.",
-        "Belangrijk: deze rol draait om opbouwen, en om mensen. Kennis van AI-veiligheid is handig, maar jouw taak is om de mensen met de meeste kennis in je community samen te brengen, niet om zelf die persoon te zijn. Je hebt genoeg basis nodig om het vakgebied geloofwaardig te vertegenwoordigen, en daarom vragen we minimaal een afgeronde cursus over AI-veiligheid. Jij bent degene die bouwt, die het team bij elkaar houdt en die vermenigvuldigt wat alle anderen doen.",
-        "Dat betekent dat we veel eigen initiatief van je verwachten. Je krijgt bijvoorbeeld geen checklist per week. In plaats daarvan bepalen we samen de bestemming, kies jij de route, en roep je hulp in wanneer je die nodig hebt.",
+        "Elk chapter van SAIN begon met één persoon die een visie had en die waarmaakte. In Groningen, Amsterdam en Utrecht kostte dat jaren van vallen en opstaan. In Eindhoven, Delft en Den Haag willen we dat in zes maanden doen, omdat de director deze keer vanaf het begin alle middelen van SAIN heeft.",
+        "Als Director ben jij degene die alles in jouw stad leidt. Je bouwt het team op (en zit, als het kan, zelfs bij de laatste gesprekken voor de andere rollen in het startteam in jouw stad) en je opent de deuren naar samenwerking: aan de universiteit of hogescholen, met lokale organisaties, en in Den Haag met de ministeries en instellingen. In juni moet er een chapter staan dat in feite zelfstandig draait. Je werkt rechtstreeks met het landelijke team van SAIN, en jij bent er verantwoordelijk voor dat jouw stad haar mijlpalen haalt.",
+        "Belangrijk: deze rol draait om opbouwen, en om mensen. Kennis van AI-veiligheid is handig, maar jouw taak is om de mensen met de meeste kennis in je community samen te brengen, niet om zelf die persoon te zijn. Je hebt genoeg basis nodig om het vakgebied geloofwaardig te vertegenwoordigen, en daarom vragen we minimaal een afgeronde cursus over AI-veiligheid. Jij bent degene die bouwt, die het team bij elkaar houdt en die zorgt dat alle anderen meer bereiken.",
+        "Dat betekent dat we veel eigen initiatief van je verwachten. Je krijgt bijvoorbeeld geen wekelijkse checklist. In plaats daarvan bepalen we samen de bestemming, kies jij de route, en roep je hulp in wanneer je die nodig hebt.",
         "Hoe het chapter eruitziet, hangt af van de stad. In Eindhoven en Delft past een technisch profiel het best: je praat vooral met engineers, studenten en onderzoekers. In Den Haag is de director bij voorkeur iemand die weet hoe de overheid van binnen werkt. Het is jouw taak om de sterke punten van je stad te vinden en AI-veiligheid daar op de kaart te zetten."
       ],
       "firstMonths": [
-        "Je startteam uitbreiden tot minstens vier mensen met duidelijke rollen, te beginnen met de leads die samen met jou worden geselecteerd. We helpen door andere sollicitanten met je te delen.",
-        "Kantoorruimte regelen en je contacten in de stad inzetten voor samenwerkingen en nuttige adviseurs die je helpen de weg te vinden in de stad en het chapter te ontwikkelen. We helpen met budget en contacten.",
+        "Je startteam uitbreiden tot minstens vier mensen met duidelijke rollen, te beginnen met de leads die samen met jou worden geselecteerd. We helpen door je in contact te brengen met andere sollicitanten.",
+        "Kantoorruimte regelen en je contacten in de stad inzetten voor samenwerkingen en voor adviseurs die je helpen je weg te vinden en het chapter verder te brengen. We helpen met budget en contacten.",
         "De communicatie van het chapter op gang brengen en je eerste cursus inplannen voor het voorjaar.",
         "Regelmatige evenementen op gang brengen."
       ],
@@ -230,7 +230,7 @@
         "Samen met je director de eerste cursus en track kiezen, en die inplannen voor het voorjaar.",
         "De juiste plek vinden waar mensen de cursus kunnen volgen, het juiste aantal facilitators werven en inwerken, en je klaarmaken voor de aanmeldingen! We helpen je het aanmeldproces op te zetten.",
         "Samen met je Communications Lead het eerste cohort promoten.",
-        "Tegen juni: tientallen mensen die je cursussen hebben gevolgd, met als doel meer dan honderd in het voorjaar, en vastgelegde lessen om ze volgend jaar nog beter te laten lopen."
+        "Tegen juni: tientallen mensen die je cursussen hebben gevolgd, met als doel meer dan honderd in het voorjaar, en opgeschreven wat je hebt geleerd, zodat ze volgend jaar nog beter lopen."
       ],
       "responsibilities": [
         "Cursusrondes plannen en organiseren met de curricula van SAIN en het Education Handbook.",
@@ -241,9 +241,9 @@
         "De onderwijsinbox van het chapter bijhouden, en zaken waar nodig voorleggen aan je Director of het landelijke team van SAIN."
       ],
       "goodFitIf": [
-        "Georganiseerd bent, helder schrijft en het leuk vindt om een groep samen te laten nadenken. De rol vraagt goede administratieve aandacht.",
+        "Georganiseerd bent, helder schrijft en het leuk vindt om een groep samen te laten nadenken. Je moet ook nauwkeurig zijn met administratie.",
         "Een cursus over AI-veiligheid hebt afgerond.",
-        "Je thuis voelt bij zowel technische inhoud als governance-inhoud. Je hoeft in geen van beide een expert te zijn."
+        "Je thuis voelt bij zowel technische onderwerpen als governance. Je hoeft in geen van beide een expert te zijn."
       ],
       "alsoStrong": [
         "Een masterdiploma (afgerond of in de maak), of werkervaring in het onderwijs.",
@@ -261,26 +261,26 @@
       "summary": "Maakt het chapter zichtbaar, evenement voor evenement.",
       "hours": "8 uur per week, afhankelijk van voorkeur en beschikbaarheid, {term}.",
       "about": [
-        "Met evenementen wordt een chapter zichtbaar. Een goede lezing of hackathon is waar de meeste mensen de community voor het eerst ontmoeten. Het is ook waar de mensen die later de cursussen en projecten gaan leiden voor het eerst opduiken. In een nieuwe stad is elk evenement ook het bewijs dat er mensen zijn die AI-veiligheid serieus nemen.",
-        "Jij plant en organiseert de eerste evenementen van het chapter, van de eerste meetup tot lezingen waarvoor mensen van ver komen. Je begint niet vanaf nul: het evenementendraaiboek van SAIN, sprekers uit de netwerken van de andere chapters en een budget liggen klaar. Wat we nodig hebben, is iemand die zorgt dat evenementen betrouwbaar doorgaan, de juiste mensen in de zaal krijgt en zorgt dat ze terug willen komen. Dat ben jij!",
-        "Het publiek verschilt per stad. In Eindhoven zijn het studenten van de TU/e en engineers uit Brainport, en in Delft studenten en onderzoekers van TU Delft. In Den Haag zijn het ambtenaren, beleidsprofessionals en studenten. Jouw rol is om evenementen te organiseren die voortbouwen op de sterke punten en kansen van je stad. Elk evenement is een kans om de lokale community en nieuwkomers samen te brengen, en tegelijk de missie en waarden van SAIN oprecht uit te dragen."
+        "Met evenementen wordt een chapter zichtbaar. Bij een goede lezing of hackathon ontmoeten de meeste mensen de community voor het eerst, en daar duiken ook de mensen op die later de cursussen en projecten gaan leiden. In een nieuwe stad is elk evenement ook het bewijs dat er mensen zijn die AI-veiligheid serieus nemen.",
+        "Jij plant en organiseert de eerste evenementen van het chapter, van de eerste bijeenkomst tot lezingen waarvoor mensen van ver komen. Je begint niet vanaf nul: het evenementendraaiboek van SAIN, sprekers uit de netwerken van de andere chapters en een budget liggen klaar. Wat we nodig hebben, is iemand die zorgt dat evenementen steeds goed doorgaan, de juiste mensen in de zaal krijgt en ze zo ontvangt dat ze terug willen komen. Dat ben jij!",
+        "Het publiek verschilt per stad. In Eindhoven zijn het studenten van de TU/e en engineers uit Brainport, en in Delft studenten en onderzoekers van TU Delft. In Den Haag zijn het ambtenaren, beleidsprofessionals en studenten. Jij organiseert evenementen die voortbouwen op de sterke punten en kansen van je stad. Elk evenement is een kans om de lokale community en nieuwkomers samen te brengen, en tegelijk de missie en waarden van SAIN oprecht uit te dragen."
       ],
       "firstMonths": [
         "Vroeg in het nieuwe jaar het eerste openbare evenement van het chapter organiseren.",
         "Een voorjaarsprogramma maken met een mix van lezingen, sociale activiteiten en minstens één praktisch format, zoals een hackathon of leesgroep.",
-        "Twee of drie locaties vinden waar je op kunt rekenen, en beginnen met een lijst van lokale sprekers.",
+        "Twee of drie locaties vinden waar je op kunt rekenen, en een eerste lijst met lokale sprekers maken.",
         "Tegen juni: regelmatige evenementen die honderden nieuwe gezichten in jouw stad met AI-veiligheid in aanraking hebben gebracht, elk met een duidelijke volgende stap voor wie er was."
       ],
       "responsibilities": [
         "Een evenwichtige agenda plannen met professionele evenementen, sociale activiteiten en hackathons volgens het Events Handbook van SAIN, en belangrijke data vroeg delen met de Communications Lead.",
         "Sprekers werven en briefen, zowel lokaal als via het netwerk van SAIN.",
-        "De logistiek van evenementen regelen: locaties boeken, catering kiezen en bestellen, aanmelden mogelijk maken, en de overdracht aan Communications om elk evenement te promoten.",
-        "Kansen zien voor het chapter en SAIN om op evenementen van anderen aanwezig te zijn.",
+        "De logistiek van evenementen regelen: locaties boeken, catering kiezen en bestellen, aanmelden mogelijk maken, en elk evenement op tijd overdragen aan Communications voor de promotie.",
+        "Kansen zien om het chapter en SAIN te laten zien op evenementen van anderen.",
         "De evenementeninbox van het chapter bijhouden, en zaken waar nodig voorleggen aan je Director of het landelijke team van SAIN."
       ],
       "goodFitIf": [
         "Al eerder evenementen hebt georganiseerd, bijvoorbeeld voor een studievereniging, congres, hackathon, festival of bedrijf.",
-        "Er geen moeite mee hebt om sprekers en locaties koud te mailen, en blijft opvolgen tot je antwoord krijgt.",
+        "Er geen moeite mee hebt om sprekers en locaties zonder introductie te mailen, en blijft opvolgen tot je antwoord krijgt.",
         "Rustig blijft als er een uur voordat de deuren opengaan iets misgaat.",
         "Oprechte interesse hebt in AI-veiligheid. Je hebt geen echte achtergrond nodig, maar we verwachten wel dat je je snel inwerkt."
       ],
@@ -301,7 +301,7 @@
       "hours": "8 uur per week, afhankelijk van voorkeur en beschikbaarheid, {term}.",
       "about": [
         "Je sluit je niet aan bij iets waar je nog nooit van hebt gehoord. Daar kom jij in beeld! Jij zorgt dat de juiste mensen in jouw stad over AI-veiligheid horen: onderzoekers en professionals die geweldige facilitators zouden zijn, engineers en studenten die zich stilletjes zorgen maken over de vooruitgang van AI en een community nodig hebben, en ambtenaren die willen begrijpen wat er echt aan de hand is.",
-        "Je lanceert de sociale media van het chapter en zorgt dat die betrouwbaar draaien. SAIN heeft een brand kit, templates en meer die klaar zijn voor gebruik. Je werkt samen met het landelijke team en de Communications Leads van de andere chapters om te delen wat werkt en wat niet. Het publiek van het chapter in jouw stad opbouwen: dat is de taak.",
+        "Je zet de sociale media van het chapter op en zorgt dat er regelmatig iets op verschijnt. SAIN heeft een brand kit, templates en meer voor je klaarliggen. Je werkt samen met het landelijke team en de Communications Leads van de andere chapters om te delen wat werkt en wat niet. Het publiek van het chapter in jouw stad opbouwen: dat is de taak.",
         "Belangrijk: deze rol draait erom de juiste mensen in actie te laten komen (aanmelden, komen opdagen, solliciteren, doorstromen in de talentpijplijn, enzovoort), niet om aantallen volgers of likes op zich.",
         "De toon verschilt per stad. In Den Haag is communiceren in het Nederlands heel belangrijk, in Delft veel minder. Maar jij kent je stad het best."
       ],
@@ -365,7 +365,7 @@
     },
     "hearBack": {
       "heading": "Iedereen die solliciteert, hoort van ons.",
-      "body": "Kom je niet in het startteam, dan ben je nog steeds het begin van de community van het chapter! We sturen je alles wat je nodig hebt om lid te worden van de online community van SAIN, zodat je als een van de eersten hoort over nieuwe activiteiten en kansen in jouw stad."
+      "body": "Kom je niet in het startteam, dan hoor je nog steeds bij de eerste leden van de community van het chapter! We sturen je alles wat je nodig hebt om lid te worden van de online community van SAIN, zodat je als een van de eersten hoort over nieuwe activiteiten en kansen in jouw stad."
     },
     "strongEnough": {
       "heading": "We starten een chapter pas als het team sterk genoeg is.",
@@ -373,7 +373,7 @@
     },
     "about": {
       "heading": "Over SAIN",
-      "body": "Safe AI Netherlands (SAIN) is een Nederlandse non-profit die het talent ontwikkelt dat Nederland nodig heeft om de risico's van transformatieve AI aan te pakken. We bouwen de landelijke talentpijplijn voor AI-veiligheid, die mensen van het eerste contact naar hun eerste echte bijdrage brengt. Daarna brengen we ze in contact met de instellingen en organisaties die hen nodig hebben.",
+      "body": "Safe AI Netherlands (SAIN) is een Nederlandse non-profit die het talent ontwikkelt dat Nederland nodig heeft om de risico’s van transformatieve AI aan te pakken. We bouwen de landelijke talentpijplijn voor AI-veiligheid, die mensen van het eerste contact naar hun eerste echte bijdrage brengt. Daarna verbinden we ze met de instellingen en organisaties die hen nodig hebben.",
       "visa": "We sponsoren geen visa. Ben je in Nederland met een verblijfsvergunning voor studie, dan kun je nog steeds solliciteren."
     }
   },
