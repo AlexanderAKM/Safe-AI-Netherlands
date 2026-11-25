@@ -9,8 +9,16 @@ import {
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import {
+  CardCaret,
+  CardDetails,
+  CardToggle,
+  DetailsLink,
+  useCardDisclosure,
+} from "@/components/research/CardDisclosure";
+import CardApplyLabel from "@/components/research/CardApplyLabel";
 import { Count, OWN_IDEA_MAILTO, chipClass } from "@/components/research/ProjectBrowser";
-import { APPLY_PATH, PROJECTS_EMAIL } from "@/data/research";
+import { APPLY_PATH, PROJECTS_EMAIL, agendaOf } from "@/data/research";
 import {
   trackerStatuses,
   universityOrder,
@@ -33,11 +41,13 @@ import { intlLocale, type Locale } from "@/i18n/routing";
    tracker never shows filters that all say 0. As in the hand-kept browser,
    every answer shows how many projects it would leave.
 
-   It opens on its first six, with a button for the rest.
+   It opens on its first six, with a button for the rest. Each card opens in
+   turn to more about its project (TrackerRow).
 
    Its words are projectHub.finder and projectHub.tracker, which the page
    hands it through <ClientMessages>. The projects themselves (titles,
-   summaries, topics) are Airtable's, in English in every language. */
+   summaries, topics, details) are Airtable's, in English in every
+   language. */
 
 const PREVIEW_COUNT = 6;
 
@@ -118,6 +128,7 @@ function matches(project: TrackerProject, query: string, labels: Labels) {
     project.title,
     project.supervisor ?? "",
     project.summary,
+    ...(project.details ?? []),
     labels.status(project.status),
     project.universities.map(labels.who).join(" "),
     ...project.theses,
@@ -224,40 +235,44 @@ function StatusLabel({ status }: { status: TrackerStatus }) {
 /* A full project reads as set aside rather than switched off, as on the
    hand-kept cards: a cream-tinted white and its text eased back to 80%. Each
    card stands on its own, with the page showing between them.
-   It is still there to read.
+   It is still there to read, and still opens. The top of the card is eased
+   back as one block rather than line by line, which would lift each line
+   above the title's stretched toggle; its details stay at full strength.
 
-   The top right says what the reader can do: an open project takes them
-   straight on to the application form with it chosen (src/app/research/apply);
-   any other shows its status instead, since it cannot take anyone now. */
+   The bottom right says what the reader can do, as on the opportunities
+   board: an open project takes them straight on to the application form
+   with it chosen (src/app/research/apply); any other shows its status
+   instead, since it cannot take anyone now. Apply is a link of its own, not
+   the whole card, since the top of the card opens it; hovering Apply draws
+   the line in under it and nudges its arrow, as on the board.
+
+   A card opens the way the hand-kept cards do (CardDisclosure), to the
+   project's Details from Airtable as a list and a link to the supervisor's
+   full research agenda, found by their name among the supervisors in
+   src/data/research.ts. The details open above the foot, so Apply stays at
+   the bottom. A card with neither has nothing to open: its title is plain
+   text and it has no caret. */
 function TrackerRow({ project }: { project: TrackerProject }) {
   const t = useTranslations("projectHub.tracker");
   const tFinder = useTranslations("projectHub.finder");
   const tA11y = useTranslations("common.a11y");
   const locale = useLocale() as Locale;
+  const disclosure = useCardDisclosure();
   const full = project.status === "full";
+  const agenda = agendaOf(project.supervisor);
+  const opens = Boolean(project.details || agenda);
   return (
     <li
-      className={`flex flex-col border border-navy/12 p-5 md:p-6 ${
+      className={`flex flex-col border border-navy/12 ${
         full ? "bg-[color-mix(in_srgb,var(--color-cream)_60%,white)]" : "bg-white"
-      }`}
+      } ${opens ? "transition-colors duration-200 hover:border-navy/30" : ""}`}
     >
-      <div className={full ? "contents [&>*]:opacity-80" : "contents"}>
+      <div className={`relative flex flex-col p-5 md:p-6 ${full ? "opacity-80" : ""}`}>
       <div className="flex items-start justify-between gap-4">
-        <h3 lang="en" className="font-serif text-title-sm text-navy">{project.title}</h3>
-        <div className="mt-1 shrink-0">
-          {project.status === "open" ? (
-            <Link
-              href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
-              className="inline-flex items-center gap-1.5 text-label font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
-            >
-              {t("apply")}
-              <ArrowRightIcon size={15} aria-hidden="true" />
-              <span className="sr-only">: <span lang="en">{project.title}</span></span>
-            </Link>
-          ) : (
-            <StatusLabel status={project.status} />
-          )}
-        </div>
+        <h3 lang="en" className="font-serif text-title-sm text-navy">
+          {opens ? <CardToggle disclosure={disclosure}>{project.title}</CardToggle> : project.title}
+        </h3>
+        {opens && <CardCaret open={disclosure.open} />}
       </div>
       {project.theses.length + project.topics.length > 0 && (
         <ul role="list" className="mb-2 mt-1 flex flex-wrap gap-1.5">
@@ -280,7 +295,7 @@ function TrackerRow({ project }: { project: TrackerProject }) {
               href={project.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
+              className="relative z-10 inline-flex items-center gap-1 font-medium text-navy underline decoration-navy/25 underline-offset-4 hover:decoration-navy focus-visible:decoration-navy"
             >
               {project.supervisor}
               <ArrowUpRightIcon size={13} aria-hidden="true" />
@@ -291,16 +306,61 @@ function TrackerRow({ project }: { project: TrackerProject }) {
           )}
         </p>
       )}
-      {/* Whose students may apply, in orange as on the hand-kept cards: it
-          is the line that decides whether a project is for the reader. */}
-      {project.universities.length > 0 && (
-        <p className="mt-2 text-caption font-medium leading-[18px] text-orange-ink">
-          {tFinder("who.studentsOnly", {
-            universities: formatList(project.universities, locale, "disjunction"),
-          })}
-        </p>
-      )}
       {project.summary && <p lang="en" className="mt-3 max-w-[820px] text-[15px] leading-6 text-navy/78">{project.summary}</p>}
+      </div>
+      {opens && (
+        <CardDetails disclosure={disclosure}>
+          {project.details && (
+            <ul role="list" lang="en" className="flex max-w-[820px] flex-col gap-2">
+              {project.details.map((line, i) => (
+                <li
+                  key={i}
+                  className="relative pl-4 text-[14.5px] leading-[23px] text-navy/74 before:absolute before:left-0 before:top-[9px] before:size-1.5 before:bg-navy/30"
+                >
+                  {line}
+                </li>
+              ))}
+            </ul>
+          )}
+          {agenda && (
+            <p>
+              <DetailsLink href={agenda}>{t("fullAgenda")}</DetailsLink>
+            </p>
+          )}
+        </CardDetails>
+      )}
+      {/* Pinned to the card's foot, so the way in lines up across a row.
+          Whose students may apply sits beside it, in orange as on the
+          hand-kept cards: it is the line that decides whether a project is
+          for the reader, so it is read with the way in. */}
+      <div className={`mx-5 mt-auto pb-5 md:mx-6 md:pb-6 ${full ? "opacity-80" : ""}`}>
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-navy/10 pt-3.5">
+          {project.universities.length > 0 ? (
+            <p className="text-caption font-medium leading-[18px] text-orange-ink">
+              {tFinder("who.studentsOnly", {
+                universities: formatList(project.universities, locale, "disjunction"),
+              })}
+            </p>
+          ) : (
+            <span />
+          )}
+          {project.status === "open" ? (
+            <Link
+              href={`${APPLY_PATH}?project=${encodeURIComponent(project.id)}`}
+              className="group inline-flex items-center gap-1.5 text-label font-medium text-navy focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy"
+            >
+              <CardApplyLabel>{t("apply")}</CardApplyLabel>
+              <ArrowRightIcon
+                size={15}
+                aria-hidden="true"
+                className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-within:translate-x-0.5"
+              />
+              <span className="sr-only">: <span lang="en">{project.title}</span></span>
+            </Link>
+          ) : (
+            <StatusLabel status={project.status} />
+          )}
+        </div>
       </div>
     </li>
   );

@@ -421,6 +421,28 @@ export function byAvailability<T extends Pick<Supervisor, "availability">>(peopl
   return [...people].sort((a, b) => availabilityRank(a.availability) - availabilityRank(b.availability));
 }
 
+/* A name as it compares: case, accents and spacing set aside, so the
+   tracker's "Fausto  carcassi" or "Filip Ilievski " still finds the person. */
+const nameKey = (name: string) =>
+  name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+
+const agendas = new Map(
+  supervisors.flatMap((person) => (person.agenda ? [[nameKey(person.name), person.agenda] as const] : [])),
+);
+
+/** The research agenda of the supervisor by this name, if they are listed
+    here and have one. The tracker (src/data/tracker.ts) only knows a
+    supervisor by the name in front of a project's title, so this is how its
+    cards find the agenda to link to. */
+export function agendaOf(name?: string) {
+  return name ? agendas.get(nameKey(name)) : undefined;
+}
+
 /** Full or not yet confirmed: their portrait is greyed out. */
 export function isGreyedOut(availability: Availability = "open") {
   return availability === "full" || availability === "unconfirmed";
